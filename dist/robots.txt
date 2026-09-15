@@ -1,7 +1,7 @@
 User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /privacy/
-Disallow: /consent/
+Allow: /artbalkon-site/
+Disallow: /artbalkon-site/api/
+Disallow: /artbalkon-site/privacy/
+Disallow: /artbalkon-site/consent/
 Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid
-Sitemap: https://artbalkon.pro/sitemap.xml
+Sitemap: https://ulin-roman.github.io/artbalkon-site/sitemap.xml

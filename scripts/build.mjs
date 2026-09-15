@@ -1,11 +1,18 @@
 import {mkdir,readFile,writeFile,cp} from 'node:fs/promises';
 import {shell,home,servicePage,projectPage,projectCards,contact,esc} from '../src/components.mjs';
 import {company,services,projects,integrations} from '../src/content.mjs';
+const rawBase=process.env.SITE_BASE_PATH||'/';
+if(!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(rawBase))throw Error('SITE_BASE_PATH must be an absolute path ending with /.');
+const base=rawBase;
+const staticOnly=process.env.SITE_STATIC_ONLY==='true';
+const baseHtml=html=>base==='/'?html:html.replace(/((?:href|src)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
+const baseCss=css=>base==='/'?css:css.replace(/url\((['"]?)\/(?!\/)/g,`url($1${base}`);
 await mkdir('dist',{recursive:true});
 await cp('public','dist',{recursive:true});
-await writeFile('dist/styles.css',(await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8')));
+await writeFile('dist/styles.css',baseCss((await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8'))));
+await writeFile('dist/.nojekyll','');
 const routes=[];
-async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',shell(body,{path,...meta}));if(!meta.noindex)routes.push(path);}
+async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(shell(body,{path,...meta})));if(!meta.noindex)routes.push(path);}
 await page('/',home());
 for(const s of services)await page(`/${s.slug}/`,servicePage(s),{title:`${s.h1} — цены и замер | ArtBalkon`,description:s.offer});
 await page('/nashi-raboty/',`<section class="section container"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span>/</span><span>Наши работы</span></nav><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы,<br>в которых хочется жить</h1><p class="hero-description">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.'});
@@ -13,8 +20,8 @@ for(const p of projects)await page(`/nashi-raboty/${p.slug}/`,projectPage(p),{ti
 const privacy=await readFile('src/privacy.html','utf8');
 await page('/privacy/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Политика конфиденциальности</h1>${privacy}</article>`,{title:'Политика конфиденциальности — ArtBalkon',noindex:true});
 await page('/consent/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Согласие на обработку персональных данных</h1><p>Отправляя форму с отмеченным полем согласия, я разрешаю ${esc(company.operator)} обрабатывать предоставленные мной имя, номер телефона и сведения о заявке для связи со мной, подготовки расчёта и обсуждения заказа.</p><p>Обработка включает сбор, запись, систематизацию, накопление, хранение, уточнение, использование и удаление указанных данных. Данные об источнике перехода и рекламные метки используются для определения источника заявки.</p><p>Согласие действует до достижения целей обработки или его отзыва. Я могу отозвать согласие по электронной почте <a href="mailto:${company.privacyEmail}">${company.privacyEmail}</a>, указав в теме «Отзыв согласия на обработку персональных данных».</p><p>Подробные условия изложены в <a href="/privacy/">политике конфиденциальности</a>.</p></article>`,{title:'Согласие на обработку персональных данных — ArtBalkon',noindex:true});
-await writeFile('dist/404.html',shell('<section class="section container legal"><p class="eyebrow">404</p><h1>Такой страницы нет</h1><p>Вернитесь на главную — там услуги, цены и наши работы.</p><a class="button" href="/">На главную ↗</a></section>',{title:'Страница не найдена — ArtBalkon',noindex:true}));
-await writeFile('dist/site-config.json',JSON.stringify(integrations));
-await writeFile('dist/robots.txt',`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /privacy/\nDisallow: /consent/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid\nSitemap: ${company.origin}/sitemap.xml\n`);
+await writeFile('dist/404.html',baseHtml(shell('<section class="section container legal"><p class="eyebrow">404</p><h1>Такой страницы нет</h1><p>Вернитесь на главную — там услуги, цены и наши работы.</p><a class="button" href="/">На главную ↗</a></section>',{title:'Страница не найдена — ArtBalkon',noindex:true})));
+await writeFile('dist/site-config.json',JSON.stringify({...integrations,basePath:base,leadEndpoint:staticOnly?null:integrations.leadEndpoint}));
+await writeFile('dist/robots.txt',`User-agent: *\nAllow: ${base}\nDisallow: ${base}api/\nDisallow: ${base}privacy/\nDisallow: ${base}consent/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid\nSitemap: ${company.origin}/sitemap.xml\n`);
 await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+routes.map(p=>`<url><loc>${company.origin}${p}</loc></url>`).join('')+'</urlset>');
 console.log(`ArtBalkon: ${routes.length+2} pages built`);

@@ -1,7 +1,7 @@
 export const company = {
  name:'ArtBalkon', phone:'+7 (495) 165-39-05', tel:'+74951653905', telegram:'https://t.me/+79255178380', channel:'https://t.me/artbalkonmoscow', whatsapp:'',
  address:'Московская область, Люберцы, Октябрьский проспект, 209, офис 5', hours:'Замеры ежедневно, 9:00–21:00', reviews:'https://yandex.ru/maps/org/99931581991/reviews/',
- origin:'https://artbalkon.pro', source:'https://artbalkon.pro/', checked:'2026-09-16', operator:'ИП Симанин Артем Юрьевич', privacyEmail:'specstroydoc@mail.ru'
+ origin:process.env.SITE_ORIGIN || 'https://ulin-roman.github.io/artbalkon-site', source:'https://artbalkon.pro/', checked:'2026-09-16', operator:'ИП Симанин Артем Юрьевич', privacyEmail:'specstroydoc@mail.ru'
 };
 // Единственный источник цен для карточек, таблицы, SEO и посадочных страниц.
 export const prices = {cold:7000,warm:11000,panoramic:11500,insulation:700,finishing:1900,turnkey:null};

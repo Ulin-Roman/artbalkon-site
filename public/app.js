@@ -2,8 +2,9 @@
  'use strict';
  const $=s=>document.querySelector(s);
  let config={};
- const configReady=fetch('/site-config.json').then(r=>{if(!r.ok)throw Error();return r.json();}).then(c=>{
+ const configReady=fetch(new URL('site-config.json',document.currentScript.src)).then(r=>{if(!r.ok)throw Error();return r.json();}).then(c=>{
   config=c;
+  if(!c.leadEndpoint)document.querySelectorAll('[data-lead-form]').forEach(form=>{const note=form.querySelector('.form-error');if(note)note.textContent='Для расчёта позвоните нам: +7 (495) 165-39-05. Отправка заявок через сайт пока не подключена.';});
   if(c.whatsapp){try{const url=new URL(c.whatsapp);if(['wa.me','api.whatsapp.com','www.whatsapp.com'].includes(url.hostname)&&url.protocol==='https:')document.querySelectorAll('.final-links').forEach(container=>{const link=document.createElement('a');link.className='messenger';link.href=url.href;link.target='_blank';link.rel='noopener';link.dataset.event='whatsapp_click';link.textContent='Написать в WhatsApp ↗';container.append(link);});}catch{}}
   if(c.metrikaId&&/^\d+$/.test(String(c.metrikaId))){
    window.ym=window.ym||function(){(window.ym.a=window.ym.a||[]).push(arguments)};window.ym.l=Date.now();
@@ -55,7 +56,7 @@
    const submit=form.querySelector('[type="submit"]'),error=form.querySelector('.form-error');
    submitting=true;submit.disabled=true;submit.setAttribute('aria-busy','true');const old=submit.innerHTML;submit.textContent='Отправляем…';error.textContent='';
    try{
-    await configReady;const values=Object.fromEntries(new FormData(form));id=id||crypto.randomUUID();
+    await configReady;if(!config.leadEndpoint)throw new Error('Отправка заявок через сайт пока не подключена. Позвоните нам: +7 (495) 165-39-05.');const values=Object.fromEntries(new FormData(form));id=id||crypto.randomUUID();
     const response=await fetch(config.leadEndpoint||'/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...values,consent:values.consent==='on',form:form.dataset.leadForm,attribution,page:location.pathname,requestId:id}),signal:AbortSignal.timeout(15000)});
     const result=await response.json();if(!response.ok||!result.ok)throw new Error(result.message||'Не удалось отправить заявку.');
     if(result.mode!=='preview'){track('form_submit',{form:form.dataset.leadForm});if(form===quiz)track('quiz_complete');}showThanks(form,result.mode==='preview');
