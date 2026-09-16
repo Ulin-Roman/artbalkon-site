@@ -1079,3 +1079,60 @@ h1,h2,h3,h4,
   flex-basis:34px;
  }
 }
+
+/* Unified motion and highlight for primary call-to-action buttons. */
+.button:not(.button-outline):not(.button-white),
+.button.button-outline,
+.button.button-white,
+.before-after-lead,
+.quiz-next-button,
+.mobile-bottom a{
+ animation:artbalkon-button-bob 3.4s ease-in-out infinite;
+}
+.before-after-lead{
+ border:1px solid rgba(214,255,252,.82);
+ box-shadow:0 8px 19px rgba(0,106,112,.18),inset 0 0 0 1px rgba(0,75,80,.16);
+}
+.button.button-outline,
+.button.button-white,
+.quiz-next-button,
+.mobile-bottom a{
+ position:relative;
+ isolation:isolate;
+ overflow:hidden;
+}
+.button:not(.button-outline):not(.button-white)::before,
+.button.button-outline::before,
+.button.button-white::before,
+.before-after-lead::before,
+.quiz-next-button::before,
+.mobile-bottom a::before{
+ display:block;
+ content:"";
+ position:absolute;
+ z-index:1;
+ top:-70%;
+ bottom:-70%;
+ left:-42%;
+ width:24%;
+ background:linear-gradient(90deg,transparent,rgba(255,255,255,.68),transparent);
+ transform:rotate(18deg);
+ animation:artbalkon-cta-shine 3.6s ease-in-out infinite;
+ pointer-events:none;
+}
+@media(prefers-reduced-motion:reduce){
+ .button:not(.button-outline):not(.button-white),
+ .button.button-outline,
+ .button.button-white,
+ .before-after-lead,
+ .quiz-next-button,
+ .mobile-bottom a,
+ .button:not(.button-outline):not(.button-white)::before,
+ .button.button-outline::before,
+ .button.button-white::before,
+ .before-after-lead::before,
+ .quiz-next-button::before,
+ .mobile-bottom a::before{
+  animation:none;
+ }
+}
