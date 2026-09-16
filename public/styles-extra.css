@@ -181,14 +181,14 @@ html{scroll-padding-top:104px}
 
 /* Compact header proportions aligned with romanulin.ru. */
 html{scroll-padding-top:84px}
-.site-header{height:72px}
-.site-header.is-scrolled{height:66px}
-.brand{width:148px}
+.site-header{height:64px}
+.site-header.is-scrolled{height:60px}
+.brand{width:124px}
 .header-inner{gap:18px}
 .desktop-nav{gap:16px}
 .header-cta{min-width:168px}
-.home-page .site-header{margin-bottom:-72px}
-@media(max-width:1200px){html{scroll-padding-top:80px}.site-header{height:70px}.site-header.is-scrolled{height:66px}.brand{width:142px}.home-page .site-header{margin-bottom:-70px}}
-@media(max-width:900px){html{scroll-padding-top:76px}.site-header,.site-header.is-scrolled{height:66px}.brand{width:136px}.home-page .site-header{margin-bottom:-66px}}
-@media(max-width:640px){html{scroll-padding-top:72px}.site-header,.site-header.is-scrolled{height:64px}.brand{width:124px}.home-page .site-header{margin-bottom:-64px}}
-@media(max-width:390px){.site-header,.site-header.is-scrolled{height:60px}.brand{width:116px}.home-page .site-header{margin-bottom:-60px}}
+.home-page .site-header{margin-bottom:-64px}
+@media(max-width:1200px){html{scroll-padding-top:72px}.site-header{height:62px}.site-header.is-scrolled{height:58px}.brand{width:120px}.home-page .site-header{margin-bottom:-62px}}
+@media(max-width:900px){html{scroll-padding-top:68px}.site-header,.site-header.is-scrolled{height:60px}.brand{width:116px}.home-page .site-header{margin-bottom:-60px}}
+@media(max-width:640px){html{scroll-padding-top:66px}.site-header,.site-header.is-scrolled{height:58px}.brand{width:112px}.home-page .site-header{margin-bottom:-58px}}
+@media(max-width:390px){.site-header,.site-header.is-scrolled{height:56px}.brand{width:106px}.home-page .site-header{margin-bottom:-56px}}

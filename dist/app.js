@@ -68,6 +68,14 @@
  });
  const context=document.modelContext;
  if(context?.registerTool&&quiz){const lifecycle=new AbortController();try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт балкона и выбирает услугу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:['Остекление','Утепление','Отделка','Балкон под ключ']}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=[...quiz.querySelectorAll('[name="service"]')].find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;begin();showStep(1);quiz.scrollIntoView({behavior:'smooth',block:'center'});return {service:option.value,step:2,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
+ const comparisonModal=$('#comparison-modal');
+ if(comparisonModal){
+  const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),comparisonTitle=$('#comparison-title'),comparisonDescription=$('#comparison-description');
+  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;beforeImage.src=card.dataset.before;afterImage.src=card.dataset.after;comparisonTitle.textContent=card.dataset.title;comparisonDescription.textContent=card.dataset.description;beforeImage.alt=`${card.dataset.title} — до ремонта, визуальная реконструкция`;afterImage.alt=`${card.dataset.title} — после работ ArtBalkon`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
+  comparisonModal.querySelector('.comparison-close')?.addEventListener('click',()=>comparisonModal.close());
+  comparisonModal.addEventListener('click',e=>{if(e.target===comparisonModal)comparisonModal.close();});
+  comparisonModal.addEventListener('close',()=>{beforeImage.removeAttribute('src');afterImage.removeAttribute('src');});
+ }
  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
   document.documentElement.classList.add('reveal-ready');
   const items=document.querySelectorAll('.reveal,.section-heading,.project-card,.why-grid article,.steps li');
