@@ -71,3 +71,11 @@ html{scroll-padding-top:104px}
 @media(max-width:900px){html{scroll-padding-top:88px}.site-header,.site-header.is-scrolled{height:78px}.brand{width:156px}.menu-toggle{margin-left:4px}.mobile-menu{top:100%}}
 @media(max-width:640px){html{scroll-padding-top:82px}.site-header,.site-header.is-scrolled{height:74px}.brand{width:144px}.button{min-height:55px}.hero-actions .button{min-width:0}.footer .brand{width:158px}}
 @media(max-width:390px){.brand{width:132px}.button{padding-left:18px}}
+
+/* Raised animated CTA treatment based on romanulin.ru. */
+.button:not(.button-outline):not(.button-white){position:relative;isolation:isolate;overflow:hidden;color:#fff;background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent 50%),linear-gradient(115deg,#0ba5aa 0%,#00878e 34%,#00777e 62%,#005f65 100%);border:1px solid rgba(137,229,228,.42);box-shadow:0 5px 0 #004f54,0 15px 34px rgba(0,119,126,.3),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,57,61,.22);text-shadow:0 1px 4px rgba(0,44,47,.38);animation:artbalkon-button-bob 3.2s ease-in-out infinite;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
+.button:not(.button-outline):not(.button-white)::before{content:"";position:absolute;z-index:-1;top:-65%;bottom:-65%;left:-38%;display:block;width:24%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.94),transparent);transform:rotate(18deg);animation:artbalkon-button-shine 3.8s ease-in-out infinite;pointer-events:none}
+.button:not(.button-outline):not(.button-white):hover{transform:translateY(-2px);filter:brightness(1.07);background:linear-gradient(to bottom,rgba(255,255,255,.22),transparent 50%),linear-gradient(115deg,#0ba5aa 0%,#00878e 34%,#00777e 62%,#005f65 100%);border-color:rgba(137,229,228,.55);box-shadow:0 7px 0 #004f54,0 20px 42px rgba(0,119,126,.4),inset 0 1px 0 rgba(255,255,255,.36),inset 0 -2px 0 rgba(0,57,61,.18)}
+.button:not(.button-outline):not(.button-white):active{transform:translateY(4px);filter:brightness(.98);box-shadow:0 1px 0 #004f54,0 8px 18px rgba(0,119,126,.25),inset 0 2px 5px rgba(0,43,46,.25);transition-duration:.08s}
+@keyframes artbalkon-button-bob{0%,100%{translate:0 1px}50%{translate:0 -3px}}
+@keyframes artbalkon-button-shine{0%,56%{transform:translateX(0) rotate(18deg);opacity:0}64%{opacity:1}82%,100%{transform:translateX(650%) rotate(18deg);opacity:0}}
