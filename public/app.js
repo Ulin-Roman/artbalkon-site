@@ -95,7 +95,7 @@
   const certificateNext=certificateSlider.querySelector('[data-cert-next]');
   let certificateIndex=0,certificateFrame=0;
   const certificateLeft=index=>certificateSlides[index].offsetLeft-certificateTrack.offsetLeft;
-  const updateCertificateControls=()=>{certificateCurrent.textContent=String(certificateIndex+1).padStart(2,'0');certificatePrev.disabled=certificateIndex===0;certificateNext.disabled=certificateIndex===certificateSlides.length-1;};
+  const updateCertificateControls=()=>{certificateCurrent.textContent=String(certificateIndex+1);certificatePrev.disabled=certificateIndex===0;certificateNext.disabled=certificateIndex===certificateSlides.length-1;};
   const showCertificate=index=>{certificateIndex=Math.max(0,Math.min(certificateSlides.length-1,index));certificateTrack.scrollTo({left:certificateLeft(certificateIndex),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});updateCertificateControls();};
   const syncCertificateIndex=()=>{certificateFrame=0;const left=certificateTrack.scrollLeft;certificateIndex=certificateSlides.reduce((best,slide,index)=>Math.abs(certificateLeft(index)-left)<Math.abs(certificateLeft(best)-left)?index:best,0);updateCertificateControls();};
   certificatePrev.addEventListener('click',()=>showCertificate(certificateIndex-1));
