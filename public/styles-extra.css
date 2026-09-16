@@ -326,3 +326,16 @@ html{scroll-padding-top:84px}
 .certificate-hint{margin-top:13px;color:#8fb3b1;font-size:12px}
 @media(max-width:1000px){.certificate-card{flex-basis:calc((100% - 18px)/2)}.certificate-paper{height:440px}}
 @media(max-width:640px){.certificates-section{margin-bottom:50px}.certificates-section .section{padding-block:56px}.certificates-heading{align-items:flex-start;flex-direction:column;gap:25px;margin-bottom:26px}.certificates-heading h2{font-size:32px}.certificates-heading>div>p:last-child{font-size:14px}.certificate-controls{align-self:stretch}.certificate-count{margin-right:auto}.certificate-controls button{width:44px;height:44px}.certificate-card{flex-basis:88%}.certificate-card a{padding:10px 10px 0;border-radius:13px}.certificate-paper{height:420px;padding:12px}.certificate-hint{font-size:11px;line-height:1.6}}
+
+/* Flat CTA buttons with Roman Ulin-style arrow */
+.button,.button:not(.button-outline):not(.button-white){overflow:visible;background:var(--teal);border:1px solid var(--teal);box-shadow:none;text-shadow:none;filter:none;animation:none;transition:background .2s,border-color .2s,color .2s}
+.button:not(.button-outline):not(.button-white)::before{display:none;content:none;animation:none}
+.button:hover,.button:not(.button-outline):not(.button-white):hover{background:var(--teal-hover);border-color:var(--teal-hover);box-shadow:none;filter:none;transform:none}
+.button:active,.button:not(.button-outline):not(.button-white):active{background:var(--teal-dark);border-color:var(--teal-dark);box-shadow:none;filter:none;transform:none}
+.button span[aria-hidden]{display:block;width:auto;height:auto;flex:0 0 auto;border-radius:0;background:transparent!important;font-size:27px;line-height:1;transition:transform .2s}
+.button:hover span[aria-hidden]{background:transparent!important;transform:translateX(5px)}
+.button-outline,.button-white{background:#fff;color:var(--teal);border-color:#9bc9c7;box-shadow:none}
+.button-outline:hover,.button-white:hover{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:none}
+.button-small span[aria-hidden],.header-cta span[aria-hidden]{width:auto;height:auto;border-radius:0;font-size:22px}
+.thermal-copy .button,.contact-location .contact-map-button{background:#fff;border-color:#fff;color:var(--teal-dark);box-shadow:none}
+.thermal-copy .button:hover,.contact-location .contact-map-button:hover{background:var(--teal-soft);border-color:var(--teal-soft);color:var(--teal-dark);box-shadow:none}
