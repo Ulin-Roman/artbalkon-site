@@ -1,6 +1,6 @@
 import {mkdir,readFile,writeFile,cp} from 'node:fs/promises';
-import {shellWithQuiz as shell,home,servicePage,projectPage,projectCards,contact,esc} from '../src/components.mjs';
-import {company,services,projects,integrations} from '../src/content.mjs';
+import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,projectPage,projectCards,contact,esc} from '../src/components.mjs';
+import {company,services,serviceSeo,projects,integrations} from '../src/content.mjs';
 const rawBase=process.env.SITE_BASE_PATH||'/';
 if(!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(rawBase))throw Error('SITE_BASE_PATH must be an absolute path ending with /.');
 const base=rawBase;
@@ -14,7 +14,7 @@ await writeFile('dist/.nojekyll','');
 const routes=[];
 async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(shell(body,{path,...meta})));if(!meta.noindex)routes.push(path);}
 await page('/',home());
-for(const s of services)await page(`/${s.slug}/`,servicePage(s),{title:`${s.h1} — цены и замер | ArtBalkon`,description:s.offer});
+for(const s of services){const seo=serviceSeo[s.slug];await page(`/${s.slug}/`,servicePage(s),{title:seo?.metaTitle||`${s.h1} — цены и замер | ArtBalkon`,description:seo?.metaDescription||s.offer});}
 await page('/nashi-raboty/',`<section class="section container"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span>/</span><span>Наши работы</span></nav><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы,<br>в которых хочется жить</h1><p class="hero-description">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.'});
 for(const p of projects)await page(`/nashi-raboty/${p.slug}/`,projectPage(p),{title:`${p.title} — ${p.location} | ArtBalkon`,description:p.intro});
 const privacy=await readFile('src/privacy.html','utf8');
