@@ -127,3 +127,10 @@ html{scroll-padding-top:104px}
 @media(max-width:1200px){.home-page .site-header{margin-bottom:-82px}}
 @media(max-width:900px){.home-page .site-header{margin-bottom:-78px}}
 @media(max-width:640px){.home-page .site-header{margin-bottom:-74px}}
+
+/* Hero USP panel. */
+.hero-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(660px,100%);margin-top:20px;border:1px solid rgba(143,224,220,.28);border-radius:14px;background:linear-gradient(115deg,rgba(4,32,31,.64),rgba(22,55,53,.34));-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);box-shadow:0 16px 42px rgba(0,18,18,.18),inset 0 1px 0 rgba(255,255,255,.1);overflow:hidden;text-shadow:none}
+.hero-trust>div{min-width:0;padding:14px 17px;border-left:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column;gap:2px}
+.hero-trust>div:first-child{border-left:0}.hero-trust strong{color:#fff;font-size:21px;font-weight:650;line-height:1.2;letter-spacing:-.035em}.hero-trust span{color:rgba(255,255,255,.66);font-size:11px;line-height:1.4}
+@media(max-width:640px){.hero-trust{margin-top:17px;border-radius:12px}.hero-trust>div{padding:11px 9px}.hero-trust strong{font-size:17px}.hero-trust span{font-size:9px}.hero-full-inner{padding-bottom:78px}}
+@media(max-width:370px){.hero-trust strong{font-size:15px}.hero-trust span{font-size:8px}}
