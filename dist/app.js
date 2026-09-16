@@ -20,6 +20,7 @@
  const query=new URLSearchParams(location.search);
  const fresh=Object.fromEntries(attributionKeys.filter(k=>query.has(k)).map(k=>[k,query.get(k).slice(0,300)]));
  if(Object.keys(fresh).length){attribution={...fresh,landing:location.pathname,referrer:document.referrer?new URL(document.referrer).origin:''};try{sessionStorage.setItem('artbalkon.attribution',JSON.stringify(attribution));}catch{}}
+ document.addEventListener('dragstart',e=>{if(e.target.closest('a,button,img'))e.preventDefault();});
  document.addEventListener('click',e=>{const link=e.target.closest('[data-event]');if(link)track(link.dataset.event,link.dataset.project?{project:link.dataset.project}:{});});
  document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
  const siteHeader=document.querySelector('.site-header');
@@ -77,14 +78,29 @@
   });
  });
  const context=document.modelContext;
- if(context?.registerTool&&quiz){const lifecycle=new AbortController();try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт балкона и выбирает услугу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:['Остекление','Утепление','Отделка','Балкон под ключ']}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=[...quiz.querySelectorAll('[name="service"]')].find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;begin();openQuiz(false);showStep(1);return {service:option.value,step:2,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
+ if(context?.registerTool&&quiz){const lifecycle=new AbortController();try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт балкона и выбирает необходимую работу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:['Холодное остекление','Тёплое остекление','Отделка балкона или лоджии','Утепление балкона или лоджии','Объединение с комнатой']}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=[...quiz.querySelectorAll('[name="service"]')].find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;begin();openQuiz(false);showStep(2);return {service:option.value,step:3,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
+ const applicationModal=$('#application-modal');
+ if(applicationModal){
+  const applicationProject=$('#application-project');
+  const applicationProjectInput=applicationModal.querySelector('input[name="project"]');
+  document.addEventListener('click',e=>{const trigger=e.target.closest('[data-application]');if(!trigger)return;const project=trigger.dataset.project||'Преображение балкона';applicationProject.textContent=project;applicationProjectInput.value=project;applicationModal.showModal();applicationModal.querySelector('.application-close').focus({preventScroll:true});track('transformation_lead_open',{project});});
+  applicationModal.querySelector('.application-close')?.addEventListener('click',()=>applicationModal.close());
+  applicationModal.addEventListener('click',e=>{if(e.target===applicationModal)applicationModal.close();});
+ }
  const comparisonModal=$('#comparison-modal');
  if(comparisonModal){
-  const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),comparisonTitle=$('#comparison-title'),comparisonDescription=$('#comparison-description');
-  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;const previews=card.querySelectorAll('.before-after-preview img');beforeImage.src=previews[0]?.currentSrc||previews[0]?.src||card.dataset.before;afterImage.src=previews[1]?.currentSrc||previews[1]?.src||card.dataset.after;comparisonTitle.textContent=card.dataset.title;comparisonDescription.textContent=card.dataset.description;beforeImage.alt=`${card.dataset.title} — до ремонта, визуальная реконструкция`;afterImage.alt=`${card.dataset.title} — после работ ArtBalkon`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
+  const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),beforeLabel=$('#comparison-before-label'),comparisonTitle=$('#comparison-title'),comparisonDescription=$('#comparison-description');
+  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;const previews=card.querySelectorAll('.before-after-preview img'),beforeReal=card.dataset.beforeReal==='true';beforeImage.src=previews[0]?.currentSrc||previews[0]?.src||card.dataset.before;afterImage.src=previews[1]?.currentSrc||previews[1]?.src||card.dataset.after;comparisonTitle.textContent=card.dataset.title;comparisonDescription.textContent=card.dataset.description;beforeLabel.textContent=beforeReal?'До · фото объекта':'До · реконструкция';beforeImage.alt=`${card.dataset.title} — ${beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция'}`;afterImage.alt=`${card.dataset.title} — после работ ArtBalkon`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
   comparisonModal.querySelector('.comparison-close')?.addEventListener('click',()=>comparisonModal.close());
   comparisonModal.addEventListener('click',e=>{if(e.target===comparisonModal)comparisonModal.close();});
   comparisonModal.addEventListener('close',()=>{beforeImage.removeAttribute('src');afterImage.removeAttribute('src');});
+ }
+ const finishingStyles=$('[data-finishing-styles]');
+ if(finishingStyles){
+  const finishingTabs=[...finishingStyles.querySelectorAll('[data-finishing-tab]')];
+  const finishingPanels=[...finishingStyles.querySelectorAll('[data-finishing-panel]')];
+  const selectFinishingStyle=(id,focus=false)=>{finishingTabs.forEach(tab=>{const active=tab.dataset.finishingTab===id;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus({preventScroll:true});});finishingPanels.forEach(panel=>panel.hidden=panel.dataset.finishingPanel!==id);};
+  finishingTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>{selectFinishingStyle(tab.dataset.finishingTab);track('finishing_style_view',{style:tab.dataset.finishingTab});});tab.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?finishingTabs.length-1:(index+(e.key==='ArrowRight'?1:-1)+finishingTabs.length)%finishingTabs.length;selectFinishingStyle(finishingTabs[next].dataset.finishingTab,true);});});
  }
  const certificateSlider=$('[data-certificates]');
  if(certificateSlider){
