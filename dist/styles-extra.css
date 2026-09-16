@@ -158,6 +158,10 @@ html{scroll-padding-top:104px}
 .before-after-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .before-after-grid.compact{grid-template-columns:repeat(auto-fit,minmax(280px,420px));justify-content:center}
 .hero-content>.eyebrow{display:none}
+.section-heading{flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.section-heading>div{display:flex;flex-direction:column;align-items:center}
+.section-heading .eyebrow{justify-content:center}
+.section-heading .section-description{max-width:720px}
 .before-after-card{display:block;min-width:0;padding:0;overflow:hidden;border:1px solid rgba(13,119,123,.13);border-radius:18px;background:#fff;color:var(--ink);text-align:left;box-shadow:0 13px 32px rgba(15,63,62,.07);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
 .before-after-card:hover{transform:translateY(-5px);border-color:rgba(13,119,123,.34);box-shadow:0 20px 42px rgba(15,63,62,.13)}
 .before-after-preview{display:grid;grid-template-columns:1fr 1fr;height:270px;overflow:hidden;background:#dce7e4}
