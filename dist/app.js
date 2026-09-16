@@ -22,6 +22,9 @@
  if(Object.keys(fresh).length){attribution={...fresh,landing:location.pathname,referrer:document.referrer?new URL(document.referrer).origin:''};try{sessionStorage.setItem('artbalkon.attribution',JSON.stringify(attribution));}catch{}}
  document.addEventListener('click',e=>{const link=e.target.closest('[data-event]');if(link)track(link.dataset.event,link.dataset.project?{project:link.dataset.project}:{});});
  document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+ const siteHeader=document.querySelector('.site-header');
+ const syncHeader=()=>siteHeader?.classList.toggle('is-scrolled',scrollY>18);
+ syncHeader();addEventListener('scroll',syncHeader,{passive:true});
  const menu=$('#mobile-menu'),toggle=$('.menu-toggle');
  function closeMenu(){if(!menu)return;menu.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Открыть меню');}
  toggle?.addEventListener('click',()=>{const isOpen=toggle.getAttribute('aria-expanded')==='true';menu.hidden=isOpen;toggle.setAttribute('aria-expanded',String(!isOpen));toggle.setAttribute('aria-label',isOpen?'Открыть меню':'Закрыть меню');});
