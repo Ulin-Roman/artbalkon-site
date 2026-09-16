@@ -1,5 +1,5 @@
 import {mkdir,readFile,writeFile,cp} from 'node:fs/promises';
-import {shell,home,servicePage,projectPage,projectCards,contact,esc} from '../src/components.mjs';
+import {shellWithQuiz as shell,home,servicePage,projectPage,projectCards,contact,esc} from '../src/components.mjs';
 import {company,services,projects,integrations} from '../src/content.mjs';
 const rawBase=process.env.SITE_BASE_PATH||'/';
 if(!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(rawBase))throw Error('SITE_BASE_PATH must be an absolute path ending with /.');

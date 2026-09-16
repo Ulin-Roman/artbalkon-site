@@ -73,6 +73,9 @@ html{scroll-padding-top:104px}
 @media(max-width:640px){html{scroll-padding-top:82px}.site-header,.site-header.is-scrolled{height:74px}.brand{width:144px}.button{min-height:55px}.hero-actions .button{min-width:0}.footer .brand{width:158px}}
 @media(max-width:390px){.brand{width:132px}.button{padding-left:18px}}
 
+.scroll-top{position:fixed;right:24px;bottom:24px;z-index:45;width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(0,119,126,.2);border-radius:50%;background:rgba(255,255,255,.94);color:var(--teal-dark);box-shadow:0 10px 30px rgba(5,64,67,.16);font-size:22px;line-height:1;backdrop-filter:blur(12px);transition:background .2s,color .2s,border-color .2s,transform .2s}.scroll-top:hover{background:var(--teal);color:#fff;border-color:var(--teal);transform:translateY(-2px)}
+@media(max-width:640px){.scroll-top{right:16px;bottom:calc(74px + env(safe-area-inset-bottom));width:42px;height:42px;font-size:20px}}
+
 /* Raised animated CTA treatment based on romanulin.ru. */
 .button:not(.button-outline):not(.button-white){position:relative;isolation:isolate;overflow:hidden;color:#fff;background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent 50%),linear-gradient(115deg,#0ba5aa 0%,#00878e 34%,#00777e 62%,#005f65 100%);border:1px solid rgba(137,229,228,.42);box-shadow:0 5px 0 #004f54,0 15px 34px rgba(0,119,126,.3),inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,57,61,.22);text-shadow:0 1px 4px rgba(0,44,47,.38);animation:artbalkon-button-bob 3.2s ease-in-out infinite;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
 .button:not(.button-outline):not(.button-white)::before{content:"";position:absolute;z-index:-1;top:-65%;bottom:-65%;left:-38%;display:block;width:24%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.94),transparent);transform:rotate(18deg);animation:artbalkon-button-shine 3.8s ease-in-out infinite;pointer-events:none}
@@ -117,6 +120,7 @@ html{scroll-padding-top:104px}
 @media(max-width:1200px){.service-card-media{height:170px}.extra-card-media{height:160px}}
 @media(max-width:900px){.service-card-media{height:220px}.extra-card-media{height:190px}}
 @media(max-width:640px){.service-card-media{height:230px}.extra-card-media{height:215px}.service-card-body,.extra-card-body{padding:20px}.service-card-body h3,.extra-card-body h3{font-size:22px}}
+@media(max-width:640px){.service-card .concept-badge,.service-card-body>p,.service-card-body>.text-link{display:none}.service-card-body{padding:16px 17px 17px}.service-card-body h3{font-size:20px;margin-bottom:16px}.service-card-price{margin:auto 0 0;padding-top:13px;border-top:1px solid var(--line)}}
 
 /* Header messengers borrowed from romanulin.ru. */
 .header-contact{display:inline-flex;flex-direction:row;align-items:center;gap:10px;white-space:nowrap}.header-contact .phone{display:inline-flex;align-items:center}.header-messengers{display:inline-flex;align-items:center;flex:0 0 auto;gap:6px;margin:0}.header-messenger{width:27px;height:27px;display:grid;place-items:center;border-radius:50%;transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}.header-messenger:hover{transform:translateY(-1px) scale(1.08);filter:brightness(1.06);box-shadow:0 6px 16px rgba(0,78,83,.16)}.header-messenger img{display:block;width:100%;height:100%;object-fit:contain}.telegram-messenger{overflow:hidden;background:linear-gradient(180deg,#39afe3,#2298d0)}
@@ -129,6 +133,7 @@ html{scroll-padding-top:104px}
 .home-page .site-header{margin-bottom:-88px;background:linear-gradient(110deg,rgba(255,255,255,.76),rgba(238,250,249,.56))}
 .home-page .hero.hero-full,.home-page .hero-full-inner{min-height:100svh}
 .mobile-menu{background:linear-gradient(145deg,rgba(255,255,255,.94),rgba(241,250,249,.88));border-bottom:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(24px) saturate(1.35);backdrop-filter:blur(24px) saturate(1.35);box-shadow:0 24px 45px rgba(13,48,47,.16)}
+@media(max-width:900px){.mobile-menu{padding:16px 20px 20px;text-align:center}.mobile-menu>a:not(.button){padding:11px 10px;text-align:center}.mobile-menu>.button{display:inline-flex;width:auto;min-width:0;min-height:42px;margin:16px auto 0;padding:6px 7px 6px 16px;gap:10px;font-size:12px;border-bottom:1px solid var(--teal)}.mobile-menu>.button span[aria-hidden]{width:28px;height:28px;border-radius:7px;font-size:14px}}
 @media(max-width:1200px){.home-page .site-header{margin-bottom:-82px}}
 @media(max-width:900px){.home-page .site-header{margin-bottom:-78px}}
 @media(max-width:640px){.home-page .site-header{margin-bottom:-74px}}
@@ -180,8 +185,20 @@ html{scroll-padding-top:104px}
 @keyframes comparison-in{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
 @keyframes comparison-backdrop{from{opacity:0}to{opacity:1}}
 @media(max-width:900px){.before-after-grid{grid-template-columns:1fr 1fr}.before-after-preview{height:255px}.comparison-modal{width:calc(100% - 28px);max-height:calc(100dvh - 28px)}.comparison-modal-grid figure{height:55dvh}}
-@media(max-width:640px){.before-after-grid{grid-template-columns:1fr;gap:17px}.before-after-preview{height:250px}.before-after-copy{padding:18px}.before-after-copy strong{font-size:20px}.reconstruction-note{text-align:left}.comparison-modal{width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:17px}.comparison-modal-shell{padding:17px}.comparison-modal-head{gap:15px;margin-bottom:16px}.comparison-modal-head h2{font-size:26px}.comparison-modal-head p:not(.eyebrow){font-size:12px}.comparison-close{width:39px;height:39px}.comparison-modal-grid{grid-template-columns:1fr;gap:8px}.comparison-modal-grid figure{height:42dvh}.comparison-modal-grid figure>span{left:10px;top:10px}.comparison-modal-note{font-size:9px}}
+@media(max-width:640px){.before-after-grid{grid-template-columns:1fr;gap:17px}.before-after-preview{height:250px}.before-after-copy{padding:18px}.before-after-copy small{display:none}.before-after-copy strong{font-size:20px}.reconstruction-note{text-align:left}.comparison-modal{width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:17px}.comparison-modal-shell{padding:17px}.comparison-modal-head{gap:15px;margin-bottom:16px}.comparison-modal-head h2{font-size:26px}.comparison-modal-head p:not(.eyebrow){font-size:12px}.comparison-close{width:39px;height:39px}.comparison-modal-grid{grid-template-columns:1fr;gap:8px}.comparison-modal-grid figure{height:42dvh}.comparison-modal-grid figure>span{left:10px;top:10px}.comparison-modal-note{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.before-after-card,.before-after-preview img,.comparison-modal[open],.comparison-modal[open]::backdrop{animation:none;transition:none}}
+
+/* Quiz modal */
+.quiz-modal{width:min(1380px,calc(100% - 40px));max-height:calc(100dvh - 40px);padding:0;border:0;border-radius:20px;background:transparent;color:var(--ink);box-shadow:0 30px 100px rgba(0,34,36,.34);overflow:auto}
+.quiz-modal::backdrop{background:rgba(3,20,20,.7);backdrop-filter:blur(8px)}
+.quiz-modal[open]{animation:comparison-in .28s ease both}.quiz-modal[open]::backdrop{animation:comparison-backdrop .28s ease both}
+.quiz-modal-shell{position:relative;background:var(--soft);border-radius:20px;overflow:hidden}
+.quiz-modal .quiz-layout{border:0;border-radius:20px;box-shadow:none}
+.quiz-modal-close{position:absolute;z-index:5;top:14px;right:14px;width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(0,119,126,.2);border-radius:50%;background:#fff;color:var(--teal-dark);font-size:26px;line-height:1;box-shadow:0 5px 18px rgba(0,45,47,.12);transition:transform .2s,background .2s}
+.quiz-modal-close:hover{transform:rotate(5deg);background:var(--teal-soft)}
+@media(max-width:900px){.quiz-modal{width:calc(100% - 24px);max-height:calc(100dvh - 24px)}.quiz-modal .quiz-intro{padding-right:70px}}
+@media(max-width:640px){.quiz-modal{width:calc(100% - 12px);max-height:calc(100dvh - 12px);border-radius:15px}.quiz-modal-shell,.quiz-modal .quiz-layout{border-radius:15px}.quiz-modal-close{top:10px;right:10px;width:38px;height:38px}.quiz-modal .quiz-intro{padding:24px 58px 22px 20px}.quiz-modal .quiz-intro h2{font-size:27px}.quiz-modal .quiz-intro>p:not(.eyebrow),.quiz-modal .quiz-note{display:none}.quiz-modal .quiz-form{min-height:440px}}
+@media(prefers-reduced-motion:reduce){.quiz-modal[open],.quiz-modal[open]::backdrop{animation:none}}
 
 /* Compact header proportions aligned with romanulin.ru. */
 html{scroll-padding-top:84px}

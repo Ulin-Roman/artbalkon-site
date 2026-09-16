@@ -25,6 +25,10 @@
  const siteHeader=document.querySelector('.site-header');
  const syncHeader=()=>siteHeader?.classList.toggle('is-scrolled',scrollY>18);
  syncHeader();addEventListener('scroll',syncHeader,{passive:true});
+ const scrollTopButton=$('#scroll-top');
+ const syncScrollTop=()=>{if(scrollTopButton)scrollTopButton.hidden=scrollY<Math.max(480,innerHeight*.65);};
+ syncScrollTop();addEventListener('scroll',syncScrollTop,{passive:true});
+ scrollTopButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
  const menu=$('#mobile-menu'),toggle=$('.menu-toggle');
  function closeMenu(){if(!menu)return;menu.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Открыть меню');}
  toggle?.addEventListener('click',()=>{const isOpen=toggle.getAttribute('aria-expanded')==='true';menu.hidden=isOpen;toggle.setAttribute('aria-expanded',String(!isOpen));toggle.setAttribute('aria-label',isOpen?'Открыть меню':'Закрыть меню');});
@@ -37,10 +41,16 @@
   return true;
  }
  document.querySelectorAll('input').forEach(el=>el.addEventListener('input',()=>{el.setCustomValidity('');el.closest('form')?.querySelector('.form-error')?.replaceChildren();}));
+ const quizDialog=$('#quiz');
  const quiz=$('[data-lead-form="quiz"]');let step=0,started=false;
  const steps=quiz?[...quiz.querySelectorAll('[data-step]')]:[];
  function begin(){if(!started){track('quiz_start');started=true;}}
  function showStep(index,focus=true){step=index;steps.forEach((el,i)=>el.hidden=i!==step);$('#step-count').textContent=`Шаг ${step+1} из 5`;$('#quiz-progress').value=step+1;$('#quiz-back').disabled=step===0;$('#quiz-next').hidden=step===4;$('#quiz-submit').hidden=step!==4;quiz.querySelector('.form-error').textContent='';if(focus)steps[step].querySelector('legend').focus({preventScroll:true});}
+ function openQuiz(trackOpen=true){if(!quizDialog)return;if(!quizDialog.open)quizDialog.showModal();quizDialog.querySelector('.quiz-modal-close')?.focus({preventScroll:true});if(trackOpen)track('quiz_open');}
+ document.addEventListener('click',e=>{const link=e.target.closest('a[href$="#quiz"]');if(!link||!quizDialog)return;e.preventDefault();closeMenu();openQuiz();});
+ quizDialog?.querySelector('.quiz-modal-close')?.addEventListener('click',()=>quizDialog.close());
+ quizDialog?.addEventListener('click',e=>{if(e.target===quizDialog)quizDialog.close();});
+ if(location.hash==='#quiz'){openQuiz(false);history.replaceState(null,'',location.pathname+location.search);}
  quiz?.addEventListener('change',begin);
  $('#quiz-next')?.addEventListener('click',()=>{begin();if(validate(quiz,steps[step]))showStep(Math.min(4,step+1));});
  $('#quiz-back')?.addEventListener('click',()=>showStep(Math.max(0,step-1)));
@@ -67,11 +77,11 @@
   });
  });
  const context=document.modelContext;
- if(context?.registerTool&&quiz){const lifecycle=new AbortController();try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт балкона и выбирает услугу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:['Остекление','Утепление','Отделка','Балкон под ключ']}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=[...quiz.querySelectorAll('[name="service"]')].find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;begin();showStep(1);quiz.scrollIntoView({behavior:'smooth',block:'center'});return {service:option.value,step:2,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
+ if(context?.registerTool&&quiz){const lifecycle=new AbortController();try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт балкона и выбирает услугу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:['Остекление','Утепление','Отделка','Балкон под ключ']}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=[...quiz.querySelectorAll('[name="service"]')].find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;begin();openQuiz(false);showStep(1);return {service:option.value,step:2,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
  const comparisonModal=$('#comparison-modal');
  if(comparisonModal){
   const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),comparisonTitle=$('#comparison-title'),comparisonDescription=$('#comparison-description');
-  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;beforeImage.src=card.dataset.before;afterImage.src=card.dataset.after;comparisonTitle.textContent=card.dataset.title;comparisonDescription.textContent=card.dataset.description;beforeImage.alt=`${card.dataset.title} — до ремонта, визуальная реконструкция`;afterImage.alt=`${card.dataset.title} — после работ ArtBalkon`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
+  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;const previews=card.querySelectorAll('.before-after-preview img');beforeImage.src=previews[0]?.currentSrc||previews[0]?.src||card.dataset.before;afterImage.src=previews[1]?.currentSrc||previews[1]?.src||card.dataset.after;comparisonTitle.textContent=card.dataset.title;comparisonDescription.textContent=card.dataset.description;beforeImage.alt=`${card.dataset.title} — до ремонта, визуальная реконструкция`;afterImage.alt=`${card.dataset.title} — после работ ArtBalkon`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
   comparisonModal.querySelector('.comparison-close')?.addEventListener('click',()=>comparisonModal.close());
   comparisonModal.addEventListener('click',e=>{if(e.target===comparisonModal)comparisonModal.close();});
   comparisonModal.addEventListener('close',()=>{beforeImage.removeAttribute('src');afterImage.removeAttribute('src');});
