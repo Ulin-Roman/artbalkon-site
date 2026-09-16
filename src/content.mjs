@@ -1,5 +1,5 @@
 export const company = {
- name:'ArtBalkon', phone:'+7 (495) 165-39-05', tel:'+74951653905', telegram:'https://t.me/+79255178380', channel:'https://t.me/artbalkonmoscow', whatsapp:'',
+ name:'ArtBalkon', phone:'+7 (495) 165-39-05', tel:'+74951653905', telegram:'https://t.me/+79255178380', max:'https://max.ru/u/f9LHodD0cOIgP2onCOkH83oy2K17iRYqau-9i5HVA60iM_DqDh91Ahmt7t0', channel:'https://t.me/artbalkonmoscow', whatsapp:'',
  address:'Московская область, Люберцы, Октябрьский проспект, 209, офис 5', hours:'Замеры ежедневно, 9:00–21:00', reviews:'https://yandex.ru/maps/org/99931581991/reviews/',
  origin:process.env.SITE_ORIGIN || 'https://ulin-roman.github.io/artbalkon-site', source:'https://artbalkon.pro/', checked:'2026-09-16', operator:'ИП Симанин Артем Юрьевич', privacyEmail:'specstroydoc@mail.ru'
 };
