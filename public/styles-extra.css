@@ -1960,6 +1960,31 @@ h1,h2,h3,h4,
 /* Chrome's “Desktop site” on phones commonly reports a viewport near 980px.
    Treat that range as a compact layout instead of squeezing desktop grids. */
 @media(max-width:1100px) and (min-width:641px){
+ .home-page .hero.container{
+  grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);
+  width:calc(100% - 64px);
+  max-width:1328px;
+  margin-inline:auto;
+  gap:36px;
+  padding-block:36px 30px;
+ }
+ .home-page .hero-content{
+  align-self:center;
+  text-align:left;
+ }
+ .home-page .hero-visual{height:500px}
+ .home-page .hero .hero-actions{
+  width:auto;
+  flex-direction:row;
+  align-items:flex-start;
+ }
+ .home-page .hero .hero-actions .button{width:auto}
+ .home-page .trust-strip{
+  width:calc(100% - 64px);
+  max-width:1328px;
+  margin-inline:auto;
+  gap:12px;
+ }
  .services-grid,
  .before-after-grid,
  .promotion-grid,
