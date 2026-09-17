@@ -9,7 +9,7 @@ a,button{-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
 /* ArtBalkon premium teal visual system */
-:root{--teal:#00777e;--teal-hover:#005e64;--teal-dark:#064d52;--teal-soft:#eaf6f5;--teal-mist:#f4f9f8;--warm:#f7f5f1;--red:var(--teal);--red-hover:var(--teal-hover);--ink:#1f2929;--muted:#667373;--line:#dce7e5;--soft:var(--teal-mist);--radius:18px}
+:root{--teal:#00777e;--teal-hover:#005e64;--teal-dark:#064d52;--teal-soft:#eaf6f5;--teal-mist:#f4f9f8;--warm:#f7f5f1;--red:var(--teal);--red-hover:var(--teal-hover);--ink:#1f2929;--muted:#4c5858;--line:#dce7e5;--soft:var(--teal-mist);--radius:18px}
 body{color:var(--ink);background:#fff}
 .site-header{position:relative;z-index:30;background:#ffffffed;backdrop-filter:blur(16px)}
 .brand-mark i{border-color:var(--teal)}
@@ -969,6 +969,9 @@ h1,h2,h3,h4,
  .hero-slideshow .hero-image{transition:none;transform:none}
  .hero-slideshow .hero-image:not(.is-active){display:none}
 }
+
+/* Stronger secondary text contrast throughout the site. */
+.field input::placeholder{color:#5f6a69;opacity:1}
 
 /* Messenger names stay available to screen readers; visually only icons remain. */
 .contact-social span{
