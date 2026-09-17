@@ -121,14 +121,14 @@
   const certificateCurrent=certificateSlider.querySelector('[data-cert-current]');
   const certificatePrev=certificateSlider.querySelector('[data-cert-prev]');
   const certificateNext=certificateSlider.querySelector('[data-cert-next]');
-  let certificateIndex=0,certificateFrame=0;
+  let certificateIndex=0,certificateFrame=0,certificateUnlock=0,certificateProgrammatic=false;
   const certificateLeft=index=>certificateSlides[index].offsetLeft-certificateTrack.offsetLeft;
   const updateCertificateControls=()=>{certificateCurrent.textContent=String(certificateIndex+1);certificatePrev.disabled=certificateIndex===0;certificateNext.disabled=certificateIndex===certificateSlides.length-1;};
-  const showCertificate=index=>{certificateIndex=Math.max(0,Math.min(certificateSlides.length-1,index));certificateTrack.scrollTo({left:certificateLeft(certificateIndex),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});updateCertificateControls();};
+  const showCertificate=index=>{certificateIndex=Math.max(0,Math.min(certificateSlides.length-1,index));certificateProgrammatic=true;clearTimeout(certificateUnlock);certificateTrack.scrollTo({left:certificateLeft(certificateIndex),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});updateCertificateControls();certificateUnlock=setTimeout(()=>{certificateProgrammatic=false;},900);};
   const syncCertificateIndex=()=>{certificateFrame=0;const left=certificateTrack.scrollLeft;certificateIndex=certificateSlides.reduce((best,slide,index)=>Math.abs(certificateLeft(index)-left)<Math.abs(certificateLeft(best)-left)?index:best,0);updateCertificateControls();};
   certificatePrev.addEventListener('click',()=>showCertificate(certificateIndex-1));
   certificateNext.addEventListener('click',()=>showCertificate(certificateIndex+1));
-  certificateTrack.addEventListener('scroll',()=>{if(!certificateFrame)certificateFrame=requestAnimationFrame(syncCertificateIndex);},{passive:true});
+  certificateTrack.addEventListener('scroll',()=>{if(!certificateProgrammatic&&!certificateFrame)certificateFrame=requestAnimationFrame(syncCertificateIndex);},{passive:true});
   certificateTrack.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();showCertificate(certificateIndex+(e.key==='ArrowRight'?1:-1));}});
   updateCertificateControls();
  }

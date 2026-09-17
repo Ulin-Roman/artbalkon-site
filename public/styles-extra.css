@@ -283,6 +283,7 @@ html{scroll-padding-top:84px}
 .certificate-controls button:hover:not(:disabled){background:#0b858a;border-color:#45b8b8;transform:translateY(-2px)}
 .certificate-controls button:disabled{opacity:.28}
 .certificate-track{display:flex;gap:18px;overflow-x:auto;padding:8px 2px 24px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#4d8584 rgba(255,255,255,.08);overscroll-behavior-inline:contain}
+.certificate-track::after{content:"";flex:0 0 calc(66.6667% - 6px)}
 .certificate-track::-webkit-scrollbar{height:6px}.certificate-track::-webkit-scrollbar-track{background:rgba(255,255,255,.08);border-radius:999px}.certificate-track::-webkit-scrollbar-thumb{background:#4d8584;border-radius:999px}
 .certificate-card{flex:0 0 calc((100% - 36px)/3);margin:0;scroll-snap-align:start;min-width:0}
 .certificate-card a{display:block;padding:14px 14px 0;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.07);transition:background .25s,border-color .25s,transform .25s}
@@ -293,8 +294,8 @@ html{scroll-padding-top:84px}
 .certificate-card figcaption span{font-size:10px;letter-spacing:.16em}
 .certificate-card figcaption strong{color:#fff;font-size:18px;font-weight:500}
 .certificate-hint{margin-top:13px;color:#8fb3b1;font-size:12px}
-@media(max-width:1000px){.certificate-card{flex-basis:calc((100% - 18px)/2)}.certificate-paper{height:440px}}
-@media(max-width:640px){.certificates-section{margin-bottom:50px}.certificates-section .section{padding-block:56px}.certificates-heading{align-items:flex-start;flex-direction:column;gap:25px;margin-bottom:26px}.certificates-heading h2{font-size:32px}.certificates-heading>div>p:last-child{font-size:14px}.certificate-controls{align-self:stretch}.certificate-count{margin-right:auto}.certificate-controls button{width:44px;height:44px}.certificate-card{flex-basis:88%}.certificate-card a{padding:10px 10px 0;border-radius:13px}.certificate-paper{height:420px;padding:12px}.certificate-hint{font-size:11px;line-height:1.6}}
+@media(max-width:1000px){.certificate-track::after{flex-basis:calc(50% - 9px)}.certificate-card{flex-basis:calc((100% - 18px)/2)}.certificate-paper{height:440px}}
+@media(max-width:640px){.certificates-section{margin-bottom:50px}.certificates-section .section{padding-block:56px}.certificates-heading{align-items:flex-start;flex-direction:column;gap:25px;margin-bottom:26px}.certificates-heading h2{font-size:32px}.certificates-heading>div>p:last-child{font-size:14px}.certificate-controls{align-self:stretch}.certificate-count{margin-right:auto}.certificate-controls button{width:44px;height:44px}.certificate-track::after{flex-basis:calc(12% - 18px)}.certificate-card{flex-basis:88%}.certificate-card a{padding:10px 10px 0;border-radius:13px}.certificate-paper{height:420px;padding:12px}.certificate-hint{font-size:11px;line-height:1.6}}
 
 /* Flat CTA buttons with Roman Ulin-style arrow */
 .button,.button:not(.button-outline):not(.button-white){overflow:visible;background:linear-gradient(135deg,#18aeb3 0%,var(--teal) 56%,var(--teal-dark) 100%);border:1px solid var(--teal);box-shadow:none;text-shadow:none;filter:none;animation:none;transition:background .2s,border-color .2s,color .2s}
