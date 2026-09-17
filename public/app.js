@@ -35,6 +35,18 @@
  toggle?.addEventListener('click',()=>{const isOpen=toggle.getAttribute('aria-expanded')==='true';menu.hidden=isOpen;toggle.setAttribute('aria-expanded',String(!isOpen));toggle.setAttribute('aria-label',isOpen?'Открыть меню':'Закрыть меню');});
  menu?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+ const heroSlider=$('[data-hero-slider]');
+ if(heroSlider){
+  const slides=[...heroSlider.querySelectorAll('.hero-image')];
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+  let heroIndex=0,heroTimer=0;
+  const showHeroSlide=index=>{heroIndex=index;slides.forEach((slide,i)=>{const active=i===heroIndex;slide.classList.toggle('is-active',active);slide.setAttribute('aria-hidden',String(!active));});};
+  const stopHeroSlider=()=>{if(heroTimer){clearInterval(heroTimer);heroTimer=0;}};
+  const startHeroSlider=()=>{if(reducedMotion.matches||slides.length<2||heroTimer)return;heroTimer=setInterval(()=>showHeroSlide((heroIndex+1)%slides.length),3000);};
+  showHeroSlide(0);startHeroSlider();
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopHeroSlider();else startHeroSlider();});
+  addEventListener('pagehide',stopHeroSlider,{once:true});
+ }
  document.querySelectorAll('input[name="phone"]').forEach(input=>{input.addEventListener('input',()=>input.setCustomValidity(''));input.addEventListener('blur',()=>{let d=input.value.replace(/\D/g,'');if(d.length===10)d='7'+d;if(d.length===11&&/^[78]/.test(d)){d='7'+d.slice(1);input.value=`+7 (${d.slice(1,4)}) ${d.slice(4,7)}-${d.slice(7,9)}-${d.slice(9)}`;}});});
  function validate(form,scope=form){
   const fields=[...scope.querySelectorAll('input')].filter(el=>!el.closest('.honeypot'));
