@@ -498,6 +498,7 @@ html{scroll-padding-top:84px}
   width:100%;
   padding:30px 20px 22px;
   color:#fff;
+  text-align:center;
  }
  .home-page .hero-visual{
   grid-area:mobile-hero;
@@ -1556,16 +1557,56 @@ h1,h2,h3,h4,
 }
 
 /* Use the service photograph as the mobile hero on every service page. */
+.landing-hero .landing-grid{
+ grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);
+ grid-template-areas:"landing-copy landing-photo" "landing-trust landing-photo";
+ column-gap:60px;
+ row-gap:24px;
+ align-items:start;
+}
+.landing-copy{grid-area:landing-copy;align-self:center}
+.landing-hero .landing-photo{grid-area:landing-photo;height:600px}
+.landing-trust{
+ grid-area:landing-trust;
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:10px;
+ align-self:end;
+}
+.landing-trust>div{
+ display:flex;
+ min-width:0;
+ min-height:92px;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:5px;
+ padding:13px 9px;
+ border:1px solid var(--surface-border);
+ border-radius:16px;
+ background:#fff;
+ box-shadow:0 8px 22px rgba(18,28,30,.05);
+ text-align:center;
+}
+.landing-trust strong{color:var(--teal);font-size:22px;font-weight:800;line-height:1.1;white-space:nowrap}
+.landing-trust span{color:var(--ink);font-size:10px;font-weight:600;line-height:1.4}
+@media(max-width:1000px) and (min-width:641px){
+ .landing-hero .landing-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);column-gap:32px}
+ .landing-trust{gap:7px}
+ .landing-trust>div{padding-inline:6px}
+ .landing-trust strong{font-size:19px}
+ .landing-trust span{font-size:9px}
+}
 @media(max-width:640px){
  .landing-hero .landing-grid{
   display:grid;
   grid-template-columns:1fr;
-  grid-template-areas:"service-hero";
-  gap:0;
-  min-height:620px;
-  overflow:hidden;
-  border-radius:18px;
-  box-shadow:0 16px 36px rgba(6,77,82,.16);
+  grid-template-areas:"service-hero" "service-trust";
+  gap:12px;
+  min-height:0;
+  overflow:visible;
+  border-radius:0;
+  box-shadow:none;
  }
  .landing-hero .landing-grid>div:first-child{
   grid-area:service-hero;
@@ -1573,6 +1614,7 @@ h1,h2,h3,h4,
   z-index:2;
   padding:30px 20px 22px;
   color:#fff;
+  text-align:center;
  }
  .landing-hero .landing-photo{
   position:relative;
@@ -1580,8 +1622,8 @@ h1,h2,h3,h4,
   width:100%;
   height:620px;
   min-height:620px;
-  border-radius:0;
-  box-shadow:none;
+  border-radius:18px;
+  box-shadow:0 16px 36px rgba(6,77,82,.16);
  }
  .landing-hero .landing-photo::after{
   content:"";
@@ -1628,13 +1670,17 @@ h1,h2,h3,h4,
   text-align:center;
   text-shadow:0 1px 8px rgba(0,0,0,.7);
  }
+ .landing-trust{grid-area:service-trust;gap:8px}
+ .landing-trust>div{min-height:88px;padding:12px 5px;border-radius:14px}
+ .landing-trust strong{font-size:19px}
+ .landing-trust span{font-size:9px}
 }
 @media(max-width:370px){
- .landing-hero .landing-grid,
  .landing-hero .landing-photo{
   min-height:590px;
   height:590px;
  }
+ .landing-hero .landing-grid{min-height:0;height:auto}
  .landing-hero .landing-grid>div:first-child{
   padding:25px 17px 18px;
  }
