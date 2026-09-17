@@ -1907,7 +1907,32 @@ h1,h2,h3,h4,
 .landing-hero .landing-copy .hero-description + .button{
  margin-top:25px;
 }
+.landing-hero .landing-copy .hero-note{
+ align-self:stretch;
+ width:100%;
+ text-align:center!important;
+}
 @media(max-width:640px){
+ .home-page .hero>.hero-content>.hero-description,
+ .landing-hero .landing-copy>.hero-description{
+  display:none;
+ }
+ .landing-hero .landing-copy{
+  align-items:center;
+  text-align:center!important;
+ }
+ .landing-hero .landing-copy h1,
+ .landing-hero .landing-copy .landing-price{
+  width:100%;
+  margin-inline:auto;
+  text-align:center!important;
+ }
+ .landing-hero .landing-copy>.button{
+  width:100%;
+ }
+ .landing-hero .landing-copy .hero-note{
+  display:none;
+ }
  .landing-hero .landing-copy .hero-description + .button{
   margin-top:20px;
  }
