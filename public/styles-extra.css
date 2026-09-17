@@ -1914,8 +1914,9 @@ h1,h2,h3,h4,
 /* Compact campaign message inside the home-page hero copy. */
 .campaign-offer{
  display:grid;
- grid-template-columns:auto minmax(0,1fr);
+ grid-template-columns:auto auto;
  align-items:center;
+ justify-content:center;
  gap:14px;
  width:min(100%,570px);
  margin-top:22px;
@@ -1925,7 +1926,7 @@ h1,h2,h3,h4,
  background:#fff3f3;
  color:var(--ink);
  box-shadow:0 10px 26px rgba(190,35,35,.09);
- text-align:left;
+ text-align:center;
 }
 .campaign-offer strong{
  display:inline-flex;
@@ -1955,15 +1956,44 @@ h1,h2,h3,h4,
 }
 .campaign-offer-row + .section,
 .campaign-offer-row + #services{padding-top:54px}
+
+/* Chrome's “Desktop site” on phones commonly reports a viewport near 980px.
+   Treat that range as a compact layout instead of squeezing desktop grids. */
+@media(max-width:1100px) and (min-width:641px){
+ .services-grid,
+ .before-after-grid,
+ .promotion-grid,
+ .partner-brand-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+ }
+ .service-card-media{height:220px}
+ .partner-brand-card{min-height:138px}
+}
+
+/* Keep the green actions level when neighbouring titles use different lines. */
+.before-after-card,
+.promotion-card{
+ display:flex;
+ height:100%;
+ flex-direction:column;
+}
+.before-after-compare{
+ display:flex;
+ flex:1;
+ flex-direction:column;
+}
+.before-after-title,
+.promotion-card-copy{flex:1}
 @media(max-width:640px){
  .campaign-offer{
   grid-template-columns:1fr;
+  justify-items:center;
   gap:8px;
   margin-top:17px;
   padding:12px 13px;
   background:rgba(255,245,245,.96);
  }
- .campaign-offer strong{justify-self:start}
+ .campaign-offer strong{justify-self:center}
  .campaign-offer span{font-size:12px;line-height:1.45}
  .campaign-offer-row{padding-top:18px}
  .campaign-offer-row + .section,
