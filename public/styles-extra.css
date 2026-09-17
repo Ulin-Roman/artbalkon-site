@@ -1912,7 +1912,7 @@ h1,h2,h3,h4,
 }
 
 /* Compact campaign message inside the home-page hero copy. */
-.home-page .hero-offer{
+.campaign-offer{
  display:grid;
  grid-template-columns:auto minmax(0,1fr);
  align-items:center;
@@ -1927,7 +1927,7 @@ h1,h2,h3,h4,
  box-shadow:0 10px 26px rgba(190,35,35,.09);
  text-align:left;
 }
-.home-page .hero-offer strong{
+.campaign-offer strong{
  display:inline-flex;
  min-height:32px;
  align-items:center;
@@ -1939,31 +1939,33 @@ h1,h2,h3,h4,
  font-weight:800;
  white-space:nowrap;
 }
-.home-page .hero-offer span{
+.campaign-offer span{
  font-size:13px;
  font-weight:600;
  line-height:1.5;
 }
-.home-offer-row{
+.campaign-offer-row{
  display:flex;
  justify-content:center;
  padding-top:28px;
 }
-.home-offer-row .hero-offer{
+.campaign-offer-row .campaign-offer{
  width:min(100%,820px);
  margin-top:0;
 }
-.home-offer-row + #services{padding-top:54px}
+.campaign-offer-row + .section,
+.campaign-offer-row + #services{padding-top:54px}
 @media(max-width:640px){
- .home-page .hero-offer{
+ .campaign-offer{
   grid-template-columns:1fr;
   gap:8px;
   margin-top:17px;
   padding:12px 13px;
   background:rgba(255,245,245,.96);
  }
- .home-page .hero-offer strong{justify-self:start}
- .home-page .hero-offer span{font-size:12px;line-height:1.45}
- .home-offer-row{padding-top:18px}
- .home-offer-row + #services{padding-top:42px}
+ .campaign-offer strong{justify-self:start}
+ .campaign-offer span{font-size:12px;line-height:1.45}
+ .campaign-offer-row{padding-top:18px}
+ .campaign-offer-row + .section,
+ .campaign-offer-row + #services{padding-top:42px}
 }
