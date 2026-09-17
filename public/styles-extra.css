@@ -1182,7 +1182,7 @@ h1,h2,h3,h4,
  .home-advantages-list h3{font-size:19px}
 }
 
-.hero-slideshow{isolation:isolate}
+.hero-slideshow{position:relative;isolation:isolate}
 .hero-slideshow .hero-image{
  position:absolute;
  inset:0;
@@ -1909,6 +1909,10 @@ h1,h2,h3,h4,
 @media(max-width:640px){
  .landing-hero .landing-copy .hero-description + .button{
   margin-top:20px;
+ }
+ .home-page .hero-content,
+ .landing-hero .landing-copy{
+  transform:translateY(40px);
  }
 }
 
