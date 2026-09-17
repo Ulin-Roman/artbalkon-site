@@ -1493,3 +1493,17 @@ h1,h2,h3,h4,
 @media(max-width:900px){
  .home-advantages-heading>p:last-child{justify-self:auto}
 }
+
+/* Highlight only the service area in page titles. */
+.home-page .hero h1,
+.landing-grid h1{
+ color:var(--ink);
+}
+.home-page .hero h1 em,
+.landing-grid h1 em{
+ color:inherit;
+}
+.home-page .hero h1 .location-accent,
+.landing-grid h1 .location-accent{
+ color:var(--teal);
+}
