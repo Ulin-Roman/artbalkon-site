@@ -1256,6 +1256,33 @@ h1,h2,h3,h4,
  .contact-social{min-width:0}
 }
 
+/* Detailed descriptions transferred from the original service catalogue. */
+.source-service-details{border-top:1px solid var(--line)}
+.source-service-details .section-heading{max-width:900px;margin-inline:auto;margin-bottom:46px}
+.source-service-details .section-description{max-width:760px;margin-inline:auto;text-align:center}
+.source-service-details-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.source-service-details-grid article{position:relative;min-height:210px;padding:28px 24px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-card);transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.source-service-details-grid article:hover{transform:translateY(-5px);border-color:#aed1cf;box-shadow:var(--shadow-card-hover)}
+.source-service-details-grid article>span{display:block;margin-bottom:34px;color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.12em}
+.source-service-details-grid h3{font-size:21px;line-height:1.35}
+.source-service-details-grid p{margin-top:13px;color:var(--muted);font-size:14px;line-height:1.75}
+.source-service-details-note{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:980px;margin:30px auto 0;padding:24px 28px;border-radius:16px;background:var(--teal-mist)}
+.source-service-details-note p{color:var(--muted);font-size:13px;line-height:1.75}
+@media(max-width:1000px){
+ .source-service-details-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+ .source-service-details .section-heading{margin-bottom:28px}
+ .source-service-details-grid{grid-template-columns:1fr;gap:14px}
+ .source-service-details-grid article{min-height:0;padding:22px}
+ .source-service-details-grid article>span{margin-bottom:18px}
+ .source-service-details-note{grid-template-columns:1fr;gap:14px;margin-top:20px;padding:21px}
+ .source-service-details .section-cta .button{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ .source-service-details-grid article{transition:none}
+}
+
 /* Compact messenger icon groups in the final CTA and footer. */
 .social-icon-links{
  display:flex;
