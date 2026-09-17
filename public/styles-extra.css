@@ -1903,6 +1903,14 @@ h1,h2,h3,h4,
 .landing-hero .landing-copy .hero-note{
  text-align:left!important;
 }
+.landing-hero .landing-copy .hero-description + .button{
+ margin-top:25px;
+}
+@media(max-width:640px){
+ .landing-hero .landing-copy .hero-description + .button{
+  margin-top:20px;
+ }
+}
 
 /* Compact campaign message inside the home-page hero copy. */
 .campaign-offer{
@@ -2058,4 +2066,37 @@ h1,h2,h3,h4,
  .partner-brands{padding-top:24px}
  .campaign-offer-row + .section,
  .campaign-offer-row + #services{padding-top:34px}
+}
+
+/* Keep the four consecutive proof sections on one compact vertical rhythm. */
+.before-after-section>.section{
+ padding-bottom:36px;
+}
+.before-after-section+.partner-brands{
+ padding-top:36px;
+}
+.partner-brands-heading{
+ gap:14px;
+ margin-bottom:26px;
+}
+@media(max-width:900px){
+ .before-after-section>.section{padding-bottom:32px}
+ .before-after-section+.partner-brands{padding-top:32px}
+ .partner-brands-heading{gap:12px;margin-bottom:24px}
+}
+@media(max-width:640px){
+ .before-after-section>.section{padding-bottom:26px}
+ .before-after-section+.partner-brands{padding-top:26px}
+ .partner-brands-heading{gap:10px;margin-bottom:22px}
+}
+
+/* Glazing choices follow the same card language as the services on the home page. */
+.glazing-services-grid{
+ grid-template-columns:repeat(3,minmax(0,1fr));
+}
+@media(max-width:900px){
+ .glazing-services-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+ .glazing-services-grid{grid-template-columns:1fr}
 }
