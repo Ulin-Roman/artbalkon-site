@@ -322,9 +322,11 @@ html{scroll-padding-top:84px}
 
 /* Yandex and Avito reviews */
 .reviews-widget-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+@media(min-width:641px){.reviews-live-section .section-heading h2{white-space:nowrap}}
 .yandex-reviews-widget{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-panel)}
 .yandex-reviews-widget iframe{display:block;width:100%;height:620px;border:0;background:#fff}
 .avito-reviews-widget{display:flex;min-width:0;height:620px;flex-direction:column;padding:30px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-panel)}
+@media(min-width:1001px){.avito-reviews-widget{padding-top:19px}}
 .avito-reviews-head{display:flex;justify-content:space-between;gap:24px;padding-bottom:22px;border-bottom:1px solid var(--line)}
 .avito-label{display:inline-flex;flex:0 0 auto;align-self:flex-start;color:var(--muted);font-size:14px;font-weight:700;border-bottom:1px solid transparent;transition:color .2s ease,border-color .2s ease}
 .avito-label:hover,.avito-label:focus-visible{color:var(--teal);border-bottom-color:currentColor}
@@ -1557,6 +1559,9 @@ h1,h2,h3,h4,
  .landing-hero .landing-copy{
   text-align:center!important;
  }
+ .home-page .hero-content{
+  align-self:center;
+ }
  .home-page .hero h1,
  .landing-hero .landing-grid h1{
   width:100%;
@@ -1767,4 +1772,131 @@ h1,h2,h3,h4,
  .landing-hero .landing-grid h1{
   font-size:31px;
  }
+}
+
+/* Contextual promotion placed directly after each before/after gallery. */
+.promotion-section{background:#fff}
+.promotion-heading{text-align:center;max-width:860px;margin:0 auto 38px}
+.promotion-heading .eyebrow{display:block;margin-bottom:16px;color:var(--teal);text-align:center}
+.promotion-heading h2{font-size:clamp(34px,3.5vw,52px)}
+.promotion-heading h2 span{color:var(--teal)}
+.promotion-heading>p:last-child{max-width:600px;margin:18px auto 0;color:var(--muted);font-size:15px;line-height:1.7}
+.promotion-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.promotion-card{min-width:0;padding:0;overflow:hidden;border:1px solid var(--surface-border);border-radius:20px;background:#fff;color:var(--ink);text-align:left;box-shadow:0 12px 34px rgba(18,45,47,.07);transition:transform .2s,box-shadow .2s,border-color .2s}
+.promotion-card:hover{transform:translateY(-4px);border-color:#8bc7c3;box-shadow:0 18px 42px rgba(18,45,47,.12)}
+.promotion-card-media{display:block;height:190px;overflow:hidden;background:#eef4f3}
+.promotion-card-media img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.promotion-card:hover .promotion-card-media img{transform:scale(1.035)}
+.promotion-card:last-child .promotion-card-media img{object-fit:contain;padding:40px;background:linear-gradient(145deg,#f1f8f7,#fff)}
+.promotion-card-copy{display:flex;min-height:190px;flex-direction:column;padding:22px}
+.promotion-card-copy strong{color:var(--teal);font-size:22px;line-height:1.25}
+.promotion-card-copy small{margin-top:11px;color:var(--muted);font-size:13px;line-height:1.65}
+.promotion-card-copy>span{display:flex;min-height:48px;align-items:center;justify-content:center;gap:18px;margin-top:auto;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,#18aaa5 0%,#006a70 100%);color:#fff;font-size:13px;font-weight:750;box-shadow:0 8px 20px rgba(0,106,112,.16);transition:background .2s,box-shadow .2s}
+.promotion-card-copy>span>span{font-size:19px;transition:transform .2s}
+.promotion-card:hover .promotion-card-copy>span{background:linear-gradient(135deg,#129792 0%,#00575d 100%);box-shadow:0 10px 24px rgba(0,87,93,.22)}
+.promotion-card:hover .promotion-card-copy>span>span{transform:translateX(5px)}
+.promotion-note{text-align:center;margin-top:20px;color:var(--muted);font-size:12px}
+@media(max-width:900px){
+ .promotion-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:640px){
+ .promotion-heading{margin-bottom:25px}
+ .promotion-heading h2{font-size:31px;line-height:1.16}
+ .promotion-heading h2 br{display:none}
+ .promotion-heading>p:last-child{font-size:14px}
+ .promotion-grid{gap:10px}
+ .promotion-card{border-radius:16px}
+ .promotion-card-media{height:130px}
+ .promotion-card:last-child .promotion-card-media img{padding:28px}
+ .promotion-card-copy{min-height:170px;padding:15px 13px}
+ .promotion-card-copy strong{font-size:17px}
+ .promotion-card-copy small{font-size:11px;line-height:1.55}
+ .promotion-card-copy>span{min-height:43px;gap:12px;padding:10px 12px;font-size:11px}
+ .promotion-card-copy>span>span{font-size:16px}
+ .promotion-note{font-size:11px}
+}
+
+/* Keep the three key benefits readable and proportionate on every page. */
+.trust-strip,
+.landing-trust{
+ gap:16px;
+}
+.trust-strip>div,
+.landing-trust>div,
+.landing-hero>.landing-trust>div{
+ min-height:124px;
+ justify-content:center;
+ gap:8px;
+ padding:22px 16px!important;
+}
+.trust-strip strong,
+.landing-trust strong{
+ min-height:auto;
+ color:var(--teal);
+ font-size:30px;
+ font-weight:800;
+ line-height:1.05;
+ white-space:nowrap;
+}
+.trust-strip span,
+.landing-trust span{
+ width:100%;
+ color:var(--ink);
+ font-size:13px;
+ font-weight:650;
+ line-height:1.35;
+ text-align:center;
+}
+@media(max-width:1000px) and (min-width:641px){
+ .trust-strip,
+ .landing-trust{gap:12px}
+ .trust-strip>div,
+ .landing-trust>div,
+ .landing-hero>.landing-trust>div{min-height:112px;padding:18px 10px!important}
+ .trust-strip strong,
+ .landing-trust strong{font-size:26px}
+ .trust-strip span,
+ .landing-trust span{font-size:11.5px}
+}
+@media(max-width:640px){
+ .trust-strip,
+ .landing-trust{gap:8px}
+ .trust-strip>div,
+ .landing-trust>div,
+ .landing-hero>.landing-trust>div{
+  min-height:110px;
+  justify-content:center;
+  gap:7px;
+  padding:14px 6px!important;
+ }
+ .trust-strip strong,
+ .landing-trust strong{font-size:clamp(22px,6vw,26px)}
+ .trust-strip span,
+ .landing-trust span{
+  display:flex;
+  min-height:2.6em;
+  align-items:center;
+  justify-content:center;
+  font-size:11.5px;
+  line-height:1.3;
+ }
+}
+@media(max-width:370px){
+ .trust-strip strong,
+ .landing-trust strong{font-size:21px}
+ .trust-strip span,
+ .landing-trust span{font-size:10.5px}
+}
+
+/* Keep the complete service-page hero message centered on every viewport. */
+.landing-hero .landing-copy{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ text-align:center!important;
+}
+.landing-hero .landing-copy h1,
+.landing-hero .landing-copy .hero-description{
+ margin-inline:auto;
+ text-align:center!important;
 }
