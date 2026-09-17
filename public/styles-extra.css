@@ -995,6 +995,12 @@ h1,h2,h3,h4,
  background:#0077ff;
 }
 .social-icon-vk img{object-fit:cover}
+.before-after-preview.comparison-crop-1 img{object-position:left center;transform:scale(1.12)}
+.before-after-preview.comparison-crop-2 img{object-position:right center;transform:scale(1.12)}
+.before-after-preview.comparison-crop-3 img{object-position:center 32%;transform:scale(1.18)}
+.before-after-card:hover .before-after-preview.comparison-crop-1 img,
+.before-after-card:hover .before-after-preview.comparison-crop-2 img{transform:scale(1.16)}
+.before-after-card:hover .before-after-preview.comparison-crop-3 img{transform:scale(1.22)}
 .final-social-icons{justify-content:flex-start;margin-top:2px}
 .footer-social-icons{margin-top:15px}
 @media(max-width:640px){
