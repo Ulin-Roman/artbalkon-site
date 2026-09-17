@@ -1092,7 +1092,7 @@ h1,h2,h3,h4,
 }
 .home-advantages-list article{
  display:grid;
- grid-template-columns:38px 1fr;
+ grid-template-columns:1fr;
  gap:14px;
  align-items:start;
  padding:24px 26px;
@@ -1106,13 +1106,6 @@ h1,h2,h3,h4,
  border-color:rgba(0,139,143,.5);
  box-shadow:0 12px 30px rgba(18,65,68,.08);
  transform:translateX(5px);
-}
-.home-advantages-list article>span{
- padding-top:3px;
- color:var(--teal);
- font-size:11px;
- font-weight:700;
- letter-spacing:.12em;
 }
 .home-advantages-list h3{
  font-size:22px;
@@ -1184,7 +1177,7 @@ h1,h2,h3,h4,
  .home-advantages-photo figcaption{left:20px;right:20px;bottom:19px;align-items:flex-start;flex-direction:column;gap:4px}
  .home-advantages-photo figcaption strong{font-size:17px}
  .home-advantages-photo figcaption span{max-width:none;text-align:left}
- .home-advantages-list article{grid-template-columns:30px 1fr;padding:21px 18px}
+ .home-advantages-list article{grid-template-columns:1fr;padding:21px 18px}
  .home-advantages-list article:hover,.home-advantages-list article.is-accent{transform:none}
  .home-advantages-list h3{font-size:19px}
 }
@@ -2023,4 +2016,46 @@ h1,h2,h3,h4,
  .campaign-offer-row{padding-top:18px}
  .campaign-offer-row + .section,
  .campaign-offer-row + #services{padding-top:42px}
+}
+
+/* Compact, consistent vertical rhythm across every page. */
+.section,
+.certificates-section .section,
+.process-video-section>.section,
+.home-advantages>.section{
+ padding-top:64px;
+ padding-bottom:64px;
+}
+.section.why-section,
+.section.faq-section{padding-top:0}
+.campaign-offer-row + .section,
+.campaign-offer-row + #services{padding-top:44px}
+
+@media(max-width:900px){
+ .section,
+ .certificates-section .section,
+ .process-video-section>.section,
+ .home-advantages>.section{
+  padding-top:52px;
+  padding-bottom:52px;
+ }
+ .section.why-section,
+ .section.faq-section{padding-top:0}
+ .campaign-offer-row + .section,
+ .campaign-offer-row + #services{padding-top:40px}
+}
+
+@media(max-width:640px){
+ .section,
+ .certificates-section .section,
+ .process-video-section>.section,
+ .home-advantages>.section{
+  padding-top:44px;
+  padding-bottom:44px;
+ }
+ .section.why-section,
+ .section.faq-section{padding-top:0}
+ .partner-brands{padding-top:24px}
+ .campaign-offer-row + .section,
+ .campaign-offer-row + #services{padding-top:34px}
 }
