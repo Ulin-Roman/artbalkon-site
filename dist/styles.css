@@ -1458,3 +1458,63 @@ h1,h2,h3,h4,
   animation:none;
  }
 }
+
+/* Keep every section title group centered, including custom home-page layouts. */
+.section-heading,
+.services-heading{
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+}
+.section-heading>div,
+.services-heading>div{
+ width:100%;
+ align-items:center;
+ text-align:center;
+}
+.section-heading .eyebrow,
+.services-heading .eyebrow,
+.social-subscribe-heading .eyebrow,
+.home-advantages-heading .eyebrow,
+.service-seo-intro .eyebrow,
+.service-page-faq>div:first-child .eyebrow,
+.prices-section>div:first-child .eyebrow,
+.faq-section>div:first-child .eyebrow{
+ justify-content:center;
+}
+.section-heading .section-description,
+.services-subtitle{
+ margin-inline:auto;
+ text-align:center;
+}
+.home-advantages-heading{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ gap:18px;
+ text-align:center;
+}
+.home-advantages-heading .eyebrow{margin-bottom:0}
+.home-advantages-heading>p:last-child{
+ justify-self:auto;
+ max-width:680px;
+ margin-inline:auto;
+ text-align:center;
+}
+.service-seo-intro>div:first-child,
+.service-page-faq>div:first-child,
+.prices-section>div:first-child,
+.faq-section>div:first-child{
+ text-align:center;
+}
+.service-seo-intro h2,
+.service-seo-intro p:not(.eyebrow),
+.service-page-faq>div:first-child>p:not(.eyebrow),
+.prices-section .section-description,
+.prices-question,
+.faq-section .section-description{
+ margin-inline:auto;
+}
+@media(max-width:900px){
+ .home-advantages-heading>p:last-child{justify-self:auto}
+}
