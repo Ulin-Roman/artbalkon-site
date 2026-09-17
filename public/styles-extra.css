@@ -364,6 +364,7 @@ html{scroll-padding-top:84px}
 /* Static partner brands grid */
 .partner-brands{padding-top:38px;border-top:1px solid var(--line)}
 .partner-brands-heading{margin-bottom:34px}
+.partner-brands-heading h2>span{color:var(--teal)}
 .partner-brands-heading .section-description{max-width:480px}
 .partner-brand-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .partner-brand-card{display:flex;min-width:0;min-height:150px;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:25px 22px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow-card)}
@@ -1367,7 +1368,7 @@ h1,h2,h3,h4,
 @media(max-width:360px){
  .header-inner{gap:5px}
  .header-contact{gap:5px}
- .header-contact .phone{font-size:11px!important}
+ .header-contact .phone{display:none}
  .header-contact .header-messengers{gap:4px}
  .header-contact .header-messenger,
  .menu-toggle{
@@ -1638,12 +1639,12 @@ h1,h2,h3,h4,
 /* Use the service photograph as the mobile hero on every service page. */
 .landing-hero .landing-grid{
  grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);
- grid-template-areas:"landing-copy landing-photo" "landing-trust landing-photo";
+ grid-template-areas:"landing-copy landing-photo";
  column-gap:60px;
- row-gap:24px;
- align-items:start;
+ row-gap:0;
+ align-items:stretch;
 }
-.landing-copy{grid-area:landing-copy;align-self:center}
+.landing-copy{grid-area:landing-copy;align-self:stretch}
 .landing-hero .landing-photo{grid-area:landing-photo;height:600px}
 .landing-trust{
  grid-area:landing-trust;
@@ -1815,6 +1816,9 @@ h1,h2,h3,h4,
  .promotion-card-copy>span>span{font-size:16px}
  .promotion-note{font-size:11px}
 }
+@media(max-width:360px){
+ .promotion-heading h2{overflow-wrap:anywhere;hyphens:auto}
+}
 
 /* Keep the three key benefits readable and proportionate on every page. */
 .trust-strip,
@@ -1888,15 +1892,78 @@ h1,h2,h3,h4,
  .landing-trust span{font-size:10.5px}
 }
 
-/* Keep the complete service-page hero message centered on every viewport. */
+/* Keep the service-page copy group centered as a block, with normal left-aligned reading. */
 .landing-hero .landing-copy{
  display:flex;
  flex-direction:column;
- align-items:center;
- text-align:center!important;
+ align-self:stretch!important;
+ align-items:flex-start;
+ justify-content:center;
+ text-align:left!important;
 }
 .landing-hero .landing-copy h1,
 .landing-hero .landing-copy .hero-description{
- margin-inline:auto;
- text-align:center!important;
+ margin-inline:0;
+ text-align:left!important;
+}
+.landing-hero .landing-copy .landing-price,
+.landing-hero .landing-copy .hero-note{
+ text-align:left!important;
+}
+
+/* Compact campaign message inside the home-page hero copy. */
+.home-page .hero-offer{
+ display:grid;
+ grid-template-columns:auto minmax(0,1fr);
+ align-items:center;
+ gap:14px;
+ width:min(100%,570px);
+ margin-top:22px;
+ padding:13px 15px;
+ border:1px solid #f0b2b2;
+ border-radius:14px;
+ background:#fff3f3;
+ color:var(--ink);
+ box-shadow:0 10px 26px rgba(190,35,35,.09);
+ text-align:left;
+}
+.home-page .hero-offer strong{
+ display:inline-flex;
+ min-height:32px;
+ align-items:center;
+ padding:6px 12px;
+ border-radius:999px;
+ background:#d83232;
+ color:#fff;
+ font-size:13px;
+ font-weight:800;
+ white-space:nowrap;
+}
+.home-page .hero-offer span{
+ font-size:13px;
+ font-weight:600;
+ line-height:1.5;
+}
+.home-offer-row{
+ display:flex;
+ justify-content:center;
+ padding-top:28px;
+}
+.home-offer-row .hero-offer{
+ width:min(100%,820px);
+ margin-top:0;
+}
+.home-offer-row + #services{padding-top:54px}
+@media(max-width:640px){
+ .home-page .hero-offer{
+  grid-template-columns:1fr;
+  gap:8px;
+  margin-top:17px;
+  padding:12px 13px;
+  background:rgba(255,245,245,.96);
+ }
+ .home-page .hero-offer strong{justify-self:start}
+ .home-page .hero-offer span{font-size:12px;line-height:1.45}
+ .home-offer-row{padding-top:18px}
+ .home-offer-row + #services{padding-top:42px}
 }
