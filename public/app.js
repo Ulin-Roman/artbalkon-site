@@ -68,17 +68,18 @@
  const quizDialog=$('#quiz');
  const quiz=$('[data-lead-form="quiz"]');let step=0,started=false;
  const steps=quiz?[...quiz.querySelectorAll('[data-step]')]:[];
+ const lastStep=Math.max(0,steps.length-1);
  function begin(){if(!started){track('quiz_start');started=true;}}
- function showStep(index,focus=true){step=index;steps.forEach((el,i)=>el.hidden=i!==step);$('#step-count').textContent=`Шаг ${step+1} из 5`;$('#quiz-progress').value=step+1;$('#quiz-back').disabled=step===0;$('#quiz-next').hidden=step===4;$('#quiz-submit').hidden=step!==4;quiz.querySelector('.form-error').textContent='';if(focus)steps[step].querySelector('legend').focus({preventScroll:true});}
+ function showStep(index,focus=true){step=Math.max(0,Math.min(lastStep,index));steps.forEach((el,i)=>el.hidden=i!==step);$('#step-count').textContent=`Шаг ${step+1} из ${steps.length}`;$('#quiz-progress').max=steps.length;$('#quiz-progress').value=step+1;$('#quiz-back').disabled=step===0;$('#quiz-next').hidden=step===lastStep;$('#quiz-submit').hidden=step!==lastStep;quiz.querySelector('.form-error').textContent='';if(focus)steps[step]?.querySelector('legend')?.focus({preventScroll:true});}
  function openQuiz(trackOpen=true){if(!quizDialog)return;if(!quizDialog.open)quizDialog.showModal();quizDialog.querySelector('.quiz-modal-close')?.focus({preventScroll:true});if(trackOpen)track('quiz_open');}
  document.addEventListener('click',e=>{const link=e.target.closest('a[href$="#quiz"]');if(!link||!quizDialog)return;e.preventDefault();closeMenu();openQuiz();});
  quizDialog?.querySelector('.quiz-modal-close')?.addEventListener('click',()=>quizDialog.close());
  quizDialog?.addEventListener('click',e=>{if(e.target===quizDialog)quizDialog.close();});
  if(location.hash==='#quiz'){openQuiz(false);history.replaceState(null,'',location.pathname+location.search);}
  quiz?.addEventListener('change',begin);
- $('#quiz-next')?.addEventListener('click',()=>{begin();if(validate(quiz,steps[step]))showStep(Math.min(4,step+1));});
+ $('#quiz-next')?.addEventListener('click',()=>{begin();if(validate(quiz,steps[step]))showStep(Math.min(lastStep,step+1));});
  $('#quiz-back')?.addEventListener('click',()=>showStep(Math.max(0,step-1)));
- quiz?.addEventListener('keydown',e=>{if(e.key==='Enter'&&step<4&&e.target.tagName==='INPUT'){e.preventDefault();$('#quiz-next').click();}});
+ quiz?.addEventListener('keydown',e=>{if(e.key==='Enter'&&step<lastStep&&e.target.tagName==='INPUT'){e.preventDefault();$('#quiz-next').click();}});
  function showThanks(form,preview){
   const box=document.createElement('div');box.className='thank-you';box.setAttribute('role','status');box.tabIndex=-1;
   const icon=document.createElement('span');icon.className='success-icon';icon.textContent='✓';icon.setAttribute('aria-hidden','true');
@@ -89,7 +90,7 @@
  }
  document.querySelectorAll('[data-lead-form]').forEach(form=>{let submitting=false,id=null;
   form.addEventListener('submit',async e=>{e.preventDefault();if(submitting)return;
-   if(form===quiz&&step!==4){$('#quiz-next').click();return;}if(!validate(form))return;
+   if(form===quiz&&step!==lastStep){$('#quiz-next').click();return;}if(!validate(form))return;
    const submit=form.querySelector('[type="submit"]'),error=form.querySelector('.form-error');
    submitting=true;submit.disabled=true;submit.setAttribute('aria-busy','true');const old=submit.innerHTML;submit.textContent='Отправляем…';error.textContent='';
    try{
@@ -101,7 +102,8 @@
   });
  });
  const context=document.modelContext;
- if(context?.registerTool&&quiz){const lifecycle=new AbortController();const serviceValues=[...quiz.querySelectorAll('[name="service"]')].map(el=>el.value);try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт и выбирает необходимую работу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:serviceValues}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=[...quiz.querySelectorAll('[name="service"]')].find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;begin();openQuiz(false);showStep(2);return {service:option.value,step:3,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
+ const serviceOptions=quiz?[...quiz.querySelectorAll('input[type="radio"][name="service"]')]:[];
+ if(context?.registerTool&&serviceOptions.length){const lifecycle=new AbortController();const serviceValues=serviceOptions.map(el=>el.value);try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт и выбирает необходимую работу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:serviceValues}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=serviceOptions.find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;begin();openQuiz(false);const optionStep=steps.findIndex(item=>item.contains(option));showStep(Math.min(lastStep,optionStep+1));return {service:option.value,step:step+1,totalSteps:steps.length,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
  const applicationModal=$('#application-modal');
  if(applicationModal){
   const applicationProject=$('#application-project');

@@ -1,7 +1,20 @@
 import {mkdir,readFile,writeFile,rename} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-const allowed={service:['Остекление','Утепление','Отделка','Балкон под ключ'],object:['Балкон','Лоджия','Панорамный балкон','Другое'],timing:['Как можно скорее','В течение месяца','Через 2–3 месяца','Пока выбираю']};
+const allowed={
+ service:[
+  'Остекление','Утепление','Отделка','Балкон под ключ',
+  'Холодное остекление','Тёплое остекление','Отделка балкона или лоджии','Утепление балкона или лоджии','Объединение с комнатой',
+  'Холодное остекление балкона','Тёплое остекление балкона','Панорамное остекление балкона',
+  'Холодное остекление лоджии','Тёплое остекление лоджии','Панорамное остекление лоджии','Нужна консультация по остеклению',
+  'Утепление балкона','Отделка балкона','Утепление лоджии','Отделка лоджии','Лоджия под ключ',
+  'Крыша над балконом','Мебель для балкона','Электрика на балконе','Объединение балкона с комнатой','Остекление коттеджа или дома',
+  'Утепление и отделка','Остекление и утепление'
+ ],
+ object:['Балкон','Лоджия','Панорамный балкон','Коттедж или дом','Терраса или веранда','Беседка','Другое','Не знаю'],
+ timing:['Как можно скорее','В течение недели','В течение месяца','Через 2–3 месяца','Пока выбираю','Пока интересуюсь'],
+ gift:['Потолочная сушилка','Светильник и розетки','Тёплый пол']
+};
 const locks=new Map();
 export function validateLead(input){
  if(!input||typeof input!=='object'||Array.isArray(input))throw Error('Некорректная заявка.');
@@ -15,7 +28,11 @@ export function validateLead(input){
  if(typeof input.requestId!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input.requestId))throw Error('Обновите страницу и попробуйте ещё раз.');
  const lead={requestId:input.requestId,name:input.name.trim(),phone,form:input.form,consent:true,consentVersion:'2026-09-16',page:typeof input.page==='string'?input.page.slice(0,500):'/',attribution:{}};
  for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid','landing','referrer'])if(typeof input.attribution?.[key]==='string')lead.attribution[key]=input.attribution[key].slice(0,300);
- if(input.form==='quiz'){for(const key of Object.keys(allowed)){if(!allowed[key].includes(input[key]))throw Error('Ответьте на все вопросы расчёта.');lead[key]=input[key];}if(typeof input.size!=='string'||!input.size.trim()||input.size.length>100)throw Error('Укажите примерный размер.');lead.size=input.size.trim();}
+ if(input.form==='quiz'){
+  for(const key of Object.keys(allowed)){if(!allowed[key].includes(input[key]))throw Error('Ответьте на все вопросы расчёта.');lead[key]=input[key];}
+  if(input.size!==undefined){if(typeof input.size!=='string'||!input.size.trim()||input.size.length>100)throw Error('Укажите примерный размер.');lead.size=input.size.trim();}
+  if(input.detail!==undefined){if(typeof input.detail!=='string'||!input.detail.trim()||input.detail.length>150)throw Error('Уточните выбранный вариант.');lead.detail=input.detail.trim();}
+ }
  return lead;
 }
 export async function saveLead(input,{directory='data/leads',mode='preview',deliver}={}){
