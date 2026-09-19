@@ -6,7 +6,7 @@ if(!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(rawBase))throw Error('SITE_BASE_PATH must 
 const base=rawBase;
 const staticOnly=process.env.SITE_STATIC_ONLY==='true';
 const imageAsset=name=>`/assets/${/\.[a-z0-9]+$/i.test(name)?name:`${name}.webp`}`;
-const baseHtml=html=>base==='/'?html:html.replace(/((?:href|src)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
+const baseHtml=html=>base==='/'?html:html.replace(/((?:href|src|poster)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
 const baseCss=css=>base==='/'?css:css.replace(/url\((['"]?)\/(?!\/)/g,`url($1${base}`);
 await rm('dist',{recursive:true,force:true});
 await mkdir('dist',{recursive:true});

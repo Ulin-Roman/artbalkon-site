@@ -30,11 +30,14 @@
  const syncScrollTop=()=>{if(scrollTopButton)scrollTopButton.hidden=scrollY<Math.max(480,innerHeight*.65);};
  syncScrollTop();addEventListener('scroll',syncScrollTop,{passive:true});
  scrollTopButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
- const menu=$('#mobile-menu'),toggle=$('.menu-toggle');
- function closeMenu(){if(!menu)return;menu.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Открыть меню');}
- toggle?.addEventListener('click',()=>{const isOpen=toggle.getAttribute('aria-expanded')==='true';menu.hidden=isOpen;toggle.setAttribute('aria-expanded',String(!isOpen));toggle.setAttribute('aria-label',isOpen?'Открыть меню':'Закрыть меню');});
- menu?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
- document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+ const menu=$('#mobile-menu'),toggle=$('.menu-toggle'),menuBackdrop=$('.mobile-menu-backdrop');let menuCloseTimer=0;
+ function openMenu(){if(!menu||!toggle)return;clearTimeout(menuCloseTimer);menu.hidden=false;if(menuBackdrop)menuBackdrop.hidden=false;document.body.classList.add('menu-open');toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Закрыть меню');requestAnimationFrame(()=>requestAnimationFrame(()=>{menu.classList.add('is-open');menuBackdrop?.classList.add('is-open');menu.querySelector('.mobile-menu-close')?.focus({preventScroll:true});}));}
+ function closeMenu(restoreFocus=true){if(!menu||!toggle)return;menu.classList.remove('is-open');menuBackdrop?.classList.remove('is-open');document.body.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Открыть меню');clearTimeout(menuCloseTimer);menuCloseTimer=setTimeout(()=>{if(toggle.getAttribute('aria-expanded')==='false'){menu.hidden=true;if(menuBackdrop)menuBackdrop.hidden=true;}},300);if(restoreFocus)toggle.focus({preventScroll:true});}
+ toggle?.addEventListener('click',()=>toggle.getAttribute('aria-expanded')==='true'?closeMenu():openMenu());
+ menu?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu(false);});
+ document.querySelectorAll('[data-mobile-menu-close]').forEach(el=>el.addEventListener('click',()=>closeMenu()));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&toggle?.getAttribute('aria-expanded')==='true')closeMenu();});
+ addEventListener('resize',()=>{if(innerWidth>1100&&toggle?.getAttribute('aria-expanded')==='true')closeMenu(false);},{passive:true});
  const heroSlider=$('[data-hero-slider]');
  if(heroSlider){
   const slides=[...heroSlider.querySelectorAll('.hero-image')];
@@ -47,6 +50,14 @@
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stopHeroSlider();else startHeroSlider();});
   addEventListener('pagehide',stopHeroSlider,{once:true});
  }
+ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+ document.querySelectorAll('[data-ambient-video]').forEach(video=>{
+  const control=video.closest('.home-advantages-photo')?.querySelector('[data-ambient-video-toggle]');
+  const syncControl=()=>{if(!control)return;const paused=video.paused;control.classList.toggle('is-paused',paused);control.setAttribute('aria-label',paused?'Воспроизвести видео':'Приостановить видео');control.querySelector('span').textContent=paused?'▶':'Ⅱ';};
+  if(reducedMotion.matches){video.removeAttribute('autoplay');video.pause();}
+  video.addEventListener('play',syncControl);video.addEventListener('pause',syncControl);syncControl();
+  control?.addEventListener('click',()=>{if(video.paused)video.play().catch(()=>{});else video.pause();});
+ });
  document.querySelectorAll('input[name="phone"]').forEach(input=>{input.addEventListener('input',()=>input.setCustomValidity(''));input.addEventListener('blur',()=>{let d=input.value.replace(/\D/g,'');if(d.length===10)d='7'+d;if(d.length===11&&/^[78]/.test(d)){d='7'+d.slice(1);input.value=`+7 (${d.slice(1,4)}) ${d.slice(4,7)}-${d.slice(7,9)}-${d.slice(9)}`;}});});
  function validate(form,scope=form){
   const fields=[...scope.querySelectorAll('input')].filter(el=>!el.closest('.honeypot'));
@@ -102,7 +113,7 @@
  const comparisonModal=$('#comparison-modal');
  if(comparisonModal){
   const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),beforeLabel=$('#comparison-before-label'),afterLabel=$('#comparison-after-label'),comparisonTitle=$('#comparison-title');
-  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;const previews=card.querySelectorAll('.before-after-preview img'),beforeReal=card.dataset.beforeReal==='true',visualized=card.dataset.visualized==='true';beforeImage.src=previews[0]?.currentSrc||previews[0]?.src||card.dataset.before;afterImage.src=previews[1]?.currentSrc||previews[1]?.src||card.dataset.after;comparisonTitle.textContent=card.dataset.title;beforeLabel.textContent='До';afterLabel.textContent='После';beforeImage.alt=`${card.dataset.title} — ${visualized?'до работ, тематическая визуализация':beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция'}`;afterImage.alt=`${card.dataset.title} — ${visualized?'после работ, тематическая визуализация':'после работ ArtBalkon'}`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
+  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;const previews=card.querySelectorAll('.before-after-preview img'),beforeReal=card.dataset.beforeReal==='true',beforeVisualized=card.dataset.beforeVisualized==='true',visualized=card.dataset.visualized==='true';beforeImage.src=previews[0]?.currentSrc||previews[0]?.src||card.dataset.before;afterImage.src=previews[1]?.currentSrc||previews[1]?.src||card.dataset.after;comparisonTitle.textContent=card.dataset.title;beforeLabel.textContent='До';afterLabel.textContent='После';beforeImage.alt=`${card.dataset.title} — ${beforeVisualized||visualized?'до работ, тематическая визуализация':beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция'}`;afterImage.alt=`${card.dataset.title} — ${visualized?'после работ, тематическая визуализация':'после работ ArtBalkon'}`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
   comparisonModal.querySelector('.comparison-close')?.addEventListener('click',()=>comparisonModal.close());
   comparisonModal.addEventListener('click',e=>{if(e.target===comparisonModal)comparisonModal.close();});
   comparisonModal.addEventListener('close',()=>{beforeImage.removeAttribute('src');afterImage.removeAttribute('src');});

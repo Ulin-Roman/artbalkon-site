@@ -1,5 +1,5 @@
 export const company = {
- name:'ArtBalkon', phone:'+7 (495) 165-39-05', tel:'+74951653905', telegram:'https://t.me/+79255178380', max:'https://max.ru/u/f9LHodD0cOIgP2onCOkH83oy2K17iRYqau-9i5HVA60iM_DqDh91Ahmt7t0', vk:'https://vk.com/artbalkonpro', channel:'https://t.me/artbalkonmoscow', whatsapp:'',
+ name:'ArtBalkon', phone:'+7 (495) 165-39-05', tel:'+74951653905', telegram:'https://t.me/+79255178380', max:'https://max.ru/u/f9LHodD0cOI7H1K6VdQb-wDS7Gs2cT4mlT6S6sdTcgfN4s_cnFPT2isb2Cg', vk:'https://vk.com/artbalkonpro', channel:'https://t.me/artbalkonmoscow', whatsapp:'',
  address:'Московская область, Люберцы, Октябрьский проспект, 209, офис 5', hours:'Замеры ежедневно, 9:00–21:00', reviews:'https://yandex.ru/maps/org/99931581991/reviews/', avito:'https://www.avito.ru/brands/i204694333/all?page_from=from_item_card_icon&iid=3514949804&sellerId=34820bad3f8cdf6e4c49a900a7622581',
  origin:process.env.SITE_ORIGIN || 'https://ulin-roman.github.io/artbalkon-site', source:'https://artbalkon.pro/', checked:'2026-09-17', operator:'ИП Симанин Артем Юрьевич', privacyEmail:'specstroydoc@mail.ru'
 };
@@ -13,7 +13,7 @@ export const projects = [
 ];
 export const beforeAfterProjects = [
  {title:'Светлая отделка под кирпич',description:'Выровняли поверхности, оформили стены светлой декоративной кладкой, уложили износостойкое напольное покрытие и аккуратно собрали откосы.',before:'before-01.jpg',after:'after-01.jpg'},
- {title:'Остекление с видом на зелень',description:'Смонтировали панорамное остекление, обновили внутреннюю отделку и широкий подоконник, сохранив максимум света и открытый вид.',before:'before-02.jpg',after:'after-02.jpg'},
+ {title:'Остекление с открытым видом',description:'Смонтировали панорамное остекление, обновили внутреннюю отделку и широкий подоконник, сохранив максимум света и открытый вид.',before:'before-02.jpg',after:'after-02.jpg'},
  {title:'Тёплый контур лоджии',description:'Собрали тёплый остеклённый контур, закрыли холодные поверхности, смонтировали чистовую отделку стен и потолка и добавили встроенный свет.',before:'before-03.jpg',after:'after-03.jpg'},
  {title:'Отделка натуральным деревом',description:'Установили остекление, сделали аккуратную деревянную отделку стен и парапета, добавили подоконники и оформили примыкания.',before:'before-04.jpg',after:'after-04.jpg'},
  {title:'Уютная лоджия с освещением',description:'Остеклили и утеплили контур, закрыли стены светлым деревом и установили потолочный свет для комфортного использования вечером.',before:'before-05.jpg',after:'after-05.jpg'},
@@ -48,7 +48,21 @@ export const services = [
  {slug:'panoramnoe-osteklenie-lodzhii',title:'Панорамное остекление лоджии',short:'Больше света и открытого вида по всей длине лоджии.',h1:'Панорамное остекление лоджии в Москве и Московской области',offer:'Спроектируем безопасную светопрозрачную конструкцию для длинного проёма с учётом фасада, солнца и удобства открывания.',label:'СВЕТ ПО ВСЕЙ ДЛИНЕ',image:'service-before-after/panoramic-glazing-after.jpg',price:'panoramic',features:['Максимум естественного света','Безопасное деление больших конструкций','Учёт приватности, перегрева и теплопотерь'],question:'Можно ли сделать панорамной любую лоджию?',answer:'Возможность зависит от плиты, парапета, фасада и требований дома. На замере оцениваем основание и только после этого предлагаем безопасную конфигурацию.'}
 ];
 const portfolioPair=(number,title,description)=>({...beforeAfterProjects[number-1],title,description});
-const visualPair=(key,title,description)=>({title,description,before:`service-before-after/${key}-before.jpg`,after:`service-before-after/${key}-after.jpg`,visualized:true});
+const enhancedVisualKeys=new Set([
+ ...Array.from({length:6},(_,index)=>`balcony-roof-${index+7}`),
+ ...Array.from({length:12},(_,index)=>`room-integration-${index+1}`),
+ ...Array.from({length:11},(_,index)=>`cottage-glazing-${index+2}`)
+]);
+const visualPair=(key,title,description)=>{
+ const enhanced=enhancedVisualKeys.has(key);
+ return {
+  title,
+  description,
+  before:`service-before-after/${key}-before${enhanced?'-hq.webp':'.jpg'}`,
+  after:`service-before-after/${key}-after${enhanced?'-hq.webp':'.jpg'}`,
+  visualized:true
+ };
+};
 const portfolioSeries=(numbers,titles,description)=>numbers.map((number,index)=>portfolioPair(number,titles[index],description));
 const visualSeries=(keys,titles,description)=>keys.map((key,index)=>visualPair(key,titles[index],description));
 // Не смешиваем типы объектов: балкон выступает за плоскость фасада,
@@ -58,10 +72,10 @@ const loggiaPortfolioNumbers=[3,5,7,9,10,11];
 export const serviceBeforeAfterProjects={
  'osteklenie-balkonov':[
  visualPair('balcony-glazing','Остекление выступающего балкона','Заменили открытое ограждение полноценным остеклённым контуром с аккуратными примыканиями.'),
- portfolioPair(2,'Остекление балкона с видом на зелень','Установили оконный контур и широкий подоконник, сохранив максимум света и открытый вид.'),
+ portfolioPair(2,'Остекление балкона с открытым видом','Установили оконный контур и широкий подоконник, сохранив максимум света и открытый вид.'),
   portfolioPair(8,'Остекление узкого балкона','Закрыли открытый проём окнами и защитили балкон от ветра, осадков и уличной пыли.'),
   visualPair('glazing-new-01','Остекление балкона в кирпичном доме','Закрыли открытый выступающий балкон белой оконной системой и защитили конструкцию от осадков.'),
-  visualPair('glazing-new-02','Остекление балкона с видом на парк','Сохранили открытый вид на зелень и установили светлый оконный контур с аккуратным парапетом.'),
+  visualPair('glazing-new-02','Остекление балкона с видом на парк','Сохранили открытый вид на парк и установили светлый оконный контур с аккуратным парапетом.'),
   visualPair('glazing-new-04','Холодное алюминиевое остекление','Установили лёгкую систему из алюминиевого профиля для защиты компактного балкона от ветра и дождя.'),
   visualPair('glazing-new-05','Тёплое остекление для зимы','Заменили старый холодный контур современной оконной системой и подготовили балкон к утеплению.'),
   visualPair('glazing-new-06','Панорамное остекление балкона','Открыли больше света панорамными конструкциями в тонком тёмном профиле.'),
@@ -71,10 +85,10 @@ export const serviceBeforeAfterProjects={
  ],
  'uteplenie-balkonov':[
   visualPair('balcony-insulation','Утепление всего контура балкона','Закрыли плитами стены, парапет, потолок и пол, герметично проклеив стыки перед отделкой.'),
-  ...portfolioSeries(balconyPortfolioNumbers,['Утепление балкона с видом на зелень','Утепление балкона с деревянной отделкой','Тёплый балкон с хранением','Утепление узкого балкона','Подготовка балкона к зиме','Утепление компактного балкона'],'Утеплили холодные поверхности и подготовили балкон к круглогодичному использованию.')
+  ...portfolioSeries(balconyPortfolioNumbers,['Утепление балкона с открытым видом','Утепление балкона с деревянной отделкой','Тёплый балкон с хранением','Утепление узкого балкона','Подготовка балкона к зиме','Утепление компактного балкона'],'Утеплили холодные поверхности и подготовили балкон к круглогодичному использованию.')
  ],
  'otdelka-balkonov':[
-  ...portfolioSeries(balconyPortfolioNumbers,['Отделка балкона с видом на зелень','Отделка балкона натуральным деревом','Балкон с системой хранения','Балкон с широким подоконником','Отделка балкона под светлое дерево','Компактный балкон с рабочим местом'],'Выполнили чистовую отделку стен, потолка и пола и аккуратно оформили примыкания.')
+  ...portfolioSeries(balconyPortfolioNumbers,['Отделка балкона с открытым видом','Отделка балкона натуральным деревом','Балкон с системой хранения','Балкон с широким подоконником','Отделка балкона под светлое дерево','Компактный балкон с рабочим местом'],'Выполнили чистовую отделку стен, потолка и пола и аккуратно оформили примыкания.')
  ],
  'balkon-pod-klyuch':[
   ...portfolioSeries(balconyPortfolioNumbers,['Балкон под ключ с открытым видом','Балкон под ключ с отделкой деревом','Балкон с системой хранения','Зона отдыха на узком балконе','Балкон под ключ в светлом дереве','Рабочее место на компактном балконе'],'Выполнили комплекс работ от подготовки и утепления до чистовой отделки и готового интерьера.')
@@ -115,7 +129,7 @@ export const serviceBeforeAfterProjects={
  'holodnoe-osteklenie':[
   visualPair('balcony-glazing','Холодное остекление открытого балкона','Закрыли балкон лёгкой оконной системой для защиты от ветра и осадков.'),
   ...visualSeries(['glazing-new-01','glazing-new-02','glazing-new-04','glazing-new-07','glazing-new-08','glazing-new-09'],['Холодное остекление в кирпичном доме','Остекление с видом на парк','Алюминиевое остекление балкона','Холодное угловое остекление','Замена старых рам','Холодное остекление с выносом'],'Установили лёгкий оконный контур для защиты от ветра, дождя, снега и пыли.'),
-  ...portfolioSeries(balconyPortfolioNumbers,['Холодное остекление с видом на зелень','Остекление балкона с деревянной отделкой','Балкон с защищённой зоной хранения','Остекление узкого балкона','Остекление под светлую отделку','Холодное остекление компактного балкона'],'Сохранили свет и полезную площадь, защитив пространство от осадков и ветра.')
+  ...portfolioSeries(balconyPortfolioNumbers,['Холодное остекление с открытым видом','Остекление балкона с деревянной отделкой','Балкон с защищённой зоной хранения','Остекление узкого балкона','Остекление под светлую отделку','Холодное остекление компактного балкона'],'Сохранили свет и полезную площадь, защитив пространство от осадков и ветра.')
  ],
  'teploe-osteklenie':[
   visualPair('glazing-new-05','Замена холодных окон на тёплые','Установили многокамерный профиль и герметичный стеклопакет.'),
@@ -125,7 +139,7 @@ export const serviceBeforeAfterProjects={
  'panoramnoe-osteklenie':[
   visualPair('glazing-new-06','Панорамный балкон в тёмном профиле','Открыли больше света тонкими светопрозрачными конструкциями.'),
   ...visualSeries(['glazing-new-02','glazing-new-07','glazing-new-09'],['Панорамное остекление с видом на парк','Угловое панорамное остекление','Панорамное остекление с выносом'],'Смонтировали крупноформатное безопасное остекление, сохранив максимум света и открытый вид.'),
-  ...portfolioSeries(balconyPortfolioNumbers,['Панорамное остекление с видом на зелень','Панорамные окна и деревянная отделка','Панорамный балкон с хранением','Панорамное остекление узкого балкона','Панорамные окна под светлую отделку','Панорамное окно компактного балкона'],'Расширили световой проём и аккуратно оформили примыкания.')
+  ...portfolioSeries(balconyPortfolioNumbers,['Панорамное остекление с открытым видом','Панорамные окна и деревянная отделка','Панорамный балкон с хранением','Панорамное остекление узкого балкона','Панорамные окна под светлую отделку','Панорамное окно компактного балкона'],'Расширили световой проём и аккуратно оформили примыкания.')
  ],
  'holodnoe-osteklenie-lodzhii':[
   visualPair('loggia-glazing','Холодное остекление длинной лоджии','Закрыли протяжённый проём лёгкой оконной системой и герметизировали примыкания.'),
@@ -141,6 +155,18 @@ export const serviceBeforeAfterProjects={
   ...portfolioSeries(loggiaPortfolioNumbers,['Панорамная лоджия с открытым видом','Большие окна на длинной лоджии','Панорамное остекление с отделкой','Светлая лоджия в нише','Панорамные окна и хранение','Панорамная лоджия под кабинет'],'Рассчитали деление больших секций и аккуратно оформили примыкания по всему проёму.')
  ]
 };
+const yandexGalleryProjects=[
+ {title:'Светлый балкон с кирпичной отделкой',description:'Выполнили остекление, электрику и аккуратную светлую отделку стен и пола.',before:'service-before-after/yandex-gallery/yandex-01-before.webp',after:'service-before-after/yandex-gallery/yandex-01-after.jpg',beforeVisualized:true,source:'Яндекс Карты'},
+ {title:'Остекление с открытым видом',description:'Установили оконный контур и широкий подоконник, сохранив открытый вид и максимум дневного света.',before:'service-before-after/yandex-gallery/yandex-02-before.webp',after:'service-before-after/yandex-gallery/yandex-02-after.jpg',beforeVisualized:true,source:'Яндекс Карты'},
+ {title:'Панорамная лоджия в новостройке',description:'Оформили панорамное остекление, стены и износостойкий пол в светлой гамме.',before:'service-before-after/yandex-gallery/yandex-03-before.webp',after:'service-before-after/yandex-gallery/yandex-03-after.jpg',beforeVisualized:true,source:'Яндекс Карты'},
+ {title:'Длинная лоджия с освещением',description:'Завершили отделку протяжённой лоджии, установили светильники и потолочную сушилку.',before:'service-before-after/yandex-gallery/yandex-04-before.webp',after:'service-before-after/yandex-gallery/yandex-04-after.jpg',beforeVisualized:true,source:'Яндекс Карты'},
+ {title:'Светлая отделка узкой лоджии',description:'Аккуратно оформили стены, потолок, пол и оконные примыкания узкой лоджии.',before:'service-before-after/yandex-gallery/yandex-05-before.webp',after:'service-before-after/yandex-gallery/yandex-05-after.jpg',beforeVisualized:true,source:'Яндекс Карты'},
+ {title:'Угловое остекление и светлая отделка',description:'Выполнили угловое остекление и чистовую отделку, сохранив панорамный обзор.',before:'service-before-after/yandex-gallery/yandex-06-before.webp',after:'service-before-after/yandex-gallery/yandex-06-after.jpg',beforeVisualized:true,source:'Яндекс Карты'}
+];
+for(const projectsForService of Object.values(serviceBeforeAfterProjects)){
+ const missing=Math.max(0,12-projectsForService.length);
+ if(missing)projectsForService.push(...yandexGalleryProjects.slice(0,missing));
+}
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',
