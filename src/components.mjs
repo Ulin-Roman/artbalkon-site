@@ -46,11 +46,11 @@ const serviceHeroSlides={
  'obedinenie-balkona-s-komnatoj':['concept-turnkey.jpg','concept-furniture.jpg','card-turnkey.webp'],
  'osteklenie-kottedzhej':['service-before-after/cottage-glazing-after.jpg','service-before-after/cottage-glazing-4-after-hq.webp','service-before-after/cottage-glazing-3-after-hq.webp'],
  'holodnoe-osteklenie':['service-before-after/glazing-new-01-after.jpg','service-before-after/glazing-new-02-after.jpg','service-before-after/glazing-new-04-after.jpg'],
- 'teploe-osteklenie':['service-before-after/glazing-new-05-after.jpg','service-before-after/glazing-new-06-after.jpg','service-before-after/yandex-gallery/yandex-03-after.jpg'],
- 'panoramnoe-osteklenie':['service-before-after/glazing-new-06-after.jpg','service-before-after/glazing-new-07-after.jpg','service-before-after/glazing-new-09-after.jpg'],
+ 'teploe-osteklenie':['service-before-after/glazing-new-05-after.jpg','service-before-after/warm-balcony-01-after.jpg','service-before-after/warm-balcony-02-after.jpg'],
+ 'panoramnoe-osteklenie':['service-before-after/panoramic-glazing-after.jpg','service-before-after/glazing-new-06-after.jpg','service-before-after/panoramic-balcony-01-after.jpg'],
  'holodnoe-osteklenie-lodzhii':['service-before-after/glazing-new-03-after.jpg','before-after/after-01.jpg','before-after/after-08.jpg'],
  'teploe-osteklenie-lodzhii':['before-after/after-05.jpg','before-after/after-07.jpg','before-after/after-11.jpg'],
- 'panoramnoe-osteklenie-lodzhii':['service-before-after/loggia-glazing-after.jpg','before-after/after-03.jpg','before-after/after-11.jpg']
+ 'panoramnoe-osteklenie-lodzhii':['service-before-after/panoramic-loggia-02-after.jpg','service-before-after/panoramic-loggia-03-after.jpg','service-before-after/panoramic-loggia-04-after.jpg']
 };
 const serviceHeroSlideshow=service=>{
  const slides=[service.image,...(serviceHeroSlides[service.slug]||[])].filter((name,index,list)=>list.indexOf(name)===index);

@@ -2211,7 +2211,7 @@ h1,h2,h3,h4,
  }
  .home-page .hero-visual{height:650px}
  .landing-hero .landing-grid{
-  grid-template-columns:minmax(420px,.76fr) minmax(0,1.24fr);
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   column-gap:52px;
  }
  .landing-hero .landing-photo{height:660px}
@@ -2223,7 +2223,7 @@ h1,h2,h3,h4,
  }
  .home-page .hero-visual{height:540px}
  .landing-hero .landing-grid{
-  grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   column-gap:32px;
  }
  .landing-hero .landing-photo{height:560px}
