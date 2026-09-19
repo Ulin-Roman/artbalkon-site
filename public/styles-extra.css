@@ -2595,12 +2595,14 @@ main .eyebrow{display:none!important}
  }
  .mobile-menu-contact{
   display:flex;
+  flex-direction:column;
   align-items:center;
-  justify-content:flex-start;
-  gap:12px;
+  justify-content:center;
+  gap:11px;
   margin-top:auto;
   padding:22px 0 17px;
   border-top:1px solid var(--line);
+  text-align:center;
  }
  .mobile-menu-phone{font-size:17px}
  .mobile-menu-messengers{gap:7px}
@@ -2610,13 +2612,14 @@ main .eyebrow{display:none!important}
   width:100%;
   min-height:50px;
   margin:0;
-  padding:8px 9px 8px 20px;
-  justify-content:space-between;
+  padding:8px 20px;
+  justify-content:center;
   border:1px solid var(--teal);
   color:#fff;
   font-size:14px;
+  text-align:center;
  }
- .mobile-menu>.button span[aria-hidden]{width:32px;height:32px;border-radius:50%}
+ .mobile-menu>.button span[aria-hidden]{display:none}
  .mobile-menu-note{
   margin-top:17px;
   color:#7a8887;
@@ -2729,4 +2732,75 @@ main .eyebrow{display:none!important}
   max-width:none;
   white-space:nowrap;
  }
+}
+
+/* Desktop home hero: one wide photograph with the offer placed over it. */
+@media(min-width:1101px){
+ .home-page .hero.container{
+  position:relative;
+  isolation:isolate;
+  display:grid;
+  grid-template-columns:1fr;
+  grid-template-areas:"home-hero";
+  width:calc(100% - 96px);
+  max-width:1328px;
+  height:clamp(620px,69vh,760px);
+  min-height:620px;
+  margin:34px auto 38px;
+  padding:0;
+  overflow:hidden;
+  border-radius:28px;
+  box-shadow:0 28px 75px rgba(16,43,44,.18);
+ }
+ .home-page .hero-content{
+  grid-area:home-hero;
+  align-self:start;
+  justify-self:center;
+  z-index:3;
+  width:min(100%,980px);
+  padding:88px 52px 40px;
+  text-align:center;
+ }
+ .home-page .hero h1{
+  max-width:980px;
+  margin-inline:auto;
+  color:#fff;
+  font-size:clamp(46px,4.2vw,66px);
+  line-height:1.08;
+  text-shadow:0 3px 22px rgba(0,0,0,.58);
+ }
+ .home-page .hero h1 .location-accent{color:#87eee7}
+ .home-page .hero-description{
+  max-width:650px;
+  margin:24px auto 0;
+  color:rgba(255,255,255,.94);
+  font-size:18px;
+  line-height:1.7;
+  text-shadow:0 2px 14px rgba(0,0,0,.62);
+ }
+ .home-page .hero-actions{
+  justify-content:center;
+  margin-top:28px;
+ }
+ .home-page .hero-actions .button{
+  min-width:230px;
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+ }
+ .home-page .hero-visual{
+  grid-area:home-hero;
+  width:100%;
+  height:100%;
+  min-height:620px;
+  border-radius:0;
+  box-shadow:none;
+ }
+ .home-page .hero-visual::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:linear-gradient(180deg,rgba(4,20,21,.64) 0%,rgba(4,20,21,.47) 48%,rgba(4,20,21,.25) 100%);
+  pointer-events:none;
+ }
+ .home-page .hero-image{object-position:center 54%}
 }
