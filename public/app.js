@@ -130,7 +130,23 @@
  const comparisonModal=$('#comparison-modal');
  if(comparisonModal){
   const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),beforeLabel=$('#comparison-before-label'),afterLabel=$('#comparison-after-label'),comparisonTitle=$('#comparison-title');
-  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;const previews=card.querySelectorAll('.before-after-preview img'),beforeReal=card.dataset.beforeReal==='true',beforeVisualized=card.dataset.beforeVisualized==='true',visualized=card.dataset.visualized==='true';beforeImage.src=previews[0]?.currentSrc||previews[0]?.src||card.dataset.before;afterImage.src=previews[1]?.currentSrc||previews[1]?.src||card.dataset.after;comparisonTitle.textContent=card.dataset.title;beforeLabel.textContent=beforeReal&&!visualized?'До':'До · визуализация этапа до ремонта';afterLabel.textContent=visualized?'После · визуализация':'После';beforeImage.alt=`${card.dataset.title} — ${beforeVisualized||visualized?'до работ, тематическая визуализация':beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция'}`;afterImage.alt=`${card.dataset.title} — ${visualized?'после работ, тематическая визуализация':'после работ ArtBalkon'}`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
+  const fitComparison=()=>{
+   if(!comparisonModal.open||![beforeImage,afterImage].every(img=>img.complete&&img.naturalWidth))return;
+   const grid=comparisonModal.querySelector('.comparison-modal-grid'),shell=comparisonModal.querySelector('.comparison-modal-shell');
+   const ratios=[beforeImage,afterImage].map(img=>img.naturalWidth/img.naturalHeight);
+   const mobile=matchMedia('(max-width:640px)').matches;
+   const padding=parseFloat(getComputedStyle(shell).paddingLeft)+parseFloat(getComputedStyle(shell).paddingRight);
+   const gap=parseFloat(getComputedStyle(grid).columnGap)||0;
+   const height=Math.min(innerHeight*.61,690);
+   const contentWidth=height*(mobile?Math.max(...ratios):ratios[0]+ratios[1])+(mobile?0:gap);
+   comparisonModal.style.width=Math.min(1240,innerWidth-(mobile?20:28),contentWidth+padding)+'px';
+   grid.style.gridTemplateColumns=mobile?'1fr':ratios.map(r=>r+'fr').join(' ');
+  };
+  beforeImage.addEventListener('load',fitComparison);
+  afterImage.addEventListener('load',fitComparison);
+  new MutationObserver(fitComparison).observe(comparisonModal,{attributes:true,attributeFilter:['open']});
+  window.addEventListener('resize',fitComparison);
+  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;const previews=card.querySelectorAll('.before-after-preview img'),beforeReal=card.dataset.beforeReal==='true',beforeVisualized=card.dataset.beforeVisualized==='true',visualized=card.dataset.visualized==='true';beforeImage.src=previews[0]?.currentSrc||previews[0]?.src||card.dataset.before;afterImage.src=previews[1]?.currentSrc||previews[1]?.src||card.dataset.after;comparisonTitle.textContent=card.dataset.title;beforeLabel.textContent='До';afterLabel.textContent='После';beforeImage.alt=`${card.dataset.title} — ${beforeVisualized||visualized?'до работ, тематическая визуализация':beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция'}`;afterImage.alt=`${card.dataset.title} — ${visualized?'после работ, тематическая визуализация':'после работ ArtBalkon'}`;comparisonModal.showModal();comparisonModal.querySelector('.comparison-close').focus({preventScroll:true});track('before_after_open',{project:card.dataset.title});});
   comparisonModal.querySelector('.comparison-close')?.addEventListener('click',()=>comparisonModal.close());
   comparisonModal.addEventListener('click',e=>{if(e.target===comparisonModal)comparisonModal.close();});
   comparisonModal.addEventListener('close',()=>{beforeImage.removeAttribute('src');afterImage.removeAttribute('src');});

@@ -1,4 +1,5 @@
-import {mkdir,readFile,writeFile,cp,rm} from 'node:fs/promises';
+import {mkdir,readFile,writeFile,cp,rm,readdir} from 'node:fs/promises';
+import {resolve,relative,join,sep} from 'node:path';
 import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,projectPage,projectCards,contact,esc} from '../src/components.mjs';
 import {company,services,serviceSeo,projects,integrations} from '../src/content.mjs';
 const rawBase=process.env.SITE_BASE_PATH||'/';
@@ -27,4 +28,15 @@ await writeFile('dist/404.html',baseHtml(shell('<section class="section containe
 await writeFile('dist/site-config.json',JSON.stringify({...integrations,basePath:base,leadEndpoint:staticOnly?null:integrations.leadEndpoint}));
 await writeFile('dist/robots.txt',`User-agent: *\nAllow: ${base}\nDisallow: ${base}api/\nDisallow: ${base}privacy/\nDisallow: ${base}consent/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid\nSitemap: ${company.origin}/sitemap.xml\n`);
 await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+routes.map(path=>`<url><loc>${company.origin}${path}</loc><lastmod>${company.checked}</lastmod><changefreq>${path==='/'?'weekly':'monthly'}</changefreq><priority>${path==='/'?'1.0':path==='/nashi-raboty/'?'0.8':'0.7'}</priority></url>`).join('')+'</urlset>');
-console.log(`ArtBalkon: ${routes.length+2} pages built`);
+// Keep source originals in public; publish only assets referenced by the built site.
+async function builtFiles(dir){const files=[];for(const entry of await readdir(dir,{withFileTypes:true})){const file=join(dir,entry.name);files.push(...entry.isDirectory()?await builtFiles(file):[file]);}return files;}
+const builtRoot=resolve('dist'),assetRoot=join(builtRoot,'assets');
+const built=await builtFiles(builtRoot);
+const referenceText=(await Promise.all(built.filter(file=>/\.(html|css|js|json|xml|txt)$/.test(file)).map(file=>readFile(file,'utf8')))).join('\n').replaceAll('\\','/');
+let omitted=0;
+for(const file of built){
+ if(!file.startsWith(assetRoot+sep))continue;
+ const asset=relative(builtRoot,file).replaceAll('\\','/');
+ if(!referenceText.includes(asset)){await rm(file);omitted++;}
+}
+console.log(`ArtBalkon: ${routes.length+2} pages built; ${omitted} unused source assets omitted from dist`);

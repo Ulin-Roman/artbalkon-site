@@ -166,18 +166,18 @@ export const serviceBeforeAfterProjects={
   visualPair('balcony-glazing-11','Остекление балкона тёмным профилем','Собрали герметичный оконный контур и полностью закрыли нижнюю часть.')
  ],
  'uteplenie-balkonov':[
-  insulationStagePair('service-before-after/balcony-insulation-after.jpg',4,'Утепление пеноплексом и светлая отделка','Утеплили стены, пол и потолок плитами повышенной плотности, затем выполнили светлую чистовую отделку.'),
-  insulationStagePair('service-before-after/balcony-insulation-02-after.png',7,'Пеноплекс с пенофолом и рабочая зона','Закрыли тёплый контур фольгированным слоем и превратили балкон в компактное рабочее место.'),
-  insulationStagePair('insulation-stage-01',12,'Пеноплекс по всему контуру','Утеплили парапет, стены, потолок и пол без разрывов, после чего оформили балкон светлыми материалами.'),
-  insulationStagePair('insulation-stage-03',20,'Утепление углового балкона','Собрали контур из плитного утеплителя и завершили отделку с влагостойким напольным покрытием.'),
-  insulationStagePair('insulation-stage-04',29,'Утепление широкого балкона','Закрепили пеноплекс повышенной плотности по всему контуру и выполнили спокойную деревянную отделку.'),
-  insulationStagePair('insulation-stage-05',30,'Тёплый балкон с отделкой под дерево','Герметизировали стыки утеплителя и подготовили основание под чистовые панели, свет и напольное покрытие.'),
-  insulationStagePair('insulation-stage-07',47,'Утепление балкона с панорамными окнами','Утеплили все непрозрачные поверхности и завершили помещение практичной светлой отделкой.'),
-  insulationStagePair('insulation-stage-02',61,'Пенофол поверх пеноплекса','Добавили отражающий слой и монтажный каркас, затем закрыли контур чистовыми материалами.'),
-  insulationStagePair('insulation-stage-06',68,'Комбинированное утепление балкона','Совместили плитный утеплитель и фольгированную пароизоляцию, подготовив балкон к круглогодичному использованию.'),
-  insulationStagePair('insulation-stage-08',80,'Утепление под чистовую обшивку','Собрали герметичный фольгированный слой и закончили помещение аккуратной отделкой с освещением.'),
-  insulationStagePair('service-before-after/loggia-insulation-after.jpg',91,'Утепление пола, стен и потолка','Закрыли мостики холода и выполнили ровную светлую отделку с чистовым полом.'),
-  insulationStagePair('service-before-after/loggia-insulation-02-after.png',103,'Пеноплекс под деревянную отделку','Утеплили весь контур, проложили электрику и завершили балкон деревянными панелями со встроенным светом.')
+  {...matchedFinishingPair(4,"Контрастная отделка после утепления","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(15,"Утепление под отделку со шкафом","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-015-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(20,"Тёплый контур узкого пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-020-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(25,"Утепление длинного пространства","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(47,"Утепление торца и парапета","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-047-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(103,"Утепление под отделку и освещение","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-103-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
  'otdelka-balkonov':[
   matchedFinishingPair(4,'Контрастная отделка длинного балкона','Сочетали тёмные стеновые панели, светлый потолок и равномерное освещение.'),
@@ -189,23 +189,23 @@ export const serviceBeforeAfterProjects={
   matchedFinishingPair(61,'Светлая отделка углового остекления','Аккуратно оформили потолок и парапет вокруг угловых окон.'),
   matchedFinishingPair(91,'Светлая отделка вокруг окон','Закрыли примыкания и оформили оконную зону светлыми материалами.'),
   matchedFinishingPair(103,'Деревянная отделка с потолочным светом','Сочетали отделку стен под дерево со светлым потолком и точечными светильниками.'),
-  matchedFinishingPair(140,'Отделка длинного балкона под дерево','Оформили протяжённое пространство панелями и ламинатом.'),
+  matchedFinishingPair(17,'Светлая отделка узкого балкона','Светлые стены и завершённое напольное покрытие.'),
   matchedFinishingPair(164,'Светлый балкон с широким подоконником','Подобрали спокойную отделку и сохранили максимум естественного света.'),
   matchedFinishingPair(190,'Стеновой паркет и чистовой пол','Завершили стены, парапет и пол износостойкими материалами.')
  ],
  'balkon-pod-klyuch':[
-  curatedAfterPair(7,1,'Балкон с рабочим местом под ключ','Выполнили утепление, отделку, электрику и компактную рабочую поверхность.'),
-  curatedAfterPair(14,2,'Балкон с акцентной стеной','Завершили весь комплекс от подготовки основания до света и чистового пола.'),
-  curatedAfterPair(21,3,'Кабинет на небольшом балконе','Организовали готовое рабочее место с освещением и розетками.'),
-  curatedAfterPair(35,4,'Балкон с тёплым вечерним светом','Собрали тёплый контур и установили несколько сценариев освещения.'),
-  curatedAfterPair(53,5,'Светлая рабочая лоджия','Завершили остекление, отделку и мебель по размеру помещения.'),
-  curatedAfterPair(68,6,'Балкон с зелёной зоной','Подготовили тёплое пространство для отдыха и растений.'),
-  curatedAfterPair(75,7,'Балкон с реечным потолком','Выполнили комбинированную отделку и встроили трековый свет.'),
-  curatedAfterPair(81,8,'Светлая зона отдыха у окон','Довели балкон до полностью готового интерьерного состояния.'),
-  curatedAfterPair(95,9,'Балкон со встроенным шкафом','Изготовили мебель по размеру после утепления и чистовой отделки.'),
-  curatedAfterPair(114,10,'Яркий балкон с декоративными рейками','Сочетали цвет, деревянные рейки и продуманное освещение.'),
-  curatedAfterPair(169,11,'Балкон с архитектурным потолком','Собрали отделку и трековый свет в единой композиции.'),
-  curatedAfterPair(189,12,'Готовый балкон в тёплой гамме','Завершили стены, потолок, пол и электрику одной командой.')
+  matchedFinishingPair(5,"Серая отделка лоджии","Светлый потолок, серые стеновые панели и готовый пол."),
+  matchedFinishingPair(15,"Светлая лоджия со шкафом","Светлые стены, готовый пол и высокий шкаф в торце."),
+  matchedFinishingPair(25,"Отделка длинной лоджии","Отделка стен под дерево и аккуратные оконные примыкания."),
+  matchedFinishingPair(17,"Светлая отделка узкого пространства","Светлые поверхности и ровное напольное покрытие по всей длине."),
+  matchedFinishingPair(64,"Отделка лоджии под кабинет","Серая отделка стен и пола в помещении с рабочим местом."),
+  matchedFinishingPair(80,"Лоджия с потолочной сушилкой","Светлая обшивка стен, потолочный свет и сушильная система."),
+  matchedFinishingPair(120,"Отделка лоджии тёмным деревом","Единая древесная фактура стен, потолка и готового пола."),
+  matchedFinishingPair(4,"Контрастный интерьер","Готовая отделка с контрастными стенами и потолочным светом."),
+  matchedFinishingPair(20,"Светло-серый интерьер","Завершённые стены, потолок и пол."),
+  matchedFinishingPair(29,"Интерьер с деревянной стеной","Деревянная отделка оконной зоны."),
+  matchedFinishingPair(103,"Длинное пространство с освещением","Отделка стен под дерево, светлый потолок и готовый пол."),
+  matchedFinishingPair(164,"Компактное светлое пространство","Отделка парапета, торцевой стены и пола.")
  ],
  'osteklenie-lodzhii':[
   visualPair('glazing-new-03','Остекление протяжённой лоджии','Установили непрерывное остекление по всей длине проёма.'),
@@ -213,97 +213,201 @@ export const serviceBeforeAfterProjects={
   galleryPair(3,'Остекление узкой лоджии','Обновили оконный контур и сохранили удобное открывание створок в узком пространстве.')
  ],
  'uteplenie-lodzhii':[
-  insulationStagePair('service-before-after/loggia-insulation-after.jpg',6,'Пеноплекс по длинному контуру лоджии','Утеплили пол, потолок, парапет и боковые стены, затем закрыли контур чистовой отделкой.'),
-  insulationStagePair('service-before-after/loggia-insulation-02-after.png',9,'Утепление лоджии перед отделкой','Закрыли плитами все холодные поверхности и подготовили длинную лоджию к чистовой обшивке.'),
-  insulationStagePair('insulation-stage-02',15,'Пеноплекс с пенофолом на лоджии','Собрали отражающий пароизоляционный слой и выполнили светлую отделку с рабочим местом у окна.'),
-  insulationStagePair('insulation-stage-04',21,'Тёплая лоджия с широким подоконником','Утеплили весь контур и подготовили удобную рабочую поверхность вдоль окон.'),
-  insulationStagePair('insulation-stage-06',25,'Комбинированное утепление длинной лоджии','Совместили пеноплекс и пенофол, герметизировали швы и завершили пространство светлыми панелями.'),
-  insulationStagePair('insulation-stage-08',26,'Утепление лоджии под дерево','Установили каркас поверх фольгированного слоя и выполнили чистовую отделку с тёплой деревянной фактурой.'),
-  insulationStagePair('insulation-stage-01',53,'Тёплая лоджия для кабинета','Утеплили стены, пол и потолок и организовали готовую рабочую зону.'),
-  insulationStagePair('insulation-stage-03',63,'Утепление лоджии со встроенным шкафом','Подготовили тёплый контур с учётом будущей мебели и закрыли торец встроенным шкафом.'),
-  insulationStagePair('insulation-stage-05',81,'Утеплённая лоджия для отдыха','Собрали контур без разрывов и превратили лоджию в светлое место для отдыха.'),
-  insulationStagePair('insulation-stage-07',96,'Утепление угловой лоджии','Защитили парапет, стены и пол от промерзания и завершили отделку практичными материалами.'),
-  insulationStagePair('service-before-after/balcony-insulation-after.jpg',120,'Пеноплекс повышенной плотности','Подготовили все поверхности под чистовую обшивку и равномерное потолочное освещение.'),
-  insulationStagePair('service-before-after/balcony-insulation-02-after.png',135,'Пенофол и тёплая деревянная отделка','Герметично проклеили отражающий слой и закончили лоджию тёплыми панелями под дерево.')
+  {...matchedFinishingPair(4,"Контрастная отделка после утепления","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(15,"Утепление под отделку со шкафом","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-015-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(20,"Тёплый контур узкого пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-020-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(25,"Утепление длинного пространства","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(47,"Утепление торца и парапета","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-047-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(103,"Утепление под отделку и освещение","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-103-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
  'otdelka-lodzhii':[
-  curatedAfterPair(5,1,'Серая отделка длинной лоджии','Оформили стены, потолок и пол спокойными практичными материалами.'),
-  curatedAfterPair(6,2,'Светлая лоджия с деревянным потолком','Сочетали светлые стены, дерево и встроенный потолочный свет.'),
-  curatedAfterPair(15,3,'Лоджия с рабочей столешницей','Выполнили отделку и установили длинную рабочую поверхность у окон.'),
-  curatedAfterPair(25,4,'Светлая отделка по всей длине','Аккуратно закрыли стены, парапет и оконные примыкания.'),
-  curatedAfterPair(26,5,'Лоджия в тёплой натуральной гамме','Подобрали деревянные фактуры для стен, потолка и пола.'),
-  curatedAfterPair(80,6,'Длинная лоджия с открытым видом','Сохранили максимум света и добавили практичную чистовую отделку.'),
-  curatedAfterPair(89,7,'Отделка лоджии с жалюзи','Оформили кирпичную стену и добавили защиту от яркого солнца.'),
-  curatedAfterPair(100,8,'Светлая лоджия с широким остеклением','Завершили чистовую отделку под большим оконным проёмом.'),
-  curatedAfterPair(120,9,'Деревянная лоджия с сушилкой','Совместили декоративные панели, потолочный свет и удобную сушильную систему.'),
-  curatedAfterPair(135,10,'Тёмная деревянная отделка','Оформили длинную лоджию насыщенными деревянными панелями.'),
-  curatedAfterPair(158,11,'Лоджия с равномерным освещением','Разместили светильники по всей длине и завершили стены и пол.'),
-  curatedAfterPair(176,12,'Лоджия с тумбой у окна','Закрыли контур чистовыми материалами и добавили место хранения.')
+  matchedFinishingPair(5,"Серая отделка лоджии","Светлый потолок, серые стеновые панели и готовый пол."),
+  matchedFinishingPair(6,"Отделка потолка под дерево","Светлая древесная фактура потолка и оконных откосов."),
+  matchedFinishingPair(15,"Светлая лоджия со шкафом","Светлые стены, готовый пол и высокий шкаф в торце."),
+  matchedFinishingPair(25,"Отделка длинной лоджии","Отделка стен под дерево и аккуратные оконные примыкания."),
+  matchedFinishingPair(190,"Стеновой паркет и чистовой пол","Сочетание светлых стен и пола вокруг остекления."),
+  matchedFinishingPair(80,"Лоджия с потолочной сушилкой","Светлая обшивка стен, потолочный свет и сушильная система."),
+  matchedFinishingPair(89,"Отделка парапета под окнами","Светлые панели под остеклением с жалюзи."),
+  matchedFinishingPair(100,"Отделка угловой оконной зоны","Чистовая отделка потолка и парапета вокруг угловых окон."),
+  matchedFinishingPair(120,"Отделка лоджии тёмным деревом","Единая древесная фактура стен, потолка и готового пола."),
+  matchedFinishingPair(17,"Светлая отделка узкого пространства","Светлые поверхности и ровное напольное покрытие по всей длине."),
+  matchedFinishingPair(64,"Отделка лоджии под кабинет","Серая отделка стен и пола в помещении с рабочим местом."),
+  matchedFinishingPair(176,"Комбинированная отделка стен","Две древесные фактуры стен и завершённое напольное покрытие.")
  ],
  'lodzhiya-pod-klyuch':[
-  curatedAfterPair(9,1,'Лоджия с кабинетом под ключ','Выполнили утепление, отделку, электрику и рабочую зону у окон.'),
-  curatedAfterPair(31,2,'Лоджия с декоративным светом','Собрали готовое пространство с отделкой и уютным подвесным светильником.'),
-  curatedAfterPair(63,3,'Лоджия со встроенным шкафом','Завершили весь комплекс и закрыли торец мебелью по размеру.'),
-  curatedAfterPair(65,4,'Система хранения на лоджии','Изготовили шкафы и открытые полки после чистовой отделки.'),
-  curatedAfterPair(71,5,'Лоджия с тумбой и хранением','Организовали компактную мебель без потери удобного прохода.'),
-  curatedAfterPair(83,6,'Лоджия с жалюзи и тёплым полом','Довели пространство до готового состояния и предусмотрели защиту от солнца.'),
-  curatedAfterPair(90,7,'Длинная лоджия с вечерним светом','Смонтировали отделку, электрику и равномерное освещение.'),
-  curatedAfterPair(96,8,'Угловая лоджия под ключ','Завершили остекление, внутренний контур и чистовую отделку.'),
-  curatedAfterPair(124,9,'Лоджия с кирпичной фактурой','Сочетали тёплое дерево, декоративный кирпич и локальный свет.'),
-  curatedAfterPair(144,10,'Яркая лоджия с рейками','Выполнили дизайнерскую отделку и трековое освещение.'),
-  curatedAfterPair(170,11,'Длинная лоджия с тёмным деревом','Оформили все поверхности и сохранили удобное открывание створок.'),
-  curatedAfterPair(181,12,'Лоджия с панорамным видом','Завершили полный комплекс работ с мебелью и светом.')
+  matchedFinishingPair(5,"Серая отделка лоджии","Светлый потолок, серые стеновые панели и готовый пол."),
+  matchedFinishingPair(15,"Светлая лоджия со шкафом","Светлые стены, готовый пол и высокий шкаф в торце."),
+  matchedFinishingPair(25,"Отделка длинной лоджии","Отделка стен под дерево и аккуратные оконные примыкания."),
+  matchedFinishingPair(17,"Светлая отделка узкого пространства","Светлые поверхности и ровное напольное покрытие по всей длине."),
+  matchedFinishingPair(64,"Отделка лоджии под кабинет","Серая отделка стен и пола в помещении с рабочим местом."),
+  matchedFinishingPair(80,"Лоджия с потолочной сушилкой","Светлая обшивка стен, потолочный свет и сушильная система."),
+  matchedFinishingPair(120,"Отделка лоджии тёмным деревом","Единая древесная фактура стен, потолка и готового пола."),
+  matchedFinishingPair(4,"Контрастный интерьер","Готовая отделка с контрастными стенами и потолочным светом."),
+  matchedFinishingPair(20,"Светло-серый интерьер","Завершённые стены, потолок и пол."),
+  matchedFinishingPair(29,"Интерьер с деревянной стеной","Деревянная отделка оконной зоны."),
+  matchedFinishingPair(103,"Длинное пространство с освещением","Отделка стен под дерево, светлый потолок и готовый пол."),
+  matchedFinishingPair(164,"Компактное светлое пространство","Отделка парапета, торцевой стены и пола.")
  ],
  'krysha-nad-balkonom':[
   ...visualSeries(['balcony-roof','balcony-roof-2','balcony-roof-3','balcony-roof-4','balcony-roof-5','balcony-roof-6','balcony-roof-7','balcony-roof-8','balcony-roof-9','balcony-roof-10','balcony-roof-11','balcony-roof-12'],['Крыша над балконом верхнего этажа','Металлическая крыша на кирпичном доме','Прозрачная крыша из поликарбоната','Крыша с увеличенным выносом','Скатная крыша с водоотводом','Крыша над длинным балконом','Тёмная кровля с организованным стоком','Светлая крыша на сварном каркасе','Защита длинного остеклённого балкона','Поликарбонатная крыша над балконом','Замена старого балконного козырька','Широкая крыша над выносным остеклением'],'Собрали надёжный каркас, кровлю, герметичные примыкания и организованный водоотвод.')
  ],
  'mebel-dlya-balkona':[
-  curatedAfterPair(63,1,'Распашной шкаф в торце лоджии','Изготовили высокий шкаф по точным размерам ниши.'),
-  curatedAfterPair(95,2,'Шкаф-купе для узкой лоджии','Закрыли торец системой хранения с компактными раздвижными фасадами.'),
-  curatedAfterPair(65,3,'Угловой шкаф и открытые полки','Использовали сложную геометрию угла без потери света и прохода.'),
-  curatedAfterPair(71,4,'Тумба под подоконником','Встроили невысокую тумбу, сохранив доступ к окнам и розеткам.'),
-  curatedAfterPair(14,5,'Стеллаж для хранения','Спроектировали открытые секции по высоте боковой стены.'),
-  {...curatedAfterPair(7,6,'Компьютерный стол на балконе','Г-образная рабочая поверхность у окна.'),before:'service-gallery-v3/furniture-007-before.png',beforeVisualized:true},
-  curatedAfterPair(21,7,'Компактный письменный стол','Подобрали глубину столешницы так, чтобы сохранить свободный проход.'),
-  curatedAfterPair(53,8,'Стол-стойка вдоль остекления','Изготовили длинную поверхность для работы и отдыха у окна.'),
-  portfolioPair(8,'Скамья с хранением','Собрали мягкое сиденье с вместительными нишами под ним.'),
-  portfolioPair(6,'Тумба и шкаф рядом с окном','Вписали мебель между стеной, радиатором и открывающимися створками.'),
-  portfolioPair(13,'Откидной стол для небольшого балкона','Сохранили максимум свободного места и предусмотрели удобное рабочее положение.'),
-  portfolioPair(11,'Стол и полки для домашнего кабинета','Организовали рабочую зону с хранением документов и техники.')
+  {...matchedFinishingPair(15,"Распашной шкаф в торце","Высокий белый шкаф в готовой отделке."),before:'service-gallery-v3/furniture-015-before.png',stage:'furniture'},
+  {...matchedFinishingPair(95,"Деревянный распашной шкаф","Шкаф с двумя распашными дверями и длинными ручками."),before:'service-gallery-v3/furniture-095-before.png',stage:'furniture'},
+  {...matchedFinishingPair(7,"Компьютерный стол","Г-образная столешница у окна."),before:'service-gallery-v3/furniture-007-before.png',stage:'furniture'},
+  {...matchedFinishingPair(21,"Компактный письменный стол","Рабочая поверхность в торце балкона."),before:'service-gallery-v3/furniture-021-before.png',stage:'furniture'},
+  {...matchedFinishingPair(115,"Белый встроенный шкаф","Высокие распашные фасады рядом с оконным блоком."),before:'service-gallery-v3/furniture-115-before.png',stage:'furniture'},
+  {...matchedFinishingPair(48,"Широкий стол-подоконник","Деревянная столешница над парапетом."),before:'service-gallery-v3/furniture-048-before.png',stage:'furniture'},
+  {title:"Стеллаж и открытые полки",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-014.jpg',after:'service-gallery-v3/furniture-rack-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:14},
+  {title:"Шкаф-купе в торце",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-020.jpg',after:'service-gallery-v3/furniture-sliding-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:20},
+  {title:"Угловая система хранения",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-029.jpg',after:'service-gallery-v3/furniture-corner-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:29},
+  {title:"Низкая тумба",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-176.jpg',after:'service-gallery-v3/furniture-cabinet-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:176},
+  {title:"Откидной стол",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-164.jpg',after:'service-gallery-v3/furniture-folding-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:164},
+  {title:"Стол-стойка вдоль окон",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-017.jpg',after:'service-gallery-v3/furniture-counter-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:17}
  ],
  'elektrika-na-balkone':[
-  curatedAfterPair(4,1,'Светильники по всей длине лоджии','Равномерно разместили потолочные точки без тёмных участков.'),
-  curatedAfterPair(5,2,'Основной и локальный свет','Разделили светильники на удобные сценарии включения.'),
-  curatedAfterPair(31,3,'Подвесной светильник у входа','Вывели кабель до отделки и аккуратно установили декоративный свет.'),
-  curatedAfterPair(35,4,'Тёплое потолочное освещение','Подобрали светильники под деревянную отделку и вечернее использование.'),
-  curatedAfterPair(41,5,'Точечный свет в деревянном потолке','Скрыли проводку и установили светильники заподлицо.'),
-  curatedAfterPair(75,6,'Трековые светильники','Смонтировали направленный свет для акцентной стены и рабочей зоны.'),
-  curatedAfterPair(92,7,'Встроенные светильники длинной лоджии','Распределили точки света по всей протяжённости помещения.'),
-  curatedAfterPair(103,8,'Розетки и свет для кабинета','Заранее предусмотрели питание ноутбука, зарядок и настольного оборудования.'),
-  curatedAfterPair(105,9,'Трековый свет над столешницей','Добавили направленные светильники в рабочей зоне у окон.'),
-  curatedAfterPair(114,10,'Свет в декоративных рейках','Совместили трековую систему и скрытую подсветку.'),
-  portfolioPair(1,'Блок розеток и выключатель','Скрыто проложили кабель и вывели электрику заподлицо с отделкой.'),
-  portfolioPair(12,'Розетка и интернет-кабель','Подготовили отдельные точки питания и проводной интернет для рабочего места.')
+  {...matchedFinishingPair(4,'Потолочный свет длинного балкона','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-004-before.png',stage:'electrical'},
+  {...matchedFinishingPair(31,'Подвесной светильник','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-031-before.png',stage:'electrical'},
+  {...matchedFinishingPair(35,'Декоративные потолочные светильники','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-035-before.png',stage:'electrical'},
+  {...matchedFinishingPair(41,'Настенный светильник у проёма','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-041-before.png',stage:'electrical'},
+  {...matchedFinishingPair(45,'Выключатель и розетка','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-045-before.png',stage:'electrical'},
+  {...matchedFinishingPair(47,'Блок розеток и потолочный свет','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-047-before.png',stage:'electrical'},
+  {...matchedFinishingPair(71,'Выключатель и терморегулятор','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-071-before.png',stage:'electrical'},
+  {...matchedFinishingPair(75,'Трековый свет и бра','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-075-before.png',stage:'electrical'},
+  {...matchedFinishingPair(92,'Встроенные потолочные светильники','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-092-before.png',stage:'electrical'},
+  {...matchedFinishingPair(103,'Свет и розетки вдоль лоджии','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-103-before.png',stage:'electrical'},
+  {...matchedFinishingPair(105,'Направленный трековый свет','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-105-before.png',stage:'electrical'},
+  {title:'Интернет-розетка на балконе',description:'Визуализация вывода интернет-кабеля с розеткой RJ45 рядом с электропитанием.',before:'service-gallery-v2/real-after-014.jpg',after:'service-gallery-v3/electric-014-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'electrical',sourcePhoto:14}
  ],
  'obedinenie-balkona-s-komnatoj':[
-  generatedAfterPair('combined-room-01',1,'Гостиная с кабинетом на лоджии','Демонтировали оконно-дверной блок, утеплили контур и сохранили широкий стол-подоконник.'),
-  generatedAfterPair('combined-room-02',2,'Кухня с зоной отдыха у окон','Расширили полезное пространство кухни и предусмотрели тёплый пол.'),
-  generatedAfterPair('combined-room-03',3,'Спальня с домашним кабинетом','Организовали рабочую зону за широким открытым проёмом.'),
-  generatedAfterPair('combined-room-04',4,'Лоджия как продолжение гостиной','Сохранили несущие участки и связали помещения общей отделкой.'),
-  generatedAfterPair('combined-room-05',5,'Кухня со столом-подоконником','Использовали бывший подоконный блок как удобную барную стойку.'),
-  generatedAfterPair('combined-room-06',6,'Светлый кабинет за широким проёмом','Утеплили лоджию, подобрали обогрев и продолжили чистовой пол из комнаты.'),
-  generatedAfterPair('combined-room-07',7,'Гостиная с угловой лоджией','Интегрировали колонну в интерьер и добавили конвектор у панорамных окон.'),
-  generatedAfterPair('combined-room-08',8,'Столовая и тёплая лоджия','Собрали единое пространство с общей отделкой и тёплым полом.'),
-  curatedAfterPair(7,9,'Рабочая зона как продолжение комнаты','Подготовили утеплённое пространство и столешницу у окна.'),
-  curatedAfterPair(9,10,'Кабинет на присоединённой лоджии','Выполнили полный комплекс от демонтажа до света и мебели.'),
-  curatedAfterPair(21,11,'Компактное рабочее место у окна','Согласовали геометрию проёма, утепление и расположение розеток.'),
-  curatedAfterPair(53,12,'Широкая столешница на лоджии','Использовали глубину подоконной зоны как полноценное рабочее место.')
- ],
+  {
+    "title": "Гостиная с кабинетом на лоджии",
+    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "before": "service-gallery-v3/combined-room-01-before.png",
+    "after": "service-gallery-v2/combined-room-01.png",
+    "visualized": true,
+    "pairVerified": true,
+    "stage": "combined"
+  },
+  {
+    "title": "Кухня с зоной отдыха у окон",
+    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "before": "service-gallery-v3/combined-room-02-before.png",
+    "after": "service-gallery-v2/combined-room-02.png",
+    "visualized": true,
+    "pairVerified": true,
+    "stage": "combined"
+  },
+  {
+    "title": "Спальня с домашним кабинетом",
+    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "before": "service-gallery-v3/combined-room-03-before.png",
+    "after": "service-gallery-v2/combined-room-03.png",
+    "visualized": true,
+    "pairVerified": true,
+    "stage": "combined"
+  },
+  {
+    "title": "Лоджия как продолжение гостиной",
+    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "before": "service-gallery-v3/combined-room-04-before.png",
+    "after": "service-gallery-v2/combined-room-04.png",
+    "visualized": true,
+    "pairVerified": true,
+    "stage": "combined"
+  },
+  {
+    "title": "Кухня со столом-подоконником",
+    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "before": "service-gallery-v3/combined-room-05-before.png",
+    "after": "service-gallery-v2/combined-room-05.png",
+    "visualized": true,
+    "pairVerified": true,
+    "stage": "combined"
+  },
+  {
+    "title": "Светлый кабинет за широким проёмом",
+    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "before": "service-gallery-v3/combined-room-06-before.png",
+    "after": "service-gallery-v2/combined-room-06.png",
+    "visualized": true,
+    "pairVerified": true,
+    "stage": "combined"
+  },
+  {
+    "title": "Гостиная с угловой лоджией",
+    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "before": "service-gallery-v3/combined-room-07-before.png",
+    "after": "service-gallery-v2/combined-room-07.png",
+    "visualized": true,
+    "pairVerified": true,
+    "stage": "combined"
+  },
+  {
+    "title": "Столовая и лоджия",
+    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "before": "service-gallery-v3/combined-room-08-before.png",
+    "after": "service-gallery-v2/combined-room-08.png",
+    "visualized": true,
+    "pairVerified": true,
+    "stage": "combined"
+  },
+  {
+    "title": "Рабочая зона за открытым проёмом",
+    "description": "Готовое пространство из галереи ArtBalkon. Закрытый проём до изменений показан как реконструкция, а не архивное фото.",
+    "before": "service-gallery-v3/combined-real-053-before.png",
+    "after": "service-gallery-v2/real-after-053.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "stage": "combined",
+    "pairVerified": true,
+    "sourcePhoto": 53
+  },
+  {
+    "title": "Стол-стойка между комнатой и лоджией",
+    "description": "Готовое пространство из галереи ArtBalkon. Закрытый проём до изменений показан как реконструкция, а не архивное фото.",
+    "before": "service-gallery-v3/combined-real-048-before.png",
+    "after": "service-gallery-v2/real-after-048.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "stage": "combined",
+    "pairVerified": true,
+    "sourcePhoto": 48
+  },
+  {
+    "title": "Открытый проход на лоджию",
+    "description": "Готовое пространство из галереи ArtBalkon. Закрытый проём до изменений показан как реконструкция, а не архивное фото.",
+    "before": "service-gallery-v3/combined-real-041-before.png",
+    "after": "service-gallery-v2/real-after-041.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "stage": "combined",
+    "pairVerified": true,
+    "sourcePhoto": 41
+  },
+  {
+    "title": "Оформление балконного проёма",
+    "description": "Готовое пространство из галереи ArtBalkon. Закрытый проём до изменений показан как реконструкция, а не архивное фото.",
+    "before": "service-gallery-v3/combined-real-035-before.png",
+    "after": "service-gallery-v2/real-after-035.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "stage": "combined",
+    "pairVerified": true,
+    "sourcePhoto": 35
+  }
+],
  'osteklenie-kottedzhej':[
   visualPair('cottage-glazing','Панорамное остекление веранды коттеджа','Заменили старые рамы широким тёплым остеклением и стеклянными дверями в сад.'),
   ...visualSeries(['cottage-glazing-2','cottage-glazing-3','cottage-glazing-4','cottage-glazing-5','cottage-glazing-7','cottage-glazing-8','cottage-glazing-10','cottage-glazing-11','cottage-glazing-12'],['Тёплое остекление кирпичной веранды','Панорамное остекление деревянной террасы','Замена окон на дачной веранде','Остекление эркера коттеджа','Новые окна загородного дома','Остекление террасы белым профилем','Обновление окон деревянной веранды','Раздвижное остекление каменной террасы','Панорамное остекление балкона коттеджа'],'Подобрали оконную систему для загородного дома и аккуратно оформили проёмы и примыкания.'),
-  {title:'Тёплое остекление старой веранды',description:'Демонтировали изношенные деревянные рамы и установили тёплые окна с дверью в сад.',before:'service-gallery-v2/cottage-glazing-13-before.png',after:'service-gallery-v2/cottage-glazing-13-after.png',visualized:true},
-  {title:'Раздвижное остекление открытой террасы',description:'Закрыли открытую деревянную террасу крупноформатной алюминиевой системой.',before:'service-gallery-v2/cottage-glazing-14-before.png',after:'service-gallery-v2/cottage-glazing-14-after.png',visualized:true}
+  {title:'Тёплое остекление старой веранды',description:'Демонтировали изношенные деревянные рамы и установили тёплые окна с дверью в сад.',before:'service-gallery-v3/cottage-glazing-13-before.png',after:'service-gallery-v2/cottage-glazing-13-after.png',visualized:true},
+  {title:'Раздвижное остекление открытой террасы',description:'Закрыли открытую деревянную террасу крупноформатной алюминиевой системой.',before:'service-gallery-v3/cottage-glazing-14-before.png',after:'service-gallery-v2/cottage-glazing-14-after.png',visualized:true}
  ],
  'holodnoe-osteklenie':[
   pngVisualPair('cold-balcony-01','Холодное алюминиевое остекление балкона','Смонтировали лёгкую раздвижную систему с тонким алюминиевым профилем и закрытым нижним контуром.'),
@@ -328,10 +432,16 @@ export const serviceBeforeAfterProjects={
  ],
  'panoramnoe-osteklenie-lodzhii':panoramicLoggiaBase
 };
-
+// Only slim-profile panoramic systems, never warm PVC examples with renamed captions.
+const coldBalconyPool=panoramicBalconyBase
+ .filter(project=>!project.after.includes('panoramic-balcony-03')&&!project.after.includes('panoramic-loggia-02'))
+ .map(project=>({...project,title:project.title.replace('Панорамное','Холодное панорамное'),description:'Визуализация лёгкого панорамного остекления для защиты от ветра и осадков.'}));
 // На каждой странице услуги показываем ровно 12 работ. Сначала оставляем
 // узкопрофильные примеры страницы, затем дополняем подборку релевантным пулом
 // без повторения одной и той же пары изображений.
+// Correct the two swapped cottage references without altering the source files.
+serviceBeforeAfterProjects['osteklenie-kottedzhej'][3].after='service-before-after/cottage-glazing-5-before-hq.webp';
+serviceBeforeAfterProjects['osteklenie-kottedzhej'][4].before='service-before-after/cottage-glazing-4-after-hq.webp';
 const projectAssetKey=project=>`${project.before}|${project.after}`;
 const completeProjectSeries=(primary,pool)=>{
  const unique=[];
@@ -360,21 +470,147 @@ const loggiaGlazingPool=retitleProjectSeries(
  ['Остекление длинной лоджии','Остекление лоджии в кирпичном доме','Остекление широкого проёма лоджии','Остекление лоджии с зимним видом','Остекление лоджии в высотном доме','Светлое остекление лоджии','Остекление лоджии в современном доме','Остекление лоджии тёмным профилем','Остекление протяжённой лоджии','Остекление лоджии в кирпичной нише','Остекление лоджии с открытым видом','Остекление компактной лоджии'],
  'Установили оконную систему по всей длине проёма и аккуратно оформили примыкания.'
 );
-const coldBalconyPool=retitleProjectSeries(
- balconyGlazingBase,
- ['Холодное остекление выступающего балкона','Холодное остекление балкона в кирпичном доме','Холодное остекление с открытым видом','Алюминиевое остекление компактного балкона','Замена старого холодного остекления','Холодное остекление с увеличенной площадью стекла','Холодное остекление углового балкона','Замена старых балконных рам','Холодное остекление с выносом','Холодное остекление белым профилем','Холодное остекление тёмным профилем','Холодное остекление небольшого балкона'],
- 'Установили лёгкую оконную систему для защиты балкона от ветра, осадков и пыли.'
-);
 const coldLoggiaPool=retitleProjectSeries(
  panoramicLoggiaBase,
  ['Холодное остекление длинной лоджии','Холодное остекление лоджии в кирпичном доме','Холодное остекление широкого проёма','Холодное остекление лоджии с зимним видом','Холодное остекление лоджии в высотном доме','Светлое холодное остекление лоджии','Холодное остекление в современном доме','Холодное остекление тёмным профилем','Холодное остекление протяжённой лоджии','Холодное остекление лоджии в нише','Холодное остекление с открытым видом','Холодное остекление компактной лоджии'],
  'Закрыли длинный проём лёгкой оконной системой для защиты от ветра и осадков.'
 );
-const warmLoggiaPool=retitleProjectSeries(
- panoramicLoggiaBase,
- ['Тёплое остекление длинной лоджии','Тёплые окна для лоджии в кирпичном доме','Тёплое остекление широкого проёма','Тёплая лоджия с зимним видом','Тёплое остекление лоджии в высотном доме','Светлая лоджия с тёплыми окнами','Тёплое остекление в современном доме','Тёплое остекление тёмным профилем','Тёплые окна по всей длине лоджии','Тёплое остекление лоджии в нише','Тёплое остекление с открытым видом','Тёплое остекление компактной лоджии'],
- 'Установили герметичную оконную систему со стеклопакетами по всей длине лоджии.'
-);
+const warmLoggiaPool=[
+  {
+    "title": "Остекление лоджии с отделкой под дерево",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-004-before.png",
+    "after": "service-gallery-v2/real-after-004.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 4
+  },
+  {
+    "title": "Окна на светлой лоджии",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-005-before.png",
+    "after": "service-gallery-v2/real-after-005.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 5
+  },
+  {
+    "title": "Остекление лоджии с вагонкой",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-012-before.png",
+    "after": "service-gallery-v2/real-after-012.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 12
+  },
+  {
+    "title": "Замена окон на длинной лоджии",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-025-before.png",
+    "after": "service-gallery-v2/real-after-025.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 25
+  },
+  {
+    "title": "Остекление лоджии с панелями",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-103-before.png",
+    "after": "service-gallery-v2/real-after-103.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 103
+  },
+  {
+    "title": "Окна на лоджии с трековым светом",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-105-before.png",
+    "after": "service-gallery-v2/real-after-105.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 105
+  },
+  {
+    "title": "Остекление углового проёма",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-061-before.png",
+    "after": "service-gallery-v2/real-after-061.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 61
+  },
+  {
+    "title": "Окна для лоджии с зоной хранения",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-080-before.png",
+    "after": "service-gallery-v2/real-after-080.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 80
+  },
+  {
+    "title": "Замена рам на узкой лоджии",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-020-before.png",
+    "after": "service-gallery-v2/real-after-020.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 20
+  },
+  {
+    "title": "Окна с широким подоконником",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-091-before.png",
+    "after": "service-gallery-v2/real-after-091.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 91
+  },
+  {
+    "title": "Остекление лоджии в высотном доме",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-100-before.png",
+    "after": "service-gallery-v2/real-after-100.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 100
+  },
+  {
+    "title": "Компактная лоджия с новыми окнами",
+    "description": "Готовые окна из галереи ArtBalkon. Прежние деревянные рамы показаны как реконструкция на основе того же помещения.",
+    "before": "service-gallery-v3/warm-164-before.png",
+    "after": "service-gallery-v2/real-after-164.jpg",
+    "beforeVisualized": true,
+    "source": "Яндекс Карты",
+    "pairVerified": true,
+    "stage": "warm-glazing",
+    "sourcePhoto": 164
+  }
+];
+serviceBeforeAfterProjects['teploe-osteklenie-lodzhii']=warmLoggiaPool;
+serviceBeforeAfterProjects['osteklenie-lodzhii']=warmLoggiaPool;
 const projectPoolsByService={
  'osteklenie-balkonov':balconyGlazingBase,
  'uteplenie-balkonov':interiorProjectPool,
@@ -398,9 +634,23 @@ const projectPoolsByService={
 };
 for(const service of services){
  const current=serviceBeforeAfterProjects[service.slug]||[];
- serviceBeforeAfterProjects[service.slug]=completeProjectSeries(current,projectPoolsByService[service.slug]||interiorProjectPool);
+ const allowCompletion=['osteklenie-balkonov','holodnoe-osteklenie','teploe-osteklenie','holodnoe-osteklenie-lodzhii'];
+ serviceBeforeAfterProjects[service.slug]=completeProjectSeries(current,allowCompletion.includes(service.slug)?projectPoolsByService[service.slug]:[]);
  if(serviceBeforeAfterProjects[service.slug].length!==12){
   throw new Error(`Для страницы ${service.slug} требуется ровно 12 работ`);
+ }
+ if(new Set(serviceBeforeAfterProjects[service.slug].map(project=>project.after)).size!==12){
+  throw new Error(`Повтор фотографии после в подборке ${service.slug}`);
+ }
+}
+// The home gallery uses the same reviewed, matched pairs as the turnkey page.
+beforeAfterProjects.splice(0,beforeAfterProjects.length,...serviceBeforeAfterProjects['balkon-pod-klyuch']);
+// Use compressed copies without discarding the editable PNG originals.
+for(const items of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]){
+ for(const project of items){
+  for(const side of ['before','after']){
+   if(project[side].startsWith('service-gallery-v3/'))project[side]=project[side].replace(/\.png$/,'.webp');
+  }
  }
 }
 export const serviceSeo = {
