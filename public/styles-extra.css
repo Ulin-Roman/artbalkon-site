@@ -3007,29 +3007,33 @@ main .eyebrow{display:none!important}
  .desktop-nav a::after{transition:none}
 }
 
-/* Center each service-page USP as one balanced icon-and-copy group. */
+/* Keep service-page USPs compact: icon first, copy beside it. */
 .landing-trust .trust-item{
  display:flex;
- flex-direction:column;
+ flex-direction:row;
  align-items:center;
  justify-content:center;
- text-align:center;
+ gap:14px;
+ min-height:94px;
+ padding:16px 18px!important;
+ text-align:left;
 }
 .landing-trust .trust-copy{
  flex:0 1 auto;
- align-items:center;
- text-align:center;
+ align-items:flex-start;
+ text-align:left;
 }
 .landing-trust .trust-copy strong,
 .landing-trust .trust-copy span{
- width:100%;
- justify-content:center;
- text-align:center;
+ width:auto;
+ justify-content:flex-start;
+ text-align:left;
 }
 @media(max-width:640px){
  .landing-trust .trust-item{
+  min-height:76px;
   gap:8px;
-  padding-inline:8px!important;
+  padding:10px 7px!important;
  }
 }
 
