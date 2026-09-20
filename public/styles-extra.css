@@ -1971,6 +1971,11 @@ h1,h2,h3,h4,
  width:100%;
  text-align:center!important;
 }
+@media(min-width:641px){
+ .landing-hero .landing-copy{
+  transform:translateY(-40px);
+ }
+}
 @media(max-width:640px){
  .home-page .hero>.hero-content>.hero-description,
  .landing-hero .landing-copy>.hero-description{
@@ -2784,4 +2789,57 @@ main .eyebrow{display:none!important}
  .home-page .hero.container{
   grid-template-columns:minmax(0,1fr) minmax(0,1fr);
  }
+}
+
+/* A consistent lightweight icon system for primary actions, contacts and proof points. */
+.ui-icon{display:block;flex:0 0 auto}
+.button-icon{width:18px;height:18px}
+.button-label{display:inline-block}
+.header-cta .button-icon{width:15px;height:15px}
+.header-contact .phone,
+.mobile-menu-phone{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.phone-link-icon{width:15px;height:15px;color:var(--teal)}
+.trust-strip .trust-item,
+.landing-trust .trust-item{
+ display:grid;
+ grid-template-columns:48px minmax(0,1fr);
+ align-items:center;
+ justify-content:start;
+ gap:14px;
+ text-align:left;
+}
+.trust-icon{
+ width:48px;
+ height:48px;
+ padding:11px;
+ border-radius:50%;
+ background:var(--teal-soft);
+ color:var(--teal);
+}
+.trust-copy{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:4px}
+.trust-strip .trust-copy strong,
+.landing-trust .trust-copy strong{
+ min-height:0;
+ justify-content:flex-start;
+ text-align:left;
+}
+.trust-strip .trust-copy span,
+.landing-trust .trust-copy span{
+ width:auto;
+ text-align:left;
+}
+@media(max-width:640px){
+ .button-icon{width:17px;height:17px}
+ .trust-strip .trust-item,
+ .landing-trust .trust-item{
+  grid-template-columns:32px minmax(0,1fr);
+  gap:6px;
+  padding-inline:7px!important;
+ }
+ .trust-icon{width:32px;height:32px;padding:7px}
+ .trust-copy{gap:2px}
+ .trust-strip .trust-copy strong,
+ .landing-trust .trust-copy strong{font-size:18px}
+ .trust-strip .trust-copy span,
+ .landing-trust .trust-copy span{font-size:9px;line-height:1.3}
 }
