@@ -2978,3 +2978,177 @@ main .eyebrow{display:none!important}
  .landing-hero .landing-copy-main>.hero-note{display:none}
  .landing-hero .landing-copy-main>.button{width:100%}
 }
+
+/* Header navigation: a stable accent underline without shifting the layout. */
+.desktop-nav a{
+ position:relative;
+ padding-block:7px;
+ transition:color .2s ease;
+}
+.desktop-nav a::after{
+ content:"";
+ position:absolute;
+ right:0;
+ bottom:2px;
+ left:0;
+ height:2px;
+ border-radius:999px;
+ background:var(--teal);
+ transform:scaleX(0);
+ transform-origin:center;
+ transition:transform .22s ease;
+}
+.desktop-nav a:hover,
+.desktop-nav a:focus-visible{color:var(--teal)}
+.desktop-nav a:hover::after,
+.desktop-nav a:focus-visible::after{transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){
+ .desktop-nav a,
+ .desktop-nav a::after{transition:none}
+}
+
+/* Center each service-page USP as one balanced icon-and-copy group. */
+.landing-trust .trust-item{
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+}
+.landing-trust .trust-copy{
+ flex:0 1 auto;
+ align-items:center;
+ text-align:center;
+}
+.landing-trust .trust-copy strong,
+.landing-trust .trust-copy span{
+ width:100%;
+ justify-content:center;
+ text-align:center;
+}
+@media(max-width:640px){
+ .landing-trust .trust-item{
+  gap:8px;
+  padding-inline:8px!important;
+ }
+}
+
+/* Give both header phone actions clear, unambiguous icon contrast. */
+.header-contact .phone .phone-link-icon,
+.mobile-menu-phone .phone-link-icon{
+ color:var(--ink);
+ stroke:var(--ink);
+}
+.header-cta .button-icon{
+ color:#fff;
+ stroke:#fff;
+}
+
+/* A compact price promise, shown only where the service has a published price. */
+.landing-price-lock{
+ display:inline-flex;
+ align-items:center;
+ gap:7px;
+ margin-top:18px;
+ padding:7px 13px;
+ border:1px solid rgba(7,135,141,.16);
+ border-radius:999px;
+ background:rgba(18,169,174,.09);
+ color:var(--teal);
+ font-size:13px;
+ font-weight:700;
+ line-height:1.35;
+}
+.landing-price-lock>span{
+ font-size:16px;
+ line-height:1;
+}
+.landing-price-lock+.landing-price{
+ margin-top:14px;
+}
+@media(max-width:640px){
+ .landing-price-lock{
+  align-self:center;
+  margin-top:14px;
+  padding:7px 12px;
+  font-size:12px;
+ }
+}
+
+/* Insulation options: a concise material promise between proof and brands. */
+.insulation-materials{
+ display:grid;
+ grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+ gap:48px;
+ align-items:center;
+ margin-block:48px 90px;
+ padding:38px 42px;
+ border:1px solid var(--surface-border);
+ border-radius:24px;
+ background:#fff;
+ box-shadow:var(--surface-shadow);
+}
+.insulation-materials h2{
+ max-width:480px;
+ font-size:clamp(30px,3vw,42px);
+}
+.insulation-materials-copy p{
+ max-width:540px;
+ margin-top:16px;
+ color:var(--muted);
+ font-size:15px;
+ line-height:1.7;
+}
+.insulation-materials ul{
+ display:grid;
+ gap:12px;
+ margin:0;
+ padding:0;
+ list-style:none;
+}
+.insulation-materials li{
+ display:grid;
+ grid-template-columns:38px minmax(0,1fr);
+ gap:13px;
+ align-items:center;
+ min-height:72px;
+ padding:15px 18px;
+ border:1px solid var(--line);
+ border-radius:16px;
+ background:var(--page-gray);
+}
+.insulation-materials li>span{
+ display:grid;
+ width:38px;
+ height:38px;
+ place-items:center;
+ border-radius:50%;
+ background:var(--teal-soft);
+ color:var(--teal);
+ font-size:18px;
+ font-weight:800;
+}
+.insulation-materials li strong{
+ font-size:15px;
+ line-height:1.45;
+}
+@media(max-width:900px){
+ .insulation-materials{grid-template-columns:1fr;gap:28px}
+}
+@media(max-width:640px){
+ .insulation-materials{
+  gap:24px;
+  margin-block:28px 58px;
+  padding:25px 20px;
+  border-radius:18px;
+ }
+ .insulation-materials h2{font-size:29px}
+ .insulation-materials-copy p{font-size:14px}
+ .insulation-materials li{
+  grid-template-columns:32px minmax(0,1fr);
+  min-height:66px;
+  padding:13px;
+ }
+ .insulation-materials li>span{width:32px;height:32px;font-size:16px}
+ .insulation-materials li strong{font-size:13px}
+}

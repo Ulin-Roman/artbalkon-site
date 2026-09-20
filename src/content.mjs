@@ -109,14 +109,14 @@ const warmBalconyBase=[
  ...visualSeries(['glazing-new-01','glazing-new-02','glazing-new-03','glazing-new-05','glazing-new-07','glazing-new-08','glazing-new-09'],['Тёплые окна в кирпичном доме','Тёплое остекление с открытым видом','Тёплые ПВХ-окна по всей длине балкона','Замена холодных окон на тёплые','Тёплое остекление углового балкона','Балкон с тёплыми ПВХ-окнами','Тёплое остекление с выносом'],'Установили герметичные распашные ПВХ-окна со стеклопакетами над полностью закрытым парапетом.'),
  visualPair('balcony-glazing-10','Тёплое остекление белым профилем','Установили ПВХ-окна со стеклопакетами и герметично закрыли нижний контур утеплёнными панелями.'),
  visualPair('balcony-glazing-12','Тёплое остекление компактного балкона','Смонтировали тёплую ПВХ-систему над непрерывным закрытым парапетом.'),
- visualPair('warm-balcony-01','Замена деревянных рам на тёплые окна','Демонтировали старые рамы и установили герметичные ПВХ-окна с двухкамерными стеклопакетами.'),
+ visualPair('warm-balcony-01','Замена деревянных рам на тёплые окна','Демонтировали старые рамы, установили герметичные ПВХ-окна и утеплили парапет, стены, потолок и пол под чистовую отделку.'),
  visualPair('warm-balcony-02','Замена холодного алюминия на ПВХ','Заменили раздвижную холодную систему на тёплые распашные окна над бетонным парапетом.')
 ];
 const warmBalconySeries=(titles,description)=>warmBalconyBase.map((project,index)=>({...project,title:titles[index]||project.title,description:description||project.description}));
 const panoramicBalconyBase=[
  visualPair('panoramic-glazing','Панорамное остекление выступающего балкона','Установили прозрачное остекление от пола до потолка по фронту и боковой стороне балкона.'),
  visualPair('glazing-new-06','Панорамный балкон в тёмном профиле','Заменили открытое ограждение стеклянным контуром от плиты до потолка.'),
- ...visualSeries(['panoramic-balcony-01','panoramic-balcony-02','panoramic-balcony-03','panoramic-balcony-04','panoramic-balcony-05','panoramic-balcony-06','panoramic-balcony-07','panoramic-balcony-08','panoramic-balcony-09','panoramic-balcony-10'],['Панорамное остекление узкого балкона','Безрамное панорамное остекление','Панорамное остекление белым профилем','Панорамный балкон с закруглённым фасадом','Панорамное остекление балкона в кирпичном доме','Остекление радиусного балкона','Панорамный балкон в высотном доме','Панорамное остекление длинного балкона','Угловое панорамное остекление','Панорамное остекление без глухого парапета'],'Закрыли открытый выступающий балкон прозрачным стеклянным контуром от пола до потолка.')
+ ...visualSeries(['panoramic-balcony-01','panoramic-balcony-02','panoramic-balcony-03','panoramic-balcony-04','panoramic-balcony-05','panoramic-balcony-06','panoramic-balcony-07','panoramic-balcony-08','panoramic-loggia-02','panoramic-balcony-10'],['Панорамное остекление узкого балкона','Безрамное панорамное остекление','Панорамное остекление белым профилем','Панорамный балкон с закруглённым фасадом','Панорамное остекление балкона в кирпичном доме','Остекление радиусного балкона','Панорамный балкон в высотном доме','Панорамное остекление длинного балкона','Панорамное остекление в кирпичном проёме','Панорамное остекление без глухого парапета'],'Закрыли открытый выступающий балкон прозрачным стеклянным контуром от пола до потолка.')
 ];
 const panoramicBalconySeries=(titles,description)=>panoramicBalconyBase.map((project,index)=>({...project,title:titles[index]||project.title,description:description||project.description}));
 const panoramicLoggiaBase=visualSeries(
@@ -137,8 +137,8 @@ export const serviceBeforeAfterProjects={
   visualPair('balcony-glazing-11','Остекление балкона тёмным профилем','Собрали герметичный оконный контур и полностью закрыли нижнюю часть.')
  ],
  'uteplenie-balkonov':[
-  visualPair('balcony-insulation','Утепление всего контура балкона','Закрыли плитами стены, парапет, потолок и пол, герметично проклеив стыки перед отделкой.'),
-  pngVisualPair('balcony-insulation-02','Фольгированный тёплый контур балкона','Утеплили закрытый парапет, короткую боковую стену, потолок и пол, проклеив все швы.')
+  {title:'Утепление пеноплексом и готовая отделка',description:'Собрали тёплый контур и закрыли утеплитель светлой чистовой отделкой.',before:'service-before-after/balcony-insulation-after.jpg',after:'before-after/after-01.jpg',beforeVisualized:true},
+  {title:'Пеноплекс с пенофолом и готовый балкон',description:'Защитили контур фольгированным слоем, загерметизировали швы и выполнили отделку с рабочим местом.',before:'service-before-after/balcony-insulation-02-after.png',after:'before-after/after-13.jpg',beforeVisualized:true}
  ],
  'otdelka-balkonov':[
   realGalleryPair(7,'Отделка радиусного балкона','Оформили закруглённый балкон в спокойных серых тонах и сохранили свет по всей линии окон.'),
@@ -212,7 +212,7 @@ export const serviceBeforeAfterProjects={
   visualPair('glazing-new-05','Замена старых рам на тёплые','Демонтировали деревянные рамы и установили герметичную ПВХ-систему.'),
   visualPair('balcony-glazing-10','Тёплое остекление белым профилем','Установили стеклопакеты и полностью закрыли нижний контур утеплёнными панелями.'),
   visualPair('balcony-glazing-12','Тёплое остекление компактного балкона','Смонтировали ПВХ-окна над непрерывным закрытым парапетом.'),
-  visualPair('warm-balcony-01','Замена деревянных рам на тёплые окна','Установили герметичные ПВХ-окна с двухкамерными стеклопакетами.'),
+  visualPair('warm-balcony-01','Замена деревянных рам на тёплые окна','Установили герметичные ПВХ-окна, утеплили весь контур и выполнили чистовую отделку балкона.'),
   visualPair('warm-balcony-02','Замена холодного алюминия на ПВХ','Заменили раздвижную холодную систему на тёплые распашные окна.')
  ],
  'panoramnoe-osteklenie':panoramicBalconySeries([], 'Смонтировали прозрачное остекление выступающего балкона от пола до потолка, сохранив максимум света.'),
@@ -226,6 +226,81 @@ export const serviceBeforeAfterProjects={
  ],
  'panoramnoe-osteklenie-lodzhii':panoramicLoggiaBase
 };
+
+// На каждой странице услуги показываем ровно 12 работ. Сначала оставляем
+// узкопрофильные примеры страницы, затем дополняем подборку релевантным пулом
+// без повторения одной и той же пары изображений.
+const projectAssetKey=project=>`${project.before}|${project.after}`;
+const completeProjectSeries=(primary,pool)=>{
+ const unique=[];
+ const seen=new Set();
+ for(const project of [...primary,...pool]){
+  const key=projectAssetKey(project);
+  if(seen.has(key))continue;
+  seen.add(key);
+  unique.push(project);
+  if(unique.length===12)break;
+ }
+ return unique;
+};
+const retitleProjectSeries=(items,titles,description)=>items.map((project,index)=>({
+ ...project,
+ title:titles[index]||project.title,
+ description:description||project.description
+}));
+const interiorProjectPool=portfolioSeries(
+ Array.from({length:12},(_,index)=>index+1),
+ [],
+ 'Выполнили комплекс работ и довели пространство до аккуратного готового результата.'
+);
+const loggiaGlazingPool=retitleProjectSeries(
+ panoramicLoggiaBase,
+ ['Остекление длинной лоджии','Остекление лоджии в кирпичном доме','Остекление широкого проёма лоджии','Остекление лоджии с зимним видом','Остекление лоджии в высотном доме','Светлое остекление лоджии','Остекление лоджии в современном доме','Остекление лоджии тёмным профилем','Остекление протяжённой лоджии','Остекление лоджии в кирпичной нише','Остекление лоджии с открытым видом','Остекление компактной лоджии'],
+ 'Установили оконную систему по всей длине проёма и аккуратно оформили примыкания.'
+);
+const coldBalconyPool=retitleProjectSeries(
+ balconyGlazingBase,
+ ['Холодное остекление выступающего балкона','Холодное остекление балкона в кирпичном доме','Холодное остекление с открытым видом','Алюминиевое остекление компактного балкона','Замена старого холодного остекления','Холодное остекление с увеличенной площадью стекла','Холодное остекление углового балкона','Замена старых балконных рам','Холодное остекление с выносом','Холодное остекление белым профилем','Холодное остекление тёмным профилем','Холодное остекление небольшого балкона'],
+ 'Установили лёгкую оконную систему для защиты балкона от ветра, осадков и пыли.'
+);
+const coldLoggiaPool=retitleProjectSeries(
+ panoramicLoggiaBase,
+ ['Холодное остекление длинной лоджии','Холодное остекление лоджии в кирпичном доме','Холодное остекление широкого проёма','Холодное остекление лоджии с зимним видом','Холодное остекление лоджии в высотном доме','Светлое холодное остекление лоджии','Холодное остекление в современном доме','Холодное остекление тёмным профилем','Холодное остекление протяжённой лоджии','Холодное остекление лоджии в нише','Холодное остекление с открытым видом','Холодное остекление компактной лоджии'],
+ 'Закрыли длинный проём лёгкой оконной системой для защиты от ветра и осадков.'
+);
+const warmLoggiaPool=retitleProjectSeries(
+ panoramicLoggiaBase,
+ ['Тёплое остекление длинной лоджии','Тёплые окна для лоджии в кирпичном доме','Тёплое остекление широкого проёма','Тёплая лоджия с зимним видом','Тёплое остекление лоджии в высотном доме','Светлая лоджия с тёплыми окнами','Тёплое остекление в современном доме','Тёплое остекление тёмным профилем','Тёплые окна по всей длине лоджии','Тёплое остекление лоджии в нише','Тёплое остекление с открытым видом','Тёплое остекление компактной лоджии'],
+ 'Установили герметичную оконную систему со стеклопакетами по всей длине лоджии.'
+);
+const projectPoolsByService={
+ 'osteklenie-balkonov':balconyGlazingBase,
+ 'uteplenie-balkonov':interiorProjectPool,
+ 'otdelka-balkonov':interiorProjectPool,
+ 'balkon-pod-klyuch':interiorProjectPool,
+ 'osteklenie-lodzhii':loggiaGlazingPool,
+ 'uteplenie-lodzhii':interiorProjectPool,
+ 'otdelka-lodzhii':interiorProjectPool,
+ 'lodzhiya-pod-klyuch':interiorProjectPool,
+ 'krysha-nad-balkonom':serviceBeforeAfterProjects['krysha-nad-balkonom'],
+ 'mebel-dlya-balkona':interiorProjectPool,
+ 'elektrika-na-balkone':interiorProjectPool,
+ 'obedinenie-balkona-s-komnatoj':interiorProjectPool,
+ 'osteklenie-kottedzhej':[...serviceBeforeAfterProjects['osteklenie-kottedzhej'],...balconyGlazingBase],
+ 'holodnoe-osteklenie':coldBalconyPool,
+ 'teploe-osteklenie':warmBalconyBase,
+ 'panoramnoe-osteklenie':panoramicBalconyBase,
+ 'holodnoe-osteklenie-lodzhii':coldLoggiaPool,
+ 'teploe-osteklenie-lodzhii':warmLoggiaPool,
+ 'panoramnoe-osteklenie-lodzhii':panoramicLoggiaBase
+};
+for(const service of services){
+ const current=serviceBeforeAfterProjects[service.slug]||[];
+ serviceBeforeAfterProjects[service.slug]=completeProjectSeries(current,projectPoolsByService[service.slug]||interiorProjectPool);
+ if(serviceBeforeAfterProjects[service.slug].length!==12){
+  throw new Error(`Для страницы ${service.slug} требуется ровно 12 работ`);
+ }
+}
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',
