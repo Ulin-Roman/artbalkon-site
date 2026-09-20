@@ -442,10 +442,11 @@ export const serviceBeforeAfterProjects={
  ],
  'panoramnoe-osteklenie-lodzhii':panoramicLoggiaBase
 };
-// Only slim-profile panoramic systems, never warm PVC examples with renamed captions.
-const coldBalconyPool=panoramicBalconyBase
- .filter(project=>!project.after.includes('panoramic-balcony-03')&&!project.after.includes('panoramic-loggia-02'))
- .map(project=>({...project,title:project.title.replace('Панорамное','Холодное панорамное'),description:'Визуализация лёгкого панорамного остекления для защиты от ветра и осадков.'}));
+// Dedicated ordinary cold glazing above an opaque parapet; never borrow panoramic pairs.
+const coldBalconyPool=['Белые панели и холодное остекление','Холодное остекление с бежевой отделкой','Балкон с отделкой под дерево','Холодное остекление и светлая отделка','Остекление балкона с зимним видом','Холодное остекление в коричневом профиле','Остекление узкого балкона','Холодное остекление широкого балкона','Остекление балкона на высоком этаже','Холодное остекление в графитовом профиле'].map((title,index)=>{
+ const key=`service-before-after/cold-ordinary-${String(index+3).padStart(2,'0')}`;
+ return {title,description:'Установили холодное алюминиевое остекление над глухим парапетом и выполнили отделку стен, потолка и пола.',before:`${key}-before.webp`,after:`${key}-after.webp`,glazingType:'cold-parapet',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
+});
 // На каждой странице услуги показываем ровно 12 работ. Сначала оставляем
 // узкопрофильные примеры страницы, затем дополняем подборку релевантным пулом
 // без повторения одной и той же пары изображений.
@@ -674,6 +675,14 @@ for(const items of [beforeAfterProjects,...Object.values(serviceBeforeAfterProje
   }
  }
 }
+// Angled matched pairs are exclusive to the panoramic loggia gallery.
+const angledLoggiaTitles={2:'Панорамная лоджия со светлой отделкой',3:'Панорамная лоджия с видом на парк',4:'Панорамная лоджия с зимним видом',6:'Светлая панорамная лоджия',7:'Панорамное остекление в современном доме',8:'Панорамная лоджия с тёмным профилем',10:'Панорамная лоджия с отделкой под кирпич',11:'Панорамное остекление с открытым видом',12:'Панорамное остекление компактной лоджии'};
+serviceBeforeAfterProjects['panoramnoe-osteklenie-lodzhii']=serviceBeforeAfterProjects['panoramnoe-osteklenie-lodzhii'].map((project,index)=>{
+ const number=index+1;
+ if(!angledLoggiaTitles[number])return project;
+ const key=`service-before-after/loggia-angled-${String(number).padStart(2,'0')}`;
+ return {...project,title:angledLoggiaTitles[number],description:'Панорамное остекление вдоль лоджии от пола до потолка, отделка стен, потолка и пола.',before:`${key}-before.webp`,after:`${key}-after.webp`,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
+});
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',

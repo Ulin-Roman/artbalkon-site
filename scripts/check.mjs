@@ -2,6 +2,14 @@ import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
+import {serviceBeforeAfterProjects} from '../src/content.mjs';
+const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
+assert.equal(coldGallery.length,12,'Cold glazing gallery must contain 12 pairs');
+const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after.jpg',...Array.from({length:10},(_,i)=>`service-before-after/cold-ordinary-${String(i+3).padStart(2,'0')}-after.webp`)]);
+for(const project of coldGallery){
+ assert.ok(ordinaryColdAssets.has(project.after),`Unexpected cold glazing asset: ${project.after}`);
+ assert.ok(!/панорам/i.test(project.title+' '+project.description),'Panoramic example in ordinary cold glazing gallery');
+}
 const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';
 async function walk(dir){const files=[];for(const ent of await readdir(dir,{withFileTypes:true})){const path=join(dir,ent.name);files.push(...ent.isDirectory()?await walk(path):[path]);}return files;}
