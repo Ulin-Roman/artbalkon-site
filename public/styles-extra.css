@@ -175,7 +175,7 @@ html{scroll-padding-top:84px}
 .brand{width:124px}
 .header-inner{gap:18px}
 .desktop-nav{gap:16px}
-.header-cta{min-width:144px;min-height:38px;padding:4px 5px 4px 13px;gap:10px;border-radius:9px;font-size:12px}.header-cta span[aria-hidden]{width:27px;height:27px;border-radius:7px;font-size:14px}
+.header-cta{min-width:144px;min-height:38px;padding:4px 13px;gap:0;justify-content:center;text-align:center;border-radius:9px;font-size:12px}.header-cta span[aria-hidden]{width:27px;height:27px;border-radius:7px;font-size:14px}
 .home-page .site-header{margin-bottom:-64px}
 @media(max-width:1200px){html{scroll-padding-top:72px}.site-header{height:62px}.site-header.is-scrolled{height:58px}.brand{width:120px}.home-page .site-header{margin-bottom:-62px}}
 @media(max-width:900px){html{scroll-padding-top:68px}.site-header,.site-header.is-scrolled{height:60px}.brand{width:116px}.home-page .site-header{margin-bottom:-60px}}
@@ -2721,73 +2721,67 @@ main .eyebrow{display:none!important}
  }
 }
 
-/* Desktop home hero: one wide photograph with the offer placed over it. */
+/* Desktop home hero follows the same 50/50 layout as service pages. */
 @media(min-width:1101px){
  .home-page .hero.container{
-  position:relative;
-  isolation:isolate;
   display:grid;
-  grid-template-columns:1fr;
-  grid-template-areas:"home-hero";
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   width:calc(100% - 96px);
   max-width:1328px;
-  height:clamp(620px,69vh,760px);
-  min-height:620px;
-  margin:34px auto 38px;
-  padding:0;
-  overflow:hidden;
-  border-radius:28px;
-  box-shadow:0 28px 75px rgba(16,43,44,.18);
+  height:auto;
+  min-height:0;
+  margin-inline:auto;
+  padding-block:46px 38px;
+  overflow:visible;
+  gap:52px;
+  align-items:center;
  }
  .home-page .hero-content{
-  grid-area:home-hero;
-  align-self:start;
-  justify-self:center;
-  z-index:3;
-  width:min(100%,980px);
-  padding:88px 52px 40px;
-  text-align:center;
+  align-self:center;
+  justify-self:stretch;
+  width:auto;
+  padding-block:14px;
+  text-align:left;
  }
  .home-page .hero h1{
-  max-width:980px;
-  margin-inline:auto;
-  color:#fff;
-  font-size:clamp(46px,4.2vw,66px);
-  line-height:1.08;
-  text-shadow:0 3px 22px rgba(0,0,0,.58);
+  max-width:100%;
+  margin:0;
+  color:var(--ink);
+  font-size:clamp(42px,3.55vw,58px);
+  line-height:1.1;
+  text-shadow:none;
  }
- .home-page .hero h1 .location-accent{color:#87eee7}
+ .home-page .hero h1 .location-accent{color:var(--teal)}
  .home-page .hero-description{
-  max-width:650px;
-  margin:24px auto 0;
-  color:rgba(255,255,255,.94);
-  font-size:18px;
-  line-height:1.7;
-  text-shadow:0 2px 14px rgba(0,0,0,.62);
+  max-width:470px;
+  margin:25px 0 0;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.75;
+  text-shadow:none;
  }
  .home-page .hero-actions{
-  justify-content:center;
-  margin-top:28px;
+  justify-content:flex-start;
+  margin-top:32px;
  }
  .home-page .hero-actions .button{
-  min-width:230px;
-  box-shadow:0 12px 30px rgba(0,0,0,.28);
- }
- .home-page .hero-visual{
-  grid-area:home-hero;
-  width:100%;
-  height:100%;
-  min-height:620px;
-  border-radius:0;
+  min-width:218px;
   box-shadow:none;
  }
- .home-page .hero-visual::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:2;
-  background:linear-gradient(180deg,rgba(4,20,21,.64) 0%,rgba(4,20,21,.47) 48%,rgba(4,20,21,.25) 100%);
-  pointer-events:none;
+ .home-page .hero-visual{
+  width:100%;
+  height:660px;
+  min-height:0;
+  border-radius:18px;
+  box-shadow:0 16px 36px rgba(6,77,82,.16);
  }
- .home-page .hero-image{object-position:center 54%}
+ .home-page .hero-visual::after{
+  content:none;
+ }
+ .home-page .hero-image{object-position:center}
+}
+@media(max-width:1100px) and (min-width:641px){
+ .home-page .hero.container{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ }
 }
