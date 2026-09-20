@@ -149,6 +149,14 @@ const panoramicBalconyBase=[
  visualPair('glazing-new-06','Панорамный балкон в тёмном профиле','Заменили открытое ограждение стеклянным контуром от плиты до потолка.'),
  ...visualSeries(['panoramic-balcony-01','panoramic-balcony-02','panoramic-balcony-03','panoramic-balcony-04','panoramic-balcony-05','panoramic-balcony-06','panoramic-balcony-07','panoramic-balcony-08','panoramic-loggia-02','panoramic-balcony-10'],['Панорамное остекление узкого балкона','Безрамное панорамное остекление','Панорамное остекление белым профилем','Панорамный балкон с закруглённым фасадом','Панорамное остекление балкона в кирпичном доме','Остекление радиусного балкона','Панорамный балкон в высотном доме','Панорамное остекление длинного балкона','Панорамное остекление в кирпичном проёме','Панорамное остекление без глухого парапета'],'Закрыли открытый выступающий балкон прозрачным стеклянным контуром от пола до потолка.')
 ];
+const angledPanoramicProject=panoramicBalconyBase.find(project=>project.after==='service-before-after/panoramic-loggia-02-after.jpg');
+Object.assign(angledPanoramicProject,{
+ title:'Панорамное остекление лоджии с отделкой',
+ description:'Панорамное остекление до плиты, светлая отделка стен и потолка, пол под дерево.',
+ before:'service-before-after/panoramic-long-angle-before.webp',
+ after:'service-before-after/panoramic-long-angle-after.webp',
+ beforeVisualized:true,afterVisualized:true,visualized:true,beforeReal:false
+});
 const panoramicBalconySeries=(titles,description)=>panoramicBalconyBase.map((project,index)=>({...project,title:titles[index]||project.title,description:description||project.description}));
 const panoramicLoggiaBase=visualSeries(
  Array.from({length:12},(_,index)=>`panoramic-loggia-${String(index+1).padStart(2,'0')}`),
