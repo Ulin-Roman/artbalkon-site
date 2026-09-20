@@ -2,7 +2,14 @@ import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {serviceBeforeAfterProjects} from '../src/content.mjs';
+import {serviceBeforeAfterProjects,services,beforeAfterProjects} from '../src/content.mjs';
+import {servicePage,home as renderHome} from '../src/components.mjs';
+for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],...services.map(s=>[s.slug,servicePage(s),serviceBeforeAfterProjects[s.slug]])]){
+ const hero=html.match(/<div[^>]*data-hero-slider[^>]*>([\s\S]*?)<\/div>/)?.[1];
+ assert.ok(hero,`${label}: missing hero`);
+ const actual=[...hero.matchAll(/\ssrc="\/assets\/([^"]+)"/g)].map(m=>m[1]);
+ assert.deepEqual(actual,[...new Set(projects.map(p=>p.after))],`${label}: hero must use its own AFTER gallery`);
+}
 const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
 assert.equal(coldGallery.length,12,'Cold glazing gallery must contain 12 pairs');
 const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after.jpg',...Array.from({length:10},(_,i)=>`service-before-after/cold-ordinary-${String(i+3).padStart(2,'0')}-after.webp`)]);

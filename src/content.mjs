@@ -677,12 +677,22 @@ for(const items of [beforeAfterProjects,...Object.values(serviceBeforeAfterProje
 }
 // Angled matched pairs are exclusive to the panoramic loggia gallery.
 const angledLoggiaTitles={2:'Панорамная лоджия со светлой отделкой',3:'Панорамная лоджия с видом на парк',4:'Панорамная лоджия с зимним видом',6:'Светлая панорамная лоджия',7:'Панорамное остекление в современном доме',8:'Панорамная лоджия с тёмным профилем',10:'Панорамная лоджия с отделкой под кирпич',11:'Панорамное остекление с открытым видом',12:'Панорамное остекление компактной лоджии'};
+angledLoggiaTitles[5]='Панорамная лоджия в высотном доме с отделкой';
 serviceBeforeAfterProjects['panoramnoe-osteklenie-lodzhii']=serviceBeforeAfterProjects['panoramnoe-osteklenie-lodzhii'].map((project,index)=>{
  const number=index+1;
  if(!angledLoggiaTitles[number])return project;
  const key=`service-before-after/loggia-angled-${String(number).padStart(2,'0')}`;
  return {...project,title:angledLoggiaTitles[number],description:'Панорамное остекление вдоль лоджии от пола до потолка, отделка стен, потолка и пола.',before:`${key}-before.webp`,after:`${key}-after.webp`,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
 });
+for(const projects of Object.values(serviceBeforeAfterProjects)){
+ for(const project of projects){
+  if(project.after==='service-before-after/glazing-new-03-after.jpg'){
+   project.title='Раздвижное остекление длинного балкона';
+   project.description='Широкие раздвижные створки над глухим парапетом.';
+   project.afterVisualized=true;
+  }
+ }
+}
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',
