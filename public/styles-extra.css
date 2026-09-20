@@ -934,6 +934,7 @@ h1,h2,h3,h4,
  }
 }
 
+
 /* Home social channels. */
 .social-subscribe{
  padding-top:92px;
@@ -3278,5 +3279,27 @@ main .eyebrow{display:none!important}
   width:100%;
   justify-content:center;
   text-align:center;
+ }
+}
+
+.comparison-disclosure{display:block;padding:0 22px 16px;color:var(--muted);font-size:11px;line-height:1.4;font-weight:400}
+.comparison-modal-grid figure>span{max-width:calc(100% - 28px);white-space:normal;line-height:1.35}
+
+/* Mobile header must fit on one line, including 401–480px devices. */
+@media(max-width:640px){
+ .header-contact .phone .phone-link-icon,
+ .mobile-menu-phone .phone-link-icon{display:none}
+}
+@media(max-width:480px){
+ .header-inner{min-width:0;gap:5px}
+ .header-inner>.brand{width:104px;flex:0 0 104px}
+ .header-contact{min-width:0;gap:5px}
+ .header-contact .phone{font-size:11px;letter-spacing:-.04em}
+ .header-contact .header-messengers{gap:4px}
+ .header-contact .header-messenger,
+ .menu-toggle{
+  width:32px;
+  height:32px;
+  flex:0 0 32px;
  }
 }
