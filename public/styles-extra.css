@@ -1132,72 +1132,59 @@ h1,h2,h3,h4,
  overflow:hidden;
  border-radius:22px;
  isolation:isolate;
- background:radial-gradient(circle at 18% 22%,rgba(90,215,204,.2),transparent 31%),linear-gradient(145deg,#123f41 0%,#082b2d 62%,#062527 100%);
- box-shadow:0 18px 45px rgba(20,50,50,.1);
+ background:#202325;
+ box-shadow:0 18px 45px rgba(18,28,30,.12);
 }
-.home-advantages-photo::before{
- content:"";
- position:absolute;
- z-index:-1;
- width:250px;
- aspect-ratio:1;
- left:-105px;
- bottom:-105px;
- border:1px solid rgba(255,255,255,.12);
- border-radius:50%;
- box-shadow:0 0 0 34px rgba(255,255,255,.025),0 0 0 68px rgba(255,255,255,.018);
-}
+.home-advantages-photo::before{display:none}
 .home-advantages-video-frame{
  position:absolute;
- inset:0 0 0 40%;
+ inset:0;
  overflow:hidden;
- background:#183a3b;
+ background:#202325;
 }
-.home-advantages-video-frame::before{
- content:"";
- position:absolute;
- z-index:1;
- inset:0 auto 0 0;
- width:22%;
- background:linear-gradient(90deg,#0d3436,transparent);
- pointer-events:none;
-}
+.home-advantages-video-frame::before{display:none}
 .home-advantages-video{
  display:block;
  width:100%;
  height:100%;
  object-fit:cover;
  object-position:center;
- transform:scale(1.26);
+ transform:none;
 }
 .home-advantages-photo::after{
  content:"";
  position:absolute;
  z-index:1;
  inset:0;
- background:linear-gradient(90deg,rgba(4,31,33,.25) 0%,transparent 58%),linear-gradient(0deg,rgba(2,22,23,.32),transparent 34%);
+ background:linear-gradient(0deg,rgba(8,10,11,.6) 0%,rgba(8,10,11,.08) 45%,transparent 72%);
  pointer-events:none;
 }
 .home-advantages-photo figcaption{
  position:absolute;
  z-index:2;
- left:36px;
- bottom:38px;
- width:34%;
+ left:24px;
+ bottom:24px;
+ width:min(390px,calc(100% - 96px));
  display:flex;
  flex-direction:column;
  align-items:flex-start;
- gap:12px;
+ gap:8px;
+ padding:20px 22px;
+ border:1px solid rgba(255,255,255,.28);
+ border-radius:16px;
+ background:rgba(18,20,21,.58);
  color:#fff;
+ box-shadow:0 12px 34px rgba(0,0,0,.18);
+ backdrop-filter:blur(14px);
 }
 .home-advantages-photo figcaption strong{
- max-width:250px;
- font-size:clamp(24px,2vw,32px);
- line-height:1.12;
+ max-width:none;
+ font-size:clamp(22px,1.7vw,28px);
+ line-height:1.16;
 }
 .home-advantages-photo figcaption span{
- max-width:225px;
- color:rgba(255,255,255,.72);
+ max-width:330px;
+ color:rgba(255,255,255,.82);
  font-size:13px;
  line-height:1.55;
 }
@@ -1213,7 +1200,7 @@ h1,h2,h3,h4,
  padding:0;
  border:1px solid rgba(255,255,255,.46);
  border-radius:50%;
- background:rgba(5,34,36,.64);
+ background:rgba(18,20,21,.66);
  color:#fff;
  font:700 15px/1 Arial,sans-serif;
  cursor:pointer;
@@ -1221,7 +1208,7 @@ h1,h2,h3,h4,
  transition:background .2s,transform .2s;
 }
 .home-advantages-video-toggle:hover{
- background:rgba(0,139,143,.88);
+ background:rgba(18,20,21,.9);
  transform:scale(1.05);
 }
 .home-advantages-video-toggle:focus-visible{
@@ -1240,12 +1227,12 @@ h1,h2,h3,h4,
  .home-advantages-heading{gap:14px;margin-bottom:28px}
  .home-advantages-heading h2{font-size:36px}
  .home-advantages-heading>p:last-child{font-size:14px}
- .home-advantages-photo{display:grid;min-height:0;border-radius:16px}
- .home-advantages-video-frame{position:relative;inset:auto;min-height:430px;grid-row:1}
+ .home-advantages-photo{min-height:500px;border-radius:16px}
+ .home-advantages-video-frame{position:absolute;inset:0;min-height:0}
  .home-advantages-video-frame::before{display:none}
- .home-advantages-video{transform:scale(1.34)}
- .home-advantages-photo::after{background:linear-gradient(0deg,rgba(3,26,28,.52),transparent 46%)}
- .home-advantages-photo figcaption{position:relative;left:auto;bottom:auto;width:auto;padding:22px 20px 24px;gap:7px;background:#0a3032}
+ .home-advantages-video{transform:none}
+ .home-advantages-photo::after{background:linear-gradient(0deg,rgba(8,10,11,.68),rgba(8,10,11,.06) 58%,transparent 78%)}
+ .home-advantages-photo figcaption{left:14px;right:14px;bottom:14px;width:auto;padding:16px 17px;gap:7px;border-radius:13px;background:rgba(18,20,21,.62)}
  .home-advantages-photo figcaption strong{font-size:17px}
  .home-advantages-photo figcaption span{max-width:none}
  .home-advantages-video-toggle{top:14px;right:14px;width:40px;height:40px}
