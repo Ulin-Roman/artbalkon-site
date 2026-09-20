@@ -50,6 +50,21 @@
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stopHeroSlider();else startHeroSlider();});
   addEventListener('pagehide',stopHeroSlider,{once:true});
  }
+ document.querySelectorAll('[data-card-slider]').forEach((slider,sliderIndex)=>{
+  const slides=[...slider.querySelectorAll('.hero-image')];
+  const cardReducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+  let cardIndex=0,cardTimer=0;
+  const showCardSlide=index=>{cardIndex=index;slides.forEach((slide,i)=>{const active=i===cardIndex;slide.classList.toggle('is-active',active);slide.setAttribute('aria-hidden',String(!active));});};
+  const stopCardSlider=()=>{if(cardTimer){clearInterval(cardTimer);cardTimer=0;}};
+  const startCardSlider=()=>{if(cardReducedMotion.matches||slides.length<2||cardTimer)return;cardTimer=setInterval(()=>showCardSlide((cardIndex+1)%slides.length),3400+sliderIndex*180);};
+  showCardSlide(0);startCardSlider();
+  slider.addEventListener('mouseenter',stopCardSlider);
+  slider.addEventListener('mouseleave',startCardSlider);
+  slider.addEventListener('focusin',stopCardSlider);
+  slider.addEventListener('focusout',startCardSlider);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopCardSlider();else startCardSlider();});
+  addEventListener('pagehide',stopCardSlider,{once:true});
+ });
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
  document.querySelectorAll('[data-ambient-video]').forEach(video=>{
   const control=video.closest('.home-advantages-photo')?.querySelector('[data-ambient-video-toggle]');

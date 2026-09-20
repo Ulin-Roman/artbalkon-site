@@ -2964,12 +2964,8 @@ main .eyebrow{display:none!important}
 }
 @media(max-width:640px){
  .landing-hero .landing-copy>.breadcrumbs{
-  justify-content:center;
-  margin-bottom:14px;
-  color:rgba(255,255,255,.84);
-  text-shadow:0 1px 8px rgba(0,0,0,.42);
+  display:none;
  }
- .landing-hero .landing-copy>.breadcrumbs a{color:inherit}
  .landing-hero .landing-copy-main{
   align-items:center;
   text-align:center;
@@ -3155,4 +3151,132 @@ main .eyebrow{display:none!important}
  }
  .insulation-materials li>span{width:32px;height:32px;font-size:16px}
  .insulation-materials li strong{font-size:13px}
+}
+
+/* Home mobile proof cards gently overlap the hero and read as one composition. */
+@media(min-width:641px){
+ .home-page .trust-strip .trust-item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+ }
+ .home-page .trust-strip .trust-copy{
+  flex:0 1 auto;
+  align-items:flex-start;
+ }
+}
+@media(max-width:640px){
+ .home-page .trust-strip{
+  position:relative;
+  z-index:6;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-top:-24px;
+  margin-bottom:18px;
+  padding:0;
+  border:0;
+ }
+ .home-page .trust-strip .trust-item{
+  position:relative;
+  display:grid;
+  grid-template-columns:30px minmax(0,1fr);
+  min-height:88px;
+  align-items:center;
+  justify-content:start;
+  gap:7px;
+  overflow:hidden;
+  padding:11px 8px!important;
+  border:1px solid rgba(0,137,145,.13)!important;
+  border-radius:16px;
+  background:rgba(255,255,255,.97);
+  box-shadow:0 12px 28px rgba(21,46,49,.13),0 2px 7px rgba(21,46,49,.06);
+  text-align:left;
+ }
+ .home-page .trust-strip .trust-item::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:3px;
+  background:linear-gradient(90deg,var(--teal-light),var(--teal));
+ }
+ .home-page .trust-strip .trust-icon{
+  width:30px;
+  height:30px;
+  padding:7px;
+  color:var(--teal);
+  background:linear-gradient(145deg,#effafa,#dff3f4);
+  box-shadow:inset 0 0 0 1px rgba(0,137,145,.09);
+ }
+ .home-page .trust-strip .trust-copy{
+  align-items:flex-start;
+  gap:3px;
+ }
+ .home-page .trust-strip .trust-copy strong{
+  display:block;
+  min-height:0;
+  color:var(--teal);
+  font-size:clamp(15px,4.2vw,18px);
+  line-height:1.05;
+  letter-spacing:-.04em;
+  text-align:left;
+ }
+ .home-page .trust-strip .trust-copy span{
+  display:block;
+  min-height:0;
+  color:#536064;
+  font-size:8px;
+  font-weight:650;
+  line-height:1.25;
+  text-align:left;
+ }
+}
+@media(max-width:370px){
+ .home-page .trust-strip{gap:6px;margin-top:-20px}
+ .home-page .trust-strip .trust-item{
+  grid-template-columns:26px minmax(0,1fr);
+  min-height:82px;
+  gap:5px;
+  padding:10px 6px!important;
+ }
+ .home-page .trust-strip .trust-icon{width:26px;height:26px;padding:6px}
+ .home-page .trust-strip .trust-copy strong{font-size:14px}
+ .home-page .trust-strip .trust-copy span{font-size:7px}
+}
+
+/* Mobile USP cards: remove decorative icons and keep every card inside the viewport. */
+@media(max-width:640px){
+ .trust-strip .trust-icon,
+ .landing-trust .trust-icon{display:none}
+ .trust-strip .trust-item,
+ .landing-trust .trust-item,
+ .home-page .trust-strip .trust-item{
+  display:flex;
+  min-width:0;
+  min-height:76px;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  padding:10px 5px!important;
+  text-align:center;
+ }
+ .trust-strip .trust-copy,
+ .landing-trust .trust-copy,
+ .home-page .trust-strip .trust-copy{
+  width:100%;
+  min-width:0;
+  align-items:center;
+  gap:3px;
+ }
+ .trust-strip .trust-copy strong,
+ .landing-trust .trust-copy strong,
+ .home-page .trust-strip .trust-copy strong,
+ .trust-strip .trust-copy span,
+ .landing-trust .trust-copy span,
+ .home-page .trust-strip .trust-copy span{
+  width:100%;
+  justify-content:center;
+  text-align:center;
+ }
 }
