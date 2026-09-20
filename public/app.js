@@ -137,9 +137,9 @@
    const mobile=matchMedia('(max-width:640px)').matches;
    const padding=parseFloat(getComputedStyle(shell).paddingLeft)+parseFloat(getComputedStyle(shell).paddingRight);
    const gap=parseFloat(getComputedStyle(grid).columnGap)||0;
-   const height=Math.min(innerHeight*.61,690);
+   const height=Math.min(innerHeight*.78,1100);
    const contentWidth=height*(mobile?Math.max(...ratios):ratios[0]+ratios[1])+(mobile?0:gap);
-   comparisonModal.style.width=Math.min(1240,innerWidth-(mobile?20:28),contentWidth+padding)+'px';
+   comparisonModal.style.width=Math.min(1800,innerWidth-(mobile?20:28),contentWidth+padding)+'px';
    grid.style.gridTemplateColumns=mobile?'1fr':ratios.map(r=>r+'fr').join(' ');
   };
   beforeImage.addEventListener('load',fitComparison);

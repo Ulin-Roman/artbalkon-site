@@ -1,3 +1,5 @@
+import {beforeDaytimeAssets} from './before-daytime.mjs';
+
 export const company = {
  name:'ArtBalkon', phone:'+7 (495) 165-39-05', tel:'+74951653905', telegram:'https://t.me/+79255178380', max:'https://max.ru/u/f9LHodD0cOI7H1K6VdQb-wDS7Gs2cT4mlT6S6sdTcgfN4s_cnFPT2isb2Cg', vk:'https://vk.com/artbalkonpro', channel:'https://t.me/artbalkonmoscow', whatsapp:'',
  address:'Московская область, Люберцы, Октябрьский проспект, 209, офис 5', hours:'Замеры ежедневно, 9:00–21:00', reviews:'https://yandex.ru/maps/org/99931581991/reviews/', avito:'https://www.avito.ru/brands/i204694333/all?page_from=from_item_card_icon&iid=3514949804&sellerId=34820bad3f8cdf6e4c49a900a7622581',
@@ -168,7 +170,7 @@ export const serviceBeforeAfterProjects={
  'uteplenie-balkonov':[
   {...matchedFinishingPair(4,"Контрастная отделка после утепления","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
-  {...matchedFinishingPair(15,"Утепление под отделку со шкафом","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-015-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(9,"Утепление под отделку серым кирпичом","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-009-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(20,"Тёплый контур узкого пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-020-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(25,"Утепление длинного пространства","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
@@ -195,7 +197,7 @@ export const serviceBeforeAfterProjects={
  ],
  'balkon-pod-klyuch':[
   matchedFinishingPair(5,"Серая отделка лоджии","Светлый потолок, серые стеновые панели и готовый пол."),
-  matchedFinishingPair(15,"Светлая лоджия со шкафом","Светлые стены, готовый пол и высокий шкаф в торце."),
+  matchedFinishingPair(9,"Лоджия с отделкой под кирпич","Серо-голубые стены, белый парапет и широкий подоконник."),
   matchedFinishingPair(25,"Отделка длинной лоджии","Отделка стен под дерево и аккуратные оконные примыкания."),
   matchedFinishingPair(17,"Светлая отделка узкого пространства","Светлые поверхности и ровное напольное покрытие по всей длине."),
   matchedFinishingPair(64,"Отделка лоджии под кабинет","Серая отделка стен и пола в помещении с рабочим местом."),
@@ -215,7 +217,7 @@ export const serviceBeforeAfterProjects={
  'uteplenie-lodzhii':[
   {...matchedFinishingPair(4,"Контрастная отделка после утепления","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
-  {...matchedFinishingPair(15,"Утепление под отделку со шкафом","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-015-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(9,"Утепление под отделку серым кирпичом","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-009-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(20,"Тёплый контур узкого пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-020-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(25,"Утепление длинного пространства","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
@@ -229,7 +231,7 @@ export const serviceBeforeAfterProjects={
  'otdelka-lodzhii':[
   matchedFinishingPair(5,"Серая отделка лоджии","Светлый потолок, серые стеновые панели и готовый пол."),
   matchedFinishingPair(6,"Отделка потолка под дерево","Светлая древесная фактура потолка и оконных откосов."),
-  matchedFinishingPair(15,"Светлая лоджия со шкафом","Светлые стены, готовый пол и высокий шкаф в торце."),
+  matchedFinishingPair(9,"Лоджия с отделкой под кирпич","Серо-голубые стены, белый парапет и широкий подоконник."),
   matchedFinishingPair(25,"Отделка длинной лоджии","Отделка стен под дерево и аккуратные оконные примыкания."),
   matchedFinishingPair(190,"Стеновой паркет и чистовой пол","Сочетание светлых стен и пола вокруг остекления."),
   matchedFinishingPair(80,"Лоджия с потолочной сушилкой","Светлая обшивка стен, потолочный свет и сушильная система."),
@@ -242,7 +244,7 @@ export const serviceBeforeAfterProjects={
  ],
  'lodzhiya-pod-klyuch':[
   matchedFinishingPair(5,"Серая отделка лоджии","Светлый потолок, серые стеновые панели и готовый пол."),
-  matchedFinishingPair(15,"Светлая лоджия со шкафом","Светлые стены, готовый пол и высокий шкаф в торце."),
+  matchedFinishingPair(9,"Лоджия с отделкой под кирпич","Серо-голубые стены, белый парапет и широкий подоконник."),
   matchedFinishingPair(25,"Отделка длинной лоджии","Отделка стен под дерево и аккуратные оконные примыкания."),
   matchedFinishingPair(17,"Светлая отделка узкого пространства","Светлые поверхности и ровное напольное покрытие по всей длине."),
   matchedFinishingPair(64,"Отделка лоджии под кабинет","Серая отделка стен и пола в помещении с рабочим местом."),
@@ -258,14 +260,14 @@ export const serviceBeforeAfterProjects={
   ...visualSeries(['balcony-roof','balcony-roof-2','balcony-roof-3','balcony-roof-4','balcony-roof-5','balcony-roof-6','balcony-roof-7','balcony-roof-8','balcony-roof-9','balcony-roof-10','balcony-roof-11','balcony-roof-12'],['Крыша над балконом верхнего этажа','Металлическая крыша на кирпичном доме','Прозрачная крыша из поликарбоната','Крыша с увеличенным выносом','Скатная крыша с водоотводом','Крыша над длинным балконом','Тёмная кровля с организованным стоком','Светлая крыша на сварном каркасе','Защита длинного остеклённого балкона','Поликарбонатная крыша над балконом','Замена старого балконного козырька','Широкая крыша над выносным остеклением'],'Собрали надёжный каркас, кровлю, герметичные примыкания и организованный водоотвод.')
  ],
  'mebel-dlya-balkona':[
-  {...matchedFinishingPair(15,"Распашной шкаф в торце","Высокий белый шкаф в готовой отделке."),before:'service-gallery-v3/furniture-015-before.png',stage:'furniture'},
-  {...matchedFinishingPair(95,"Деревянный распашной шкаф","Шкаф с двумя распашными дверями и длинными ручками."),before:'service-gallery-v3/furniture-095-before.png',stage:'furniture'},
+  {...matchedFinishingPair(9,"Широкий подоконник вдоль окон","Просторная белая поверхность вдоль остекления."),before:'service-gallery-v3/furniture-009-before.png',stage:'furniture'},
+  {title:"Компактная тумба для хранения",description:'Вариант светлой тумбы с двумя дверцами и столешницей под дерево.',before:'service-gallery-v2/real-after-068.jpg',after:'service-gallery-v3/furniture-storage-068-after.webp',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:68},
   {...matchedFinishingPair(7,"Компьютерный стол","Г-образная столешница у окна."),before:'service-gallery-v3/furniture-007-before.png',stage:'furniture'},
   {...matchedFinishingPair(21,"Компактный письменный стол","Рабочая поверхность в торце балкона."),before:'service-gallery-v3/furniture-021-before.png',stage:'furniture'},
   {...matchedFinishingPair(115,"Белый встроенный шкаф","Высокие распашные фасады рядом с оконным блоком."),before:'service-gallery-v3/furniture-115-before.png',stage:'furniture'},
   {...matchedFinishingPair(48,"Широкий стол-подоконник","Деревянная столешница над парапетом."),before:'service-gallery-v3/furniture-048-before.png',stage:'furniture'},
   {title:"Стеллаж и открытые полки",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-014.jpg',after:'service-gallery-v3/furniture-rack-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:14},
-  {title:"Шкаф-купе в торце",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-020.jpg',after:'service-gallery-v3/furniture-sliding-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:20},
+  {title:"Светлый распашной шкаф в торце",description:'Вариант встроенного шкафа со светлыми фасадами и двумя распашными дверями.',before:'service-gallery-v2/real-after-047.jpg',after:'service-gallery-v3/furniture-hinged-047-after.webp',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:47},
   {title:"Угловая система хранения",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-029.jpg',after:'service-gallery-v3/furniture-corner-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:29},
   {title:"Низкая тумба",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-176.jpg',after:'service-gallery-v3/furniture-cabinet-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:176},
   {title:"Откидной стол",description:'Вариант размещения мебели в существующем пространстве.',before:'service-gallery-v2/real-after-164.jpg',after:'service-gallery-v3/furniture-folding-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'furniture',sourcePhoto:164},
@@ -650,6 +652,17 @@ for(const items of [beforeAfterProjects,...Object.values(serviceBeforeAfterProje
  for(const project of items){
   for(const side of ['before','after']){
    if(project[side].startsWith('service-gallery-v3/'))project[side]=project[side].replace(/\.png$/,'.webp');
+  }
+ }
+}
+// Relit BEFORE copies must never overwrite originals shared with AFTER galleries.
+for(const items of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]){
+ for(const project of items){
+  const variant=beforeDaytimeAssets[project.before];
+  if(variant){
+   project.before=variant;
+   project.beforeVisualized=true;
+   project.beforeReal=false;
   }
  }
 }
