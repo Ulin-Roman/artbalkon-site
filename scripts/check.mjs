@@ -2,7 +2,7 @@ import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {serviceBeforeAfterProjects,services,beforeAfterProjects} from '../src/content.mjs';
+import {serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements} from '../src/content.mjs';
 import {servicePage,home as renderHome} from '../src/components.mjs';
 const roofPairs=serviceBeforeAfterProjects['krysha-nad-balkonom'];
 const electricalPairs=serviceBeforeAfterProjects['elektrika-na-balkone'];
@@ -75,7 +75,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   assert.equal(p.objectType,type);
   assert.equal(p.stage,stage);
   const expectedBefore=type==='loggia'&&i===10?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
-  assert.equal(p.before,expectedBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
+  assert.equal(p.before,beforeHardwareReplacements[expectedBefore] || expectedBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
   assert.equal(p.after,`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);

@@ -801,6 +801,42 @@ serviceBeforeAfterProjects['elektrika-na-balkone']=electricalConceptTitles.map((
  description:'Визуализация монтажа электрики: тот же интерьер до установки светильников, розеток и выключателей и после. Отделка, окна и геометрия сохранены.'
 }));
 
+export const beforeHardwareReplacements = {
+ "service-before-after/renovation-balcony-01-finish-before.webp": "before-hardware-v2/before-000.webp",
+ "service-before-after/renovation-balcony-03-finish-before.webp": "before-hardware-v2/before-004.webp",
+ "service-before-after/renovation-balcony-07-finish-before.webp": "before-hardware-v2/before-036.webp",
+ "service-before-after/renovation-balcony-11-finish-before.webp": "before-hardware-v2/before-040.webp",
+ "service-before-after/renovation-loggia-07-finish-before.webp": "before-hardware-v2/before-054.webp",
+ "service-before-after/cottage-bay-aged-before.png": "before-hardware-v2/before-112.webp",
+ "service-before-after/cottage-same-openings-before.png": "before-hardware-v2/before-113.webp",
+ "service-before-after/renovation-loggia-04-finish-before.webp": "before-hardware-v2/before-007.webp",
+ "service-before-after/renovation-loggia-09-finish-before.webp": "before-hardware-v2/before-056.webp",
+ "service-before-after/renovation-loggia-12-finish-before.webp": "before-hardware-v2/before-059.webp",
+ "service-before-after/warm-loggia-aged-07-before.png": "before-hardware-v2/before-153.webp",
+ "service-before-after/warm-loggia-empty-08-before.png": "before-hardware-v2/before-154.webp",
+ "service-before-after/renovation-loggia-01-finish-before.webp": "before-hardware-v2/before-001.webp",
+ "service-before-after/renovation-balcony-02-finish-before.webp": "before-hardware-v2/before-002.webp",
+ "service-before-after/renovation-loggia-03-finish-before.webp": "before-hardware-v2/before-005.webp",
+ "service-before-after/renovation-balcony-05-finish-before.webp": "before-hardware-v2/before-008.webp",
+ "service-before-after/renovation-loggia-05-finish-before.webp": "before-hardware-v2/before-009.webp",
+ "service-before-after/renovation-balcony-06-finish-before.webp": "before-hardware-v2/before-010.webp",
+ "service-before-after/renovation-loggia-06-finish-before.webp": "before-hardware-v2/before-011.webp",
+ "service-before-after/renovation-balcony-08-finish-before.webp": "before-hardware-v2/before-037.webp",
+ "service-before-after/renovation-balcony-09-finish-before.webp": "before-hardware-v2/before-038.webp",
+ "service-before-after/renovation-balcony-10-finish-before.webp": "before-hardware-v2/before-039.webp",
+ "service-before-after/renovation-balcony-12-finish-before.webp": "before-hardware-v2/before-041.webp"
+};
+for (const items of [beforeAfterProjects, ...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of items) {
+  if (beforeHardwareReplacements[project.before]) {
+   project.before = beforeHardwareReplacements[project.before];
+   project.visualized = true;
+   project.beforeVisualized = true;
+   project.beforeReal = false;
+  }
+ }
+}
+
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',
