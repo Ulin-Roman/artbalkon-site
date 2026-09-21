@@ -10,6 +10,22 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  const actual=[...hero.matchAll(/\ssrc="\/assets\/([^"]+)"/g)].map(m=>m[1]);
  assert.deepEqual(actual,[...new Set(projects.map(p=>p.after))],`${label}: hero must use its own AFTER gallery`);
 }
+assert.equal(beforeAfterProjects.length,12,'Home must contain 12 turnkey pairs');
+assert.equal(new Set(beforeAfterProjects.map(p=>p.after)).size,12,'Home must not repeat rooms');
+for(const [type,slug] of [['balcony','balkon-pod-klyuch'],['loggia','lodzhiya-pod-klyuch']]){
+ const selected=beforeAfterProjects.filter(p=>p.objectType===type);
+ assert.equal(selected.length,6,`Home must contain six ${type} pairs`);
+ for(const project of selected){
+  assert.equal(project.stage,'turnkey');
+  assert.ok(serviceBeforeAfterProjects[slug].some(source=>source.before===project.before&&source.after===project.after&&source.title===project.title),'Home must reuse complete turnkey pairs');
+ }
+}
+const furnitureGallery=serviceBeforeAfterProjects['mebel-dlya-balkona'];
+assert.equal(furnitureGallery.length,12,'Furniture: expected 12 pairs');
+assert.equal(new Set(furnitureGallery.map(p=>p.after)).size,12,'Furniture: duplicate rooms');
+for(const type of ['balcony','loggia'])assert.equal(furnitureGallery.filter(p=>p.objectType===type).length,6,`Furniture: expected six ${type} rooms`);
+for(const p of furnitureGallery){assert.equal(p.stage,'furniture');assert.equal(p.builtIn,true);}
+assert.equal(services.find(s=>s.slug==='mebel-dlya-balkona').title,'Мебель для балконов и лоджий');
 const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
 assert.equal(coldGallery.length,12,'Cold balcony gallery must contain 12 distinct pairs');
 const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after.jpg',...Array.from({length:10},(_,i)=>`service-before-after/cold-balcony-matched-${String(i+3).padStart(2,'0')}-after.png`)]);
@@ -32,8 +48,8 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
  gallery.forEach((p,i)=>{
   const key=`service-before-after/renovation-${type}-${String(i+1).padStart(2,'0')}`;
   assert.equal(p.objectType,type);
-  assert.equal(p.before,`${key}-${stage}-before.png`,`${slug}: wrong before stage or room`);
-  assert.equal(p.after,`${key}-after.png`,`${slug}: wrong after room`);
+  assert.equal(p.before,`${key}-${stage}-before.webp`,`${slug}: wrong before stage or room`);
+  assert.equal(p.after,`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);
  });
