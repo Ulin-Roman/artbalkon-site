@@ -25,6 +25,19 @@ for(const project of coldLoggias){
  if(project.after.includes('cold-ordinary-'))assert.equal(project.before,project.after.replace('-after.webp','-before.webp'),'Loggia must keep its matched before image');
  assert.ok(!coldGallery.some(balcony=>balcony.after===project.after),'Balcony and loggia galleries must not share images');
 }
+for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
+ const gallery=serviceBeforeAfterProjects[slug];
+ assert.equal(gallery.length,12,`${slug}: expected 12 pairs`);
+ assert.equal(new Set(gallery.map(p=>p.after)).size,12,`${slug}: duplicate rooms`);
+ gallery.forEach((p,i)=>{
+  const key=`service-before-after/renovation-${type}-${String(i+1).padStart(2,'0')}`;
+  assert.equal(p.objectType,type);
+  assert.equal(p.before,`${key}-${stage}-before.png`,`${slug}: wrong before stage or room`);
+  assert.equal(p.after,`${key}-after.png`,`${slug}: wrong after room`);
+  assert.equal(p.visualized,true);
+  assert.equal(p.beforeReal,false);
+ });
+}
 const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';
 async function walk(dir){const files=[];for(const ent of await readdir(dir,{withFileTypes:true})){const path=join(dir,ent.name);files.push(...ent.isDirectory()?await walk(path):[path]);}return files;}
