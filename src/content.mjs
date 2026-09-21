@@ -706,6 +706,11 @@ serviceBeforeAfterProjects['mebel-dlya-balkona']=serviceBeforeAfterProjects['meb
  const {source,pairVerified,...preserved}=project;
  return {...preserved,title:matchedFurnitureTitles[index],description:'Визуализация мебели на том же балконе: отделка, окна и ракурс сохранены.',after:`service-gallery-v3/furniture-matched-${String(index+1).padStart(2,'0')}-after.webp`,afterVisualized:true,visualized:true,stage:'furniture'};
 });
+// Page-specific reconstructions: do not mutate the shared warm-glazing pool.
+serviceBeforeAfterProjects['teploe-osteklenie-lodzhii']=serviceBeforeAfterProjects['teploe-osteklenie-lodzhii'].map((project,index)=>{
+ const {pairVerified,...preserved}=project;
+ return {...preserved,before:`service-before-after/warm-loggia-aged-${String(index+1).padStart(2,'0')}-before.png`,beforeVisualized:true,beforeReal:false,description:'Готовая лоджия из галереи ArtBalkon. Состояние до ремонта — старые рамы, отделка и деревянные подоконники — показано как визуальная реконструкция того же помещения.'};
+});
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',
