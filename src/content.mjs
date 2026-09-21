@@ -442,12 +442,23 @@ export const serviceBeforeAfterProjects={
  ],
  'panoramnoe-osteklenie-lodzhii':panoramicLoggiaBase
 };
-// Dedicated ordinary cold glazing above an opaque parapet; never borrow panoramic pairs.
-const coldBalconyPool=['Белые панели и холодное остекление','Холодное остекление с бежевой отделкой','Балкон с отделкой под дерево','Холодное остекление и светлая отделка','Остекление балкона с зимним видом','Холодное остекление в коричневом профиле','Остекление узкого балкона','Холодное остекление широкого балкона','Остекление балкона на высоком этаже','Холодное остекление в графитовом профиле'].map((title,index)=>{
+// Reviewed loggias: one long glazed opening, solid end walls and finished interiors.
+const coldLoggiaPool=['Лоджия с белыми панелями и холодным остеклением','Холодное остекление лоджии с бежевой отделкой','Лоджия с отделкой под дерево','Холодное остекление лоджии и светлая отделка','Остекление лоджии с зимним видом','Холодное остекление лоджии в коричневом профиле','Остекление узкой лоджии','Холодное остекление широкой лоджии','Остекление лоджии на высоком этаже','Холодное остекление лоджии в графитовом профиле'].map((title,index)=>{
  const key=`service-before-after/cold-ordinary-${String(index+3).padStart(2,'0')}`;
- return {title,description:'Установили холодное алюминиевое остекление над глухим парапетом и выполнили отделку стен, потолка и пола.',before:`${key}-before.webp`,after:`${key}-after.webp`,glazingType:'cold-parapet',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
+ return {title,description:'Визуализация холодного остекления вдоль лоджии над глухим парапетом с отделкой потолка, торцевой стены и пола.',before:`${key}-before.webp`,after:`${key}-after.webp`,objectType:'loggia',glazingType:'cold-parapet',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
 });
-// На каждой странице услуги показываем ровно 12 работ. Сначала оставляем
+const coldMatchedPair=(key,title,before,objectType)=>({title,before:`service-before-after/${before}`,after:`service-before-after/${key}-after.png`,description:`Визуализация холодного раздвижного остекления ${objectType==='balcony'?'балкона с остеклёнными торцами':'лоджии вдоль длинного проёма'} с завершённой отделкой.`,objectType,glazingType:'cold-parapet',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false});
+coldLoggiaPool[9].after='service-before-after/cold-loggia-graphite-fixed-after.png';
+coldLoggiaPool.push(
+ coldMatchedPair('cold-loggia-finished-11','Холодное остекление длинной лоджии с отделкой','cold-loggia-01-before.png','loggia'),
+ coldMatchedPair('cold-loggia-finished-12','Лоджия со светлой отделкой и раздвижными окнами','panoramic-loggia-01-before.jpg','loggia')
+);
+serviceBeforeAfterProjects['holodnoe-osteklenie-lodzhii']=coldLoggiaPool;
+const coldBalconySources=['panoramic-balcony-01','panoramic-balcony-02','panoramic-balcony-03','panoramic-balcony-05','panoramic-balcony-07','panoramic-balcony-08','panoramic-balcony-10','balcony-roof-2','balcony-roof-3','balcony-roof-4'];
+const coldBalconyTitles=['Остекление балкона с белым профилем','Холодное остекление углового балкона','Балкон с графитовым алюминиевым профилем','Холодное остекление просторного балкона','Раздвижное остекление балкона на высоком этаже','Остекление длинного балкона с боковыми створками','Балкон с остеклением по трём сторонам','Холодное остекление балкона с крышей','Остекление балкона в панельном доме','Остекление балкона с навесом'];
+serviceBeforeAfterProjects['holodnoe-osteklenie']=[...serviceBeforeAfterProjects['holodnoe-osteklenie'].map(project=>({...project,objectType:'balcony',glazingType:'cold-parapet'})),...coldBalconySources.map((source,index)=>coldMatchedPair(`cold-balcony-matched-${String(index+3).padStart(2,'0')}`,coldBalconyTitles[index],`${source}-before.jpg`,'balcony'))];
+// На каждой странице услуги ровно 12 различных пар.
+// Сначала оставляем
 // узкопрофильные примеры страницы, затем дополняем подборку релевантным пулом
 // без повторения одной и той же пары изображений.
 // Correct the two swapped cottage references without altering the source files.
@@ -480,11 +491,6 @@ const loggiaGlazingPool=retitleProjectSeries(
  panoramicLoggiaBase,
  ['Остекление длинной лоджии','Остекление лоджии в кирпичном доме','Остекление широкого проёма лоджии','Остекление лоджии с зимним видом','Остекление лоджии в высотном доме','Светлое остекление лоджии','Остекление лоджии в современном доме','Остекление лоджии тёмным профилем','Остекление протяжённой лоджии','Остекление лоджии в кирпичной нише','Остекление лоджии с открытым видом','Остекление компактной лоджии'],
  'Установили оконную систему по всей длине проёма и аккуратно оформили примыкания.'
-);
-const coldLoggiaPool=retitleProjectSeries(
- panoramicLoggiaBase,
- ['Холодное остекление длинной лоджии','Холодное остекление лоджии в кирпичном доме','Холодное остекление широкого проёма','Холодное остекление лоджии с зимним видом','Холодное остекление лоджии в высотном доме','Светлое холодное остекление лоджии','Холодное остекление в современном доме','Холодное остекление тёмным профилем','Холодное остекление протяжённой лоджии','Холодное остекление лоджии в нише','Холодное остекление с открытым видом','Холодное остекление компактной лоджии'],
- 'Закрыли длинный проём лёгкой оконной системой для защиты от ветра и осадков.'
 );
 const warmLoggiaPool=[
   {
@@ -636,7 +642,7 @@ const projectPoolsByService={
  'elektrika-na-balkone':interiorProjectPool,
  'obedinenie-balkona-s-komnatoj':interiorProjectPool,
  'osteklenie-kottedzhej':[...serviceBeforeAfterProjects['osteklenie-kottedzhej'],...balconyGlazingBase],
- 'holodnoe-osteklenie':coldBalconyPool,
+ 'holodnoe-osteklenie':[],
  'teploe-osteklenie':warmBalconyBase,
  'panoramnoe-osteklenie':panoramicBalconyBase,
  'holodnoe-osteklenie-lodzhii':coldLoggiaPool,
@@ -645,12 +651,13 @@ const projectPoolsByService={
 };
 for(const service of services){
  const current=serviceBeforeAfterProjects[service.slug]||[];
- const allowCompletion=['osteklenie-balkonov','holodnoe-osteklenie','teploe-osteklenie','holodnoe-osteklenie-lodzhii'];
+ const allowCompletion=['osteklenie-balkonov','teploe-osteklenie'];
  serviceBeforeAfterProjects[service.slug]=completeProjectSeries(current,allowCompletion.includes(service.slug)?projectPoolsByService[service.slug]:[]);
- if(serviceBeforeAfterProjects[service.slug].length!==12){
-  throw new Error(`Для страницы ${service.slug} требуется ровно 12 работ`);
+ const expectedCount=12;
+ if(serviceBeforeAfterProjects[service.slug].length!==expectedCount){
+  throw new Error(`Для страницы ${service.slug} требуется ${expectedCount} работ`);
  }
- if(new Set(serviceBeforeAfterProjects[service.slug].map(project=>project.after)).size!==12){
+ if(new Set(serviceBeforeAfterProjects[service.slug].map(project=>project.after)).size!==expectedCount){
   throw new Error(`Повтор фотографии после в подборке ${service.slug}`);
  }
 }
@@ -693,6 +700,12 @@ for(const projects of Object.values(serviceBeforeAfterProjects)){
   }
  }
 }
+// Furniture variants use their exact existing before photograph as the edit target.
+const matchedFurnitureTitles=["Компьютерный стол вдоль окон","Компактная тумба для хранения","Компьютерный стол","Тумба под окном","Шкаф-купе в торце","Настенные полки","Стеллаж и открытые полки","Светлый распашной шкаф","Угловой шкаф","Низкая тумба","Откидной стол","Стол-стойка вдоль окон"];
+serviceBeforeAfterProjects['mebel-dlya-balkona']=serviceBeforeAfterProjects['mebel-dlya-balkona'].map((project,index)=>{
+ const {source,pairVerified,...preserved}=project;
+ return {...preserved,title:matchedFurnitureTitles[index],description:'Визуализация мебели на том же балконе: отделка, окна и ракурс сохранены.',after:`service-gallery-v3/furniture-matched-${String(index+1).padStart(2,'0')}-after.webp`,afterVisualized:true,visualized:true,stage:'furniture'};
+});
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',

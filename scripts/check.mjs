@@ -11,11 +11,19 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  assert.deepEqual(actual,[...new Set(projects.map(p=>p.after))],`${label}: hero must use its own AFTER gallery`);
 }
 const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
-assert.equal(coldGallery.length,12,'Cold glazing gallery must contain 12 pairs');
-const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after.jpg',...Array.from({length:10},(_,i)=>`service-before-after/cold-ordinary-${String(i+3).padStart(2,'0')}-after.webp`)]);
+assert.equal(coldGallery.length,12,'Cold balcony gallery must contain 12 distinct pairs');
+const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after.jpg',...Array.from({length:10},(_,i)=>`service-before-after/cold-balcony-matched-${String(i+3).padStart(2,'0')}-after.png`)]);
 for(const project of coldGallery){
  assert.ok(ordinaryColdAssets.has(project.after),`Unexpected cold glazing asset: ${project.after}`);
  assert.ok(!/панорам/i.test(project.title+' '+project.description),'Panoramic example in ordinary cold glazing gallery');
+}
+const coldLoggias=serviceBeforeAfterProjects['holodnoe-osteklenie-lodzhii'];
+assert.equal(coldLoggias.length,12,'Cold loggia gallery must contain 12 distinct finished interiors');
+for(const project of coldLoggias){
+ assert.equal(project.objectType,'loggia');
+ assert.match(project.after,/^service-before-after\/(?:cold-ordinary-(?:0[3-9]|1[01])-after\.webp|cold-loggia-(?:graphite-fixed|finished-1[12])-after\.png)$/,'Unreviewed or panoramic image in cold loggias');
+ if(project.after.includes('cold-ordinary-'))assert.equal(project.before,project.after.replace('-after.webp','-before.webp'),'Loggia must keep its matched before image');
+ assert.ok(!coldGallery.some(balcony=>balcony.after===project.after),'Balcony and loggia galleries must not share images');
 }
 const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';

@@ -3044,6 +3044,11 @@ main .eyebrow{display:none!important}
  color:#fff;
  stroke:#fff;
 }
+.header-cta{
+ justify-content:center;
+ gap:9px;
+ padding-inline:16px;
+}
 
 /* A compact price promise, shown only where the service has a published price. */
 .landing-price-lock{
@@ -3066,6 +3071,9 @@ main .eyebrow{display:none!important}
 }
 .landing-price-lock+.landing-price{
  margin-top:14px;
+}
+.landing-price-lock+.button{
+ margin-top:20px;
 }
 @media(max-width:640px){
  .landing-price-lock{
