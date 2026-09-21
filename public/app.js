@@ -132,10 +132,15 @@
   const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),beforeLabel=$('#comparison-before-label'),afterLabel=$('#comparison-after-label'),comparisonTitle=$('#comparison-title');
   const fitComparison=()=>{
    if(!comparisonModal.open||![beforeImage,afterImage].every(img=>img.complete&&img.naturalWidth))return;
-   // Let the responsive layout use the available width, even for tall originals.
-   // Fitting both photos into the viewport height made narrow images tiny.
-   comparisonModal.style.removeProperty('width');
-   comparisonModal.querySelector('.comparison-modal-grid').style.removeProperty('grid-template-columns');
+   const grid=comparisonModal.querySelector('.comparison-modal-grid'),shell=comparisonModal.querySelector('.comparison-modal-shell');
+   const ratios=[beforeImage,afterImage].map(img=>img.naturalWidth/img.naturalHeight);
+   const mobile=matchMedia('(max-width:640px)').matches;
+   const padding=parseFloat(getComputedStyle(shell).paddingLeft)+parseFloat(getComputedStyle(shell).paddingRight);
+   const gap=parseFloat(getComputedStyle(grid).columnGap)||0;
+   const height=Math.max(120,innerHeight-180);
+   const contentWidth=height*(mobile?Math.max(...ratios):ratios[0]+ratios[1])+(mobile?0:gap);
+   comparisonModal.style.width=Math.min(1480,innerWidth-(mobile?20:48),contentWidth+padding)+'px';
+   grid.style.gridTemplateColumns=mobile?'minmax(0,1fr)':ratios.map(r=>`minmax(0,${r}fr)`).join(' ');
   };
   beforeImage.addEventListener('load',fitComparison);
   afterImage.addEventListener('load',fitComparison);
