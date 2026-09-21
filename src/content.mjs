@@ -749,24 +749,54 @@ serviceBeforeAfterProjects['osteklenie-kottedzhej']=serviceBeforeAfterProjects['
 }:project);
 
 // Furniture installation only: finished interiors before, fitted furniture after.
-// Keep six glazed-end balconies and six solid-end loggias, without loose desks/racks.
-const furnitureLoggiaSelection=[
- [1,'Встроенная тумба в нише лоджии'],
- [4,'Шкаф-купе по ширине лоджии'],
- [5,'Тумба и полки в тон отделке лоджии'],
- [7,'Светлый встроенный шкаф-купе'],
- [9,'Встроенная тумба с дубовой столешницей'],
- [10,'Откидная столешница для узкой лоджии']
-].map(([index,title])=>{
- const source=serviceBeforeAfterProjects['mebel-dlya-balkona'][index];
- const after=index===7?'service-before-after/custom-furniture-loggia-08-after.webp':index===9?'service-before-after/custom-furniture-loggia-10-after.webp':source.after;
- return {...source,title,after,objectType:'loggia',builtIn:true,stage:'furniture',description:'Визуализация встроенной мебели по размерам лоджии. Фасады и столешницы согласованы с отделкой; помещение до установки мебели и после.'};
+// Six balconies and six loggias; original concepts, not photographs of completed jobs.
+const furnitureConcepts=[
+ ['loggia','office','Кабинет с деревянным столом и книжными полками'],
+ ['balcony','office','Рабочее место у панорамных окон'],
+ ['loggia','office','Встроенный кабинет в ореховых тонах'],
+ ['balcony','lounge','Скамья с хранением и столик для двоих'],
+ ['loggia','lounge','Встроенный диван и столик в кирпичной лоджии'],
+ ['balcony','lounge','Два кресла и встроенный кофейный стол'],
+ ['loggia','reading','Уголок чтения со встроенной библиотекой'],
+ ['balcony','reading','Мягкая скамья и книжные полки на балконе'],
+ ['loggia','storage','Зелёный встроенный шкаф и тумба'],
+ ['balcony','storage','Встроенное хранение под окнами'],
+ ['loggia','combined','Кабинет и диван в одном интерьере'],
+ ['balcony','combined','Рабочее место и зона отдыха на балконе']
+];
+serviceBeforeAfterProjects['mebel-dlya-balkona']=furnitureConcepts.map(([objectType,category,title],index)=>{
+ const key=`service-before-after/furniture-interior-v2-${String(index+1).padStart(2,'0')}`;
+ return {title,category,before:`${key}-before.webp`,after:`${key}-after.webp`,objectType,stage:'furniture',builtIn:true,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,description:'Дизайн-визуализация мебели на заказ: слева готовое помещение до установки, справа — встроенная мебель, подобранные кресла, текстиль и декор. Отделка и геометрия помещения сохранены.'};
 });
-const furnitureBalconyTitles=['Встроенное рабочее место на балконе','Скамья с хранением под окном балкона','Откидной стол для узкого балкона','Встроенная тумба с жалюзийными фасадами','Тумба под остеклённым торцом балкона','Встроенная скамья с выдвижным ящиком'];
-serviceBeforeAfterProjects['mebel-dlya-balkona']=furnitureBalconyTitles.flatMap((title,index)=>{
- const key=`service-before-after/custom-furniture-balcony-${String(index+1).padStart(2,'0')}`;
- return [{title,before:`${key}-before.webp`,after:`${key}-after.webp`,objectType:'balcony',stage:'furniture',builtIn:true,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,description:'Визуализация встроенной мебели на балконе с остеклёнными торцами. Низкое размещение сохраняет свет, доступ к окнам и проход.'},furnitureLoggiaSelection[index]];
-});
+
+// Reviewed high-resolution reconstructions; retain originals and disclose visualizations.
+const galleryQualityReplacements={
+ 'service-gallery-v2/real-after-025.jpg':'gallery-quality-v2/real025.webp',
+ 'service-gallery-v2/real-after-047.jpg':'gallery-quality-v2/real047.webp',
+ 'service-gallery-v2/real-after-103.jpg':'gallery-quality-v2/real103.webp',
+ 'service-before-after/cottage-glazing-2-after-hq.webp':'gallery-quality-v2/cottage2After.webp'
+};
+for(let number=7;number<=12;number++){
+ for(const side of ['before','after'])galleryQualityReplacements[`service-before-after/balcony-roof-${number}-${side}-hq.webp`]=`gallery-quality-v2/roof${number}${side==='before'?'Before':'After'}.webp`;
+}
+for(const items of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]){
+ for(const project of items){
+  for(const side of ['before','after'])if(galleryQualityReplacements[project[side]]){
+   project[side]=galleryQualityReplacements[project[side]];
+   project.visualized=true;
+   project.qualityReconstructed=true;
+  }
+ }
+}
+for(const project of serviceBeforeAfterProjects['krysha-nad-balkonom'])project.roofComparison=true;
+
+// Electrical-only comparisons: identical finished interior, absent vs installed devices.
+const electricalConceptTitles=["Потолочный свет и розетки на лоджии","Трековый свет на балконе","Два бра и удобные розетки","Подсветка потолка и выключатель","Электрика для рабочего места","Свет и розетки в деревянной отделке","Бра для вечернего отдыха","Трековый свет и подсветка стены","Встроенные светильники и розетки","Линейный свет вдоль балкона","Свет над полками и розетки","Освещение, питание и интернет"];
+serviceBeforeAfterProjects['elektrika-na-balkone']=electricalConceptTitles.map((title,index)=>({
+ title,before:`electrical-v2/el${index+1}Before.webp`,after:`electrical-v2/el${index+1}After.webp`,
+ stage:'electrical',electricalComparison:true,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
+ description:'Визуализация монтажа электрики: тот же интерьер до установки светильников, розеток и выключателей и после. Отделка, окна и геометрия сохранены.'
+}));
 
 export const serviceSeo = {
  'osteklenie-balkonov':{
@@ -955,7 +985,7 @@ export const serviceSeo = {
   eyebrow:'ХРАНЕНИЕ БЕЗ ПОТЕРИ ПРОХОДА',
   title:'Встроенная мебель как часть вашего интерьера',
   paragraphs:['Изготавливаем мебель на заказ для балконов и лоджий: от встроенного шкафа до тумбы под подоконником, скамьи с хранением или рабочей столешницы. Размеры, глубину и наполнение определяем по замеру, фасады подбираем к цвету стен, пола и окон.','На балконе с остеклением с трёх сторон размещаем низкую мебель ниже окон: сохраняем свет и доступ к створкам. В глухом торце лоджии можно предусмотреть шкаф во всю высоту или систему полок. Не закрываем мебелью стекло, вентиляцию и инженерные узлы.','Согласуем примыкания к стенам, подоконникам и плинтусам, проверяем открывание фасадов и оставляем место для прохода. В галерее сравниваем готовое помещение до установки мебели и тот же интерьер со встроенным решением.'],
-  concept:['service-gallery-v3/furniture-matched-05-after.webp','Визуализация встроенного шкафа в торце лоджии','Шкаф по размерам ниши · визуализация'],
+  concept:['service-before-after/furniture-interior-v2-09-after.webp','Визуализация зелёного встроенного шкафа и тумбы в лоджии','Шкаф и тумба по размерам ниши'],
   scope:[['Замер ниш','Фиксируем геометрию стен, подоконников и свободный ход створок.'],['Функция','Определяем, что будет храниться и где нужен стол, тумба или сиденье.'],['Материалы','Подбираем фасады, корпус и фурнитуру под условия балкона.'],['Монтаж','Устанавливаем мебель и регулируем все открывающиеся элементы.']],
   photos:[['project-goluboe','Интерьер лоджии с продуманными зонами хранения','Мебель как часть отделки лоджии'],['project-khimki','Светлая лоджия с местом для работы и хранения','Функциональное пространство под ключ']],
   steps:[['Задача','Составляем список вещей и функций будущей мебели.'],['Замер','Проверяем ниши, створки и ширину прохода.'],['Проект','Согласовываем конструкцию, материалы и цвет.'],['Установка','Собираем мебель на объекте и проверяем удобство.']],

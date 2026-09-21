@@ -134,8 +134,13 @@ html{scroll-padding-top:104px}
 .before-after-preview>span{position:relative;min-width:0;overflow:hidden}
 .before-after-preview>span+span{border-left:2px solid #fff}
 .before-after-preview img{width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .35s ease}
-.before-after-preview>span:first-child img{filter:saturate(.68) brightness(.88)}
+.before-after-preview>span:first-child img{filter:none}
 .before-after-card:hover .before-after-preview img{transform:scale(1.045)}
+.roof-comparison .before-after-preview{height:auto;aspect-ratio:4/3;grid-template-columns:repeat(2,minmax(0,1fr))}
+.roof-comparison .before-after-preview img{object-fit:contain;transform:none!important}
+.electrical-comparison .before-after-preview{height:auto;aspect-ratio:3/2;grid-template-columns:repeat(2,minmax(0,1fr))}
+.electrical-comparison .before-after-preview img{object-fit:contain;transform:none!important}
+.comparison-disclosure{display:block;padding:0 24px 12px;color:#586967;font-size:12px;line-height:1.4}
 .before-after-preview b{position:absolute;left:12px;top:12px;padding:6px 10px;border:1px solid rgba(255,255,255,.48);border-radius:7px;background:rgba(7,38,38,.66);color:#fff;font-size:10px;font-weight:700;line-height:1;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px)}
 .comparison-modal{width:min(1240px,calc(100% - 48px));max-height:calc(100dvh - 48px);padding:0;border:0;border-radius:22px;background:#f7faf9;color:var(--ink);box-shadow:0 30px 100px rgba(0,34,36,.34);overflow:auto}
 .comparison-modal::backdrop{background:rgba(3,20,20,.74);backdrop-filter:blur(8px)}
@@ -3079,8 +3084,14 @@ main .eyebrow{display:none!important}
  .landing-price-lock{
   align-self:center;
   margin-top:14px;
-  padding:7px 12px;
-  font-size:12px;
+  max-width:100%;
+  padding:9px 14px;
+  border-color:#c5e5e3;
+  background:#effaf8;
+  color:#075b60;
+  font-size:14px;
+  text-shadow:none;
+  box-shadow:0 2px 10px rgba(0,0,0,.12);
  }
 }
 
@@ -3292,6 +3303,19 @@ main .eyebrow{display:none!important}
 
 .comparison-disclosure{display:block;padding:0 22px 16px;color:var(--muted);font-size:11px;line-height:1.4;font-weight:400}
 .comparison-modal-grid figure>span{max-width:calc(100% - 28px);white-space:normal;line-height:1.35}
+
+/* Never allow page-level horizontal scrolling. Keep internal sliders independent. */
+html{overflow-x:clip}
+body{min-width:0;max-width:100%;overflow-x:clip}
+.landing-hero,.landing-grid,.landing-copy,.landing-copy-main,.landing-photo,.landing-trust{min-width:0}
+@media(max-width:640px){
+ .landing-hero{grid-template-columns:minmax(0,1fr)}
+ .landing-hero .landing-grid{grid-template-columns:minmax(0,1fr);width:100%;max-width:100%}
+ .landing-hero .landing-grid>div{min-width:0;max-width:100%}
+ .landing-hero h1{overflow-wrap:anywhere}
+ .landing-trust{width:100%;max-width:100%;grid-template-columns:repeat(3,minmax(0,1fr))}
+ .landing-hero .button{min-width:0;max-width:100%}
+}
 
 /* Mobile header must fit on one line, including 401–480px devices. */
 @media(max-width:640px){

@@ -4,6 +4,23 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {serviceBeforeAfterProjects,services,beforeAfterProjects} from '../src/content.mjs';
 import {servicePage,home as renderHome} from '../src/components.mjs';
+const roofPairs=serviceBeforeAfterProjects['krysha-nad-balkonom'];
+const electricalPairs=serviceBeforeAfterProjects['elektrika-na-balkone'];
+assert.equal(electricalPairs.length,12,'electrical gallery must retain twelve pairs');
+for(const project of electricalPairs){
+ assert.ok(project.electricalComparison&&project.visualized&&!project.beforeReal,'electrical concepts must be marked as visualizations');
+ assert.ok(project.before.startsWith('electrical-v2/')&&project.after.startsWith('electrical-v2/'),'electrical pairs must use matched installation scenarios');
+ assert.notEqual(project.before,project.after);
+}
+assert.equal(roofPairs.length,12,'roof gallery must retain twelve comparisons');
+for(const project of roofPairs){
+ assert.ok(project.roofComparison,'roof preview must retain the whole image');
+ assert.notEqual(project.before,project.after,'roof comparison must use different images');
+}
+for(const project of roofPairs.slice(6))for(const side of ['before','after']){
+ assert.ok(project[side].startsWith('gallery-quality-v2/'),'do not restore blurry roof enlargements');
+ assert.ok(project.visualized&&project.qualityReconstructed,'reconstructed images must be disclosed');
+}
 for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],...services.map(s=>[s.slug,servicePage(s),serviceBeforeAfterProjects[s.slug]])]){
  const hero=html.match(/<div[^>]*data-hero-slider[^>]*>([\s\S]*?)<\/div>/)?.[1];
  assert.ok(hero,`${label}: missing hero`);
@@ -25,6 +42,14 @@ assert.equal(furnitureGallery.length,12,'Furniture: expected 12 pairs');
 assert.equal(new Set(furnitureGallery.map(p=>p.after)).size,12,'Furniture: duplicate rooms');
 for(const type of ['balcony','loggia'])assert.equal(furnitureGallery.filter(p=>p.objectType===type).length,6,`Furniture: expected six ${type} rooms`);
 for(const p of furnitureGallery){assert.equal(p.stage,'furniture');assert.equal(p.builtIn,true);}
+for(const [category,count] of Object.entries({office:3,lounge:3,reading:2,storage:2,combined:2}))assert.equal(furnitureGallery.filter(p=>p.category===category).length,count,`Furniture: wrong ${category} count`);
+for(const [index,p] of furnitureGallery.entries()){
+ const key=`service-before-after/furniture-interior-v2-${String(index+1).padStart(2,'0')}`;
+ assert.equal(p.before,`${key}-before.webp`);
+ assert.equal(p.after,`${key}-after.webp`);
+ assert.equal(p.beforeReal,false);
+ assert.ok(!beforeAfterProjects.some(home=>home.after===p.after),'Furniture concepts must not replace home turnkey projects');
+}
 assert.equal(services.find(s=>s.slug==='mebel-dlya-balkona').title,'Мебель для балконов и лоджий');
 const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
 assert.equal(coldGallery.length,12,'Cold balcony gallery must contain 12 distinct pairs');
