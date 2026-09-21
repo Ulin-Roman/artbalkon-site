@@ -838,6 +838,15 @@ for (const items of [beforeAfterProjects, ...Object.values(serviceBeforeAfterPro
  }
 }
 
+// Дополнительная пара фотографий, предоставленная владельцем сайта.
+serviceBeforeAfterProjects['otdelka-balkonov'] = [...serviceBeforeAfterProjects['otdelka-balkonov'], {
+ title:'Отделка балкона под рабочий кабинет',
+ description:'До ремонта — изношенный дощатый пол и открытый металлический каркас. После — светлая отделка под дерево, новый пол и рабочее место со столом и креслом.',
+ before:'owner-projects/balcony-office-before.webp',after:'owner-projects/balcony-office-after.webp',
+ objectType:'balcony',stage:'finish',beforeReal:true,afterReal:true,
+ visualized:false,beforeVisualized:false,afterVisualized:false
+}];
+
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',

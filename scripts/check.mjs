@@ -68,9 +68,10 @@ for(const project of coldLoggias){
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
  const gallery=serviceBeforeAfterProjects[slug];
- assert.equal(gallery.length,12,`${slug}: expected 12 pairs`);
- assert.equal(new Set(gallery.map(p=>p.after)).size,12,`${slug}: duplicate rooms`);
- gallery.forEach((p,i)=>{
+ const expectedCount=slug==='otdelka-balkonov'?13:12;
+ assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
+ assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
+ gallery.slice(0,12).forEach((p,i)=>{
   const key=`service-before-after/renovation-${type}-${String(i+1).padStart(2,'0')}`;
   assert.equal(p.objectType,type);
   assert.equal(p.stage,stage);
@@ -81,6 +82,12 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   assert.equal(p.beforeReal,false);
  });
 }
+const addedOffice=serviceBeforeAfterProjects['otdelka-balkonov'][12];
+assert.equal(addedOffice.before,'owner-projects/balcony-office-before.webp');
+assert.equal(addedOffice.after,'owner-projects/balcony-office-after.webp');
+assert.equal(addedOffice.visualized,false);
+assert.equal(addedOffice.beforeReal,true);
+assert.equal(addedOffice.afterReal,true);
 const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';
 async function walk(dir){const files=[];for(const ent of await readdir(dir,{withFileTypes:true})){const path=join(dir,ent.name);files.push(...ent.isDirectory()?await walk(path):[path]);}return files;}
