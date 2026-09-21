@@ -48,7 +48,8 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
  gallery.forEach((p,i)=>{
   const key=`service-before-after/renovation-${type}-${String(i+1).padStart(2,'0')}`;
   assert.equal(p.objectType,type);
-  assert.equal(p.before,`${key}-${stage}-before.webp`,`${slug}: wrong before stage or room`);
+  assert.equal(p.stage,stage);
+  assert.equal(p.before,`${key}-finish-before.webp`,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
   assert.equal(p.after,`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);

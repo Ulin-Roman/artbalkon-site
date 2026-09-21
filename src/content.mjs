@@ -720,7 +720,7 @@ serviceBeforeAfterProjects['teploe-osteklenie-lodzhii']=serviceBeforeAfterProjec
 });
 serviceBeforeAfterProjects['teploe-osteklenie']=serviceBeforeAfterProjects['teploe-osteklenie'].map(project=>project.after==='service-before-after/balcony-glazing-after.jpg'?{...project,after:'service-before-after/balcony-glazing-concrete-slab-after.png',afterVisualized:true}:project);
 // Separate matched visualizations: balconies have glazed returns, loggias solid ends.
-// Finishing starts with worn cladding; turnkey starts with bare surfaces.
+// Both galleries start before demolition: old windows and worn Soviet-era finishes.
 const renovationTitles={
  balcony:['Светлый балкон с рабочим местом','Белая отделка и скамья для хранения','Балкон с компактной зоной отдыха','Деревянная отделка и тумба','Серая отделка и стол у окна','Светлый балкон со скамьёй','Бежевая отделка балкона','Балкон со светлой деревянной отделкой','Рабочее место на узком балконе','Белый балкон с местом для отдыха','Балкон с откидным столом','Отделка балкона под дерево'],
  loggia:['Светлая лоджия с рабочим местом','Лоджия со скамьёй для хранения','Контрастная отделка лоджии','Серая отделка узкой лоджии','Деревянная лоджия с рабочим местом','Лоджия с уютной зоной отдыха','Лоджия со столом','Длинная лоджия с местом для хранения','Лоджия с трековым освещением','Светлая отделка лоджии под дерево','Лоджия с деревянной отделкой','Компактная лоджия под ключ']
@@ -731,8 +731,8 @@ for(const [slug,objectType,stage] of [
 ]){
  serviceBeforeAfterProjects[slug]=renovationTitles[objectType].map((title,index)=>{
   const key=`service-before-after/renovation-${objectType}-${String(index+1).padStart(2,'0')}`;
-  return {title,objectType,stage,before:`${key}-${stage}-before.webp`,after:`${key}-after.webp`,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
-   description:stage==='finish'?'Визуализация обновления старых окон и изношенной отделки. До ремонта — пустое помещение без электрики; после — готовый интерьер.':'Визуализация ремонта под ключ. До ремонта — старые окна, голые поверхности, без электрики и вещей; после — новые окна, отделка, освещение и мебель.'};
+  return {title,objectType,stage,before:`${key}-finish-before.webp`,after:`${key}-after.webp`,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
+   description:stage==='finish'?'Визуализация обновления старых окон и изношенной отделки. До ремонта — пустое помещение без электрики; после — готовый интерьер.':'Визуализация ремонта под ключ. До ремонта — старые окна, деревянные подоконники и изношенная отделка советского времени, без электрики и вещей; после — новые окна, отделка, освещение и мебель.'};
  });
 }
 // Home follows the final turnkey galleries: six balconies and six loggias.
