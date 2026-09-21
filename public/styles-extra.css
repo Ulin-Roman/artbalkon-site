@@ -2962,6 +2962,8 @@ main .eyebrow{display:none!important}
    reserving a separate row above both columns. */
 .landing-hero .landing-copy{position:relative}
 .landing-hero .landing-copy>.breadcrumbs{
+ position:relative;
+ z-index:2;
  width:100%;
  margin:0;
  flex:0 0 auto;
