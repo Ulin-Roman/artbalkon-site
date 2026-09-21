@@ -771,6 +771,9 @@ serviceBeforeAfterProjects['mebel-dlya-balkona']=furnitureConcepts.map(([objectT
 
 // Reviewed high-resolution reconstructions; retain originals and disclose visualizations.
 const galleryQualityReplacements={
+ 'service-before-after/panoramic-balcony-01-after.jpg':'window-details-v2/panoramic-clean-dark.webp',
+ 'service-before-after/panoramic-balcony-03-after.jpg':'window-details-v2/panoramic-clean-white.webp',
+ 'service-before-after/renovation-loggia-11-finish-before.webp':'window-details-v2/old-window-clean.webp',
  'service-gallery-v2/real-after-025.jpg':'gallery-quality-v2/real025.webp',
  'service-gallery-v2/real-after-047.jpg':'gallery-quality-v2/real047.webp',
  'service-gallery-v2/real-after-103.jpg':'gallery-quality-v2/real103.webp',
