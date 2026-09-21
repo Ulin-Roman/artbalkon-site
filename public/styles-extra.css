@@ -142,7 +142,7 @@ html{scroll-padding-top:104px}
 .electrical-comparison .before-after-preview img{object-fit:contain;transform:none!important}
 .comparison-disclosure{display:block;padding:0 24px 12px;color:#586967;font-size:12px;line-height:1.4}
 .before-after-preview b{position:absolute;left:12px;top:12px;padding:6px 10px;border:1px solid rgba(255,255,255,.48);border-radius:7px;background:rgba(7,38,38,.66);color:#fff;font-size:10px;font-weight:700;line-height:1;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px)}
-.comparison-modal{width:min(1240px,calc(100% - 48px));max-height:calc(100dvh - 48px);padding:0;border:0;border-radius:22px;background:#f7faf9;color:var(--ink);box-shadow:0 30px 100px rgba(0,34,36,.34);overflow:auto}
+.comparison-modal{width:min(1480px,calc(100% - 48px));max-width:calc(100% - 20px);max-height:calc(100dvh - 48px);padding:0;border:0;border-radius:22px;background:#f7faf9;color:var(--ink);box-shadow:0 30px 100px rgba(0,34,36,.34);overflow:auto}
 .comparison-modal::backdrop{background:rgba(3,20,20,.74);backdrop-filter:blur(8px)}
 .comparison-modal[open]{animation:comparison-in .28s ease both}.comparison-modal[open]::backdrop{animation:comparison-backdrop .28s ease both}
 .comparison-modal-shell{padding:26px}
@@ -151,9 +151,20 @@ html{scroll-padding-top:104px}
 .comparison-modal-head h2{font-size:clamp(27px,3vw,39px)}
 .comparison-modal-head p:not(.eyebrow){max-width:780px;margin-top:10px;color:var(--muted);font-size:14px;line-height:1.7}
 .comparison-close{width:44px;height:44px;flex:0 0 auto;border:1px solid rgba(0,119,126,.2);border-radius:50%;background:#fff;color:var(--teal-dark);font-size:27px;line-height:1;transition:transform .2s,background .2s}.comparison-close:hover{transform:rotate(5deg);background:var(--teal-soft)}
-.comparison-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.comparison-modal-grid figure{position:relative;align-self:start;justify-self:center;width:fit-content;max-width:100%;height:auto!important;margin:0;overflow:hidden;border-radius:14px;background:transparent}
+.comparison-modal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0}
+.comparison-modal-grid figure{position:relative;align-self:start;min-width:0;width:100%;max-width:100%;height:auto!important;margin:0;overflow:hidden;border-radius:14px;background:transparent}
 .comparison-modal-grid img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;object-position:center}
+@media(min-width:641px){
+ html:has(.comparison-modal[open]){overflow:hidden}
+ .comparison-modal[open]{position:fixed;inset:0;margin:0;width:100%;max-width:100%;height:100dvh;max-height:100dvh;border-radius:0;overflow:hidden}
+ .comparison-modal-shell{height:100%;min-height:0;display:flex;flex-direction:column;padding:16px 24px}
+ .comparison-modal-head{flex:none;min-width:0;margin-bottom:12px;gap:16px}
+ .comparison-modal-head>div{min-width:0}
+ .comparison-modal-head h2{font-size:clamp(22px,2.2vw,34px);overflow-wrap:anywhere}
+ .comparison-modal-grid{flex:1;min-height:0;align-items:stretch}
+ .comparison-modal-grid figure{height:100%!important;min-height:0;width:100%;display:flex;align-items:center;justify-content:center}
+ .comparison-modal-grid img{width:100%;height:100%;min-height:0;object-fit:contain}
+}
 .comparison-modal-grid figure>span{position:absolute;z-index:2;left:15px;top:15px;padding:8px 11px;border:1px solid rgba(255,255,255,.4);border-radius:8px;background:rgba(4,37,37,.7);color:#fff;font-size:10px;font-weight:700;line-height:1;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px)}
 @keyframes comparison-in{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
 @keyframes comparison-backdrop{from{opacity:0}to{opacity:1}}

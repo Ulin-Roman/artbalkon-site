@@ -76,7 +76,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   assert.equal(p.stage,stage);
   const expectedBefore=type==='loggia'&&i===10?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
   assert.equal(p.before,beforeHardwareReplacements[expectedBefore] || expectedBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
-  assert.equal(p.after,`${key}-after.webp`,`${slug}: wrong after room`);
+  assert.equal(p.after,type==='balcony'&&i===3?'window-details-v2/balcony-04-handles.webp':`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);
  });
