@@ -709,8 +709,10 @@ serviceBeforeAfterProjects['mebel-dlya-balkona']=serviceBeforeAfterProjects['meb
 // Page-specific reconstructions: do not mutate the shared warm-glazing pool.
 serviceBeforeAfterProjects['teploe-osteklenie-lodzhii']=serviceBeforeAfterProjects['teploe-osteklenie-lodzhii'].map((project,index)=>{
  const {pairVerified,...preserved}=project;
- return {...preserved,before:`service-before-after/warm-loggia-aged-${String(index+1).padStart(2,'0')}-before.png`,beforeVisualized:true,beforeReal:false,description:'Готовая лоджия из галереи ArtBalkon. Состояние до ремонта — старые рамы, отделка и деревянные подоконники — показано как визуальная реконструкция того же помещения.'};
+ const variant=[1,4,5,8,9,10,11].includes(index+1)?'empty':'aged';
+ return {...preserved,before:`service-before-after/warm-loggia-${variant}-${String(index+1).padStart(2,'0')}-before.png`,beforeVisualized:true,beforeReal:false,description:'Готовая лоджия из галереи ArtBalkon. Состояние до ремонта — старые рамы, отделка и деревянные подоконники — показано как визуальная реконструкция того же помещения.'};
 });
+serviceBeforeAfterProjects['teploe-osteklenie']=serviceBeforeAfterProjects['teploe-osteklenie'].map(project=>project.after==='service-before-after/balcony-glazing-after.jpg'?{...project,after:'service-before-after/balcony-glazing-concrete-slab-after.png',afterVisualized:true}:project);
 export const serviceSeo = {
  'osteklenie-balkonov':{
   metaTitle:'Остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',
