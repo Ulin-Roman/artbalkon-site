@@ -67,7 +67,7 @@ for(const project of coldLoggias){
  assert.ok(!coldGallery.some(balcony=>balcony.after===project.after),'Balcony and loggia galleries must not share images');
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
- const gallery=serviceBeforeAfterProjects[slug];
+ const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type);
  const expectedCount=slug==='otdelka-balkonov'?13:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
@@ -81,6 +81,11 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);
  });
+}
+for(const [slug,expectedCount] of [['osteklenie-balkonov',24],['uteplenie-balkonov',12],['otdelka-balkonov',25],['balkon-pod-klyuch',24]]){
+ const gallery=serviceBeforeAfterProjects[slug];
+ assert.equal(gallery.length,expectedCount,`${slug}: combined gallery has the wrong size`);
+ assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount,`${slug}: combined gallery repeats finished rooms`);
 }
 const addedOffice=serviceBeforeAfterProjects['otdelka-balkonov'][12];
 assert.equal(addedOffice.before,'owner-projects/balcony-office-before.webp');

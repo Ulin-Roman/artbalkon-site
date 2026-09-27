@@ -45,7 +45,7 @@ const cleanPortfolioAssets={
 const cleanPortfolioAsset=name=>cleanPortfolioAssets[name]||name;
 const smallPictureAssets=new Set(['balcony-finishing.jpg','balcony-glazing.jpg','balcony-insulation.jpg','balcony-turnkey.jpg','hero-balcony-v2.webp','thermal','thermal.webp']);
 const pictureAsset=(name,suffix='')=>{const cleanName=cleanPortfolioAsset(name);const match=cleanName.match(/^(.*)(\.[^.]+)$/);return match?`${match[1]}${suffix}${match[2]}`:`${cleanName}${suffix}.webp`;};
-const serviceImage=s=>`<img src="/assets/${pictureAsset(s.image)}" width="960" height="640" loading="lazy" decoding="async" alt="${esc(`${s.title} — фотография услуги ArtBalkon`)}">`;
+const serviceImage=s=>pic(s.image,`${s.title} — фотография услуги ArtBalkon`);
 const uniqueImages=images=>images.filter((name,index,list)=>name&&list.indexOf(name)===index);
 const serviceGallerySlides=service=>uniqueImages((serviceBeforeAfterProjects[service.slug]||[]).map(project=>project.after));
 export const button=(label,href='#quiz',extra='',withArrow=true)=>`<a class="button ${extra}" href="${href}">${buttonIcon(label)}<span class="button-label">${label}</span>${withArrow?` ${buttonArrow}`:''}</a>`;
@@ -185,14 +185,10 @@ const glazingChoice=object=>question('Какое остекление рассм
  'Нужна консультация по остеклению'
 ]);
 const quizProfiles={
- 'osteklenie-balkonov':{heading:'Рассчитайте стоимость<br>остекления балкона',progress:'ОСТЕКЛЕНИЕ БАЛКОНА',hidden:{object:'Балкон'},questions:[glazingChoice('Балкона')]},
- 'uteplenie-balkonov':exactQuiz('Рассчитайте стоимость<br>утепления балкона','УТЕПЛЕНИЕ БАЛКОНА','Балкон','Утепление балкона'),
- 'otdelka-balkonov':exactQuiz('Рассчитайте стоимость<br>отделки балкона','ОТДЕЛКА БАЛКОНА','Балкон','Отделка балкона'),
- 'balkon-pod-klyuch':exactQuiz('Рассчитайте стоимость<br>балкона под ключ','БАЛКОН ПОД КЛЮЧ','Балкон','Балкон под ключ'),
- 'osteklenie-lodzhii':{heading:'Рассчитайте стоимость<br>остекления лоджии',progress:'ОСТЕКЛЕНИЕ ЛОДЖИИ',hidden:{object:'Лоджия'},questions:[glazingChoice('Лоджии')]},
- 'uteplenie-lodzhii':exactQuiz('Рассчитайте стоимость<br>утепления лоджии','УТЕПЛЕНИЕ ЛОДЖИИ','Лоджия','Утепление лоджии'),
- 'otdelka-lodzhii':exactQuiz('Рассчитайте стоимость<br>отделки лоджии','ОТДЕЛКА ЛОДЖИИ','Лоджия','Отделка лоджии'),
- 'lodzhiya-pod-klyuch':exactQuiz('Рассчитайте стоимость<br>лоджии под ключ','ЛОДЖИЯ ПОД КЛЮЧ','Лоджия','Лоджия под ключ'),
+ 'osteklenie-balkonov':{heading:'Рассчитайте стоимость<br>остекления',progress:'ОСТЕКЛЕНИЕ',hidden:{},questions:[question('Что нужно остеклить?','object',['Балкон','Лоджия','Не знаю']),question('Какое остекление рассматриваете?','service',['Холодное остекление','Тёплое остекление','Панорамное остекление','Нужна консультация'])]},
+ 'uteplenie-balkonov':{heading:'Рассчитайте стоимость<br>утепления',progress:'УТЕПЛЕНИЕ',hidden:{service:'Утепление'},questions:[question('Что нужно утеплить?','object',['Балкон','Лоджия','Не знаю'])]},
+ 'otdelka-balkonov':{heading:'Рассчитайте стоимость<br>отделки',progress:'ОТДЕЛКА',hidden:{service:'Отделка'},questions:[question('Что нужно отделать?','object',['Балкон','Лоджия','Не знаю'])]},
+ 'balkon-pod-klyuch':{heading:'Рассчитайте стоимость<br>проекта под ключ',progress:'ПРОЕКТ ПОД КЛЮЧ',hidden:{service:'Под ключ'},questions:[question('Что нужно сделать под ключ?','object',['Балкон','Лоджия','Не знаю'])]},
  'holodnoe-osteklenie':exactQuiz('Рассчитайте стоимость<br>холодного остекления','ХОЛОДНОЕ ОСТЕКЛЕНИЕ','Балкон','Холодное остекление балкона'),
  'teploe-osteklenie':exactQuiz('Рассчитайте стоимость<br>тёплого остекления','ТЁПЛОЕ ОСТЕКЛЕНИЕ','Балкон','Тёплое остекление балкона'),
  'panoramnoe-osteklenie':exactQuiz('Рассчитайте стоимость<br>панорамного остекления','ПАНОРАМНОЕ ОСТЕКЛЕНИЕ','Балкон','Панорамное остекление балкона'),
@@ -224,7 +220,10 @@ const certificateFiles=['cert-01.png','cert-02.png','cert-03.jpg','cert-04.jpg',
 export const certificates=()=>`<section class="certificates-section" id="certificates" data-certificates><div class="section container"><div class="certificates-heading"><div><p class="eyebrow">ДОКУМЕНТЫ И ГАРАНТИИ</p><h2>Сертификаты соответствия</h2><p>Документы на материалы и продукцию, которые мы используем.</p></div><div class="certificate-controls"><span class="certificate-count"><strong data-cert-current>1</strong> / ${certificateFiles.length}</span><button type="button" data-cert-prev aria-label="Предыдущий сертификат">←</button><button type="button" data-cert-next aria-label="Следующий сертификат">→</button></div></div><div class="certificate-track" data-cert-track tabindex="0" role="region" aria-label="Слайдер сертификатов">${certificateFiles.map((file,i)=>`<figure class="certificate-card"><a href="/assets/certificates/${file}" target="_blank" rel="noopener" aria-label="Открыть сертификат ${i+1} крупно"><span class="certificate-paper"><img src="/assets/certificates/${file}" width="566" height="800" loading="lazy" decoding="async" alt="Сертификат соответствия №${i+1} — документ ArtBalkon"></span><figcaption><span>СЕРТИФИКАТ</span></figcaption></a></figure>`).join('')}</div><p class="certificate-hint">Листайте документы стрелками или свайпом. Нажмите на сертификат, чтобы открыть его крупно.</p></div></section>`;
 export function contact(context=null){
  const marker=`${context?.slug||''} ${context?.title||''} ${context?.type||''}`.toLowerCase();
- const subject=/(?:lodzh|лоджи)/.test(marker)
+ const isCombinedService=['osteklenie-balkonov','uteplenie-balkonov','otdelka-balkonov','balkon-pod-klyuch'].includes(context?.slug);
+ const subject=isCombinedService
+  ?{own:'свой балкон или лоджию',office:'ваш балкон или лоджию'}
+  :/(?:lodzh|лоджи)/.test(marker)
   ?{own:'свою лоджию',office:'вашу лоджию'}
   :/(?:kottedzh|коттедж|загородн|дом)/.test(marker)
    ?{own:'свой дом, веранду или террасу',office:'ваш проект остекления'}
@@ -271,19 +270,19 @@ export function shell(body,{title='Балконы и лоджии под клю�
 }
 const glazingPricingSection=service=>{
  const slug=service?.slug||'';
- if(!['osteklenie-balkonov','osteklenie-lodzhii'].includes(slug))return '';
+ if(slug!=='osteklenie-balkonov')return '';
  const isLoggia=slug.includes('osteklenie-lodzhii');
  const context=isLoggia
   ?{subject:'лоджии',subtitle:'Для сезонного хранения или комфортной лоджии на каждый день.',cold:'Защита длинного проёма лоджии от дождя, ветра, снега и пыли.',warm:'Для лоджии, которую планируется использовать круглый год.',panoramic:'Больше естественного света по всей длине лоджии.'}
   :slug==='osteklenie-kottedzhej'
    ?{subject:'дома',subtitle:'Для веранды, террасы или тёплых помещений загородного дома.',cold:'Для сезонной веранды, террасы или беседки.',warm:'Для жилых комнат и помещений, которыми пользуются круглый год.',panoramic:'Большие светопрозрачные проёмы и открытый вид на участок.'}
-   :{subject:'балкона',subtitle:'Для сезонного отдыха или комфорта круглый год.',cold:'Для защиты от дождя, ветра, снега и пыли.',warm:'Для балкона, которым можно пользоваться круглый год.',panoramic:'Максимум естественного света и современный внешний вид.'};
+   :{subject:'балкона или лоджии',subtitle:'Для сезонного использования или комфорта круглый год.',cold:'Для защиты балкона или лоджии от дождя, ветра, снега и пыли.',warm:'Для пространства, которым планируется пользоваться круглый год.',panoramic:'Максимум естественного света и современный внешний вид.'};
  const cards=[['cold','Холодное',context.cold,isLoggia?'holodnoe-osteklenie-lodzhii':'holodnoe-osteklenie'],['warm','Тёплое',context.warm,isLoggia?'teploe-osteklenie-lodzhii':'teploe-osteklenie'],['panoramic','Панорамное',context.panoramic,isLoggia?'panoramnoe-osteklenie-lodzhii':'panoramnoe-osteklenie']];
  return `<section class="section container glazing-services-section" id="glazing"><div class="section-heading services-heading"><div><h2>Выбери своё остекление</h2><p class="services-subtitle">${context.subtitle}</p></div></div><div class="services-grid glazing-services-grid">${cards.map(([key,title,desc,target])=>`<article class="service-card reveal"><a class="service-card-media" href="/${target}/"><img src="/assets/glazing-card-${key}.jpg" width="960" height="720" loading="lazy" decoding="async" alt="${title} остекление ${context.subject}"><span class="service-media-icon">${serviceIcon(target)}</span></a><div class="service-card-body"><h3><a href="/${target}/">${title} остекление</a></h3><div class="service-card-price"><strong>${money(prices[key])}/м²</strong></div><p>${desc}</p></div></article>`).join('')}</div></section>`;
 };
 export function home(){return `<section class="hero container"><div class="hero-content"><p class="eyebrow"><span></span> Остекление, утепление и отделка — от замера до готового интерьера</p><h1>Балконы и лоджии под ключ <span class="location-accent">в Москве и Московской области</span></h1><p class="hero-description">Остекление, утепление и внутренняя отделка балконов и лоджий с гарантией по договору.</p><div class="hero-actions">${button('Рассчитать стоимость')}</div></div><div class="hero-visual hero-slideshow" data-hero-slider>${uniqueImages(beforeAfterProjects.map(project=>project.after)).map((name,index)=>pic(name,'Готовая работа ArtBalkon',`hero-image${index===0?' is-active':''}`,index===0)).join('')}</div></section>${trust()}${campaignOffer()}
-<section class="section container" id="services"><div class="section-heading services-heading"><div><h2>Услуги</h2><p class="services-subtitle">Что можем сделать с вашим балконом или лоджией</p></div></div><div class="services-grid">${services.slice(0,8).map(s=>`<article class="service-card reveal"><a class="service-card-media" href="/${s.slug}/">${serviceImage(s)}<span class="service-media-icon">${serviceIcon(s.slug)}</span></a><div class="service-card-body"><h3><a href="/${s.slug}/">${s.title}</a></h3>${prices[s.price]===null?'':`<div class="service-card-price"><strong>${money(prices[s.price])}/м²</strong></div>`}<p>${s.short}</p></div></article>`).join('')}</div></section>
-<section class="soft-section"><div class="section container extra-services"><div class="section-heading"><div><h2>Дополнительные услуги</h2><p class="services-subtitle">Работы, которые делают балкон или лоджию удобнее, теплее и функциональнее</p></div></div><div class="extra-grid">${services.slice(8,13).map(s=>`<article class="extra-card reveal"><a class="extra-card-media" href="/${s.slug}/">${serviceImage(s)}<span class="extra-icon">${serviceIcon(s.slug)}</span></a><div class="extra-card-body"><h3><a href="/${s.slug}/">${s.title}</a></h3><p>${s.short}</p></div></article>`).join('')}</div></div></section>
+<section class="section container" id="services"><div class="section-heading services-heading"><div><h2>Услуги</h2><p class="services-subtitle">Четыре направления для балконов и лоджий — от отдельного этапа до проекта под ключ</p></div></div><div class="services-grid">${services.slice(0,4).map(s=>`<article class="service-card reveal"><a class="service-card-media" href="/${s.slug}/">${serviceImage(s)}<span class="service-media-icon">${serviceIcon(s.slug)}</span></a><div class="service-card-body"><h3><a href="/${s.slug}/">${s.title}</a></h3>${prices[s.price]===null?'':`<div class="service-card-price"><strong>${money(prices[s.price])}/м²</strong></div>`}<p>${s.short}</p></div></article>`).join('')}</div></section>
+<section class="soft-section"><div class="section container extra-services"><div class="section-heading"><div><h2>Дополнительные услуги</h2><p class="services-subtitle">Работы, которые делают балкон или лоджию удобнее, теплее и функциональнее</p></div></div><div class="extra-grid">${services.slice(4,9).map(s=>`<article class="extra-card reveal"><a class="extra-card-media" href="/${s.slug}/">${serviceImage(s)}<span class="extra-icon">${serviceIcon(s.slug)}</span></a><div class="extra-card-body"><h3><a href="/${s.slug}/">${s.title}</a></h3><p>${s.short}</p></div></article>`).join('')}</div></div></section>
 ${beforeAfterSection()}
 ${partnerBrandsSection()}
 ${promotionSection({title:'Балкон или лоджия под ключ'})}
