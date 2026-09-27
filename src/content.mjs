@@ -688,6 +688,7 @@ for(const projects of Object.values(serviceBeforeAfterProjects)){
   if(project.after==='service-before-after/glazing-new-03-after.jpg'){
    project.title='Раздвижное остекление длинного балкона';
    project.description='Широкие раздвижные створки над глухим парапетом.';
+   project.after='service-before-after/glazing-new-03-after-finished-ceiling.png';
    project.afterVisualized=true;
   }
  }
@@ -699,10 +700,24 @@ serviceBeforeAfterProjects['mebel-dlya-balkona']=serviceBeforeAfterProjects['meb
  return {...preserved,title:matchedFurnitureTitles[index],description:'Визуализация мебели на том же балконе: отделка, окна и ракурс сохранены.',after:`service-gallery-v3/furniture-matched-${String(index+1).padStart(2,'0')}-after.webp`,afterVisualized:true,visualized:true,stage:'furniture'};
 });
 // Page-specific reconstructions: do not mutate the shared warm-glazing pool.
+const warmLoggiaBeforeWithoutHandles=[
+ 'service-before-after/warm-loggia-empty-01-before-no-handles-v2.png',
+ 'service-before-after/warm-loggia-aged-02-before-no-handles.png',
+ 'service-before-after/warm-loggia-aged-03-before-v2.png',
+ 'service-before-after/warm-loggia-empty-04-before-no-handles.png',
+ 'service-before-after/warm-loggia-empty-05-before-no-handles.png',
+ 'service-before-after/warm-loggia-aged-06-before-no-handles.png',
+ 'service-before-after/warm-loggia-aged-07-before-no-handles.png',
+ 'service-before-after/warm-loggia-aged-08-before-no-handles.png',
+ 'service-before-after/warm-loggia-empty-09-before-no-handles.png',
+ 'service-before-after/warm-loggia-empty-10-before-no-handles.png',
+ 'service-before-after/warm-loggia-empty-11-before-no-handles.png',
+ 'service-before-after/warm-loggia-aged-12-before-no-handles.png'
+];
 serviceBeforeAfterProjects['teploe-osteklenie-lodzhii']=serviceBeforeAfterProjects['teploe-osteklenie-lodzhii'].map((project,index)=>{
  const {pairVerified,...preserved}=project;
- const variant=[1,4,5,8,9,10,11].includes(index+1)?'empty':'aged';
- return {...preserved,before:`service-before-after/warm-loggia-${variant}-${String(index+1).padStart(2,'0')}-before.png`,beforeVisualized:true,beforeReal:false,description:'Готовая лоджия из галереи ArtBalkon. Состояние до ремонта — старые рамы, отделка и деревянные подоконники — показано как визуальная реконструкция того же помещения.'};
+ const before=warmLoggiaBeforeWithoutHandles[index];
+ return {...preserved,before,beforeVisualized:true,beforeReal:false,description:'Готовая лоджия из галереи ArtBalkon. Состояние до ремонта — старые рамы, отделка и деревянные подоконники — показано как визуальная реконструкция того же помещения.'};
 });
 serviceBeforeAfterProjects['teploe-osteklenie']=serviceBeforeAfterProjects['teploe-osteklenie'].map(project=>project.after==='service-before-after/balcony-glazing-after.jpg'?{...project,after:'service-before-after/balcony-glazing-concrete-slab-after.png',afterVisualized:true}:project);
 // Separate matched visualizations: balconies have glazed returns, loggias solid ends.
@@ -876,33 +891,32 @@ mergePrimaryGalleries('otdelka-balkonov','otdelka-lodzhii');
 mergePrimaryGalleries('balkon-pod-klyuch','lodzhiya-pod-klyuch');
 
 // Для объединённых галерей отделки и проектов под ключ используем отдельные
-// версии фотографий «до»: без средних оконных ручек, с нижними щеколдами
-// только на фронтальных открывающихся створках. Боковые окна остаются глухими.
+// версии фотографий «до» без видимых оконных ручек и щеколд.
 export const finishBeforeLatchReplacements = {
- 'before-hardware-v2/before-000.webp':'before-hardware-v3/finish-turnkey-001.png',
- 'before-hardware-v2/before-002.webp':'before-hardware-v3/finish-turnkey-002.png',
- 'before-hardware-v2/before-004.webp':'before-hardware-v3/finish-turnkey-003.png',
- 'service-before-after/renovation-balcony-04-finish-before.webp':'before-hardware-v3/finish-turnkey-004.png',
- 'before-hardware-v2/before-008.webp':'before-hardware-v3/finish-turnkey-005.png',
- 'before-hardware-v2/before-010.webp':'before-hardware-v3/finish-turnkey-006.png',
- 'before-hardware-v2/before-036.webp':'before-hardware-v3/finish-turnkey-007.png',
- 'before-hardware-v2/before-037.webp':'before-hardware-v3/finish-turnkey-008.png',
- 'before-hardware-v2/before-038.webp':'before-hardware-v3/finish-turnkey-009.png',
- 'before-hardware-v2/before-039.webp':'before-hardware-v3/finish-turnkey-010.png',
- 'before-hardware-v2/before-040.webp':'before-hardware-v3/finish-turnkey-011.png',
- 'before-hardware-v2/before-041.webp':'before-hardware-v3/finish-turnkey-012.png',
- 'before-hardware-v2/before-001.webp':'before-hardware-v3/finish-turnkey-013.png',
- 'service-before-after/renovation-loggia-02-finish-before.webp':'before-hardware-v3/finish-turnkey-014.png',
- 'before-hardware-v2/before-005.webp':'before-hardware-v3/finish-turnkey-015.png',
- 'before-hardware-v2/before-007.webp':'before-hardware-v3/finish-turnkey-016.png',
- 'before-hardware-v2/before-009.webp':'before-hardware-v3/finish-turnkey-017.png',
- 'before-hardware-v2/before-011.webp':'before-hardware-v3/finish-turnkey-018.png',
- 'before-hardware-v2/before-054.webp':'before-hardware-v3/finish-turnkey-019.png',
- 'service-before-after/renovation-loggia-08-finish-before.webp':'before-hardware-v3/finish-turnkey-020.png',
- 'before-hardware-v2/before-056.webp':'before-hardware-v3/finish-turnkey-021.png',
- 'service-before-after/renovation-loggia-10-finish-before.webp':'before-hardware-v3/finish-turnkey-022.png',
- 'window-details-v2/old-window-clean.webp':'before-hardware-v3/finish-turnkey-023.png',
- 'before-hardware-v2/before-059.webp':'before-hardware-v3/finish-turnkey-024.png'
+ 'before-hardware-v2/before-000.webp':'before-hardware-v4/finish-turnkey-001-no-hardware.png',
+ 'before-hardware-v2/before-002.webp':'before-hardware-v4/finish-turnkey-002-no-hardware.png',
+ 'before-hardware-v2/before-004.webp':'before-hardware-v4/finish-turnkey-003-no-hardware.png',
+ 'service-before-after/renovation-balcony-04-finish-before.webp':'before-hardware-v4/finish-turnkey-004-no-hardware.png',
+ 'before-hardware-v2/before-008.webp':'before-hardware-v4/finish-turnkey-005-no-hardware.png',
+ 'before-hardware-v2/before-010.webp':'before-hardware-v4/finish-turnkey-006-no-hardware.png',
+ 'before-hardware-v2/before-036.webp':'before-hardware-v4/finish-turnkey-007-no-hardware.png',
+ 'before-hardware-v2/before-037.webp':'before-hardware-v4/finish-turnkey-008-no-hardware.png',
+ 'before-hardware-v2/before-038.webp':'before-hardware-v4/finish-turnkey-009-no-hardware.png',
+ 'before-hardware-v2/before-039.webp':'before-hardware-v4/finish-turnkey-010-no-hardware.png',
+ 'before-hardware-v2/before-040.webp':'before-hardware-v4/finish-turnkey-011-no-hardware.png',
+ 'before-hardware-v2/before-041.webp':'before-hardware-v4/finish-turnkey-012-no-hardware.png',
+ 'before-hardware-v2/before-001.webp':'before-hardware-v4/finish-turnkey-013-no-hardware.png',
+ 'service-before-after/renovation-loggia-02-finish-before.webp':'before-hardware-v4/finish-turnkey-014-no-hardware.png',
+ 'before-hardware-v2/before-005.webp':'before-hardware-v4/finish-turnkey-015-no-hardware.png',
+ 'before-hardware-v2/before-007.webp':'before-hardware-v4/finish-turnkey-016-no-hardware.png',
+ 'before-hardware-v2/before-009.webp':'before-hardware-v4/finish-turnkey-017-no-hardware.png',
+ 'before-hardware-v2/before-011.webp':'before-hardware-v4/finish-turnkey-018-no-hardware.png',
+ 'before-hardware-v2/before-054.webp':'before-hardware-v4/finish-turnkey-019-no-hardware.png',
+ 'service-before-after/renovation-loggia-08-finish-before.webp':'before-hardware-v4/finish-turnkey-020-no-hardware.png',
+ 'before-hardware-v2/before-056.webp':'before-hardware-v4/finish-turnkey-021-no-hardware.png',
+ 'service-before-after/renovation-loggia-10-finish-before.webp':'before-hardware-v4/finish-turnkey-022-no-hardware.png',
+ 'window-details-v2/old-window-clean.webp':'before-hardware-v4/finish-turnkey-023-no-hardware.png',
+ 'before-hardware-v2/before-059.webp':'before-hardware-v4/finish-turnkey-024-no-hardware.png'
 };
 for(const slug of ['otdelka-balkonov','balkon-pod-klyuch']){
  serviceBeforeAfterProjects[slug]=serviceBeforeAfterProjects[slug].map(project=>{
@@ -943,7 +957,7 @@ export const serviceSeo = {
    'До начала работ оцениваем существующее остекление и основание. Если окна не рассчитаны на тёплое помещение, сначала подбираем подходящую конструкцию. Затем согласовываем толщину утепления, пароизоляцию, основание пола и вариант обогрева.',
    'Утепление можно выполнить как отдельный этап либо включить в комплексный проект балкона или лоджии под ключ. После закрытия контура прокладываем электрику и переходим к чистовым материалам.'
   ],
-  concept:['concept-insulation.jpg','Дизайн-концепт утепления стен, пола и потолка балкона','Схема аккуратно собранного тёплого контура'],
+  concept:['insulation-artbalkon-object.png','Утепление балкона пеноплексом на объекте ArtBalkon','Утепление пеноплексом на объекте ArtBalkon',true],
   scope:[
    ['Подготовка основания','Осматриваем поверхности, устраняем заметные щели и подготавливаем места примыканий.'],
    ['Утепление стен и парапета','Подбираем толщину материала с учётом конструкции и доступной площади.'],
