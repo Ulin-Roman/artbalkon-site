@@ -3346,3 +3346,33 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   flex:0 0 32px;
  }
 }
+
+/* Desktop proof cards: place each icon before its text. */
+@media(min-width:641px){
+ .trust-strip .trust-item,
+ .landing-trust .trust-item,
+ .home-page .trust-strip .trust-item{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  text-align:left;
+ }
+ .trust-strip .trust-copy,
+ .landing-trust .trust-copy,
+ .home-page .trust-strip .trust-copy{
+  width:auto;
+  align-items:flex-start;
+ }
+ .trust-strip .trust-copy strong,
+ .landing-trust .trust-copy strong,
+ .home-page .trust-strip .trust-copy strong,
+ .trust-strip .trust-copy span,
+ .landing-trust .trust-copy span,
+ .home-page .trust-strip .trust-copy span{
+  width:auto;
+  justify-content:flex-start;
+  text-align:left;
+ }
+}

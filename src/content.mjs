@@ -38,12 +38,9 @@ export const services = [
  {slug:'elektrika-na-balkone',title:'Электрика и освещение',short:'Сценарный свет, розетки и подсветка рабочей зоны.',h1:'Электрика и освещение на балконе',offer:'Продуманное освещение и розетки сделают балкон удобным для отдыха, хранения или работы.',label:'СВЕТ И КОМФОРТ',image:'concept-electrics.jpg',price:'turnkey',features:['Монтаж светильников и выключателей','Установка розеток','Вывод интернет-кабеля'],question:'Когда планировать электрику?',answer:'Схему лучше согласовать до чистовой отделки. На замере определим сценарии использования, точки света и расположение розеток.'},
  {slug:'obedinenie-balkona-s-komnatoj',title:'Объединение с комнатой',short:'Светлая гостиная с утеплённой лоджией как единое пространство.',h1:'Объединение балкона или лоджии с комнатой',offer:'Поможем превратить лоджию в продолжение комнаты или кухни и подобрать решение по утеплению, отделке и обогреву.',label:'БОЛЬШЕ ПОЛЕЗНОГО ПРОСТРАНСТВА',image:'concept-room.jpg',price:'turnkey',features:['Консультация и замер','Демонтаж и комплекс работ под ключ','Подбор утепления, обогрева и отделки'],question:'С чего начинается объединение?',answer:'С осмотра конструкции и обсуждения задачи. Специалист оценивает объект, помогает выбрать геометрию и материалы и заранее согласует состав работ.'},
  {slug:'osteklenie-kottedzhej',title:'Остекление коттеджей и домов',short:'Панорамная веранда с тонкими профилями и выходом в сад.',h1:'Остекление коттеджей и загородных домов',offer:'Подберём оконные и дверные конструкции для дома, веранды или террасы — от классических до панорамных решений.',label:'СВЕТ ДЛЯ ЗАГОРОДНОГО ДОМА',image:'concept-cottage.jpg',price:'turnkey',features:['Арочные, круглые и панорамные окна','Входные группы, раздвижные окна и двери','Остекление веранд, террас и беседок'],question:'Какие конструкции можно реализовать?',answer:'Выбор зависит от проёмов, назначения помещения и требований к теплу. После замера подберём профиль, формат открывания и комплектацию.'},
- {slug:'holodnoe-osteklenie',title:'Холодное остекление',short:'Защита от дождя, ветра, снега и пыли.',h1:'Холодное остекление балконов в Москве и Московской области',offer:'Практичное решение для защиты балкона от ветра и осадков. Рассчитаем конструкцию по вашим размерам.',label:'ЗАЩИТА ОТ ОСАДКОВ',image:'balcony-glazing.jpg',price:'cold',features:['Для сезонного использования и хранения','Защита от ветра, дождя и снега','Подбор конструкции под размеры балкона'],question:'Будет ли на балконе тепло зимой?',answer:'Холодное остекление защищает от осадков и ветра, но не превращает балкон в жилое помещение. Для использования круглый год рассмотрите тёплое остекление вместе с утеплением и обогревом.'},
- {slug:'teploe-osteklenie',title:'Тёплое остекление',short:'Для балкона, которым можно пользоваться круглый год.',h1:'Тёплое остекление балконов в Москве и Московской области',offer:'Окна для будущего кабинета, зоны отдыха или тёплой лоджии. Подберём профиль, стеклопакет и решение по утеплению.',label:'БОЛЬШЕ ТЕПЛА И ТИШИНЫ',image:'glazing-card-warm.jpg',price:'warm',features:['Профили Rehau, Melke и Gealan','Подбор стеклопакета под шум и солнечную сторону','Возможность комплексного утепления и отделки'],question:'Что потребуется кроме новых окон?',answer:'Чтобы пользоваться балконом зимой, нужно утеплить стены, пол и потолок и предусмотреть обогрев. На замере определим состояние основания и предложим подходящую конструкцию.'},
- {slug:'panoramnoe-osteklenie',title:'Панорамное остекление',short:'Максимум естественного света и современный внешний вид.',h1:'Панорамное остекление балконов в Москве и Московской области',offer:'Откройте пространство свету. Подберём большие светопрозрачные конструкции с учётом особенностей вашего дома.',label:'БОЛЬШЕ СВЕТА И ВИДА',image:'glazing-card-panoramic.jpg',price:'panoramic',features:['Большая площадь остекления','Подбор профиля и безопасной конструкции','Учёт солнца, теплопотерь и особенностей фасада'],question:'Подойдёт ли панорамное остекление вашему дому?',answer:'Это зависит от конструкции балкона, состояния основания и требований к фасаду. Сначала проводим замер и оцениваем возможность монтажа, затем согласовываем решение.'},
- {slug:'holodnoe-osteklenie-lodzhii',title:'Холодное остекление лоджии',short:'Лёгкая защита длинного проёма лоджии от осадков и пыли.',h1:'Холодное остекление лоджии в Москве и Московской области',offer:'Закроем длинный проём лоджии лёгкой оконной системой, продумаем схему створок и аккуратно оформим все примыкания.',label:'ЗАЩИТА ДЛИННОГО ПРОЁМА',image:'service-before-after/loggia-glazing-after.jpg',price:'cold',features:['Защита лоджии от ветра, дождя и снега','Удобные раздвижные или распашные створки','Отливы, подоконники и герметизация по всей длине'],question:'Для чего подходит холодное остекление лоджии?',answer:'Для сезонного использования, хранения и защиты от погоды. Такая система не поддерживает жилую температуру зимой, но делает лоджию чище, тише и удобнее.'},
- {slug:'teploe-osteklenie-lodzhii',title:'Тёплое остекление лоджии',short:'Тёплые окна для кабинета, отдыха или продолжения комнаты.',h1:'Тёплое остекление лоджии в Москве и Московской области',offer:'Подберём профиль и стеклопакет для длинного проёма с учётом шума, солнечной стороны и будущего утепления лоджии.',label:'КОМФОРТ КРУГЛЫЙ ГОД',image:'before-after/after-03.jpg',price:'warm',features:['Энергоэффективный профиль и стеклопакет','Схема створок с удобным доступом для ухода','Подготовка примыканий к комплексному утеплению'],question:'Достаточно ли тёплых окон для лоджии?',answer:'Нет. Для комфортной температуры зимой дополнительно утепляют парапет, боковые стены, пол и потолок и предусматривают безопасный источник обогрева.'},
- {slug:'panoramnoe-osteklenie-lodzhii',title:'Панорамное остекление лоджии',short:'Больше света и открытого вида по всей длине лоджии.',h1:'Панорамное остекление лоджии в Москве и Московской области',offer:'Спроектируем безопасную светопрозрачную конструкцию для длинного проёма с учётом фасада, солнца и удобства открывания.',label:'СВЕТ ПО ВСЕЙ ДЛИНЕ',image:'service-before-after/panoramic-loggia-01-after.jpg',price:'panoramic',features:['Максимум естественного света','Безопасное деление больших конструкций','Учёт приватности, перегрева и теплопотерь'],question:'Можно ли сделать панорамной любую лоджию?',answer:'Возможность зависит от плиты, парапета, фасада и требований дома. На замере оцениваем основание и только после этого предлагаем безопасную конфигурацию.'}
+ {slug:'holodnoe-osteklenie',title:'Холодное остекление',short:'Защита балконов и лоджий от дождя, ветра, снега и пыли.',h1:'Холодное остекление балконов и лоджий в Москве и Московской области',offer:'Защищает от дождя, снега, ветра и городской пыли без лишней нагрузки на основание. Раздвижные створки экономят место — удобно для хранения и сезонного использования.',label:'ЗАЩИТА ОТ ОСАДКОВ',image:'balcony-glazing.jpg',price:'cold',features:['Для сезонного использования и хранения','Защита от ветра, дождя и снега','Подбор конструкции под балкон или лоджию'],question:'Будет ли зимой тепло?',answer:'Холодное остекление защищает от осадков и ветра, но не превращает балкон или лоджию в жилое помещение. Для использования круглый год рассмотрите тёплое остекление вместе с утеплением и обогревом.'},
+ {slug:'teploe-osteklenie',title:'Тёплое остекление',short:'Для балкона или лоджии, которыми можно пользоваться круглый год.',h1:'Тёплое остекление балконов и лоджий в Москве и Московской области',offer:'Сохраняет тепло, уменьшает уличный шум и защищает от сквозняков. Вместе с утеплением позволяет пользоваться балконом или лоджией круглый год — как кабинетом, зоной отдыха или дополнительной комнатой.',label:'БОЛЬШЕ ТЕПЛА И ТИШИНЫ',image:'glazing-card-warm.jpg',price:'warm',features:['Профили Rehau, Melke и Gealan','Подбор стеклопакета под шум и солнечную сторону','Возможность комплексного утепления и отделки'],question:'Что потребуется кроме новых окон?',answer:'Чтобы пользоваться балконом или лоджией зимой, нужно утеплить стены, пол и потолок и предусмотреть обогрев. На замере определим состояние основания и предложим подходящую конструкцию.'},
+ {slug:'panoramnoe-osteklenie',title:'Панорамное остекление',short:'Максимум естественного света для балкона или лоджии.',h1:'Панорамное остекление балконов и лоджий в Москве и Московской области',offer:'Наполняет балкон или лоджию дневным светом, открывает обзор и визуально расширяет пространство. Остекление от пола до потолка придаёт фасаду современный и аккуратный вид.',label:'БОЛЬШЕ СВЕТА И ВИДА',image:'glazing-card-panoramic.jpg',price:'panoramic',features:['Большая площадь остекления','Подбор профиля и безопасной конструкции','Учёт солнца, теплопотерь и особенностей фасада'],question:'Подойдёт ли панорамное остекление вашему дому?',answer:'Это зависит от конструкции балкона или лоджии, состояния основания и требований к фасаду. Сначала проводим замер и оцениваем возможность монтажа, затем согласовываем решение.'}
 ];
 const portfolioPair=(number,title,description)=>({...beforeAfterProjects[number-1],title,description});
 const enhancedVisualKeys=new Set([
@@ -174,14 +171,10 @@ export const serviceBeforeAfterProjects={
  'uteplenie-balkonov':[
   {...matchedFinishingPair(4,"Контрастная отделка после утепления","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
-  {...matchedFinishingPair(9,"Утепление под отделку серым кирпичом","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-009-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(20,"Тёплый контур узкого пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-020-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(25,"Утепление длинного пространства","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(47,"Утепление торца и парапета","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-047-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(103,"Утепление под отделку и освещение","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-103-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
@@ -221,14 +214,10 @@ export const serviceBeforeAfterProjects={
  'uteplenie-lodzhii':[
   {...matchedFinishingPair(4,"Контрастная отделка после утепления","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
-  {...matchedFinishingPair(9,"Утепление под отделку серым кирпичом","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-009-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(20,"Тёплый контур узкого пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-020-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(25,"Утепление длинного пространства","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(47,"Утепление торца и парапета","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-047-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(103,"Утепление под отделку и освещение","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-103-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
@@ -655,7 +644,7 @@ for(const service of services){
  const current=serviceBeforeAfterProjects[service.slug]||[];
  const allowCompletion=['osteklenie-balkonov','teploe-osteklenie'];
  serviceBeforeAfterProjects[service.slug]=completeProjectSeries(current,allowCompletion.includes(service.slug)?projectPoolsByService[service.slug]:[]);
- const expectedCount=12;
+ const expectedCount=service.slug==='uteplenie-balkonov'?8:12;
  if(serviceBeforeAfterProjects[service.slug].length!==expectedCount){
   throw new Error(`Для страницы ${service.slug} требуется ${expectedCount} работ`);
  }
@@ -686,12 +675,13 @@ for(const items of [beforeAfterProjects,...Object.values(serviceBeforeAfterProje
 }
 // Angled matched pairs are exclusive to the panoramic loggia gallery.
 const angledLoggiaTitles={2:'Панорамная лоджия со светлой отделкой',3:'Панорамная лоджия с видом на парк',4:'Панорамная лоджия с зимним видом',6:'Светлая панорамная лоджия',7:'Панорамное остекление в современном доме',8:'Панорамная лоджия с тёмным профилем',10:'Панорамная лоджия с отделкой под кирпич',11:'Панорамное остекление с открытым видом',12:'Панорамное остекление компактной лоджии'};
+const angledLoggiaAfterWithoutHandles={3:'service-before-after/loggia-angled-03-after-no-handles.png',6:'service-before-after/loggia-angled-06-after-no-handles.png'};
 angledLoggiaTitles[5]='Панорамная лоджия в высотном доме с отделкой';
 serviceBeforeAfterProjects['panoramnoe-osteklenie-lodzhii']=serviceBeforeAfterProjects['panoramnoe-osteklenie-lodzhii'].map((project,index)=>{
  const number=index+1;
  if(!angledLoggiaTitles[number])return project;
  const key=`service-before-after/loggia-angled-${String(number).padStart(2,'0')}`;
- return {...project,title:angledLoggiaTitles[number],description:'Панорамное остекление вдоль лоджии от пола до потолка, отделка стен, потолка и пола.',before:`${key}-before.webp`,after:`${key}-after.webp`,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
+ return {...project,title:angledLoggiaTitles[number],description:'Панорамное остекление вдоль лоджии от пола до потолка, отделка стен, потолка и пола.',before:`${key}-before.webp`,after:angledLoggiaAfterWithoutHandles[number]??`${key}-after.webp`,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
 });
 for(const projects of Object.values(serviceBeforeAfterProjects)){
  for(const project of projects){
@@ -845,6 +835,15 @@ serviceBeforeAfterProjects['otdelka-balkonov'] = [...serviceBeforeAfterProjects[
 
 // Four primary pages combine balcony and loggia examples. Identical finished
 // rooms are kept once; unique projects from both former pages remain visible.
+const combineBalconyAndLoggiaGallery=(balconySlug,loggiaSlug)=>{
+ const balconies=(serviceBeforeAfterProjects[balconySlug]||[]).map(project=>({...project,objectType:'balcony'}));
+ const loggias=(serviceBeforeAfterProjects[loggiaSlug]||[]).map(project=>({...project,objectType:'loggia'}));
+ serviceBeforeAfterProjects[balconySlug]=[...balconies,...loggias].filter((project,index,list)=>list.findIndex(item=>item.after===project.after)===index);
+};
+combineBalconyAndLoggiaGallery('holodnoe-osteklenie','holodnoe-osteklenie-lodzhii');
+combineBalconyAndLoggiaGallery('teploe-osteklenie','teploe-osteklenie-lodzhii');
+combineBalconyAndLoggiaGallery('panoramnoe-osteklenie','panoramnoe-osteklenie-lodzhii');
+
 const mergePrimaryGalleries=(primarySlug,loggiaSlug)=>{
  const primary=serviceBeforeAfterProjects[primarySlug]||[];
  const loggias=serviceBeforeAfterProjects[loggiaSlug]||[];
@@ -856,9 +855,61 @@ const mergePrimaryGalleries=(primarySlug,loggiaSlug)=>{
  serviceBeforeAfterProjects[primarySlug]=merged.filter((project,index,list)=>list.findIndex(item=>item.after===project.after)===index);
 };
 mergePrimaryGalleries('osteklenie-balkonov','osteklenie-lodzhii');
+const excludedGlazingShowcaseTitles=new Set([
+ 'Замена старых балконных рам',
+ 'Остекление лоджии с вагонкой',
+ 'Окна на светлой лоджии',
+ 'Остекление лоджии с отделкой под дерево',
+ 'Замена окон на длинной лоджии',
+ 'Остекление лоджии с панелями',
+ 'Окна на лоджии с трековым светом',
+ 'Остекление углового проёма',
+ 'Окна для лоджии с зоной хранения',
+ 'Замена рам на узкой лоджии',
+ 'Окна с широким подоконником',
+ 'Остекление лоджии в высотном доме',
+ 'Компактная лоджия с новыми окнами'
+]);
+serviceBeforeAfterProjects['osteklenie-balkonov']=serviceBeforeAfterProjects['osteklenie-balkonov'].filter(project=>!excludedGlazingShowcaseTitles.has(project.title));
 mergePrimaryGalleries('uteplenie-balkonov','uteplenie-lodzhii');
 mergePrimaryGalleries('otdelka-balkonov','otdelka-lodzhii');
 mergePrimaryGalleries('balkon-pod-klyuch','lodzhiya-pod-klyuch');
+
+// Для объединённых галерей отделки и проектов под ключ используем отдельные
+// версии фотографий «до»: без средних оконных ручек, с нижними щеколдами
+// только на фронтальных открывающихся створках. Боковые окна остаются глухими.
+export const finishBeforeLatchReplacements = {
+ 'before-hardware-v2/before-000.webp':'before-hardware-v3/finish-turnkey-001.png',
+ 'before-hardware-v2/before-002.webp':'before-hardware-v3/finish-turnkey-002.png',
+ 'before-hardware-v2/before-004.webp':'before-hardware-v3/finish-turnkey-003.png',
+ 'service-before-after/renovation-balcony-04-finish-before.webp':'before-hardware-v3/finish-turnkey-004.png',
+ 'before-hardware-v2/before-008.webp':'before-hardware-v3/finish-turnkey-005.png',
+ 'before-hardware-v2/before-010.webp':'before-hardware-v3/finish-turnkey-006.png',
+ 'before-hardware-v2/before-036.webp':'before-hardware-v3/finish-turnkey-007.png',
+ 'before-hardware-v2/before-037.webp':'before-hardware-v3/finish-turnkey-008.png',
+ 'before-hardware-v2/before-038.webp':'before-hardware-v3/finish-turnkey-009.png',
+ 'before-hardware-v2/before-039.webp':'before-hardware-v3/finish-turnkey-010.png',
+ 'before-hardware-v2/before-040.webp':'before-hardware-v3/finish-turnkey-011.png',
+ 'before-hardware-v2/before-041.webp':'before-hardware-v3/finish-turnkey-012.png',
+ 'before-hardware-v2/before-001.webp':'before-hardware-v3/finish-turnkey-013.png',
+ 'service-before-after/renovation-loggia-02-finish-before.webp':'before-hardware-v3/finish-turnkey-014.png',
+ 'before-hardware-v2/before-005.webp':'before-hardware-v3/finish-turnkey-015.png',
+ 'before-hardware-v2/before-007.webp':'before-hardware-v3/finish-turnkey-016.png',
+ 'before-hardware-v2/before-009.webp':'before-hardware-v3/finish-turnkey-017.png',
+ 'before-hardware-v2/before-011.webp':'before-hardware-v3/finish-turnkey-018.png',
+ 'before-hardware-v2/before-054.webp':'before-hardware-v3/finish-turnkey-019.png',
+ 'service-before-after/renovation-loggia-08-finish-before.webp':'before-hardware-v3/finish-turnkey-020.png',
+ 'before-hardware-v2/before-056.webp':'before-hardware-v3/finish-turnkey-021.png',
+ 'service-before-after/renovation-loggia-10-finish-before.webp':'before-hardware-v3/finish-turnkey-022.png',
+ 'window-details-v2/old-window-clean.webp':'before-hardware-v3/finish-turnkey-023.png',
+ 'before-hardware-v2/before-059.webp':'before-hardware-v3/finish-turnkey-024.png'
+};
+for(const slug of ['otdelka-balkonov','balkon-pod-klyuch']){
+ serviceBeforeAfterProjects[slug]=serviceBeforeAfterProjects[slug].map(project=>{
+  const before=finishBeforeLatchReplacements[project.before];
+  return before?{...project,before,visualized:true,beforeVisualized:true,beforeReal:false}:project;
+ });
+}
 
 export const serviceSeo = {
  'osteklenie-balkonov':{
@@ -880,7 +931,7 @@ export const serviceSeo = {
   ],
   photos:[['project-moscow','Тёплое остекление лоджии Rehau в Москве','Тёплое остекление в готовом проекте'],['project-khimki','Большие окна на светлой утеплённой лоджии в Химках','Остекление как часть проекта под ключ']],
   steps:[['Заявка','Обсуждаем назначение балкона или лоджии и удобное время замера.'],['Замер','Снимаем размеры и оцениваем основание на объекте.'],['Расчёт','Согласовываем профиль, стеклопакет, створки и стоимость.'],['Монтаж','Устанавливаем окна, оформляем примыкания и сдаём работу.']],
-  faq:[['Какое остекление выбрать — холодное или тёплое?','Холодное защищает от ветра, дождя и снега, но не делает балкон жилым. Тёплое выбирают для круглогодичного использования и дополняют утеплением стен, пола, потолка и обогревом.'],['Можно ли заменить окна без внутренней отделки?','Да. Остекление можно заказать отдельно. На замере проверим существующую отделку и заранее объясним, какие участки могут потребовать восстановления после монтажа.'],['От чего зависит цена остекления?','От размеров и формы проёма, типа профиля и стеклопакета, количества открывающихся створок, состояния парапета, этажа и сложности монтажа. Точную сумму рассчитываем после замера.']]
+  faq:[['Какое остекление выбрать — холодное, тёплое или панорамное?','Холодное защищает от ветра, дождя и снега, но не делает балкон жилым. Тёплое выбирают для круглогодичного использования и дополняют утеплением стен, пола, потолка и обогревом. Панорамное остекление от пола до потолка даёт больше света и открывает обзор; в зависимости от профильной системы оно может быть холодным или тёплым.'],['Можно ли заменить окна без внутренней отделки?','Да. Остекление можно заказать отдельно. На замере проверим существующую отделку и заранее объясним, какие участки могут потребовать восстановления после монтажа.'],['От чего зависит цена остекления?','От размеров и формы проёма, типа профиля и стеклопакета, количества открывающихся створок, состояния парапета, этажа и сложности монтажа. Точную сумму рассчитываем после замера.']]
  },
  'uteplenie-balkonov':{
   metaTitle:'Утепление балкона и лоджии в Москве — цена за м² | ArtBalkon',
@@ -1090,7 +1141,7 @@ export const serviceSeo = {
   faq:[['Можно ли сделать панорамное остекление веранды?','Да, если основание и проёмы позволяют безопасно установить выбранную систему. Возможность подтверждаем после замера.'],['Какие окна подходят для жилого дома?','Система зависит от теплотехнических требований, размеров проёмов и режима эксплуатации. Подберём профиль и стеклопакет под конкретное помещение.'],['Работаете ли вы по Московской области?','Да, выполняем замеры и монтаж в Москве и Московской области. Удалённость объекта учитывается при расчёте.']]
  },
  'holodnoe-osteklenie':{
-  metaTitle:'Холодное остекление балкона в Москве — цена за м² | ArtBalkon',
+  metaTitle:'Холодное остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',
   metaDescription:'Холодное остекление балконов и лоджий для защиты от дождя, снега, ветра и пыли. Замер и выезд бесплатно.',
   eyebrow:'ЛЁГКАЯ ЗАЩИТА ОТ ПОГОДЫ',
   title:'Практичное остекление для сезонного пространства',
@@ -1102,7 +1153,7 @@ export const serviceSeo = {
   faq:[['Будет ли зимой тепло?','Нет, холодное остекление не предназначено для жилой температуры. Оно снижает воздействие ветра и осадков, но следует за уличной температурой.'],['Можно ли установить раздвижные створки?','Да, это частое решение для узкого балкона. Конкретную систему подбираем по размерам и состоянию проёма.'],['Можно ли потом утеплить балкон?','Для тёплого помещения обычно потребуется заменить холодную оконную систему. Лучше определить конечную задачу до заказа остекления.']]
  },
  'teploe-osteklenie':{
-  metaTitle:'Тёплое остекление балкона в Москве — цена за м² | ArtBalkon',
+  metaTitle:'Тёплое остекление балконов и лоджий в Москве — цена за м² | ArtBalkon',
   metaDescription:'Тёплое остекление балконов и лоджий: профиль, стеклопакет и монтаж для круглогодичного использования вместе с утеплением.',
   eyebrow:'ТЕПЛО И ТИШИНА КРУГЛЫЙ ГОД',
   title:'Окна для будущего кабинета или зоны отдыха',
@@ -1114,7 +1165,7 @@ export const serviceSeo = {
   faq:[['Достаточно ли только заменить окна?','Нет. Для зимнего использования нужен непрерывный утеплённый контур и источник обогрева.'],['Как выбрать стеклопакет?','Учитываем климат, шум, солнечную сторону, площадь остекления и назначение помещения.'],['Можно ли оставить существующую отделку?','Иногда да, но участки вокруг проёма могут потребовать разборки и восстановления. Это оцениваем на замере.']]
  },
  'panoramnoe-osteklenie':{
-  metaTitle:'Панорамное остекление балконов в Москве — цена | ArtBalkon',
+  metaTitle:'Панорамное остекление балконов и лоджий в Москве — цена | ArtBalkon',
   metaDescription:'Панорамное остекление балкона или лоджии с большой площадью стекла. Оценка основания, безопасная конструкция и монтаж.',
   eyebrow:'МАКСИМУМ СВЕТА И ОТКРЫТЫЙ ВИД',
   title:'Панорамное остекление, рассчитанное безопасно',

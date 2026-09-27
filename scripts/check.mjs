@@ -2,7 +2,7 @@ import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements} from '../src/content.mjs';
+import {serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
 import {servicePage,home as renderHome} from '../src/components.mjs';
 const roofPairs=serviceBeforeAfterProjects['krysha-nad-balkonom'];
 const electricalPairs=serviceBeforeAfterProjects['elektrika-na-balkone'];
@@ -34,7 +34,9 @@ for(const [type,slug] of [['balcony','balkon-pod-klyuch'],['loggia','lodzhiya-po
  assert.equal(selected.length,6,`Home must contain six ${type} pairs`);
  for(const project of selected){
   assert.equal(project.stage,'turnkey');
-  assert.ok(serviceBeforeAfterProjects[slug].some(source=>source.before===project.before&&source.after===project.after&&source.title===project.title),'Home must reuse complete turnkey pairs');
+  const sharedBefore=beforeHardwareReplacements[project.before] || project.before;
+  const sectionBefore=slug==='balkon-pod-klyuch'?(finishBeforeLatchReplacements[sharedBefore] || sharedBefore):sharedBefore;
+  assert.ok(serviceBeforeAfterProjects[slug].some(source=>source.before===sectionBefore&&source.after===project.after&&source.title===project.title),'Home must reuse complete turnkey pairs');
  }
 }
 const furnitureGallery=serviceBeforeAfterProjects['mebel-dlya-balkona'];
@@ -52,10 +54,13 @@ for(const [index,p] of furnitureGallery.entries()){
 }
 assert.equal(services.find(s=>s.slug==='mebel-dlya-balkona').title,'Мебель для балконов и лоджий');
 const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
-assert.equal(coldGallery.length,12,'Cold balcony gallery must contain 12 distinct pairs');
+assert.equal(coldGallery.length,24,'Cold glazing gallery must contain 24 distinct pairs');
+assert.equal(coldGallery.filter(project=>project.objectType==='balcony').length,12,'Cold glazing must contain twelve balcony examples');
+assert.equal(coldGallery.filter(project=>project.objectType==='loggia').length,12,'Cold glazing must contain twelve loggia examples');
 const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after.jpg',...Array.from({length:10},(_,i)=>`service-before-after/cold-balcony-matched-${String(i+3).padStart(2,'0')}-after.png`)]);
 for(const project of coldGallery){
- assert.ok(ordinaryColdAssets.has(project.after),`Unexpected cold glazing asset: ${project.after}`);
+ if(project.objectType==='balcony')assert.ok(ordinaryColdAssets.has(project.after),`Unexpected cold balcony asset: ${project.after}`);
+ if(project.objectType==='loggia')assert.match(project.after,/^service-before-after\/(?:cold-ordinary-(?:0[3-9]|1[01])-after\.webp|cold-loggia-(?:graphite-fixed|finished-1[12])-after\.png)$/,'Unexpected cold loggia asset');
  assert.ok(!/панорам/i.test(project.title+' '+project.description),'Panoramic example in ordinary cold glazing gallery');
 }
 const coldLoggias=serviceBeforeAfterProjects['holodnoe-osteklenie-lodzhii'];
@@ -64,7 +69,6 @@ for(const project of coldLoggias){
  assert.equal(project.objectType,'loggia');
  assert.match(project.after,/^service-before-after\/(?:cold-ordinary-(?:0[3-9]|1[01])-after\.webp|cold-loggia-(?:graphite-fixed|finished-1[12])-after\.png)$/,'Unreviewed or panoramic image in cold loggias');
  if(project.after.includes('cold-ordinary-'))assert.equal(project.before,project.after.replace('-after.webp','-before.webp'),'Loggia must keep its matched before image');
- assert.ok(!coldGallery.some(balcony=>balcony.after===project.after),'Balcony and loggia galleries must not share images');
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
  const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type);
@@ -76,13 +80,17 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   assert.equal(p.objectType,type);
   assert.equal(p.stage,stage);
   const expectedBefore=type==='loggia'&&i===10?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
-  assert.equal(p.before,beforeHardwareReplacements[expectedBefore] || expectedBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
+  const hardwareAdjustedBefore=beforeHardwareReplacements[expectedBefore] || expectedBefore;
+  const expectedGalleryBefore=['otdelka-balkonov','balkon-pod-klyuch'].includes(slug)
+   ? finishBeforeLatchReplacements[hardwareAdjustedBefore] || hardwareAdjustedBefore
+   : hardwareAdjustedBefore;
+  assert.equal(p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
   assert.equal(p.after,type==='balcony'&&i===3?'window-details-v2/balcony-04-handles.webp':`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);
  });
 }
-for(const [slug,expectedCount] of [['osteklenie-balkonov',24],['uteplenie-balkonov',12],['otdelka-balkonov',25],['balkon-pod-klyuch',24]]){
+for(const [slug,expectedCount] of [['osteklenie-balkonov',11],['uteplenie-balkonov',8],['otdelka-balkonov',25],['balkon-pod-klyuch',24]]){
  const gallery=serviceBeforeAfterProjects[slug];
  assert.equal(gallery.length,expectedCount,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount,`${slug}: combined gallery repeats finished rooms`);
