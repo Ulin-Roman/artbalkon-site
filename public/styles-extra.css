@@ -2085,10 +2085,11 @@ h1,h2,h3,h4,
 /* Compact campaign message inside the home-page hero copy. */
 .campaign-offer{
  display:grid;
- grid-template-columns:auto auto;
+ grid-template-columns:1fr;
  align-items:center;
+ justify-items:center;
  justify-content:center;
- gap:14px;
+ gap:8px;
  width:min(100%,570px);
  margin-top:22px;
  padding:13px 15px;
