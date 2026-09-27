@@ -701,16 +701,16 @@ serviceBeforeAfterProjects['mebel-dlya-balkona']=serviceBeforeAfterProjects['meb
 });
 // Page-specific reconstructions: do not mutate the shared warm-glazing pool.
 const warmLoggiaBeforeWithoutHandles=[
- 'service-before-after/warm-loggia-empty-01-before-no-handles-v2.png',
+ 'service-before-after/warm-loggia-empty-01-before-clean-v3.png',
  'service-before-after/warm-loggia-aged-02-before-no-handles.png',
- 'service-before-after/warm-loggia-aged-03-before-v2.png',
- 'service-before-after/warm-loggia-empty-04-before-no-handles.png',
- 'service-before-after/warm-loggia-empty-05-before-no-handles.png',
- 'service-before-after/warm-loggia-aged-06-before-no-handles.png',
+ 'service-before-after/warm-loggia-aged-03-before-clean-v3.png',
+ 'service-before-after/warm-loggia-empty-04-before-clean-v2.png',
+ 'service-before-after/warm-loggia-empty-05-before-clean-v2.png',
+ 'service-before-after/warm-loggia-aged-06-before-clean-v2.png',
  'service-before-after/warm-loggia-aged-07-before-no-handles.png',
  'service-before-after/warm-loggia-aged-08-before-no-handles.png',
  'service-before-after/warm-loggia-empty-09-before-no-handles.png',
- 'service-before-after/warm-loggia-empty-10-before-no-handles.png',
+ 'service-before-after/warm-loggia-empty-10-before-clean-v2.png',
  'service-before-after/warm-loggia-empty-11-before-no-handles.png',
  'service-before-after/warm-loggia-aged-12-before-no-handles.png'
 ];
