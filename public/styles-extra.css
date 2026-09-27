@@ -3505,7 +3505,92 @@ body{min-width:0;max-width:100%;overflow-x:clip}
 }
 
 /* On phones, begin the inline calculator with the first question. */
+.quiz-mobile-title{display:none}
 @media(max-width:640px){
+ .quiz-mobile-title{
+  display:block;
+  margin:0 0 18px;
+  text-align:center;
+  font-size:32px;
+  line-height:1.15;
+ }
  .cost-calculator-section .quiz-intro{display:none}
  .cost-calculator-section .quiz-layout{grid-template-columns:minmax(0,1fr)}
+}
+
+/* Keep neighbouring page sections visually connected instead of stacking
+   two large vertical paddings into an empty band. */
+.section,
+.certificates-section .section,
+.process-video-section>.section,
+.home-advantages>.section,
+.finishing-styles{
+ padding-top:40px;
+ padding-bottom:40px;
+}
+.section.why-section,
+.section.faq-section{padding-top:0}
+.campaign-offer-row + .section,
+.campaign-offer-row + #services{padding-top:32px}
+.before-after-section>.section{padding-bottom:28px}
+.before-after-section+.partner-brands{padding-top:28px}
+.promotion-section>.section{padding-bottom:28px}
+.promotion-section+.soft-section>.section{padding-top:28px}
+.social-subscribe{
+ margin-top:32px;
+ padding-top:40px;
+ padding-bottom:32px;
+}
+.insulation-materials{margin-block:32px 40px}
+.case-layout{margin-bottom:40px}
+.final-section.final-visual-cta{
+ margin-top:32px;
+ margin-bottom:32px;
+ padding-top:48px;
+ padding-bottom:48px;
+}
+.contact-location{margin-bottom:36px}
+.glazing-benefits-showcase{padding-block:48px}
+
+@media(max-width:900px){
+ .section,
+ .certificates-section .section,
+ .process-video-section>.section,
+ .home-advantages>.section,
+ .finishing-styles{
+  padding-top:36px;
+  padding-bottom:36px;
+ }
+ .section.why-section,
+ .section.faq-section{padding-top:0}
+ .campaign-offer-row + .section,
+ .campaign-offer-row + #services{padding-top:30px}
+ .final-section.final-visual-cta{margin-block:28px;padding-block:40px}
+ .contact-location{margin-bottom:30px}
+ .glazing-benefits-showcase{padding-block:42px}
+}
+
+@media(max-width:640px){
+ .section,
+ .certificates-section .section,
+ .process-video-section>.section,
+ .home-advantages>.section,
+ .finishing-styles{
+  padding-top:30px;
+  padding-bottom:30px;
+ }
+ .section.why-section,
+ .section.faq-section{padding-top:0}
+ .campaign-offer-row + .section,
+ .campaign-offer-row + #services{padding-top:26px}
+ .before-after-section>.section{padding-bottom:22px}
+ .before-after-section+.partner-brands{padding-top:22px}
+ .promotion-section>.section{padding-bottom:22px}
+ .promotion-section+.soft-section>.section{padding-top:22px}
+ .social-subscribe{margin-top:24px;padding-top:30px;padding-bottom:18px}
+ .insulation-materials{margin-block:22px 30px}
+ .case-layout{margin-bottom:30px}
+ .final-section.final-visual-cta{margin-block:24px;padding-block:32px}
+ .contact-location{margin-bottom:26px}
+ .glazing-benefits-showcase{padding-block:36px}
 }
