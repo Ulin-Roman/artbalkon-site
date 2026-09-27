@@ -4,6 +4,11 @@ import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
 import {servicePage,home as renderHome} from '../src/components.mjs';
+const requiredLocation='в Москве и Московской области';
+for(const [label,html] of [['home',renderHome()],...services.map(service=>[service.slug,servicePage(service)])]){
+ const h1=html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g,' ');
+ assert.ok(h1?.includes(requiredLocation),`${label}: H1 must include ${requiredLocation}`);
+}
 const roofPairs=serviceBeforeAfterProjects['krysha-nad-balkonom'];
 const electricalPairs=serviceBeforeAfterProjects['elektrika-na-balkone'];
 assert.equal(electricalPairs.length,12,'electrical gallery must retain twelve pairs');
@@ -57,7 +62,7 @@ const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
 assert.equal(coldGallery.length,24,'Cold glazing gallery must contain 24 distinct pairs');
 assert.equal(coldGallery.filter(project=>project.objectType==='balcony').length,12,'Cold glazing must contain twelve balcony examples');
 assert.equal(coldGallery.filter(project=>project.objectType==='loggia').length,12,'Cold glazing must contain twelve loggia examples');
-const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after.jpg',...Array.from({length:10},(_,i)=>`service-before-after/cold-balcony-matched-${String(i+3).padStart(2,'0')}-after.png`)]);
+const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after-no-black-handles.png',...Array.from({length:10},(_,i)=>`service-before-after/cold-balcony-matched-${String(i+3).padStart(2,'0')}-after.png`)]);
 for(const project of coldGallery){
  if(project.objectType==='balcony')assert.ok(ordinaryColdAssets.has(project.after),`Unexpected cold balcony asset: ${project.after}`);
  if(project.objectType==='loggia')assert.match(project.after,/^service-before-after\/(?:cold-ordinary-(?:0[3-9]|1[01])-after\.webp|cold-loggia-(?:graphite-fixed|finished-1[12])-after\.png)$/,'Unexpected cold loggia asset');
@@ -81,9 +86,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   assert.equal(p.stage,stage);
   const expectedBefore=type==='loggia'&&i===10?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
   const hardwareAdjustedBefore=beforeHardwareReplacements[expectedBefore] || expectedBefore;
-  const expectedGalleryBefore=['otdelka-balkonov','balkon-pod-klyuch'].includes(slug)
-   ? finishBeforeLatchReplacements[hardwareAdjustedBefore] || hardwareAdjustedBefore
-   : hardwareAdjustedBefore;
+  const expectedGalleryBefore=finishBeforeLatchReplacements[hardwareAdjustedBefore] || hardwareAdjustedBefore;
   assert.equal(p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
   assert.equal(p.after,type==='balcony'&&i===3?'window-details-v2/balcony-04-handles.webp':`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);

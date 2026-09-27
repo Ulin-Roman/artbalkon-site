@@ -154,7 +154,7 @@ html{scroll-padding-top:104px}
 .comparison-prev{left:12px}.comparison-next{right:12px}
 .comparison-nav:hover{background:var(--teal);color:#fff;box-shadow:0 10px 30px rgba(0,119,126,.3);transform:translateY(-50%) scale(1.06)}
 .comparison-nav:focus-visible{outline:3px solid rgba(0,119,126,.35);outline-offset:3px}
-.comparison-modal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0}
+.comparison-modal-grid{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0}
 .comparison-modal-grid figure{position:relative;align-self:start;min-width:0;width:100%;max-width:100%;height:auto!important;margin:0;overflow:hidden;border-radius:14px;background:transparent}
 .comparison-modal-grid img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain;object-position:center}
 @media(min-width:641px){
@@ -168,11 +168,67 @@ html{scroll-padding-top:104px}
  .comparison-modal-grid figure{height:auto!important;min-height:0;width:100%}
  .comparison-modal-grid img{width:100%;height:auto;min-height:0;object-fit:contain}
 }
+
+/* Center the “Before” and “After” badges on every comparison image. */
+.before-after-preview b,
+.comparison-modal-grid figure>span{
+ left:50%!important;
+ right:auto!important;
+ transform:translateX(-50%);
+ text-align:center;
+}
+
+/* Inline calculator placed directly after the before/after gallery. */
+.cost-calculator-section{scroll-margin-top:96px;padding-top:54px}
+.cost-calculator-section .quiz-layout{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);overflow:hidden}
+.cost-calculator-section .quiz-intro{padding:52px 46px;background:#fff}
+.cost-calculator-section .quiz-intro h2{font-size:clamp(34px,3.1vw,48px);line-height:1.08}
+.cost-calculator-section .quiz-form{min-height:520px;padding:42px 46px;background:#f1f2f3;color:var(--ink)}
+.cost-calculator-section .quiz-progress-row,
+.cost-calculator-section .quiz-duration,
+.cost-calculator-section .step-hint,
+.cost-calculator-section .consent{color:var(--muted)}
+.cost-calculator-section .quiz-form legend,
+.cost-calculator-section .back-button{color:var(--ink)}
+.cost-calculator-section .quiz-form progress{accent-color:var(--teal)}
+.cost-calculator-section .quiz-form progress::-webkit-progress-bar{background:#d9ddde}
+.cost-calculator-section .quiz-form progress::-webkit-progress-value{background:var(--teal)}
+.cost-calculator-section .quiz-form progress::-moz-progress-bar{background:var(--teal)}
+.cost-calculator-section .quiz-option{border-color:#d5d9da;background:#fff;color:var(--ink);box-shadow:none}
+.cost-calculator-section .quiz-option:hover{border-color:rgba(0,119,126,.45);background:#fff;box-shadow:0 7px 18px rgba(10,54,55,.07)}
+.cost-calculator-section .quiz-option:has(input:checked){border-color:var(--teal);background:var(--teal-soft);color:var(--teal-dark);box-shadow:0 0 0 1px var(--teal)}
+.cost-calculator-section .quiz-option .radio-circle{border-color:#aeb6b7}
+.cost-calculator-section .quiz-option:has(input:checked) .radio-circle{border-color:var(--teal)}
+.cost-calculator-section .quiz-next-button,
+.cost-calculator-section .quiz-submit{border-color:var(--teal);background:linear-gradient(135deg,#18aaa5 0%,#006a70 100%);color:#fff}
+.cost-calculator-section .quiz-next-button:hover,
+.cost-calculator-section .quiz-submit:hover{border-color:var(--teal-hover);background:linear-gradient(135deg,#129792 0%,#00575d 100%);color:#fff}
+.cost-calculator-section .field input{border-color:#cfd5d6}
+.cost-calculator-section .consent a{color:var(--ink)}
+.cost-calculator-section .form-error{color:#a81f23}
+@media(max-width:900px){
+ .cost-calculator-section .quiz-layout{grid-template-columns:1fr}
+ .cost-calculator-section .quiz-intro{padding:34px 30px}
+ .cost-calculator-section .quiz-form{min-height:490px;padding:32px 30px}
+}
+@media(max-width:640px){
+ .cost-calculator-section{padding-top:34px}
+ .cost-calculator-section .quiz-intro{padding:28px 22px}
+ .cost-calculator-section .quiz-intro h2{font-size:31px}
+ .cost-calculator-section .quiz-intro>p:not(.eyebrow){margin-top:16px}
+ .cost-calculator-section .quiz-note{margin-top:24px;padding-top:18px}
+ .cost-calculator-section .quiz-phone{margin-top:24px}
+ .cost-calculator-section .quiz-form{min-height:470px;padding:27px 20px}
+ .cost-calculator-section .quiz-options{grid-template-columns:1fr}
+ .cost-calculator-section .quiz-option{min-height:64px;padding:16px 14px}
+ .cost-calculator-section .quiz-controls{gap:10px}
+ .cost-calculator-section .quiz-duration{display:none}
+}
 .comparison-modal-grid figure>span{position:absolute;z-index:2;left:15px;top:15px;padding:8px 11px;border:1px solid rgba(255,255,255,.4);border-radius:8px;background:rgba(4,37,37,.7);color:#fff;font-size:10px;font-weight:700;line-height:1;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px)}
 @keyframes comparison-in{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
 @keyframes comparison-backdrop{from{opacity:0}to{opacity:1}}
 @media(max-width:900px){.before-after-grid{grid-template-columns:1fr 1fr}.before-after-preview{height:255px}.comparison-modal{width:calc(100% - 28px);max-height:calc(100dvh - 28px)}.comparison-modal-grid figure{height:55dvh}}
-@media(max-width:640px){.before-after-grid{grid-template-columns:1fr;gap:17px}.before-after-preview{height:250px}.comparison-modal{width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:17px}.comparison-modal-shell{padding:17px}.comparison-modal-head{gap:15px;margin-bottom:16px}.comparison-modal-head h2{font-size:26px}.comparison-close{width:39px;height:39px}.comparison-nav{top:auto;bottom:14px;width:46px;height:46px;font-size:34px;transform:none}.comparison-prev{left:18px}.comparison-next{right:18px}.comparison-nav:hover{transform:scale(1.04)}.comparison-modal-grid{grid-template-columns:1fr;gap:8px;padding-bottom:58px}.comparison-modal-grid figure{height:42dvh}.comparison-modal-grid figure>span{left:10px;top:10px}}
+@media(max-width:640px){.before-after-grid{grid-template-columns:1fr;gap:17px}.before-after-preview{height:250px}.comparison-modal{width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:17px}.comparison-modal-shell{padding:17px}.comparison-modal-head{gap:15px;margin-bottom:16px}.comparison-modal-head h2{font-size:26px}.comparison-close{width:39px;height:39px}.comparison-nav{top:50%;bottom:auto;width:46px;height:46px;font-size:34px;transform:translateY(-50%)}.comparison-prev{left:8px}.comparison-next{right:8px}.comparison-nav:hover{transform:translateY(-50%) scale(1.04)}.comparison-modal-grid{grid-template-columns:1fr;gap:8px;padding-bottom:0}.comparison-modal-grid figure{height:42dvh}.comparison-modal-grid figure>span{left:10px;top:10px}}
 @media(prefers-reduced-motion:reduce){.before-after-card,.before-after-preview img,.comparison-modal[open],.comparison-modal[open]::backdrop{animation:none;transition:none}}
 
 /* Quiz modal */
@@ -2983,7 +3039,9 @@ main .eyebrow{display:none!important}
 }
 @media(min-width:641px){
  .landing-hero .landing-copy{transform:none!important}
- .landing-hero .landing-copy-main{transform:translateY(-40px)}
+ .landing-hero .landing-copy-main{transform:none;padding-top:18px}
+ .home-page .hero h1,
+ .landing-hero .landing-grid h1{font-size:clamp(38px,3vw,50px)}
 }
 @media(max-width:640px){
  .landing-hero .landing-copy>.breadcrumbs{
@@ -3145,7 +3203,7 @@ main .eyebrow{display:none!important}
 }
 .insulation-materials li{
  display:grid;
- grid-template-columns:112px 38px minmax(0,1fr);
+ grid-template-columns:38px minmax(0,1fr) 150px;
  gap:13px;
  align-items:center;
  min-height:106px;
@@ -3154,14 +3212,39 @@ main .eyebrow{display:none!important}
  border-radius:16px;
  background:var(--page-gray);
 }
-.insulation-materials li>img{
- width:112px;
- height:82px;
- object-fit:cover;
+.insulation-material-media{
+ grid-column:3;
+ grid-row:1;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ width:150px;
+ height:86px;
+ padding:5px;
  border-radius:11px;
+ background:#fff;
  box-shadow:0 4px 14px rgba(18,42,43,.1);
 }
-.insulation-materials li>span{
+.insulation-material-media img{
+ display:block;
+ max-width:100%;
+ height:100%;
+ object-fit:contain;
+}
+.insulation-material-media-pair{
+ gap:5px;
+ padding-inline:4px;
+}
+.insulation-material-media-pair img{width:59px}
+.insulation-material-media-pair b{
+ flex:0 0 auto;
+ color:var(--teal);
+ font-size:20px;
+ line-height:1;
+}
+.insulation-materials .insulation-material-check{
+ grid-column:1;
+ grid-row:1;
  display:grid;
  width:38px;
  height:38px;
@@ -3173,6 +3256,8 @@ main .eyebrow{display:none!important}
  font-weight:800;
 }
 .insulation-materials li strong{
+ grid-column:2;
+ grid-row:1;
  font-size:15px;
  line-height:1.45;
 }
@@ -3189,13 +3274,16 @@ main .eyebrow{display:none!important}
  .insulation-materials h2{font-size:29px}
  .insulation-materials-copy p{font-size:14px}
  .insulation-materials li{
-  grid-template-columns:78px 32px minmax(0,1fr);
+  grid-template-columns:32px minmax(0,1fr) 108px;
   min-height:82px;
   gap:10px;
   padding:9px;
  }
- .insulation-materials li>img{width:78px;height:64px;border-radius:9px}
- .insulation-materials li>span{width:32px;height:32px;font-size:16px}
+ .insulation-material-media{width:108px;height:64px;border-radius:9px}
+ .insulation-material-media-pair{gap:3px;padding-inline:3px}
+ .insulation-material-media-pair img{width:41px}
+ .insulation-material-media-pair b{font-size:16px}
+ .insulation-materials .insulation-material-check{width:32px;height:32px;font-size:16px}
  .insulation-materials li strong{font-size:13px}
 }
 
@@ -3389,4 +3477,34 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   justify-content:flex-start;
   text-align:left;
  }
+}
+
+/* On phones, let the proof cards overlap the lower edge of the hero photo. */
+@media(max-width:640px){
+ .home-page .trust-strip,
+ .landing-hero>.landing-trust{
+  position:relative;
+  z-index:6;
+  margin-top:-28px;
+ }
+ .landing-hero>.landing-trust{margin-bottom:18px}
+}
+
+/* Compact the gift-card action visually on phones; the whole card remains tappable. */
+@media(max-width:640px){
+ .promotion-card-copy>span{
+  min-height:38px;
+  padding:7px 10px;
+ }
+}
+
+/* Keep the mobile gallery heading connected to its first before/after card. */
+@media(max-width:640px){
+ .before-after-section .section-heading{margin-bottom:14px}
+}
+
+/* On phones, begin the inline calculator with the first question. */
+@media(max-width:640px){
+ .cost-calculator-section .quiz-intro{display:none}
+ .cost-calculator-section .quiz-layout{grid-template-columns:minmax(0,1fr)}
 }

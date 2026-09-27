@@ -21,20 +21,24 @@ async function redirect(path,target,label){
  const dir='dist'+path,destination=base==='/'?target:`${base}${target.slice(1)}`;
  await mkdir(dir,{recursive:true});
  const body=`<section class="section container legal" id="callback"><p class="eyebrow">УСЛУГИ ОБЪЕДИНЕНЫ</p><h1>${esc(label)}</h1><p>Мы объединили страницы для балконов и лоджий. Сейчас откроется общая страница услуги.</p><a class="button" href="${target}">Перейти к услуге ↗</a></section>`;
- const html=shell(body,{path,title:`${label} — общая страница | ArtBalkon`,description:`Страница услуги объединена с общей страницей для балконов и лоджий. Перейдите к актуальному описанию работ, примерам и расчёту стоимости.`,noindex:true}).replace('</head>',`<meta http-equiv="refresh" content="0;url=${destination}"><script>location.replace(${JSON.stringify(destination)}+location.search+location.hash)</script></head>`);
+ const metaTitle=`${label.replace(' и Московской области',' и МО')} | ArtBalkon`;
+ const html=shell(body,{path,title:metaTitle,description:`Страница услуги объединена с общей страницей для балконов и лоджий. Перейдите к актуальному описанию работ, примерам и расчёту стоимости.`,noindex:true}).replace('</head>',`<meta http-equiv="refresh" content="0;url=${destination}"><script>location.replace(${JSON.stringify(destination)}+location.search+location.hash)</script></head>`);
  await writeFile(dir+'index.html',baseHtml(html));
 }
 await page('/',home(),{image:'/assets/hero-balcony-v2.webp'});
 for(const s of services){const seo=serviceSeo[s.slug];await page(`/${s.slug}/`,servicePage(s),{title:seo?.metaTitle||`${s.h1} — цены и замер | ArtBalkon`,description:seo?.metaDescription||s.offer,image:imageAsset(s.image)});}
-await redirect('/osteklenie-lodzhii/','/osteklenie-balkonov/','Остекление балконов и лоджий');
-await redirect('/uteplenie-lodzhii/','/uteplenie-balkonov/','Утепление балконов и лоджий');
-await redirect('/otdelka-lodzhii/','/otdelka-balkonov/','Отделка балконов и лоджий');
-await redirect('/lodzhiya-pod-klyuch/','/balkon-pod-klyuch/','Балконы и лоджии под ключ');
-await redirect('/holodnoe-osteklenie-lodzhii/','/holodnoe-osteklenie/','Холодное остекление балконов и лоджий');
-await redirect('/teploe-osteklenie-lodzhii/','/teploe-osteklenie/','Тёплое остекление балконов и лоджий');
-await redirect('/panoramnoe-osteklenie-lodzhii/','/panoramnoe-osteklenie/','Панорамное остекление балконов и лоджий');
-await page('/nashi-raboty/',`<section class="section container"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span aria-hidden="true">/</span><span aria-current="page">Наши работы</span></nav><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы,<br>в которых хочется жить</h1><p class="hero-description">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
-for(const p of projects)await page(`/nashi-raboty/${p.slug}/`,projectPage(p),{title:`${p.title} — ${p.location} | ArtBalkon`,description:p.intro,image:imageAsset(p.image)});
+await redirect('/osteklenie-lodzhii/','/osteklenie-balkonov/','Остекление балконов и лоджий в Москве и Московской области');
+await redirect('/uteplenie-lodzhii/','/uteplenie-balkonov/','Утепление балконов и лоджий в Москве и Московской области');
+await redirect('/otdelka-lodzhii/','/otdelka-balkonov/','Отделка балконов и лоджий в Москве и Московской области');
+await redirect('/lodzhiya-pod-klyuch/','/balkon-pod-klyuch/','Балконы и лоджии под ключ в Москве и Московской области');
+await redirect('/holodnoe-osteklenie-lodzhii/','/holodnoe-osteklenie/','Холодное остекление балконов и лоджий в Москве и Московской области');
+await redirect('/teploe-osteklenie-lodzhii/','/teploe-osteklenie/','Тёплое остекление балконов и лоджий в Москве и Московской области');
+await redirect('/panoramnoe-osteklenie-lodzhii/','/panoramnoe-osteklenie/','Панорамное остекление балконов и лоджий в Москве и Московской области');
+await page('/nashi-raboty/',`<section class="section container"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span aria-hidden="true">/</span><span aria-current="page">Наши работы</span></nav><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы и лоджии<br>в Москве и Московской области</h1><p class="hero-description">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
+for(const p of projects){
+ const projectHeading=`${p.title.replace(/ в (?:Москве|Химках)$/,'')} в Москве и Московской области`;
+ await page(`/nashi-raboty/${p.slug}/`,projectPage({...p,title:projectHeading}),{title:`${p.title} — ${p.location} | ArtBalkon`,description:p.intro,image:imageAsset(p.image)});
+}
 const privacy=await readFile('src/privacy.html','utf8');
 await page('/privacy/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Политика конфиденциальности</h1>${privacy}</article>`,{title:'Политика конфиденциальности — ArtBalkon',noindex:true});
 await page('/consent/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Согласие на обработку персональных данных</h1><p>Отправляя форму с отмеченным полем согласия, я разрешаю ${esc(company.operator)} обрабатывать предоставленные мной имя, номер телефона и сведения о заявке для связи со мной, подготовки расчёта и обсуждения заказа.</p><p>Обработка включает сбор, запись, систематизацию, накопление, хранение, уточнение, использование и удаление указанных данных. Данные об источнике перехода и рекламные метки используются для определения источника заявки.</p><p>Согласие действует до достижения целей обработки или его отзыва. Я могу отозвать согласие по электронной почте <a href="mailto:${company.privacyEmail}">${company.privacyEmail}</a>, указав в теме «Отзыв согласия на обработку персональных данных».</p><p>Подробные условия изложены в <a href="/privacy/">политике конфиденциальности</a>.</p></article>`,{title:'Согласие на обработку персональных данных — ArtBalkon',noindex:true});
