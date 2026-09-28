@@ -121,7 +121,6 @@ html{scroll-padding-top:104px}
 .before-after-section .section-heading>div{width:100%;text-align:center}
 .before-after-section .section-heading .eyebrow{justify-content:center;text-align:center}
 .before-after-section .section-heading .section-description{max-width:560px;margin-inline:auto;text-align:center}
-.before-after-heading-secondary{display:block;margin-top:10px;color:var(--muted);font-size:clamp(17px,1.5vw,21px);font-weight:600;line-height:1.3;letter-spacing:-.02em}
 .before-after-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .before-after-grid.compact{grid-template-columns:repeat(auto-fit,minmax(280px,420px));justify-content:center}
 .before-after-more{display:flex;justify-content:center;margin-top:32px}
@@ -172,6 +171,22 @@ html{scroll-padding-top:104px}
  .comparison-modal-grid img{width:100%;height:auto;min-height:0;object-fit:contain}
 }
 
+/* Quiet secondary action below the before/after gallery. */
+.before-after-more-button.button,
+.before-after-more-button.button:not(.button-outline):not(.button-white){
+ background:transparent;
+ border-color:rgba(34,39,39,.55);
+ color:var(--ink);
+ box-shadow:none;
+}
+.before-after-more-button.button:hover,
+.before-after-more-button.button:not(.button-outline):not(.button-white):hover{
+ background:rgba(34,39,39,.06);
+ border-color:var(--ink);
+ color:var(--ink);
+}
+.before-after-more-button.button span[aria-hidden]{color:currentColor}
+
 /* Center the “Before” and “After” badges on every comparison image. */
 .before-after-preview b,
 .comparison-modal-grid figure>span{
@@ -192,6 +207,27 @@ html{scroll-padding-top:104px}
 .cost-calculator-section .consent{color:var(--muted)}
 .cost-calculator-section .quiz-form legend,
 .cost-calculator-section .back-button{color:var(--ink)}
+.quiz-form .back-button{
+ display:inline-flex;
+ min-height:44px;
+ align-items:center;
+ justify-content:center;
+ padding:9px 16px;
+ border:1px solid rgba(34,39,39,.38);
+ border-radius:999px;
+ background:transparent;
+ color:var(--ink);
+ transition:background .2s,border-color .2s,color .2s;
+}
+.quiz-form .back-button:not(:disabled):hover{
+ border-color:var(--ink);
+ background:rgba(34,39,39,.06);
+}
+.quiz-form .back-button:disabled{
+ border-color:rgba(34,39,39,.22);
+ background:transparent;
+ opacity:.55;
+}
 .cost-calculator-section .quiz-form progress{accent-color:var(--teal)}
 .cost-calculator-section .quiz-form progress::-webkit-progress-bar{background:#d9ddde}
 .cost-calculator-section .quiz-form progress::-webkit-progress-value{background:var(--teal)}
@@ -1377,6 +1413,7 @@ h1,h2,h3,h4,
 .source-service-details .section-heading{max-width:900px;margin-inline:auto;margin-bottom:46px}
 .source-service-details .section-description{max-width:760px;margin-inline:auto;text-align:center}
 .source-service-details-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.finishing-materials .source-service-details-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 .source-service-details-grid article{position:relative;min-height:210px;padding:28px 24px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow-card);transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
 .source-service-details-grid article:hover{transform:translateY(-5px);border-color:#aed1cf;box-shadow:var(--shadow-card-hover)}
 .source-service-details-grid article>span{display:block;margin-bottom:34px;color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.12em}
@@ -1385,11 +1422,13 @@ h1,h2,h3,h4,
 .source-service-details-note{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:980px;margin:30px auto 0;padding:24px 28px;border-radius:16px;background:var(--teal-mist)}
 .source-service-details-note p{color:var(--muted);font-size:13px;line-height:1.75}
 @media(max-width:1000px){
- .source-service-details-grid{grid-template-columns:1fr 1fr}
+ .source-service-details-grid,
+ .finishing-materials .source-service-details-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:640px){
  .source-service-details .section-heading{margin-bottom:28px}
- .source-service-details-grid{grid-template-columns:1fr;gap:14px}
+ .source-service-details-grid,
+ .finishing-materials .source-service-details-grid{grid-template-columns:1fr;gap:14px}
  .source-service-details-grid article{min-height:0;padding:22px}
  .source-service-details-grid article>span{margin-bottom:18px}
  .source-service-details-note{grid-template-columns:1fr;gap:14px;margin-top:20px;padding:21px}
@@ -3558,6 +3597,7 @@ body{min-width:0;max-width:100%;overflow-x:clip}
 
 /* Compact the gift-card action visually on phones; the whole card remains tappable. */
 @media(max-width:640px){
+ .promotion-card-copy{padding-bottom:22px}
  .promotion-card-copy>span{
   min-height:38px;
   padding:7px 10px;
@@ -3704,6 +3744,7 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   font-size:14px;
   line-height:1.68;
   text-align:left;
+  text-shadow:0 1px 3px rgba(0,0,0,.72);
  }
  .service-seo-intro .service-seo-copy-body .button{
   width:100%;
@@ -3721,7 +3762,7 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   position:absolute;
   z-index:1;
   inset:0;
-  background:linear-gradient(180deg,rgba(8,17,18,.18) 0%,rgba(8,17,18,.46) 42%,rgba(8,17,18,.88) 100%);
+  background:linear-gradient(180deg,rgba(8,17,18,.52) 0%,rgba(8,17,18,.76) 42%,rgba(8,17,18,.96) 100%);
   content:"";
  }
  .service-seo-intro figure img{
