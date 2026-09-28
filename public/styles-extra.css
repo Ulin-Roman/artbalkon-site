@@ -1423,7 +1423,8 @@ h1,h2,h3,h4,
 .source-service-details-grid article>span{display:block;margin-bottom:34px;color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.12em}
 .source-service-details-grid h3{font-size:21px;line-height:1.35}
 .source-service-details-grid p{margin-top:13px;color:var(--muted);font-size:14px;line-height:1.75}
-.finishing-materials .source-service-details-grid article{display:grid;grid-template-columns:minmax(0,1fr) 116px;align-items:center;gap:22px;overflow:hidden}
+.finishing-materials .source-service-details-grid article{display:grid;grid-template-columns:minmax(0,1fr) 116px;align-items:center;gap:22px;overflow:hidden;border-color:rgba(0,119,126,.1);box-shadow:0 16px 38px rgba(18,67,70,.14),0 3px 10px rgba(18,67,70,.07)}
+.finishing-materials .source-service-details-grid article:hover{box-shadow:0 21px 46px rgba(18,67,70,.18),0 5px 13px rgba(18,67,70,.08)}
 .finishing-material-copy{min-width:0}
 .finishing-material-thumb{width:116px;height:116px;margin:0;overflow:hidden;border-radius:16px;background:var(--teal-mist)}
 .finishing-material-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
@@ -3861,4 +3862,75 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   background:linear-gradient(180deg,rgba(8,17,18,.2) 0%,rgba(8,17,18,.5) 36%,rgba(8,17,18,.92) 100%);
  }
  .glazing-benefits-photo figcaption{display:none}
+}
+
+/* One consistent elevation system for card-like surfaces across the site. */
+:root{
+ --site-card-shadow:0 14px 34px rgba(18,55,58,.13),0 3px 9px rgba(18,55,58,.065);
+ --site-card-shadow-hover:0 20px 44px rgba(18,55,58,.17),0 5px 13px rgba(18,55,58,.075);
+ --site-panel-shadow:0 22px 54px rgba(18,55,58,.14),0 5px 14px rgba(18,55,58,.07);
+}
+
+.service-card,
+.extra-card,
+.glazing-card,
+.choice-card,
+.review,
+.before-after-card,
+.partner-brand-card,
+.reviews-widget-aside,
+.yandex-reviews-widget,
+.avito-reviews-widget,
+.service-scope-grid article,
+.source-service-details-grid article,
+.promotion-card,
+.social-subscribe-card,
+.certificate-card a,
+.why-grid article,
+.trust-strip>div,
+.finishing-style-panel,
+.process-video-card,
+.insulation-materials,
+.price-list,
+.faq-list{
+ box-shadow:var(--site-card-shadow);
+}
+
+.quiz-layout,
+.thermal-section,
+.transformation,
+.final-section,
+.contact-location,
+.service-seo-intro figure,
+.project-image,
+.landing-photo,
+.case-photo,
+.glazing-benefits-photo,
+.home-advantages-photo{
+ box-shadow:var(--site-panel-shadow);
+}
+
+.service-card:hover,
+.extra-card:hover,
+.glazing-card:hover,
+.choice-card:hover,
+.review:hover,
+.before-after-card:hover,
+.partner-brand-card:hover,
+.service-scope-grid article:hover,
+.source-service-details-grid article:hover,
+.promotion-card:hover,
+.social-subscribe-card:hover,
+.certificate-card a:hover,
+.why-grid article:hover,
+.process-video-card:hover{
+ box-shadow:var(--site-card-shadow-hover);
+}
+
+@media(max-width:640px){
+ :root{
+  --site-card-shadow:0 10px 26px rgba(18,55,58,.12),0 2px 7px rgba(18,55,58,.06);
+  --site-card-shadow-hover:0 10px 26px rgba(18,55,58,.12),0 2px 7px rgba(18,55,58,.06);
+  --site-panel-shadow:0 16px 36px rgba(18,55,58,.14),0 4px 10px rgba(18,55,58,.065);
+ }
 }
