@@ -121,6 +121,7 @@ html{scroll-padding-top:104px}
 .before-after-section .section-heading>div{width:100%;text-align:center}
 .before-after-section .section-heading .eyebrow{justify-content:center;text-align:center}
 .before-after-section .section-heading .section-description{max-width:560px;margin-inline:auto;text-align:center}
+.before-after-subtitle{margin-top:12px;color:var(--muted);font-size:18px;font-weight:600;line-height:1.3;letter-spacing:-.02em}
 .before-after-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .before-after-grid.compact{grid-template-columns:repeat(auto-fit,minmax(280px,420px));justify-content:center}
 .before-after-more{display:flex;justify-content:center;margin-top:32px}
@@ -171,19 +172,20 @@ html{scroll-padding-top:104px}
  .comparison-modal-grid img{width:100%;height:auto;min-height:0;object-fit:contain}
 }
 
-/* Quiet secondary action below the before/after gallery. */
+/* White secondary action below the before/after gallery. */
 .before-after-more-button.button,
 .before-after-more-button.button:not(.button-outline):not(.button-white){
- background:transparent;
- border-color:rgba(34,39,39,.55);
+ background:#fff;
+ border-color:#fff;
  color:var(--ink);
- box-shadow:none;
+ box-shadow:0 8px 22px rgba(15,63,62,.1);
 }
 .before-after-more-button.button:hover,
 .before-after-more-button.button:not(.button-outline):not(.button-white):hover{
- background:rgba(34,39,39,.06);
- border-color:var(--ink);
+ background:#f5f7f7;
+ border-color:#f5f7f7;
  color:var(--ink);
+ box-shadow:0 11px 26px rgba(15,63,62,.14);
 }
 .before-after-more-button.button span[aria-hidden]{color:currentColor}
 
@@ -276,6 +278,8 @@ html{scroll-padding-top:104px}
 .quiz-modal .quiz-layout{border:0;border-radius:20px;box-shadow:none}
 .quiz-modal-close{position:absolute;z-index:5;top:14px;right:14px;width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(0,119,126,.2);border-radius:50%;background:#fff;color:var(--teal-dark);font-size:26px;line-height:1;box-shadow:0 5px 18px rgba(0,45,47,.12);transition:transform .2s,background .2s}
 .quiz-modal-close:hover{transform:rotate(5deg);background:var(--teal-soft)}
+.nav-quiz-trigger{padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.desktop-nav .nav-quiz-trigger:hover{color:var(--teal)}
 @media(max-width:900px){.quiz-modal{width:calc(100% - 24px);max-height:calc(100dvh - 24px)}.quiz-modal .quiz-intro{padding-right:70px}}
 @media(max-width:640px){.quiz-modal{width:calc(100% - 12px);max-height:calc(100dvh - 12px);border-radius:15px}.quiz-modal-shell,.quiz-modal .quiz-layout{border-radius:15px}.quiz-modal-close{top:10px;right:10px;width:38px;height:38px}.quiz-modal .quiz-intro{padding:24px 58px 22px 20px}.quiz-modal .quiz-intro h2{font-size:27px}.quiz-modal .quiz-intro>p:not(.eyebrow),.quiz-modal .quiz-note{display:none}.quiz-modal .quiz-form{min-height:440px}}
 @media(prefers-reduced-motion:reduce){.quiz-modal[open],.quiz-modal[open]::backdrop{animation:none}}
@@ -1419,6 +1423,11 @@ h1,h2,h3,h4,
 .source-service-details-grid article>span{display:block;margin-bottom:34px;color:var(--teal);font-size:12px;font-weight:700;letter-spacing:.12em}
 .source-service-details-grid h3{font-size:21px;line-height:1.35}
 .source-service-details-grid p{margin-top:13px;color:var(--muted);font-size:14px;line-height:1.75}
+.finishing-materials .source-service-details-grid article{display:grid;grid-template-columns:minmax(0,1fr) 116px;align-items:center;gap:22px;overflow:hidden}
+.finishing-material-copy{min-width:0}
+.finishing-material-thumb{width:116px;height:116px;margin:0;overflow:hidden;border-radius:16px;background:var(--teal-mist)}
+.finishing-material-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.finishing-materials .source-service-details-grid article:hover .finishing-material-thumb img{transform:scale(1.06)}
 .source-service-details-note{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:980px;margin:30px auto 0;padding:24px 28px;border-radius:16px;background:var(--teal-mist)}
 .source-service-details-note p{color:var(--muted);font-size:13px;line-height:1.75}
 @media(max-width:1000px){
@@ -1431,11 +1440,13 @@ h1,h2,h3,h4,
  .finishing-materials .source-service-details-grid{grid-template-columns:1fr;gap:14px}
  .source-service-details-grid article{min-height:0;padding:22px}
  .source-service-details-grid article>span{margin-bottom:18px}
+ .finishing-materials .source-service-details-grid article{grid-template-columns:minmax(0,1fr) 88px;gap:16px;padding:18px 18px 18px 20px}
+ .finishing-material-thumb{width:88px;height:88px;border-radius:13px}
  .source-service-details-note{grid-template-columns:1fr;gap:14px;margin-top:20px;padding:21px}
  .source-service-details .section-cta .button{width:100%}
 }
 @media(prefers-reduced-motion:reduce){
- .source-service-details-grid article{transition:none}
+ .source-service-details-grid article,.finishing-material-thumb img{transition:none}
 }
 
 /* Compact messenger icon groups in the final CTA and footer. */
@@ -3700,24 +3711,13 @@ body{min-width:0;max-width:100%;overflow-x:clip}
  .glazing-benefits-showcase{padding-block:36px}
 }
 
-/* Give the primary mobile hero action a restrained vertical cue. */
-@keyframes mobile-hero-cta-bob{
- 0%,100%{transform:translateY(2px)}
- 50%{transform:translateY(-3px)}
-}
-@media(max-width:640px){
- .home-page .hero-actions>.button,
- .landing-hero .landing-copy-main>.button{
-  animation:mobile-hero-cta-bob 2.8s ease-in-out infinite;
-  will-change:transform;
- }
-}
-@media(max-width:640px) and (prefers-reduced-motion:reduce){
- .home-page .hero-actions>.button,
- .landing-hero .landing-copy-main>.button{
-  animation:none;
-  transform:none;
- }
+/* Buttons stay still until the user hovers over or presses them. */
+.button,
+.before-after-lead,
+.quiz-next-button,
+.mobile-bottom a{
+ animation:none!important;
+ will-change:auto;
 }
 
 /* On phones, merge the service explanation and its image into one visual card. */

@@ -73,21 +73,29 @@
   return true;
  }
  document.querySelectorAll('input').forEach(el=>el.addEventListener('input',()=>{el.setCustomValidity('');el.closest('form')?.querySelector('.form-error')?.replaceChildren();}));
- const quizDialog=document.querySelector('dialog#quiz');
- const quiz=$('[data-lead-form="quiz"]');let step=0,started=false;
- const steps=quiz?[...quiz.querySelectorAll('[data-step]')]:[];
- const lastStep=Math.max(0,steps.length-1);
- function begin(){if(!started){track('quiz_start');started=true;}}
- function showStep(index,focus=true){step=Math.max(0,Math.min(lastStep,index));steps.forEach((el,i)=>el.hidden=i!==step);$('#step-count').textContent=`Шаг ${step+1} из ${steps.length}`;$('#quiz-progress').max=steps.length;$('#quiz-progress').value=step+1;$('#quiz-back').disabled=step===0;$('#quiz-next').hidden=step===lastStep;$('#quiz-submit').hidden=step!==lastStep;quiz.querySelector('.form-error').textContent='';if(focus)steps[step]?.querySelector('legend')?.focus({preventScroll:true});}
+ const quizDialog=document.querySelector('dialog#quiz-modal');
+ const quizControllers=new Map();
+ document.querySelectorAll('[data-lead-form="quiz"]').forEach(form=>{let step=0,started=false;const steps=[...form.querySelectorAll('[data-step]')],lastStep=Math.max(0,steps.length-1),stepCount=form.querySelector('[id^="step-count"]'),progress=form.querySelector('[id^="quiz-progress"]'),back=form.querySelector('.back-button'),next=form.querySelector('.quiz-next-button'),submit=form.querySelector('[type="submit"]');
+  const begin=()=>{if(!started){track('quiz_start');started=true;}};
+  const showStep=(index,focus=true)=>{step=Math.max(0,Math.min(lastStep,index));steps.forEach((el,i)=>el.hidden=i!==step);stepCount.textContent=`Шаг ${step+1} из ${steps.length}`;progress.max=steps.length;progress.value=step+1;back.disabled=step===0;next.hidden=step===lastStep;submit.hidden=step!==lastStep;form.querySelector('.form-error').textContent='';if(focus)steps[step]?.querySelector('legend')?.focus({preventScroll:true});};
+  const advance=()=>{begin();if(validate(form,steps[step]))showStep(Math.min(lastStep,step+1));};
+  const controller={form,steps,lastStep,begin,showStep,advance,currentStep:()=>step,atLastStep:()=>step===lastStep};quizControllers.set(form,controller);
+  form.addEventListener('change',begin);next?.addEventListener('click',advance);back?.addEventListener('click',()=>showStep(Math.max(0,step-1)));form.addEventListener('keydown',e=>{if(e.key==='Enter'&&step<lastStep&&e.target.tagName==='INPUT'){e.preventDefault();advance();}});
+ });
+ const modalQuiz=quizDialog?.querySelector('[data-lead-form="quiz"]');
+ const primaryQuizController=quizControllers.get(modalQuiz)||quizControllers.values().next().value;
+ const quiz=primaryQuizController?.form||null;
  function openQuiz(trackOpen=true){if(!quizDialog)return;if(!quizDialog.open)quizDialog.showModal();quizDialog.querySelector('.quiz-modal-close')?.focus({preventScroll:true});if(trackOpen)track('quiz_open');}
- document.addEventListener('click',e=>{const link=e.target.closest('a[href$="#quiz"]');if(!link||!quizDialog)return;e.preventDefault();closeMenu();openQuiz();});
+ document.addEventListener('click',e=>{const trigger=e.target.closest('[data-quiz-open]');if(!trigger||!quizDialog)return;e.preventDefault();closeMenu();openQuiz();});
  quizDialog?.querySelector('.quiz-modal-close')?.addEventListener('click',()=>quizDialog.close());
  quizDialog?.addEventListener('click',e=>{if(e.target===quizDialog)quizDialog.close();});
  if(location.hash==='#quiz'){openQuiz(false);history.replaceState(null,'',location.pathname+location.search);}
- quiz?.addEventListener('change',begin);
- $('#quiz-next')?.addEventListener('click',()=>{begin();if(validate(quiz,steps[step]))showStep(Math.min(lastStep,step+1));});
- $('#quiz-back')?.addEventListener('click',()=>showStep(Math.max(0,step-1)));
- quiz?.addEventListener('keydown',e=>{if(e.key==='Enter'&&step<lastStep&&e.target.tagName==='INPUT'){e.preventDefault();$('#quiz-next').click();}});
+ const callbackDialog=document.querySelector('dialog#callback-modal');
+ function openCallback(trackOpen=true){if(!callbackDialog)return;if(!callbackDialog.open)callbackDialog.showModal();callbackDialog.querySelector('input[name="name"]')?.focus({preventScroll:true});if(trackOpen)track('callback_open');}
+ document.addEventListener('click',e=>{const trigger=e.target.closest('[data-callback-open]');if(!trigger||!callbackDialog)return;e.preventDefault();closeMenu();openCallback();});
+ callbackDialog?.querySelector('.callback-modal-close')?.addEventListener('click',()=>callbackDialog.close());
+ callbackDialog?.addEventListener('click',e=>{if(e.target===callbackDialog)callbackDialog.close();});
+ if(location.hash==='#callback'){openCallback(false);history.replaceState(null,'',location.pathname+location.search);}
  function showThanks(form,preview){
   const box=document.createElement('div');box.className='thank-you';box.setAttribute('role','status');box.tabIndex=-1;
   const icon=document.createElement('span');icon.className='success-icon';icon.textContent='✓';icon.setAttribute('aria-hidden','true');
@@ -98,20 +106,20 @@
  }
  document.querySelectorAll('[data-lead-form]').forEach(form=>{let submitting=false,id=null;
   form.addEventListener('submit',async e=>{e.preventDefault();if(submitting)return;
-   if(form===quiz&&step!==lastStep){$('#quiz-next').click();return;}if(!validate(form))return;
+   const quizController=quizControllers.get(form);if(quizController&&!quizController.atLastStep()){quizController.advance();return;}if(!validate(form))return;
    const submit=form.querySelector('[type="submit"]'),error=form.querySelector('.form-error');
    submitting=true;submit.disabled=true;submit.setAttribute('aria-busy','true');const old=submit.innerHTML;submit.textContent='Отправляем…';error.textContent='';
    try{
     await configReady;if(!config.leadEndpoint)throw new Error('Отправка заявок через сайт пока не подключена. Позвоните нам: +7 (495) 165-39-05.');const values=Object.fromEntries(new FormData(form));id=id||crypto.randomUUID();
     const response=await fetch(config.leadEndpoint||'/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...values,consent:values.consent==='on',form:form.dataset.leadForm,attribution,page:location.pathname,requestId:id}),signal:AbortSignal.timeout(15000)});
     const result=await response.json();if(!response.ok||!result.ok)throw new Error(result.message||'Не удалось отправить заявку.');
-    if(result.mode!=='preview'){track('form_submit',{form:form.dataset.leadForm});if(form===quiz)track('quiz_complete');}showThanks(form,result.mode==='preview');
+    if(result.mode!=='preview'){track('form_submit',{form:form.dataset.leadForm});if(quizController)track('quiz_complete');}showThanks(form,result.mode==='preview');
    }catch(err){error.textContent=err.name==='TimeoutError'?'Ответ задерживается. Попробуйте ещё раз или позвоните нам.':err.message==='Failed to fetch'?'Нет соединения. Проверьте интернет и попробуйте ещё раз.':err.message;submit.disabled=false;submit.removeAttribute('aria-busy');submit.innerHTML=old;submitting=false;}
   });
  });
  const context=document.modelContext;
  const serviceOptions=quiz?[...quiz.querySelectorAll('input[type="radio"][name="service"]')]:[];
- if(context?.registerTool&&serviceOptions.length){const lifecycle=new AbortController();const serviceValues=serviceOptions.map(el=>el.value);try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт и выбирает необходимую работу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:serviceValues}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=serviceOptions.find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;begin();openQuiz(false);const optionStep=steps.findIndex(item=>item.contains(option));showStep(Math.min(lastStep,optionStep+1));return {service:option.value,step:step+1,totalSteps:steps.length,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
+ if(context?.registerTool&&serviceOptions.length&&primaryQuizController){const lifecycle=new AbortController();const serviceValues=serviceOptions.map(el=>el.value);try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт и выбирает необходимую работу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:serviceValues}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=serviceOptions.find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;primaryQuizController.begin();openQuiz(false);const optionStep=primaryQuizController.steps.findIndex(item=>item.contains(option));primaryQuizController.showStep(Math.min(primaryQuizController.lastStep,optionStep+1));return {service:option.value,step:primaryQuizController.currentStep()+1,totalSteps:primaryQuizController.steps.length,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
  const applicationModal=$('#application-modal');
  if(applicationModal){
   const applicationProject=$('#application-project');
