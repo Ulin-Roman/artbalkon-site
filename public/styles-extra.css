@@ -935,8 +935,9 @@ h1,h2,h3,h4,
 }
 @media(max-width:640px){
  .finishing-styles{padding-top:64px;padding-bottom:64px}
- .finishing-style-tabs{display:none}
- .finishing-style-panels{display:grid;gap:20px}
+ .finishing-style-tabs{display:flex;gap:5px;margin-right:-16px;padding:5px;overflow-x:auto;border-radius:17px;scrollbar-width:none;scroll-snap-type:x proximity}
+ .finishing-style-tabs::-webkit-scrollbar{display:none}
+ .finishing-style-tabs button{min-width:116px;min-height:44px;padding-inline:14px;scroll-snap-align:start}
  .finishing-style-panel{gap:20px;padding:18px;border-radius:20px}
  .finishing-style-copy{padding:12px 4px 0}
  .finishing-style-copy h3{font-size:30px}
@@ -2272,6 +2273,21 @@ h1,h2,h3,h4,
 }
 @media(max-width:640px){
  .glazing-services-grid{grid-template-columns:1fr}
+ .glazing-services-section .services-heading{margin-bottom:18px}
+ .glazing-services-section + .cost-calculator-section{
+  position:relative;
+ }
+ .glazing-services-section + .cost-calculator-section::before{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:100vw;
+  height:8px;
+  background:#e5e7ea;
+  box-shadow:inset 0 1px rgba(20,32,33,.035),inset 0 -1px rgba(255,255,255,.75);
+  content:"";
+  transform:translateX(-50%);
+ }
 }
 /* Larger first-screen photography on the home page and every service page. */
 @media(min-width:1101px){
@@ -3139,16 +3155,16 @@ main .eyebrow{display:none!important}
  padding-inline:16px;
 }
 
-/* A compact price promise, shown only where the service has a published price. */
+/* Price promise reads as supporting text instead of competing with the CTA. */
 .landing-price-lock{
- display:inline-flex;
+ display:flex;
  align-items:center;
+ justify-content:flex-start;
  gap:7px;
- margin-top:18px;
- padding:7px 13px;
- border:1px solid rgba(7,135,141,.16);
- border-radius:999px;
- background:rgba(18,169,174,.09);
+ margin-top:14px;
+ padding:0;
+ border:0;
+ background:transparent;
  color:var(--teal);
  font-size:13px;
  font-weight:700;
@@ -3158,24 +3174,20 @@ main .eyebrow{display:none!important}
  font-size:16px;
  line-height:1;
 }
-.landing-price-lock+.landing-price{
- margin-top:14px;
-}
-.landing-price-lock+.button{
- margin-top:20px;
-}
 @media(max-width:640px){
- .landing-price-lock{
+ .home-page .landing-price-lock,
+ .landing-hero .landing-price-lock{
   align-self:center;
-  margin-top:14px;
+  justify-content:center;
+  margin-top:12px;
   max-width:100%;
-  padding:9px 14px;
-  border-color:#c5e5e3;
-  background:#effaf8;
-  color:#075b60;
-  font-size:14px;
-  text-shadow:none;
-  box-shadow:0 2px 10px rgba(0,0,0,.12);
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#fff;
+  font-size:13px;
+  text-shadow:0 1px 8px rgba(0,0,0,.8);
+  box-shadow:none;
  }
 }
 
@@ -3490,14 +3502,18 @@ body{min-width:0;max-width:100%;overflow-x:clip}
 
 /* On phones, let the proof cards overlap the lower edge of the hero photo. */
 @media(max-width:640px){
+ .landing-hero .landing-grid{
+  grid-template-areas:"service-hero";
+  gap:0;
+ }
  .home-page .trust-strip,
  .landing-hero>.landing-trust{
   position:relative;
   z-index:6;
-  margin-top:-28px;
-  background:#fff;
+  background:transparent;
  }
- .landing-hero>.landing-trust{margin-bottom:18px}
+ .home-page .trust-strip{margin-top:-40px}
+ .landing-hero>.landing-trust{margin-top:-28px;margin-bottom:18px}
  .home-page .trust-strip .trust-item,
  .landing-hero>.landing-trust .trust-item{background:#fff}
 }
