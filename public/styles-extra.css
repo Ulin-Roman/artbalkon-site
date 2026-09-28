@@ -123,6 +123,8 @@ html{scroll-padding-top:104px}
 .before-after-section .section-heading .section-description{max-width:560px;margin-inline:auto;text-align:center}
 .before-after-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .before-after-grid.compact{grid-template-columns:repeat(auto-fit,minmax(280px,420px));justify-content:center}
+.before-after-more{display:flex;justify-content:center;margin-top:32px}
+.before-after-more-button{min-width:220px}
 .hero-content>.eyebrow{display:none}
 .section-heading{flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .section-heading>div{display:flex;flex-direction:column;align-items:center}
@@ -228,7 +230,7 @@ html{scroll-padding-top:104px}
 @keyframes comparison-in{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
 @keyframes comparison-backdrop{from{opacity:0}to{opacity:1}}
 @media(max-width:900px){.before-after-grid{grid-template-columns:1fr 1fr}.before-after-preview{height:255px}.comparison-modal{width:calc(100% - 28px);max-height:calc(100dvh - 28px)}.comparison-modal-grid figure{height:55dvh}}
-@media(max-width:640px){.before-after-grid{grid-template-columns:1fr;gap:17px}.before-after-preview{height:250px}.comparison-modal{width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:17px}.comparison-modal-shell{padding:17px}.comparison-modal-head{gap:15px;margin-bottom:16px}.comparison-modal-head h2{font-size:26px}.comparison-close{width:39px;height:39px}.comparison-nav{top:50%;bottom:auto;width:46px;height:46px;font-size:34px;transform:translateY(-50%)}.comparison-prev{left:8px}.comparison-next{right:8px}.comparison-nav:hover{transform:translateY(-50%) scale(1.04)}.comparison-modal-grid{grid-template-columns:1fr;gap:8px;padding-bottom:0}.comparison-modal-grid figure{height:42dvh}.comparison-modal-grid figure>span{left:10px;top:10px}}
+@media(max-width:640px){.before-after-grid{grid-template-columns:1fr;gap:17px}.before-after-more{margin-top:24px}.before-after-more-button{width:min(100%,280px)}.before-after-preview{height:250px}.comparison-modal{width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:17px}.comparison-modal-shell{padding:17px}.comparison-modal-head{gap:15px;margin-bottom:16px}.comparison-modal-head h2{font-size:26px}.comparison-close{width:39px;height:39px}.comparison-nav{top:50%;bottom:auto;width:46px;height:46px;font-size:34px;transform:translateY(-50%)}.comparison-prev{left:8px}.comparison-next{right:8px}.comparison-nav:hover{transform:translateY(-50%) scale(1.04)}.comparison-modal-grid{grid-template-columns:1fr;gap:8px;padding-bottom:0}.comparison-modal-grid figure{height:42dvh}.comparison-modal-grid figure>span{left:10px;top:10px}}
 @media(prefers-reduced-motion:reduce){.before-after-card,.before-after-preview img,.comparison-modal[open],.comparison-modal[open]::backdrop{animation:none;transition:none}}
 
 /* Quiz modal */
@@ -933,9 +935,8 @@ h1,h2,h3,h4,
 }
 @media(max-width:640px){
  .finishing-styles{padding-top:64px;padding-bottom:64px}
- .finishing-style-tabs{display:flex;gap:5px;margin-right:-16px;padding:5px;overflow-x:auto;border-radius:17px;scrollbar-width:none;scroll-snap-type:x proximity}
- .finishing-style-tabs::-webkit-scrollbar{display:none}
- .finishing-style-tabs button{min-width:116px;min-height:44px;padding-inline:14px;scroll-snap-align:start}
+ .finishing-style-tabs{display:none}
+ .finishing-style-panels{display:grid;gap:20px}
  .finishing-style-panel{gap:20px;padding:18px;border-radius:20px}
  .finishing-style-copy{padding:12px 4px 0}
  .finishing-style-copy h3{font-size:30px}
@@ -2584,7 +2585,14 @@ main .eyebrow{display:none!important}
 /* Mobile navigation drawer. */
 .mobile-menu-backdrop{display:none}
 @media (max-width:900px), (pointer:coarse) and (max-width:1100px){
- body.menu-open{overflow:hidden;overscroll-behavior:none}
+ body.menu-open{
+  position:fixed;
+  inset-inline:0;
+  top:var(--menu-scroll-offset,0);
+  width:100%;
+  overflow:hidden;
+  overscroll-behavior:none;
+ }
  .mobile-menu-backdrop{
   position:fixed;
   z-index:1000;
@@ -3487,8 +3495,11 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   position:relative;
   z-index:6;
   margin-top:-28px;
+  background:#fff;
  }
  .landing-hero>.landing-trust{margin-bottom:18px}
+ .home-page .trust-strip .trust-item,
+ .landing-hero>.landing-trust .trust-item{background:#fff}
 }
 
 /* Compact the gift-card action visually on phones; the whole card remains tappable. */
