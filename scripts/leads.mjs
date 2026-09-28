@@ -29,7 +29,8 @@ export function validateLead(input){
  const lead={requestId:input.requestId,name:input.name.trim(),phone,form:input.form,consent:true,consentVersion:'2026-09-16',page:typeof input.page==='string'?input.page.slice(0,500):'/',attribution:{}};
  for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid','landing','referrer'])if(typeof input.attribution?.[key]==='string')lead.attribution[key]=input.attribution[key].slice(0,300);
  if(input.form==='quiz'){
-  for(const key of Object.keys(allowed)){if(!allowed[key].includes(input[key]))throw Error('Ответьте на все вопросы расчёта.');lead[key]=input[key];}
+  for(const key of ['service','object','timing']){if(!allowed[key].includes(input[key]))throw Error('Ответьте на все вопросы расчёта.');lead[key]=input[key];}
+  if(input.gift!==undefined){if(!allowed.gift.includes(input.gift))throw Error('Некорректный подарок.');lead.gift=input.gift;}
   if(input.size!==undefined){if(typeof input.size!=='string'||!input.size.trim()||input.size.length>100)throw Error('Укажите примерный размер.');lead.size=input.size.trim();}
   if(input.detail!==undefined){if(typeof input.detail!=='string'||!input.detail.trim()||input.detail.length>150)throw Error('Уточните выбранный вариант.');lead.detail=input.detail.trim();}
  }

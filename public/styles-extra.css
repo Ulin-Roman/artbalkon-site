@@ -3980,15 +3980,35 @@ body{min-width:0;max-width:100%;overflow-x:clip}
  box-shadow:0 11px 26px rgba(15,63,62,.14);
 }
 .yandex-reviews-widget{position:relative}
-.yandex-review-button{
+.yandex-reviews-widget::before{
+ content:"Поставьте нам оценку";
  position:absolute;
  z-index:2;
+ top:132px;
+ right:22px;
+ left:22px;
+ height:68px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding-right:166px;
+ border-radius:8px;
+ background:#f7f7f7;
+ color:#111;
+ font-size:16px;
+ font-weight:700;
+ line-height:1.2;
+ pointer-events:none;
+}
+.yandex-review-button{
+ position:absolute;
+ z-index:3;
  white-space:nowrap;
 }
 .yandex-review-button-rate{
- top:140px;
+ top:145px;
  left:64%;
- width:144px;
+ width:150px;
  min-height:42px;
  padding:8px 12px;
  transform:translateX(-50%);
@@ -3996,11 +4016,21 @@ body{min-width:0;max-width:100%;overflow-x:clip}
 .yandex-review-button-more{bottom:34px;left:50%;transform:translateX(-50%)}
 
 @media(max-width:640px){
+ .yandex-reviews-widget::before{
+  top:133px;
+  right:20px;
+  left:20px;
+  height:98px;
+  align-items:flex-start;
+  justify-content:center;
+  padding:13px 0 0;
+  font-size:16px;
+ }
  .yandex-review-button-rate{
   top:177px;
   right:auto;
   left:50%;
-  width:144px;
+  width:150px;
   min-height:42px;
   padding:8px 12px;
   transform:translateX(-50%);
@@ -4042,6 +4072,51 @@ body{min-width:0;max-width:100%;overflow-x:clip}
  .landing-hero .landing-copy-main>.hero-description+.hero-cta-stack{
   margin-top:18px;
  }
+}
+
+/* Balanced first-screen composition shared by home and service pages. */
+@media (min-width: 641px) {
+ .home-page .hero.container,
+ .landing-hero .landing-grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: stretch;
+ }
+ .home-page .hero.container { padding-block: 32px 24px; }
+ .home-page .hero-content { display:flex; flex-direction:column; justify-content:center; min-width:0; padding-block:24px; }
+ .home-page .hero-visual,
+ .landing-hero .landing-photo { height:clamp(480px, 42vw, 580px); border-radius:22px; }
+ .landing-hero .landing-copy-main { padding-block:30px; }
+ .home-page .hero h1,
+ .landing-hero .landing-grid h1 { font-size:clamp(32px, 3.1vw, 48px); line-height:1.16; text-wrap:balance; }
+ .home-page .hero-description,
+ .landing-hero .landing-copy-main > .hero-description { max-width:510px; margin-top:22px; font-size:17px; line-height:1.65; }
+ .landing-hero .landing-copy-main > .landing-price { margin:26px 0 22px; font-size:30px; line-height:1.2; }
+ .home-page .hero-actions { margin-top:28px; }
+ .hero-cta-stack .landing-price-lock { margin-top:12px; }
+ .landing-hero > .landing-trust { margin-top:24px; }
+}
+@media (min-width:641px) and (max-width:900px) {
+ .home-page .hero h1,
+ .landing-hero .landing-grid h1 { font-size:30px; }
+ .home-page .hero-description,
+ .landing-hero .landing-copy-main > .hero-description { font-size:15px; }
+}
+
+/* Four first-screen proof points, including the preserved 2025 prices. */
+.trust-strip,
+.landing-trust{
+ grid-template-columns:repeat(4,minmax(0,1fr));
+}
+@media(max-width:640px){
+ .trust-strip,
+ .landing-trust,
+ .home-page .trust-strip{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+ }
+ .home-page .trust-strip{margin-top:-28px}
+ .landing-hero>.landing-trust{margin-top:16px}
 }
 
 /* Social subscription actions match the white secondary buttons. */
@@ -4133,6 +4208,21 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   .landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
     margin-top: 18px;
   }
+}
+
+/* Final first-screen USP layout: four across on larger screens, two by two on phones. */
+@media(min-width:641px){
+ .home-page .trust-strip,
+ .landing-hero>.landing-trust{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+ }
+}
+@media(max-width:640px){
+ .home-page .trust-strip,
+ .landing-hero>.landing-trust{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+ }
 }
 
 /* Preserve a clear gap before the CTA on service heroes that have no price row. */
