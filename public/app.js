@@ -130,6 +130,15 @@
    track('before_after_show_more',{count:hiddenCards.length});
   });
  });
+ document.querySelectorAll('.glazing-benefits-copy').forEach(block=>{
+  const items=[...block.querySelectorAll('.glazing-benefit-item')];
+  const activate=item=>items.forEach(current=>{const open=current===item;current.classList.toggle('is-open',open);current.querySelector('.glazing-benefit-toggle')?.setAttribute('aria-expanded',String(open));});
+  items.forEach(item=>{
+   const toggle=item.querySelector('.glazing-benefit-toggle');
+   toggle?.addEventListener('click',()=>activate(item));
+   item.addEventListener('pointerenter',()=>{if(matchMedia('(hover:hover) and (pointer:fine)').matches)activate(item);});
+  });
+ });
  const comparisonModal=$('#comparison-modal');
  if(comparisonModal){
   const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),beforeLabel=$('#comparison-before-label'),afterLabel=$('#comparison-after-label'),comparisonTitle=$('#comparison-title');

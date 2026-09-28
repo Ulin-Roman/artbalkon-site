@@ -92,7 +92,7 @@ html{scroll-padding-top:104px}
 @media(max-width:1200px){.service-card-media{height:170px}.extra-card-media{height:160px}}
 @media(max-width:900px){.service-card-media{height:220px}.extra-card-media{height:190px}}
 @media(max-width:640px){.service-card-media{height:190px}.extra-card-media{height:215px}.service-card-body,.extra-card-body{padding:20px}.service-card-body h3,.extra-card-body h3{font-size:22px}}
-@media(max-width:640px){.service-card-body>p,.service-card-body>.text-link{display:none}.service-card-body{padding:14px 16px 15px}.service-card-body h3{font-size:19px;margin-bottom:0}.service-card-price{margin:7px 0 0}.service-card-price strong{font-size:15px}}
+@media(max-width:640px){.service-card-body>p,.service-card-body>.text-link{display:none}.service-card-body{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:8px 12px;padding:14px 16px 15px}.service-card-body h3{min-width:0;font-size:19px;margin-bottom:0}.service-card-price{justify-self:end;margin:0}.service-card-price strong{font-size:15px}}
 
 /* Header messengers borrowed from romanulin.ru. */
 .header-contact{display:inline-flex;flex-direction:row;align-items:center;gap:10px;white-space:nowrap}.header-contact .phone{display:inline-flex;align-items:center}.header-messengers{display:inline-flex;align-items:center;flex:0 0 auto;gap:6px;margin:0}.header-messenger{width:27px;height:27px;display:grid;place-items:center;border-radius:50%;transition:transform .2s ease,filter .2s ease,box-shadow .2s ease}.header-messenger:hover{transform:translateY(-1px) scale(1.08);filter:brightness(1.06);box-shadow:0 6px 16px rgba(0,78,83,.16)}.header-messenger img{display:block;width:100%;height:100%;object-fit:contain}.telegram-messenger{overflow:hidden;background:linear-gradient(180deg,#39afe3,#2298d0)}
@@ -121,6 +121,7 @@ html{scroll-padding-top:104px}
 .before-after-section .section-heading>div{width:100%;text-align:center}
 .before-after-section .section-heading .eyebrow{justify-content:center;text-align:center}
 .before-after-section .section-heading .section-description{max-width:560px;margin-inline:auto;text-align:center}
+.before-after-heading-secondary{display:block;margin-top:10px;color:var(--muted);font-size:clamp(17px,1.5vw,21px);font-weight:600;line-height:1.3;letter-spacing:-.02em}
 .before-after-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .before-after-grid.compact{grid-template-columns:repeat(auto-fit,minmax(280px,420px));justify-content:center}
 .before-after-more{display:flex;justify-content:center;margin-top:32px}
@@ -187,7 +188,6 @@ html{scroll-padding-top:104px}
 .cost-calculator-section .quiz-intro h2{font-size:clamp(34px,3.1vw,48px);line-height:1.08}
 .cost-calculator-section .quiz-form{min-height:520px;padding:42px 46px;background:#f1f2f3;color:var(--ink)}
 .cost-calculator-section .quiz-progress-row,
-.cost-calculator-section .quiz-duration,
 .cost-calculator-section .step-hint,
 .cost-calculator-section .consent{color:var(--muted)}
 .cost-calculator-section .quiz-form legend,
@@ -224,7 +224,6 @@ html{scroll-padding-top:104px}
  .cost-calculator-section .quiz-options{grid-template-columns:1fr}
  .cost-calculator-section .quiz-option{min-height:64px;padding:16px 14px}
  .cost-calculator-section .quiz-controls{gap:10px}
- .cost-calculator-section .quiz-duration{display:none}
 }
 .comparison-modal-grid figure>span{position:absolute;z-index:2;left:15px;top:15px;padding:8px 11px;border:1px solid rgba(255,255,255,.4);border-radius:8px;background:rgba(4,37,37,.7);color:#fff;font-size:10px;font-weight:700;line-height:1;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(8px)}
 @keyframes comparison-in{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
@@ -374,9 +373,8 @@ html{scroll-padding-top:84px}
 .certificate-card figcaption{display:flex;align-items:center;padding:16px 3px 17px;color:#9fc1bf}
 .certificate-card figcaption span{font-size:10px;letter-spacing:.16em}
 .certificate-card figcaption strong{color:#fff;font-size:18px;font-weight:500}
-.certificate-hint{margin-top:13px;color:#8fb3b1;font-size:12px}
 @media(max-width:1000px){.certificate-track::after{flex-basis:calc(50% - 9px)}.certificate-card{flex-basis:calc((100% - 18px)/2)}.certificate-paper{height:440px}}
-@media(max-width:640px){.certificates-section{margin-bottom:50px}.certificates-section .section{padding-block:56px}.certificates-heading{align-items:flex-start;flex-direction:column;gap:25px;margin-bottom:26px}.certificates-heading h2{font-size:32px}.certificates-heading>div>p:last-child{font-size:14px}.certificate-controls{align-self:stretch}.certificate-count{margin-right:auto}.certificate-controls button{width:44px;height:44px}.certificate-track::after{flex-basis:calc(12% - 18px)}.certificate-card{flex-basis:88%}.certificate-card a{padding:10px 10px 0;border-radius:13px}.certificate-paper{height:420px;padding:12px}.certificate-hint{font-size:11px;line-height:1.6}}
+@media(max-width:640px){.certificates-section{margin-bottom:50px}.certificates-section .section{padding-block:56px}.certificates-heading{align-items:flex-start;flex-direction:column;gap:25px;margin-bottom:26px}.certificates-heading h2{font-size:32px}.certificates-heading>div>p:last-child{font-size:14px}.certificate-controls{align-self:stretch}.certificate-count{margin-right:auto}.certificate-controls button{width:44px;height:44px}.certificate-track::after{flex-basis:calc(12% - 18px)}.certificate-card{flex-basis:88%}.certificate-card a{padding:10px 10px 0;border-radius:13px}.certificate-paper{height:420px;padding:12px}}
 
 /* Flat CTA buttons with Roman Ulin-style arrow */
 .button,.button:not(.button-outline):not(.button-white){overflow:visible;background:linear-gradient(135deg,#18aeb3 0%,var(--teal) 56%,var(--teal-dark) 100%);border:1px solid var(--teal);box-shadow:none;text-shadow:none;filter:none;animation:none;transition:background .2s,border-color .2s,color .2s}
@@ -430,6 +428,17 @@ html{scroll-padding-top:84px}
 .avito-review-stars{margin:7px 0 3px;font-size:13px}
 .avito-review p{color:#303635;font-size:13px;line-height:1.5}
 .avito-reviews-widget>.button{width:100%;min-height:48px;margin-top:18px}
+.avito-reviews-widget>a.button.reviews-avito-button{
+ border-color:#2b7de9;
+ background:#2b7de9;
+ color:#fff;
+ box-shadow:0 8px 20px rgba(43,125,233,.2);
+}
+.avito-reviews-widget>a.button.reviews-avito-button:hover{
+ border-color:#1f6fd4;
+ background:#1f6fd4;
+ color:#fff;
+}
 @media(max-width:1000px){.reviews-widget-layout{grid-template-columns:1fr}.yandex-reviews-widget,.avito-reviews-widget{width:100%;max-width:760px;margin-inline:auto}}
 @media(max-width:640px){.reviews-live-section .section-heading{margin-bottom:28px}.yandex-reviews-widget,.avito-reviews-widget{border-radius:14px}.yandex-reviews-widget iframe{height:560px}.avito-reviews-widget{height:auto;min-height:590px;padding:23px 19px}.avito-reviews-head{gap:14px}.avito-rating strong{font-size:38px}.avito-review-list{overflow:visible}.avito-review p{font-size:12px}}
 
@@ -918,8 +927,8 @@ h1,h2,h3,h4,
 .finishing-style-copy .eyebrow{margin-bottom:18px;color:var(--teal)}
 .finishing-style-copy h3{font-size:clamp(32px,3vw,44px);line-height:1.1}
 .finishing-style-copy>p:not(.eyebrow){margin-top:20px;color:var(--muted);font-size:15px;line-height:1.75}
-.finishing-style-copy .button{margin-top:auto}
-.finishing-style-gallery{display:grid;grid-template-columns:.72fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;min-height:460px}
+.finishing-style-gallery{display:grid;grid-column:2;grid-row:1/3;grid-template-columns:.72fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;min-height:460px}
+.finishing-style-cta{grid-column:1;grid-row:2;align-self:end;margin:0 20px 28px}
 .finishing-style-gallery figure{min-width:0;margin:0;overflow:hidden;border-radius:17px;background:#eceff0}
 .finishing-style-gallery figure:nth-child(1){grid-column:1;grid-row:1}
 .finishing-style-gallery figure:nth-child(2){grid-column:1;grid-row:2}
@@ -929,21 +938,22 @@ h1,h2,h3,h4,
 .finishing-style-gallery figure:hover img{transform:scale(1.025)}
 @media(max-width:900px){
  .finishing-style-panel{grid-template-columns:1fr;min-height:0}
- .finishing-style-copy{padding:18px 12px 4px}
- .finishing-style-copy .button{margin-top:26px}
- .finishing-style-gallery{min-height:430px}
+ .finishing-style-copy{grid-column:1;grid-row:1;padding:18px 12px 4px}
+ .finishing-style-cta{grid-column:1;grid-row:2;margin:6px 12px 0}
+ .finishing-style-gallery{grid-column:1;grid-row:3;min-height:430px}
 }
 @media(max-width:640px){
  .finishing-styles{padding-top:64px;padding-bottom:64px}
- .finishing-style-tabs{display:flex;gap:5px;margin-right:-16px;padding:5px;overflow-x:auto;border-radius:17px;scrollbar-width:none;scroll-snap-type:x proximity}
- .finishing-style-tabs::-webkit-scrollbar{display:none}
- .finishing-style-tabs button{min-width:116px;min-height:44px;padding-inline:14px;scroll-snap-align:start}
+ .finishing-style-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;margin-right:0;padding:6px;overflow:visible;border-radius:17px;scroll-snap-type:none}
+ .finishing-style-tabs button{min-width:0;min-height:44px;padding:10px 5px;font-size:12px;scroll-snap-align:none}
+ .finishing-style-tabs button:nth-child(-n+3){grid-column:span 2}
+ .finishing-style-tabs button:nth-child(n+4){grid-column:span 3}
  .finishing-style-panel{gap:20px;padding:18px;border-radius:20px}
  .finishing-style-copy{padding:12px 4px 0}
  .finishing-style-copy h3{font-size:30px}
  .finishing-style-copy>p:not(.eyebrow){font-size:14px}
- .finishing-style-copy .button{width:100%}
- .finishing-style-gallery{grid-template-columns:1fr 1fr;grid-template-rows:190px 190px;gap:8px;min-height:0}
+ .finishing-style-gallery{grid-row:2;grid-template-columns:1fr 1fr;grid-template-rows:190px 190px;gap:8px;min-height:0}
+ .finishing-style-cta{grid-row:3;width:100%;margin:0}
  .finishing-style-gallery figure:nth-child(1),.finishing-style-gallery figure:nth-child(2),.finishing-style-gallery figure:nth-child(3),.finishing-style-gallery figure:nth-child(4){grid-column:auto;grid-row:auto}
  .finishing-style-gallery figure{border-radius:13px}
 }
@@ -2274,10 +2284,10 @@ h1,h2,h3,h4,
 @media(max-width:640px){
  .glazing-services-grid{grid-template-columns:1fr}
  .glazing-services-section .services-heading{margin-bottom:18px}
- .glazing-services-section + .cost-calculator-section{
+ .before-after-section + .cost-calculator-section{
   position:relative;
  }
- .glazing-services-section + .cost-calculator-section::before{
+ .before-after-section + .cost-calculator-section::before{
   position:absolute;
   top:0;
   left:50%;
@@ -2373,13 +2383,22 @@ main .eyebrow{display:none!important}
  list-style:none;
 }
 .glazing-benefits-copy li{
- display:grid;
- grid-template-columns:34px 1fr;
- gap:13px;
  padding:21px 0;
  border-top:1px solid rgba(255,255,255,.14);
 }
-.glazing-benefits-copy li>span{
+.glazing-benefit-toggle{
+ display:grid;
+ width:100%;
+ grid-template-columns:34px minmax(0,1fr) 24px;
+ align-items:center;
+ gap:13px;
+ padding:0;
+ border:0;
+ background:transparent;
+ color:inherit;
+ text-align:left;
+}
+.glazing-benefit-check{
  display:grid;
  place-items:center;
  width:30px;
@@ -2391,13 +2410,32 @@ main .eyebrow{display:none!important}
  color:#85d8d2;
  font-size:14px;
 }
+.glazing-benefit-marker{
+ color:var(--teal);
+ font-size:23px;
+ line-height:1;
+ text-align:center;
+ transition:transform .2s ease;
+}
 .glazing-benefits-copy h3{
  color:#fff;
  font-size:18px;
  line-height:1.3;
 }
-.glazing-benefits-copy li p{
+.glazing-benefit-item>p{
+ max-height:0;
+ margin:0 0 0 47px;
+ overflow:hidden;
+ opacity:0;
+ transition:max-height .25s ease,margin-top .25s ease,opacity .2s ease;
+}
+.glazing-benefit-item.is-open>p{
+ max-height:110px;
  margin-top:7px;
+ opacity:1;
+}
+.glazing-benefit-item.is-open .glazing-benefit-marker{transform:rotate(45deg)}
+.glazing-benefits-copy li p{
  color:#a9c1c0;
  font-size:12px;
  line-height:1.65;
@@ -2940,7 +2978,7 @@ main .eyebrow{display:none!important}
 .glazing-benefits-note,
 .social-subscribe-heading>p:last-child{color:var(--muted)}
 .glazing-benefits-copy li{border-top-color:var(--line)}
-.glazing-benefits-copy li>span{
+.glazing-benefit-check{
  border-color:#b8c3c3;
  background:#fff;
  color:var(--teal);
@@ -3165,7 +3203,7 @@ main .eyebrow{display:none!important}
  padding:0;
  border:0;
  background:transparent;
- color:var(--teal);
+ color:var(--ink);
  font-size:13px;
  font-weight:700;
  line-height:1.35;
@@ -3620,4 +3658,166 @@ body{min-width:0;max-width:100%;overflow-x:clip}
  .final-section.final-visual-cta{margin-block:24px;padding-block:32px}
  .contact-location{margin-bottom:26px}
  .glazing-benefits-showcase{padding-block:36px}
+}
+
+/* Give the primary mobile hero action a restrained vertical cue. */
+@keyframes mobile-hero-cta-bob{
+ 0%,100%{transform:translateY(2px)}
+ 50%{transform:translateY(-3px)}
+}
+@media(max-width:640px){
+ .home-page .hero-actions>.button,
+ .landing-hero .landing-copy-main>.button{
+  animation:mobile-hero-cta-bob 2.8s ease-in-out infinite;
+  will-change:transform;
+ }
+}
+@media(max-width:640px) and (prefers-reduced-motion:reduce){
+ .home-page .hero-actions>.button,
+ .landing-hero .landing-copy-main>.button{
+  animation:none;
+  transform:none;
+ }
+}
+
+/* On phones, merge the service explanation and its image into one visual card. */
+@media(max-width:640px){
+ .service-seo-intro{
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"service-seo-heading" "service-seo-visual";
+  gap:20px;
+ }
+ .service-seo-copy{display:contents}
+ .service-seo-copy-head{grid-area:service-seo-heading}
+ .service-seo-copy-body{
+  z-index:2;
+  grid-area:service-seo-visual;
+  align-self:end;
+  padding:30px 22px 24px;
+  color:#fff;
+  text-align:left;
+ }
+ .service-seo-intro .service-seo-copy-body p:not(.eyebrow){
+  max-width:none;
+  margin:14px 0 0;
+  color:rgba(255,255,255,.92);
+  font-size:14px;
+  line-height:1.68;
+  text-align:left;
+ }
+ .service-seo-intro .service-seo-copy-body .button{
+  width:100%;
+  margin-top:22px;
+ }
+ .service-seo-intro figure{
+  position:relative;
+  grid-area:service-seo-visual;
+  align-self:stretch;
+  height:auto;
+  min-height:520px;
+  overflow:hidden;
+ }
+ .service-seo-intro figure::after{
+  position:absolute;
+  z-index:1;
+  inset:0;
+  background:linear-gradient(180deg,rgba(8,17,18,.18) 0%,rgba(8,17,18,.46) 42%,rgba(8,17,18,.88) 100%);
+  content:"";
+ }
+ .service-seo-intro figure img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  aspect-ratio:auto;
+  object-fit:cover;
+ }
+ .service-seo-intro figcaption{display:none}
+}
+
+/* Compact interactive benefit plaques over the glazing photo on phones. */
+@media(max-width:640px){
+ .glazing-benefits-showcase-grid{
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"glazing-benefits-heading" "glazing-benefits-visual";
+  gap:20px;
+ }
+ .glazing-benefits-copy{display:contents}
+ .glazing-benefits-heading{grid-area:glazing-benefits-heading}
+ .glazing-benefits-overlay{
+  z-index:2;
+  grid-area:glazing-benefits-visual;
+  align-self:end;
+  padding:22px 16px 18px;
+ }
+ .glazing-benefits-copy ul{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin:0;
+ }
+ .glazing-benefits-copy li{
+  padding:0;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:13px;
+  background:rgba(14,26,27,.62);
+  overflow:hidden;
+  backdrop-filter:blur(8px);
+ }
+ .glazing-benefit-toggle{
+  min-height:54px;
+  grid-template-columns:28px minmax(0,1fr) 22px;
+  gap:10px;
+  padding:10px 12px;
+  cursor:pointer;
+ }
+ .glazing-benefit-check{
+  width:27px;
+  height:27px;
+  border-color:rgba(255,255,255,.36);
+  background:rgba(255,255,255,.12);
+  color:#fff;
+ }
+ .glazing-benefits-copy h3{color:#fff;font-size:15px}
+ .glazing-benefit-marker{color:#fff}
+ .glazing-benefits-copy .glazing-benefit-item>p{
+  max-height:0;
+  margin:0;
+  padding:0 15px 0 50px;
+  color:rgba(255,255,255,.94);
+ }
+ .glazing-benefits-copy .glazing-benefit-item.is-open>p{
+  max-height:120px;
+  margin:0;
+  padding-bottom:13px;
+  opacity:1;
+ }
+ .glazing-benefits-note{
+  margin:14px 2px 16px;
+  padding-left:12px;
+  border-left-color:rgba(255,255,255,.72);
+  color:rgba(255,255,255,.86);
+ }
+ .glazing-benefits-copy .button{width:100%;margin:0}
+ .glazing-benefits-photo{
+  position:relative;
+  grid-area:glazing-benefits-visual;
+  align-self:stretch;
+  min-height:600px;
+  overflow:hidden;
+ }
+ .glazing-benefits-photo img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+ }
+ .glazing-benefits-photo::after{
+  z-index:1;
+  inset:0;
+  height:auto;
+  background:linear-gradient(180deg,rgba(8,17,18,.2) 0%,rgba(8,17,18,.5) 36%,rgba(8,17,18,.92) 100%);
+ }
+ .glazing-benefits-photo figcaption{display:none}
 }
