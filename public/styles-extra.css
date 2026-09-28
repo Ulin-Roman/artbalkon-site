@@ -3934,3 +3934,59 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   --site-panel-shadow:0 16px 36px rgba(18,55,58,.14),0 4px 10px rgba(18,55,58,.065);
  }
 }
+
+/* Keep both halves of the embedded calculator on one clean white surface. */
+.cost-calculator-section .quiz-form{
+ background:#fff;
+}
+
+/* Review actions use the same white secondary style as “Смотреть ещё”. */
+.reviews-white-button{
+ display:inline-flex;
+ min-height:48px;
+ align-items:center;
+ justify-content:center;
+ gap:12px;
+ padding:11px 20px;
+ border:1px solid #fff;
+ border-radius:999px;
+ background:#fff;
+ color:var(--ink);
+ box-shadow:0 8px 22px rgba(15,63,62,.1);
+ font-size:13px;
+ font-weight:750;
+ line-height:1.2;
+ transition:background .2s,border-color .2s,box-shadow .2s;
+}
+.reviews-white-button:hover{
+ border-color:#f5f7f7;
+ background:#f5f7f7;
+ color:var(--ink);
+ box-shadow:0 11px 26px rgba(15,63,62,.14);
+}
+.reviews-white-button span[aria-hidden]{color:currentColor}
+.avito-reviews-widget>a.button.reviews-avito-button.reviews-white-button,
+.avito-reviews-widget>a.button.reviews-avito-button.reviews-white-button:hover{
+ border-color:#fff;
+ background:#fff;
+ color:var(--ink);
+ box-shadow:0 8px 22px rgba(15,63,62,.1);
+}
+.avito-reviews-widget>a.button.reviews-avito-button.reviews-white-button:hover{
+ border-color:#f5f7f7;
+ background:#f5f7f7;
+ box-shadow:0 11px 26px rgba(15,63,62,.14);
+}
+.yandex-reviews-widget{position:relative}
+.yandex-review-button{
+ position:absolute;
+ z-index:2;
+ white-space:nowrap;
+}
+.yandex-review-button-rate{top:79px;left:64%;transform:translateX(-50%)}
+.yandex-review-button-more{bottom:34px;left:50%;transform:translateX(-50%)}
+
+@media(max-width:640px){
+ .yandex-review-button-rate{top:79px;right:16px;left:auto;transform:none}
+ .yandex-review-button-more{right:18px;bottom:28px;left:18px;transform:none;white-space:normal;text-align:center}
+}
