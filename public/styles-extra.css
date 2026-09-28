@@ -1292,7 +1292,8 @@ h1,h2,h3,h4,
  z-index:2;
  left:24px;
  bottom:24px;
- width:min(390px,calc(100% - 96px));
+ width:max-content;
+ max-width:calc(100% - 96px);
  display:flex;
  flex-direction:column;
  align-items:flex-start;
@@ -1311,10 +1312,11 @@ h1,h2,h3,h4,
  line-height:1.16;
 }
 .home-advantages-photo figcaption span{
- max-width:330px;
+ max-width:none;
  color:rgba(255,255,255,.82);
  font-size:13px;
  line-height:1.55;
+ white-space:nowrap;
 }
 .home-advantages-video-toggle{
  position:absolute;
@@ -1362,7 +1364,7 @@ h1,h2,h3,h4,
  .home-advantages-photo::after{background:linear-gradient(0deg,rgba(8,10,11,.68),rgba(8,10,11,.06) 58%,transparent 78%)}
  .home-advantages-photo figcaption{left:14px;right:14px;bottom:14px;width:auto;padding:16px 17px;gap:7px;border-radius:13px;background:rgba(18,20,21,.62)}
  .home-advantages-photo figcaption strong{font-size:17px}
- .home-advantages-photo figcaption span{max-width:none}
+ .home-advantages-photo figcaption span{max-width:none;white-space:normal}
  .home-advantages-video-toggle{top:14px;right:14px;width:40px;height:40px}
  .home-advantages-list article{grid-template-columns:1fr;padding:21px 18px}
  .home-advantages-list article:hover,.home-advantages-list article.is-accent{transform:none}
@@ -3983,10 +3985,174 @@ body{min-width:0;max-width:100%;overflow-x:clip}
  z-index:2;
  white-space:nowrap;
 }
-.yandex-review-button-rate{top:79px;left:64%;transform:translateX(-50%)}
+.yandex-review-button-rate{
+ top:140px;
+ left:64%;
+ width:144px;
+ min-height:42px;
+ padding:8px 12px;
+ transform:translateX(-50%);
+}
 .yandex-review-button-more{bottom:34px;left:50%;transform:translateX(-50%)}
 
 @media(max-width:640px){
- .yandex-review-button-rate{top:79px;right:16px;left:auto;transform:none}
+ .yandex-review-button-rate{
+  top:177px;
+  right:auto;
+  left:50%;
+  width:144px;
+  min-height:42px;
+  padding:8px 12px;
+  transform:translateX(-50%);
+ }
  .yandex-review-button-more{right:18px;bottom:28px;left:18px;transform:none;white-space:normal;text-align:center}
+}
+
+/* Keep the price promise directly beneath and centred to its CTA. */
+.hero-cta-stack{
+ display:flex;
+ width:max-content;
+ max-width:100%;
+ flex-direction:column;
+ align-items:stretch;
+}
+.hero-cta-stack .hero-actions{width:100%}
+.hero-cta-stack .hero-actions .button,
+.hero-cta-stack>.button{width:100%}
+.hero-cta-stack .landing-price-lock{
+ width:100%;
+ justify-content:center;
+ text-align:center;
+}
+
+@media(max-width:640px){
+ .hero-cta-stack{width:100%}
+ .hero-cta-stack .landing-price-lock{
+  align-self:stretch;
+  justify-content:center;
+  text-align:center;
+ }
+}
+
+/* Preserve a clear gap before the CTA on service heroes that have no price row. */
+.landing-hero .landing-copy-main>.hero-description+.hero-cta-stack{
+ margin-top:28px;
+}
+@media(max-width:640px){
+ .landing-hero .landing-copy-main>.hero-description+.hero-cta-stack{
+  margin-top:18px;
+ }
+}
+
+/* Social subscription actions match the white secondary buttons. */
+.social-subscribe-card .social-subscribe-copy .button,
+.social-subscribe-telegram .social-subscribe-copy .button,
+.social-subscribe-vk .social-subscribe-copy .button{
+ border-color:#fff;
+ background:#fff;
+ color:var(--ink);
+ box-shadow:0 8px 22px rgba(15,63,62,.1);
+}
+.social-subscribe-card .social-subscribe-copy .button:hover,
+.social-subscribe-telegram .social-subscribe-copy .button:hover,
+.social-subscribe-vk .social-subscribe-copy .button:hover{
+ border-color:#f5f7f7;
+ background:#f5f7f7;
+ color:var(--ink);
+ box-shadow:0 11px 26px rgba(15,63,62,.14);
+}
+.social-subscribe-copy .button span[aria-hidden]{color:currentColor}
+/* Keep the reviews close to their heading without changing heading typography. */
+.reviews-live-section .section-heading {
+  margin-bottom: 22px;
+}
+
+@media (max-width: 640px) {
+  .reviews-live-section .section-heading {
+    margin-bottom: 18px;
+  }
+}
+
+/* Match the before/after label to the regular section subtitle style. */
+.before-after-subtitle {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: normal;
+}
+
+@media (max-width: 640px) {
+  .before-after-subtitle {
+    font-size: 14px;
+  }
+}
+
+/* Consistent compact spacing between section titles and their subtitles. */
+.section-heading {
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .section-heading {
+    gap: 12px;
+  }
+}
+
+/* Keep service titles and prices on one line, matching the compact mobile cards. */
+@media (min-width: 641px) {
+  .service-card-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 10px 12px;
+  }
+
+  .service-card-body h3 {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .service-card-price {
+    justify-self: end;
+    margin: 0;
+  }
+
+  .service-card-body > p {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+}
+
+/* Preserve a clear gap before the CTA on service heroes that have no price row. */
+.landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
+  margin-top: 28px;
+}
+
+@media (max-width: 640px) {
+  .landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
+    margin-top: 18px;
+  }
+}
+
+/* Preserve a clear gap before the CTA on service heroes that have no price row. */
+.landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
+  margin-top: 28px;
+}
+
+@media (max-width: 640px) {
+  .landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
+    margin-top: 18px;
+  }
+}
+
+/* Preserve a clear gap before the CTA on service heroes that have no price row. */
+.landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
+  margin-top: 28px;
+}
+
+@media (max-width: 640px) {
+  .landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
+    margin-top: 18px;
+  }
 }

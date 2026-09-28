@@ -77,14 +77,15 @@ for(const project of coldLoggias){
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
  const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type);
- const expectedCount=slug==='otdelka-balkonov'?13:12;
+ const expectedCount=slug==='otdelka-balkonov'?13:type==='loggia'?11:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
  gallery.slice(0,12).forEach((p,i)=>{
-  const key=`service-before-after/renovation-${type}-${String(i+1).padStart(2,'0')}`;
+  const sourceNumber=type==='loggia'&&i>=3?i+2:i+1;
+  const key=`service-before-after/renovation-${type}-${String(sourceNumber).padStart(2,'0')}`;
   assert.equal(p.objectType,type);
   assert.equal(p.stage,stage);
-  const expectedBefore=type==='loggia'&&i===10?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
+  const expectedBefore=type==='loggia'&&sourceNumber===11?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
   const hardwareAdjustedBefore=beforeHardwareReplacements[expectedBefore] || expectedBefore;
   const expectedGalleryBefore=finishBeforeLatchReplacements[hardwareAdjustedBefore] || hardwareAdjustedBefore;
   assert.equal(p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
@@ -93,7 +94,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   assert.equal(p.beforeReal,false);
  });
 }
-for(const [slug,expectedCount] of [['osteklenie-balkonov',11],['uteplenie-balkonov',8],['otdelka-balkonov',25],['balkon-pod-klyuch',24]]){
+for(const [slug,expectedCount] of [['osteklenie-balkonov',11],['uteplenie-balkonov',8],['otdelka-balkonov',24],['balkon-pod-klyuch',23]]){
  const gallery=serviceBeforeAfterProjects[slug];
  assert.equal(gallery.length,expectedCount,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount,`${slug}: combined gallery repeats finished rooms`);
