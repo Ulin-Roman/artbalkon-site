@@ -5266,3 +5266,13 @@ body.home-page,
 
 /* Separate the phone pictogram from the callback label without moving the CTA. */
 .header-cta{gap:7px}
+
+/* Carry the homepage's neutral canvas through the inner pages. */
+body,
+main{background:#f5f5f7}
+.soft-section,
+.before-after-section,
+.promotion-section,
+.certificates-section{background:transparent}
+.cost-calculator-section .quiz-intro{background:#fafafb}
+.footer{background:#f5f5f7;border-top-color:#e4e5e8}

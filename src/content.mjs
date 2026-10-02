@@ -1032,6 +1032,19 @@ const galleryShowcaseOrder={
 for(const [slug,titles] of Object.entries(galleryShowcaseOrder)){
  if(serviceBeforeAfterProjects[slug])serviceBeforeAfterProjects[slug]=prioritizeProjects(serviceBeforeAfterProjects[slug],titles);
 }
+// On the turnkey page, swap the featured first and third projects with two
+// loggias from later in the gallery, keeping each project's content intact.
+const turnkeyGallery=serviceBeforeAfterProjects['balkon-pod-klyuch'];
+const openingProjectIndex=turnkeyGallery.findIndex(project=>project.title==='Балкон с компактной зоной отдыха');
+const woodenLoggiaIndex=turnkeyGallery.findIndex(project=>project.title==='Лоджия с деревянной отделкой');
+if(openingProjectIndex!==-1&&woodenLoggiaIndex!==-1){
+ [turnkeyGallery[openingProjectIndex],turnkeyGallery[woodenLoggiaIndex]]=[turnkeyGallery[woodenLoggiaIndex],turnkeyGallery[openingProjectIndex]];
+}
+const thirdProjectIndex=turnkeyGallery.findIndex(project=>project.title==='Балкон с откидным столом');
+const compactLoggiaIndex=turnkeyGallery.findIndex(project=>project.title==='Компактная лоджия под ключ');
+if(thirdProjectIndex!==-1&&compactLoggiaIndex!==-1){
+ [turnkeyGallery[thirdProjectIndex],turnkeyGallery[compactLoggiaIndex]]=[turnkeyGallery[compactLoggiaIndex],turnkeyGallery[thirdProjectIndex]];
+}
 beforeAfterProjects.splice(0,beforeAfterProjects.length,...prioritizeProjects(beforeAfterProjects,[
  'Светлый балкон с рабочим местом','Контрастная отделка лоджии','Деревянная отделка и тумба',
  'Лоджия с уютной зоной отдыха','Серая отделка и стол у окна','Лоджия со столом'
