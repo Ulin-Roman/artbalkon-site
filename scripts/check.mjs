@@ -7,6 +7,8 @@ import {servicePage,servicePageWithSeo,home as renderHome} from '../src/componen
 const requiredLocation='в Москве и Московской области';
 const bundledServiceSlugs=['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'];
 const homeHtml=renderHome();
+assert.ok(homeHtml.includes('Получить консультацию'),'home hero must invite visitors to get a consultation');
+assert.match(homeHtml,/<div class="hero-actions"><button class="button button-no-icon"[^>]*>\s*<span class="button-label">Получить консультацию<\/span>/,'home consultation button must not contain an icon');
 assert.ok(homeHtml.includes('/assets/service-before-after/renovation-loggia-12-after.webp'),'home finishing card must use the selected page hero');
 assert.ok(homeHtml.includes('/assets/before-daytime/before-032.webp'),'home insulation card must use the selected page hero');
 assert.ok(homeHtml.includes('/assets/service-before-after/furniture-interior-v2-02-after.webp'),'home turnkey card must use the selected page hero');

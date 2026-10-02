@@ -949,8 +949,15 @@ h1,h2,h3,h4,
  cursor:pointer;
  transition:background .2s ease,color .2s ease,box-shadow .2s ease;
 }
-.finishing-style-tabs button:hover{color:var(--ink)}
-.finishing-style-tabs button[aria-selected="true"]{background:#fff;color:var(--teal-dark);box-shadow:0 6px 18px rgba(18,28,30,.09)}
+ .finishing-style-tabs button:hover{
+  background:rgba(0,119,126,.055);
+  color:var(--ink);
+ }
+ .finishing-style-tabs button[aria-selected="true"]{
+  background:#f1fbfb;
+  color:var(--teal-dark);
+  box-shadow:inset 0 0 0 2px rgba(0,119,126,.72),0 8px 20px rgba(0,96,103,.16);
+ }
 .finishing-style-tabs button:focus-visible{outline:3px solid rgba(0,119,126,.28);outline-offset:2px}
 .finishing-style-panel{
  display:grid;
@@ -4225,8 +4232,42 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   box-shadow:0 10px 24px rgba(0,96,103,.3);
 }
 .quiz-form .quiz-next-button.is-ready:focus-visible {
-  outline:3px solid rgba(11,165,170,.28);
-  outline-offset:3px;
+ outline:3px solid rgba(11,165,170,.28);
+ outline-offset:3px;
+}
+
+/* Keep the next step visually inactive until the current answer is selected. */
+.quiz-form .quiz-next-button:disabled{
+ border-color:#d9dfe0;
+ background:#fff;
+ color:#667173;
+ box-shadow:none;
+ opacity:1;
+}
+.quiz-form .quiz-next-button:disabled:hover{
+ border-color:#d9dfe0;
+ background:#fff;
+ color:#667173;
+ box-shadow:none;
+}
+
+/* Separate answer cards from the white form without making them visually heavy. */
+.quiz-form .quiz-option{
+ border-color:#d1d8d9;
+ background:#fff;
+ box-shadow:0 5px 16px rgba(18,55,57,.09);
+ transition:border-color .2s,background .2s,box-shadow .2s,transform .2s;
+}
+.quiz-form .quiz-option:hover{
+ border-color:rgba(0,119,126,.5);
+ box-shadow:0 8px 20px rgba(18,55,57,.13);
+ transform:translateY(-1px);
+}
+.quiz-form .quiz-option:has(input:checked){
+ border-color:var(--teal);
+ background:var(--teal-soft);
+ box-shadow:0 0 0 1px var(--teal),0 8px 20px rgba(0,119,126,.13);
+ transform:none;
 }
 
 /* Services that are available only inside a turnkey balcony project. */
