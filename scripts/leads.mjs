@@ -24,7 +24,7 @@ export function validateLead(input){
  if(typeof input.name!=='string'||!input.name.trim()||input.name.length>70)throw Error('Укажите имя.');
  if(typeof input.phone!=='string'||input.phone.length>30)throw Error('Проверьте номер телефона.');
  let phone=input.phone.replace(/\D/g,'');if(phone.length===10)phone='7'+phone;
- if(!/^[78]\d{10}$/.test(phone))throw Error('Проверьте номер телефона.');phone='+7'+phone.slice(1);
+ if(!/^[78]\d{10}$/.test(phone)||/^(\d)\1{9}$/.test(phone.slice(1)))throw Error('Проверьте номер телефона.');phone='+7'+phone.slice(1);
  if(typeof input.requestId!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input.requestId))throw Error('Обновите страницу и попробуйте ещё раз.');
  const lead={requestId:input.requestId,name:input.name.trim(),phone,form:input.form,consent:true,consentVersion:'2026-09-16',page:typeof input.page==='string'?input.page.slice(0,500):'/',attribution:{}};
  for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid','landing','referrer'])if(typeof input.attribution?.[key]==='string')lead.attribution[key]=input.attribution[key].slice(0,300);

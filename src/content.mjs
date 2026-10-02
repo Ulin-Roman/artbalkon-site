@@ -797,8 +797,6 @@ const turnkeyRoofProjects=[
  ['Крыша над балконом верхнего этажа','Балкон верхнего этажа с крышей и тёплым остеклением','turnkey-roof-glazing/roof-glazing-01.png'],
  ['Прозрачная крыша из поликарбоната','Балкон с прозрачной крышей и холодным остеклением','turnkey-roof-glazing/roof-glazing-02.png'],
  ['Крыша с увеличенным выносом','Балкон с крышей, остеклением и утеплённым парапетом','turnkey-roof-glazing/roof-glazing-03.png'],
- ['Широкая крыша над выносным остеклением','Выносное остекление с широкой крышей','gallery-quality-v2/roof12After.webp'],
- ['Защита длинного остеклённого балкона','Длинный остеклённый балкон с новой крышей','gallery-quality-v2/roof9After.webp'],
  ['Металлическая крыша на кирпичном доме','Тёплое остекление с металлической крышей','turnkey-roof-glazing/roof-glazing-04.png']
 ];
 const roofProjectsByTitle=new Map(serviceBeforeAfterProjects['krysha-nad-balkonom'].map(project=>[project.title,project]));

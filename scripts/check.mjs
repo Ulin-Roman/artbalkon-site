@@ -30,14 +30,14 @@ for(const project of electricalPairs){
  assert.ok(project.before.startsWith('electrical-v2/')&&project.after.startsWith('electrical-v2/'),'electrical pairs must use matched installation scenarios');
  assert.notEqual(project.before,project.after);
 }
-assert.equal(roofPairs.length,6,'roof gallery must contain six complete turnkey comparisons');
+assert.equal(roofPairs.length,4,'roof gallery must contain the four retained turnkey comparisons');
 for(const project of roofPairs){
  assert.ok(project.roofComparison&&project.turnkeyRoof,'roof preview must be a complete turnkey project');
  assert.ok(project.afterVisualized&&project.visualized,'edited turnkey roof images must be disclosed');
  assert.notEqual(project.before,project.after,'roof comparison must use different images');
 }
 const reconstructedRoofPairs=roofPairs.filter(project=>project.qualityReconstructed);
-assert.equal(reconstructedRoofPairs.length,2,'roof gallery must retain the two reviewed glazed reconstructions');
+assert.equal(reconstructedRoofPairs.length,0,'the two removed roof reconstructions must stay out of the gallery');
 for(const project of reconstructedRoofPairs){
  assert.ok(project.before.startsWith('gallery-quality-v2/')&&project.after.startsWith('gallery-quality-v2/'),'do not restore blurry roof enlargements');
  assert.ok(project.visualized&&project.qualityReconstructed,'reconstructed images must be disclosed');
@@ -48,6 +48,11 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  if(label==='home'){
   assert.ok(!html.includes('<div class="hero-visual hero-slideshow"'),'home hero must remain static');
   assert.ok(html.includes('/assets/service-before-after/furniture-interior-v2-04-after.webp'),'home hero must keep the selected project image');
+  continue;
+ }
+ if(label==='osteklenie-balkonov'){
+  assert.ok(!html.includes('data-hero-slider'),'glazing page hero must remain static');
+  assert.ok(html.includes('/assets/service-before-after/cold-loggia-finished-12-after.png'),'glazing hero must keep the selected sliding-window image');
   continue;
  }
  if(label==='otdelka-balkonov'){
