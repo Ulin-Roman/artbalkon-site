@@ -4210,6 +4210,39 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   }
 }
 
+/* Three proof cards; on phones they overlap the service hero like on the home page. */
+.home-page .trust-strip,
+.landing-hero>.landing-trust{
+ grid-template-columns:repeat(3,minmax(0,1fr));
+}
+@media(max-width:640px){
+ .home-page .trust-strip,
+ .landing-hero>.landing-trust{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+ }
+ .home-page .trust-strip,
+ .landing-hero>.landing-trust{
+  margin-top:-40px;
+  margin-bottom:18px;
+ }
+ .trust-strip .trust-icon,
+ .landing-trust .trust-icon,
+ .home-page .trust-strip .trust-icon{
+  width:42px;
+  height:42px;
+  flex-basis:42px;
+  padding:10px;
+  border-radius:13px;
+ }
+ .trust-strip .trust-item,
+ .landing-trust .trust-item,
+ .home-page .trust-strip .trust-item{
+  min-height:118px;
+  gap:7px;
+ }
+}
+
 /* Stronger first-screen USP icons: larger branded tiles instead of pale circles. */
 .trust-strip .trust-icon,
 .landing-trust .trust-icon,
@@ -4238,32 +4271,34 @@ body{min-width:0;max-width:100%;overflow-x:clip}
  .landing-trust .trust-icon,
  .home-page .trust-strip .trust-icon{
   display:block;
-  width:46px;
-  height:46px;
-  flex:0 0 46px;
-  padding:11px;
-  border-radius:14px;
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  padding:10px;
+  border-radius:13px;
  }
  .trust-strip .trust-item,
  .landing-trust .trust-item,
  .home-page .trust-strip .trust-item{
-  min-height:128px;
-  gap:9px;
+  min-height:118px;
+  gap:7px;
  }
 }
 
-/* Final first-screen USP layout: four across on larger screens, two by two on phones. */
+/* Final first-screen USP layout: three cards across on every screen. */
 @media(min-width:641px){
  .home-page .trust-strip,
  .landing-hero>.landing-trust{
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
  }
 }
 @media(max-width:640px){
  .home-page .trust-strip,
  .landing-hero>.landing-trust{
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:8px;
+  margin-top:-40px;
+  margin-bottom:18px;
  }
 }
 
