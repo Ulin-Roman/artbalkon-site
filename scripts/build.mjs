@@ -18,15 +18,19 @@ await writeFile('dist/.nojekyll','');
 const routes=[];
 async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(shell(body,{path,...meta})));if(!meta.noindex)routes.push(path);}
 async function redirect(path,target,label){
- const dir='dist'+path,destination=base==='/'?target:`${base}${target.slice(1)}`;
+ const dir='dist'+path,destination=base==='/'?target:`${base}${target.slice(1)}`,targetPage=target.split('#')[0];
  await mkdir(dir,{recursive:true});
  const body=`<section class="section container legal" id="callback"><p class="eyebrow">УСЛУГИ ОБЪЕДИНЕНЫ</p><h1>${esc(label)}</h1><p>Мы объединили страницы для балконов и лоджий. Сейчас откроется общая страница услуги.</p><a class="button" href="${target}">Перейти к услуге ↗</a></section>`;
  const metaTitle=`${label.replace(' и Московской области',' и МО')} | ArtBalkon`;
- const html=shell(body,{path,title:metaTitle,description:`Страница услуги объединена с общей страницей для балконов и лоджий. Перейдите к актуальному описанию работ, примерам и расчёту стоимости.`,noindex:true}).replace('</head>',`<meta http-equiv="refresh" content="0;url=${destination}"><script>location.replace(${JSON.stringify(destination)}+location.search+location.hash)</script></head>`);
+ const html=shell(body,{path,title:metaTitle,description:`Страница услуги объединена с общей страницей для балконов и лоджий. Перейдите к актуальному описанию работ, примерам и расчёту стоимости.`,noindex:true}).replaceAll(`href="${path}#`,`href="${targetPage}#`).replace('</head>',`<meta http-equiv="refresh" content="0;url=${destination}"><script>location.replace(${JSON.stringify(destination)}+location.search+location.hash)</script></head>`);
  await writeFile(dir+'index.html',baseHtml(html));
 }
 await page('/',home(),{image:'/assets/hero-balcony-v2.webp'});
-for(const s of services){const seo=serviceSeo[s.slug];await page(`/${s.slug}/`,servicePage(s),{title:seo?.metaTitle||`${s.h1} — цены и замер | ArtBalkon`,description:seo?.metaDescription||s.offer,image:imageAsset(s.image)});}
+const bundledServiceSlugs=new Set(['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone']);
+for(const s of services.filter(service=>!bundledServiceSlugs.has(service.slug))){const seo=serviceSeo[s.slug];await page(`/${s.slug}/`,servicePage(s),{title:seo?.metaTitle||`${s.h1} — цены и замер | ArtBalkon`,description:seo?.metaDescription||s.offer,image:imageAsset(s.image)});}
+await redirect('/krysha-nad-balkonom/','/balkon-pod-klyuch/#complex-options','Крыша над балконом — только в составе проекта под ключ');
+await redirect('/mebel-dlya-balkona/','/balkon-pod-klyuch/#complex-options','Мебель для балкона или лоджии — только в составе проекта под ключ');
+await redirect('/elektrika-na-balkone/','/balkon-pod-klyuch/#complex-options','Электрика и освещение — только в составе проекта под ключ');
 await redirect('/osteklenie-lodzhii/','/osteklenie-balkonov/','Остекление балконов и лоджий в Москве и Московской области');
 await redirect('/uteplenie-lodzhii/','/uteplenie-balkonov/','Утепление балконов и лоджий в Москве и Московской области');
 await redirect('/otdelka-lodzhii/','/otdelka-balkonov/','Отделка балконов и лоджий в Москве и Московской области');

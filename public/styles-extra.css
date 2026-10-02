@@ -274,6 +274,7 @@ html{scroll-padding-top:104px}
 .quiz-modal{width:min(1380px,calc(100% - 40px));max-height:calc(100dvh - 40px);padding:0;border:0;border-radius:20px;background:transparent;color:var(--ink);box-shadow:0 30px 100px rgba(0,34,36,.34);overflow:auto}
 .quiz-modal::backdrop{background:rgba(3,20,20,.7);backdrop-filter:blur(8px)}
 .quiz-modal[open]{animation:comparison-in .28s ease both}.quiz-modal[open]::backdrop{animation:comparison-backdrop .28s ease both}
+.quiz-modal[open],.application-modal[open]{position:fixed;inset:0;height:fit-content;margin:auto}
 .quiz-modal-shell{position:relative;background:var(--soft);border-radius:20px;overflow:hidden}
 .quiz-modal .quiz-layout{border:0;border-radius:20px;box-shadow:none}
 .quiz-modal-close{position:absolute;z-index:5;top:14px;right:14px;width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(0,119,126,.2);border-radius:50%;background:#fff;color:var(--teal-dark);font-size:26px;line-height:1;box-shadow:0 5px 18px rgba(0,45,47,.12);transition:transform .2s,background .2s}
@@ -4208,6 +4209,110 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   .landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
     margin-top: 18px;
   }
+}
+
+/* Make the next action unmistakable as soon as the current quiz choice is made. */
+.quiz-form .quiz-next-button.is-ready {
+  border-color:#00777e;
+  background:linear-gradient(115deg,#18aaa5 0%,#00878e 42%,#006b72 100%);
+  color:#fff;
+  box-shadow:0 8px 20px rgba(0,112,119,.24);
+}
+.quiz-form .quiz-next-button.is-ready:hover {
+  border-color:#005f65;
+  background:linear-gradient(115deg,#16a19d 0%,#007b82 42%,#005f65 100%);
+  color:#fff;
+  box-shadow:0 10px 24px rgba(0,96,103,.3);
+}
+.quiz-form .quiz-next-button.is-ready:focus-visible {
+  outline:3px solid rgba(11,165,170,.28);
+  outline-offset:3px;
+}
+
+/* Services that are available only inside a turnkey balcony project. */
+.home-extra-grid{
+ grid-template-columns:repeat(2,minmax(0,1fr));
+}
+.turnkey-extras .section-heading{
+ max-width:820px;
+ margin-inline:auto;
+ text-align:center;
+}
+.turnkey-extra-grid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:22px;
+}
+.turnkey-extra-card{
+ min-width:0;
+ overflow:hidden;
+ border:1px solid rgba(15,126,132,.12);
+ border-radius:22px;
+ background:#fff;
+ box-shadow:var(--surface-shadow);
+}
+.turnkey-extra-media{
+ height:240px;
+ overflow:hidden;
+ background:#eceef0;
+}
+.turnkey-extra-media img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ transition:transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.turnkey-extra-card:hover .turnkey-extra-media img{transform:scale(1.035)}
+.turnkey-extra-body{padding:24px}
+.turnkey-extra-badge{
+ display:inline-block;
+ max-width:100%;
+ margin-bottom:13px;
+ padding:7px 10px;
+ border-radius:999px;
+ background:var(--teal-soft);
+ color:var(--teal-dark);
+ font-size:10px;
+ font-weight:800;
+ line-height:1.25;
+ letter-spacing:.045em;
+}
+.turnkey-extra-body h3{margin:0;font-size:23px;line-height:1.25}
+.turnkey-extra-body p{margin:11px 0 0;color:var(--muted);line-height:1.65}
+.bundled-works>.section>.section-heading{
+ max-width:820px;
+ margin-inline:auto;
+ text-align:center;
+}
+.bundled-work-group{
+ padding:34px 0 48px;
+ border-top:1px solid var(--line);
+}
+.bundled-work-group:first-of-type{border-top:0;padding-top:0}
+.bundled-work-group:last-child{padding-bottom:0}
+.bundled-work-heading{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) minmax(280px,520px);
+ gap:32px;
+ align-items:end;
+ margin-bottom:24px;
+}
+.bundled-work-heading h3{margin:6px 0 0;font-size:30px;line-height:1.2}
+.bundled-work-heading>p{margin:0;color:var(--muted);line-height:1.65}
+@media(max-width:900px){
+ .turnkey-extra-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .turnkey-extra-card:last-child{grid-column:1/-1;width:calc((100% - 22px)/2);justify-self:center}
+}
+@media(max-width:640px){
+ .home-extra-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .turnkey-extra-grid{grid-template-columns:minmax(0,1fr);gap:16px}
+ .turnkey-extra-card:last-child{grid-column:auto;width:auto;justify-self:stretch}
+ .turnkey-extra-media{height:210px}
+ .turnkey-extra-body{padding:20px}
+ .turnkey-extra-body h3{font-size:21px}
+ .bundled-work-group{padding:28px 0 38px}
+ .bundled-work-heading{grid-template-columns:minmax(0,1fr);gap:10px;margin-bottom:18px}
+ .bundled-work-heading h3{font-size:24px}
 }
 
 /* Three proof cards; on phones they overlap the service hero like on the home page. */
