@@ -3,7 +3,7 @@ import {beforeDaytimeAssets} from './before-daytime.mjs';
 export const company = {
  name:'ArtBalkon', phone:'+7 (495) 165-39-05', tel:'+74951653905', telegram:'https://t.me/+79255178380', max:'https://max.ru/u/f9LHodD0cOI7H1K6VdQb-wDS7Gs2cT4mlT6S6sdTcgfN4s_cnFPT2isb2Cg', vk:'https://vk.com/artbalkonpro', channel:'https://t.me/artbalkonmoscow', whatsapp:'',
  address:'Московская область, Люберцы, Октябрьский проспект, 209, офис 5', hours:'Замеры ежедневно, 9:00–21:00', reviews:'https://yandex.ru/maps/org/99931581991/reviews/', avito:'https://www.avito.ru/brands/i204694333/all?page_from=from_item_card_icon&iid=3514949804&sellerId=34820bad3f8cdf6e4c49a900a7622581',
- origin:process.env.SITE_ORIGIN || 'https://ulin-roman.github.io/artbalkon-site', source:'https://artbalkon.pro/', checked:'2026-09-17', operator:'ИП Симанин Артем Юрьевич', privacyEmail:'specstroydoc@mail.ru'
+ origin:process.env.SITE_ORIGIN || 'https://ulin-roman.github.io/artbalkon-site', source:'https://artbalkon.pro/', operator:'ИП Симанин Артем Юрьевич', privacyEmail:'specstroydoc@mail.ru'
 };
 // Единственный источник цен для карточек, таблицы, SEO и посадочных страниц.
 export const prices = {cold:7000,warm:11000,panoramic:11500,insulation:700,finishing:1900,turnkey:null};
@@ -1049,6 +1049,24 @@ beforeAfterProjects.splice(0,beforeAfterProjects.length,...prioritizeProjects(be
  'Светлый балкон с рабочим местом','Контрастная отделка лоджии','Деревянная отделка и тумба',
  'Лоджия с уютной зоной отдыха','Серая отделка и стол у окна','Лоджия со столом'
 ]));
+
+// Extend the turnkey gallery with finished furniture and lighting concepts.
+// Their matching pre-renovation views are generated reconstructions, not real photos.
+const turnkeyExpansion=[
+ ['mebel-dlya-balkona','service-before-after/furniture-interior-v2-01-after.webp','service-before-after/turnkey-furniture-01-before-v2.webp','Лоджия с кабинетом и библиотекой','loggia'],
+ ['elektrika-na-balkone','electrical-v2/el2After.webp','service-before-after/turnkey-electrical-02-before-v2.webp','Балкон с трековым светом и зоной отдыха','balcony'],
+ ['mebel-dlya-balkona','service-before-after/furniture-interior-v2-04-after.webp','service-before-after/turnkey-furniture-04-before-v3.webp','Балкон с угловой мягкой зоной','balcony'],
+ ['elektrika-na-balkone','electrical-v2/el5After.webp','service-before-after/turnkey-electrical-05-before-v2.webp','Лоджия с рабочим местом и подсветкой','loggia'],
+ ['mebel-dlya-balkona','service-before-after/furniture-interior-v2-09-after.webp','service-before-after/turnkey-furniture-09-before-v2.webp','Лоджия со встроенным шкафом','loggia'],
+ ['elektrika-na-balkone','electrical-v2/el10After.webp','service-before-after/turnkey-electrical-10-before-v2.webp','Балкон с линейным освещением','balcony']
+];
+for(const [sourceSlug,after,before,title,objectType] of turnkeyExpansion){
+ const finished=serviceBeforeAfterProjects[sourceSlug].find(project=>project.after===after);
+ if(!finished)throw new Error(`Не найдён готовый интерьер для подборки под ключ: ${after}`);
+ turnkeyGallery.push({title,objectType,stage:'turnkey',before,after:finished.after,turnkeyExpansion:true,
+  visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
+  description:'Визуализация проекта под ключ: готовый интерьер взят из подборки мебели или освещения, а состояние до ремонта реконструировано по тому же ракурсу.'});
+}
 
 export const serviceSeo = {
  'osteklenie-balkonov':{

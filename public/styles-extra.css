@@ -5276,3 +5276,16 @@ main{background:#f5f5f7}
 .certificates-section{background:transparent}
 .cost-calculator-section .quiz-intro{background:#fafafb}
 .footer{background:#f5f5f7;border-top-color:#e4e5e8}
+
+/* Mobile hero photos sit behind their copy; only the lower image needs a shade. */
+@media(max-width:640px){
+ .home-page .hero-visual,
+ .landing-hero .landing-photo{z-index:0}
+ .home-page .hero-content,
+ .landing-hero .landing-grid>div:first-child{z-index:4}
+ .home-page .hero-visual::after,
+ .landing-hero .landing-photo::after{
+  z-index:1;
+  background:linear-gradient(180deg,rgba(3,20,21,.04) 0%,rgba(3,20,21,.1) 38%,rgba(3,20,21,.32) 68%,rgba(3,20,21,.7) 100%);
+ }
+}

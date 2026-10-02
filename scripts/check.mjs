@@ -134,7 +134,7 @@ for(const project of coldLoggias){
  if(project.after.includes('cold-ordinary-'))assert.equal(project.before,project.after.replace('-after.webp','-before.webp'),'Loggia must keep its matched before image');
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
- const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type);
+ const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion);
  const expectedCount=slug==='otdelka-balkonov'?13:type==='loggia'?11:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
@@ -153,7 +153,17 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   assert.equal(p.beforeReal,false);
  });
 }
-for(const [slug,expectedCount] of [['osteklenie-balkonov',11],['uteplenie-balkonov',8],['otdelka-balkonov',24],['balkon-pod-klyuch',23]]){
+const turnkeyAdditions=serviceBeforeAfterProjects['balkon-pod-klyuch'].filter(project=>project.turnkeyExpansion);
+assert.equal(turnkeyAdditions.length,6,'Turnkey gallery must include three furniture and three lighting concepts');
+assert.equal(turnkeyAdditions.filter(project=>project.after.startsWith('electrical-v2/')).length,3);
+assert.equal(turnkeyAdditions.filter(project=>project.after.startsWith('service-before-after/furniture-interior-')).length,3);
+for(const project of turnkeyAdditions){
+ assert.equal(project.visualized,true);
+ assert.equal(project.beforeVisualized,true);
+ assert.equal(project.beforeReal,false);
+ assert.match(project.before,/^service-before-after\/turnkey-(?:furniture|electrical)-\d{2}-before-v[23]\.webp$/);
+}
+for(const [slug,expectedCount] of [['osteklenie-balkonov',11],['uteplenie-balkonov',8],['otdelka-balkonov',24],['balkon-pod-klyuch',29]]){
  const gallery=serviceBeforeAfterProjects[slug];
  assert.equal(gallery.length,expectedCount,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount,`${slug}: combined gallery repeats finished rooms`);
@@ -170,14 +180,21 @@ const base=process.env.SITE_BASE_PATH||'/';
 for(const slug of bundledServiceSlugs){const legacy=await readFile(join(root,slug,'index.html'),'utf8');assert.ok(legacy.includes('noindex,follow'),`${slug} must be a noindex redirect`);assert.ok(legacy.includes('/balkon-pod-klyuch/#complex-options'),`${slug} must redirect to bundled options`);}
 async function walk(dir){const files=[];for(const ent of await readdir(dir,{withFileTypes:true})){const path=join(dir,ent.name);files.push(...ent.isDirectory()?await walk(path):[path]);}return files;}
 const files=await walk(root),pages=files.filter(f=>f.endsWith('.html'));let refs=0;
-const titles=new Map(),canonicals=new Map();
+const titles=new Map(),canonicals=new Map(),indexedCanonicals=new Set();
 for(const file of pages){const html=await readFile(file,'utf8'),isRedirect=html.includes('http-equiv="refresh"');assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,file+' must have one H1');for(const tag of ['<title>','name="description"','rel="canonical"','og:title','application/ld+json'])assert.ok(html.includes(tag),file+' missing '+tag);const ids=[...html.matchAll(/\sid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,file+' duplicate IDs');for(const match of html.matchAll(/<img\s[^>]+>/g)){assert.ok(/\salt="[^"]+"/.test(match[0]),'image alt missing');assert.ok(/width=/.test(match[0])&&/height=/.test(match[0]),'image dimensions missing');}
- const title=html.match(/<title>([^<]+)<\/title>/)?.[1],description=html.match(/<meta name="description" content="([^"]+)"/)?.[1],canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];assert.ok(title&&title.length>=20&&title.length<=90,file+' invalid title length');assert.ok(description&&description.length>=60&&description.length<=220,file+' invalid description length');assert.ok(canonical?.startsWith('https://'),file+' invalid canonical');assert.ok(!titles.has(title),`${file} repeats title from ${titles.get(title)}`);assert.ok(!canonicals.has(canonical),`${file} repeats canonical from ${canonicals.get(canonical)}`);titles.set(title,file);canonicals.set(canonical,file);
+ const title=html.match(/<title>([^<]+)<\/title>/)?.[1],description=html.match(/<meta name="description" content="([^"]+)"/)?.[1],canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];assert.ok(title&&title.length>=20&&title.length<=90,file+' invalid title length');assert.ok(description&&description.length>=60&&description.length<=220,file+' invalid description length');assert.ok(canonical?.startsWith('https://'),file+' invalid canonical');assert.ok(!titles.has(title),`${file} repeats title from ${titles.get(title)}`);assert.ok(!canonicals.has(canonical),`${file} repeats canonical from ${canonicals.get(canonical)}`);titles.set(title,file);canonicals.set(canonical,file);if(!html.includes('name="robots" content="noindex'))indexedCanonicals.add(canonical);
  for(const tag of ['property="og:image"','property="og:image:alt"','name="twitter:card"','name="twitter:image"','hreflang="ru-RU"','hreflang="x-default"'])assert.ok(html.includes(tag),file+' missing '+tag);
  const jsonLd=html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1];assert.ok(jsonLd,file+' missing JSON-LD');const schema=JSON.parse(jsonLd);assert.ok(Array.isArray(schema['@graph']),file+' JSON-LD must use @graph');const schemaTypes=schema['@graph'].flatMap(item=>Array.isArray(item['@type'])?item['@type']:[item['@type']]);for(const type of ['HomeAndConstructionBusiness','WebSite','WebPage'])assert.ok(schemaTypes.includes(type),`${file} missing ${type} schema`);if(html.includes('service-page-faq')){assert.ok(schemaTypes.includes('Service'),file+' missing Service schema');assert.ok(schemaTypes.includes('FAQPage'),file+' missing FAQPage schema');}if(html.includes('case-intro'))assert.ok(schemaTypes.includes('Article'),file+' missing Article schema');
  const comparisonPairs=[...html.matchAll(/data-before="([^"]+)" data-after="([^"]+)"/g)].map(match=>`${match[1]}|${match[2]}`);if(html.includes('service-page-faq'))assert.ok(comparisonPairs.length>=1,file+' must have relevant before/after examples');if(comparisonPairs.length){assert.equal(new Set(comparisonPairs).size,comparisonPairs.length,file+' repeats before/after images');}
  for(const m of html.matchAll(/(?:href|src|poster|data-src)="([^"<>]+)"/g)){const url=m[1];if(!url.startsWith('/')&&!url.startsWith('#'))continue;const [pathWithQuery,fragment]=url.split('#'),path=pathWithQuery.split('?')[0];if(path&&base!=='/'&&!path.startsWith(base))assert.fail(`${file} uses path outside Pages base: ${url}`);let target=path?join(root,base==='/'?path:path.slice(base.length-1)):file;try{if((await stat(target)).isDirectory())target=join(target,'index.html');await stat(target);}catch{assert.fail(`${file} missing ${url}`);}if(fragment&&!isRedirect){const content=await readFile(target,'utf8');assert.ok(content.includes(`id="${fragment}"`),`${file} missing anchor ${url}`);}refs++;}
 }
+const sitemap=await readFile(join(root,'sitemap.xml'),'utf8');
+const sitemapUrls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
+assert.deepEqual(new Set(sitemapUrls),indexedCanonicals,'sitemap must contain exactly the indexable canonical URLs');
+assert.equal(sitemapUrls.length,indexedCanonicals.size,'sitemap must not contain duplicate URLs');
+assert.ok(!/<(?:lastmod|changefreq|priority)>/.test(sitemap),'sitemap must not publish unverified dates or ignored ranking hints');
+const robots=await readFile(join(root,'robots.txt'),'utf8');
+assert.ok(!robots.includes(`Disallow: ${base}privacy/`)&&!robots.includes(`Disallow: ${base}consent/`),'noindex legal pages must remain crawlable');
 for(const asset of ['assets/manrope.ttf','assets/manrope-bold.ttf','robots.txt','sitemap.xml','site-config.json'])await stat(join(root,asset));
 const searchable=files.filter(file=>/\.(?:html|css|js|json|xml|txt)$/.test(file));const siteText=(await Promise.all(searchable.map(file=>readFile(file,'utf8')))).join('\n').replaceAll('\\','/');for(const asset of files.filter(file=>file.includes(`${join(root,'assets')}`))){const relative=asset.slice(root.length+1).replaceAll('\\','/');assert.ok(siteText.includes(relative),`unused built asset: ${relative}`);}
 await assert.rejects(stat(join(root,'styles-extra.css')),/ENOENT/);
