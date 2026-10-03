@@ -4651,7 +4651,7 @@ body{min-width:0;max-width:100%;overflow-x:clip}
 .turnkey-extra-card:hover .turnkey-extra-media img{transform:scale(1.035)}
 .turnkey-extra-media.before-after-compare{display:block;width:100%;min-width:0;padding:0;border:0;cursor:pointer}
 .turnkey-extra-media .before-after-preview{height:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
-.turnkey-extra-full-photo .turnkey-extra-media img{object-fit:contain;transform:none}
+.turnkey-extra-full-photo .turnkey-extra-media img{object-fit:cover;transform:none}
 .turnkey-extra-body{padding:24px}
 .turnkey-extra-badge{
  display:inline-block;
