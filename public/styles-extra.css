@@ -4559,7 +4559,7 @@ body{min-width:0;max-width:100%;overflow-x:clip}
   top:650px;
  }
  .landing-photo-comparison figure:first-child::after{
-  background:linear-gradient(180deg,rgba(5,24,26,.3) 0%,rgba(5,24,26,.55) 42%,rgba(5,24,26,.94) 100%);
+  background:linear-gradient(180deg,rgba(5,24,26,.38) 0%,rgba(5,24,26,.66) 42%,rgba(5,24,26,.94) 100%);
  }
 }
 
@@ -5287,6 +5287,6 @@ main{background:#f5f5f7}
  .home-page .hero-visual::after,
  .landing-hero .landing-photo::after{
   z-index:1;
-  background:linear-gradient(180deg,rgba(3,20,21,.1) 0%,rgba(3,20,21,.24) 32%,rgba(3,20,21,.48) 58%,rgba(3,20,21,.62) 78%,rgba(3,20,21,.78) 100%);
+  background:linear-gradient(180deg,rgba(3,20,21,.17) 0%,rgba(3,20,21,.38) 32%,rgba(3,20,21,.64) 58%,rgba(3,20,21,.74) 78%,rgba(3,20,21,.84) 100%);
  }
 }
