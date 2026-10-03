@@ -1,3 +1,4 @@
+import {additionalAngleProjects} from './gallery-angles.mjs';
 import {beforeDaytimeAssets} from './before-daytime.mjs';
 
 export const company = {
@@ -180,7 +181,7 @@ export const serviceBeforeAfterProjects={
   {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before-raised-blinds.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before-raised-blinds-penoplex-v2.webp',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
  'otdelka-balkonov':[
@@ -223,7 +224,7 @@ export const serviceBeforeAfterProjects={
   {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before-raised-blinds.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before-raised-blinds-penoplex-v2.webp',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
  'otdelka-lodzhii':[
@@ -961,8 +962,8 @@ const galleryShowcaseOrder={
   'Утепление под светлую отделку','Утепление под тёмное дерево','Утепление компактного пространства'
  ],
  'otdelka-balkonov':[
-  'Светлый балкон с рабочим местом','Контрастная отделка лоджии','Деревянная отделка и тумба',
-  'Лоджия с трековым освещением','Отделка балкона под рабочий кабинет','Лоджия с уютной зоной отдыха'
+  'Светлый балкон с рабочим местом','Отделка балкона под рабочий кабинет','Деревянная отделка и тумба',
+  'Лоджия с трековым освещением','Контрастная отделка лоджии','Лоджия с уютной зоной отдыха'
  ],
  'balkon-pod-klyuch':[
   'Балкон с компактной зоной отдыха','Деревянная лоджия с рабочим местом','Балкон с откидным столом',
@@ -1376,3 +1377,14 @@ export const faqs = [
  ['Работаете ли по договору?','Да. Перед началом работ согласовываем объём, материалы, стоимость и сроки. Гарантийные обязательства оформляем в договоре.'],
  ['Можно ли заказать только остекление без отделки?','Да, остекление, утепление и отделку можно заказать отдельно. Подберём состав работ под вашу задачу.']
 ];
+
+// Three additional camera angles on each active service landing page.
+for(const [slug,projects] of Object.entries(additionalAngleProjects)){
+ serviceBeforeAfterProjects[slug]=[...serviceBeforeAfterProjects[slug],...projects.map(project=>({...project}))];
+}
+
+// Night comparison demonstrates the installed lights, preserving the source pair.
+serviceBeforeAfterProjects['elektrika-na-balkone']=serviceBeforeAfterProjects['elektrika-na-balkone'].map(project=>project.title==='Два бра и удобные розетки'?{...project,
+ before:'electrical-v2/el3-before-night-v1.webp',after:'electrical-v2/el3-after-night-v1.webp',
+ description:'Ночная визуализация: тот же интерьер без освещения и с включёнными бра и потолочными светильниками. Исходные изображения сохранены.'
+}:project);

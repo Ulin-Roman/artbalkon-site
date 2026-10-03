@@ -4649,6 +4649,9 @@ body{min-width:0;max-width:100%;overflow-x:clip}
  transition:transform .6s cubic-bezier(.2,.7,.2,1);
 }
 .turnkey-extra-card:hover .turnkey-extra-media img{transform:scale(1.035)}
+.turnkey-extra-media.before-after-compare{display:block;width:100%;min-width:0;padding:0;border:0;cursor:pointer}
+.turnkey-extra-media .before-after-preview{height:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
+.turnkey-extra-full-photo .turnkey-extra-media img{object-fit:contain;transform:none}
 .turnkey-extra-body{padding:24px}
 .turnkey-extra-badge{
  display:inline-block;
@@ -5290,3 +5293,77 @@ main{background:#f5f5f7}
   background:linear-gradient(180deg,rgba(3,20,21,.17) 0%,rgba(3,20,21,.38) 32%,rgba(3,20,21,.64) 58%,rgba(3,20,21,.74) 78%,rgba(3,20,21,.84) 100%);
  }
 }
+
+/* Retain full camera composition in the new landscape comparisons. */
+
+
+
+/* Social channel previews: recognizable interfaces and reasons to follow. */
+.channel-showcase-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.channel-card{--channel-color:#229ed9;min-width:0;border:1px solid #e2e9ed;border-radius:24px;background:#fff;box-shadow:0 12px 36px rgba(28,55,66,.06);display:flex;flex-direction:column}
+.channel-vk{--channel-color:#0077ff}
+.channel-platform{display:flex;align-items:center;gap:12px;padding:20px 26px;font-weight:700;font-size:20px}
+.channel-platform img{width:36px;height:36px;flex-shrink:0}
+.channel-platform-note{margin-left:auto;color:var(--muted);font-size:12px;font-weight:500;text-align:right}
+.channel-preview{margin:0 18px;border:1px solid #e5ebed;border-radius:18px;min-width:0;min-height:430px;height:auto;flex-shrink:0}
+.channel-preview-telegram{padding:16px;background:linear-gradient(135deg,#e4eef4,#d8e9e1)}
+.channel-preview-top{display:flex;align-items:center;gap:10px;margin-bottom:13px;min-width:0}
+.channel-avatar{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:var(--channel-color);color:#fff;font-size:15px;font-weight:700}
+.channel-preview-top>div,.channel-vk-profile>div{display:grid;gap:3px;min-width:0}
+.channel-preview-top strong,.channel-vk-profile strong{font-size:15px}
+.channel-preview-top>div>span,.channel-vk-profile>div>span{font-size:11px;color:#637683;overflow-wrap:anywhere}
+.channel-preview-label{margin-left:auto;font-size:11px;color:#637683}
+.channel-post{background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(34,62,78,.06);padding:12px}
+.channel-post-author{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#1681b5;font-weight:700;font-size:12px;margin-bottom:9px}
+.channel-post-author>span{font-size:10px;color:#83909a;font-weight:400}
+.channel-before-after{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
+.channel-before-after figure{position:relative;margin:0;min-width:0;height:174px}
+.channel-before-after img{display:block;width:100%;height:100%;object-fit:cover;border-radius:7px}
+.channel-before-after figcaption{position:absolute;left:8px;bottom:8px;background:rgba(20,38,43,.7);color:#fff;border-radius:5px;padding:3px 8px;font-size:10px}
+.channel-post-caption{padding-top:10px}
+.channel-post-caption>strong{font-size:13px}
+.channel-post-caption>p{font-size:11px;line-height:1.5;margin:5px 0}
+.channel-post-topic{color:#1681b5;font-size:10px}
+.channel-preview-vk{background:#f4f6f8;padding:0 14px 14px}
+.channel-vk-cover{height:102px;margin:0 -14px;background:linear-gradient(125deg,#edf9f7,#cce8eb);border-radius:17px 17px 0 0;padding:20px 22px;display:flex;flex-direction:column;justify-content:center;gap:9px}
+.channel-vk-cover img{display:block;width:150px;height:auto}
+.channel-vk-cover>span{color:#467078;font-size:11px}
+.channel-vk-profile{display:flex;align-items:center;gap:10px;margin:12px 0}
+.channel-preview-tabs{display:flex;gap:22px;border-bottom:1px solid #dfe5eb;font-size:11px;padding:0 3px 9px;color:#718395}
+.channel-preview-tabs>strong{color:var(--channel-color)}
+.channel-album{margin-top:10px;background:#fff;border-radius:10px;padding:12px}
+.channel-album-heading{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px;min-width:0}
+.channel-album-heading strong{font-size:12px}
+.channel-album-heading>span{font-size:10px;color:#83909a;text-align:right}
+.channel-album-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;height:136px;grid-template-rows:minmax(0,1fr)}
+.channel-album-photos img{width:100%;height:100%;object-fit:cover;border-radius:6px;min-width:0;min-height:0}
+.channel-copy{padding:24px 26px 26px;flex:1;display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.channel-copy h3{font-size:24px;line-height:1.25;margin:0}
+.channel-copy>p{font-size:14px;line-height:1.65;color:var(--muted);margin:12px 0 16px}
+.channel-benefits{display:flex;flex-wrap:wrap;gap:7px;padding:0;margin:0 0 22px;list-style:none}
+.channel-benefits li{font-size:11px;padding:6px 9px;background:#f1f6f8;border-radius:7px;color:#506572}
+.channel-link{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-width:0;margin-top:auto;border-radius:12px;background:var(--channel-color);color:#fff;font-size:14px;font-weight:700;padding:14px 18px;text-decoration:none;transition:filter .2s}
+.channel-link:hover{filter:brightness(.94);color:#fff}
+.channel-link:focus-visible{outline:3px solid var(--channel-color);outline-offset:4px}
+.channel-link svg{width:20px;height:20px;flex-shrink:0}
+@media(max-width:900px){.channel-showcase-grid{grid-template-columns:minmax(0,1fr);max-width:620px;margin-inline:auto}}
+@media(max-width:640px){
+ .channel-card{border-radius:20px}
+ .channel-platform{padding:18px;font-size:18px;gap:10px}
+ .channel-platform-note{font-size:11px}
+ .channel-preview{margin-inline:12px;height:auto;min-height:0}
+ .channel-preview-telegram{padding:12px}
+ .channel-preview-vk{padding-bottom:14px}
+ .channel-before-after figure{height:165px}
+ .channel-copy{padding:22px 18px}
+ .channel-copy h3{font-size:22px}
+ .channel-copy>p{font-size:13px}
+ .channel-link{font-size:13px;padding:14px}
+ .social-subscribe .social-subscribe-heading h2{font-size:32px}
+ .channel-post-author{font-size:11px}
+ .channel-post-author>span,.channel-album-heading>span{font-size:9px}
+ .channel-album-photos{height:125px}
+}
+
+/* Discourage saving and dragging site photographs. */
+img{-webkit-touch-callout:none;-webkit-user-drag:none;user-select:none}

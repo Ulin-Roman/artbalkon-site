@@ -1,9 +1,22 @@
+import {beforeWeatherAssets} from '../src/before-weather.mjs';
 import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
 import {servicePage,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
+// Weather/daylight variant checks: only generated BEFORE assets may be mapped.
+const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
+const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).map(p=>p.before));
+const allAfterAssets=new Set(allPhotoPairs.map(p=>p.after));
+const renderedGalleries=[renderHome(),...services.map(service=>servicePageWithSeo(service))].join('\n');
+for(const [source,target] of Object.entries(beforeWeatherAssets)){
+ assert.ok(generatedBeforeAssets.has(source),`Weather variant must come from a generated BEFORE: ${source}`);
+ assert.ok(!allAfterAssets.has(source),`Weather variant must not change a shared AFTER: ${source}`);
+ assert.match(target,/^before-weather-v1\/before-\d{3}\.webp$/);
+ assert.ok(renderedGalleries.includes(`/assets/${target}`),`Weather variant must appear in a rendered gallery: ${target}`);
+}
+for(const original of allPhotoPairs.filter(p=>p.beforeReal===true))assert.ok(!beforeWeatherAssets[original.before],`Original BEFORE must be preserved: ${original.before}`);
 const requiredLocation='в Москве и Московской области';
 const bundledServiceSlugs=['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'];
 const homeHtml=renderHome();
@@ -14,10 +27,10 @@ assert.ok(homeHtml.includes('/assets/before-daytime/before-032.webp'),'home insu
 assert.ok(homeHtml.includes('/assets/service-before-after/furniture-interior-v2-02-after.webp'),'home turnkey card must use the selected page hero');
 for(const slug of bundledServiceSlugs)assert.ok(!homeHtml.includes(`href="/${slug}/"`),`Home must not advertise ${slug} as a standalone service`);
 const turnkeyHtml=servicePageWithSeo(services.find(service=>service.slug==='balkon-pod-klyuch'));
+assert.ok(!turnkeyHtml.includes('id="complex-projects"'),'Removed bundled galleries must stay off the turnkey page');
+for(const title of ['Работы в составе проектов под ключ','Мебель в готовых интерьерах','Электрика и освещение в проектах'])assert.ok(!turnkeyHtml.includes(title),`Removed section must stay absent: ${title}`);
 assert.match(turnkeyHtml,/id="complex-options"/,'Turnkey page must contain bundled options');
 for(const title of ['Крыша над балконом','Мебель для балкона или лоджии','Электрика и освещение'])assert.ok(turnkeyHtml.includes(title),`Turnkey page must contain ${title}`);
-assert.match(turnkeyHtml,/id="complex-projects"/,'Turnkey page must retain bundled-service project galleries');
-for(const slug of bundledServiceSlugs)for(const project of serviceBeforeAfterProjects[slug])assert.ok(turnkeyHtml.includes(`data-title="${project.title.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;')}"`),`Turnkey page must retain ${slug} project: ${project.title}`);
 for(const [label,html] of [['home',renderHome()],...services.map(service=>[service.slug,servicePage(service)])]){
  const h1=html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g,' ');
  assert.ok(h1?.includes(requiredLocation),`${label}: H1 must include ${requiredLocation}`);
@@ -116,7 +129,7 @@ for(const p of furnitureGallery){
  assert.ok(!beforeAfterProjects.some(home=>home.after===p.after),'Furniture concepts must not replace home turnkey projects');
 }
 assert.equal(services.find(s=>s.slug==='mebel-dlya-balkona').title,'Мебель для балконов и лоджий');
-const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
+const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'].filter(project=>!project.newAngleSeries);
 assert.equal(coldGallery.length,24,'Cold glazing gallery must contain 24 distinct pairs');
 assert.equal(coldGallery.filter(project=>project.objectType==='balcony').length,12,'Cold glazing must contain twelve balcony examples');
 assert.equal(coldGallery.filter(project=>project.objectType==='loggia').length,12,'Cold glazing must contain twelve loggia examples');
@@ -134,7 +147,7 @@ for(const project of coldLoggias){
  if(project.after.includes('cold-ordinary-'))assert.equal(project.before,project.after.replace('-after.webp','-before.webp'),'Loggia must keep its matched before image');
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
- const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion);
+ const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion&&!project.newAngleSeries);
  const expectedCount=slug==='otdelka-balkonov'?13:type==='loggia'?11:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
@@ -165,8 +178,8 @@ for(const project of turnkeyAdditions){
 }
 for(const [slug,expectedCount] of [['osteklenie-balkonov',11],['uteplenie-balkonov',8],['otdelka-balkonov',24],['balkon-pod-klyuch',29]]){
  const gallery=serviceBeforeAfterProjects[slug];
- assert.equal(gallery.length,expectedCount,`${slug}: combined gallery has the wrong size`);
- assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount,`${slug}: combined gallery repeats finished rooms`);
+ assert.equal(gallery.length,expectedCount+3,`${slug}: combined gallery has the wrong size`);
+ assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount+3,`${slug}: combined gallery repeats finished rooms`);
 }
 const addedOffice=serviceBeforeAfterProjects['otdelka-balkonov'].find(project=>project.after==='owner-projects/balcony-office-after.webp');
 assert.ok(addedOffice,'Owner office project must remain in the finishing gallery');
@@ -185,7 +198,11 @@ for(const file of pages){const html=await readFile(file,'utf8'),isRedirect=html.
  const title=html.match(/<title>([^<]+)<\/title>/)?.[1],description=html.match(/<meta name="description" content="([^"]+)"/)?.[1],canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];assert.ok(title&&title.length>=20&&title.length<=90,file+' invalid title length');assert.ok(description&&description.length>=60&&description.length<=220,file+' invalid description length');assert.ok(canonical?.startsWith('https://'),file+' invalid canonical');assert.ok(!titles.has(title),`${file} repeats title from ${titles.get(title)}`);assert.ok(!canonicals.has(canonical),`${file} repeats canonical from ${canonicals.get(canonical)}`);titles.set(title,file);canonicals.set(canonical,file);if(!html.includes('name="robots" content="noindex'))indexedCanonicals.add(canonical);
  for(const tag of ['property="og:image"','property="og:image:alt"','name="twitter:card"','name="twitter:image"','hreflang="ru-RU"','hreflang="x-default"'])assert.ok(html.includes(tag),file+' missing '+tag);
  const jsonLd=html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1];assert.ok(jsonLd,file+' missing JSON-LD');const schema=JSON.parse(jsonLd);assert.ok(Array.isArray(schema['@graph']),file+' JSON-LD must use @graph');const schemaTypes=schema['@graph'].flatMap(item=>Array.isArray(item['@type'])?item['@type']:[item['@type']]);for(const type of ['HomeAndConstructionBusiness','WebSite','WebPage'])assert.ok(schemaTypes.includes(type),`${file} missing ${type} schema`);if(html.includes('service-page-faq')){assert.ok(schemaTypes.includes('Service'),file+' missing Service schema');assert.ok(schemaTypes.includes('FAQPage'),file+' missing FAQPage schema');}if(html.includes('case-intro'))assert.ok(schemaTypes.includes('Article'),file+' missing Article schema');
- const comparisonPairs=[...html.matchAll(/data-before="([^"]+)" data-after="([^"]+)"/g)].map(match=>`${match[1]}|${match[2]}`);if(html.includes('service-page-faq'))assert.ok(comparisonPairs.length>=1,file+' must have relevant before/after examples');if(comparisonPairs.length){assert.equal(new Set(comparisonPairs).size,comparisonPairs.length,file+' repeats before/after images');}
+ // Featured extras intentionally reuse the first project from each complete gallery.
+ const extrasHtml=html.match(/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>/)?.[0]||'';
+ if(extrasHtml)assert.equal((extrasHtml.match(/data-comparison /g)||[]).length,3,file+' must feature three extra project comparisons');
+ const galleryHtml=html.replace(extrasHtml,'');
+ const comparisonPairs=[...galleryHtml.matchAll(/data-before="([^"]+)" data-after="([^"]+)"/g)].map(match=>`${match[1]}|${match[2]}`);if(html.includes('service-page-faq'))assert.ok(comparisonPairs.length>=1,file+' must have relevant before/after examples');if(comparisonPairs.length){assert.equal(new Set(comparisonPairs).size,comparisonPairs.length,file+' repeats before/after images');}
  for(const m of html.matchAll(/(?:href|src|poster|data-src)="([^"<>]+)"/g)){const url=m[1];if(!url.startsWith('/')&&!url.startsWith('#'))continue;const [pathWithQuery,fragment]=url.split('#'),path=pathWithQuery.split('?')[0];if(path&&base!=='/'&&!path.startsWith(base))assert.fail(`${file} uses path outside Pages base: ${url}`);let target=path?join(root,base==='/'?path:path.slice(base.length-1)):file;try{if((await stat(target)).isDirectory())target=join(target,'index.html');await stat(target);}catch{assert.fail(`${file} missing ${url}`);}if(fragment&&!isRedirect){const content=await readFile(target,'utf8');assert.ok(content.includes(`id="${fragment}"`),`${file} missing anchor ${url}`);}refs++;}
 }
 const sitemap=await readFile(join(root,'sitemap.xml'),'utf8');
@@ -203,3 +220,14 @@ const home=await readFile(join(root,'index.html'),'utf8');
 if(base!=='/'){assert.ok(home.includes(`href="${base}styles.css`));assert.ok(home.includes(`src="${base}app.js`));assert.ok(home.includes(`srcset="${base}assets/`));assert.ok(home.includes(`data-src="${base}assets/`));assert.ok(home.includes(`poster="${base}assets/video/process-poster.jpg"`));assert.ok(home.includes(`poster="${base}assets/video/result-poster.jpg"`));assert.ok(home.includes(`href="${base}osteklenie-balkonov/"`));assert.ok(home.includes(`<link rel="canonical" href="https://ulin-roman.github.io${base}"`));const css=await readFile(join(root,'styles.css'),'utf8');assert.ok(css.includes(`url('${base}assets/manrope.ttf')`));assert.ok(!css.includes("url('/assets/"));assert.ok(!home.includes('srcset="/assets/'));assert.ok(!home.includes('data-src="/assets/'));assert.ok(!home.includes('poster="/assets/'));}
 const total=await Promise.all(files.filter(f=>f.endsWith('.webp')).map(f=>stat(f).then(s=>s.size)));
 console.log(`PASS: ${pages.length} pages, ${refs} local references, unique metadata, JSON-LD, image alt, no orphan assets, JS syntax. WebP total: ${Math.round(total.reduce((a,b)=>a+b,0)/1024)} KB.`);
+
+// The new series must add exactly three distinct, labelled comparisons per active service.
+for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
+ const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newAngleSeries);
+ assert.equal(added.length,3,`${service.slug}: three new camera views required`);
+ for(const p of added){
+  assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);
+  assert.ok(p.before.startsWith('gallery-angles-v1/')&&p.after.startsWith('gallery-angles-v1/'));
+  assert.notEqual(p.before,p.after);
+ }
+}
