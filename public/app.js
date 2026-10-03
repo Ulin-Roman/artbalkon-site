@@ -143,10 +143,13 @@
   const section=button.closest('.before-after-section');
   const hiddenCards=[...section?.querySelectorAll('.before-after-card[hidden]')||[]];
   button.addEventListener('click',()=>{
-   hiddenCards.forEach(card=>{card.hidden=false;card.classList.add('is-visible');});
-   button.setAttribute('aria-expanded','true');
-   button.closest('.before-after-more').hidden=true;
-   track('before_after_show_more',{count:hiddenCards.length});
+   const expanded=button.getAttribute('aria-expanded')!=='true';
+   hiddenCards.forEach(card=>{card.hidden=!expanded;if(expanded)card.classList.add('is-visible');});
+   button.setAttribute('aria-expanded',String(expanded));
+   button.querySelector('[data-more-label]').textContent=expanded?'Свернуть':'Смотреть ещё';
+   button.querySelector('[aria-hidden]').textContent=expanded?'↑':'↓';
+   if(expanded)track('before_after_show_more',{count:hiddenCards.length});
+   else button.scrollIntoView({block:'nearest',behavior:'instant'});
   });
  });
  document.querySelectorAll('.glazing-benefits-copy').forEach(block=>{
