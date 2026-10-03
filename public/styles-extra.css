@@ -3628,10 +3628,11 @@ body{min-width:0;max-width:100%;overflow-x:clip}
 
 /* Compact the gift-card action visually on phones; the whole card remains tappable. */
 @media(max-width:640px){
- .promotion-card-copy{padding-bottom:22px}
+ .promotion-card-copy{padding-bottom:18px}
+ .promotion-card-copy small{margin-bottom:14px}
  .promotion-card-copy>span{
-  min-height:38px;
-  padding:7px 10px;
+  min-height:34px;
+  padding:5px 10px;
  }
 }
 
@@ -5286,6 +5287,6 @@ main{background:#f5f5f7}
  .home-page .hero-visual::after,
  .landing-hero .landing-photo::after{
   z-index:1;
-  background:linear-gradient(180deg,rgba(3,20,21,.04) 0%,rgba(3,20,21,.1) 38%,rgba(3,20,21,.32) 68%,rgba(3,20,21,.7) 100%);
+  background:linear-gradient(180deg,rgba(3,20,21,.1) 0%,rgba(3,20,21,.24) 32%,rgba(3,20,21,.48) 58%,rgba(3,20,21,.62) 78%,rgba(3,20,21,.78) 100%);
  }
 }

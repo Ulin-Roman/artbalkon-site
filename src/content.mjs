@@ -180,7 +180,7 @@ export const serviceBeforeAfterProjects={
   {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before-raised-blinds.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
  'otdelka-balkonov':[
@@ -223,7 +223,7 @@ export const serviceBeforeAfterProjects={
   {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
   {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before-raised-blinds.png',stage:'insulation',material:'xps'},
   {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
  'otdelka-lodzhii':[
