@@ -5432,108 +5432,6 @@
       }
     ]
   },
-  "/assets/service-before-after/cottage-glazing-10-after-hq.webp": {
-    "src": "/assets/responsive/70bda6cb24be5522-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/70bda6cb24be5522-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/70bda6cb24be5522-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/70bda6cb24be5522-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/service-before-after/cottage-glazing-10-before-hq.webp": {
-    "src": "/assets/responsive/75a8e3b157f80a55-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/75a8e3b157f80a55-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/75a8e3b157f80a55-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/75a8e3b157f80a55-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/service-before-after/cottage-glazing-11-after-hq.webp": {
-    "src": "/assets/responsive/e0fd26cd42e2cc34-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/e0fd26cd42e2cc34-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/e0fd26cd42e2cc34-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/e0fd26cd42e2cc34-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/service-before-after/cottage-glazing-11-before-hq.webp": {
-    "src": "/assets/responsive/e87586649f5164e9-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/e87586649f5164e9-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/e87586649f5164e9-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/e87586649f5164e9-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/service-before-after/cottage-glazing-12-after-hq.webp": {
-    "src": "/assets/responsive/3a990f9151056e89-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/3a990f9151056e89-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/3a990f9151056e89-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/3a990f9151056e89-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/service-before-after/cottage-glazing-12-before-hq.webp": {
-    "src": "/assets/responsive/25ef66ca322e979c-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/25ef66ca322e979c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/25ef66ca322e979c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/25ef66ca322e979c-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
   "/assets/service-before-after/cottage-glazing-2-before-hq.webp": {
     "src": "/assets/responsive/fbe6eaf7ca51fa74-1024.webp",
     "variants": [
@@ -5619,40 +5517,6 @@
       }
     ]
   },
-  "/assets/service-before-after/cottage-glazing-8-after-hq.webp": {
-    "src": "/assets/responsive/27708c78c41d7181-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/27708c78c41d7181-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/27708c78c41d7181-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/27708c78c41d7181-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/service-before-after/cottage-glazing-8-before-hq.webp": {
-    "src": "/assets/responsive/3684403570a0be48-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/3684403570a0be48-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/3684403570a0be48-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/3684403570a0be48-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
   "/assets/service-before-after/cottage-glazing-after.jpg": {
     "src": "/assets/responsive/c45c31f4cb3c4062-768.webp",
     "variants": [
@@ -5684,23 +5548,6 @@
       {
         "src": "/assets/responsive/d8626043da2e4de4-768.webp",
         "width": 768
-      }
-    ]
-  },
-  "/assets/service-before-after/cottage-same-openings-after.png": {
-    "src": "/assets/responsive/d870412c54ab0b09-887.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d870412c54ab0b09-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d870412c54ab0b09-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d870412c54ab0b09-887.webp",
-        "width": 887
       }
     ]
   },
@@ -8757,6 +8604,159 @@
       {
         "src": "/assets/responsive/22878853c8b6bedb-724.webp",
         "width": 724
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-05-before.webp": {
+    "src": "/assets/responsive/35d9d7557d7c5f46-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/35d9d7557d7c5f46-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/35d9d7557d7c5f46-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/35d9d7557d7c5f46-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-05-after.webp": {
+    "src": "/assets/responsive/4fcac7a4ed326184-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/4fcac7a4ed326184-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/4fcac7a4ed326184-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/4fcac7a4ed326184-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-06-after.webp": {
+    "src": "/assets/responsive/b67cc9ab63336335-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b67cc9ab63336335-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b67cc9ab63336335-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b67cc9ab63336335-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-07-before.webp": {
+    "src": "/assets/responsive/4ba024807a91f61f-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/4ba024807a91f61f-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/4ba024807a91f61f-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/4ba024807a91f61f-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-07-after.webp": {
+    "src": "/assets/responsive/a584df49be49de12-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/a584df49be49de12-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/a584df49be49de12-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/a584df49be49de12-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-08-before.webp": {
+    "src": "/assets/responsive/9cd992272dfa0177-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/9cd992272dfa0177-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/9cd992272dfa0177-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/9cd992272dfa0177-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-08-after.webp": {
+    "src": "/assets/responsive/5f6b1d079fadd842-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/5f6b1d079fadd842-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/5f6b1d079fadd842-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/5f6b1d079fadd842-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-09-before.webp": {
+    "src": "/assets/responsive/be58bd6e25c72262-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/be58bd6e25c72262-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/be58bd6e25c72262-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/be58bd6e25c72262-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-quality-v3/project-09-after.webp": {
+    "src": "/assets/responsive/c6b06a1dde59e3b6-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c6b06a1dde59e3b6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c6b06a1dde59e3b6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c6b06a1dde59e3b6-887.webp",
+        "width": 887
       }
     ]
   }

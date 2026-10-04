@@ -1414,3 +1414,26 @@ beforeAfterProjects.push(...perspectiveProjects['balkon-pod-klyuch'].map(p=>({..
 
 for(const [slug,projects] of Object.entries(diverseProjects)){serviceBeforeAfterProjects[slug].push(...projects.map(p=>({...p})));}
 beforeAfterProjects.push(...diverseProjects['balkon-pod-klyuch'].map(p=>({...p})));
+
+// Reviewed cottage photographs: detailed reconstructions and interior-only window hardware.
+const cottageQualityReplacements={
+  "service-before-after/cottage-glazing-11-before-hq.webp": "cottage-quality-v3/project-05-before.webp",
+  "service-before-after/cottage-glazing-11-after-hq.webp": "cottage-quality-v3/project-05-after.webp",
+  "service-before-after/cottage-same-openings-after.png": "cottage-quality-v3/project-06-after.webp",
+  "service-before-after/cottage-glazing-8-before-hq.webp": "cottage-quality-v3/project-07-before.webp",
+  "service-before-after/cottage-glazing-8-after-hq.webp": "cottage-quality-v3/project-07-after.webp",
+  "service-before-after/cottage-glazing-10-before-hq.webp": "cottage-quality-v3/project-08-before.webp",
+  "service-before-after/cottage-glazing-10-after-hq.webp": "cottage-quality-v3/project-08-after.webp",
+  "service-before-after/cottage-glazing-12-before-hq.webp": "cottage-quality-v3/project-09-before.webp",
+  "service-before-after/cottage-glazing-12-after-hq.webp": "cottage-quality-v3/project-09-after.webp"
+};
+for (const projects of [beforeAfterProjects, ...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of projects) {
+  for (const side of ['before','after']) {
+   if (cottageQualityReplacements[project[side]]) {
+    project[side]=cottageQualityReplacements[project[side]];
+    project.qualityReconstructed=true;
+   }
+  }
+ }
+}
