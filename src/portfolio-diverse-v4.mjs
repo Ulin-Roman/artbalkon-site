@@ -315,8 +315,8 @@ export const diverseProjects = {
     },
     {
       "title": "Тёплое остекление балкона с креслом и книгами",
-      "before": "portfolio-diverse-v4/teploe-osteklenie-3-standard-v2-before.webp",
-      "after": "portfolio-diverse-v4/teploe-osteklenie-3-standard-v2-after.webp",
+      "before": "portfolio-diverse-v4/teploe-osteklenie-3-replacement-v3-before.webp",
+      "after": "portfolio-diverse-v4/teploe-osteklenie-3-replacement-v3-after.webp",
       "stage": "warm",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",

@@ -8267,40 +8267,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-3-standard-v2-before.webp": {
-    "src": "/assets/responsive/1eeb73a950d1489f-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/1eeb73a950d1489f-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/1eeb73a950d1489f-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/1eeb73a950d1489f-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-3-standard-v2-after.webp": {
-    "src": "/assets/responsive/1c73c23772a92bc9-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/1c73c23772a92bc9-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/1c73c23772a92bc9-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/1c73c23772a92bc9-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-1-standard-v2-before.webp": {
     "src": "/assets/responsive/3745da255ca47379-724.webp",
     "variants": [
@@ -8756,6 +8722,40 @@
       },
       {
         "src": "/assets/responsive/8e3712e6ae4463ae-1086.webp",
+        "width": 1086
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/teploe-osteklenie-3-replacement-v3-before.webp": {
+    "src": "/assets/responsive/eff2dbb4227e0915-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/eff2dbb4227e0915-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/eff2dbb4227e0915-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/eff2dbb4227e0915-1086.webp",
+        "width": 1086
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/teploe-osteklenie-3-replacement-v3-after.webp": {
+    "src": "/assets/responsive/42cb89e3e0fe34d8-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/42cb89e3e0fe34d8-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/42cb89e3e0fe34d8-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/42cb89e3e0fe34d8-1086.webp",
         "width": 1086
       }
     ]
