@@ -208,7 +208,7 @@ export const diverseProjects = {
     {
       "title": "Остекление деревянной веранды с местом для отдыха",
       "before": "portfolio-diverse-v4/osteklenie-kottedzhej-1-before.webp",
-      "after": "portfolio-diverse-v4/osteklenie-kottedzhej-1-after.webp",
+      "after": "portfolio-diverse-v4/osteklenie-kottedzhej-1-glazing-fixed-after.webp",
       "stage": "cottage",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "terrace",

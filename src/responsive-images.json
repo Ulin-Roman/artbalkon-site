@@ -3069,23 +3069,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/osteklenie-kottedzhej-1-after.webp": {
-    "src": "/assets/responsive/b604593e1c776716-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b604593e1c776716-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b604593e1c776716-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b604593e1c776716-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/osteklenie-kottedzhej-1-before.webp": {
     "src": "/assets/responsive/3c2a564b55f394dc-1086.webp",
     "variants": [
@@ -8757,6 +8740,23 @@
       {
         "src": "/assets/responsive/c6b06a1dde59e3b6-887.webp",
         "width": 887
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/osteklenie-kottedzhej-1-glazing-fixed-after.webp": {
+    "src": "/assets/responsive/ba2f72816a6e7ba4-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/ba2f72816a6e7ba4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/ba2f72816a6e7ba4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/ba2f72816a6e7ba4-1086.webp",
+        "width": 1086
       }
     ]
   }
