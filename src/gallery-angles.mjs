@@ -357,7 +357,7 @@ export const additionalAngleProjects = {
     },
     {
       "title": "Панорамное остекление со стороны комнаты",
-      "before": "gallery-angles-v1/panoramnoe-osteklenie-3-before.webp",
+      "before": "gallery-angles-v1/panoramnoe-osteklenie-3-floor-v2-before.webp",
       "after": "gallery-angles-v1/panoramnoe-osteklenie-3-after.webp",
       "description": "Визуализация проекта с новым ракурсом: то же помещение до и после работ, с разным естественным светом.",
       "objectType": "balcony",

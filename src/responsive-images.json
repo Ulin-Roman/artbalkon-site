@@ -2542,23 +2542,6 @@
       }
     ]
   },
-  "/assets/gallery-angles-v1/panoramnoe-osteklenie-3-before.webp": {
-    "src": "/assets/responsive/b7b4718e8c864ba7-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b7b4718e8c864ba7-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b7b4718e8c864ba7-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b7b4718e8c864ba7-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/gallery-angles-v1/teploe-osteklenie-1-after.webp": {
     "src": "/assets/responsive/c42fd0a8c1b015a9-1280.webp",
     "variants": [
@@ -8757,6 +8740,23 @@
       {
         "src": "/assets/responsive/42cb89e3e0fe34d8-1086.webp",
         "width": 1086
+      }
+    ]
+  },
+  "/assets/gallery-angles-v1/panoramnoe-osteklenie-3-floor-v2-before.webp": {
+    "src": "/assets/responsive/a10b976c8ed5d8a2-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/a10b976c8ed5d8a2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/a10b976c8ed5d8a2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/a10b976c8ed5d8a2-1280.webp",
+        "width": 1280
       }
     ]
   }
