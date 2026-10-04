@@ -1,10 +1,11 @@
+import {portfolioDisplayTitles} from '../src/portfolio-titles.mjs';
 import {beforeWeatherAssets} from '../src/before-weather.mjs';
 import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
-import {servicePage,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
+import {projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
+import {esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
 const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
 const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).map(p=>p.before));
@@ -17,6 +18,26 @@ for(const [source,target] of Object.entries(beforeWeatherAssets)){
  assert.ok(renderedGalleries.includes(`/assets/${target}`),`Weather variant must appear in a rendered gallery: ${target}`);
 }
 for(const original of allPhotoPairs.filter(p=>p.beforeReal===true))assert.ok(!beforeWeatherAssets[original.before],`Original BEFORE must be preserved: ${original.before}`);
+// Validate final user-facing names without changing source titles or analytics keys.
+for(const title of Object.values(portfolioDisplayTitles)){
+ assert.ok(typeof title==='string'&&title.trim(),'Display title must exist');
+ assert.doesNotMatch(title,/зим|снег|летн|осенн|весенн|зелень|undefined|null/i);
+}
+for(const html of [renderHome(),...services.map(s=>servicePageWithSeo(s))]){
+ const seen=new Map();
+ for(const [,title,,after] of html.matchAll(/data-title="([^"]+)" data-before="([^"]+)" data-after="([^"]+)"/g)){
+  assert.ok(title.trim(),'Rendered display title must not be empty');
+  assert.doesNotMatch(title,/зим|снег|летн|осенн|весенн|зелень|undefined|null/i);
+  if(seen.has(title))assert.equal(seen.get(title),after,'Different works on one page need different display titles');
+  seen.set(title,after);
+ }
+ for(const [,source,display] of html.matchAll(/data-application data-project="([^"]+)" data-project-display="([^"]+)"/g))assert.equal(display,esc(projectDisplayTitle({title:source})));
+}
+for(const project of projects){
+ const html=projectPage(project),title=esc(projectDisplayTitle(project));
+ assert.ok(html.includes('<h1>'+title+'</h1>'),'Project H1 must use display title');
+ assert.ok(html.includes('aria-current="page">'+title+'</span>'),'Project breadcrumb must use display title');
+}
 const requiredLocation='в Москве и Московской области';
 const bundledServiceSlugs=['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'];
 const homeHtml=renderHome();

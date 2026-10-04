@@ -40,8 +40,7 @@ await redirect('/teploe-osteklenie-lodzhii/','/teploe-osteklenie/','Тёплое
 await redirect('/panoramnoe-osteklenie-lodzhii/','/panoramnoe-osteklenie/','Панорамное остекление балконов и лоджий в Москве и Московской области');
 await page('/nashi-raboty/',`<section class="section container"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span aria-hidden="true">/</span><span aria-current="page">Наши работы</span></nav><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы и лоджии <br>в Москве и Московской области</h1><p class="hero-description">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
 for(const p of projects){
- const projectHeading=`${p.title.replace(/ в (?:Москве|Химках)$/,'')} в Москве и Московской области`;
- await page(`/nashi-raboty/${p.slug}/`,projectPage({...p,title:projectHeading}),{title:`${p.title} — ${p.location} | ArtBalkon`,description:p.intro,image:imageAsset(p.image)});
+ await page(`/nashi-raboty/${p.slug}/`,projectPage(p),{title:`${p.title} — ${p.location} | ArtBalkon`,description:p.intro,image:imageAsset(p.image)});
 }
 const privacy=await readFile('src/privacy.html','utf8');
 await page('/privacy/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Политика конфиденциальности</h1>${privacy}</article>`,{title:'Политика конфиденциальности — ArtBalkon',noindex:true});

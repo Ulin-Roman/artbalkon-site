@@ -135,7 +135,7 @@
  if(applicationModal){
   const applicationProject=$('#application-project');
   const applicationProjectInput=applicationModal.querySelector('input[name="project"]');
-  document.addEventListener('click',e=>{const trigger=e.target.closest('[data-application]');if(!trigger)return;const project=trigger.dataset.project||'Преображение балкона';applicationProject.textContent=project;applicationProjectInput.value=project;openDialogAtCurrentScroll(applicationModal,applicationModal.querySelector('.application-close'));track('transformation_lead_open',{project});});
+  document.addEventListener('click',e=>{const trigger=e.target.closest('[data-application]');if(!trigger)return;const project=trigger.dataset.project||'Преображение балкона';applicationProject.textContent=trigger.dataset.projectDisplay||project;applicationProjectInput.value=project;openDialogAtCurrentScroll(applicationModal,applicationModal.querySelector('.application-close'));track('transformation_lead_open',{project});});
   applicationModal.querySelector('.application-close')?.addEventListener('click',()=>applicationModal.close());
   applicationModal.addEventListener('click',e=>{if(e.target===applicationModal)applicationModal.close();});
  }
