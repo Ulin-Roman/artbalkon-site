@@ -235,7 +235,7 @@ export const extraPortfolioProjects = {
     {
       "title": "Новые окна на садовой веранде",
       "before": "portfolio-extra-v2/osteklenie-kottedzhej-3-before.webp",
-      "after": "portfolio-extra-v2/osteklenie-kottedzhej-3-after.webp",
+      "after": "portfolio-extra-v2/osteklenie-kottedzhej-3-metal-v2-after.webp",
       "stage": "cottage",
       "description": "Визуализация проекта: то же помещение до и после работ, снятое в разные дни при разном естественном освещении.",
       "objectType": "terrace",

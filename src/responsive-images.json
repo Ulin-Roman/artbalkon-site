@@ -3579,23 +3579,6 @@
       }
     ]
   },
-  "/assets/portfolio-extra-v2/osteklenie-kottedzhej-3-after.webp": {
-    "src": "/assets/responsive/1e7f0e6ed7959d53-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/1e7f0e6ed7959d53-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/1e7f0e6ed7959d53-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/1e7f0e6ed7959d53-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-extra-v2/osteklenie-kottedzhej-3-before.webp": {
     "src": "/assets/responsive/159da268ac16fcd0-1086.webp",
     "variants": [
@@ -8757,6 +8740,23 @@
       {
         "src": "/assets/responsive/c9938684adc7b2d7-1280.webp",
         "width": 1280
+      }
+    ]
+  },
+  "/assets/portfolio-extra-v2/osteklenie-kottedzhej-3-metal-v2-after.webp": {
+    "src": "/assets/responsive/58b9d9759eb5d234-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/58b9d9759eb5d234-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/58b9d9759eb5d234-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/58b9d9759eb5d234-1086.webp",
+        "width": 1086
       }
     ]
   }
