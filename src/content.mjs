@@ -1,3 +1,4 @@
+import {perspectiveProjects} from './portfolio-perspectives-v3.mjs';
 import {extraPortfolioProjects} from './portfolio-extra-v2.mjs';
 import {additionalAngleProjects} from './gallery-angles.mjs';
 import {beforeDaytimeAssets} from './before-daytime.mjs';
@@ -1403,3 +1404,9 @@ serviceBeforeAfterProjects['osteklenie-balkonov'].push({
  description:'Визуализация остекления с выносом по подоконнику: оконный контур вынесен наружу, устроен широкий подоконник, обновлены потолок и пол. Размер плиты сохранён.',
  stage:'glazing',objectType:'balcony',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false
 });
+
+// Three comparisons with room context, reverse and transverse views per landing.
+for(const [slug,projects] of Object.entries(perspectiveProjects)){
+ serviceBeforeAfterProjects[slug].push(...projects.map(p=>({...p})));
+}
+beforeAfterProjects.push(...perspectiveProjects['balkon-pod-klyuch'].map(p=>({...p})));
