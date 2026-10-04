@@ -1456,3 +1456,46 @@ for (const projects of [beforeAfterProjects, ...Object.values(serviceBeforeAfter
   if (project.after === "service-before-after/panoramic-balcony-06-after.jpg") project.after = "service-before-after/panoramic-balcony-06-rails-v2-after.webp";
  }
 }
+
+// Three approved pairs supplied by the user for the home portfolio.
+beforeAfterProjects.push(...[
+  {
+    "title": "Балкон с реечной отделкой и мягкой скамьёй",
+    "objectType": "balcony",
+    "stage": "turnkey",
+    "visualized": true,
+    "beforeVisualized": true,
+    "afterVisualized": true,
+    "beforeReal": false,
+    "importedHomeWork": true,
+    "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
+    "before": "home-liked-works-v1/work1_relax_corner-before.webp",
+    "after": "home-liked-works-v1/work1_relax_corner-after.webp"
+  },
+  {
+    "title": "Лоджия с письменным столом и полками из архива",
+    "objectType": "loggia",
+    "stage": "turnkey",
+    "visualized": true,
+    "beforeVisualized": true,
+    "afterVisualized": true,
+    "beforeReal": false,
+    "importedHomeWork": true,
+    "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
+    "before": "home-liked-works-v1/work2_office_loggia-before.webp",
+    "after": "home-liked-works-v1/work2_office_loggia-after.webp"
+  },
+  {
+    "title": "Балкон с деревянной отделкой и скамьёй с ящиками",
+    "objectType": "balcony",
+    "stage": "turnkey",
+    "visualized": true,
+    "beforeVisualized": true,
+    "afterVisualized": true,
+    "beforeReal": false,
+    "importedHomeWork": true,
+    "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
+    "before": "home-liked-works-v1/work3_cozy_storage-before.webp",
+    "after": "home-liked-works-v1/work3_cozy_storage-after.webp"
+  }
+]);

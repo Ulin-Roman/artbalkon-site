@@ -8691,5 +8691,107 @@
         "width": 1024
       }
     ]
+  },
+  "/assets/home-liked-works-v1/work1_relax_corner-before.webp": {
+    "src": "/assets/responsive/88ad82c3cfc7de17-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/88ad82c3cfc7de17-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/88ad82c3cfc7de17-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/88ad82c3cfc7de17-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work1_relax_corner-after.webp": {
+    "src": "/assets/responsive/14be55c3683c6187-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/14be55c3683c6187-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/14be55c3683c6187-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/14be55c3683c6187-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work2_office_loggia-before.webp": {
+    "src": "/assets/responsive/a92decac790818cb-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/a92decac790818cb-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/a92decac790818cb-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/a92decac790818cb-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work2_office_loggia-after.webp": {
+    "src": "/assets/responsive/b801bb4086db8786-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b801bb4086db8786-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b801bb4086db8786-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b801bb4086db8786-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work3_cozy_storage-before.webp": {
+    "src": "/assets/responsive/984da33b9d557c6d-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/984da33b9d557c6d-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/984da33b9d557c6d-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/984da33b9d557c6d-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work3_cozy_storage-after.webp": {
+    "src": "/assets/responsive/3e0949c46b931280-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/3e0949c46b931280-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/3e0949c46b931280-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/3e0949c46b931280-1122.webp",
+        "width": 1122
+      }
+    ]
   }
 }

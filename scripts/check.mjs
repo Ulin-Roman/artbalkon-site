@@ -123,7 +123,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  const actual=[...hero.matchAll(/\s(?:src|data-src)="\/assets\/([^"]+)"/g)].map(m=>m[1]);
  assert.deepEqual(actual,[...new Set(projects.map(p=>p.after))],`${label}: hero must use its own AFTER gallery`);
 }
-const originalHomeProjects=beforeAfterProjects.filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries);
+const originalHomeProjects=beforeAfterProjects.filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries&&!p.importedHomeWork);
 assert.equal(originalHomeProjects.length,12,'Home must contain 12 turnkey pairs');
 assert.equal(new Set(originalHomeProjects.map(p=>p.after)).size,12,'Home must not repeat rooms');
 for(const [type,slug] of [['balcony','balkon-pod-klyuch'],['loggia','lodzhiya-pod-klyuch']]){
