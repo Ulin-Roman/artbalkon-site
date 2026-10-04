@@ -209,7 +209,7 @@ export const perspectiveProjects = {
     {
       "title": "Остеклённая веранда — вид из дома",
       "before": "portfolio-perspectives-v3/osteklenie-kottedzhej-1-before.webp",
-      "after": "portfolio-perspectives-v3/osteklenie-kottedzhej-1-after.webp",
+      "after": "portfolio-perspectives-v3/osteklenie-kottedzhej-1-fixed-v2-after.webp",
       "stage": "cottage",
       "description": "Визуализация проекта с видом через дверь или в сторону комнаты. То же помещение до и после работ при разной погоде и освещении.",
       "objectType": "terrace",
