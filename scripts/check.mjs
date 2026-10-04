@@ -123,7 +123,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  const actual=[...hero.matchAll(/\s(?:src|data-src)="\/assets\/([^"]+)"/g)].map(m=>m[1]);
  assert.deepEqual(actual,[...new Set(projects.map(p=>p.after))],`${label}: hero must use its own AFTER gallery`);
 }
-const originalHomeProjects=beforeAfterProjects.filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries);
+const originalHomeProjects=beforeAfterProjects.filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries);
 assert.equal(originalHomeProjects.length,12,'Home must contain 12 turnkey pairs');
 assert.equal(new Set(originalHomeProjects.map(p=>p.after)).size,12,'Home must not repeat rooms');
 for(const [type,slug] of [['balcony','balkon-pod-klyuch'],['loggia','lodzhiya-pod-klyuch']]){
@@ -151,7 +151,7 @@ for(const p of furnitureGallery){
  assert.ok(!beforeAfterProjects.some(home=>home.after===p.after),'Furniture concepts must not replace home turnkey projects');
 }
 assert.equal(services.find(s=>s.slug==='mebel-dlya-balkona').title,'Мебель для балконов и лоджий');
-const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'].filter(project=>!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries);
+const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'].filter(project=>!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries);
 assert.equal(coldGallery.length,24,'Cold glazing gallery must contain 24 distinct pairs');
 assert.equal(coldGallery.filter(project=>project.objectType==='balcony').length,12,'Cold glazing must contain twelve balcony examples');
 assert.equal(coldGallery.filter(project=>project.objectType==='loggia').length,12,'Cold glazing must contain twelve loggia examples');
@@ -169,7 +169,7 @@ for(const project of coldLoggias){
  if(project.after.includes('cold-ordinary-'))assert.equal(project.before,project.after.replace('-after.webp','-before.webp'),'Loggia must keep its matched before image');
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
- const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion&&!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries);
+ const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion&&!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries);
  const expectedCount=slug==='otdelka-balkonov'?13:type==='loggia'?11:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
@@ -199,7 +199,7 @@ for(const project of turnkeyAdditions){
  assert.match(project.before,/^service-before-after\/turnkey-(?:furniture|electrical)-\d{2}-before-v[23]\.webp$/);
 }
 for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',8],['otdelka-balkonov',24],['balkon-pod-klyuch',29]]){
- const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries);
+ const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries);
  assert.equal(gallery.length,expectedCount+3,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount+3,`${slug}: combined gallery repeats finished rooms`);
 }
@@ -270,4 +270,13 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
  assert.equal(added.length,3,`${service.slug}: expected three perspective pairs`);
  assert.equal(new Set(added.map(p=>p.after)).size,3);
  for(const p of added){assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);assert.notEqual(p.before,p.after);assert.ok(p.before.startsWith('portfolio-perspectives-v3/')&&p.after.startsWith('portfolio-perspectives-v3/'));}
+}
+
+// New diverse compositions use complete pairs and explicit outcome-based names.
+assert.equal(beforeAfterProjects.filter(p=>p.newDiverseSeries).length,3);
+for(const service of services.filter(s=>!bundledServiceSlugs.includes(s.slug))){
+ const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newDiverseSeries);
+ assert.equal(added.length,3,service.slug+': expected three new pairs');
+ assert.equal(new Set(added.map(p=>p.after)).size,3);
+ for(const p of added){assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);assert.notEqual(p.before,p.after);assert.ok(p.before.startsWith('portfolio-diverse-v4/')&&p.after.startsWith('portfolio-diverse-v4/'));assert.ok(portfolioDisplayTitles[p.title]);}
 }

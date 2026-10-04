@@ -1,3 +1,4 @@
+import {diverseProjects} from './portfolio-diverse-v4.mjs';
 import {perspectiveProjects} from './portfolio-perspectives-v3.mjs';
 import {extraPortfolioProjects} from './portfolio-extra-v2.mjs';
 import {additionalAngleProjects} from './gallery-angles.mjs';
@@ -1410,3 +1411,6 @@ for(const [slug,projects] of Object.entries(perspectiveProjects)){
  serviceBeforeAfterProjects[slug].push(...projects.map(p=>({...p})));
 }
 beforeAfterProjects.push(...perspectiveProjects['balkon-pod-klyuch'].map(p=>({...p})));
+
+for(const [slug,projects] of Object.entries(diverseProjects)){serviceBeforeAfterProjects[slug].push(...projects.map(p=>({...p})));}
+beforeAfterProjects.push(...diverseProjects['balkon-pod-klyuch'].map(p=>({...p})));
