@@ -2967,210 +2967,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-1-after.webp": {
-    "src": "/assets/responsive/4d1ab5f6af5cc873-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/4d1ab5f6af5cc873-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/4d1ab5f6af5cc873-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/4d1ab5f6af5cc873-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-1-before.webp": {
-    "src": "/assets/responsive/587419e706979ea0-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/587419e706979ea0-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/587419e706979ea0-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/587419e706979ea0-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-2-after.webp": {
-    "src": "/assets/responsive/27e4774f9812ab44-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/27e4774f9812ab44-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/27e4774f9812ab44-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/27e4774f9812ab44-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-2-before.webp": {
-    "src": "/assets/responsive/c0e05bdbe4c9b5fa-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/c0e05bdbe4c9b5fa-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/c0e05bdbe4c9b5fa-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/c0e05bdbe4c9b5fa-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-after.webp": {
-    "src": "/assets/responsive/aaf6b9b8a16461b4-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/aaf6b9b8a16461b4-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/aaf6b9b8a16461b4-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/aaf6b9b8a16461b4-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-before.webp": {
-    "src": "/assets/responsive/e23ed0f3ed4a5ddf-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/e23ed0f3ed4a5ddf-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/e23ed0f3ed4a5ddf-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/e23ed0f3ed4a5ddf-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-1-after.webp": {
-    "src": "/assets/responsive/eba06ca03de302a1-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/eba06ca03de302a1-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/eba06ca03de302a1-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/eba06ca03de302a1-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-1-before.webp": {
-    "src": "/assets/responsive/ce2fa7984936d1f2-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/ce2fa7984936d1f2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/ce2fa7984936d1f2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/ce2fa7984936d1f2-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/930b7109a36a791c-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/930b7109a36a791c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/930b7109a36a791c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/930b7109a36a791c-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-2-before.webp": {
-    "src": "/assets/responsive/b3491f92c6b14aa6-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b3491f92c6b14aa6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b3491f92c6b14aa6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b3491f92c6b14aa6-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-3-after.webp": {
-    "src": "/assets/responsive/aaaeff933dbcb6dd-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/aaaeff933dbcb6dd-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/aaaeff933dbcb6dd-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/aaaeff933dbcb6dd-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-3-before.webp": {
-    "src": "/assets/responsive/ffc3b49206306fee-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/ffc3b49206306fee-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/ffc3b49206306fee-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/ffc3b49206306fee-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/obedinenie-balkona-s-komnatoj-1-after.webp": {
     "src": "/assets/responsive/78822d134e14b971-1086.webp",
     "variants": [
@@ -3273,108 +3069,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/osteklenie-balkonov-1-after.webp": {
-    "src": "/assets/responsive/ce100d9b44684590-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/ce100d9b44684590-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/ce100d9b44684590-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/ce100d9b44684590-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/osteklenie-balkonov-1-before.webp": {
-    "src": "/assets/responsive/9160886d06f4da50-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/9160886d06f4da50-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/9160886d06f4da50-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/9160886d06f4da50-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/osteklenie-balkonov-2-after.webp": {
-    "src": "/assets/responsive/9727cdbd1dff4f23-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/9727cdbd1dff4f23-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/9727cdbd1dff4f23-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/9727cdbd1dff4f23-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/osteklenie-balkonov-2-before.webp": {
-    "src": "/assets/responsive/f94317d6bedbbe46-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f94317d6bedbbe46-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f94317d6bedbbe46-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f94317d6bedbbe46-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/osteklenie-balkonov-3-after.webp": {
-    "src": "/assets/responsive/495259fc3022ed73-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/495259fc3022ed73-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/495259fc3022ed73-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/495259fc3022ed73-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/osteklenie-balkonov-3-before.webp": {
-    "src": "/assets/responsive/4159f7f38b4d49cc-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/4159f7f38b4d49cc-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/4159f7f38b4d49cc-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/4159f7f38b4d49cc-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/osteklenie-kottedzhej-1-after.webp": {
     "src": "/assets/responsive/b604593e1c776716-1086.webp",
     "variants": [
@@ -3473,414 +3167,6 @@
       },
       {
         "src": "/assets/responsive/66f75e879ebc2a86-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/otdelka-balkonov-1-after.webp": {
-    "src": "/assets/responsive/21c6815637382d02-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/21c6815637382d02-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/21c6815637382d02-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/21c6815637382d02-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/otdelka-balkonov-1-before.webp": {
-    "src": "/assets/responsive/f2a36e9ee487a0fe-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f2a36e9ee487a0fe-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f2a36e9ee487a0fe-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f2a36e9ee487a0fe-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/otdelka-balkonov-2-after.webp": {
-    "src": "/assets/responsive/c7c7a07a0a72a54f-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/c7c7a07a0a72a54f-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/c7c7a07a0a72a54f-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/c7c7a07a0a72a54f-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/otdelka-balkonov-2-before.webp": {
-    "src": "/assets/responsive/194a5d0a4d201d04-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/194a5d0a4d201d04-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/194a5d0a4d201d04-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/194a5d0a4d201d04-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/otdelka-balkonov-3-after.webp": {
-    "src": "/assets/responsive/a6ec83fbd5d0dd62-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a6ec83fbd5d0dd62-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a6ec83fbd5d0dd62-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a6ec83fbd5d0dd62-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/otdelka-balkonov-3-before.webp": {
-    "src": "/assets/responsive/4803c62ddc6dd06c-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/4803c62ddc6dd06c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/4803c62ddc6dd06c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/4803c62ddc6dd06c-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-1-after.webp": {
-    "src": "/assets/responsive/c9149a7e614670dc-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/c9149a7e614670dc-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/c9149a7e614670dc-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/c9149a7e614670dc-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-1-before.webp": {
-    "src": "/assets/responsive/d1cab6b4da7936bb-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d1cab6b4da7936bb-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d1cab6b4da7936bb-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d1cab6b4da7936bb-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/9cee5cf7ea54480d-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/9cee5cf7ea54480d-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/9cee5cf7ea54480d-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/9cee5cf7ea54480d-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-2-before.webp": {
-    "src": "/assets/responsive/abe6173ec2a8c376-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/abe6173ec2a8c376-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/abe6173ec2a8c376-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/abe6173ec2a8c376-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-3-after.webp": {
-    "src": "/assets/responsive/b1c05bb6990f6be6-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b1c05bb6990f6be6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b1c05bb6990f6be6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b1c05bb6990f6be6-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-3-before.webp": {
-    "src": "/assets/responsive/a8ae78e0bf57a901-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a8ae78e0bf57a901-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a8ae78e0bf57a901-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a8ae78e0bf57a901-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-1-after.webp": {
-    "src": "/assets/responsive/94691cfe79add5dd-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/94691cfe79add5dd-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/94691cfe79add5dd-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/94691cfe79add5dd-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-1-before.webp": {
-    "src": "/assets/responsive/3a44735eec0c18dd-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/3a44735eec0c18dd-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/3a44735eec0c18dd-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/3a44735eec0c18dd-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/f76be3caa0599057-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f76be3caa0599057-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f76be3caa0599057-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f76be3caa0599057-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-2-before.webp": {
-    "src": "/assets/responsive/5c6f9bf4a7490654-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/5c6f9bf4a7490654-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/5c6f9bf4a7490654-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/5c6f9bf4a7490654-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-3-after.webp": {
-    "src": "/assets/responsive/834d3d7a34be19ba-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/834d3d7a34be19ba-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/834d3d7a34be19ba-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/834d3d7a34be19ba-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-3-before.webp": {
-    "src": "/assets/responsive/e9851d7de3c99341-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/e9851d7de3c99341-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/e9851d7de3c99341-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/e9851d7de3c99341-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-1-after.webp": {
-    "src": "/assets/responsive/aa5020b738501a94-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/aa5020b738501a94-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/aa5020b738501a94-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/aa5020b738501a94-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-1-before.webp": {
-    "src": "/assets/responsive/49096fddbe4382c7-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/49096fddbe4382c7-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/49096fddbe4382c7-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/49096fddbe4382c7-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-2-after.webp": {
-    "src": "/assets/responsive/36b26157091c6db5-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/36b26157091c6db5-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/36b26157091c6db5-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/36b26157091c6db5-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-2-before.webp": {
-    "src": "/assets/responsive/640ec8ce59284e27-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/640ec8ce59284e27-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/640ec8ce59284e27-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/640ec8ce59284e27-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-3-after.webp": {
-    "src": "/assets/responsive/fec4c40b44be085d-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/fec4c40b44be085d-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/fec4c40b44be085d-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/fec4c40b44be085d-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-3-before.webp": {
-    "src": "/assets/responsive/b0ee3bcaca2a9602-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b0ee3bcaca2a9602-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b0ee3bcaca2a9602-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b0ee3bcaca2a9602-1086.webp",
         "width": 1086
       }
     ]
@@ -4803,108 +4089,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-1-after.webp": {
-    "src": "/assets/responsive/5887a6d4fd6618ca-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/5887a6d4fd6618ca-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/5887a6d4fd6618ca-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/5887a6d4fd6618ca-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-1-before.webp": {
-    "src": "/assets/responsive/d8fa55d2d11e4ba9-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d8fa55d2d11e4ba9-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d8fa55d2d11e4ba9-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d8fa55d2d11e4ba9-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-2-after.webp": {
-    "src": "/assets/responsive/b8914612f9c6d46c-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b8914612f9c6d46c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b8914612f9c6d46c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b8914612f9c6d46c-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-2-before.webp": {
-    "src": "/assets/responsive/d2e744dad2d99091-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d2e744dad2d99091-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d2e744dad2d99091-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d2e744dad2d99091-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-3-after.webp": {
-    "src": "/assets/responsive/43006a8b480b2e1e-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/43006a8b480b2e1e-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/43006a8b480b2e1e-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/43006a8b480b2e1e-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-3-before.webp": {
-    "src": "/assets/responsive/80c15b7d12215398-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/80c15b7d12215398-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/80c15b7d12215398-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/80c15b7d12215398-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-1-after.webp": {
     "src": "/assets/responsive/8cd2d089070a811a-1086.webp",
     "variants": [
@@ -4939,74 +4123,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/d0a2b2e976e5d682-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d0a2b2e976e5d682-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d0a2b2e976e5d682-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d0a2b2e976e5d682-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-2-before.webp": {
-    "src": "/assets/responsive/7f68c9d9edc9affa-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/7f68c9d9edc9affa-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/7f68c9d9edc9affa-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/7f68c9d9edc9affa-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-3-after.webp": {
-    "src": "/assets/responsive/a42bc8bcad808a49-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a42bc8bcad808a49-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a42bc8bcad808a49-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a42bc8bcad808a49-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-3-before.webp": {
-    "src": "/assets/responsive/0307c6e82552171b-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/0307c6e82552171b-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/0307c6e82552171b-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/0307c6e82552171b-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/obedinenie-balkona-s-komnatoj-1-after.webp": {
     "src": "/assets/responsive/849a9036aab9e513-1086.webp",
     "variants": [
@@ -5037,40 +4153,6 @@
       },
       {
         "src": "/assets/responsive/35a6880ffba79587-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/obedinenie-balkona-s-komnatoj-2-after.webp": {
-    "src": "/assets/responsive/a14210e9affb3a06-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a14210e9affb3a06-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a14210e9affb3a06-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a14210e9affb3a06-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/obedinenie-balkona-s-komnatoj-2-before.webp": {
-    "src": "/assets/responsive/a9cae999cb6ef8e6-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a9cae999cb6ef8e6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a9cae999cb6ef8e6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a9cae999cb6ef8e6-1086.webp",
         "width": 1086
       }
     ]
@@ -5139,74 +4221,6 @@
       },
       {
         "src": "/assets/responsive/20289e0f166d24ba-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-2-after.webp": {
-    "src": "/assets/responsive/ad362a9d871f1247-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/ad362a9d871f1247-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/ad362a9d871f1247-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/ad362a9d871f1247-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-2-before.webp": {
-    "src": "/assets/responsive/71c899e26c047c19-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/71c899e26c047c19-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/71c899e26c047c19-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/71c899e26c047c19-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-3-after.webp": {
-    "src": "/assets/responsive/9f598ad1b33829a5-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/9f598ad1b33829a5-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/9f598ad1b33829a5-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/9f598ad1b33829a5-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-3-before.webp": {
-    "src": "/assets/responsive/b2168ff41d9d278a-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b2168ff41d9d278a-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b2168ff41d9d278a-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b2168ff41d9d278a-1086.webp",
         "width": 1086
       }
     ]
@@ -5347,74 +4361,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/otdelka-balkonov-2-after.webp": {
-    "src": "/assets/responsive/18d43c103f151761-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/18d43c103f151761-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/18d43c103f151761-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/18d43c103f151761-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/otdelka-balkonov-2-before.webp": {
-    "src": "/assets/responsive/d81bf1836ca0dea4-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d81bf1836ca0dea4-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d81bf1836ca0dea4-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d81bf1836ca0dea4-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-after.webp": {
-    "src": "/assets/responsive/6829670fa8f47778-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/6829670fa8f47778-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/6829670fa8f47778-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/6829670fa8f47778-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-before.webp": {
-    "src": "/assets/responsive/c015653cb8ff8389-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/c015653cb8ff8389-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/c015653cb8ff8389-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/c015653cb8ff8389-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-1-after.webp": {
     "src": "/assets/responsive/edccbdddc6723fab-1086.webp",
     "variants": [
@@ -5449,74 +4395,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/76c918aa28b4d6d1-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/76c918aa28b4d6d1-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/76c918aa28b4d6d1-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/76c918aa28b4d6d1-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-2-before.webp": {
-    "src": "/assets/responsive/bfcdea8b9b61268a-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/bfcdea8b9b61268a-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/bfcdea8b9b61268a-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/bfcdea8b9b61268a-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-3-after.webp": {
-    "src": "/assets/responsive/514220de6943b16f-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/514220de6943b16f-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/514220de6943b16f-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/514220de6943b16f-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-3-before.webp": {
-    "src": "/assets/responsive/36ad632f56ee4014-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/36ad632f56ee4014-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/36ad632f56ee4014-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/36ad632f56ee4014-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/teploe-osteklenie-1-after.webp": {
     "src": "/assets/responsive/a26e721132645cbe-1086.webp",
     "variants": [
@@ -5547,159 +4425,6 @@
       },
       {
         "src": "/assets/responsive/ee32afbf7b524eb2-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/teploe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/0cde8706562743c4-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/0cde8706562743c4-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/0cde8706562743c4-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/0cde8706562743c4-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/teploe-osteklenie-2-before.webp": {
-    "src": "/assets/responsive/61637a6a0bdd6afc-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/61637a6a0bdd6afc-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/61637a6a0bdd6afc-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/61637a6a0bdd6afc-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/teploe-osteklenie-3-after.webp": {
-    "src": "/assets/responsive/d8786f54ce4785c3-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d8786f54ce4785c3-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d8786f54ce4785c3-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d8786f54ce4785c3-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/teploe-osteklenie-3-before.webp": {
-    "src": "/assets/responsive/ee4eae7ecaacd9d3-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/ee4eae7ecaacd9d3-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/ee4eae7ecaacd9d3-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/ee4eae7ecaacd9d3-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-1-after.webp": {
-    "src": "/assets/responsive/4ce917ddbfc4d40b-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/4ce917ddbfc4d40b-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/4ce917ddbfc4d40b-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/4ce917ddbfc4d40b-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-1-before.webp": {
-    "src": "/assets/responsive/fca1468d991b87fa-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/fca1468d991b87fa-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/fca1468d991b87fa-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/fca1468d991b87fa-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-2-after.webp": {
-    "src": "/assets/responsive/f80733d7ebdf3677-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f80733d7ebdf3677-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f80733d7ebdf3677-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f80733d7ebdf3677-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-2-before.webp": {
-    "src": "/assets/responsive/2530883358cec363-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/2530883358cec363-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/2530883358cec363-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/2530883358cec363-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-3-before.webp": {
-    "src": "/assets/responsive/dfabd0c203d2d999-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/dfabd0c203d2d999-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/dfabd0c203d2d999-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/dfabd0c203d2d999-1086.webp",
         "width": 1086
       }
     ]
@@ -8743,20 +7468,1295 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-3-after-reading-v2.webp": {
-    "src": "/assets/responsive/3615d508c0bc7d52-1086.webp",
+  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/c5e37b94d78954b3-720.webp",
     "variants": [
       {
-        "src": "/assets/responsive/3615d508c0bc7d52-320.webp",
+        "src": "/assets/responsive/c5e37b94d78954b3-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/3615d508c0bc7d52-640.webp",
+        "src": "/assets/responsive/c5e37b94d78954b3-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/3615d508c0bc7d52-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/c5e37b94d78954b3-720.webp",
+        "width": 720
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/00d0cd20918f78fa-720.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/00d0cd20918f78fa-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/00d0cd20918f78fa-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/00d0cd20918f78fa-720.webp",
+        "width": 720
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/ef945af70283a8ca-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/ef945af70283a8ca-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/ef945af70283a8ca-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/ef945af70283a8ca-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/e5f0e63f633e77cb-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/e5f0e63f633e77cb-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/e5f0e63f633e77cb-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/e5f0e63f633e77cb-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/d2e2db18348d7f6b-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/d2e2db18348d7f6b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/d2e2db18348d7f6b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/d2e2db18348d7f6b-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/b7e181d466961c6e-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b7e181d466961c6e-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b7e181d466961c6e-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b7e181d466961c6e-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/f7626522049131d5-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/f7626522049131d5-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/f7626522049131d5-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/f7626522049131d5-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/8662aecce4100b65-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/8662aecce4100b65-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/8662aecce4100b65-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/8662aecce4100b65-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/otdelka-balkonov-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/b861cad88f99e5c6-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b861cad88f99e5c6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b861cad88f99e5c6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b861cad88f99e5c6-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/otdelka-balkonov-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/b515475de04d431e-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b515475de04d431e-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b515475de04d431e-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b515475de04d431e-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/539741c0583e1f51-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/539741c0583e1f51-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/539741c0583e1f51-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/539741c0583e1f51-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/236149aa8daabdc0-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/236149aa8daabdc0-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/236149aa8daabdc0-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/236149aa8daabdc0-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/b610cffa29ca5579-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b610cffa29ca5579-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b610cffa29ca5579-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b610cffa29ca5579-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/9539c4b8c73610f3-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/9539c4b8c73610f3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/9539c4b8c73610f3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/9539c4b8c73610f3-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/0efd304a3fcc23cb-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/0efd304a3fcc23cb-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/0efd304a3fcc23cb-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/0efd304a3fcc23cb-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/d98554dca9db1817-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/d98554dca9db1817-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/d98554dca9db1817-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/d98554dca9db1817-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/f344431f969681a4-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/f344431f969681a4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/f344431f969681a4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/f344431f969681a4-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/389b4f34720d0844-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/389b4f34720d0844-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/389b4f34720d0844-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/389b4f34720d0844-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/2411b57b5d8dfd96-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/2411b57b5d8dfd96-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/2411b57b5d8dfd96-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/2411b57b5d8dfd96-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/581a25243f18ae5f-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/581a25243f18ae5f-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/581a25243f18ae5f-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/581a25243f18ae5f-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/teploe-osteklenie-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/d9f62d4133c1ff29-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/d9f62d4133c1ff29-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/d9f62d4133c1ff29-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/d9f62d4133c1ff29-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/teploe-osteklenie-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/1410b7f2edae452f-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/1410b7f2edae452f-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/1410b7f2edae452f-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/1410b7f2edae452f-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/teploe-osteklenie-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/40f00b30a43d04b7-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/40f00b30a43d04b7-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/40f00b30a43d04b7-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/40f00b30a43d04b7-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/teploe-osteklenie-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/f0d4076b96c47f46-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/f0d4076b96c47f46-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/f0d4076b96c47f46-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/f0d4076b96c47f46-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/b1bcb30440b10dc0-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b1bcb30440b10dc0-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b1bcb30440b10dc0-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b1bcb30440b10dc0-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/64b43f69134c2a4c-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/64b43f69134c2a4c-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/64b43f69134c2a4c-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/64b43f69134c2a4c-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/8ecbd58072807835-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/8ecbd58072807835-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/8ecbd58072807835-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/8ecbd58072807835-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/b7a629782a592bc7-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b7a629782a592bc7-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b7a629782a592bc7-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b7a629782a592bc7-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/osteklenie-balkonov-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/38e5751df2855533-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/38e5751df2855533-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/38e5751df2855533-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/38e5751df2855533-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/osteklenie-balkonov-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/0e43b34b700d02e8-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/0e43b34b700d02e8-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/0e43b34b700d02e8-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/0e43b34b700d02e8-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/osteklenie-balkonov-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/ea5efaa797a3fec1-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/ea5efaa797a3fec1-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/ea5efaa797a3fec1-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/ea5efaa797a3fec1-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/osteklenie-balkonov-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/42f1b8aa99acb23f-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/42f1b8aa99acb23f-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/42f1b8aa99acb23f-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/42f1b8aa99acb23f-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/osteklenie-balkonov-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/73c179ff52ea1fa1-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/73c179ff52ea1fa1-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/73c179ff52ea1fa1-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/73c179ff52ea1fa1-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/osteklenie-balkonov-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/a319c8cb0993a3bd-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/a319c8cb0993a3bd-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/a319c8cb0993a3bd-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/a319c8cb0993a3bd-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/uteplenie-balkonov-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/ad16037a60dc0163-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/ad16037a60dc0163-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/ad16037a60dc0163-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/ad16037a60dc0163-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/uteplenie-balkonov-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/be5c258811d6390b-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/be5c258811d6390b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/be5c258811d6390b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/be5c258811d6390b-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/uteplenie-balkonov-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/b01b5a953332ed3d-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b01b5a953332ed3d-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b01b5a953332ed3d-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b01b5a953332ed3d-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/uteplenie-balkonov-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/d8e169bd734f7d52-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/d8e169bd734f7d52-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/d8e169bd734f7d52-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/d8e169bd734f7d52-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/uteplenie-balkonov-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/3a27078b53b11127-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/3a27078b53b11127-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/3a27078b53b11127-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/3a27078b53b11127-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/uteplenie-balkonov-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/3a12a2e414ca50f6-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/3a12a2e414ca50f6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/3a12a2e414ca50f6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/3a12a2e414ca50f6-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/otdelka-balkonov-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/cf5067eb0bd889b6-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/cf5067eb0bd889b6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/cf5067eb0bd889b6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/cf5067eb0bd889b6-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/otdelka-balkonov-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/29a152f4c358fd1d-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/29a152f4c358fd1d-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/29a152f4c358fd1d-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/29a152f4c358fd1d-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/otdelka-balkonov-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/439e225d0dce9a8b-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/439e225d0dce9a8b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/439e225d0dce9a8b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/439e225d0dce9a8b-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/otdelka-balkonov-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/494d03b91e94f5c4-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/494d03b91e94f5c4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/494d03b91e94f5c4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/494d03b91e94f5c4-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/otdelka-balkonov-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/34938952be0ae5d8-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/34938952be0ae5d8-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/34938952be0ae5d8-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/34938952be0ae5d8-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/otdelka-balkonov-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/a7d2c3c33ca34228-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/a7d2c3c33ca34228-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/a7d2c3c33ca34228-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/a7d2c3c33ca34228-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/7b3011dd3f255d96-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/7b3011dd3f255d96-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/7b3011dd3f255d96-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/7b3011dd3f255d96-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/2ded9a5c79e95de6-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/2ded9a5c79e95de6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/2ded9a5c79e95de6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/2ded9a5c79e95de6-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/a2d9dc7053e9c66b-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/a2d9dc7053e9c66b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/a2d9dc7053e9c66b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/a2d9dc7053e9c66b-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/eea0c0c4625a2ddc-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/eea0c0c4625a2ddc-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/eea0c0c4625a2ddc-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/eea0c0c4625a2ddc-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/3053374f429d02fa-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/3053374f429d02fa-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/3053374f429d02fa-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/3053374f429d02fa-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/e01ea960f266a469-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/e01ea960f266a469-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/e01ea960f266a469-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/e01ea960f266a469-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/312753c63154f91d-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/312753c63154f91d-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/312753c63154f91d-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/312753c63154f91d-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/04a401d213e4c205-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/04a401d213e4c205-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/04a401d213e4c205-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/04a401d213e4c205-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/07e0718579db90f1-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/07e0718579db90f1-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/07e0718579db90f1-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/07e0718579db90f1-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/2bf5f25710218091-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/2bf5f25710218091-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/2bf5f25710218091-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/2bf5f25710218091-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/0a1e06b0d0602ee8-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/0a1e06b0d0602ee8-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/0a1e06b0d0602ee8-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/0a1e06b0d0602ee8-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/holodnoe-osteklenie-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/70d4b8592c697c18-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/70d4b8592c697c18-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/70d4b8592c697c18-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/70d4b8592c697c18-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/teploe-osteklenie-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/d75dbea9a8c83ea0-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/d75dbea9a8c83ea0-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/d75dbea9a8c83ea0-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/d75dbea9a8c83ea0-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/teploe-osteklenie-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/907f5dce730c7bc6-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/907f5dce730c7bc6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/907f5dce730c7bc6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/907f5dce730c7bc6-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/teploe-osteklenie-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/c3f3cc4ab1f3604b-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c3f3cc4ab1f3604b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c3f3cc4ab1f3604b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c3f3cc4ab1f3604b-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/teploe-osteklenie-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/146243a9d1f2c9b8-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/146243a9d1f2c9b8-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/146243a9d1f2c9b8-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/146243a9d1f2c9b8-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/teploe-osteklenie-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/1eeb73a950d1489f-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/1eeb73a950d1489f-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/1eeb73a950d1489f-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/1eeb73a950d1489f-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/teploe-osteklenie-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/1c73c23772a92bc9-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/1c73c23772a92bc9-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/1c73c23772a92bc9-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/1c73c23772a92bc9-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/3745da255ca47379-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/3745da255ca47379-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/3745da255ca47379-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/3745da255ca47379-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/25d63e31137e9f25-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/25d63e31137e9f25-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/25d63e31137e9f25-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/25d63e31137e9f25-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/551b7635ca9a6813-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/551b7635ca9a6813-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/551b7635ca9a6813-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/551b7635ca9a6813-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/52956ce575d63ff1-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/52956ce575d63ff1-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/52956ce575d63ff1-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/52956ce575d63ff1-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-3-standard-v2-before.webp": {
+    "src": "/assets/responsive/c61b2ba83eb803a6-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c61b2ba83eb803a6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c61b2ba83eb803a6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c61b2ba83eb803a6-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-3-standard-v2-after.webp": {
+    "src": "/assets/responsive/78a6761dbaaa7901-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/78a6761dbaaa7901-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/78a6761dbaaa7901-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/78a6761dbaaa7901-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/4ec762c70c11490b-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/4ec762c70c11490b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/4ec762c70c11490b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/4ec762c70c11490b-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/fa21502d5c69fdd8-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/fa21502d5c69fdd8-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/fa21502d5c69fdd8-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/fa21502d5c69fdd8-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-1-standard-v2-before.webp": {
+    "src": "/assets/responsive/d2e36a088d6bfb39-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/d2e36a088d6bfb39-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/d2e36a088d6bfb39-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/d2e36a088d6bfb39-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-1-standard-v2-after.webp": {
+    "src": "/assets/responsive/a8be7b229dba6b3f-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/a8be7b229dba6b3f-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/a8be7b229dba6b3f-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/a8be7b229dba6b3f-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/obedinenie-balkona-s-komnatoj-2-standard-v2-before.webp": {
+    "src": "/assets/responsive/caad1630c1cffec4-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/caad1630c1cffec4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/caad1630c1cffec4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/caad1630c1cffec4-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/obedinenie-balkona-s-komnatoj-2-standard-v2-after.webp": {
+    "src": "/assets/responsive/22878853c8b6bedb-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/22878853c8b6bedb-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/22878853c8b6bedb-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/22878853c8b6bedb-724.webp",
+        "width": 724
       }
     ]
   }

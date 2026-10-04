@@ -2,8 +2,8 @@ export const diverseProjects = {
   "osteklenie-balkonov": [
     {
       "title": "Балкон с окнами и обновлённым проходом",
-      "before": "portfolio-diverse-v4/osteklenie-balkonov-1-before.webp",
-      "after": "portfolio-diverse-v4/osteklenie-balkonov-1-after.webp",
+      "before": "portfolio-diverse-v4/osteklenie-balkonov-1-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/osteklenie-balkonov-1-standard-v2-after.webp",
       "stage": "glazing",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -15,8 +15,8 @@ export const diverseProjects = {
     },
     {
       "title": "Остекление лоджии у кухни",
-      "before": "portfolio-diverse-v4/osteklenie-balkonov-2-before.webp",
-      "after": "portfolio-diverse-v4/osteklenie-balkonov-2-after.webp",
+      "before": "portfolio-diverse-v4/osteklenie-balkonov-2-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/osteklenie-balkonov-2-standard-v2-after.webp",
       "stage": "glazing",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "loggia",
@@ -28,8 +28,8 @@ export const diverseProjects = {
     },
     {
       "title": "Остекление широкого балкона с боковым входом",
-      "before": "portfolio-diverse-v4/osteklenie-balkonov-3-before.webp",
-      "after": "portfolio-diverse-v4/osteklenie-balkonov-3-after.webp",
+      "before": "portfolio-diverse-v4/osteklenie-balkonov-3-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/osteklenie-balkonov-3-standard-v2-after.webp",
       "stage": "glazing",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -43,8 +43,8 @@ export const diverseProjects = {
   "uteplenie-balkonov": [
     {
       "title": "Утепление балкона со скамьёй",
-      "before": "portfolio-diverse-v4/uteplenie-balkonov-1-before.webp",
-      "after": "portfolio-diverse-v4/uteplenie-balkonov-1-after.webp",
+      "before": "portfolio-diverse-v4/uteplenie-balkonov-1-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/uteplenie-balkonov-1-standard-v2-after.webp",
       "stage": "insulation",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -56,8 +56,8 @@ export const diverseProjects = {
     },
     {
       "title": "Утепление лоджии с рабочим столом",
-      "before": "portfolio-diverse-v4/uteplenie-balkonov-2-before.webp",
-      "after": "portfolio-diverse-v4/uteplenie-balkonov-2-after.webp",
+      "before": "portfolio-diverse-v4/uteplenie-balkonov-2-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/uteplenie-balkonov-2-standard-v2-after.webp",
       "stage": "insulation",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "loggia",
@@ -69,8 +69,8 @@ export const diverseProjects = {
     },
     {
       "title": "Утепление балкона с боковой тумбой",
-      "before": "portfolio-diverse-v4/uteplenie-balkonov-3-before.webp",
-      "after": "portfolio-diverse-v4/uteplenie-balkonov-3-after.webp",
+      "before": "portfolio-diverse-v4/uteplenie-balkonov-3-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/uteplenie-balkonov-3-standard-v2-after.webp",
       "stage": "insulation",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -84,8 +84,8 @@ export const diverseProjects = {
   "otdelka-balkonov": [
     {
       "title": "Отделка балкона со скамьёй вдоль стены",
-      "before": "portfolio-diverse-v4/otdelka-balkonov-1-before.webp",
-      "after": "portfolio-diverse-v4/otdelka-balkonov-1-after.webp",
+      "before": "portfolio-diverse-v4/otdelka-balkonov-1-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/otdelka-balkonov-1-standard-v2-after.webp",
       "stage": "finish",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -97,8 +97,8 @@ export const diverseProjects = {
     },
     {
       "title": "Отделка лоджии с узким столом",
-      "before": "portfolio-diverse-v4/otdelka-balkonov-2-before.webp",
-      "after": "portfolio-diverse-v4/otdelka-balkonov-2-after.webp",
+      "before": "portfolio-diverse-v4/otdelka-balkonov-2-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/otdelka-balkonov-2-standard-v2-after.webp",
       "stage": "finish",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "loggia",
@@ -110,8 +110,8 @@ export const diverseProjects = {
     },
     {
       "title": "Отделка балкона с полкой для книг",
-      "before": "portfolio-diverse-v4/otdelka-balkonov-3-before.webp",
-      "after": "portfolio-diverse-v4/otdelka-balkonov-3-after.webp",
+      "before": "portfolio-diverse-v4/otdelka-balkonov-3-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/otdelka-balkonov-3-standard-v2-after.webp",
       "stage": "finish",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -125,8 +125,8 @@ export const diverseProjects = {
   "balkon-pod-klyuch": [
     {
       "title": "Балкон под ключ со скамьёй и хранением",
-      "before": "portfolio-diverse-v4/balkon-pod-klyuch-1-before.webp",
-      "after": "portfolio-diverse-v4/balkon-pod-klyuch-1-after.webp",
+      "before": "portfolio-diverse-v4/balkon-pod-klyuch-1-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/balkon-pod-klyuch-1-standard-v2-after.webp",
       "stage": "turnkey",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -138,8 +138,8 @@ export const diverseProjects = {
     },
     {
       "title": "Лоджия под ключ с местом для работы",
-      "before": "portfolio-diverse-v4/balkon-pod-klyuch-2-before.webp",
-      "after": "portfolio-diverse-v4/balkon-pod-klyuch-2-after.webp",
+      "before": "portfolio-diverse-v4/balkon-pod-klyuch-2-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/balkon-pod-klyuch-2-standard-v2-after.webp",
       "stage": "turnkey",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "loggia",
@@ -151,8 +151,8 @@ export const diverseProjects = {
     },
     {
       "title": "Балкон под ключ с книжной полкой",
-      "before": "portfolio-diverse-v4/balkon-pod-klyuch-3-before.webp",
-      "after": "portfolio-diverse-v4/balkon-pod-klyuch-3-after.webp",
+      "before": "portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-after.webp",
       "stage": "turnkey",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -248,8 +248,8 @@ export const diverseProjects = {
   "holodnoe-osteklenie": [
     {
       "title": "Холодное остекление балкона с боковым входом",
-      "before": "portfolio-diverse-v4/holodnoe-osteklenie-1-before.webp",
-      "after": "portfolio-diverse-v4/holodnoe-osteklenie-1-after.webp",
+      "before": "portfolio-diverse-v4/holodnoe-osteklenie-1-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/holodnoe-osteklenie-1-standard-v2-after.webp",
       "stage": "cold",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -261,8 +261,8 @@ export const diverseProjects = {
     },
     {
       "title": "Холодное остекление лоджии у кухни",
-      "before": "portfolio-diverse-v4/holodnoe-osteklenie-2-before.webp",
-      "after": "portfolio-diverse-v4/holodnoe-osteklenie-2-after.webp",
+      "before": "portfolio-diverse-v4/holodnoe-osteklenie-2-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/holodnoe-osteklenie-2-standard-v2-after.webp",
       "stage": "cold",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "loggia",
@@ -274,8 +274,8 @@ export const diverseProjects = {
     },
     {
       "title": "Холодное остекление широкого балкона",
-      "before": "portfolio-diverse-v4/holodnoe-osteklenie-3-before.webp",
-      "after": "portfolio-diverse-v4/holodnoe-osteklenie-3-after.webp",
+      "before": "portfolio-diverse-v4/holodnoe-osteklenie-3-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/holodnoe-osteklenie-3-standard-v2-after.webp",
       "stage": "cold",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -289,8 +289,8 @@ export const diverseProjects = {
   "teploe-osteklenie": [
     {
       "title": "Тёплое остекление балкона с хранением под скамьёй",
-      "before": "portfolio-diverse-v4/teploe-osteklenie-1-before.webp",
-      "after": "portfolio-diverse-v4/teploe-osteklenie-1-after.webp",
+      "before": "portfolio-diverse-v4/teploe-osteklenie-1-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/teploe-osteklenie-1-standard-v2-after.webp",
       "stage": "warm",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -302,8 +302,8 @@ export const diverseProjects = {
     },
     {
       "title": "Тёплое остекление лоджии с рабочей столешницей",
-      "before": "portfolio-diverse-v4/teploe-osteklenie-2-before.webp",
-      "after": "portfolio-diverse-v4/teploe-osteklenie-2-after.webp",
+      "before": "portfolio-diverse-v4/teploe-osteklenie-2-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/teploe-osteklenie-2-standard-v2-after.webp",
       "stage": "warm",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "loggia",
@@ -315,8 +315,8 @@ export const diverseProjects = {
     },
     {
       "title": "Тёплое остекление балкона с креслом и книгами",
-      "before": "portfolio-diverse-v4/teploe-osteklenie-3-before.webp",
-      "after": "portfolio-diverse-v4/teploe-osteklenie-3-after.webp",
+      "before": "portfolio-diverse-v4/teploe-osteklenie-3-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/teploe-osteklenie-3-standard-v2-after.webp",
       "stage": "warm",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -330,8 +330,8 @@ export const diverseProjects = {
   "panoramnoe-osteklenie": [
     {
       "title": "Панорамное остекление балкона с боковым входом",
-      "before": "portfolio-diverse-v4/panoramnoe-osteklenie-1-before.webp",
-      "after": "portfolio-diverse-v4/panoramnoe-osteklenie-1-after.webp",
+      "before": "portfolio-diverse-v4/panoramnoe-osteklenie-1-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/panoramnoe-osteklenie-1-standard-v2-after.webp",
       "stage": "panorama",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
@@ -343,8 +343,8 @@ export const diverseProjects = {
     },
     {
       "title": "Панорамное остекление лоджии у кухни",
-      "before": "portfolio-diverse-v4/panoramnoe-osteklenie-2-before.webp",
-      "after": "portfolio-diverse-v4/panoramnoe-osteklenie-2-after.webp",
+      "before": "portfolio-diverse-v4/panoramnoe-osteklenie-2-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/panoramnoe-osteklenie-2-standard-v2-after.webp",
       "stage": "panorama",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "loggia",
@@ -356,8 +356,8 @@ export const diverseProjects = {
     },
     {
       "title": "Панорамное остекление широкого балкона с креслом",
-      "before": "portfolio-diverse-v4/panoramnoe-osteklenie-3-before.webp",
-      "after": "portfolio-diverse-v4/panoramnoe-osteklenie-3-after.webp",
+      "before": "portfolio-diverse-v4/panoramnoe-osteklenie-3-standard-v2-before.webp",
+      "after": "portfolio-diverse-v4/panoramnoe-osteklenie-3-standard-v2-after.webp",
       "stage": "panorama",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
