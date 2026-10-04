@@ -5874,23 +5874,6 @@
       }
     ]
   },
-  "/assets/service-before-after/panoramic-balcony-06-after.jpg": {
-    "src": "/assets/responsive/057102b0e1b634b6-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/057102b0e1b634b6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/057102b0e1b634b6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/057102b0e1b634b6-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/service-before-after/panoramic-balcony-06-before.jpg": {
     "src": "/assets/responsive/647302670ee0f162-768.webp",
     "variants": [
@@ -8757,6 +8740,23 @@
       {
         "src": "/assets/responsive/a10b976c8ed5d8a2-1280.webp",
         "width": 1280
+      }
+    ]
+  },
+  "/assets/service-before-after/panoramic-balcony-06-rails-v2-after.webp": {
+    "src": "/assets/responsive/573dd22b36185cff-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/573dd22b36185cff-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/573dd22b36185cff-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/573dd22b36185cff-1086.webp",
+        "width": 1086
       }
     ]
   }

@@ -1449,3 +1449,10 @@ for (const projects of [beforeAfterProjects, ...Object.values(serviceBeforeAfter
   if (cottageGlazingReplacements[project.after]) project.after=cottageGlazingReplacements[project.after];
  }
 }
+
+// Remove obsolete railing from generated panoramic glazing result.
+for (const projects of [beforeAfterProjects, ...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of projects) {
+  if (project.after === "service-before-after/panoramic-balcony-06-after.jpg") project.after = "service-before-after/panoramic-balcony-06-rails-v2-after.webp";
+ }
+}
