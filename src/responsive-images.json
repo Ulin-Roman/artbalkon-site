@@ -2321,40 +2321,6 @@
       }
     ]
   },
-  "/assets/gallery-angles-v1/osteklenie-kottedzhej-2-after.webp": {
-    "src": "/assets/responsive/ad1004e5dd4b99d6-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/ad1004e5dd4b99d6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/ad1004e5dd4b99d6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/ad1004e5dd4b99d6-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
-  "/assets/gallery-angles-v1/osteklenie-kottedzhej-2-before.webp": {
-    "src": "/assets/responsive/f7da65f8b1e0c5ee-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f7da65f8b1e0c5ee-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f7da65f8b1e0c5ee-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f7da65f8b1e0c5ee-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/gallery-angles-v1/osteklenie-kottedzhej-3-after.webp": {
     "src": "/assets/responsive/4e713c74f6b0fd18-1280.webp",
     "variants": [
@@ -8757,6 +8723,40 @@
       {
         "src": "/assets/responsive/5a4f7cda306d3a14-1086.webp",
         "width": 1086
+      }
+    ]
+  },
+  "/assets/gallery-angles-v1/osteklenie-kottedzhej-2-walnut-v2-before.webp": {
+    "src": "/assets/responsive/78ef4753c820e829-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/78ef4753c820e829-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/78ef4753c820e829-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/78ef4753c820e829-1280.webp",
+        "width": 1280
+      }
+    ]
+  },
+  "/assets/gallery-angles-v1/osteklenie-kottedzhej-2-walnut-v2-after.webp": {
+    "src": "/assets/responsive/c9938684adc7b2d7-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c9938684adc7b2d7-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c9938684adc7b2d7-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c9938684adc7b2d7-1280.webp",
+        "width": 1280
       }
     ]
   }

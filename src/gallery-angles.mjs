@@ -221,8 +221,8 @@ export const additionalAngleProjects = {
     },
     {
       "title": "Тёплая веранда с обзором к дому",
-      "before": "gallery-angles-v1/osteklenie-kottedzhej-2-before.webp",
-      "after": "gallery-angles-v1/osteklenie-kottedzhej-2-after.webp",
+      "before": "gallery-angles-v1/osteklenie-kottedzhej-2-walnut-v2-before.webp",
+      "after": "gallery-angles-v1/osteklenie-kottedzhej-2-walnut-v2-after.webp",
       "description": "Визуализация проекта с новым ракурсом: то же помещение до и после работ, с разным естественным светом.",
       "objectType": "cottage",
       "stage": "glazing",
