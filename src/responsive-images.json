@@ -3086,23 +3086,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/osteklenie-kottedzhej-2-after.webp": {
-    "src": "/assets/responsive/5f5179bbf8a3e5c0-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/5f5179bbf8a3e5c0-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/5f5179bbf8a3e5c0-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/5f5179bbf8a3e5c0-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/osteklenie-kottedzhej-2-before.webp": {
     "src": "/assets/responsive/262ecfc0f299252f-1086.webp",
     "variants": [
@@ -8658,23 +8641,6 @@
       }
     ]
   },
-  "/assets/cottage-quality-v3/project-07-after.webp": {
-    "src": "/assets/responsive/a584df49be49de12-887.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a584df49be49de12-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a584df49be49de12-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a584df49be49de12-887.webp",
-        "width": 887
-      }
-    ]
-  },
   "/assets/cottage-quality-v3/project-08-before.webp": {
     "src": "/assets/responsive/9cd992272dfa0177-887.webp",
     "variants": [
@@ -8726,23 +8692,6 @@
       }
     ]
   },
-  "/assets/cottage-quality-v3/project-09-after.webp": {
-    "src": "/assets/responsive/c6b06a1dde59e3b6-887.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/c6b06a1dde59e3b6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/c6b06a1dde59e3b6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/c6b06a1dde59e3b6-887.webp",
-        "width": 887
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/osteklenie-kottedzhej-1-glazing-fixed-after.webp": {
     "src": "/assets/responsive/ba2f72816a6e7ba4-1086.webp",
     "variants": [
@@ -8756,6 +8705,57 @@
       },
       {
         "src": "/assets/responsive/ba2f72816a6e7ba4-1086.webp",
+        "width": 1086
+      }
+    ]
+  },
+  "/assets/cottage-glazing-fixed-v4/project-09-after.webp": {
+    "src": "/assets/responsive/b944f0add729976d-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b944f0add729976d-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b944f0add729976d-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b944f0add729976d-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/cottage-glazing-fixed-v4/project-07-after.webp": {
+    "src": "/assets/responsive/dd91fdc1b518d24b-887.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/dd91fdc1b518d24b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/dd91fdc1b518d24b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/dd91fdc1b518d24b-887.webp",
+        "width": 887
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/osteklenie-kottedzhej-2-glazing-fixed-after.webp": {
+    "src": "/assets/responsive/5a4f7cda306d3a14-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/5a4f7cda306d3a14-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/5a4f7cda306d3a14-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/5a4f7cda306d3a14-1086.webp",
         "width": 1086
       }
     ]

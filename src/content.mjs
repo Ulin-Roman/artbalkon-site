@@ -1437,3 +1437,15 @@ for (const projects of [beforeAfterProjects, ...Object.values(serviceBeforeAfter
   }
  }
 }
+
+// Glazing review: remove obsolete timber rails from generated cottage results.
+const cottageGlazingReplacements={
+  "cottage-quality-v3/project-09-after.webp": "cottage-glazing-fixed-v4/project-09-after.webp",
+  "cottage-quality-v3/project-07-after.webp": "cottage-glazing-fixed-v4/project-07-after.webp",
+  "portfolio-diverse-v4/osteklenie-kottedzhej-2-after.webp": "portfolio-diverse-v4/osteklenie-kottedzhej-2-glazing-fixed-after.webp"
+};
+for (const projects of [beforeAfterProjects, ...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of projects) {
+  if (cottageGlazingReplacements[project.after]) project.after=cottageGlazingReplacements[project.after];
+ }
+}
