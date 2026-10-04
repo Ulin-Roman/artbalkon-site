@@ -8793,5 +8793,39 @@
         "width": 1122
       }
     ]
+  },
+  "/assets/home-liked-works-v1/balcony-folding-table-before.webp": {
+    "src": "/assets/responsive/1a7ce2b49b4c0221-768.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/1a7ce2b49b4c0221-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/1a7ce2b49b4c0221-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/1a7ce2b49b4c0221-768.webp",
+        "width": 768
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/balcony-folding-table-after.webp": {
+    "src": "/assets/responsive/0243abf62a8f8dc2-768.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/0243abf62a8f8dc2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/0243abf62a8f8dc2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/0243abf62a8f8dc2-768.webp",
+        "width": 768
+      }
+    ]
   }
 }

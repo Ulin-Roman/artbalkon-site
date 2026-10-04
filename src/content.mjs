@@ -1499,3 +1499,18 @@ beforeAfterProjects.push(...[
     "after": "home-liked-works-v1/work3_cozy_storage-after.webp"
   }
 ]);
+
+// Additional approved pair supplied by the user for the home portfolio.
+beforeAfterProjects.push({
+  "title": "Балкон со шкафом и складным столом",
+  "objectType": "balcony",
+  "stage": "turnkey",
+  "visualized": true,
+  "beforeVisualized": true,
+  "afterVisualized": true,
+  "beforeReal": false,
+  "importedHomeWork": true,
+  "description": "Визуализация обновления балкона с новыми окнами, отделкой, шкафом и складным столом.",
+  "before": "home-liked-works-v1/balcony-folding-table-before.webp",
+  "after": "home-liked-works-v1/balcony-folding-table-after.webp"
+});
