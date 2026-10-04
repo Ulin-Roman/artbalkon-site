@@ -8760,23 +8760,6 @@
       }
     ]
   },
-  "/assets/home-liked-works-v1/work3_cozy_storage-before.webp": {
-    "src": "/assets/responsive/984da33b9d557c6d-1122.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/984da33b9d557c6d-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/984da33b9d557c6d-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/984da33b9d557c6d-1122.webp",
-        "width": 1122
-      }
-    ]
-  },
   "/assets/home-liked-works-v1/work3_cozy_storage-after.webp": {
     "src": "/assets/responsive/3e0949c46b931280-1122.webp",
     "variants": [
@@ -8825,6 +8808,23 @@
       {
         "src": "/assets/responsive/0243abf62a8f8dc2-768.webp",
         "width": 768
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work3_cozy_storage-handles-v2-before.webp": {
+    "src": "/assets/responsive/0ca3bb85f81c6f26-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/0ca3bb85f81c6f26-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/0ca3bb85f81c6f26-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/0ca3bb85f81c6f26-1122.webp",
+        "width": 1122
       }
     ]
   }

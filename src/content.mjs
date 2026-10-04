@@ -1495,7 +1495,7 @@ beforeAfterProjects.push(...[
     "beforeReal": false,
     "importedHomeWork": true,
     "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
-    "before": "home-liked-works-v1/work3_cozy_storage-before.webp",
+    "before": "home-liked-works-v1/work3_cozy_storage-handles-v2-before.webp",
     "after": "home-liked-works-v1/work3_cozy_storage-after.webp"
   }
 ]);
