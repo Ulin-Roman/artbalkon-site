@@ -7995,23 +7995,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-before.webp": {
-    "src": "/assets/responsive/3053374f429d02fa-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/3053374f429d02fa-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/3053374f429d02fa-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/3053374f429d02fa-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-after.webp": {
     "src": "/assets/responsive/e01ea960f266a469-724.webp",
     "variants": [
@@ -8723,6 +8706,23 @@
       {
         "src": "/assets/responsive/573dd22b36185cff-1086.webp",
         "width": 1086
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-angle-v3-before.webp": {
+    "src": "/assets/responsive/502bd22f747c1e2c-1024.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/502bd22f747c1e2c-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/502bd22f747c1e2c-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/502bd22f747c1e2c-1024.webp",
+        "width": 1024
       }
     ]
   }

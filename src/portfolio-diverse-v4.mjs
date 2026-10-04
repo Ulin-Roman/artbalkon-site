@@ -151,7 +151,7 @@ export const diverseProjects = {
     },
     {
       "title": "Балкон под ключ с книжной полкой",
-      "before": "portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-before.webp",
+      "before": "portfolio-diverse-v4/balkon-pod-klyuch-3-angle-v3-before.webp",
       "after": "portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-after.webp",
       "stage": "turnkey",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
