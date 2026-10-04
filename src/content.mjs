@@ -1529,3 +1529,6 @@ beforeAfterProjects.push({
   "before": "home-liked-works-v1/balcony-office-shelves-before.webp",
   "after": "home-liked-works-v1/balcony-office-shelves-after.webp"
 });
+
+// Show the five latest approved home portfolio pairs first, in their existing order.
+beforeAfterProjects.unshift(...beforeAfterProjects.splice(-5));
