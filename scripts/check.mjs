@@ -257,7 +257,8 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
 }
 
 // New series must add three complete labeled comparisons to every active landing.
-assert.equal(beforeAfterProjects.filter(p=>p.newPortfolioSeries).length,3);
+assert.equal(beforeAfterProjects.filter(p=>p.newPortfolioSeries).length,2);
+assert.ok(!beforeAfterProjects.some(p=>p.title==='Балкон под ключ с рабочим столом'),'Removed work must stay out of the home gallery');
 for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newPortfolioSeries);
  assert.equal(added.length,3,`${service.slug}: expected three new pairs`);

@@ -1396,7 +1396,7 @@ serviceBeforeAfterProjects['elektrika-na-balkone']=serviceBeforeAfterProjects['e
 for(const [slug,projects] of Object.entries(extraPortfolioProjects)){
  serviceBeforeAfterProjects[slug]=[...serviceBeforeAfterProjects[slug],...projects.map(p=>({...p}))];
 }
-beforeAfterProjects.push(...extraPortfolioProjects['balkon-pod-klyuch'].map(p=>({...p})));
+beforeAfterProjects.push(...extraPortfolioProjects['balkon-pod-klyuch'].filter(p=>p.title!=='Балкон под ключ с рабочим столом').map(p=>({...p})));
 
 // Interior view of outward-offset glazing; source exterior example is preserved.
 serviceBeforeAfterProjects['osteklenie-balkonov'].push({
