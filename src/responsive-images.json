@@ -5687,23 +5687,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-3-after.webp": {
-    "src": "/assets/responsive/6a530106e2df5f08-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/6a530106e2df5f08-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/6a530106e2df5f08-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/6a530106e2df5f08-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/uteplenie-balkonov-3-before.webp": {
     "src": "/assets/responsive/dfabd0c203d2d999-1086.webp",
     "variants": [
@@ -8756,6 +8739,23 @@
       },
       {
         "src": "/assets/responsive/3d8e8bc36e3eeb65-1086.webp",
+        "width": 1086
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/uteplenie-balkonov-3-after-reading-v2.webp": {
+    "src": "/assets/responsive/3615d508c0bc7d52-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/3615d508c0bc7d52-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/3615d508c0bc7d52-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/3615d508c0bc7d52-1086.webp",
         "width": 1086
       }
     ]

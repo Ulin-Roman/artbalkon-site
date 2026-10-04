@@ -71,7 +71,7 @@ export const perspectiveProjects = {
     {
       "title": "Утепление углового балкона изнутри",
       "before": "portfolio-perspectives-v3/uteplenie-balkonov-3-before.webp",
-      "after": "portfolio-perspectives-v3/uteplenie-balkonov-3-after.webp",
+      "after": "portfolio-perspectives-v3/uteplenie-balkonov-3-after-reading-v2.webp",
       "stage": "insulation",
       "description": "Визуализация проекта с видом через дверь или в сторону комнаты. То же помещение до и после работ при разной погоде и освещении.",
       "objectType": "balcony",
