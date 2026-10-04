@@ -1,3 +1,4 @@
+import {extraPortfolioProjects} from './portfolio-extra-v2.mjs';
 import {additionalAngleProjects} from './gallery-angles.mjs';
 import {beforeDaytimeAssets} from './before-daytime.mjs';
 
@@ -1388,3 +1389,9 @@ serviceBeforeAfterProjects['elektrika-na-balkone']=serviceBeforeAfterProjects['e
  before:'electrical-v2/el3-before-night-v1.webp',after:'electrical-v2/el3-after-night-v1.webp',
  description:'Ночная визуализация: тот же интерьер без освещения и с включёнными бра и потолочными светильниками. Исходные изображения сохранены.'
 }:project);
+
+// Three new visualizations per active landing page and three selected homepage examples.
+for(const [slug,projects] of Object.entries(extraPortfolioProjects)){
+ serviceBeforeAfterProjects[slug]=[...serviceBeforeAfterProjects[slug],...projects.map(p=>({...p}))];
+}
+beforeAfterProjects.push(...extraPortfolioProjects['balkon-pod-klyuch'].map(p=>({...p})));
