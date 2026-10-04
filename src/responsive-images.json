@@ -8827,5 +8827,39 @@
         "width": 1122
       }
     ]
+  },
+  "/assets/home-liked-works-v1/balcony-office-shelves-before.webp": {
+    "src": "/assets/responsive/3f29ccc86ce13fa9-863.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/3f29ccc86ce13fa9-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/3f29ccc86ce13fa9-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/3f29ccc86ce13fa9-863.webp",
+        "width": 863
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/balcony-office-shelves-after.webp": {
+    "src": "/assets/responsive/d2a7d6b9a602a1d3-863.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/d2a7d6b9a602a1d3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/d2a7d6b9a602a1d3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/d2a7d6b9a602a1d3-863.webp",
+        "width": 863
+      }
+    ]
   }
 }

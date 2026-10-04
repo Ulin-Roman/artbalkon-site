@@ -1514,3 +1514,18 @@ beforeAfterProjects.push({
   "before": "home-liked-works-v1/balcony-folding-table-before.webp",
   "after": "home-liked-works-v1/balcony-folding-table-after.webp"
 });
+
+// Approved archive pair for the home portfolio.
+beforeAfterProjects.push({
+  "title": "Балкон с рабочим столом и подсвеченными полками",
+  "objectType": "balcony",
+  "stage": "turnkey",
+  "visualized": true,
+  "beforeVisualized": true,
+  "afterVisualized": true,
+  "beforeReal": false,
+  "importedHomeWork": true,
+  "description": "Визуализация обновления балкона: новые окна, отделка, рабочий стол и полки с подсветкой.",
+  "before": "home-liked-works-v1/balcony-office-shelves-before.webp",
+  "after": "home-liked-works-v1/balcony-office-shelves-after.webp"
+});
