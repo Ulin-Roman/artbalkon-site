@@ -245,10 +245,10 @@ if(base!=='/'){assert.ok(home.includes(`href="${base}styles.css`));assert.ok(hom
 const total=await Promise.all(files.filter(f=>f.endsWith('.webp')).map(f=>stat(f).then(s=>s.size)));
 console.log(`PASS: ${pages.length} pages, ${refs} local references, unique metadata, JSON-LD, image alt, no orphan assets, JS syntax. WebP total: ${Math.round(total.reduce((a,b)=>a+b,0)/1024)} KB.`);
 
-// The new series must add exactly three distinct, labelled comparisons per active service.
+// Keep the approved camera views; one panoramic comparison was removed at the user's request.
 for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newAngleSeries);
- assert.equal(added.length,3,`${service.slug}: three new camera views required`);
+ assert.equal(added.length,service.slug === 'panoramnoe-osteklenie' ? 2 : 3,`${service.slug}: approved camera view count`);
  for(const p of added){
   assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);
   assert.ok(p.before.startsWith('gallery-angles-v1/')&&p.after.startsWith('gallery-angles-v1/'));

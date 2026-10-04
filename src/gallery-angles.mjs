@@ -330,19 +330,6 @@ export const additionalAngleProjects = {
   ],
   "panoramnoe-osteklenie": [
     {
-      "title": "Панорамный балкон с обратным обзором",
-      "before": "gallery-angles-v1/panoramnoe-osteklenie-1-before.webp",
-      "after": "gallery-angles-v1/panoramnoe-osteklenie-1-after.webp",
-      "description": "Визуализация проекта с новым ракурсом: то же помещение до и после работ, с разным естественным светом.",
-      "objectType": "balcony",
-      "stage": "glazing",
-      "visualized": true,
-      "beforeVisualized": true,
-      "afterVisualized": true,
-      "beforeReal": false,
-      "newAngleSeries": true
-    },
-    {
       "title": "Панорамная лоджия поперечным видом",
       "before": "gallery-angles-v1/panoramnoe-osteklenie-2-before.webp",
       "after": "gallery-angles-v1/panoramnoe-osteklenie-2-after.webp",

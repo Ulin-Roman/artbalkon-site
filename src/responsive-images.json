@@ -2457,40 +2457,6 @@
       }
     ]
   },
-  "/assets/gallery-angles-v1/panoramnoe-osteklenie-1-after.webp": {
-    "src": "/assets/responsive/898efe843a130350-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/898efe843a130350-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/898efe843a130350-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/898efe843a130350-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
-  "/assets/gallery-angles-v1/panoramnoe-osteklenie-1-before.webp": {
-    "src": "/assets/responsive/57009c61db991d2e-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/57009c61db991d2e-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/57009c61db991d2e-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/57009c61db991d2e-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/gallery-angles-v1/panoramnoe-osteklenie-2-after.webp": {
     "src": "/assets/responsive/c8518708bff7ebee-1280.webp",
     "variants": [
