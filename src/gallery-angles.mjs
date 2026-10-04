@@ -3,8 +3,8 @@ export const additionalAngleProjects = {
   "osteklenie-balkonov": [
     {
       "title": "Остекление балкона со стороны комнаты",
-      "before": "gallery-angles-v1/osteklenie-balkonov-1-before.webp",
-      "after": "gallery-angles-v1/osteklenie-balkonov-1-after.webp",
+      "before": "gallery-angles-v1/osteklenie-balkonov-1-before-v2.webp",
+      "after": "gallery-angles-v1/osteklenie-balkonov-1-after-v2.webp",
       "description": "Визуализация проекта с новым ракурсом: то же помещение до и после работ, с разным естественным светом.",
       "objectType": "balcony",
       "stage": "glazing",
@@ -16,8 +16,8 @@ export const additionalAngleProjects = {
     },
     {
       "title": "Остекление лоджии с видом на вход",
-      "before": "gallery-angles-v1/osteklenie-balkonov-2-before.webp",
-      "after": "gallery-angles-v1/osteklenie-balkonov-2-after.webp",
+      "before": "gallery-angles-v1/osteklenie-balkonov-2-before-v2.webp",
+      "after": "gallery-angles-v1/osteklenie-balkonov-2-after-v2.webp",
       "description": "Визуализация проекта с новым ракурсом: то же помещение до и после работ, с разным естественным светом.",
       "objectType": "loggia",
       "stage": "glazing",
@@ -29,8 +29,8 @@ export const additionalAngleProjects = {
     },
     {
       "title": "Угловое остекление широкого балкона",
-      "before": "gallery-angles-v1/osteklenie-balkonov-3-before.webp",
-      "after": "gallery-angles-v1/osteklenie-balkonov-3-after.webp",
+      "before": "gallery-angles-v1/osteklenie-balkonov-3-before-v2.webp",
+      "after": "gallery-angles-v1/osteklenie-balkonov-3-after-v2.webp",
       "description": "Визуализация проекта с новым ракурсом: то же помещение до и после работ, с разным естественным светом.",
       "objectType": "balcony",
       "stage": "glazing",

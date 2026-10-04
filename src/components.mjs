@@ -126,7 +126,7 @@ const qualityAssetReplacements={
  'service-before-after/cottage-glazing-9-after-hq.webp':'concept-cottage.jpg'
 };
 const beforeAfterAsset=file=>{const normalized=file.includes('/')?file:`before-after/${file}`;return qualityAssetReplacements[normalized]||normalized;};
-const beforePhotoAsset=file=>beforeWeatherAssets[file]||beforeAfterAsset(file);
+const beforePhotoAsset=file=>file==='before-daytime/before-020.webp'?'glazing-corrections-v2/glazing-before-4.webp':beforeWeatherAssets[file]||beforeAfterAsset(file);
 const beforeAfterSection=(items=beforeAfterProjects,{serviceTitle='',photoCards=false}={})=>{
  const furnitureGallery=items.length>0&&items.every(p=>p.stage==='furniture'&&p.builtIn);
  const orderedItems=[...items].sort((a,b)=>Number(beforeAfterAsset(b.after)==='before-after/after-13.jpg')-Number(beforeAfterAsset(a.after)==='before-after/after-13.jpg'));
