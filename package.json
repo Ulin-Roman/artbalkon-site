@@ -1,5 +1,21 @@
 {
-  "name": "artbalkon", "version": "1.0.0", "private": true, "type": "module",
-  "scripts": {"dev": "node scripts/server.mjs", "start": "node scripts/server.mjs", "build": "node scripts/build.mjs", "check": "node scripts/check.mjs", "test": "node --test scripts/leads.test.mjs"},
-  "engines": {"node": ">=22"}
+  "name": "artbalkon",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/server.mjs",
+    "start": "node scripts/server.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node --test scripts/leads.test.mjs scripts/optimize.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "postcss": "^8.5.28",
+    "postcss-selector-parser": "^7.1.6"
+  }
 }

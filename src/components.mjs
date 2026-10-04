@@ -55,7 +55,7 @@ const serviceCardImages={
 const serviceImage=s=>pic(serviceCardImages[s.slug]||s.image,`${s.title} — фотография услуги ArtBalkon`);
 const uniqueImages=images=>images.filter((name,index,list)=>name&&list.indexOf(name)===index);
 const serviceGallerySlides=service=>uniqueImages((serviceBeforeAfterProjects[service.slug]||[]).map(project=>project.after));
-const homeHeroImage='service-before-after/furniture-interior-v2-04-after.webp';
+export const homeHeroImage='service-before-after/furniture-interior-v2-04-after.webp';
 const glazingHeroImage='service-before-after/cold-loggia-finished-12-after.png';
 const finishingHeroImage='service-before-after/renovation-loggia-12-after.webp';
 const turnkeyHeroImage='service-before-after/furniture-interior-v2-02-after.webp';
@@ -63,6 +63,9 @@ const coldGlazingHeroImage='service-before-after/cold-loggia-finished-12-after.p
 const warmGlazingHeroImage='service-before-after/renovation-loggia-02-after.webp';
 const panoramicGlazingHeroImage='service-before-after/panoramic-glazing-after.jpg';
 const insulationHeroImage='before-daytime/before-032.webp';
+export const serviceHeroAsset=service=>pictureAsset(({
+ 'osteklenie-balkonov':glazingHeroImage,'uteplenie-balkonov':insulationHeroImage,'otdelka-balkonov':finishingHeroImage,'balkon-pod-klyuch':turnkeyHeroImage,'holodnoe-osteklenie':coldGlazingHeroImage,'teploe-osteklenie':warmGlazingHeroImage,'panoramnoe-osteklenie':panoramicGlazingHeroImage
+})[service.slug]||serviceGallerySlides(service)[0]||service.image);
 export const button=(label,href='#quiz',extra='',withArrow=true,forceArrow=false)=>{const isConsultation=label==='Получить консультацию';const icon=isConsultation||extra.includes('button-no-icon')?'':buttonIcon(label);const showArrow=withArrow&&(!isConsultation||forceArrow);return href.endsWith('#quiz')?`<button class="button ${extra}" type="button" data-quiz-open>${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</button>`:href.endsWith('#callback')?`<button class="button ${extra}" type="button" data-callback-open>${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</button>`:`<a class="button ${extra}" href="${href}">${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</a>`;};
 export function pic(name,alt,classes='',eager=false){const cleanName=cleanPortfolioAsset(name);const src=pictureAsset(cleanName);const responsive=smallPictureAssets.has(cleanName);const srcset=responsive?` srcset="/assets/${pictureAsset(cleanName,'-small')} 480w, /assets/${src} 1000w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1000px) 50vw, 600px"`:'';return `<img class="${classes}" src="/assets/${src}"${srcset} width="1000" height="1100" loading="${eager?'eager':'lazy'}" ${eager?'fetchpriority="high"':''} decoding="async" alt="${esc(alt)}">`;}
 const deferredSlide=(name,alt)=>`<img class="hero-image" data-src="/assets/${pictureAsset(name)}" width="1000" height="1100" loading="lazy" decoding="async" aria-hidden="true" alt="${esc(alt)}">`;

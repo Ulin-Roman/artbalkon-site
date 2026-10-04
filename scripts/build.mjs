@@ -1,6 +1,20 @@
 import {mkdir,readFile,writeFile,cp,rm,readdir} from 'node:fs/promises';
 import {resolve,relative,join,sep} from 'node:path';
-import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,projectPage,projectCards,contact,esc} from '../src/components.mjs';
+import {createHash} from 'node:crypto';
+import {optimizeCss,optimizeJs} from './optimize.mjs';
+const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
+const appSource=await readFile('public/app.js','utf8');
+const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource;
+const cssResult=await optimizeCss((await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8')),sourceText);
+const appCode=await optimizeJs(appSource);
+const fingerprint=text=>createHash('sha256').update(text).digest('hex').slice(0,12);
+const optimizeHtml=html=>html.replace(/<img\b[^>]*>/g,tag=>{
+ const src=tag.match(/\bsrc="([^"]+)"/)?.[1],entry=responsiveImages[src];if(!entry)return tag;
+ if(tag.includes('data-src="'))return tag.replace('data-src="'+src+'"','data-src="'+entry.src+'"');
+ const sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 48px) / 4), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
+ return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
+}).replace(/\/(styles\.css|app\.js)\?v=[^" ]+/g,(_,file)=>'/'+file+'?v='+fingerprint(file==='styles.css'?cssResult.code:appCode));
+import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,projectPage,projectCards,contact,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';
 import {company,services,serviceSeo,projects,integrations} from '../src/content.mjs';
 const rawBase=process.env.SITE_BASE_PATH||'/';
 if(!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(rawBase))throw Error('SITE_BASE_PATH must be an absolute path ending with /.');
@@ -12,22 +26,23 @@ const baseCss=css=>base==='/'?css:css.replace(/url\((['"]?)\/(?!\/)/g,`url($1${b
 await rm('dist',{recursive:true,force:true});
 await mkdir('dist',{recursive:true});
 await cp('public','dist',{recursive:true});
-await writeFile('dist/styles.css',baseCss((await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8'))));
+await writeFile('dist/styles.css',baseCss(cssResult.code));
+await writeFile('dist/app.js',appCode);
 await rm('dist/styles-extra.css');
 await writeFile('dist/.nojekyll','');
 const routes=[];
-async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(shell(body,{path,...meta})));if(!meta.noindex)routes.push(path);}
+async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(optimizeHtml(shell(body,{path,...meta}))));if(!meta.noindex)routes.push(path);}
 async function redirect(path,target,label){
  const dir='dist'+path,destination=base==='/'?target:`${base}${target.slice(1)}`,targetPage=target.split('#')[0];
  await mkdir(dir,{recursive:true});
  const body=`<section class="section container legal" id="callback"><p class="eyebrow">УСЛУГИ ОБЪЕДИНЕНЫ</p><h1>${esc(label)}</h1><p>Мы объединили страницы для балконов и лоджий. Сейчас откроется общая страница услуги.</p><a class="button" href="${target}">Перейти к услуге ↗</a></section>`;
  const metaTitle=`${label.replace(' и Московской области',' и МО')} | ArtBalkon`;
  const html=shell(body,{path,title:metaTitle,description:`Страница услуги объединена с общей страницей для балконов и лоджий. Перейдите к актуальному описанию работ, примерам и расчёту стоимости.`,noindex:true}).replaceAll(`href="${path}#`,`href="${targetPage}#`).replace('</head>',`<meta http-equiv="refresh" content="0;url=${destination}"><script>location.replace(${JSON.stringify(destination)}+location.search+location.hash)</script></head>`);
- await writeFile(dir+'index.html',baseHtml(html));
+ await writeFile(dir+'index.html',baseHtml(optimizeHtml(html)));
 }
-await page('/',home(),{image:'/assets/hero-balcony-v2.webp'});
+await page('/',home(),{image:imageAsset(homeHeroImage)});
 const bundledServiceSlugs=new Set(['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone']);
-for(const s of services.filter(service=>!bundledServiceSlugs.has(service.slug))){const seo=serviceSeo[s.slug];await page(`/${s.slug}/`,servicePage(s),{title:seo?.metaTitle||`${s.h1} — цены и замер | ArtBalkon`,description:seo?.metaDescription||s.offer,image:imageAsset(s.image)});}
+for(const s of services.filter(service=>!bundledServiceSlugs.has(service.slug))){const seo=serviceSeo[s.slug];await page(`/${s.slug}/`,servicePage(s),{title:seo?.metaTitle||`${s.h1} — цены и замер | ArtBalkon`,description:seo?.metaDescription||s.offer,image:imageAsset(serviceHeroAsset(s))});}
 await redirect('/krysha-nad-balkonom/','/balkon-pod-klyuch/#complex-options','Крыша над балконом — только в составе проекта под ключ');
 await redirect('/mebel-dlya-balkona/','/balkon-pod-klyuch/#complex-options','Мебель для балкона или лоджии — только в составе проекта под ключ');
 await redirect('/elektrika-na-balkone/','/balkon-pod-klyuch/#complex-options','Электрика и освещение — только в составе проекта под ключ');
@@ -60,4 +75,5 @@ for(const file of built){
  const asset=relative(builtRoot,file).replaceAll('\\','/');
  if(!referenceText.includes(asset)){await rm(file);omitted++;}
 }
+console.log(`Optimized CSS: ${cssResult.removed.length} unused selectors removed; CSS ${Buffer.byteLength(cssResult.code)} bytes, JS ${Buffer.byteLength(appCode)} bytes`);
 console.log(`ArtBalkon: ${routes.length+2} pages built; ${omitted} unused source assets omitted from dist`);
