@@ -265,12 +265,13 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
  for(const p of added){assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);assert.notEqual(p.before,p.after);assert.ok(p.before.startsWith('portfolio-extra-v2/')&&p.after.startsWith('portfolio-extra-v2/'));}
 }
 
-// Perspective series adds three unique complete comparisons per active service.
-assert.equal(beforeAfterProjects.filter(p=>p.newPerspectiveSeries).length,3);
+// Approved perspective comparisons: the unwanted turnkey storage pair was removed.
+assert.equal(beforeAfterProjects.filter(p=>p.newPerspectiveSeries).length,2);
 for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newPerspectiveSeries);
- assert.equal(added.length,3,`${service.slug}: expected three perspective pairs`);
- assert.equal(new Set(added.map(p=>p.after)).size,3);
+ const expected=service.slug === "balkon-pod-klyuch" ? 2 : 3;
+ assert.equal(added.length,expected,`${service.slug}: approved perspective pair count`);
+ assert.equal(new Set(added.map(p=>p.after)).size,expected);
  for(const p of added){assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);assert.notEqual(p.before,p.after);assert.ok(p.before.startsWith('portfolio-perspectives-v3/')&&p.after.startsWith('portfolio-perspectives-v3/'));}
 }
 

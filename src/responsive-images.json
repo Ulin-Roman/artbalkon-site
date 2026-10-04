@@ -7383,40 +7383,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-3-standard-v2-before.webp": {
-    "src": "/assets/responsive/0efd304a3fcc23cb-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/0efd304a3fcc23cb-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/0efd304a3fcc23cb-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/0efd304a3fcc23cb-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-3-standard-v2-after.webp": {
-    "src": "/assets/responsive/d98554dca9db1817-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d98554dca9db1817-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d98554dca9db1817-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d98554dca9db1817-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/holodnoe-osteklenie-2-standard-v2-before.webp": {
     "src": "/assets/responsive/f344431f969681a4-724.webp",
     "variants": [

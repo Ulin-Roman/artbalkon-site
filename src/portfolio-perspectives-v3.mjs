@@ -149,19 +149,6 @@ export const perspectiveProjects = {
       "afterVisualized": true,
       "beforeReal": false,
       "newPerspectiveSeries": true
-    },
-    {
-      "title": "Угловой балкон с местом для отдыха",
-      "before": "portfolio-perspectives-v3/balkon-pod-klyuch-3-standard-v2-before.webp",
-      "after": "portfolio-perspectives-v3/balkon-pod-klyuch-3-standard-v2-after.webp",
-      "stage": "turnkey",
-      "description": "Визуализация проекта с видом через дверь или в сторону комнаты. То же помещение до и после работ при разной погоде и освещении.",
-      "objectType": "balcony",
-      "visualized": true,
-      "beforeVisualized": true,
-      "afterVisualized": true,
-      "beforeReal": false,
-      "newPerspectiveSeries": true
     }
   ],
   "obedinenie-balkona-s-komnatoj": [
