@@ -1395,3 +1395,11 @@ for(const [slug,projects] of Object.entries(extraPortfolioProjects)){
  serviceBeforeAfterProjects[slug]=[...serviceBeforeAfterProjects[slug],...projects.map(p=>({...p}))];
 }
 beforeAfterProjects.push(...extraPortfolioProjects['balkon-pod-klyuch'].map(p=>({...p})));
+
+// Interior view of outward-offset glazing; source exterior example is preserved.
+serviceBeforeAfterProjects['osteklenie-balkonov'].push({
+ title:'Балкон с выносом — вид изнутри',
+ before:'offset-interior-v1/before.webp',after:'offset-interior-v1/after.webp',
+ description:'Визуализация остекления с выносом по подоконнику: оконный контур вынесен наружу, устроен широкий подоконник, обновлены потолок и пол. Размер плиты сохранён.',
+ stage:'glazing',objectType:'balcony',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false
+});

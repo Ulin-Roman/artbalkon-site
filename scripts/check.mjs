@@ -198,7 +198,7 @@ for(const project of turnkeyAdditions){
  assert.equal(project.beforeReal,false);
  assert.match(project.before,/^service-before-after\/turnkey-(?:furniture|electrical)-\d{2}-before-v[23]\.webp$/);
 }
-for(const [slug,expectedCount] of [['osteklenie-balkonov',11],['uteplenie-balkonov',8],['otdelka-balkonov',24],['balkon-pod-klyuch',29]]){
+for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',8],['otdelka-balkonov',24],['balkon-pod-klyuch',29]]){
  const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries);
  assert.equal(gallery.length,expectedCount+3,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount+3,`${slug}: combined gallery repeats finished rooms`);
