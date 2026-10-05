@@ -391,7 +391,7 @@ const turnkeyIncludedExtrasSection=service=>{
   const project=slug==='elektrika-na-balkone'?serviceBeforeAfterProjects[slug].find(project=>project.title==='Два бра и удобные розетки'):serviceBeforeAfterProjects[slug][0];
   const before=beforePhotoAsset(project.before),after=afterPhotoAsset(project.after);
   const previewPrefix=slug==='krysha-nad-balkonom'?'roof':slug==='elektrika-na-balkone'?'lighting':null;
-  const previewBefore=previewPrefix?`extras-expanded-v1/${previewPrefix}-before.webp`:before;
+  const previewBefore=previewPrefix && slug!=='elektrika-na-balkone'?`extras-expanded-v1/${previewPrefix}-before.webp`:before;
   const previewAfter=previewPrefix?`extras-expanded-v1/${previewPrefix}-after.webp`:after;
   const beforeVisualized=Boolean(project.beforeVisualized||project.visualized),beforeReal=project.beforeReal??!beforeVisualized;
   const beforeAlt=beforeVisualized?'до работ, тематическая визуализация':beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция';
