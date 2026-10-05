@@ -3962,7 +3962,28 @@ body{min-width:0;max-width:100%}
 
 /* Services that are available only inside a turnkey balcony project. */
 .home-extra-grid{
- grid-template-columns:repeat(2,minmax(0,1fr));
+ display:flex;
+ justify-content:center;
+ flex-wrap:wrap;
+ gap:22px;
+}
+.home-extra-grid .extra-card{
+ min-width:0;
+ flex:0 1 calc((100% - 44px)/3);
+}
+.home-extra-grid .extra-card-media{height:240px}
+.home-extra-grid .extra-card-body h3{font-size:23px}
+.home-extra-grid .extra-card-body p{margin:11px 0 0;font-size:16px;line-height:1.65}
+@media(max-width:900px){
+ .home-extra-grid .extra-card{flex-basis:calc((100% - 22px)/2)}
+}
+@media(max-width:640px){
+ .home-page .home-extra-grid{gap:16px}
+ .home-extra-grid .extra-card{flex-basis:100%}
+ .home-page .home-extra-grid .extra-card-media{height:210px}
+ .home-page .home-extra-grid .extra-card-body{padding:20px}
+ .home-page .home-extra-grid .extra-card-body h3{font-size:21px}
+ .home-page .home-extra-grid .extra-card-body p{display:block}
 }
 .turnkey-extras .section-heading{
  max-width:820px;
