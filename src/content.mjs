@@ -1388,7 +1388,7 @@ for(const [slug,projects] of Object.entries(additionalAngleProjects)){
 
 // Night comparison demonstrates the installed lights, preserving the source pair.
 serviceBeforeAfterProjects['elektrika-na-balkone']=serviceBeforeAfterProjects['elektrika-na-balkone'].map(project=>project.title==='Два бра и удобные розетки'?{...project,
- before:'electrical-v2/el3-before-night-v2.webp',after:'electrical-v2/el3-after-night-v1.webp',
+ before:'electrical-v2/el3-before-night-v2.webp',after:'electrical-v2/el3-after-night-v2.webp',
  description:'Ночная визуализация: тот же интерьер без освещения и с включёнными бра и потолочными светильниками. Исходные изображения сохранены.'
 }:project);
 
