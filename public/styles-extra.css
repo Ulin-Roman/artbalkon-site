@@ -4963,7 +4963,7 @@ h1,h2,h3{font-family:Manrope,Arial,sans-serif;letter-spacing:-.035em;font-weight
 h2,.section-heading h2,.promotion-heading h2,.home-advantages-heading h2,.certificates-heading h2{font-size:clamp(29px,3.1vw,44px);line-height:1.2;letter-spacing:-.035em;text-wrap:balance}
 h3{line-height:1.3;letter-spacing:-.025em}
 p{ text-wrap:pretty }
-.section{padding-block:80px}
+.section{padding-block:36px}
 .section-heading{margin-bottom:36px}
 .section-heading p,.services-subtitle,.section-description{color:var(--muted);line-height:1.7}
 .soft-section{background:#f6f7f4}
@@ -5106,7 +5106,7 @@ p{ text-wrap:pretty }
  .home-page .hero-description,.landing-hero .landing-copy-main>.hero-description{font-size:15px}
 }
 @media(max-width:640px){
- .section{padding-block:52px}
+ .section{padding-block:28px}
  .section-heading{margin-bottom:25px}
  .home-page .hero h1,.landing-hero .landing-grid h1{font-size:clamp(29px,7.5vw,37px);line-height:1.19;letter-spacing:-.035em}
  .home-page .hero h1,.landing-hero .landing-grid h1{color:#fff}
@@ -5407,3 +5407,19 @@ img{-webkit-touch-callout:none;-webkit-user-drag:none;user-select:none}
 @media(max-width:640px){.site-header{--messenger-size:28px;--menu-size:36px}}
 @media(max-width:480px){.site-header{--messenger-size:32px;--menu-size:32px}}
 @media(max-width:360px){.site-header{--messenger-size:28px;--menu-size:28px}}
+
+/* Topic changes use the same quiet rule as the partner brands section.
+   Adjacent sections share a compact gap instead of two large paddings. */
+main > .social-subscribe{margin-top:0}
+.before-after-section > .section,
+main > .cost-calculator-section,
+.promotion-section > .section,
+.reviews-live-section,
+.process-video-section > .section,
+.home-advantages > .section,
+main > .finishing-styles,
+main > .social-subscribe,
+.certificates-section > .section,
+main > .service-process{
+ border-top:1px solid var(--line);
+}
