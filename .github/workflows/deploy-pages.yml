@@ -47,3 +47,19 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Build for artbalkon.site
+        env:
+          SITE_BASE_PATH: /
+          SITE_ORIGIN: https://artbalkon.site
+          SITE_STATIC_ONLY: 'true'
+        run: npm run build
+
+      - name: Deploy to REG.RU
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.REG_FTP_HOST }}
+          username: ${{ secrets.REG_FTP_USER }}
+          password: ${{ secrets.REG_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./
