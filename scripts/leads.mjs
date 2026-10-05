@@ -20,7 +20,7 @@ export function validateLead(input){
  if(!input||typeof input!=='object'||Array.isArray(input))throw Error('Некорректная заявка.');
  if(input.website)throw Error('Не удалось отправить заявку. Позвоните нам.');
  if(input.consent!==true)throw Error('Нужно согласие на обработку персональных данных.');
- if(!['quiz','contact'].includes(input.form))throw Error('Неизвестная форма.');
+ if(!['quiz','contact','callback','transformation'].includes(input.form))throw Error('Неизвестная форма.');
  if(typeof input.name!=='string'||!input.name.trim()||input.name.length>70)throw Error('Укажите имя.');
  if(typeof input.phone!=='string'||input.phone.length>30)throw Error('Проверьте номер телефона.');
  let phone=input.phone.replace(/\D/g,'');if(phone.length===10)phone='7'+phone;
@@ -28,6 +28,10 @@ export function validateLead(input){
  if(typeof input.requestId!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input.requestId))throw Error('Обновите страницу и попробуйте ещё раз.');
  const lead={requestId:input.requestId,name:input.name.trim(),phone,form:input.form,consent:true,consentVersion:'2026-09-16',page:typeof input.page==='string'?input.page.slice(0,500):'/',attribution:{}};
  for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid','landing','referrer'])if(typeof input.attribution?.[key]==='string')lead.attribution[key]=input.attribution[key].slice(0,300);
+ if(input.form==='transformation'){
+  if(typeof input.project!=='string'||!input.project.trim()||input.project.length>300)throw Error('Выберите работу для заявки.');
+  lead.project=input.project.trim();
+ }
  if(input.form==='quiz'){
   for(const key of ['service','object','timing']){if(!allowed[key].includes(input[key]))throw Error('Ответьте на все вопросы расчёта.');lead[key]=input[key];}
   if(input.gift!==undefined){if(!allowed.gift.includes(input.gift))throw Error('Некорректный подарок.');lead.gift=input.gift;}

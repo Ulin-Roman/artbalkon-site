@@ -4,14 +4,14 @@ import {createHash} from 'node:crypto';
 import {optimizeCss,optimizeJs} from './optimize.mjs';
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
 const appSource=await readFile('public/app.js','utf8');
-const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource;
+const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource+'\n'+await readFile(new URL(import.meta.url),'utf8');
 const cssResult=await optimizeCss((await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8')),sourceText);
 const appCode=await optimizeJs(appSource);
 const fingerprint=text=>createHash('sha256').update(text).digest('hex').slice(0,12);
 const optimizeHtml=html=>html.replace(/<img\b[^>]*>/g,tag=>{
  const src=tag.match(/\bsrc="([^"]+)"/)?.[1],entry=responsiveImages[src];if(!entry)return tag;
  if(tag.includes('data-src="'))return tag.replace('data-src="'+src+'"','data-src="'+entry.src+'"');
- const sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 48px) / 4), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
+ const sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
 }).replace(/\/(styles\.css|app\.js)\?v=[^" ]+/g,(_,file)=>'/'+file+'?v='+fingerprint(file==='styles.css'?cssResult.code:appCode));
 import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,projectPage,projectCards,contact,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';

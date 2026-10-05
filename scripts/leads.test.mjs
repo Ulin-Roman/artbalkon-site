@@ -35,3 +35,11 @@ test('application display title preserves technical project in form and analytic
   assert.equal(tracked.name,'transformation_lead_open');
  }
 });
+
+test('callback and portfolio requests are accepted with bounded project context',()=>{
+ const callback=validateLead({...valid(),form:'callback'});
+ assert.equal(callback.form,'callback');
+ const project=validateLead({...valid(),form:'transformation',project:'  Балкон с местом для отдыха  '});
+ assert.equal(project.project,'Балкон с местом для отдыха');
+ for(const input of [{form:'unknown'},{form:'transformation'},{form:'transformation',project:' '},{form:'transformation',project:'x'.repeat(301)}])assert.throws(()=>validateLead({...valid(),...input}));
+});

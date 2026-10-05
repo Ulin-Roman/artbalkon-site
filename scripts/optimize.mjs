@@ -11,7 +11,7 @@ export async function optimizeCss(css, sourceText){
   }
   if(!ast.nodes.length)rule.remove();else rule.selector=ast.toString();
  });
- const {code}=await transform(root.toString(),{loader:'css',minify:true,target:'es2020'});
+ const {code}=await transform(root.toString(),{loader:'css',minify:true,target:['chrome100','firefox100','safari15.4']});
  return {code,removed};
 }
-export async function optimizeJs(source){return (await transform(source,{loader:'js',minify:true,target:'es2020'})).code;}
+export async function optimizeJs(source){return (await transform(source,{loader:'js',minify:true,target:['chrome100','firefox100','safari15.4']})).code;}
