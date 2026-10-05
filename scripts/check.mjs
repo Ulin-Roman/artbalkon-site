@@ -198,7 +198,7 @@ for(const project of turnkeyAdditions){
  assert.equal(project.beforeReal,false);
  assert.match(project.before,/^service-before-after\/turnkey-(?:furniture|electrical)-\d{2}-before-v[23]\.webp$/);
 }
-for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',8],['otdelka-balkonov',24],['balkon-pod-klyuch',29]]){
+for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',7],['otdelka-balkonov',24],['balkon-pod-klyuch',29]]){
  const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries);
  assert.equal(gallery.length,expectedCount+3,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount+3,`${slug}: combined gallery repeats finished rooms`);
@@ -297,3 +297,5 @@ for (const file of pages) {
  assert.doesNotMatch(html, /work-107(?:["&\s]|$)|Подоконник стал полезной частью лоджии|real-after-091|warm-loggia-empty-09-before-no-handles|7feb788552823264|b70542faee80d7b2/, 'Withdrawn work must not appear in ' + file);
 }
 for (const file of files) assert.doesNotMatch(file, /real-after-091|warm-loggia-empty-09-before-no-handles|7feb788552823264|b70542faee80d7b2/, 'Withdrawn images must not be published');
+
+for (const html of [renderHome(), ...services.map(service => servicePageWithSeo(service))]) assert.doesNotMatch(html, /data-case="work-(?:108|113|54)"|real-after-(?:100|164)/, 'Rejected projects must stay off every page');
