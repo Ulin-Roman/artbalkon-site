@@ -349,7 +349,7 @@ export function shell(body,{title='Балконы и лоджии под клю�
 
     ym(113425011, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
-<!-- /Yandex.Metrika counter --></head><body${path==='/'&&!noindex?' class="home-page"':''}><noscript><div><img src="https://mc.yandex.ru/watch/113425011" style="position:absolute; left:-9999px;" alt="" /></div></noscript>${header(path)}<main id="main">${body}</main>${footer(path)}<button class="scroll-top" id="scroll-top" type="button" aria-label="Вернуться наверх" title="Наверх" hidden>↑</button></body></html>`;
+<!-- /Yandex.Metrika counter --></head><body${path==='/'&&!noindex?' class="home-page"':''}><noscript><div><img src="https://mc.yandex.ru/watch/113425011" style="position:absolute; left:-9999px;" alt="" /></div></noscript>${header(path)}<main id="main">${body}</main>${footer(path)}<button class="scroll-top" id="scroll-top" type="button" aria-label="Вернуться наверх" title="Наверх" hidden>↑</button><script src="https://cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8" defer></script></body></html>`;
 }
 const glazingPricingSection=service=>{
  const slug=service?.slug||'';
