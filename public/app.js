@@ -109,7 +109,10 @@
   const title=document.createElement('h3');title.textContent=preview?'Спасибо! Форма работает.':'Спасибо! Заявка принята.';
   const text=document.createElement('p');text.textContent=preview?'Это предварительный просмотр сайта. Тестовая заявка сохранена, но менеджеру пока не отправлена.':'Свяжемся с вами, уточним детали и подготовим предварительный расчёт.';
   const phone=document.createElement('a');phone.className='text-link';phone.href='tel:+74951653905';phone.dataset.event='phone_click';phone.textContent='Позвонить: +7 (495) 165-39-05';
-  box.append(icon,title,text,phone);form.replaceChildren(box);box.focus({preventScroll:true});
+  box.append(icon,title,text,phone);form.replaceChildren(box);
+  const dialog=form.closest('.application-modal');
+  if(dialog){dialog.classList.add('is-submitted');title.id=dialog.id+'-success-title';dialog.setAttribute('aria-labelledby',title.id);}
+  box.focus({preventScroll:true});
  }
  document.querySelectorAll('[data-lead-form]').forEach(form=>{let submitting=false,id=null;
   form.addEventListener('submit',async e=>{e.preventDefault();if(submitting)return;

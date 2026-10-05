@@ -5423,3 +5423,18 @@ main > .social-subscribe,
 main > .service-process{
  border-top:1px solid var(--line);
 }
+
+/* A successful request replaces the two-column invitation with one message. */
+.application-modal.is-submitted{width:min(560px,calc(100% - 36px))}
+.application-modal.is-submitted .application-modal-copy{display:none}
+.application-modal.is-submitted .application-modal-shell{grid-template-columns:minmax(0,1fr);min-height:320px}
+.application-modal.is-submitted .application-form{padding:64px 36px 48px;min-width:0}
+.application-modal.is-submitted .thank-you{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.application-modal.is-submitted .success-icon{margin-inline:auto}
+.application-modal.is-submitted .thank-you p{max-width:420px}
+.application-modal.is-submitted .thank-you .text-link{justify-content:center;flex-wrap:wrap}
+@media(max-width:640px){
+ .application-modal.is-submitted{width:calc(100% - 20px)}
+ .application-modal.is-submitted .application-modal-shell{min-height:0}
+ .application-modal.is-submitted .application-form{padding:60px 24px 40px}
+}
