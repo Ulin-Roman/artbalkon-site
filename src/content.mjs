@@ -1694,3 +1694,13 @@ for (let index = beforeAfterProjects.length - 1; index >= 0; index--) {
 for (const [slug, gallery] of Object.entries(serviceBeforeAfterProjects)) {
  serviceBeforeAfterProjects[slug] = gallery.filter(project => project.title !== 'Светлый балкон с рабочим местом');
 }
+
+
+// A real-depth wardrobe and movable ottoman from the selected elevated viewpoint.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Лоджия под ключ с местом для работы') {
+  project.before = 'portfolio-diverse-v4/work23-top-v2-before.webp';
+  project.after = 'portfolio-diverse-v4/work23-top-v2-after.webp';
+  project.description = 'Визуализация преображения лоджии: новые окна, светлая отделка, шкаф в торце и отдельный мягкий пуфик перед ним.';
+ }
+}

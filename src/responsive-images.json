@@ -9325,5 +9325,39 @@
         "width": 960
       }
     ]
+  },
+  "/assets/portfolio-diverse-v4/work23-top-v2-before.webp": {
+    "src": "/assets/responsive/90342839cd29f679-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/90342839cd29f679-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/90342839cd29f679-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/90342839cd29f679-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/work23-top-v2-after.webp": {
+    "src": "/assets/responsive/bf80ab141bd6aed3-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/bf80ab141bd6aed3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/bf80ab141bd6aed3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/bf80ab141bd6aed3-724.webp",
+        "width": 724
+      }
+    ]
   }
 }
