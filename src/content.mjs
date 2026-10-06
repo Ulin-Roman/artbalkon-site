@@ -1672,3 +1672,9 @@ const finishingWorkIndex = serviceBeforeAfterProjects['otdelka-balkonov'].findIn
 const selectedStorageProject = serviceBeforeAfterProjects['balkon-pod-klyuch'].find(project => project.title === 'Уютный балкон в поперечном ракурсе');
 if (finishingWorkIndex < 0 || !selectedStorageProject) throw new Error('Selected finishing portfolio replacement was not found');
 serviceBeforeAfterProjects['otdelka-balkonov'][finishingWorkIndex] = {...selectedStorageProject, stage:'finish', newAngleSeries:false};
+
+// User-selected window-side workspace replaces the indicated home example.
+const homeWorkspaceIndex = beforeAfterProjects.findIndex(project => project.title === 'Светлый балкон с рабочим местом');
+const selectedWindowWorkspace = serviceBeforeAfterProjects['otdelka-balkonov'].find(project => project.title === 'Отделка лоджии с узким столом');
+if (homeWorkspaceIndex < 0 || !selectedWindowWorkspace) throw new Error('Selected home portfolio replacement was not found');
+beforeAfterProjects[homeWorkspaceIndex] = {...selectedWindowWorkspace, newDiverseSeries:false};

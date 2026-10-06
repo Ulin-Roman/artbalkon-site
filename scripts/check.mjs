@@ -124,12 +124,17 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  assert.deepEqual(actual,[...new Set(projects.map(p=>p.after))],`${label}: hero must use its own AFTER gallery`);
 }
 const originalHomeProjects=beforeAfterProjects.filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries&&!p.importedHomeWork);
-assert.equal(originalHomeProjects.length,12,'Home must contain 12 turnkey pairs');
+assert.equal(originalHomeProjects.length,12,'Home must contain 12 primary pairs');
 assert.equal(new Set(originalHomeProjects.map(p=>p.after)).size,12,'Home must not repeat rooms');
 for(const [type,slug] of [['balcony','balkon-pod-klyuch'],['loggia','lodzhiya-pod-klyuch']]){
  const selected=originalHomeProjects.filter(p=>p.objectType===type);
- assert.equal(selected.length,6,`Home must contain six ${type} pairs`);
+ assert.equal(selected.length,type==='balcony'?5:7,`Home must retain its approved ${type} pairs`);
  for(const project of selected){
+  if(project.title==='Отделка лоджии с узким столом'){
+   assert.equal(project.stage,'finish');
+   assert.ok(serviceBeforeAfterProjects['otdelka-balkonov'].some(source=>source.before===project.before&&source.after===project.after&&source.title===project.title),'Home must use the selected complete finishing pair');
+   continue;
+  }
   assert.equal(project.stage,'turnkey');
   const sharedBefore=beforeHardwareReplacements[project.before] || project.before;
   const sectionBefore=slug==='balkon-pod-klyuch'?(finishBeforeLatchReplacements[sharedBefore] || sharedBefore):sharedBefore;
