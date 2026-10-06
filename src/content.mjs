@@ -1678,3 +1678,11 @@ const homeWorkspaceIndex = beforeAfterProjects.findIndex(project => project.titl
 const selectedWindowWorkspace = serviceBeforeAfterProjects['otdelka-balkonov'].find(project => project.title === 'Отделка лоджии с узким столом');
 if (homeWorkspaceIndex < 0 || !selectedWindowWorkspace) throw new Error('Selected home portfolio replacement was not found');
 beforeAfterProjects[homeWorkspaceIndex] = {...selectedWindowWorkspace, newDiverseSeries:false};
+
+
+// The empty before view includes the depth occupied by the bench after renovation.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Отделка балкона со стороны окон') {
+  project.before = 'gallery-angles-v1/work81-before-depth-v2.webp';
+ }
+}
