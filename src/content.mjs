@@ -1570,3 +1570,29 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "description": "Визуальная пара по выбранному референсу: хранение старых вещей сменилось светлым кабинетом с угловой столешницей. До и после — визуализации.",
   "sourceUrl": "https://www.pinterest.com/pin/388294799145454158/"
 });
+
+serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
+  "title": "Балкон с книжными полками и скамьёй",
+  "before": "turnkey-books-v1/before.webp",
+  "after": "turnkey-books-v1/after.webp",
+  "objectType": "balcony",
+  "stage": "turnkey",
+  "visualized": true,
+  "beforeVisualized": true,
+  "beforeReal": false,
+  "description": "Визуальная пара по выбранному референсу. Изображение до ремонта сгенерировано.",
+  "sourceUrl": "https://www.pinterest.com/pin/806425877067708864/"
+});
+
+serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
+  "title": "Зелёный балкон с лежанкой у окна",
+  "before": "turnkey-green-v1/before.webp",
+  "after": "turnkey-green-v1/after.webp",
+  "objectType": "balcony",
+  "stage": "turnkey",
+  "visualized": true,
+  "beforeVisualized": true,
+  "beforeReal": false,
+  "description": "Визуальная пара по выбранному референсу. Изображение до ремонта сгенерировано.",
+  "sourceUrl": "https://www.pinterest.com/pin/511651207682062121/"
+});

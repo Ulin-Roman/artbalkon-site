@@ -8921,5 +8921,69 @@
         "width": 1086
       }
     ]
+  },
+  "/assets/turnkey-books-v1/before.webp": {
+    "src": "/assets/turnkey-books-v1/before-1027.webp",
+    "variants": [
+      {
+        "src": "/assets/turnkey-books-v1/before-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/turnkey-books-v1/before-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/turnkey-books-v1/before-1027.webp",
+        "width": 1027
+      }
+    ]
+  },
+  "/assets/turnkey-books-v1/after.webp": {
+    "src": "/assets/turnkey-books-v1/after-784.webp",
+    "variants": [
+      {
+        "src": "/assets/turnkey-books-v1/after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/turnkey-books-v1/after-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/turnkey-books-v1/after-784.webp",
+        "width": 784
+      }
+    ]
+  },
+  "/assets/turnkey-green-v1/before.webp": {
+    "src": "/assets/turnkey-green-v1/before-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/turnkey-green-v1/before-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/turnkey-green-v1/before-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/turnkey-green-v1/before-1086.webp",
+        "width": 1086
+      }
+    ]
+  },
+  "/assets/turnkey-green-v1/after.webp": {
+    "src": "/assets/turnkey-green-v1/after-613.webp",
+    "variants": [
+      {
+        "src": "/assets/turnkey-green-v1/after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/turnkey-green-v1/after-613.webp",
+        "width": 613
+      }
+    ]
   }
 }
