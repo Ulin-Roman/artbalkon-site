@@ -9138,5 +9138,22 @@
         "width": 1280
       }
     ]
+  },
+  "/assets/service-before-after/renovation-loggia-07-after-junction-v2.webp": {
+    "src": "/assets/responsive/2875c540f12c10a2-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/2875c540f12c10a2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/2875c540f12c10a2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/2875c540f12c10a2-1280.webp",
+        "width": 1280
+      }
+    ]
   }
 }
