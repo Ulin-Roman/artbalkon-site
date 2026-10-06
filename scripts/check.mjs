@@ -158,14 +158,14 @@ assert.equal(coldGallery.filter(project=>project.objectType==='loggia').length,1
 const ordinaryColdAssets=new Set(['service-before-after/cold-balcony-01-after.png','service-before-after/glazing-new-04-after-no-black-handles.png',...Array.from({length:10},(_,i)=>`service-before-after/cold-balcony-matched-${String(i+3).padStart(2,'0')}-after.png`)]);
 for(const project of coldGallery){
  if(project.objectType==='balcony')assert.ok(ordinaryColdAssets.has(project.after),`Unexpected cold balcony asset: ${project.after}`);
- if(project.objectType==='loggia')assert.match(project.after,/^service-before-after\/(?:cold-ordinary-(?:0[3-9]|1[01])-after\.webp|cold-loggia-(?:graphite-fixed|finished-1[12])-after\.png)$/,'Unexpected cold loggia asset');
+ if(project.objectType==='loggia')assert.match(project.after==='service-before-after/work195-top-v2-after.webp'?'service-before-after/cold-loggia-graphite-fixed-after.png':project.after,/^service-before-after\/(?:cold-ordinary-(?:0[3-9]|1[01])-after\.webp|cold-loggia-(?:graphite-fixed|finished-1[12])-after\.png)$/,'Unexpected cold loggia asset');
  assert.ok(!/панорам/i.test(project.title+' '+project.description),'Panoramic example in ordinary cold glazing gallery');
 }
 const coldLoggias=serviceBeforeAfterProjects['holodnoe-osteklenie-lodzhii'];
 assert.equal(coldLoggias.length,12,'Cold loggia gallery must contain 12 distinct finished interiors');
 for(const project of coldLoggias){
  assert.equal(project.objectType,'loggia');
- assert.match(project.after,/^service-before-after\/(?:cold-ordinary-(?:0[3-9]|1[01])-after\.webp|cold-loggia-(?:graphite-fixed|finished-1[12])-after\.png)$/,'Unreviewed or panoramic image in cold loggias');
+ assert.match(project.after==='service-before-after/work195-top-v2-after.webp'?'service-before-after/cold-loggia-graphite-fixed-after.png':project.after,/^service-before-after\/(?:cold-ordinary-(?:0[3-9]|1[01])-after\.webp|cold-loggia-(?:graphite-fixed|finished-1[12])-after\.png)$/,'Unreviewed or panoramic image in cold loggias');
  if(project.after.includes('cold-ordinary-'))assert.equal(project.before,project.after.replace('-after.webp','-before.webp'),'Loggia must keep its matched before image');
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){

@@ -9206,5 +9206,39 @@
         "width": 1280
       }
     ]
+  },
+  "/assets/service-before-after/work195-top-v2-before.webp": {
+    "src": "/assets/responsive/b7f3cef1f6b2401a-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/b7f3cef1f6b2401a-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/b7f3cef1f6b2401a-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/b7f3cef1f6b2401a-1280.webp",
+        "width": 1280
+      }
+    ]
+  },
+  "/assets/service-before-after/work195-top-v2-after.webp": {
+    "src": "/assets/responsive/5bddaf4fec470437-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/5bddaf4fec470437-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/5bddaf4fec470437-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/5bddaf4fec470437-1280.webp",
+        "width": 1280
+      }
+    ]
   }
 }

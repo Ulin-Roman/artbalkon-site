@@ -1631,3 +1631,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
  for (const project of gallery) if (project.after === 'service-before-after/renovation-loggia-11-after.webp') project.after = 'service-before-after/renovation-loggia-11-after-one-handle-v2.webp';
 }
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Холодное остекление лоджии в графитовом профиле') project.before = 'service-before-after/work195-top-v2-before.webp';
+}
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Холодное остекление лоджии в графитовом профиле') project.after = 'service-before-after/work195-top-v2-after.webp';
+}
