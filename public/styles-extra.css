@@ -4781,7 +4781,7 @@ main > .social-subscribe,
 .cookie-notice-close{position:absolute;top:6px;right:6px;width:36px;height:36px;border:0;background:transparent;border-radius:50%;color:#536969;font-size:24px;line-height:1}
 .cookie-notice-close:hover{background:#eff5f5}
 .cookie-notice :focus-visible{outline:2px solid #007e84;outline-offset:3px}
-@media(max-width:640px){.cookie-notice{left:12px;bottom:12px;width:calc(100% - 24px);max-width:360px;padding:20px}}
+@media(max-width:640px){.cookie-notice{left:12px;bottom:12px;width:calc(100% - 24px);max-width:360px;padding:20px}.cookie-notice .cookie-notice-accept{display:flex;width:fit-content;margin-inline:auto}}
 .cookie-notice-accept{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 18px;line-height:1}.cookie-notice-accept>span{display:block;transform:translateY(-1px)}
 
 @media(min-width:641px){
