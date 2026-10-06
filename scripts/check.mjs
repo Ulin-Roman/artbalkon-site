@@ -86,7 +86,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  }
  if(label==='osteklenie-balkonov'){
   assert.ok(!html.includes('data-hero-slider'),'glazing page hero must remain static');
-  assert.ok(html.includes('/assets/service-before-after/cold-loggia-finished-12-after.png'),'glazing hero must keep the selected sliding-window image');
+  assert.ok(html.includes('/assets/service-before-after/glazing-new-09-after.jpg'),'glazing hero must show the selected exterior balcony image');
   continue;
  }
  if(label==='otdelka-balkonov'){

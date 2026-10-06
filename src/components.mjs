@@ -57,7 +57,7 @@ const serviceImage=s=>pic(serviceCardImages[s.slug]||s.image,`${s.title} — ф�
 const uniqueImages=images=>images.filter((name,index,list)=>name&&list.indexOf(name)===index);
 const serviceGallerySlides=service=>uniqueImages((serviceBeforeAfterProjects[service.slug]||[]).map(project=>project.after));
 export const homeHeroImage='service-before-after/furniture-interior-v2-04-after.webp';
-const glazingHeroImage='service-before-after/cold-loggia-finished-12-after.png';
+const glazingHeroImage='service-before-after/glazing-new-09-after.jpg';
 const finishingHeroImage='service-before-after/renovation-loggia-12-after.webp';
 const turnkeyHeroImage='service-before-after/furniture-interior-v2-02-after.webp';
 const coldGlazingHeroImage='service-before-after/cold-loggia-finished-12-after.png';
@@ -72,7 +72,7 @@ export function pic(name,alt,classes='',eager=false){const cleanName=cleanPortfo
 const deferredSlide=(name,alt)=>`<img class="hero-image" data-src="/assets/${pictureAsset(name)}" width="1000" height="1100" loading="lazy" decoding="async" aria-hidden="true" alt="${esc(alt)}">`;
 const serviceHeroSlideshow=service=>{
  const slides=serviceGallerySlides(service);
- if(service.slug==='osteklenie-balkonov')return `<div class="landing-photo">${pic(glazingHeroImage,`${service.title} — лоджия со светлой отделкой и раздвижными окнами ArtBalkon`,'hero-image is-active',true)}</div>`;
+ if(service.slug==='osteklenie-balkonov')return `<div class="landing-photo">${pic(glazingHeroImage,`${service.title} — остеклённый балкон с выносом в кирпичном доме ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='otdelka-balkonov')return `<div class="landing-photo">${pic(finishingHeroImage,`${service.title} — фотография готовой отделки лоджии ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='balkon-pod-klyuch')return `<div class="landing-photo">${pic(turnkeyHeroImage,`${service.title} — готовый балкон с рабочим кабинетом ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='holodnoe-osteklenie')return `<div class="landing-photo">${pic(coldGlazingHeroImage,`${service.title} — лоджия с раздвижными окнами ArtBalkon`,'hero-image is-active',true)}</div>`;
