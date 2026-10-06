@@ -1607,3 +1607,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
  for (const project of gallery) if (project.after === 'gallery-angles-v1/teploe-osteklenie-2-after.webp') project.after = 'gallery-angles-v1/work239-v2-after.webp';
 }
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.before === 'portfolio-perspectives-v3/teploe-osteklenie-2-standard-v2-before.webp') project.before = 'portfolio-perspectives-v3/work245-reference-v3-before.webp';
+}
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.after === 'portfolio-perspectives-v3/teploe-osteklenie-2-standard-v2-after.webp') project.after = 'portfolio-perspectives-v3/work245-reference-v3-after.webp';
+}

@@ -9104,5 +9104,39 @@
         "width": 1280
       }
     ]
+  },
+  "/assets/portfolio-perspectives-v3/work245-reference-v3-before.webp": {
+    "src": "/assets/responsive/c442f20763557cc7-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c442f20763557cc7-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c442f20763557cc7-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c442f20763557cc7-1280.webp",
+        "width": 1280
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/work245-reference-v3-after.webp": {
+    "src": "/assets/responsive/e124c488533dd132-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/e124c488533dd132-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/e124c488533dd132-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/e124c488533dd132-1280.webp",
+        "width": 1280
+      }
+    ]
   }
 }
