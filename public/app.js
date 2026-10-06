@@ -170,11 +170,23 @@
  });
  document.querySelectorAll('.glazing-benefits-copy').forEach(block=>{
   const items=[...block.querySelectorAll('.glazing-benefit-item')];
-  const activate=item=>items.forEach(current=>{const open=current===item;current.classList.toggle('is-open',open);current.querySelector('.glazing-benefit-toggle')?.setAttribute('aria-expanded',String(open));});
-  items.forEach(item=>{
+  const desktop=matchMedia('(min-width:641px)');
+  let activeItem=items.find(item=>item.classList.contains('is-open'))||null;
+  const sync=()=>items.forEach(item=>{
+   const open=desktop.matches||item===activeItem;
+   item.classList.toggle('is-open',open);
    const toggle=item.querySelector('.glazing-benefit-toggle');
-   toggle?.addEventListener('click',()=>activate(item.classList.contains('is-open')?null:item));
+   if(toggle){toggle.setAttribute('aria-expanded',String(open));toggle.disabled=desktop.matches;}
   });
+  items.forEach(item=>{
+   item.querySelector('.glazing-benefit-toggle')?.addEventListener('click',()=>{
+    if(desktop.matches)return;
+    activeItem=activeItem===item?null:item;
+    sync();
+   });
+  });
+  desktop.addEventListener('change',sync);
+  sync();
  });
  const comparisonModal=$('#comparison-modal');
  if(comparisonModal){
