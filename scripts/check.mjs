@@ -170,10 +170,10 @@ for(const project of coldLoggias){
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
  const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion&&!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries);
- const expectedCount=slug==='otdelka-balkonov'?13:type==='loggia'?11:12;
+ const expectedCount=['otdelka-balkonov','balkon-pod-klyuch'].includes(slug)?13:type==='loggia'?11:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
- gallery.filter(p=>p.after!=='owner-projects/balcony-office-after.webp').forEach(p=>{
+ gallery.filter(p=>!['owner-projects/balcony-office-after.webp','turnkey-loft-v1/after.webp'].includes(p.after)).forEach(p=>{
   const sourceNumber=p.after==='window-details-v2/balcony-04-handles.webp'?4:Number(p.after.match(/renovation-(?:balcony|loggia)-(\d{2})-after\.webp$/)?.[1]);
   assert.ok(sourceNumber,`${slug}: unexpected finished room`);
   const key=`service-before-after/renovation-${type}-${String(sourceNumber).padStart(2,'0')}`;
@@ -198,7 +198,7 @@ for(const project of turnkeyAdditions){
  assert.equal(project.beforeReal,false);
  assert.match(project.before,/^service-before-after\/turnkey-(?:furniture|electrical)-\d{2}-before-v[23]\.webp$/);
 }
-for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',7],['otdelka-balkonov',24],['balkon-pod-klyuch',29]]){
+for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',7],['otdelka-balkonov',24],['balkon-pod-klyuch',30]]){
  const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries);
  assert.equal(gallery.length,expectedCount+3,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount+3,`${slug}: combined gallery repeats finished rooms`);

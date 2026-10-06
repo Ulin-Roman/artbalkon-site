@@ -1542,3 +1542,17 @@ for (let index = beforeAfterProjects.length - 1; index >= 0; index--) {
 for (const [slug, gallery] of Object.entries(serviceBeforeAfterProjects)) {
  serviceBeforeAfterProjects[slug] = gallery.filter(project => !withdrawnPortfolioAfterAssets.has(project.after));
 }
+
+// Additional user-selected reference paired with a generated before view.
+serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
+  "title": "Балкон с диваном из поддонов",
+  "before": "turnkey-loft-v1/before.webp",
+  "after": "turnkey-loft-v1/after.webp",
+  "objectType": "balcony",
+  "stage": "turnkey",
+  "visualized": true,
+  "beforeVisualized": true,
+  "beforeReal": false,
+  "description": "Визуальная пара по выбранному референсу: хранение старых вещей сменилось зоной отдыха с мягким диваном. До — сгенерированная реконструкция.",
+  "sourceUrl": "https://www.pinterest.com/pin/665547651213847585/"
+});
