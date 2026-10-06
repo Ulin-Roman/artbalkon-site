@@ -2,6 +2,7 @@ import {mkdir,readFile,writeFile,cp,rm,readdir} from 'node:fs/promises';
 import {resolve,relative,join,sep} from 'node:path';
 import {createHash} from 'node:crypto';
 import {optimizeCss,optimizeJs} from './optimize.mjs';
+import {renderDirectFeed} from './direct-feed.mjs';
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
 const appSource=await readFile('public/app.js','utf8');
 const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource+'\n'+await readFile(new URL(import.meta.url),'utf8');
@@ -64,6 +65,7 @@ await writeFile('dist/404.html',baseHtml(shell('<section class="section containe
 await writeFile('dist/site-config.json',JSON.stringify({...integrations,basePath:base,leadEndpoint:staticOnly?null:integrations.leadEndpoint}));
 await writeFile('dist/robots.txt',`User-agent: *\nAllow: ${base}\nDisallow: ${base}api/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid\nSitemap: ${company.origin}/sitemap.xml\n`);
 await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+routes.map(path=>`<url><loc>${company.origin}${path}</loc></url>`).join('')+'</urlset>');
+await writeFile('dist/yandex-direct.xml',await renderDirectFeed());
 // Keep source originals in public; publish only assets referenced by the built site.
 async function builtFiles(dir){const files=[];for(const entry of await readdir(dir,{withFileTypes:true})){const file=join(dir,entry.name);files.push(...entry.isDirectory()?await builtFiles(file):[file]);}return files;}
 const builtRoot=resolve('dist'),assetRoot=join(builtRoot,'assets');
