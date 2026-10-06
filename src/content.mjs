@@ -1686,3 +1686,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.before = 'gallery-angles-v1/work81-before-depth-v2.webp';
  }
 }
+
+// Remove the user-rejected work after every merge and selected-card replacement.
+for (let index = beforeAfterProjects.length - 1; index >= 0; index--) {
+ if (beforeAfterProjects[index].title === 'Светлый балкон с рабочим местом') beforeAfterProjects.splice(index, 1);
+}
+for (const [slug, gallery] of Object.entries(serviceBeforeAfterProjects)) {
+ serviceBeforeAfterProjects[slug] = gallery.filter(project => project.title !== 'Светлый балкон с рабочим местом');
+}

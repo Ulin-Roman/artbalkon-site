@@ -175,7 +175,7 @@ for(const project of coldLoggias){
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
  const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion&&!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries);
- const expectedCount=slug==='balkon-pod-klyuch'?16:slug==='otdelka-balkonov'?13:type==='loggia'?10:12;
+ const expectedCount=slug==='balkon-pod-klyuch'?15:slug==='otdelka-balkonov'?13:type==='loggia'?10:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
  gallery.filter(p=>!['gallery-angles-v1/balkon-pod-klyuch-3-after.webp','owner-projects/balcony-office-after.webp','turnkey-loft-v3/after.webp','turnkey-office-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v2/after.webp'].includes(p.after)).forEach(p=>{
@@ -204,7 +204,7 @@ for(const project of turnkeyAdditions){
  assert.equal(project.beforeReal,false);
  assert.match(project.before,/^service-before-after\/turnkey-(?:furniture|electrical)-\d{2}-before-v[23]\.webp$/);
 }
-for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',7],['otdelka-balkonov',23],['balkon-pod-klyuch',32]]){
+for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',7],['otdelka-balkonov',23],['balkon-pod-klyuch',31]]){
  const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries);
  assert.equal(gallery.length,expectedCount+3,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount+3,`${slug}: combined gallery repeats finished rooms`);
@@ -320,3 +320,11 @@ assert.equal(finishingStorage.before, 'gallery-angles-v1/balkon-pod-klyuch-3-bef
 assert.equal(finishingStorage.after, 'gallery-angles-v1/balkon-pod-klyuch-3-after.webp');
 assert.equal(finishingStorage.stage, 'finish');
 assert.equal(serviceBeforeAfterProjects['otdelka-balkonov'].filter(project => project.title === finishingStorage.title).length, 1);
+
+// The rejected workspace must remain absent from all final galleries and rendered pages.
+for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterProjects)]) {
+ assert.ok(!gallery.some(project => project.title === 'Светлый балкон с рабочим местом'), 'Rejected workspace must stay out of every gallery');
+}
+for (const html of [renderHome(), ...services.map(service => servicePageWithSeo(service))]) {
+ assert.doesNotMatch(html, /Балкон, где нашлось место для работы|renovation-balcony-01-after/, 'Rejected workspace must stay off every page');
+}
