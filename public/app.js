@@ -173,8 +173,7 @@
   const activate=item=>items.forEach(current=>{const open=current===item;current.classList.toggle('is-open',open);current.querySelector('.glazing-benefit-toggle')?.setAttribute('aria-expanded',String(open));});
   items.forEach(item=>{
    const toggle=item.querySelector('.glazing-benefit-toggle');
-   toggle?.addEventListener('click',()=>activate(item));
-   item.addEventListener('pointerenter',()=>{if(matchMedia('(hover:hover) and (pointer:fine)').matches)activate(item);});
+   toggle?.addEventListener('click',()=>activate(item.classList.contains('is-open')?null:item));
   });
  });
  const comparisonModal=$('#comparison-modal');
