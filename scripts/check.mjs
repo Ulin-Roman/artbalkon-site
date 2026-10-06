@@ -170,7 +170,7 @@ for(const project of coldLoggias){
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
  const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion&&!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries);
- const expectedCount=slug==='balkon-pod-klyuch'?16:slug==='otdelka-balkonov'?13:type==='loggia'?11:12;
+ const expectedCount=slug==='balkon-pod-klyuch'?16:slug==='otdelka-balkonov'?13:type==='loggia'?10:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
  gallery.filter(p=>!['owner-projects/balcony-office-after.webp','turnkey-loft-v2/after.webp','turnkey-office-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v1/after.webp'].includes(p.after)).forEach(p=>{
@@ -198,7 +198,7 @@ for(const project of turnkeyAdditions){
  assert.equal(project.beforeReal,false);
  assert.match(project.before,/^service-before-after\/turnkey-(?:furniture|electrical)-\d{2}-before-v[23]\.webp$/);
 }
-for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',7],['otdelka-balkonov',24],['balkon-pod-klyuch',33]]){
+for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',7],['otdelka-balkonov',23],['balkon-pod-klyuch',32]]){
  const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries);
  assert.equal(gallery.length,expectedCount+3,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount+3,`${slug}: combined gallery repeats finished rooms`);
@@ -299,3 +299,10 @@ for (const file of pages) {
 for (const file of files) assert.doesNotMatch(file, /real-after-091|warm-loggia-empty-09-before-no-handles|7feb788552823264|b70542faee80d7b2/, 'Withdrawn images must not be published');
 
 for (const html of [renderHome(), ...services.map(service => servicePageWithSeo(service))]) assert.doesNotMatch(html, /data-case="work-(?:108|113|54)"|real-after-(?:100|164)/, 'Rejected projects must stay off every page');
+
+// Withdraw work-77 from all final galleries and published assets.
+for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterProjects)]) {
+ assert.ok(!gallery.some(project => project.after === 'service-before-after/renovation-loggia-08-after.webp'), 'Withdrawn work-77 must stay out of every gallery');
+}
+for (const html of [renderHome(), ...services.map(service => servicePageWithSeo(service))]) assert.doesNotMatch(html, /data-case="work-77"|renovation-loggia-08-after|finish-turnkey-020-no-hardware/, 'Withdrawn work-77 must stay off every page');
+for (const file of files) assert.doesNotMatch(file, /renovation-loggia-08-after|finish-turnkey-020-no-hardware/, 'Withdrawn work-77 images must not be published');

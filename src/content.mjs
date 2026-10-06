@@ -1535,7 +1535,7 @@ beforeAfterProjects.unshift(...beforeAfterProjects.splice(-5));
 
 // Withdraw rejected works from every final gallery after all merges and photo remaps.
 // Keep its historical ID reserved and source photographs outside the published site.
-const withdrawnPortfolioAfterAssets = new Set(['service-gallery-v2/real-after-091.jpg', 'service-gallery-v2/real-after-100.jpg', 'service-gallery-v2/real-after-164.jpg']);
+const withdrawnPortfolioAfterAssets = new Set(['service-before-after/renovation-loggia-08-after.webp', 'service-gallery-v2/real-after-091.jpg', 'service-gallery-v2/real-after-100.jpg', 'service-gallery-v2/real-after-164.jpg']);
 for (let index = beforeAfterProjects.length - 1; index >= 0; index--) {
  if (withdrawnPortfolioAfterAssets.has(beforeAfterProjects[index].after)) beforeAfterProjects.splice(index, 1);
 }
