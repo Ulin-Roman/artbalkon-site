@@ -173,7 +173,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
  const expectedCount=slug==='balkon-pod-klyuch'?16:slug==='otdelka-balkonov'?13:type==='loggia'?10:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
- gallery.filter(p=>!['owner-projects/balcony-office-after.webp','turnkey-loft-v3/after.webp','turnkey-office-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v2/after.webp'].includes(p.after)).forEach(p=>{
+ gallery.filter(p=>!['gallery-angles-v1/balkon-pod-klyuch-3-after.webp','owner-projects/balcony-office-after.webp','turnkey-loft-v3/after.webp','turnkey-office-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v2/after.webp'].includes(p.after)).forEach(p=>{
   const reviewedAfter=p.after==='service-before-after/renovation-loggia-11-after-one-handle-v2.webp'?'service-before-after/renovation-loggia-11-after.webp':p.after==='service-before-after/work71-top-folding-v2-after.webp'?'service-before-after/renovation-balcony-07-after.webp':p.after==='service-before-after/renovation-loggia-07-after-junction-v2.webp'?'service-before-after/renovation-loggia-07-after.webp':p.after;
   const sourceNumber=reviewedAfter==='window-details-v2/balcony-04-handles.webp'?4:Number(reviewedAfter.match(/renovation-(?:balcony|loggia)-(\d{2})-after\.webp$/)?.[1]);
   assert.ok(sourceNumber,`${slug}: unexpected finished room`);
@@ -307,3 +307,11 @@ for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterP
 }
 for (const html of [renderHome(), ...services.map(service => servicePageWithSeo(service))]) assert.doesNotMatch(html, /data-case="work-77"|renovation-loggia-08-after|finish-turnkey-020-no-hardware/, 'Withdrawn work-77 must stay off every page');
 for (const file of files) assert.doesNotMatch(file, /renovation-loggia-08-after|finish-turnkey-020-no-hardware/, 'Withdrawn work-77 images must not be published');
+
+// The user-selected storage pair must remain first and match its source photographs.
+const finishingStorage = serviceBeforeAfterProjects['otdelka-balkonov'][0];
+assert.equal(finishingStorage.title, 'Уютный балкон в поперечном ракурсе');
+assert.equal(finishingStorage.before, 'gallery-angles-v1/balkon-pod-klyuch-3-before.webp');
+assert.equal(finishingStorage.after, 'gallery-angles-v1/balkon-pod-klyuch-3-after.webp');
+assert.equal(finishingStorage.stage, 'finish');
+assert.equal(serviceBeforeAfterProjects['otdelka-balkonov'].filter(project => project.title === finishingStorage.title).length, 1);

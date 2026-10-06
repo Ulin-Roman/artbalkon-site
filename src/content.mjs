@@ -1666,3 +1666,9 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.before = 'gallery-angles-v1/work99-before-depth-v2.webp';
  }
 }
+
+// User-selected storage pair replaces the first finishing example.
+const finishingWorkIndex = serviceBeforeAfterProjects['otdelka-balkonov'].findIndex(project => project.title === 'Светлый балкон с рабочим местом');
+const selectedStorageProject = serviceBeforeAfterProjects['balkon-pod-klyuch'].find(project => project.title === 'Уютный балкон в поперечном ракурсе');
+if (finishingWorkIndex < 0 || !selectedStorageProject) throw new Error('Selected finishing portfolio replacement was not found');
+serviceBeforeAfterProjects['otdelka-balkonov'][finishingWorkIndex] = {...selectedStorageProject, stage:'finish', newAngleSeries:false};
