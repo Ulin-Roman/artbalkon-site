@@ -1546,8 +1546,8 @@ for (const [slug, gallery] of Object.entries(serviceBeforeAfterProjects)) {
 // Additional user-selected reference paired with a generated before view.
 serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "title": "Балкон с диваном из поддонов",
-  "before": "turnkey-loft-v2/before.webp",
-  "after": "turnkey-loft-v2/after.webp",
+  "before": "turnkey-loft-v3/before.webp",
+  "after": "turnkey-loft-v3/after.webp",
   "objectType": "balcony",
   "stage": "turnkey",
   "visualized": true,

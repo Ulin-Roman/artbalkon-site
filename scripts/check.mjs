@@ -173,7 +173,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
  const expectedCount=slug==='balkon-pod-klyuch'?16:slug==='otdelka-balkonov'?13:type==='loggia'?10:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
- gallery.filter(p=>!['owner-projects/balcony-office-after.webp','turnkey-loft-v2/after.webp','turnkey-office-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v1/after.webp'].includes(p.after)).forEach(p=>{
+ gallery.filter(p=>!['owner-projects/balcony-office-after.webp','turnkey-loft-v3/after.webp','turnkey-office-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v1/after.webp'].includes(p.after)).forEach(p=>{
   const sourceNumber=p.after==='window-details-v2/balcony-04-handles.webp'?4:Number(p.after.match(/renovation-(?:balcony|loggia)-(\d{2})-after\.webp$/)?.[1]);
   assert.ok(sourceNumber,`${slug}: unexpected finished room`);
   const key=`service-before-after/renovation-${type}-${String(sourceNumber).padStart(2,'0')}`;

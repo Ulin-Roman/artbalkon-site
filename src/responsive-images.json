@@ -9019,5 +9019,39 @@
         "width": 887
       }
     ]
+  },
+  "/assets/turnkey-loft-v3/after.webp": {
+    "src": "/assets/turnkey-loft-v3/after-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/turnkey-loft-v3/after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/turnkey-loft-v3/after-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/turnkey-loft-v3/after-1086.webp",
+        "width": 1086
+      }
+    ]
+  },
+  "/assets/turnkey-loft-v3/before.webp": {
+    "src": "/assets/turnkey-loft-v3/before-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/turnkey-loft-v3/before-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/turnkey-loft-v3/before-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/turnkey-loft-v3/before-1086.webp",
+        "width": 1086
+      }
+    ]
   }
 }
