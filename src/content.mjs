@@ -1639,3 +1639,9 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
  for (const project of gallery) if (project.title === 'Холодное остекление лоджии в графитовом профиле') project.after = 'service-before-after/work195-top-v2-after.webp';
 }
+
+// User-selected real office pair replaces the coffee corner only on the turnkey page.
+const turnkeyCoffeeIndex = serviceBeforeAfterProjects['balkon-pod-klyuch'].findIndex(project => project.title === 'Бежевая отделка балкона');
+const selectedOfficeProject = serviceBeforeAfterProjects['otdelka-balkonov'].find(project => project.title === 'Отделка балкона под рабочий кабинет');
+if (turnkeyCoffeeIndex < 0 || !selectedOfficeProject) throw new Error('Selected turnkey portfolio replacement was not found');
+serviceBeforeAfterProjects['balkon-pod-klyuch'][turnkeyCoffeeIndex] = {...selectedOfficeProject};
