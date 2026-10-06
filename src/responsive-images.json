@@ -9070,5 +9070,39 @@
         "width": 1117
       }
     ]
+  },
+  "/assets/gallery-angles-v1/work239-v2-before.webp": {
+    "src": "/assets/responsive/9661e844cfc0d59c-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/9661e844cfc0d59c-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/9661e844cfc0d59c-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/9661e844cfc0d59c-1280.webp",
+        "width": 1280
+      }
+    ]
+  },
+  "/assets/gallery-angles-v1/work239-v2-after.webp": {
+    "src": "/assets/responsive/8063f0c9c7c11ea6-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/8063f0c9c7c11ea6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/8063f0c9c7c11ea6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/8063f0c9c7c11ea6-1280.webp",
+        "width": 1280
+      }
+    ]
   }
 }

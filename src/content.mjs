@@ -1599,3 +1599,11 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
 
 // Exclude the user-rejected example from the warm-glazing gallery after all merges.
 serviceBeforeAfterProjects['teploe-osteklenie'] = serviceBeforeAfterProjects['teploe-osteklenie'].filter(project => project.after !== 'service-before-after/balcony-glazing-concrete-slab-after.png');
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.before === 'gallery-angles-v1/teploe-osteklenie-2-before.webp') project.before = 'gallery-angles-v1/work239-v2-before.webp';
+}
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.after === 'gallery-angles-v1/teploe-osteklenie-2-after.webp') project.after = 'gallery-angles-v1/work239-v2-after.webp';
+}
