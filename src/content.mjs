@@ -1556,3 +1556,17 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "description": "Визуальная пара по выбранному референсу: хранение старых вещей сменилось зоной отдыха с мягким диваном. До — сгенерированная реконструкция.",
   "sourceUrl": "https://www.pinterest.com/pin/665547651213847585/"
 });
+
+// Additional user-selected reference paired with a generated before view.
+serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
+  "title": "Балкон с угловой столешницей и мягким креслом",
+  "before": "turnkey-office-v1/before.webp",
+  "after": "turnkey-office-v1/after.webp",
+  "objectType": "balcony",
+  "stage": "turnkey",
+  "visualized": true,
+  "beforeVisualized": true,
+  "beforeReal": false,
+  "description": "Визуальная пара по выбранному референсу: хранение старых вещей сменилось светлым кабинетом с угловой столешницей. До и после — визуализации.",
+  "sourceUrl": "https://www.pinterest.com/pin/388294799145454158/"
+});
