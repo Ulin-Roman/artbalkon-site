@@ -1596,3 +1596,6 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "description": "Визуальная пара по выбранному референсу: старый балкон стал местом отдыха с лежанкой. До и после — визуализации с разным временем съёмки.",
   "sourceUrl": "https://www.pinterest.com/pin/511651207682062121/"
 });
+
+// Exclude the user-rejected example from the warm-glazing gallery after all merges.
+serviceBeforeAfterProjects['teploe-osteklenie'] = serviceBeforeAfterProjects['teploe-osteklenie'].filter(project => project.after !== 'service-before-after/balcony-glazing-concrete-slab-after.png');
