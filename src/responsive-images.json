@@ -9308,5 +9308,22 @@
         "width": 960
       }
     ]
+  },
+  "/assets/gallery-angles-v1/work99-before-depth-v3.webp": {
+    "src": "/assets/responsive/0c165314de59c6d5-960.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/0c165314de59c6d5-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/0c165314de59c6d5-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/0c165314de59c6d5-960.webp",
+        "width": 960
+      }
+    ]
   }
 }

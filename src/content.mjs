@@ -1663,7 +1663,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 // The empty before view includes the depth occupied by the cabinet after renovation.
 for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
  for (const project of gallery) if (project.title === 'Балкон под ключ с обратным обзором') {
-  project.before = 'gallery-angles-v1/work99-before-depth-v2.webp';
+  project.before = 'gallery-angles-v1/work99-before-depth-v3.webp';
  }
 }
 
