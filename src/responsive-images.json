@@ -9053,5 +9053,22 @@
         "width": 1086
       }
     ]
+  },
+  "/assets/turnkey-green-v2/after.webp": {
+    "src": "/assets/turnkey-green-v2/after-1117.webp",
+    "variants": [
+      {
+        "src": "/assets/turnkey-green-v2/after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/turnkey-green-v2/after-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/turnkey-green-v2/after-1117.webp",
+        "width": 1117
+      }
+    ]
   }
 }

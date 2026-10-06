@@ -1587,12 +1587,12 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
 serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "title": "Зелёный балкон с лежанкой у окна",
   "before": "turnkey-green-v1/before.webp",
-  "after": "turnkey-green-v1/after.webp",
+  "after": "turnkey-green-v2/after.webp",
   "objectType": "balcony",
   "stage": "turnkey",
   "visualized": true,
   "beforeVisualized": true,
   "beforeReal": false,
-  "description": "Визуальная пара по выбранному референсу. Изображение до ремонта сгенерировано.",
+  "description": "Визуальная пара по выбранному референсу: старый балкон стал местом отдыха с лежанкой. До и после — визуализации с разным временем съёмки.",
   "sourceUrl": "https://www.pinterest.com/pin/511651207682062121/"
 });
