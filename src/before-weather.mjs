@@ -17,7 +17,6 @@ export const beforeWeatherAssets = {
   "before-daytime/before-028.webp": "before-weather-v1/before-020.webp", // overcast-noon
   "before-daytime/before-029.webp": "before-weather-v1/before-021.webp", // morning-haze
   "before-hardware-v4/finish-turnkey-021-no-hardware.png": "before-weather-v1/before-027.webp", // morning-haze
-  "before-hardware-v4/finish-turnkey-007-no-hardware.png": "before-weather-v1/before-028.webp", // late-afternoon
   "before-hardware-v4/finish-turnkey-008-no-hardware.png": "before-weather-v1/before-029.webp", // cloudy-morning
   "before-hardware-v4/finish-turnkey-009-no-hardware.png": "before-weather-v1/before-030.webp", // light-rain
   "before-hardware-v4/finish-turnkey-010-no-hardware.png": "before-weather-v1/before-031.webp", // early-morning

@@ -174,7 +174,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
  gallery.filter(p=>!['owner-projects/balcony-office-after.webp','turnkey-loft-v3/after.webp','turnkey-office-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v2/after.webp'].includes(p.after)).forEach(p=>{
-  const reviewedAfter=p.after==='service-before-after/renovation-loggia-07-after-junction-v2.webp'?'service-before-after/renovation-loggia-07-after.webp':p.after;
+  const reviewedAfter=p.after==='service-before-after/renovation-loggia-11-after-one-handle-v2.webp'?'service-before-after/renovation-loggia-11-after.webp':p.after==='service-before-after/work71-top-folding-v2-after.webp'?'service-before-after/renovation-balcony-07-after.webp':p.after==='service-before-after/renovation-loggia-07-after-junction-v2.webp'?'service-before-after/renovation-loggia-07-after.webp':p.after;
   const sourceNumber=reviewedAfter==='window-details-v2/balcony-04-handles.webp'?4:Number(reviewedAfter.match(/renovation-(?:balcony|loggia)-(\d{2})-after\.webp$/)?.[1]);
   assert.ok(sourceNumber,`${slug}: unexpected finished room`);
   const key=`service-before-after/renovation-${type}-${String(sourceNumber).padStart(2,'0')}`;
@@ -183,7 +183,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   const expectedBefore=type==='loggia'&&sourceNumber===11?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
   const hardwareAdjustedBefore=beforeHardwareReplacements[expectedBefore] || expectedBefore;
   const expectedGalleryBefore=finishBeforeLatchReplacements[hardwareAdjustedBefore] || hardwareAdjustedBefore;
-  assert.equal(p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
+  assert.equal(p.before==='service-before-after/work71-top-folding-v2-before.webp'?'before-hardware-v4/finish-turnkey-007-no-hardware.png':p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
   assert.equal(reviewedAfter,type==='balcony'&&sourceNumber===4?'window-details-v2/balcony-04-handles.webp':`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);

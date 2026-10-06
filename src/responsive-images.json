@@ -9155,5 +9155,56 @@
         "width": 1280
       }
     ]
+  },
+  "/assets/service-before-after/work71-top-folding-v2-before.webp": {
+    "src": "/assets/responsive/486760b4588b70a3-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/486760b4588b70a3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/486760b4588b70a3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/486760b4588b70a3-1280.webp",
+        "width": 1280
+      }
+    ]
+  },
+  "/assets/service-before-after/work71-top-folding-v2-after.webp": {
+    "src": "/assets/responsive/82b612b86578f623-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/82b612b86578f623-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/82b612b86578f623-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/82b612b86578f623-1280.webp",
+        "width": 1280
+      }
+    ]
+  },
+  "/assets/service-before-after/renovation-loggia-11-after-one-handle-v2.webp": {
+    "src": "/assets/responsive/dceed55027317fd7-1280.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/dceed55027317fd7-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/dceed55027317fd7-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/dceed55027317fd7-1280.webp",
+        "width": 1280
+      }
+    ]
   }
 }

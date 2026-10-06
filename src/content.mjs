@@ -1619,3 +1619,15 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
  for (const project of gallery) if (project.after === 'service-before-after/renovation-loggia-07-after.webp') project.after = 'service-before-after/renovation-loggia-07-after-junction-v2.webp';
 }
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Бежевая отделка балкона') project.before = 'service-before-after/work71-top-folding-v2-before.webp';
+}
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Бежевая отделка балкона') project.after = 'service-before-after/work71-top-folding-v2-after.webp';
+}
+
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.after === 'service-before-after/renovation-loggia-11-after.webp') project.after = 'service-before-after/renovation-loggia-11-after-one-handle-v2.webp';
+}
