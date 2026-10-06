@@ -1645,3 +1645,16 @@ const turnkeyCoffeeIndex = serviceBeforeAfterProjects['balkon-pod-klyuch'].findI
 const selectedOfficeProject = serviceBeforeAfterProjects['otdelka-balkonov'].find(project => project.title === 'Отделка балкона под рабочий кабинет');
 if (turnkeyCoffeeIndex < 0 || !selectedOfficeProject) throw new Error('Selected turnkey portfolio replacement was not found');
 serviceBeforeAfterProjects['balkon-pod-klyuch'][turnkeyCoffeeIndex] = {...selectedOfficeProject};
+
+// Finished panoramic loggia from the user-selected elevated viewpoint.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Панорамное остекление длинной лоджии') {
+  project.before = 'panorama-work253-top-v2/before.webp';
+  project.after = 'panorama-work253-top-v2/after.webp';
+  project.description = 'Визуализация преображения открытой лоджии: панорамное остекление, светлая отделка стен и потолка, аккуратный пол под дерево.';
+  project.visualized = true;
+  project.beforeVisualized = true;
+  project.afterVisualized = true;
+  project.beforeReal = false;
+ }
+}

@@ -9240,5 +9240,39 @@
         "width": 1280
       }
     ]
+  },
+  "/assets/panorama-work253-top-v2/before.webp": {
+    "src": "/assets/responsive/493bc156f9998d5e-960.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/493bc156f9998d5e-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/493bc156f9998d5e-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/493bc156f9998d5e-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/panorama-work253-top-v2/after.webp": {
+    "src": "/assets/responsive/cfb4efa84db6ef29-960.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/cfb4efa84db6ef29-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/cfb4efa84db6ef29-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/cfb4efa84db6ef29-960.webp",
+        "width": 960
+      }
+    ]
   }
 }
