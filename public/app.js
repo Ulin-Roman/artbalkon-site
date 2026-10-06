@@ -2,6 +2,18 @@
  'use strict';
  const $=s=>document.querySelector(s);
  const siteBase=new URL('.',document.currentScript.src);
+ const cookieNotice=$('#cookie-notice');
+ if(cookieNotice){
+  const noticeKey='artbalkon.cookie-notice.v1';
+  let dismissed=false;
+  try{const saved=Number(localStorage.getItem(noticeKey));dismissed=saved>0&&Date.now()-saved<180*24*60*60*1000;}catch{}
+  cookieNotice.hidden=dismissed;
+  cookieNotice.querySelectorAll('[data-cookie-dismiss]').forEach(button=>button.addEventListener('click',()=>{
+   cookieNotice.hidden=true;
+   try{localStorage.setItem(noticeKey,String(Date.now()));}catch{}
+  }));
+ }
+
  let config={};
  const configReady=fetch(new URL('site-config.json',document.currentScript.src)).then(r=>{if(!r.ok)throw Error();return r.json();}).then(c=>{
   config=c;

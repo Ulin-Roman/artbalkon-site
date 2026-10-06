@@ -4755,3 +4755,14 @@ main > .social-subscribe,
 
 /* Long legal terms and addresses must fit narrow phone screens. */
 .legal{overflow-wrap:anywhere}
+
+/* Compact privacy notice shared by every page. */
+.cookie-notice{position:fixed;z-index:90;left:20px;bottom:20px;width:350px;max-width:calc(100% - 40px);padding:24px;border:1px solid #e1e9e9;border-radius:16px;background:#fff;color:#213434;box-shadow:0 6px 30px #16333326;font-size:14px;line-height:1.55;overflow-wrap:anywhere}
+.cookie-notice[hidden]{display:none}
+.cookie-notice p{margin:0 0 12px}
+.cookie-notice p:first-of-type{padding-right:20px}
+.cookie-notice a{color:#007e84;text-decoration:underline;text-underline-offset:3px}
+.cookie-notice-close{position:absolute;top:6px;right:6px;width:36px;height:36px;border:0;background:transparent;border-radius:50%;color:#536969;font-size:24px;line-height:1}
+.cookie-notice-close:hover{background:#eff5f5}
+.cookie-notice :focus-visible{outline:2px solid #007e84;outline-offset:3px}
+@media(max-width:640px){.cookie-notice{left:12px;bottom:12px;width:calc(100% - 24px);max-width:360px;padding:20px}}
