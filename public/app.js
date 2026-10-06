@@ -185,7 +185,8 @@
   const fitComparison=()=>{
    if(!comparisonModal.open||![beforeImage,afterImage].every(img=>img.complete&&img.naturalWidth))return;
    const grid=comparisonModal.querySelector('.comparison-modal-grid'),shell=comparisonModal.querySelector('.comparison-modal-shell');
-   const ratios=[beforeImage,afterImage].map(img=>img.naturalWidth/img.naturalHeight);
+   const ratios=[beforeImage,afterImage].map(img=>Math.max(3/4,img.naturalWidth/img.naturalHeight));
+   [beforeImage,afterImage].forEach((img,index)=>{img.style.aspectRatio=String(ratios[index]);img.style.objectFit='cover';});
    const mobile=matchMedia('(max-width:640px)').matches;
    const padding=parseFloat(getComputedStyle(shell).paddingLeft)+parseFloat(getComputedStyle(shell).paddingRight);
    const gap=parseFloat(getComputedStyle(grid).columnGap)||0;
