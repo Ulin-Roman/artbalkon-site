@@ -4800,3 +4800,16 @@ main > .social-subscribe,
 .certificate-gallery [data-cert-next]{right:8px}
 .certificate-gallery .certificate-controls button:disabled{opacity:.6}
 @media(max-width:640px){.certificate-gallery [data-cert-prev]{left:4px}.certificate-gallery [data-cert-next]{right:4px}}
+/* Certificates open in an accessible viewer on the current page. */
+.certificate-modal{width:min(900px,calc(100% - 24px));max-width:none;max-height:calc(100dvh - 24px);padding:0;border:0;border-radius:22px;background:var(--page-gray);color:var(--ink);overflow:auto}
+.certificate-modal::backdrop{background:rgba(3,20,20,.74);backdrop-filter:blur(8px)}
+.certificate-modal-shell{padding:20px}
+.certificate-modal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.certificate-modal-head h2{margin:0;font-size:22px;line-height:1.25;letter-spacing:0}
+.certificate-modal-view{position:relative;min-width:0;display:grid;place-items:center;background:#fff;border-radius:12px;padding:8px 60px}
+.certificate-modal-view img{display:block;width:100%;height:calc(100dvh - 146px);max-height:800px;object-fit:contain}
+.certificate-modal-view .comparison-nav{top:50%;transform:translateY(-50%)}
+.certificate-modal-prev{left:8px}.certificate-modal-next{right:8px}
+.certificate-modal-view .comparison-nav:hover{transform:translateY(-50%) scale(1.04)}
+.certificate-modal-view .comparison-nav:disabled{opacity:.35;cursor:default}
+@media(max-width:640px){.certificate-modal-shell{padding:12px}.certificate-modal-head h2{font-size:18px}.certificate-modal-view{padding:6px}.certificate-modal-view img{height:calc(100dvh - 128px)}.certificate-modal-prev{left:4px}.certificate-modal-next{right:4px}.certificate-modal-view .comparison-nav{width:40px;height:40px}}

@@ -70,7 +70,7 @@
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
  let modalTriggerScrollY=null;
  const dialogScrollPositions=new WeakMap();
- document.addEventListener('pointerdown',e=>{if(e.target.closest('[data-quiz-open],[data-callback-open],[data-application],[data-comparison]'))modalTriggerScrollY=scrollY;},{passive:true});
+ document.addEventListener('pointerdown',e=>{if(e.target.closest('[data-quiz-open],[data-callback-open],[data-application],[data-comparison],[data-cert-open]'))modalTriggerScrollY=scrollY;},{passive:true});
  const restoreScrollPosition=top=>{if(!Number.isFinite(top))return;const root=document.documentElement,previousBehavior=root.style.scrollBehavior;root.style.scrollBehavior='auto';scrollTo(0,top);requestAnimationFrame(()=>requestAnimationFrame(()=>{scrollTo(0,top);root.style.scrollBehavior=previousBehavior;}));};
  const openDialogAtCurrentScroll=(dialog,focusTarget)=>{if(!dialog)return;const top=modalTriggerScrollY??scrollY;modalTriggerScrollY=null;dialogScrollPositions.set(dialog,top);if(!dialog.open)dialog.showModal();focusTarget?.focus({preventScroll:true});restoreScrollPosition(top);};
  document.querySelectorAll('dialog').forEach(dialog=>dialog.addEventListener('close',()=>{const top=dialogScrollPositions.get(dialog);dialogScrollPositions.delete(dialog);restoreScrollPosition(top);}));
@@ -246,6 +246,28 @@
   certificateTrack.addEventListener('scroll',()=>{if(!certificateProgrammatic&&!certificateFrame)certificateFrame=requestAnimationFrame(syncCertificateIndex);},{passive:true});
   certificateTrack.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();showCertificate(certificateIndex+(e.key==='ArrowRight'?1:-1));}});
   updateCertificateControls();
+  const certificateModal=certificateSlider.querySelector('#certificate-modal');
+  const certificateLinks=[...certificateSlider.querySelectorAll('[data-cert-open]')];
+  const modalImage=certificateModal.querySelector('[data-cert-image]');
+  const modalPrev=certificateModal.querySelector('[data-cert-modal-prev]');
+  const modalNext=certificateModal.querySelector('[data-cert-modal-next]');
+  const modalClose=certificateModal.querySelector('[data-cert-close]');
+  let certificateModalIndex=0;
+  const showCertificateModal=(index,open=false)=>{
+   certificateModalIndex=Math.max(0,Math.min(certificateLinks.length-1,index));
+   const link=certificateLinks[certificateModalIndex];
+   modalImage.src=link.href;modalImage.alt=link.querySelector('img').alt;
+   certificateModal.querySelector('#certificate-modal-title').textContent='Сертификат '+(certificateModalIndex+1)+' / '+certificateLinks.length;
+   const activeControl=document.activeElement;modalPrev.disabled=certificateModalIndex===0;modalNext.disabled=certificateModalIndex===certificateLinks.length-1;if(activeControl===modalNext&&modalNext.disabled)modalPrev.focus({preventScroll:true});else if(activeControl===modalPrev&&modalPrev.disabled)modalNext.focus({preventScroll:true});
+   showCertificate(certificateModalIndex);
+   if(open)openDialogAtCurrentScroll(certificateModal,modalClose);
+  };
+  certificateLinks.forEach((link,index)=>link.addEventListener('click',event=>{event.preventDefault();showCertificateModal(index,true);}));
+  modalPrev.addEventListener('click',()=>showCertificateModal(certificateModalIndex-1));
+  modalNext.addEventListener('click',()=>showCertificateModal(certificateModalIndex+1));
+  modalClose.addEventListener('click',()=>certificateModal.close());
+  certificateModal.addEventListener('click',event=>{if(event.target===certificateModal)certificateModal.close();});
+  certificateModal.addEventListener('keydown',event=>{if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;event.preventDefault();showCertificateModal(certificateModalIndex+(event.key==='ArrowRight'?1:-1));});
  }
  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
   document.documentElement.classList.add('reveal-ready');
