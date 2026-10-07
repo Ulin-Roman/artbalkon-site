@@ -9886,5 +9886,515 @@
         "src": "/assets/portfolio-perspectives-v3/work289-reading-v3-after.webp"
       }
     ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work290-before.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work290-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work290-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work290-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work290-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work290-after.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work290-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work290-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work290-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work290-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work291-before.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work291-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work291-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work291-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work291-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work291-after.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work291-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work291-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work291-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work291-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work292-before.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work292-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work292-after.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work292-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work293-before.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work293-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work293-after.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work293-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work294-before.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work294-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work294-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work294-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work294-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work294-after.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work294-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work294-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work294-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work294-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work295-before.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work295-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work295-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work295-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work295-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work295-after.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work295-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work295-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work295-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work295-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work296-before.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work296-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work296-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work296-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work296-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work296-after.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work296-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work296-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work296-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work296-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work297-before.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work297-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work297-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work297-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work297-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work297-after.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work297-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work297-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work297-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work297-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work298-before.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work298-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work298-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work298-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work298-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work298-after.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work298-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work298-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work298-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work298-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work299-before.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work299-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work299-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work299-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work299-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work299-after.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work299-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work299-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work299-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work299-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work300-before.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work300-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work300-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work300-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work300-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work300-after.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work300-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work300-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work300-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work300-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work301-before.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work301-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work301-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work301-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work301-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work301-after.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work301-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work301-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work301-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work301-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work302-before.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work302-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work302-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work302-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work302-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work302-after.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work302-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work302-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work302-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work302-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work303-before.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work303-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work303-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work303-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work303-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work303-after.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work303-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work303-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work303-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work303-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work304-before.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work304-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work304-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work304-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work304-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v1/work304-after.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work304-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work304-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work304-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work304-after.webp"
+      }
+    ]
   }
 }
