@@ -1772,3 +1772,12 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.before = 'service-before-after/work105-soviet-v3-before.webp';
  }
 }
+
+// Matching elevated viewpoint for the compact balcony before and after.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Замена холодного алюминия на ПВХ') {
+  project.before = 'portfolio-diverse-v4/work233-high-v2-before.webp';
+  project.after = 'portfolio-diverse-v4/work233-high-v2-after.webp';
+  project.afterVisualized = true;
+ }
+}
