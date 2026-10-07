@@ -4866,3 +4866,19 @@ main > .social-subscribe,
 :is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{width:104px;height:104px;top:50%;right:-2px;transform:translateY(-50%);transform-origin:center}
 @media(max-width:640px){:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{width:90px;height:90px;top:50%;right:-2px}}
 .gift-badge-icon>.gift-3d-fallback{transform:scale(.92)}
+
+/* Allow form content to shrink within narrow dialogs instead of clipping. */
+.quiz-layout{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr)}
+.quiz-layout>*,.quiz-form,.quiz-form fieldset,.quiz-option,.quiz-option>span,.application-modal-shell>*,.contact-form,.field-row>*{min-width:0}
+.quiz-intro h2,.quiz-form legend,.application-modal h2,.form-error,.consent{overflow-wrap:anywhere;white-space:normal}
+.quiz-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+.quiz-progress-row{gap:12px;flex-wrap:wrap}
+.quiz-controls{flex-wrap:wrap}
+@media(max-width:900px){.quiz-modal .quiz-layout{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:640px){
+ .quiz-modal .quiz-options{grid-template-columns:minmax(0,1fr)}
+ .quiz-modal .quiz-option{min-height:64px;padding:16px}
+ .quiz-modal .quiz-intro h2{font-size:clamp(22px,6vw,27px);line-height:1.2}
+ .quiz-modal .quiz-form{min-height:0}
+ .quiz-form .quiz-controls>*{max-width:100%}
+}
