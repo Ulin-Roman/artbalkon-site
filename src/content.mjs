@@ -6,7 +6,7 @@ import {beforeDaytimeAssets} from './before-daytime.mjs';
 
 export const company = {
  name:'ArtBalkon', phone:'+7 (495) 165-39-05', tel:'+74951653905', telegram:'https://t.me/+79255178380', max:'https://max.ru/u/f9LHodD0cOI7H1K6VdQb-wDS7Gs2cT4mlT6S6sdTcgfN4s_cnFPT2isb2Cg', vk:'https://vk.com/artbalkonpro', channel:'https://t.me/artbalkonmoscow', whatsapp:'',
- address:'Московская область, Люберцы, Октябрьский проспект, 209, офис 5', hours:'Замеры ежедневно, 9:00–21:00', reviews:'https://yandex.ru/maps/org/99931581991/reviews/', avito:'https://www.avito.ru/brands/i204694333/all?page_from=from_item_card_icon&iid=3514949804&sellerId=34820bad3f8cdf6e4c49a900a7622581',
+ address:'Московская область, Люберцы, Октябрьский проспект, 209, офис 5', hours:'Замеры ежедневно, 9:00–21:00', reviews:'https://yandex.ru/maps/org/99931581991/reviews/', avito:'https://www.avito.ru/brands/i204694333/all?page_from=from_item_card_icon&iid=3514949804&sellerId=10d5d2da0112e5348e0c5424df0767ff',
  origin:process.env.SITE_ORIGIN || 'https://ulin-roman.github.io/artbalkon-site', source:'https://artbalkon.pro/', operator:'ИП Симанин Артем Юрьевич', privacyEmail:'specstroydoc@mail.ru'
 };
 // Единственный источник цен для карточек, таблицы, SEO и посадочных страниц.
