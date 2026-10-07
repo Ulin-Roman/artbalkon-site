@@ -1737,3 +1737,6 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  if(workspaceIndex<0||lightingIndex<0)throw new Error('Selected finishing gallery cards were not found');
  [gallery[workspaceIndex],gallery[lightingIndex]]=[gallery[lightingIndex],gallery[workspaceIndex]];
 }
+
+// Remove the selected storage project after all glazing gallery additions.
+serviceBeforeAfterProjects['osteklenie-balkonov']=serviceBeforeAfterProjects['osteklenie-balkonov'].filter(project=>project.title!=='Балкон с окнами и обновлённым проходом');

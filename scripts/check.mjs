@@ -286,8 +286,9 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
 assert.equal(beforeAfterProjects.filter(p=>p.newDiverseSeries).length,3);
 for(const service of services.filter(s=>!bundledServiceSlugs.includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newDiverseSeries);
- assert.equal(added.length,3,service.slug+': expected three new pairs');
- assert.equal(new Set(added.map(p=>p.after)).size,3);
+ const expected=service.slug==='osteklenie-balkonov'?2:3; // work-46 was withdrawn from this gallery.
+ assert.equal(added.length,expected,service.slug+': expected retained diverse pairs');
+ assert.equal(new Set(added.map(p=>p.after)).size,expected);
  for(const p of added){assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);assert.notEqual(p.before,p.after);assert.ok(p.before.startsWith('portfolio-diverse-v4/')&&p.after.startsWith('portfolio-diverse-v4/'));assert.ok(portfolioDisplayTitles[p.title]);}
 }
 
@@ -328,3 +329,5 @@ for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterP
 for (const html of [renderHome(), ...services.map(service => servicePageWithSeo(service))]) {
  assert.doesNotMatch(html, /Балкон, где нашлось место для работы|renovation-balcony-01-after/, 'Rejected workspace must stay off every page');
 }
+
+assert.ok(!serviceBeforeAfterProjects['osteklenie-balkonov'].some(project=>project.title==='Балкон с окнами и обновлённым проходом'),'Withdrawn work-46 must stay out of the glazing gallery');
