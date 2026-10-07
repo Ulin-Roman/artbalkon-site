@@ -4813,3 +4813,22 @@ main > .social-subscribe,
 .certificate-modal-view .comparison-nav:hover{transform:translateY(-50%) scale(1.04)}
 .certificate-modal-view .comparison-nav:disabled{opacity:.35;cursor:default}
 @media(max-width:640px){.certificate-modal-shell{padding:12px}.certificate-modal-head h2{font-size:18px}.certificate-modal-view{padding:6px}.certificate-modal-view img{height:calc(100dvh - 128px)}.certificate-modal-prev{left:4px}.certificate-modal-next{right:4px}.certificate-modal-view .comparison-nav{width:40px;height:40px}}
+
+/* Campaign badge: 0.8 seconds of movement followed by a two-second pause. */
+.hero-visual,.landing-photo,.case-photo{position:relative}
+.gift-badge{position:absolute;right:14px;top:16px;z-index:3;display:flex;align-items:center;max-width:calc(100% - 28px);min-height:54px;padding:8px 62px 8px 16px;border:0;border-radius:16px;background:linear-gradient(180deg,#ff4937,#d5221c);color:white;font:700 13px/1.3 inherit;box-shadow:0 6px 18px #9c211c35;text-align:left;cursor:pointer}
+.gift-badge span{font-size:13px;font-weight:750;line-height:1.3}
+.gift-badge-icon{position:absolute;right:-3px;top:-13px;width:74px;height:78px;filter:drop-shadow(0 5px 3px #61130e40);transform-origin:50% 75%;animation:gift-shake 2.8s infinite}
+@keyframes gift-shake{0%,28.571%,100%{transform:rotate(0)}4%,12%,20%{transform:rotate(-12deg)}8%,16%,24%{transform:rotate(12deg)}}
+.gift-banner{position:relative;display:flex;justify-content:flex-end;padding-block:20px}.gift-banner .gift-badge{position:relative;inset:auto}
+.gift-modal{position:fixed;inset:0;margin:auto;width:min(1100px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:0;border:0;border-radius:24px;background:#fff;color:var(--ink);overscroll-behavior:contain}
+.gift-modal::backdrop{background:#031414b3;backdrop-filter:blur(6px)}
+.gift-modal .section{width:100%;padding:48px 28px 26px}
+.gift-modal .promotion-heading{margin-bottom:24px}.gift-modal .promotion-heading h2{font-size:32px;padding-inline:20px}
+.gift-modal .promotion-card-media{height:155px}.gift-modal .promotion-card-copy{padding:17px;min-height:195px}.gift-modal .promotion-card-copy strong{font-size:19px}
+.gift-close{position:absolute;right:10px;top:10px;z-index:2;display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:white;color:var(--teal);font-size:25px;cursor:pointer}
+.gift-badge:focus-visible,.gift-close:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+@media(max-width:640px){.gift-badge{right:12px;top:18px;padding-left:12px;padding-right:54px;min-height:46px}.gift-badge span{font-size:11px}.gift-badge-icon{width:64px;height:68px;top:-12px}.gift-modal{width:calc(100% - 20px);max-height:calc(100dvh - 20px);border-radius:18px}.gift-modal .section{padding:48px 14px 22px}.gift-modal .promotion-heading h2{font-size:24px;padding:0}.gift-modal .promotion-heading>p:last-child{font-size:13px}.gift-modal .promotion-card-media{height:110px}.gift-modal .promotion-card-copy{padding:12px;min-height:182px}.gift-modal .promotion-card-copy strong{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.gift-badge-icon{animation:none}}
+
+@media(max-width:640px){.home-page .hero-visual,.landing-hero .landing-photo{z-index:auto}.gift-badge{z-index:6}}
