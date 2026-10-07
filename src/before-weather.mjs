@@ -3,7 +3,6 @@ export const beforeWeatherAssets = {
   "before-hardware-v4/finish-turnkey-015-no-hardware.png": "before-weather-v1/before-001.webp", // early-morning
   "before-hardware-v4/finish-turnkey-004-no-hardware.png": "before-weather-v1/before-002.webp", // overcast-noon
   "before-hardware-v4/finish-turnkey-018-no-hardware.png": "before-weather-v1/before-003.webp", // morning-haze
-  "before-hardware-v4/finish-turnkey-005-no-hardware.png": "before-weather-v1/before-004.webp", // late-afternoon
   "before-hardware-v4/finish-turnkey-019-no-hardware.png": "before-weather-v1/before-005.webp", // cloudy-morning
   "before-hardware-v4/finish-turnkey-013-no-hardware.png": "before-weather-v1/before-006.webp", // light-rain
   "before-hardware-v4/finish-turnkey-002-no-hardware.png": "before-weather-v1/before-007.webp", // early-morning

@@ -1704,3 +1704,12 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.description = 'Визуализация преображения лоджии: новые окна, светлая отделка, шкаф в торце и отдельный мягкий пуфик перед ним.';
  }
 }
+
+// The same working corner from a matching low camera position in both states.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Серая отделка и стол у окна') {
+  project.before = 'portfolio-diverse-v4/work10-low-v1-before.webp';
+  project.after = 'portfolio-diverse-v4/work10-low-v1-after.webp';
+  project.description = 'Визуализация обновления балкона: новые окна, светлая отделка и компактный рабочий уголок у торцевого окна.';
+ }
+}
