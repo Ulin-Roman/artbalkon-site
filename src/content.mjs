@@ -1560,8 +1560,8 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
 // Additional user-selected reference paired with a generated before view.
 serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "title": "Балкон с угловой столешницей и мягким креслом",
-  "before": "turnkey-office-v1/before.webp",
-  "after": "turnkey-office-v1/after.webp",
+  "before": "turnkey-office-low-v1/before.webp",
+  "after": "turnkey-office-low-v1/after.webp",
   "objectType": "balcony",
   "stage": "turnkey",
   "visualized": true,

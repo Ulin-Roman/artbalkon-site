@@ -9427,5 +9427,39 @@
         "width": 724
       }
     ]
+  },
+  "/assets/turnkey-office-low-v1/before.webp": {
+    "src": "/assets/responsive/722fef503e840155-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/722fef503e840155-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/722fef503e840155-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/722fef503e840155-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/turnkey-office-low-v1/after.webp": {
+    "src": "/assets/responsive/62b7fb8fb6c50d5e-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/62b7fb8fb6c50d5e-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/62b7fb8fb6c50d5e-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/62b7fb8fb6c50d5e-724.webp",
+        "width": 724
+      }
+    ]
   }
 }
