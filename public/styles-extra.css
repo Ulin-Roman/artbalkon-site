@@ -4882,3 +4882,10 @@ main > .social-subscribe,
  .quiz-modal .quiz-form{min-height:0}
  .quiz-form .quiz-controls>*{max-width:100%}
 }
+
+/* Keep quiz navigation and submission aligned in one row on phones. */
+@media(max-width:640px){
+ .quiz-form .quiz-controls{display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px}
+ .quiz-form .quiz-controls .back-button{flex:0 0 auto;min-width:0;padding:12px 10px;font-size:12px;white-space:nowrap}
+ .quiz-form .quiz-controls .button,.quiz-form .quiz-controls .quiz-next-button{flex:0 1 auto;min-width:0;margin-left:auto;padding:12px 10px;font-size:12px;line-height:1.35;text-align:center;white-space:normal}
+}
