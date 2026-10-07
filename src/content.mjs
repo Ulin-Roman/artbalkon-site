@@ -1798,3 +1798,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.after = 'portfolio-perspectives-v3/work44-floor-v3-after.webp';
  }
 }
+
+// Matching elevated views for the selected glazing comparison.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Угловой балкон: окна и новая отделка') {
+  project.before = 'portfolio-perspectives-v3/work45-high-v3-before.webp';
+  project.after = 'portfolio-perspectives-v3/work45-high-v3-after.webp';
+ }
+}
