@@ -18,9 +18,15 @@ function mountGift(host){
  const upright=-Math.PI/7;
  gift.rotation.z=upright;
  const reduced=matchMedia('(prefers-reduced-motion:reduce)');let visible=true,frame=0,last=0;
+ const epoch=performance.now();
  const draw=ms=>{frame=0;if(document.hidden||!visible)return;if(ms-last<32){frame=requestAnimationFrame(draw);return;}last=ms;
-  const phase=reduced.matches?0:(ms%8000)/8000*Math.PI*2;
-  gift.rotation.set(0,phase,upright+.3*Math.sin(phase));
+  // A short rigid shake, then exactly two seconds in the resting pose.
+  const cycle=(ms-epoch)%2600;
+  const amount=!reduced.matches&&cycle<600?Math.max(0,Math.min(1,cycle/60,(600-cycle)/80)):0;
+  const poses=[[0,0,0],[.038,.007,.02],[-.035,-.005,-.018],[.025,.008,.012],[-.022,0,-.013]];
+  const pose=poses[Math.floor(cycle/35)%poses.length];
+  gift.position.set(pose[0]*amount,pose[1]*amount,0);
+  gift.rotation.set(0,0,upright+pose[2]*amount);
   renderer.render(scene,camera);if(!reduced.matches)frame=requestAnimationFrame(draw);
  };
  const start=()=>{if(!frame&&!document.hidden&&visible)frame=requestAnimationFrame(draw);};
