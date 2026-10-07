@@ -9801,5 +9801,39 @@
         "src": "/assets/electrical-v2/el3-before-dark-v4.webp"
       }
     ]
+  },
+  "/assets/portfolio-perspectives-v3/work71-brick-v3-before.webp": {
+    "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-perspectives-v3/work71-brick-v3-after.webp": {
+    "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-after.webp"
+      }
+    ]
   }
 }

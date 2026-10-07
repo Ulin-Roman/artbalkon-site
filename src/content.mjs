@@ -1806,3 +1806,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.after = 'portfolio-perspectives-v3/work45-high-v3-after.webp';
  }
 }
+
+// Brick finish and louvered storage inspired by the selected reference.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Бежевая отделка балкона') {
+  project.before = 'portfolio-perspectives-v3/work71-brick-v3-before.webp';
+  project.after = 'portfolio-perspectives-v3/work71-brick-v3-after.webp';
+ }
+}
