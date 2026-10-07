@@ -1790,3 +1790,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  if(tableIndex<0||workspaceIndex<0)throw new Error('Selected turnkey balcony cards were not found');
  [gallery[tableIndex],gallery[workspaceIndex]]=[gallery[workspaceIndex],gallery[tableIndex]];
 }
+
+// Matching ground-level views for the selected glazing comparison.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Остекление балкона с видом на вход') {
+  project.before = 'portfolio-perspectives-v3/work44-floor-v3-before.webp';
+  project.after = 'portfolio-perspectives-v3/work44-floor-v3-after.webp';
+ }
+}
