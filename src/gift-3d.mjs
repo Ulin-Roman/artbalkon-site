@@ -20,7 +20,7 @@ function mountGift(host){
  const reduced=matchMedia('(prefers-reduced-motion:reduce)');let visible=true,frame=0,last=0;
  const draw=ms=>{frame=0;if(document.hidden||!visible)return;if(ms-last<32){frame=requestAnimationFrame(draw);return;}last=ms;
   const phase=reduced.matches?0:(ms%8000)/8000*Math.PI*2;
-  gift.rotation.set(.18*Math.sin(phase),.28*Math.sin(phase*2),upright-phase);
+  gift.rotation.set(0,phase,upright+.3*Math.sin(phase));
   renderer.render(scene,camera);if(!reduced.matches)frame=requestAnimationFrame(draw);
  };
  const start=()=>{if(!frame&&!document.hidden&&visible)frame=requestAnimationFrame(draw);};
