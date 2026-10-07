@@ -9529,5 +9529,39 @@
         "width": 724
       }
     ]
+  },
+  "/assets/portfolio-diverse-v4/work22-coffee-v2-before.webp": {
+    "src": "/assets/responsive/8cf7802355443192-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/8cf7802355443192-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/8cf7802355443192-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/8cf7802355443192-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/work22-coffee-v2-after.webp": {
+    "src": "/assets/responsive/dcd1ba9a52c8c1c7-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/dcd1ba9a52c8c1c7-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/dcd1ba9a52c8c1c7-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/dcd1ba9a52c8c1c7-724.webp",
+        "width": 724
+      }
+    ]
   }
 }
