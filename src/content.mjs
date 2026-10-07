@@ -1729,3 +1729,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.after = 'portfolio-diverse-v4/work22-window-seat-v3-after.webp';
  }
 }
+// Swap the two selected cards on the finishing service page.
+{
+ const gallery=serviceBeforeAfterProjects['otdelka-balkonov'];
+ const workspaceIndex=gallery.findIndex(project=>project.title==='Отделка лоджии с узким столом');
+ const lightingIndex=gallery.findIndex(project=>project.title==='Лоджия с трековым освещением');
+ if(workspaceIndex<0||lightingIndex<0)throw new Error('Selected finishing gallery cards were not found');
+ [gallery[workspaceIndex],gallery[lightingIndex]]=[gallery[lightingIndex],gallery[workspaceIndex]];
+}
