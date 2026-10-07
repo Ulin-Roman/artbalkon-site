@@ -1749,3 +1749,12 @@ serviceBeforeAfterProjects['osteklenie-balkonov']=serviceBeforeAfterProjects['os
  if(woodIndex<0||whiteIndex<0)throw new Error('Selected warm glazing gallery cards were not found');
  [gallery[woodIndex],gallery[whiteIndex]]=[gallery[whiteIndex],gallery[woodIndex]];
 }
+
+// Swap the selected finished and corner loggia cards on warm glazing.
+{
+ const gallery=serviceBeforeAfterProjects['teploe-osteklenie'];
+ const finishedIndex=gallery.findIndex(project=>project.title==='Остекление лоджии с панелями');
+ const cornerIndex=gallery.findIndex(project=>project.title==='Остекление углового проёма');
+ if(finishedIndex<0||cornerIndex<0)throw new Error('Selected warm loggia cards were not found');
+ [gallery[finishedIndex],gallery[cornerIndex]]=[gallery[cornerIndex],gallery[finishedIndex]];
+}
