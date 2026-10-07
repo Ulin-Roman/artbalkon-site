@@ -4861,3 +4861,8 @@ main > .social-subscribe,
 
 
 :is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{top:-10px}@media(max-width:640px){:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{top:-8px}}
+
+/* Center the smaller, continuously rotating gift on the red badge. */
+:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{width:104px;height:104px;top:50%;right:-2px;transform:translateY(-50%);transform-origin:center}
+@media(max-width:640px){:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{width:90px;height:90px;top:50%;right:-2px}}
+.gift-badge-icon>.gift-3d-fallback{transform:rotate(26deg) scale(.92)}
