@@ -9631,5 +9631,22 @@
         "width": 1448
       }
     ]
+  },
+  "/assets/service-before-after/work105-soviet-v3-before.webp": {
+    "src": "/assets/responsive/345c958fd359a5b1-841.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/345c958fd359a5b1-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/345c958fd359a5b1-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/345c958fd359a5b1-841.webp",
+        "width": 841
+      }
+    ]
   }
 }

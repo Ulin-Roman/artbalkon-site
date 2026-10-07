@@ -1765,3 +1765,10 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.before = 'gallery-angles-v1/work240-soviet-v2-before.webp';
  }
 }
+
+// Soviet-era two-tone walls and painted floor in the selected before view.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Остекление лоджии с панелями') {
+  project.before = 'service-before-after/work105-soviet-v3-before.webp';
+ }
+}
