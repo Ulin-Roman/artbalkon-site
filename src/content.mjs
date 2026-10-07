@@ -1758,3 +1758,10 @@ serviceBeforeAfterProjects['osteklenie-balkonov']=serviceBeforeAfterProjects['os
  if(finishedIndex<0||cornerIndex<0)throw new Error('Selected warm loggia cards were not found');
  [gallery[finishedIndex],gallery[cornerIndex]]=[gallery[cornerIndex],gallery[finishedIndex]];
 }
+
+// Soviet-era two-tone walls and painted floor in the selected before view.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Окна лоджии со стороны комнаты') {
+  project.before = 'gallery-angles-v1/work240-soviet-v2-before.webp';
+ }
+}

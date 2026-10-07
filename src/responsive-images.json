@@ -9614,5 +9614,22 @@
         "width": 1086
       }
     ]
+  },
+  "/assets/gallery-angles-v1/work240-soviet-v2-before.webp": {
+    "src": "/assets/responsive/8aef9558a2a0df4d-1448.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/8aef9558a2a0df4d-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/8aef9558a2a0df4d-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/8aef9558a2a0df4d-1448.webp",
+        "width": 1448
+      }
+    ]
   }
 }
