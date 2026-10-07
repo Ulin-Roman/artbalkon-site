@@ -1,7 +1,7 @@
 import {mkdir,readFile,writeFile,rename} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-const allowed={
+export const allowed={
  service:[
   'Остекление','Утепление','Отделка','Под ключ','Балкон под ключ',
   'Холодное остекление','Тёплое остекление','Панорамное остекление','Нужна консультация','Отделка балкона или лоджии','Утепление балкона или лоджии','Объединение с комнатой',

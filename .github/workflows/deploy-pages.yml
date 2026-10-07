@@ -38,6 +38,11 @@ jobs:
           npm run build
           npm run check
           npm test
+      - name: Check mail handler
+        run: |
+          php -l server/leads.php
+          php -l server/mail-lib.php
+          php scripts/mail.test.php
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload dist
@@ -52,7 +57,7 @@ jobs:
         env:
           SITE_BASE_PATH: /
           SITE_ORIGIN: https://artbalkon.site
-          SITE_STATIC_ONLY: 'true'
+          SITE_MAIL_FORMS: 'true'
         run: npm run build
 
       - name: Deploy to REG.RU
@@ -63,3 +68,7 @@ jobs:
           password: ${{ secrets.REG_FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./
+
+      - name: Verify production form endpoint
+        run: |
+          python3 scripts/verify-mail-host.py

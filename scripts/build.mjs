@@ -23,6 +23,8 @@ const rawBase=process.env.SITE_BASE_PATH||'/';
 if(!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(rawBase))throw Error('SITE_BASE_PATH must be an absolute path ending with /.');
 const base=rawBase;
 const staticOnly=process.env.SITE_STATIC_ONLY==='true';
+const mailForms=process.env.SITE_MAIL_FORMS==='true';
+if(mailForms&&(staticOnly||base!=='/'||company.origin!=='https://artbalkon.site'))throw Error('Mail forms are only supported on the production PHP host.');
 const imageAsset=name=>`/assets/${/\.[a-z0-9]+$/i.test(name)?name:`${name}.webp`}`;
 const baseHtml=html=>base==='/'?html:html.replace(/((?:href|src|poster|data-src)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
 const baseCss=css=>base==='/'?css:css.replace(/url\((['"]?)\/(?!\/)/g,`url($1${base}`);
@@ -65,7 +67,13 @@ const privacy=(await readFile('src/privacy.html','utf8')).replaceAll('{{SITE_URL
 await page('/privacy/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Политика конфиденциальности</h1>${privacy}</article>`,{title:'Политика конфиденциальности — ArtBalkon',noindex:true});
 await page('/consent/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Согласие на обработку персональных данных</h1><p>Отправляя форму с отмеченным полем согласия, я разрешаю ${esc(company.operator)} обрабатывать предоставленные мной имя, номер телефона и сведения о заявке для связи со мной, подготовки расчёта и обсуждения заказа.</p><p>Обработка включает сбор, запись, систематизацию, накопление, хранение, уточнение, использование и удаление указанных данных. Данные об источнике перехода и рекламные метки используются для определения источника заявки.</p><p>Согласие действует до достижения целей обработки или его отзыва. Я могу отозвать согласие по электронной почте <a href="mailto:${company.privacyEmail}">${company.privacyEmail}</a>, указав в теме «Отзыв согласия на обработку персональных данных».</p><p>Подробные условия изложены в <a href="/privacy/">политике конфиденциальности</a>.</p></article>`,{title:'Согласие на обработку персональных данных — ArtBalkon',noindex:true});
 await writeFile('dist/404.html',baseHtml(shell('<section class="section container legal"><p class="eyebrow">404</p><h1>Такой страницы нет</h1><p>Вернитесь на главную — там услуги, цены и наши работы.</p><a class="button" href="/">На главную ↗</a></section>',{title:'Страница не найдена — ArtBalkon',description:'Запрошенная страница не найдена. Перейдите на главную страницу ArtBalkon.',path:'/404.html',noindex:true})));
-await writeFile('dist/site-config.json',JSON.stringify({...integrations,basePath:base,leadEndpoint:staticOnly?null:integrations.leadEndpoint}));
+if(mailForms){
+ await mkdir('dist/api',{recursive:true});
+ for(const file of ['leads.php','mail-lib.php'])await cp('server/'+file,'dist/api/'+file);
+ const {allowed}=await import('./leads.mjs');
+ await writeFile('dist/api/lead-options.json',JSON.stringify(allowed));
+}
+await writeFile('dist/site-config.json',JSON.stringify({...integrations,basePath:base,leadEndpoint:mailForms?'/api/leads.php':staticOnly?null:integrations.leadEndpoint}));
 await writeFile('dist/robots.txt',`User-agent: *\nAllow: ${base}\nDisallow: ${base}api/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid\nSitemap: ${company.origin}/sitemap.xml\n`);
 await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+routes.map(path=>`<url><loc>${company.origin}${path}</loc></url>`).join('')+'</urlset>');
 await writeFile('dist/yandex-direct.xml',await renderDirectFeed());
