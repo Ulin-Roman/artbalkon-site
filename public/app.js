@@ -22,7 +22,16 @@
   scheduleIdle(()=>{(c.externalScripts||[]).forEach(s=>{try{const url=new URL(typeof s==='string'?s:s.src);if(url.protocol!=='https:')return;const tag=document.createElement('script');tag.src=url.href;tag.async=true;if(s.id)tag.id=s.id;document.head.append(tag);}catch{}});});
  }).catch(()=>{});
  function scheduleIdle(callback){if('requestIdleCallback' in window)requestIdleCallback(callback,{timeout:2200});else setTimeout(callback,1200);}
- function track(event,params={}){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event,...params});configReady.then(()=>{if(config.metrikaId&&window.ym)window.ym(config.metrikaId,'reachGoal',event,params);});}
+ function track(event,params={}){try{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event,...params});}catch{}configReady.then(()=>{try{if(config.metrikaId&&typeof window.ym==='function')window.ym(config.metrikaId,'reachGoal',event,params);}catch{}});}
+ const formGoalState=window[Symbol.for('artbalkon.form-goals.v1')] ||= {bound:new WeakSet(),sent:new Set()};
+ try{const saved=JSON.parse(sessionStorage.getItem('artbalkon.form-goals.v1')||'[]');if(Array.isArray(saved))saved.filter(id=>typeof id==='string').forEach(id=>formGoalState.sent.add(id));}catch{}
+ function trackFormSubmission(requestId){
+  if(formGoalState.sent.has(requestId))return;
+  formGoalState.sent.add(requestId);
+  try{sessionStorage.setItem('artbalkon.form-goals.v1',JSON.stringify([...formGoalState.sent].slice(-500)));}catch{}
+  // One direct goal call; no second form_submit dispatch through dataLayer.
+  try{if(config.metrikaId&&typeof window.ym==='function')window.ym(config.metrikaId,'reachGoal','form_submit');}catch{}
+ }
  async function sendLead(url,body){
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
   try{const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:controller.signal});let result;try{result=await response.json();if(!result||typeof result!=='object'||Array.isArray(result))throw Error();}catch(err){if(err.name==='AbortError')throw err;throw new Error('Сервис отправки временно недоступен. Попробуйте ещё раз или позвоните нам.');}return {response,result};}
@@ -133,7 +142,7 @@
   if(dialog){dialog.classList.add('is-submitted');title.id=dialog.id+'-success-title';dialog.setAttribute('aria-labelledby',title.id);}
   box.focus({preventScroll:true});
  }
- document.querySelectorAll('[data-lead-form]').forEach(form=>{let submitting=false,id=null;
+ document.querySelectorAll('[data-lead-form]').forEach(form=>{if(formGoalState.bound.has(form))return;formGoalState.bound.add(form);let submitting=false,id=null;
   form.addEventListener('submit',async e=>{e.preventDefault();if(submitting)return;
    const quizController=quizControllers.get(form);if(quizController&&!quizController.atLastStep()){quizController.advance();return;}if(!validate(form))return;
    const submit=form.querySelector('[type="submit"]'),error=form.querySelector('.form-error');
@@ -141,8 +150,9 @@
    try{
     await configReady;if(!config.leadEndpoint)throw new Error('Отправка заявок через сайт пока не подключена. Позвоните нам: +7 (495) 165-39-05.');const values=Object.fromEntries(new FormData(form));id=id||crypto.randomUUID();
     const {response,result}=await sendLead(config.leadEndpoint||'/api/leads',{...values,consent:values.consent==='on',form:form.dataset.leadForm,attribution,page:location.pathname,requestId:id});
-    if(!response.ok||!result.ok)throw new Error(result.message||'Не удалось отправить заявку.');
-    if(result.mode!=='preview'){track('form_submit',{form:form.dataset.leadForm});if(quizController)track('quiz_complete');}showThanks(form,result.mode==='preview');
+    if(!response.ok||result.ok!==true)throw new Error(result.message||'Не удалось отправить заявку.');
+    showThanks(form,result.mode==='preview');
+    if(result.mode!=='preview'){trackFormSubmission(id);if(quizController)track('quiz_complete');}
    }catch(err){error.textContent=(err.name==='TimeoutError'||err.name==='AbortError')?'Ответ задерживается. Попробуйте ещё раз или позвоните нам.':err.message==='Failed to fetch'?'Нет соединения. Проверьте интернет и попробуйте ещё раз.':err.message;submit.disabled=false;submit.removeAttribute('aria-busy');submit.innerHTML=old;submitting=false;}
   });
  });
