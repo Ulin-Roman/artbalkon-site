@@ -1781,3 +1781,12 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.afterVisualized = true;
  }
 }
+
+// Swap the selected conversation and narrow workspace cards on turnkey balconies.
+{
+ const gallery=serviceBeforeAfterProjects['balkon-pod-klyuch'];
+ const tableIndex=gallery.findIndex(project=>project.title==='Лоджия со столом');
+ const workspaceIndex=gallery.findIndex(project=>project.title==='Рабочее место на узком балконе');
+ if(tableIndex<0||workspaceIndex<0)throw new Error('Selected turnkey balcony cards were not found');
+ [gallery[tableIndex],gallery[workspaceIndex]]=[gallery[workspaceIndex],gallery[tableIndex]];
+}
