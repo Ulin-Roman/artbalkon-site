@@ -4818,8 +4818,8 @@ main > .social-subscribe,
 .hero-visual,.landing-photo,.case-photo{position:relative}
 .gift-badge{position:absolute;right:14px;top:16px;z-index:3;display:flex;align-items:center;max-width:calc(100% - 28px);min-height:54px;padding:8px 62px 8px 16px;border:0;border-radius:16px;background:linear-gradient(180deg,#ff4937,#d5221c);color:white;font:700 13px/1.3 inherit;box-shadow:0 6px 18px #9c211c35;text-align:left;cursor:pointer}
 .gift-badge span{font-size:13px;font-weight:750;line-height:1.3}
-.gift-badge-icon{position:absolute;right:-3px;top:-13px;width:74px;height:78px;filter:drop-shadow(0 5px 3px #61130e40);transform-origin:50% 75%;animation:gift-shake 2.8s infinite}
-@keyframes gift-shake{0%,28.571%,100%{transform:rotate(0)}4%,12%,20%{transform:rotate(-12deg)}8%,16%,24%{transform:rotate(12deg)}}
+.gift-badge-icon{position:absolute;right:-3px;top:-13px;width:74px;height:78px;filter:drop-shadow(0 5px 3px #61130e40);transform-origin:50% 75%;animation:gift-shake 2.8s linear infinite}
+@keyframes gift-shake{0%,28.571%,100%{transform:translate3d(0,0,0) rotate(0)}3%{transform:translate3d(-2px,1px,0) rotate(-2deg)}6%{transform:translate3d(2px,-1px,0) rotate(2deg)}9%{transform:translate3d(-3px,0,0) rotate(-1deg)}12%{transform:translate3d(3px,1px,0) rotate(2deg)}15%{transform:translate3d(-2px,-1px,0) rotate(-2deg)}18%{transform:translate3d(2px,0,0) rotate(1deg)}21%{transform:translate3d(-1px,1px,0) rotate(-1deg)}24%{transform:translate3d(1px,-1px,0) rotate(1deg)}26%{transform:translate3d(-1px,0,0) rotate(0)}}
 .gift-banner{position:relative;display:flex;justify-content:flex-end;padding-block:20px}.gift-banner .gift-badge{position:relative;inset:auto}
 .gift-modal{position:fixed;inset:0;margin:auto;width:min(1100px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:0;border:0;border-radius:24px;background:#fff;color:var(--ink);overscroll-behavior:contain}
 .gift-modal::backdrop{background:#031414b3;backdrop-filter:blur(6px)}
@@ -4832,3 +4832,12 @@ main > .social-subscribe,
 @media(prefers-reduced-motion:reduce){.gift-badge-icon{animation:none}}
 
 @media(max-width:640px){.home-page .hero-visual,.landing-hero .landing-photo{z-index:auto}.gift-badge{z-index:6}}
+
+/* Reference-style gift badge and a geometrically centered close icon. */
+.gift-badge{min-height:44px;padding-right:61px;border-radius:14px}
+.gift-badge-icon{width:70px;height:70px;top:-14px;right:-2px;object-fit:contain}
+.gift-close{padding:0;line-height:1}.gift-close svg{display:block;flex-shrink:0}
+@media(max-width:640px){.gift-badge{min-height:40px;padding-right:54px}.gift-badge-icon{width:62px;height:62px;top:-12px}}
+
+.gift-badge:focus,.gift-badge:focus-visible{outline:none}.gift-badge:focus-visible{filter:brightness(1.08)}
+

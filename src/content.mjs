@@ -1726,6 +1726,6 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
  for (const project of gallery) if (project.title === 'Балкон под ключ со скамьёй и хранением') {
   project.before = 'portfolio-diverse-v4/work22-coffee-v2-before.webp';
-  project.after = 'portfolio-diverse-v4/work22-coffee-v2-after.webp';
+  project.after = 'portfolio-diverse-v4/work22-window-seat-v3-after.webp';
  }
 }
