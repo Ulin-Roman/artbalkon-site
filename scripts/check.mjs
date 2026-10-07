@@ -188,7 +188,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   const expectedBefore=type==='loggia'&&sourceNumber===11?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
   const hardwareAdjustedBefore=beforeHardwareReplacements[expectedBefore] || expectedBefore;
   const expectedGalleryBefore=finishBeforeLatchReplacements[hardwareAdjustedBefore] || hardwareAdjustedBefore;
-  assert.equal(p.before==='portfolio-floor-work73-v1/before.webp'?'before-hardware-v4/finish-turnkey-009-no-hardware.png':p.before==='portfolio-diverse-v4/work10-low-v1-before.webp'?'before-hardware-v4/finish-turnkey-005-no-hardware.png':['service-before-after/work71-top-folding-v2-before.webp','portfolio-perspectives-v3/work71-brick-v3-before.webp'].includes(p.before)?'before-hardware-v4/finish-turnkey-007-no-hardware.png':p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
+  assert.equal(p.before==='portfolio-floor-work73-v1/before.webp'?'before-hardware-v4/finish-turnkey-009-no-hardware.png':p.before==='portfolio-diverse-v4/work10-low-v1-before.webp'?'before-hardware-v4/finish-turnkey-005-no-hardware.png':['service-before-after/work71-top-folding-v2-before.webp','portfolio-perspectives-v3/work71-brick-v4-before.webp'].includes(p.before)?'before-hardware-v4/finish-turnkey-007-no-hardware.png':p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
   assert.equal(reviewedAfter,type==='balcony'&&sourceNumber===4?'window-details-v2/balcony-04-handles.webp':`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);
