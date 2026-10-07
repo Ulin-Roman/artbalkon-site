@@ -1814,3 +1814,6 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.after = 'portfolio-perspectives-v3/work71-brick-v3-after.webp';
  }
 }
+
+// Additional reference-inspired finishing comparison.
+serviceBeforeAfterProjects['otdelka-balkonov'].push({title:'Балкон с деревянной отделкой и откидным столиком', before:'portfolio-perspectives-v3/work289-reading-v3-before.webp', after:'portfolio-perspectives-v3/work289-reading-v3-after.webp', stage:'finish', objectType:'balcony', description:'Визуализация отделки балкона с компактным местом для чтения.', visualized:true, beforeVisualized:true, afterVisualized:true, beforeReal:false, afterReal:false, referenceFinishSeries:true});

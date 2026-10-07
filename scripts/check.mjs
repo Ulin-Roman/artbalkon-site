@@ -174,7 +174,7 @@ for(const project of coldLoggias){
  if(project.after.includes('cold-ordinary-'))assert.equal(project.before,project.after.replace('-after.webp','-before.webp'),'Loggia must keep its matched before image');
 }
 for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelka-lodzhii','loggia','finish'],['balkon-pod-klyuch','balcony','turnkey'],['lodzhiya-pod-klyuch','loggia','turnkey']]){
- const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion&&!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries);
+ const gallery=serviceBeforeAfterProjects[slug].filter(project=>project.objectType===type&&!project.turnkeyExpansion&&!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries&&!project.referenceFinishSeries);
  const expectedCount=slug==='balkon-pod-klyuch'?15:slug==='otdelka-balkonov'?13:type==='loggia'?10:12;
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
@@ -205,7 +205,7 @@ for(const project of turnkeyAdditions){
  assert.match(project.before,/^service-before-after\/turnkey-(?:furniture|electrical)-\d{2}-before-v[23]\.webp$/);
 }
 for(const [slug,expectedCount] of [['osteklenie-balkonov',12],['uteplenie-balkonov',7],['otdelka-balkonov',23],['balkon-pod-klyuch',31]]){
- const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries);
+ const gallery=serviceBeforeAfterProjects[slug].filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries&&!p.referenceFinishSeries);
  assert.equal(gallery.length,expectedCount+3,`${slug}: combined gallery has the wrong size`);
  assert.equal(new Set(gallery.map(project=>project.after)).size,expectedCount+3,`${slug}: combined gallery repeats finished rooms`);
 }
@@ -331,3 +331,9 @@ for (const html of [renderHome(), ...services.map(service => servicePageWithSeo(
 }
 
 assert.ok(!serviceBeforeAfterProjects['osteklenie-balkonov'].some(project=>project.title==='Балкон с окнами и обновлённым проходом'),'Withdrawn work-46 must stay out of the glazing gallery');
+
+const readingPair=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishSeries);
+assert.equal(readingPair.length,1);
+assert.equal(readingPair[0].stage,"finish");
+assert.ok(readingPair[0].visualized && readingPair[0].beforeVisualized && readingPair[0].afterVisualized);
+assert.notEqual(readingPair[0].before,readingPair[0].after);
