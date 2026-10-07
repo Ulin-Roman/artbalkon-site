@@ -1721,3 +1721,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.after = 'portfolio-floor-work73-v1/after-chair-v2.webp';
  }
 }
+
+// Reverse diagonal view from the storage end, with matched openings in both states.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Балкон под ключ со скамьёй и хранением') {
+  project.before = 'portfolio-diverse-v4/work22-reverse-high-v1-before.webp';
+  project.after = 'portfolio-diverse-v4/work22-reverse-high-v1-after.webp';
+ }
+}
