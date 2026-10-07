@@ -1,6 +1,7 @@
 // Stable public case IDs: retain assigned numbers when galleries are reordered.
 import {createHash} from 'node:crypto';
 const caseIds=Object.freeze({
+  "Балкон с отделкой под серо-коричневый дуб и встроенным светом": "work-322",
   "Балкон с ореховой скамьёй и белым кирпичным парапетом": "work-321",
   "Балкон с песочными панелями и белыми жалюзи": "work-318",
   "Балкон с серой отделкой под бетон и тёмным полом": "work-319",

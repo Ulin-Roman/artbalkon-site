@@ -1861,3 +1861,6 @@ serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с д
 
 // Additional reference-inspired homepage concepts.
 beforeAfterProjects.push({"title":"Балкон с ореховой скамьёй и белым кирпичным парапетом","before":"portfolio-home-refs-v2/work321-before.webp","after":"portfolio-home-refs-v2/work321-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: На балконе появился уютный уголок со скамьёй.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSecondSeries":true});
+
+// Additional finishing reference concepts with distinct weather between paired photos.
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с отделкой под серо-коричневый дуб и встроенным светом","before":"portfolio-finish-refs-v4/work322-before.webp","after":"portfolio-finish-refs-v4/work322-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Отделка под дерево объединила стены, пол и потолок.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishFourthSeries":true});
