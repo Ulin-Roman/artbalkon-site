@@ -1740,3 +1740,12 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 
 // Remove the selected storage project after all glazing gallery additions.
 serviceBeforeAfterProjects['osteklenie-balkonov']=serviceBeforeAfterProjects['osteklenie-balkonov'].filter(project=>project.title!=='Балкон с окнами и обновлённым проходом');
+
+// Swap the two selected cards on the warm glazing service page.
+{
+ const gallery=serviceBeforeAfterProjects['teploe-osteklenie'];
+ const woodIndex=gallery.findIndex(project=>project.title==='Остекление лоджии с вагонкой');
+ const whiteIndex=gallery.findIndex(project=>project.title==='Тёплое остекление белым профилем');
+ if(woodIndex<0||whiteIndex<0)throw new Error('Selected warm glazing gallery cards were not found');
+ [gallery[woodIndex],gallery[whiteIndex]]=[gallery[whiteIndex],gallery[woodIndex]];
+}
