@@ -349,3 +349,11 @@ const homeReferences=beforeAfterProjects.filter(p=>p.referenceHomeSeries);
 assert.equal(homeReferences.length,4);
 assert.equal(new Set(homeReferences.map(p=>p.after)).size,4);
 for(const p of homeReferences){assert.equal(p.stage,"turnkey");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);assert.ok(!Object.values(serviceBeforeAfterProjects).some(list=>list.some(item=>item.title===p.title)));}
+
+const panoramaReference=serviceBeforeAfterProjects["panoramnoe-osteklenie"].filter(p=>p.referencePanoramaSeries);
+assert.equal(panoramaReference.length,1);
+assert.equal(panoramaReference[0].stage,"glazing");
+assert.equal(panoramaReference[0].objectType,"balcony");
+assert.ok(panoramaReference[0].beforeVisualized&&panoramaReference[0].afterVisualized);
+assert.notEqual(panoramaReference[0].before,panoramaReference[0].after);
+assert.ok(!beforeAfterProjects.some(p=>p.title===panoramaReference[0].title));
