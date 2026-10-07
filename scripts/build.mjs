@@ -1,3 +1,4 @@
+import {build as bundleGift} from 'esbuild';
 import {mkdir,readFile,writeFile,cp,rm,readdir} from 'node:fs/promises';
 import {resolve,relative,join,sep} from 'node:path';
 import {createHash} from 'node:crypto';
@@ -7,7 +8,8 @@ const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','u
 const appSource=await readFile('public/app.js','utf8');
 const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource+'\n'+await readFile(new URL(import.meta.url),'utf8');
 const cssResult=await optimizeCss((await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8')),sourceText);
-const appCode=await optimizeJs(appSource);
+const giftVersion=createHash('sha256').update(await readFile('src/gift-3d.mjs','utf8')).update(await readFile('package-lock.json','utf8')).digest('hex').slice(0,12);
+const appCode=await optimizeJs(appSource.replace("'gift-3d.js'","'gift-3d.js?v="+giftVersion+"'"));
 const fingerprint=text=>createHash('sha256').update(text).digest('hex').slice(0,12);
 const optimizeHtml=html=>html.replace(/<img\b[^>]*>/g,tag=>{
  const src=tag.match(/\bsrc="([^"]+)"/)?.[1],entry=responsiveImages[src];if(!entry)return tag;
@@ -29,6 +31,7 @@ await mkdir('dist',{recursive:true});
 await cp('public','dist',{recursive:true});
 await writeFile('dist/styles.css',baseCss(cssResult.code));
 await writeFile('dist/app.js',appCode);
+await bundleGift({entryPoints:['src/gift-3d.mjs'],outfile:'dist/gift-3d.js',bundle:true,minify:true,format:'esm',target:['es2020'],legalComments:'eof'});
 await rm('dist/styles-extra.css');
 await writeFile('dist/.nojekyll','');
 const routes=[];

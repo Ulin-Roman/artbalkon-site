@@ -4845,3 +4845,16 @@ main > .social-subscribe,
 :is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{position:absolute;inset:auto;top:-14px;right:-2px;width:70px;height:70px;max-width:none;max-height:none;object-fit:contain;background:transparent}
 @media(max-width:640px){:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{width:62px;height:62px;top:-12px}}
 
+
+
+/* A WebGL scene renders the physical box and flying lid; the image is a static fallback. */
+.gift-badge{min-height:48px;padding-right:98px}
+:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{width:122px;height:122px;top:-42px;right:-10px;animation:none;filter:none}
+:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge .gift-badge-icon>:is(img,canvas){position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:contain;background:transparent;pointer-events:none}
+.gift-badge-icon[data-gift-renderer="webgl"]>.gift-3d-fallback{visibility:hidden}
+@media(max-width:640px){.gift-badge{padding-right:83px;min-height:44px}:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{width:106px;height:106px;top:-34px;right:-8px}}
+
+.gift-badge{padding-right:104px}@media(max-width:640px){.gift-badge{padding-right:90px}}
+
+:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{top:-19px}@media(max-width:640px){:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{top:-15px}}
+
