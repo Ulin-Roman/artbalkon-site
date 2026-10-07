@@ -1713,3 +1713,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   project.description = 'Визуализация обновления балкона: новые окна, светлая отделка и компактный рабочий уголок у торцевого окна.';
  }
 }
+
+// Matching phone-on-floor camera position for the compact workspace pair.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title === 'Рабочее место на узком балконе') {
+  project.before = 'portfolio-floor-work73-v1/before.webp';
+  project.after = 'portfolio-floor-work73-v1/after-chair-v2.webp';
+ }
+}

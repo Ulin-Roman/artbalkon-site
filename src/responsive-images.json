@@ -9461,5 +9461,39 @@
         "width": 724
       }
     ]
+  },
+  "/assets/portfolio-floor-work73-v1/before.webp": {
+    "src": "/assets/responsive/586c6ed2ba70dc0b-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/586c6ed2ba70dc0b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/586c6ed2ba70dc0b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/586c6ed2ba70dc0b-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-floor-work73-v1/after-chair-v2.webp": {
+    "src": "/assets/responsive/6e3a1181343e74d7-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/6e3a1181343e74d7-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/6e3a1181343e74d7-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/6e3a1181343e74d7-724.webp",
+        "width": 724
+      }
+    ]
   }
 }
