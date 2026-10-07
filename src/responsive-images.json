@@ -9682,5 +9682,39 @@
         "width": 1086
       }
     ]
+  },
+  "/assets/electrical-v2/el3-before-floor-v3.webp": {
+    "src": "/assets/electrical-v2/el3-before-floor-v3-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/electrical-v2/el3-before-floor-v3-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/electrical-v2/el3-before-floor-v3-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/electrical-v2/el3-before-floor-v3.webp"
+      }
+    ]
+  },
+  "/assets/electrical-v2/el3-after-floor-v3.webp": {
+    "src": "/assets/electrical-v2/el3-after-floor-v3-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/electrical-v2/el3-after-floor-v3-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/electrical-v2/el3-after-floor-v3-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/electrical-v2/el3-after-floor-v3.webp"
+      }
+    ]
   }
 }
