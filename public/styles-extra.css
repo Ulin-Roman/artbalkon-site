@@ -4789,3 +4789,14 @@ main > .social-subscribe,
  .glazing-benefits-copy .glazing-benefit-marker{display:none}
  .glazing-benefits-copy .glazing-benefit-item>p{max-height:none;margin-top:7px;opacity:1;overflow:visible;transition:none}
 }
+
+/* Place certificate navigation at the sides of the gallery. */
+.certificate-gallery{position:relative;min-width:0}
+.certificates-heading .certificate-count{margin:0;align-self:center}
+.certificate-gallery .certificate-controls{position:absolute;inset:0;pointer-events:none}
+.certificate-gallery .certificate-controls button{position:absolute;top:calc(50% - 12px);transform:translateY(-50%);pointer-events:auto;z-index:2;box-shadow:0 4px 16px rgba(6,77,82,.18)}
+.certificate-gallery .certificate-controls button:hover:not(:disabled){transform:translateY(-50%)}
+.certificate-gallery [data-cert-prev]{left:8px}
+.certificate-gallery [data-cert-next]{right:8px}
+.certificate-gallery .certificate-controls button:disabled{opacity:.6}
+@media(max-width:640px){.certificate-gallery [data-cert-prev]{left:4px}.certificate-gallery [data-cert-next]{right:4px}}
