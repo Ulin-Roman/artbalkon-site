@@ -10396,5 +10396,141 @@
         "src": "/assets/portfolio-finish-refs-v1/work304-after.webp"
       }
     ]
+  },
+  "/assets/portfolio-home-refs-v1/work305-before.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work305-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-home-refs-v1/work305-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-home-refs-v1/work305-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-home-refs-v1/work305-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work305-after.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work305-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-home-refs-v1/work305-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-home-refs-v1/work305-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-home-refs-v1/work305-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work306-before.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work306-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-home-refs-v1/work306-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-home-refs-v1/work306-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-home-refs-v1/work306-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work306-after.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work306-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-home-refs-v1/work306-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-home-refs-v1/work306-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-home-refs-v1/work306-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work307-before.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work307-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-home-refs-v1/work307-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-home-refs-v1/work307-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-home-refs-v1/work307-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work307-after.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work307-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-home-refs-v1/work307-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-home-refs-v1/work307-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-home-refs-v1/work307-after.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work308-before.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work308-before-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-home-refs-v1/work308-before-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-home-refs-v1/work308-before-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-home-refs-v1/work308-before.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work308-after.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work308-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-home-refs-v1/work308-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-home-refs-v1/work308-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-home-refs-v1/work308-after.webp"
+      }
+    ]
   }
 }

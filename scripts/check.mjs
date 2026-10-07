@@ -123,7 +123,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  const actual=[...hero.matchAll(/\s(?:src|data-src)="\/assets\/([^"]+)"/g)].map(m=>m[1]);
  assert.deepEqual(actual,[...new Set(projects.map(p=>p.after))],`${label}: hero must use its own AFTER gallery`);
 }
-const originalHomeProjects=beforeAfterProjects.filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries&&!p.importedHomeWork);
+const originalHomeProjects=beforeAfterProjects.filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries&&!p.importedHomeWork&&!p.referenceHomeSeries);
 assert.equal(originalHomeProjects.length,12,'Home must contain 12 primary pairs');
 assert.equal(new Set(originalHomeProjects.map(p=>p.after)).size,12,'Home must not repeat rooms');
 for(const [type,slug] of [['balcony','balkon-pod-klyuch'],['loggia','lodzhiya-pod-klyuch']]){
@@ -344,3 +344,8 @@ for(const [slug,flag,count,stage] of [["balkon-pod-klyuch","referenceTurnkeySeri
  assert.equal(new Set(additions.map(p=>p.after)).size,count);
  for(const p of additions){assert.equal(p.stage,stage);assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}
 }
+
+const homeReferences=beforeAfterProjects.filter(p=>p.referenceHomeSeries);
+assert.equal(homeReferences.length,4);
+assert.equal(new Set(homeReferences.map(p=>p.after)).size,4);
+for(const p of homeReferences){assert.equal(p.stage,"turnkey");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);assert.ok(!Object.values(serviceBeforeAfterProjects).some(list=>list.some(item=>item.title===p.title)));}
