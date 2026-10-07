@@ -25,7 +25,7 @@
  function track(event,params={}){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event,...params});configReady.then(()=>{if(config.metrikaId&&window.ym)window.ym(config.metrikaId,'reachGoal',event,params);});}
  async function sendLead(url,body){
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
-  try{const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:controller.signal});return {response,result:await response.json()};}
+  try{const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:controller.signal});let result;try{result=await response.json();if(!result||typeof result!=='object'||Array.isArray(result))throw Error();}catch(err){if(err.name==='AbortError')throw err;throw new Error('Сервис отправки временно недоступен. Попробуйте ещё раз или позвоните нам.');}return {response,result};}
   finally{clearTimeout(timer);}
  }
  const attributionKeys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid'];
@@ -65,7 +65,9 @@
   const startHeroSlider=()=>{if(reducedMotion.matches||slides.length<2||heroTimer)return;heroTimer=setInterval(()=>showHeroSlide((heroIndex+1)%slides.length),3000);};
   showHeroSlide(0);startHeroSlider();
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stopHeroSlider();else startHeroSlider();});
-  addEventListener('pagehide',stopHeroSlider,{once:true});
+  addEventListener('pagehide',stopHeroSlider);
+  addEventListener('pageshow',startHeroSlider);
+  reducedMotion.addEventListener('change',()=>{stopHeroSlider();startHeroSlider();});
  }
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
  let modalTriggerScrollY=null;
@@ -149,7 +151,7 @@
  if(context?.registerTool&&serviceOptions.length&&primaryQuizController){const lifecycle=new AbortController();const serviceValues=serviceOptions.map(el=>el.value);try{Promise.resolve(context.registerTool({name:'start_balcony_calculation',description:'Открывает расчёт и выбирает необходимую работу. Не отправляет заявку.',inputSchema:{type:'object',properties:{service:{type:'string',enum:serviceValues}},required:['service'],additionalProperties:false},annotations:{readOnlyHint:false},execute(input){const option=serviceOptions.find(el=>el.value===input?.service);if(!option)throw Error('Неизвестная услуга');option.checked=true;primaryQuizController.begin();openQuiz(false);const optionStep=primaryQuizController.steps.findIndex(item=>item.contains(option));primaryQuizController.showStep(Math.min(primaryQuizController.lastStep,optionStep+1));return {service:option.value,step:primaryQuizController.currentStep()+1,totalSteps:primaryQuizController.steps.length,submitted:false};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}window.addEventListener('pagehide',()=>lifecycle.abort(),{once:true});}
 
  const giftDialog=$('#gift-modal'),giftLead=$('#gift-lead-modal');
- import(new URL('gift-3d.js',siteBase).href).then(module=>module.mountGifts()).catch(()=>{});
+ if(document.querySelector('.gift-badge-icon'))import(new URL('gift-3d.js',siteBase).href).then(module=>module.mountGifts()).catch(()=>{});
  let giftOpening=false;
  document.addEventListener('click',e=>{
   const giftTrigger=e.target.closest('[data-gift-open]');if(giftTrigger&&!giftOpening){giftOpening=true;const top=scrollY;Promise.resolve(giftTrigger.querySelector('.gift-badge-icon')?.gift3d?.open()).then(()=>{modalTriggerScrollY=top;openDialogAtCurrentScroll(giftDialog,giftDialog.querySelector('[data-gift-close]'));track('gift_open');}).finally(()=>{giftOpening=false;});}
