@@ -4841,3 +4841,7 @@ main > .social-subscribe,
 
 .gift-badge:focus,.gift-badge:focus-visible{outline:none}.gift-badge:focus-visible{filter:brightness(1.08)}
 
+
+:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{position:absolute;inset:auto;top:-14px;right:-2px;width:70px;height:70px;max-width:none;max-height:none;object-fit:contain;background:transparent}
+@media(max-width:640px){:is(.hero-visual,.landing-photo,.case-photo,.gift-banner) .gift-badge>.gift-badge-icon{width:62px;height:62px;top:-12px}}
+
