@@ -15,7 +15,7 @@ function mountGift(host){
  const material=new THREE.MeshBasicMaterial({map:texture,transparent:true,side:THREE.DoubleSide,depthWrite:false});
  // Keep the supplied photographic gift intact, including its closed lid.
  const gift=new THREE.Mesh(new THREE.PlaneGeometry(2.1,2.1),material);scene.add(gift);
- const upright=-Math.PI/7;
+ const upright=0;
  gift.rotation.z=upright;
  const reduced=matchMedia('(prefers-reduced-motion:reduce)');let visible=true,frame=0,last=0;
  const epoch=performance.now();
