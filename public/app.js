@@ -262,6 +262,9 @@
   const certificateModal=certificateSlider.querySelector('#certificate-modal');
   const certificateLinks=[...certificateSlider.querySelectorAll('[data-cert-open]')];
   const modalImage=certificateModal.querySelector('[data-cert-image]');
+  modalImage.addEventListener('load',()=>{
+   if(modalImage.naturalHeight)certificateModal.style.setProperty('--certificate-ratio',modalImage.naturalWidth/modalImage.naturalHeight);
+  });
   const modalPrev=certificateModal.querySelector('[data-cert-modal-prev]');
   const modalNext=certificateModal.querySelector('[data-cert-modal-next]');
   const modalClose=certificateModal.querySelector('[data-cert-close]');
