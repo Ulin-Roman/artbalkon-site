@@ -1917,3 +1917,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  const gallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
  if(!gallery.some(p=>p.title===title))gallery.push({...project,stage:'glazing',transferredColdGallery:true});
 }
+
+// Add the selected complete comparison to warm glazing.
+{
+ const project=beforeAfterProjects.find(p=>p.title==='Белая отделка и скамья для хранения');
+ if(!project)throw new Error('Selected work13 was not found');
+ const gallery=serviceBeforeAfterProjects['teploe-osteklenie'];
+ if(!gallery.some(p=>p.title===project.title))gallery.push({...project,stage:'glazing'});
+}
