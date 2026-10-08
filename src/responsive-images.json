@@ -11280,5 +11280,447 @@
         "src": "/assets/portfolio-finish-refs-v4/work322-before-v2.webp"
       }
     ]
+  },
+  "/assets/portfolio-before-windows-v1/work315-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work315-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work315-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work315-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work315-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work316-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work316-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work316-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work316-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work316-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work318-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work318-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work318-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work318-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work318-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work319-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work319-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work319-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work319-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work319-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work320-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work320-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work320-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work320-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work320-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work84-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work84-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work84-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work84-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work84-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work85-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work85-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work85-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work85-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work85-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work86-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work86-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work86-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work86-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work86-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work87-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work87-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work87-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work87-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work87-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work90-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work90-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work90-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work90-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work90-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work92-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work92-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work92-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work92-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work92-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work249-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work249-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work249-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work249-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work249-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work289-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work289-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work289-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work289-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work289-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work295-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work295-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work295-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work295-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work295-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work298-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work298-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work298-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work298-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work298-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work299-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work299-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work299-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work299-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work299-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work300-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work300-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work300-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work300-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work300-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work302-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work302-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work302-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work302-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work302-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work303-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work303-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work303-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work303-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work303-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work304-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work304-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work304-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work304-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work304-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work306-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work306-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work306-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work306-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work306-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work310-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work310-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work310-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work310-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work310-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work311-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work311-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work311-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work311-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work311-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work313-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work313-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work313-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work313-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work313-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work314-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work314-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work314-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work314-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work314-before-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-windows-v1/work317-before-v2.webp": {
+    "src": "/assets/portfolio-before-windows-v1/work317-before-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-windows-v1/work317-before-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work317-before-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-windows-v1/work317-before-v2.webp",
+        "width": 960
+      }
+    ]
   }
 }

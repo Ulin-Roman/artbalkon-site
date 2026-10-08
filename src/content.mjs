@@ -1864,3 +1864,11 @@ beforeAfterProjects.push({"title":"Балкон с ореховой скамьё
 
 // Additional finishing reference concepts with distinct weather between paired photos.
 serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с отделкой под серо-коричневый дуб и встроенным светом","before":"portfolio-finish-refs-v4/work322-before-v2.webp","after":"portfolio-finish-refs-v4/work322-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Отделка под дерево объединила стены, пол и потолок.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishFourthSeries":true});
+
+// Keep every shared portfolio occurrence on the same corrected before photograph.
+import { beforeWindowCorrections } from './portfolio-before-window-corrections.mjs';
+for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) {
+  if (beforeWindowCorrections[project.before]) project.before = beforeWindowCorrections[project.before];
+ }
+}
