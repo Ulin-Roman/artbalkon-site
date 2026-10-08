@@ -405,7 +405,7 @@ for (const previous of Object.values(beforeWindowCorrections)) {
  assert.ok(renderedGalleries.includes(`/assets/${target}`), `Corrected before must appear: ${target}`);
 }
 
-assert.equal(Object.keys(beforeGeometryCorrections).length,9);
+assert.equal(Object.keys(beforeGeometryCorrections).length,10);
 for (const target of Object.values(beforeGeometryCorrections)) {
  const matches=allPhotoPairs.filter(p=>p.before===target);
  assert.ok(matches.length>0 && matches.every(p=>p.beforeReal!==true && p.beforeVisualized===true));
