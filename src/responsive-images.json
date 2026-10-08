@@ -11858,5 +11858,22 @@
         "width": 1086
       }
     ]
+  },
+  "/assets/portfolio-before-geometry-v1/work306-before-curve-v4.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work306-before-curve-v4.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work306-before-curve-v4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work306-before-curve-v4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work306-before-curve-v4.webp",
+        "width": 960
+      }
+    ]
   }
 }
