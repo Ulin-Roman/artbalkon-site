@@ -11,7 +11,12 @@ const cssResult=await optimizeCss((await readFile('public/styles.css','utf8'))+'
 const giftVersion=createHash('sha256').update(await readFile('src/gift-3d.mjs','utf8')).update(await readFile('package-lock.json','utf8')).digest('hex').slice(0,12);
 const appCode=await optimizeJs(appSource.replace("'gift-3d.js'","'gift-3d.js?v="+giftVersion+"'"));
 const fingerprint=text=>createHash('sha256').update(text).digest('hex').slice(0,12);
-const optimizeHtml=html=>html.replace(/<img\b[^>]*>/g,tag=>{
+// Use the prepared full-size WebP in comparisons as well as thumbnails.
+const comparisonAsset=src=>responsiveImages[src.startsWith('/')?src:'/'+src]?.src.slice(1)||src;
+const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,url=>{
+ const asset='/assets/'+url.split('/assets/')[1],entry=responsiveImages[asset];
+ return entry?url.replace(asset,entry.src):url;
+}).replace(/href="(\/assets\/certificates\/[^"<>]+)"/g,(_,src)=>'href="'+(responsiveImages[src]?.src||src)+'"').replace(/(data-(?:before|after)=")([^"]+)(")/g,(_,prefix,src,suffix)=>prefix+comparisonAsset(src)+suffix).replace(/<img\b[^>]*>/g,tag=>{
  const src=tag.match(/\bsrc="([^"]+)"/)?.[1],entry=responsiveImages[src];if(!entry)return tag;
  if(tag.includes('data-src="'))return tag.replace('data-src="'+src+'"','data-src="'+entry.src+'"');
  const sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
@@ -66,7 +71,7 @@ for(const p of projects){
 const privacy=(await readFile('src/privacy.html','utf8')).replaceAll('{{SITE_URL}}',esc(company.origin.replace(/\/$/,''))).replaceAll('{{SITE_LABEL}}',esc(company.origin.replace(/^https?:\/\//,'').replace(/\/$/,'')));
 await page('/privacy/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Политика конфиденциальности</h1>${privacy}</article>`,{title:'Политика конфиденциальности — ArtBalkon',noindex:true});
 await page('/consent/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Согласие на обработку персональных данных</h1><p>Отправляя форму с отмеченным полем согласия, я разрешаю ${esc(company.operator)} обрабатывать предоставленные мной имя, номер телефона и сведения о заявке для связи со мной, подготовки расчёта и обсуждения заказа.</p><p>Обработка включает сбор, запись, систематизацию, накопление, хранение, уточнение, использование и удаление указанных данных. Данные об источнике перехода и рекламные метки используются для определения источника заявки.</p><p>Согласие действует до достижения целей обработки или его отзыва. Я могу отозвать согласие по электронной почте <a href="mailto:${company.privacyEmail}">${company.privacyEmail}</a>, указав в теме «Отзыв согласия на обработку персональных данных».</p><p>Подробные условия изложены в <a href="/privacy/">политике конфиденциальности</a>.</p></article>`,{title:'Согласие на обработку персональных данных — ArtBalkon',noindex:true});
-await writeFile('dist/404.html',baseHtml(shell('<section class="section container legal"><p class="eyebrow">404</p><h1>Такой страницы нет</h1><p>Вернитесь на главную — там услуги, цены и наши работы.</p><a class="button" href="/">На главную ↗</a></section>',{title:'Страница не найдена — ArtBalkon',description:'Запрошенная страница не найдена. Перейдите на главную страницу ArtBalkon.',path:'/404.html',noindex:true})));
+await writeFile('dist/404.html',baseHtml(optimizeHtml(shell('<section class="section container legal"><p class="eyebrow">404</p><h1>Такой страницы нет</h1><p>Вернитесь на главную — там услуги, цены и наши работы.</p><a class="button" href="/">На главную ↗</a></section>',{title:'Страница не найдена — ArtBalkon',description:'Запрошенная страница не найдена. Перейдите на главную страницу ArtBalkon.',path:'/404.html',noindex:true}))));
 if(mailForms){
  await mkdir('dist/api',{recursive:true});
  for(const file of ['leads.php','mail-lib.php'])await cp('server/'+file,'dist/api/'+file);

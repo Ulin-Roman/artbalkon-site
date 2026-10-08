@@ -649,7 +649,7 @@ html{scroll-padding-top:84px}
  color:#fff;
  background:
   linear-gradient(90deg,rgba(4,27,29,.92) 0%,rgba(4,27,29,.72) 48%,rgba(4,27,29,.38) 100%),
-  url('/assets/concept-finishing.jpg') center/cover no-repeat;
+  url('/assets/optimized/concept-finishing.webp') center/cover no-repeat;
  box-shadow:0 24px 60px rgba(6,44,47,.18);
 }
 .final-visual-cta .final-copy{align-self:center;max-width:520px}
@@ -679,7 +679,7 @@ html{scroll-padding-top:84px}
  .final-lead-form{width:100%;max-width:620px}
 }
 @media(max-width:640px){
- .final-section.final-visual-cta{width:calc(100% - 32px);margin-top:48px;margin-bottom:48px;padding:30px 18px 18px;border-radius:18px;background:linear-gradient(180deg,rgba(4,27,29,.56) 0%,rgba(4,27,29,.9) 48%,rgba(4,27,29,.96) 100%),url('/assets/concept-finishing.jpg') 58% center/cover no-repeat}
+ .final-section.final-visual-cta{width:calc(100% - 32px);margin-top:48px;margin-bottom:48px;padding:30px 18px 18px;border-radius:18px;background:linear-gradient(180deg,rgba(4,27,29,.56) 0%,rgba(4,27,29,.9) 48%,rgba(4,27,29,.96) 100%),url('/assets/optimized/concept-finishing.webp') 58% center/cover no-repeat}
  .final-visual-cta .final-copy{text-align:center}
  .final-visual-cta .final-copy .eyebrow{justify-content:center}
  .final-visual-cta .final-copy h2{font-size:36px}
@@ -771,7 +771,7 @@ html,body,main{background:var(--page-gray)}
 /* The closing lead form remains photographic; its form itself is a white card. */
 .final-section.final-visual-cta{
  border:0;
- background:linear-gradient(90deg,rgba(4,27,29,.92) 0%,rgba(4,27,29,.72) 48%,rgba(4,27,29,.38) 100%),url('/assets/concept-finishing.jpg') center/cover no-repeat;
+ background:linear-gradient(90deg,rgba(4,27,29,.92) 0%,rgba(4,27,29,.72) 48%,rgba(4,27,29,.38) 100%),url('/assets/optimized/concept-finishing.webp') center/cover no-repeat;
  box-shadow:0 22px 58px rgba(18,28,30,.13);
 }
 .final-lead-form{border-color:rgba(255,255,255,.72);background:rgba(255,255,255,.97);box-shadow:var(--surface-shadow-hover)}
@@ -782,7 +782,7 @@ html,body,main{background:var(--page-gray)}
 @media(max-width:640px){
  .service-card,.extra-card,.review,.before-after-card,.partner-brand-card,.quiz-layout,.thermal-section,.transformation,.contact-location,.service-scope-grid article,.service-seo-intro figure,.certificate-card a{border-radius:18px;box-shadow:0 8px 24px rgba(18,28,30,.055)}
  .trust-strip>div{border:1px solid var(--surface-border)!important;border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(18,28,30,.05)}
- .final-section.final-visual-cta{background:linear-gradient(180deg,rgba(4,27,29,.56) 0%,rgba(4,27,29,.9) 48%,rgba(4,27,29,.96) 100%),url('/assets/concept-finishing.jpg') 58% center/cover no-repeat}
+ .final-section.final-visual-cta{background:linear-gradient(180deg,rgba(4,27,29,.56) 0%,rgba(4,27,29,.9) 48%,rgba(4,27,29,.96) 100%),url('/assets/optimized/concept-finishing.webp') 58% center/cover no-repeat}
 }
 
 /* Stronger headings and homepage value propositions. */
@@ -2846,11 +2846,11 @@ main .eyebrow{display:none!important}
  background:linear-gradient(180deg,rgba(18,20,21,.38) 0%,rgba(18,20,21,.64) 40%,rgba(18,20,21,.9) 72%,rgba(18,20,21,.98) 100%);
 }
 .final-section.final-visual-cta{
- background:linear-gradient(90deg,rgba(18,20,21,.92) 0%,rgba(18,20,21,.72) 48%,rgba(18,20,21,.38) 100%),url('/assets/concept-finishing.jpg') center/cover no-repeat;
+ background:linear-gradient(90deg,rgba(18,20,21,.92) 0%,rgba(18,20,21,.72) 48%,rgba(18,20,21,.38) 100%),url('/assets/optimized/concept-finishing.webp') center/cover no-repeat;
 }
 @media(max-width:640px){
  .final-section.final-visual-cta{
-  background:linear-gradient(180deg,rgba(18,20,21,.54) 0%,rgba(18,20,21,.9) 48%,rgba(18,20,21,.96) 100%),url('/assets/concept-finishing.jpg') 58% center/cover no-repeat;
+  background:linear-gradient(180deg,rgba(18,20,21,.54) 0%,rgba(18,20,21,.9) 48%,rgba(18,20,21,.96) 100%),url('/assets/optimized/concept-finishing.webp') 58% center/cover no-repeat;
  }
 }
 .trust-copy{display:flex;min-width:0;flex-direction:column;align-items:flex-start;gap:4px}

@@ -226,6 +226,7 @@ assert.equal(addedOffice.after,'owner-projects/balcony-office-after.webp');
 assert.equal(addedOffice.visualized,false);
 assert.equal(addedOffice.beforeReal,true);
 assert.equal(addedOffice.afterReal,true);
+const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
 const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';
 for(const slug of bundledServiceSlugs){const legacy=await readFile(join(root,slug,'index.html'),'utf8');assert.ok(legacy.includes('noindex,follow'),`${slug} must be a noindex redirect`);assert.ok(legacy.includes('/balkon-pod-klyuch/#complex-options'),`${slug} must redirect to bundled options`);}
@@ -236,15 +237,29 @@ for(const file of pages){const html=await readFile(file,'utf8'),isRedirect=html.
  const title=html.match(/<title>([^<]+)<\/title>/)?.[1],description=html.match(/<meta name="description" content="([^"]+)"/)?.[1],canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];assert.ok(title&&title.length>=20&&title.length<=90,file+' invalid title length');assert.ok(description&&description.length>=60&&description.length<=220,file+' invalid description length');assert.ok(canonical?.startsWith('https://'),file+' invalid canonical');assert.ok(!titles.has(title),`${file} repeats title from ${titles.get(title)}`);assert.ok(!canonicals.has(canonical),`${file} repeats canonical from ${canonicals.get(canonical)}`);if(!html.includes('name="robots" content="noindex')){assert.ok(!descriptions.has(description),file+' repeats indexable description');descriptions.set(description,file);}
  titles.set(title,file);canonicals.set(canonical,file);if(!html.includes('name="robots" content="noindex'))indexedCanonicals.add(canonical);
  for(const tag of ['property="og:image"','property="og:image:alt"','name="twitter:card"','name="twitter:image"','hreflang="ru-RU"','hreflang="x-default"'])assert.ok(html.includes(tag),file+' missing '+tag);
+ for(const [,imageUrl] of html.matchAll(/<meta (?:property="og:image"|name="twitter:image") content="([^"]+)"/g)){
+  const imagePath=new URL(imageUrl).pathname;
+  await stat(join(root,base==='/'?imagePath:imagePath.slice(base.length-1)));
+ }
  const jsonLd=html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)?.[1];assert.ok(jsonLd,file+' missing JSON-LD');const schema=JSON.parse(jsonLd);assert.ok(Array.isArray(schema['@graph']),file+' JSON-LD must use @graph');const schemaTypes=schema['@graph'].flatMap(item=>Array.isArray(item['@type'])?item['@type']:[item['@type']]);for(const type of ['HomeAndConstructionBusiness','WebSite','WebPage'])assert.ok(schemaTypes.includes(type),`${file} missing ${type} schema`);if(html.includes('service-page-faq')){assert.ok(schemaTypes.includes('Service'),file+' missing Service schema');assert.ok(schemaTypes.includes('FAQPage'),file+' missing FAQPage schema');}if(html.includes('case-intro'))assert.ok(schemaTypes.includes('Article'),file+' missing Article schema');
  // Additional services show static illustrations, without portfolio modal triggers.
  const extrasHtml=html.match(/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>/)?.[0]||'';
  if(extrasHtml){assert.equal((extrasHtml.match(/class="turnkey-extra-media"/g)||[]).length,3,file+' must feature three static extra service illustrations');assert.ok(!/data-comparison|data-case=|<button/.test(extrasHtml),file+' additional services must not open portfolio comparisons');}
  const galleryHtml=html.replace(extrasHtml,'');
+ for(const [,asset] of galleryHtml.matchAll(/data-(?:before|after)="([^"]+)"/g)){
+  assert.ok(asset.startsWith('assets/'),file+' comparison must use a local image');
+  await stat(join(root,asset));
+  assert.ok(!responsiveImages['/'+asset]||responsiveImages['/'+asset].src==='/'+asset,file+' comparison still loads an unoptimized source');
+ }
  const comparisonPairs=[...galleryHtml.matchAll(/data-before="([^"]+)" data-after="([^"]+)"/g)].map(match=>`${match[1]}|${match[2]}`);if(html.includes('service-page-faq'))assert.ok(comparisonPairs.length>=1,file+' must have relevant before/after examples');if(comparisonPairs.length){assert.equal(new Set(comparisonPairs).size,comparisonPairs.length,file+' repeats before/after images');}
  for(const m of html.matchAll(/(?:href|src|poster|data-src)="([^"<>]+)"/g)){const url=m[1];if(!url.startsWith('/')&&!url.startsWith('#'))continue;const [pathWithQuery,fragment]=url.split('#'),path=pathWithQuery.split('?')[0];if(path&&base!=='/'&&!path.startsWith(base))assert.fail(`${file} uses path outside Pages base: ${url}`);let target=path?join(root,base==='/'?path:path.slice(base.length-1)):file;try{if((await stat(target)).isDirectory())target=join(target,'index.html');await stat(target);}catch{assert.fail(`${file} missing ${url}`);}if(fragment&&!isRedirect){const content=await readFile(target,'utf8');assert.ok(content.includes(`id="${fragment}"`),`${file} missing anchor ${url}`);}refs++;}
 }
 for(const page of pages){const html=await readFile(page,'utf8');for(const match of html.matchAll(/srcset="([^"]+)"/g)){for(const candidate of match[1].split(',')){const url=candidate.trim().split(/\s+/)[0];if(url.startsWith('/'))await stat(join(root,base==='/'?url:url.slice(base.length-1)));}}}
+const feed=await readFile(join(root,'yandex-direct.xml'),'utf8');
+for(const [,picture] of feed.matchAll(/<picture>([^<]+)<\/picture>/g)){
+ const imagePath=new URL(picture.replaceAll('&amp;','&')).pathname;
+ await stat(join(root,base==='/'?imagePath:imagePath.slice(base.length-1)));
+}
 const sitemap=await readFile(join(root,'sitemap.xml'),'utf8');
 const sitemapUrls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
 assert.deepEqual(new Set(sitemapUrls),indexedCanonicals,'sitemap must contain exactly the indexable canonical URLs');
@@ -255,7 +270,7 @@ assert.ok(!robots.includes(`Disallow: ${base}privacy/`)&&!robots.includes(`Disal
 for(const asset of ['assets/manrope.woff2','assets/manrope-bold.woff2','robots.txt','sitemap.xml','site-config.json'])await stat(join(root,asset));
 const searchable=files.filter(file=>/\.(?:html|css|js|json|xml|txt)$/.test(file));const siteText=(await Promise.all(searchable.map(file=>readFile(file,'utf8')))).join('\n').replaceAll('\\','/');for(const asset of files.filter(file=>file.includes(`${join(root,'assets')}`))){const relative=asset.slice(root.length+1).replaceAll('\\','/');assert.ok(siteText.includes(relative),`unused built asset: ${relative}`);}
 await assert.rejects(stat(join(root,'styles-extra.css')),/ENOENT/);
-for(const file of ['dist/app.js','scripts/optimize.mjs','public/app.js','scripts/server.mjs','scripts/leads.mjs','src/components.mjs','src/content.mjs'])execFileSync(process.execPath,['--check',file]);
+for(const file of ['dist/app.js','scripts/build.mjs','scripts/optimize.mjs','public/app.js','scripts/server.mjs','scripts/leads.mjs','src/components.mjs','src/content.mjs'])execFileSync(process.execPath,['--check',file]);
 const home=await readFile(join(root,'index.html'),'utf8');
 if(base!=='/'){assert.ok(home.includes(`href="${base}styles.css`));assert.ok(home.includes(`src="${base}app.js`));assert.ok(home.includes(`srcset="${base}assets/`));assert.ok(home.includes(`data-src="${base}assets/`));assert.ok(home.includes(`poster="${base}assets/video/process-poster.jpg"`));assert.ok(home.includes(`poster="${base}assets/video/result-poster.jpg"`));assert.ok(home.includes(`href="${base}osteklenie-balkonov/"`));assert.ok(home.includes(`<link rel="canonical" href="https://ulin-roman.github.io${base}"`));const css=await readFile(join(root,'styles.css'),'utf8');assert.ok(css.includes(`${base}assets/manrope.woff2`));assert.ok(!css.includes("url('/assets/"));assert.ok(!home.includes('srcset="/assets/'));assert.ok(!home.includes('data-src="/assets/'));assert.ok(!home.includes('poster="/assets/'));}
 const total=await Promise.all(files.filter(f=>f.endsWith('.webp')).map(f=>stat(f).then(s=>s.size)));

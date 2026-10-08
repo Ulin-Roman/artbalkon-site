@@ -11,7 +11,7 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
  const entries=await Promise.all(Object.entries(ids).map(async([slug,id])=>{
   const service=services.find(s=>s.slug===slug);
   if(!service)throw Error(`Missing feed service: ${slug}`);
-  const asset='direct-feed/'+slug+'.jpg',bytes=await readFile(`public/assets/${asset}`);
+  const asset='optimized/direct-feed/'+slug+'.jpg',bytes=await readFile(`public/assets/${asset}`);
   if(bytes.length>10*1024*1024)throw Error(`Feed picture too large: ${asset}`);
   const hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
   const title=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
