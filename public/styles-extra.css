@@ -4876,14 +4876,34 @@ main > .social-subscribe,
  .quiz-form .quiz-controls .button,.quiz-form .quiz-controls .quiz-next-button{flex:0 1 auto;min-width:0;margin-left:auto;padding:12px 10px;font-size:12px;line-height:1.35;text-align:center;white-space:normal}
 }
 
-/* Linked review scores below the homepage consultation button. */
-.hero-rating-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:490px;margin-top:18px}
-.hero-rating-badge{display:flex;align-items:center;gap:9px;min-width:0;padding:12px;background:#fff;border:1px solid #e6e7ea;border-radius:14px;box-shadow:0 4px 18px rgba(35,43,49,.04)}
-.hero-rating-badge:hover{border-color:var(--teal)}
-.hero-rating-badge>img{width:26px;height:26px;object-fit:contain;flex:0 0 26px}
-.hero-rating-details{display:flex;flex-wrap:wrap;align-items:center;gap:3px 9px;min-width:0}
-.hero-rating-details strong{font-size:19px;font-weight:600;line-height:1.35;white-space:nowrap}
-.hero-rating-star{color:#ffb21c;font-size:20px}
-.hero-rating-count{font-size:12px;line-height:1.4;color:var(--muted);white-space:nowrap}
-@media(max-width:640px){.hero-rating-badges{gap:8px;margin-top:15px}.hero-rating-badge{padding:10px;gap:7px}.hero-rating-badge>img{width:23px;height:23px;flex-basis:23px}.hero-rating-details{column-gap:7px}.hero-rating-details strong{font-size:18px}}
+/* Compact linked review scores below the homepage consultation button. */
+.hero-rating-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:420px;margin-top:16px}
+.hero-rating-badge{display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;padding:3px 0;background:transparent;border:0;border-radius:0;box-shadow:none}
+.hero-rating-badge+.hero-rating-badge{border-left:1px solid var(--line);padding-left:16px}
+.hero-rating-badge:hover .hero-rating-count{text-decoration:underline;text-underline-offset:3px}
+.hero-rating-badge>img{width:18px;height:18px;object-fit:contain;flex:0 0 18px}
+.hero-rating-details{display:flex;align-items:center;gap:7px;min-width:0}
+.hero-rating-details strong{font-size:15px;font-weight:600;line-height:1.4;white-space:nowrap}
+.hero-rating-star{color:#ffb21c;font-size:16px}
+.hero-rating-count{font-size:11px;line-height:1.4;color:var(--muted);white-space:nowrap}
 .home-page .hero .hero-rating-badge,.home-page .hero-rating-details strong{color:var(--ink)}
+@media(max-width:640px){
+ .hero-rating-badges{gap:10px;margin-top:13px}
+ .hero-rating-badge{gap:5px}
+ .hero-rating-badge+.hero-rating-badge{padding-left:10px;border-color:rgba(255,255,255,.35)}
+ .hero-rating-badge>img{width:16px;height:16px;flex-basis:16px}
+ .hero-rating-details{gap:5px}
+ .hero-rating-details strong,.hero-rating-star{font-size:14px}
+ .hero-rating-count{font-size:10px}
+ .home-page .hero .hero-rating-badge,.home-page .hero-rating-details strong{color:#fff}
+ .home-page .hero-rating-count{color:rgba(255,255,255,.85)}
+}
+@media(max-width:360px){
+ .hero-rating-badges{gap:8px}
+ .hero-rating-badge{gap:4px}
+ .hero-rating-badge+.hero-rating-badge{padding-left:8px}
+ .hero-rating-badge>img{width:14px;height:14px;flex-basis:14px}
+ .hero-rating-details{gap:4px}
+ .hero-rating-details strong,.hero-rating-star{font-size:12px}
+ .hero-rating-count{font-size:9px}
+}
