@@ -4876,7 +4876,7 @@ main > .social-subscribe,
  .quiz-form .quiz-controls .button,.quiz-form .quiz-controls .quiz-next-button{flex:0 1 auto;min-width:0;margin-left:auto;padding:12px 10px;font-size:12px;line-height:1.35;text-align:center;white-space:normal}
 }
 
-/* Compact linked review scores below the homepage consultation button. */
+/* Compact linked review scores across the site. */
 .hero-rating-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:420px;margin-top:16px}
 .hero-rating-badge{display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;padding:3px 0;background:transparent;border:0;border-radius:0;box-shadow:none}
 .hero-rating-badge+.hero-rating-badge{border-left:1px solid var(--line);padding-left:16px}
@@ -4886,17 +4886,18 @@ main > .social-subscribe,
 .hero-rating-details strong{font-size:15px;font-weight:600;line-height:1.4;white-space:nowrap}
 .hero-rating-star{color:#ffb21c;font-size:16px}
 .hero-rating-count{font-size:11px;line-height:1.4;color:var(--muted);white-space:nowrap}
-.home-page .hero .hero-rating-badge,.home-page .hero-rating-details strong{color:var(--ink)}
+.hero-rating-badge,.hero-rating-details strong{color:var(--ink)}
 @media(max-width:640px){
  .hero-rating-badges{gap:10px;margin-top:13px}
  .hero-rating-badge{gap:5px}
- .hero-rating-badge+.hero-rating-badge{padding-left:10px;border-color:rgba(255,255,255,.35)}
+ .hero-rating-badge+.hero-rating-badge{padding-left:10px}
  .hero-rating-badge>img{width:16px;height:16px;flex-basis:16px}
  .hero-rating-details{gap:5px}
  .hero-rating-details strong,.hero-rating-star{font-size:14px}
  .hero-rating-count{font-size:10px}
- .home-page .hero .hero-rating-badge,.home-page .hero-rating-details strong{color:#fff}
- .home-page .hero-rating-count{color:rgba(255,255,255,.85)}
+ :is(.home-page .hero,.landing-hero) .hero-rating-badge,:is(.home-page .hero,.landing-hero) .hero-rating-details strong{color:#fff}
+ :is(.home-page .hero,.landing-hero) .hero-rating-count{color:rgba(255,255,255,.85)}
+ :is(.home-page .hero,.landing-hero) .hero-rating-badge+.hero-rating-badge{border-color:rgba(255,255,255,.35)}
 }
 @media(max-width:360px){
  .hero-rating-badges{gap:8px}
@@ -4907,3 +4908,7 @@ main > .social-subscribe,
  .hero-rating-details strong,.hero-rating-star{font-size:12px}
  .hero-rating-count{font-size:9px}
 }
+
+.page-rating-row{margin-bottom:20px}
+.hero-cta-stack>.hero-rating-badges{width:100%}
+.case-details>.hero-rating-badges{margin-bottom:16px}
