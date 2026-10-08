@@ -1879,3 +1879,8 @@ for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterP
   if (beforeGeometryCorrections[project.before]) project.before = beforeGeometryCorrections[project.before];
  }
 }
+
+// The selected loggia uses a wall-supported countertop with clear knee space.
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) if (project.title==='Лоджия со столом') project.after='service-before-after/renovation-loggia-07-after-countertop-v3.webp';
+}

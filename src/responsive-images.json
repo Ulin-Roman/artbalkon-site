@@ -11841,5 +11841,22 @@
         "width": 960
       }
     ]
+  },
+  "/assets/service-before-after/renovation-loggia-07-after-countertop-v3.webp": {
+    "src": "/assets/service-before-after/renovation-loggia-07-after-countertop-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/service-before-after/renovation-loggia-07-after-countertop-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/service-before-after/renovation-loggia-07-after-countertop-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/service-before-after/renovation-loggia-07-after-countertop-v3.webp",
+        "width": 1086
+      }
+    ]
   }
 }
