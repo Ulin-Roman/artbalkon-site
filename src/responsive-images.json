@@ -11909,5 +11909,56 @@
         "width": 1027
       }
     ]
+  },
+  "/assets/panorama-no-handles-v2/work283-after-no-handles-v2.webp": {
+    "src": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/panorama-no-handles-v2/work267-after-no-handles-v2.webp": {
+    "src": "/assets/panorama-no-handles-v2/work267-after-no-handles-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/panorama-no-handles-v2/work267-after-no-handles-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/panorama-no-handles-v2/work267-after-no-handles-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/panorama-no-handles-v2/work267-after-no-handles-v2.webp",
+        "width": 1083
+      }
+    ]
+  },
+  "/assets/panorama-no-handles-v2/work270-after-no-handles-v2.webp": {
+    "src": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2.webp",
+        "width": 1254
+      }
+    ]
   }
 }

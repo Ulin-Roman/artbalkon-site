@@ -1,5 +1,7 @@
 // Generated AFTER edits only; source photos and BEFORE views are preserved.
 export const realismAfterAssets = Object.freeze({
+  "service-before-after/panoramic-loggia-09-after.jpg": "panorama-no-handles-v2/work270-after-no-handles-v2.webp",
+  "portfolio-diverse-v4/panoramnoe-osteklenie-2-standard-v2-after.webp": "panorama-no-handles-v2/work283-after-no-handles-v2.webp",
   "service-before-after/glazing-new-02-after.png": "portfolio-realism-v1/after-17.webp",
   "service-before-after/glazing-new-02-after.webp": "portfolio-realism-v1/after-17.webp",
   "service-before-after/glazing-new-02-after.jpg": "portfolio-realism-v1/after-17.webp",
@@ -93,9 +95,9 @@ export const realismAfterAssets = Object.freeze({
   "service-before-after/loggia-angled-03-after-no-handles.webp": "portfolio-realism-v1/after-164.webp",
   "service-before-after/loggia-angled-03-after-no-handles.png": "portfolio-realism-v1/after-164.webp",
   "service-before-after/loggia-angled-03-after-no-handles.jpg": "portfolio-realism-v1/after-164.webp",
-  "service-before-after/loggia-angled-05-after.png": "portfolio-realism-v1/after-165.webp",
-  "service-before-after/loggia-angled-05-after.webp": "portfolio-realism-v1/after-165.webp",
-  "service-before-after/loggia-angled-05-after.jpg": "portfolio-realism-v1/after-165.webp",
+  "service-before-after/loggia-angled-05-after.png": "panorama-no-handles-v2/work267-after-no-handles-v2.webp",
+  "service-before-after/loggia-angled-05-after.webp": "panorama-no-handles-v2/work267-after-no-handles-v2.webp",
+  "service-before-after/loggia-angled-05-after.jpg": "panorama-no-handles-v2/work267-after-no-handles-v2.webp",
   "service-before-after/loggia-angled-06-after-no-handles.png": "portfolio-realism-v1/after-166.webp",
   "service-before-after/loggia-angled-06-after-no-handles.webp": "portfolio-realism-v1/after-166.webp",
   "service-before-after/loggia-angled-06-after-no-handles.jpg": "portfolio-realism-v1/after-166.webp",
