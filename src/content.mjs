@@ -1573,7 +1573,7 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
 
 serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "title": "Балкон с книжными полками и скамьёй",
-  "before": "turnkey-books-v1/before.webp",
+  "before": "turnkey-books-v1/before-jars-v2.webp",
   "after": "turnkey-books-v1/after.webp",
   "objectType": "balcony",
   "stage": "turnkey",

@@ -11892,5 +11892,22 @@
         "width": 960
       }
     ]
+  },
+  "/assets/turnkey-books-v1/before-jars-v2.webp": {
+    "src": "/assets/turnkey-books-v1/before-jars-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/turnkey-books-v1/before-jars-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/turnkey-books-v1/before-jars-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/turnkey-books-v1/before-jars-v2.webp",
+        "width": 1027
+      }
+    ]
   }
 }
