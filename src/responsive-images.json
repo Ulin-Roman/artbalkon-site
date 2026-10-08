@@ -12229,5 +12229,22 @@
         "width": 960
       }
     ]
+  },
+  "/assets/portfolio-realism-v2/work318-after-floor-v2.webp": {
+    "src": "/assets/portfolio-realism-v2/work318-after-floor-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-realism-v2/work318-after-floor-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-realism-v2/work318-after-floor-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-realism-v2/work318-after-floor-v2.webp",
+        "width": 960
+      }
+    ]
   }
 }
