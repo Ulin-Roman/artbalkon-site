@@ -4919,3 +4919,11 @@ main > .social-subscribe,
 @media(max-width:900px){.site-header .brand{width:116px;flex-basis:116px}}
 @media(max-width:640px){.site-header .brand{width:112px;flex-basis:112px}}
 @media(max-width:360px){.site-header .brand{width:94px;flex-basis:94px}}
+/* Desktop scores sit directly above the page title, aligned with its left edge. */
+@media(min-width:641px){
+ main h1+.page-rating-row{margin-bottom:20px}
+ main .hero-rating-badges{width:320px;max-width:100%;margin:0 0 18px}
+ main .hero-rating-badge{justify-content:flex-start}
+ main .page-rating-row{margin:0}
+ main .page-rating-row .hero-rating-badges{margin-bottom:18px}
+}

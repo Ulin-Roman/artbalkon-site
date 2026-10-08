@@ -1,5 +1,17 @@
 (() => {
  'use strict';
+ // Keep the same ratings row above the title on desktop and at its original slot on phones.
+ const ratingsRow=document.querySelector('main .hero-rating-badges');
+ const pageTitle=document.querySelector('main h1');
+ if(ratingsRow&&pageTitle){
+  const ratingsBlock=ratingsRow.closest('.page-rating-row')||ratingsRow;
+  const ratingsSlot=document.createComment('ratings mobile position');
+  ratingsBlock.before(ratingsSlot);
+  const desktopRatings=matchMedia('(min-width: 641px)');
+  const placeRatings=()=>{if(desktopRatings.matches)pageTitle.before(ratingsBlock);else ratingsSlot.after(ratingsBlock);};
+  placeRatings();
+  desktopRatings.addEventListener('change',placeRatings);
+ }
  const $=s=>document.querySelector(s);
  const siteBase=new URL('.',document.currentScript.src);
  const cookieNotice=$('#cookie-notice');
