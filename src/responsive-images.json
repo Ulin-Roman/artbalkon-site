@@ -11025,5 +11025,22 @@
         "src": "/assets/portfolio-finish-refs-v1/work304-before-v2.webp"
       }
     ]
+  },
+  "/assets/portfolio-finish-refs-v1/work301-before-v2.webp": {
+    "src": "/assets/portfolio-finish-refs-v1/work301-before-v2-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-finish-refs-v1/work301-before-v2-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-finish-refs-v1/work301-before-v2-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-finish-refs-v1/work301-before-v2.webp"
+      }
+    ]
   }
 }
