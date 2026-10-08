@@ -11875,5 +11875,22 @@
         "width": 960
       }
     ]
+  },
+  "/assets/portfolio-diverse-v4/work10-empty-v2-after.webp": {
+    "src": "/assets/portfolio-diverse-v4/work10-empty-v2-after.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-diverse-v4/work10-empty-v2-after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-diverse-v4/work10-empty-v2-after-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-diverse-v4/work10-empty-v2-after.webp",
+        "width": 960
+      }
+    ]
   }
 }

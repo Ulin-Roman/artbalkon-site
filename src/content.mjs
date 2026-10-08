@@ -1901,3 +1901,19 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  const gallery=serviceBeforeAfterProjects['teploe-osteklenie'];
  if(!gallery.some(p=>p.title===project.title))gallery.push({...project,stage:'glazing'});
 }
+
+// Empty balcony comparison moved from home to cold glazing.
+{
+ const title='Серая отделка и стол у окна';
+ for(const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+  for(const project of gallery) if(project.title===title) {
+   project.after='portfolio-diverse-v4/work10-empty-v2-after.webp';
+   project.description='Визуализация обновлённого балкона с остеклением и свободным пространством без мебели.';
+  }
+ }
+ const index=beforeAfterProjects.findIndex(p=>p.title===title);
+ if(index<0)throw new Error('Selected work10 was not found');
+ const [project]=beforeAfterProjects.splice(index,1);
+ const gallery=serviceBeforeAfterProjects['holodnoe-osteklenie'];
+ if(!gallery.some(p=>p.title===title))gallery.push({...project,stage:'glazing',transferredColdGallery:true});
+}

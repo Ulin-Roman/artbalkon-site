@@ -134,11 +134,11 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  assert.deepEqual(actual,[...new Set(projects.map(p=>p.after))],`${label}: hero must use its own AFTER gallery`);
 }
 const originalHomeProjects=beforeAfterProjects.filter(p=>!p.newPortfolioSeries&&!p.newPerspectiveSeries&&!p.newDiverseSeries&&!p.importedHomeWork&&!p.referenceHomeSeries&&!p.referenceHomeSecondSeries);
-assert.equal(originalHomeProjects.length,12,'Home must contain 12 primary pairs');
-assert.equal(new Set(originalHomeProjects.map(p=>p.after)).size,12,'Home must not repeat rooms');
+assert.equal(originalHomeProjects.length,11,'Home must contain 11 retained primary pairs');
+assert.equal(new Set(originalHomeProjects.map(p=>p.after)).size,11,'Home must not repeat rooms');
 for(const [type,slug] of [['balcony','balkon-pod-klyuch'],['loggia','lodzhiya-pod-klyuch']]){
  const selected=originalHomeProjects.filter(p=>p.objectType===type);
- assert.equal(selected.length,type==='balcony'?5:7,`Home must retain its approved ${type} pairs`);
+ assert.equal(selected.length,type==='balcony'?4:7,`Home must retain its approved ${type} pairs`);
  for(const project of selected){
   if(project.title==='Отделка лоджии с узким столом'){
    assert.equal(project.stage,'finish');
@@ -166,7 +166,7 @@ for(const p of furnitureGallery){
  assert.ok(!beforeAfterProjects.some(home=>home.after===p.after),'Furniture concepts must not replace home turnkey projects');
 }
 assert.equal(services.find(s=>s.slug==='mebel-dlya-balkona').title,'Мебель для балконов и лоджий');
-const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'].filter(project=>!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries);
+const coldGallery=serviceBeforeAfterProjects['holodnoe-osteklenie'].filter(project=>!project.transferredColdGallery&&!project.newAngleSeries&&!project.newPortfolioSeries&&!project.newPerspectiveSeries&&!project.newDiverseSeries);
 assert.equal(coldGallery.length,24,'Cold glazing gallery must contain 24 distinct pairs');
 assert.equal(coldGallery.filter(project=>project.objectType==='balcony').length,12,'Cold glazing must contain twelve balcony examples');
 assert.equal(coldGallery.filter(project=>project.objectType==='loggia').length,12,'Cold glazing must contain twelve loggia examples');
@@ -189,7 +189,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
  gallery.filter(p=>!['gallery-angles-v1/balkon-pod-klyuch-3-after.webp','owner-projects/balcony-office-after.webp','turnkey-loft-v3/after.webp','turnkey-office-low-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v2/after.webp'].includes(p.after)).forEach(p=>{
-  const reviewedAfter=p.after==='portfolio-floor-work73-v1/after-chair-v2.webp'?'service-before-after/renovation-balcony-09-after.webp':p.after==='portfolio-diverse-v4/work10-low-v1-after.webp'?'service-before-after/renovation-balcony-05-after.webp':p.after==='service-before-after/renovation-loggia-11-after-one-handle-v2.webp'?'service-before-after/renovation-loggia-11-after.webp':['service-before-after/work71-top-folding-v2-after.webp','portfolio-perspectives-v3/work71-brick-v3-after.webp'].includes(p.after)?'service-before-after/renovation-balcony-07-after.webp':['service-before-after/renovation-loggia-07-after-junction-v2.webp','service-before-after/renovation-loggia-07-after-countertop-v3.webp'].includes(p.after)?'service-before-after/renovation-loggia-07-after.webp':p.after;
+  const reviewedAfter=p.after==='portfolio-floor-work73-v1/after-chair-v2.webp'?'service-before-after/renovation-balcony-09-after.webp':['portfolio-diverse-v4/work10-low-v1-after.webp','portfolio-diverse-v4/work10-empty-v2-after.webp'].includes(p.after)?'service-before-after/renovation-balcony-05-after.webp':p.after==='service-before-after/renovation-loggia-11-after-one-handle-v2.webp'?'service-before-after/renovation-loggia-11-after.webp':['service-before-after/work71-top-folding-v2-after.webp','portfolio-perspectives-v3/work71-brick-v3-after.webp'].includes(p.after)?'service-before-after/renovation-balcony-07-after.webp':['service-before-after/renovation-loggia-07-after-junction-v2.webp','service-before-after/renovation-loggia-07-after-countertop-v3.webp'].includes(p.after)?'service-before-after/renovation-loggia-07-after.webp':p.after;
   const sourceNumber=reviewedAfter==='window-details-v2/balcony-04-handles.webp'?4:Number(reviewedAfter.match(/renovation-(?:balcony|loggia)-(\d{2})-after\.webp$/)?.[1]);
   assert.ok(sourceNumber,`${slug}: unexpected finished room`);
   const key=`service-before-after/renovation-${type}-${String(sourceNumber).padStart(2,'0')}`;
