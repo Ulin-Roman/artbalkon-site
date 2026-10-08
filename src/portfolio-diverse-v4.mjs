@@ -111,7 +111,7 @@ export const diverseProjects = {
     {
       "title": "Отделка балкона с полкой для книг",
       "before": "portfolio-diverse-v4/otdelka-balkonov-3-standard-v2-before.webp",
-      "after": "portfolio-diverse-v4/otdelka-balkonov-3-standard-v2-after.webp",
+      "after": "portfolio-diverse-v4/otdelka-balkonov-3-standard-v3-after.webp",
       "stage": "finish",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "balcony",
