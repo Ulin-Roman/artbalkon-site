@@ -112,7 +112,7 @@ export const perspectiveProjects = {
     {
       "title": "Отделка широкого углового балкона",
       "before": "portfolio-perspectives-v3/otdelka-balkonov-3-standard-v2-before.webp",
-      "after": "portfolio-perspectives-v3/otdelka-balkonov-3-standard-v2-after.webp",
+      "after": "portfolio-perspectives-v3/otdelka-balkonov-3-standard-v3-after.webp",
       "stage": "finish",
       "description": "Визуализация проекта с видом через дверь или в сторону комнаты. То же помещение до и после работ при разной погоде и освещении.",
       "objectType": "balcony",

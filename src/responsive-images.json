@@ -11110,5 +11110,22 @@
         "src": "/assets/portfolio-diverse-v4/otdelka-balkonov-3-standard-v3-after.webp"
       }
     ]
+  },
+  "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-standard-v3-after.webp": {
+    "src": "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-standard-v3-after-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-standard-v3-after-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-standard-v3-after-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-standard-v3-after.webp"
+      }
+    ]
   }
 }
