@@ -4912,3 +4912,10 @@ main > .social-subscribe,
 .page-rating-row{margin-bottom:20px}
 .hero-cta-stack>.hero-rating-badges{width:100%}
 .case-details>.hero-rating-badges{margin-bottom:16px}
+
+/* Give the vector logo enough space for a legible, undistorted tagline. */
+.site-header .brand{width:140px;flex:0 0 140px}
+@media(max-width:1200px){.site-header .brand{width:124px;flex-basis:124px}}
+@media(max-width:900px){.site-header .brand{width:116px;flex-basis:116px}}
+@media(max-width:640px){.site-header .brand{width:112px;flex-basis:112px}}
+@media(max-width:360px){.site-header .brand{width:94px;flex-basis:94px}}
