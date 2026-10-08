@@ -1,6 +1,8 @@
+import {beforeGeometryCorrections} from '../src/portfolio-before-geometry-corrections.mjs';
+const beforeGeometrySources = new Map(Object.entries(beforeGeometryCorrections).map(([source,target])=>[target,source]));
 import {beforeWindowCorrections} from '../src/portfolio-before-window-corrections.mjs';
 const beforeWindowSources = new Map(Object.entries(beforeWindowCorrections).map(([source,target])=>[target,source]));
-const originalWindowBefore = before => beforeWindowSources.get(before) || before;
+const originalWindowBefore = before => { const prior = beforeGeometrySources.get(before) || before; return beforeWindowSources.get(prior) || prior; };
 import {portfolioDisplayTitles} from '../src/portfolio-titles.mjs';
 import {beforeWeatherAssets} from '../src/before-weather.mjs';
 import {readFile,readdir,stat} from 'node:fs/promises';
@@ -11,7 +13,7 @@ import {projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeH
 import {esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
 const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
-const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).map(p=>p.before));
+const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).flatMap(p=>[p.before,originalWindowBefore(p.before)]));
 const allAfterAssets=new Set(allPhotoPairs.map(p=>p.after));
 const renderedGalleries=[renderHome(),...services.map(service=>servicePageWithSeo(service))].join('\n');
 for(const [source,target] of Object.entries(beforeWeatherAssets)){
@@ -265,7 +267,7 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
  assert.equal(added.length,service.slug === 'panoramnoe-osteklenie' ? 2 : 3,`${service.slug}: approved camera view count`);
  for(const p of added){
   assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);
-  assert.ok(p.before.startsWith('gallery-angles-v1/')&&p.after.startsWith('gallery-angles-v1/'));
+  assert.ok(originalWindowBefore(p.before).startsWith('gallery-angles-v1/')&&p.after.startsWith('gallery-angles-v1/'));
   assert.notEqual(p.before,p.after);
  }
 }
@@ -379,10 +381,19 @@ for(const p of homeSecondReference){assert.equal(p.stage,"turnkey");assert.equal
 
 // Corrected generated before assets stay distinct from originals and all after assets.
 assert.equal(Object.keys(beforeWindowCorrections).length,26);
-for (const target of Object.values(beforeWindowCorrections)) {
+for (const previous of Object.values(beforeWindowCorrections)) {
+ const target = beforeGeometryCorrections[previous] || previous;
  const matches = allPhotoPairs.filter(p=>p.before===target);
  assert.ok(matches.length>0, `Unused corrected before: ${target}`);
  assert.ok(matches.every(p=>p.beforeReal!==true && p.beforeVisualized===true), `Only generated before may be corrected: ${target}`);
  assert.ok(!allAfterAssets.has(target), `Before correction must not replace after: ${target}`);
  assert.ok(renderedGalleries.includes(`/assets/${target}`), `Corrected before must appear: ${target}`);
+}
+
+assert.equal(Object.keys(beforeGeometryCorrections).length,7);
+for (const target of Object.values(beforeGeometryCorrections)) {
+ const matches=allPhotoPairs.filter(p=>p.before===target);
+ assert.ok(matches.length>0 && matches.every(p=>p.beforeReal!==true && p.beforeVisualized===true));
+ assert.ok(!allAfterAssets.has(target));
+ assert.ok(renderedGalleries.includes('/assets/'+target));
 }

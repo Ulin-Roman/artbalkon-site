@@ -1872,3 +1872,10 @@ for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterP
   if (beforeWindowCorrections[project.before]) project.before = beforeWindowCorrections[project.before];
  }
 }
+
+import { beforeGeometryCorrections } from './portfolio-before-geometry-corrections.mjs';
+for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) {
+  if (beforeGeometryCorrections[project.before]) project.before = beforeGeometryCorrections[project.before];
+ }
+}
