@@ -11178,5 +11178,39 @@
         "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2.webp"
       }
     ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work293-before-v2.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work293-before-v2-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-before-v2-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-before-v2-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-before-v2.webp"
+      }
+    ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work293-after-v2.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work293-after-v2-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-after-v2-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-after-v2-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work293-after-v2.webp"
+      }
+    ]
   }
 }
