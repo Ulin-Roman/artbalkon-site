@@ -1954,3 +1954,15 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  if(cold.some(item=>item.title===title||item.after===project.after))throw new Error('Selected work105 already exists in cold glazing');
  cold.push({...project,stage:'glazing',glazingType:'cold-parapet',transferredColdGallery:true});
 }
+
+// Work 235 has cold glazing and belongs in the cold gallery.
+{
+ const title='Раздвижное остекление длинного балкона';
+ const warm=serviceBeforeAfterProjects['teploe-osteklenie'];
+ const index=warm.findIndex(project=>project.title===title);
+ if(index<0)throw new Error('Selected work235 was not found in warm glazing');
+ const [project]=warm.splice(index,1);
+ const cold=serviceBeforeAfterProjects['holodnoe-osteklenie'];
+ if(cold.some(item=>item.title===title||item.after===project.after))throw new Error('Selected work235 already exists in cold glazing');
+ cold.push({...project,stage:'glazing',glazingType:'cold-parapet',transferredColdGallery:true});
+}
