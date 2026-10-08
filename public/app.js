@@ -182,15 +182,16 @@
  }
  document.querySelectorAll('[data-before-after-more]').forEach(button=>{
   const section=button.closest('.before-after-section');
-  const hiddenCards=[...section?.querySelectorAll('.before-after-card[hidden]')||[]];
   button.addEventListener('click',()=>{
-   const expanded=button.getAttribute('aria-expanded')!=='true';
-   hiddenCards.forEach(card=>{card.hidden=!expanded;if(expanded)card.classList.add('is-visible');});
-   button.setAttribute('aria-expanded',String(expanded));
-   button.querySelector('[data-more-label]').textContent=expanded?'Свернуть':'Смотреть ещё';
-   button.querySelector('[aria-hidden]').textContent=expanded?'↑':'↓';
-   if(expanded)track('before_after_show_more',{count:hiddenCards.length});
-   else button.scrollIntoView({block:'nearest',behavior:'instant'});
+   const remaining=[...section?.querySelectorAll('.before-after-card[hidden]')||[]];
+   const nextCards=remaining.slice(0,6);
+   nextCards.forEach(card=>{card.hidden=false;card.classList.add('is-visible');});
+   button.setAttribute('aria-expanded','true');
+   if(remaining.length<=6){
+    button.hidden=true;
+    nextCards[0]?.querySelector('[data-comparison]')?.focus({preventScroll:true});
+   }
+   if(nextCards.length)track('before_after_show_more',{count:nextCards.length});
   });
  });
  document.querySelectorAll('.glazing-benefits-copy').forEach(block=>{
