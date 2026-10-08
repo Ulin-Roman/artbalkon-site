@@ -11161,5 +11161,22 @@
         "src": "/assets/portfolio-finish-refs-v1/work298-pov-v2-after.webp"
       }
     ]
+  },
+  "/assets/portfolio-turnkey-refs-v1/work292-before-v2.webp": {
+    "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2-640.webp",
+    "variants": [
+      {
+        "width": 320,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2-320.webp"
+      },
+      {
+        "width": 640,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2-640.webp"
+      },
+      {
+        "width": 960,
+        "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2.webp"
+      }
+    ]
   }
 }
