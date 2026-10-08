@@ -1816,7 +1816,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 }
 
 // Additional reference-inspired finishing comparison.
-serviceBeforeAfterProjects['otdelka-balkonov'].push({title:'Балкон с деревянной отделкой и откидным столиком', before:'portfolio-perspectives-v3/work289-reading-v3-before.webp', after:'portfolio-perspectives-v3/work289-reading-v3-after.webp', stage:'finish', objectType:'balcony', description:'Визуализация отделки балкона с компактным местом для чтения.', visualized:true, beforeVisualized:true, afterVisualized:true, beforeReal:false, afterReal:false, referenceFinishSeries:true});
+serviceBeforeAfterProjects['otdelka-balkonov'].push({title:'Балкон с деревянной отделкой и откидным столиком', before:'portfolio-perspectives-v3/work289-reading-v4-before.webp', after:'portfolio-perspectives-v3/work289-reading-v3-after.webp', stage:'finish', objectType:'balcony', description:'Визуализация отделки балкона с компактным местом для чтения.', visualized:true, beforeVisualized:true, afterVisualized:true, beforeReal:false, afterReal:false, referenceFinishSeries:true});
 
 // Additional reference-inspired turnkey and finishing concepts.
 serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с барной столешницей и серыми рейками","before":"portfolio-turnkey-refs-v1/work290-before.webp","after":"portfolio-turnkey-refs-v1/work290-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Рабочее место вдоль окон балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
