@@ -8,6 +8,6 @@ export const beforeGeometryCorrections = {
   "portfolio-perspectives-v3/otdelka-balkonov-2-standard-v2-before.webp": "portfolio-before-geometry-v1/work88-before-v3.webp",
   "portfolio-before-windows-v1/work300-before-v2.webp": "portfolio-before-geometry-v1/work300-before-v4.webp",
   "portfolio-before-windows-v1/work311-before-v2.webp": "portfolio-before-geometry-v1/work311-before-straight-v4.webp",
-  "portfolio-diverse-v4/work23-top-v3-before.webp": "portfolio-before-geometry-v1/work23-before-v3.webp",
+  "portfolio-diverse-v4/work23-top-v3-before.webp": "portfolio-before-geometry-v1/work23-before-parapet-v4.webp",
   "portfolio-before-windows-v1/work317-before-v2.webp": "portfolio-before-geometry-v1/work317-before-v3.webp"
 };
