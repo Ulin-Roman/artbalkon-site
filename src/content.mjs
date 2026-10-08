@@ -1925,3 +1925,12 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  const gallery=serviceBeforeAfterProjects['teploe-osteklenie'];
  if(!gallery.some(p=>p.title===project.title))gallery.push({...project,stage:'glazing'});
 }
+
+// Swap the selected calm and contrasting loggia cards in warm glazing.
+{
+ const gallery=serviceBeforeAfterProjects['teploe-osteklenie'];
+ const calmIndex=gallery.findIndex(p=>p.title==='Окна на светлой лоджии');
+ const contrastIndex=gallery.findIndex(p=>p.title==='Остекление лоджии с отделкой под дерево');
+ if(calmIndex<0||contrastIndex<0)throw new Error('Selected warm glazing cards were not found');
+ [gallery[calmIndex],gallery[contrastIndex]]=[gallery[contrastIndex],gallery[calmIndex]];
+}
