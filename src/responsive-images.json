@@ -12280,5 +12280,22 @@
         "width": 960
       }
     ]
+  },
+  "/assets/portfolio-before-geometry-v1/work312-before-matched-v4.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work312-before-matched-v4.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work312-before-matched-v4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work312-before-matched-v4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work312-before-matched-v4.webp",
+        "width": 960
+      }
+    ]
   }
 }
