@@ -4875,3 +4875,15 @@ main > .social-subscribe,
  .quiz-form .quiz-controls .back-button{flex:0 0 auto;min-width:0;padding:12px 10px;font-size:12px;white-space:nowrap}
  .quiz-form .quiz-controls .button,.quiz-form .quiz-controls .quiz-next-button{flex:0 1 auto;min-width:0;margin-left:auto;padding:12px 10px;font-size:12px;line-height:1.35;text-align:center;white-space:normal}
 }
+
+/* Linked review scores below the homepage consultation button. */
+.hero-rating-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:490px;margin-top:18px}
+.hero-rating-badge{display:flex;align-items:center;gap:9px;min-width:0;padding:12px;background:#fff;border:1px solid #e6e7ea;border-radius:14px;box-shadow:0 4px 18px rgba(35,43,49,.04)}
+.hero-rating-badge:hover{border-color:var(--teal)}
+.hero-rating-badge>img{width:26px;height:26px;object-fit:contain;flex:0 0 26px}
+.hero-rating-details{display:flex;flex-wrap:wrap;align-items:center;gap:3px 9px;min-width:0}
+.hero-rating-details strong{font-size:19px;font-weight:600;line-height:1.35;white-space:nowrap}
+.hero-rating-star{color:#ffb21c;font-size:20px}
+.hero-rating-count{font-size:12px;line-height:1.4;color:var(--muted);white-space:nowrap}
+@media(max-width:640px){.hero-rating-badges{gap:8px;margin-top:15px}.hero-rating-badge{padding:10px;gap:7px}.hero-rating-badge>img{width:23px;height:23px;flex-basis:23px}.hero-rating-details{column-gap:7px}.hero-rating-details strong{font-size:18px}}
+.home-page .hero .hero-rating-badge,.home-page .hero-rating-details strong{color:var(--ink)}
