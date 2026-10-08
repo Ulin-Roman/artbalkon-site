@@ -293,10 +293,10 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
 }
 
 // New diverse compositions use complete pairs and explicit outcome-based names.
-assert.equal(beforeAfterProjects.filter(p=>p.newDiverseSeries).length,3);
+assert.equal(beforeAfterProjects.filter(p=>p.newDiverseSeries).length,2);
 for(const service of services.filter(s=>!bundledServiceSlugs.includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newDiverseSeries);
- const expected=service.slug==='osteklenie-balkonov'?2:3; // work-46 was withdrawn from this gallery.
+ const expected=service.slug==='osteklenie-balkonov'?2:service.slug==='teploe-osteklenie'?4:3; // work-46 was withdrawn from this gallery.
  assert.equal(added.length,expected,service.slug+': expected retained diverse pairs');
  assert.equal(new Set(added.map(p=>p.after)).size,expected);
  for(const p of added){assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);assert.notEqual(p.before,p.after);assert.ok(originalWindowBefore(p.before).startsWith('portfolio-diverse-v4/')&&p.after.startsWith('portfolio-diverse-v4/'));assert.ok(portfolioDisplayTitles[p.title]);}

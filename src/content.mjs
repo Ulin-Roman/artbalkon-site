@@ -1892,3 +1892,12 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  if(workspaceIndex<0||benchIndex<0)throw new Error('Selected homepage cards were not found');
  [beforeAfterProjects[workspaceIndex],beforeAfterProjects[benchIndex]]=[beforeAfterProjects[benchIndex],beforeAfterProjects[workspaceIndex]];
 }
+
+// Move the selected homepage comparison into the warm glazing gallery.
+{
+ const index=beforeAfterProjects.findIndex(p=>p.title==='Балкон под ключ со скамьёй и хранением');
+ if(index<0)throw new Error('Selected homepage work was not found');
+ const [project]=beforeAfterProjects.splice(index,1);
+ const gallery=serviceBeforeAfterProjects['teploe-osteklenie'];
+ if(!gallery.some(p=>p.title===project.title))gallery.push({...project,stage:'glazing'});
+}
