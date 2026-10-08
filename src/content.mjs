@@ -1934,3 +1934,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  if(calmIndex<0||contrastIndex<0)throw new Error('Selected warm glazing cards were not found');
  [gallery[calmIndex],gallery[contrastIndex]]=[gallery[contrastIndex],gallery[calmIndex]];
 }
+
+// Withdraw the two selected bench comparisons from warm glazing.
+{
+ const removedTitles=new Set(['Тёплое остекление широкой лоджии','Тёплое остекление балкона с хранением под скамьёй']);
+ const gallery=serviceBeforeAfterProjects['teploe-osteklenie'];
+ if(gallery.filter(p=>removedTitles.has(p.title)).length!==2)throw new Error('Selected warm glazing bench cards were not found');
+ serviceBeforeAfterProjects['teploe-osteklenie']=gallery.filter(p=>!removedTitles.has(p.title));
+}
