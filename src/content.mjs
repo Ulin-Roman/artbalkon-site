@@ -1884,3 +1884,11 @@ for (const gallery of [beforeAfterProjects, ...Object.values(serviceBeforeAfterP
 for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
  for (const project of gallery) if (project.title==='Лоджия со столом') project.after='service-before-after/renovation-loggia-07-after-countertop-v3.webp';
 }
+
+// Swap the two selected portfolio positions on the homepage.
+{
+ const workspaceIndex=beforeAfterProjects.findIndex(p=>p.title==='Светлая лоджия с рабочим местом');
+ const benchIndex=beforeAfterProjects.findIndex(p=>p.title==='Балкон с ореховой скамьёй и белым кирпичным парапетом');
+ if(workspaceIndex<0||benchIndex<0)throw new Error('Selected homepage cards were not found');
+ [beforeAfterProjects[workspaceIndex],beforeAfterProjects[benchIndex]]=[beforeAfterProjects[benchIndex],beforeAfterProjects[workspaceIndex]];
+}
