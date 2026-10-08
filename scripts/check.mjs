@@ -19,6 +19,11 @@ for(const [source,target] of Object.entries(beforeWeatherAssets)){
 }
 for(const original of allPhotoPairs.filter(p=>p.beforeReal===true))assert.ok(!beforeWeatherAssets[original.before],`Original BEFORE must be preserved: ${original.before}`);
 // Validate final user-facing names without changing source titles or analytics keys.
+for(const pair of allPhotoPairs){
+ if(['balcony','loggia'].includes(pair.objectType)||/балкон|лоджи/i.test(pair.title)){
+  assert.match(projectDisplayTitle(pair),/балкон|лоджи/i,'Balcony/loggia display title must include object keyword: '+pair.title);
+ }
+}
 for(const title of Object.values(portfolioDisplayTitles)){
  assert.ok(typeof title==='string'&&title.trim(),'Display title must exist');
  assert.doesNotMatch(title,/зим|снег|летн|осенн|весенн|зелень|undefined|null/i);
