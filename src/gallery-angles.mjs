@@ -112,7 +112,7 @@ export const additionalAngleProjects = {
     {
       "title": "Светлая отделка углового балкона",
       "before": "gallery-angles-v1/otdelka-balkonov-3-before.webp",
-      "after": "gallery-angles-v1/otdelka-balkonov-3-after.webp",
+      "after": "gallery-angles-v1/work83-after-sealed-v2.webp",
       "description": "Визуализация проекта с новым ракурсом: то же помещение до и после работ, с разным естественным светом.",
       "objectType": "balcony",
       "stage": "finish",

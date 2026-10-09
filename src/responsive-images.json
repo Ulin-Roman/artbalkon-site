@@ -12739,5 +12739,192 @@
         "width": 960
       }
     ]
+  },
+  "/assets/home-liked-works-v1/balcony-office-shelves-before-brackets-v2.webp": {
+    "src": "/assets/home-liked-works-v1/balcony-office-shelves-before-brackets-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/home-liked-works-v1/balcony-office-shelves-before-brackets-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/home-liked-works-v1/balcony-office-shelves-before-brackets-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/home-liked-works-v1/balcony-office-shelves-before-brackets-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work307-before-sill-level-v2.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work307-before-sill-level-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-home-refs-v1/work307-before-sill-level-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-home-refs-v1/work307-before-sill-level-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-home-refs-v1/work307-before-sill-level-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work306-before-regenerated-v6.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work306-before-regenerated-v6.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work306-before-regenerated-v6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work306-before-regenerated-v6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work306-before-regenerated-v6.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-home-refs-v1/work306-after-matte-v2.webp": {
+    "src": "/assets/portfolio-home-refs-v1/work306-after-matte-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-home-refs-v1/work306-after-matte-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-home-refs-v1/work306-after-matte-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-home-refs-v1/work306-after-matte-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/before-weather-v1/before-135.webp": {
+    "src": "/assets/before-weather-v1/before-135.webp",
+    "variants": [
+      {
+        "src": "/assets/before-weather-v1/before-135-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/before-weather-v1/before-135-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/before-weather-v1/before-135.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/before-weather-v1/before-136.webp": {
+    "src": "/assets/before-weather-v1/before-136.webp",
+    "variants": [
+      {
+        "src": "/assets/before-weather-v1/before-136-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/before-weather-v1/before-136-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/before-weather-v1/before-136.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/before-weather-v1/before-137.webp": {
+    "src": "/assets/before-weather-v1/before-137.webp",
+    "variants": [
+      {
+        "src": "/assets/before-weather-v1/before-137-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/before-weather-v1/before-137-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/before-weather-v1/before-137.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/gallery-angles-v1/work83-after-sealed-v2.webp": {
+    "src": "/assets/gallery-angles-v1/work83-after-sealed-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/gallery-angles-v1/work83-after-sealed-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/gallery-angles-v1/work83-after-sealed-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/gallery-angles-v1/work83-after-sealed-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work312-before-no-bar-handles-v5.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work312-before-no-bar-handles-v5.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work312-before-no-bar-handles-v5-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work312-before-no-bar-handles-v5-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work312-before-no-bar-handles-v5.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-finish-refs-v2/work312-after-no-bar-v2.webp": {
+    "src": "/assets/portfolio-finish-refs-v2/work312-after-no-bar-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-finish-refs-v2/work312-after-no-bar-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-finish-refs-v2/work312-after-no-bar-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-finish-refs-v2/work312-after-no-bar-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5.webp",
+        "width": 960
+      }
+    ]
   }
 }

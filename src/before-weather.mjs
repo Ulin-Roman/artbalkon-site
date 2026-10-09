@@ -1,7 +1,7 @@
 // Weather/daylight variants of generated BEFORE images only. Originals and AFTER images are preserved.
 export const beforeWeatherAssets = {
   "before-hardware-v4/finish-turnkey-015-no-hardware.png": "before-weather-v1/before-001.webp", // early-morning
-  "before-hardware-v4/finish-turnkey-004-no-hardware.png": "before-weather-v1/before-002.webp", // overcast-noon
+  "before-hardware-v4/finish-turnkey-004-no-hardware.png": "before-weather-v1/before-137.webp", // overcast-noon
   "before-hardware-v4/finish-turnkey-018-no-hardware.png": "portfolio-before-geometry-v1/work9-before-short-v3.webp", // morning-haze
   "before-hardware-v4/finish-turnkey-019-no-hardware.png": "before-weather-v1/before-005.webp", // cloudy-morning
   "before-hardware-v4/finish-turnkey-013-no-hardware.png": "portfolio-before-geometry-v1/work12-before-closed-v2.webp", // light-rain
