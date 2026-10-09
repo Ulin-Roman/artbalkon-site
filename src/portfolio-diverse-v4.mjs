@@ -56,8 +56,8 @@ export const diverseProjects = {
     },
     {
       "title": "Утепление лоджии с рабочим столом",
-      "before": "portfolio-diverse-v4/uteplenie-balkonov-2-standard-v2-before.webp",
-      "after": "portfolio-diverse-v4/uteplenie-balkonov-2-standard-v2-after.webp",
+      "before": "portfolio-diverse-v4/uteplenie-balkonov-2-window-v3-before.webp",
+      "after": "portfolio-diverse-v4/uteplenie-balkonov-2-window-v3-after.webp",
       "stage": "insulation",
       "description": "Визуализация преобразования того же помещения до и после работ с разным временем съёмки и естественным освещением.",
       "objectType": "loggia",

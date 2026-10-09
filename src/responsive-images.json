@@ -12926,5 +12926,39 @@
         "width": 960
       }
     ]
+  },
+  "/assets/portfolio-diverse-v4/uteplenie-balkonov-2-window-v3-before.webp": {
+    "src": "/assets/responsive/c8ba5f76f1228edd-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c8ba5f76f1228edd-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c8ba5f76f1228edd-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c8ba5f76f1228edd-724.webp",
+        "width": 724
+      }
+    ]
+  },
+  "/assets/portfolio-diverse-v4/uteplenie-balkonov-2-window-v3-after.webp": {
+    "src": "/assets/responsive/0efbce1a39e819bd-724.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/0efbce1a39e819bd-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/0efbce1a39e819bd-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/0efbce1a39e819bd-724.webp",
+        "width": 724
+      }
+    ]
   }
 }

@@ -1966,3 +1966,19 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  if(cold.some(item=>item.title===title||item.after===project.after))throw new Error('Selected work235 already exists in cold glazing');
  cold.push({...project,stage:'glazing',glazingType:'cold-parapet',transferredColdGallery:true});
 }
+
+// Withdraw work-66 only from the insulation landing page at the owner's request.
+{
+ const title='Утепление балкона со скамьёй';
+ const gallery=serviceBeforeAfterProjects['uteplenie-balkonov'];
+ if(gallery.filter(project=>project.title===title).length!==1)throw new Error('Selected insulation work-66 was not found');
+ serviceBeforeAfterProjects['uteplenie-balkonov']=gallery.filter(project=>project.title!==title);
+}
+
+// Withdraw work-67 only from the insulation landing page at the owner's request.
+{
+ const title='Утепление лоджии с рабочим столом';
+ const gallery=serviceBeforeAfterProjects['uteplenie-balkonov'];
+ if(gallery.filter(project=>project.title===title).length!==1)throw new Error('Selected insulation work-67 was not found');
+ serviceBeforeAfterProjects['uteplenie-balkonov']=gallery.filter(project=>project.title!==title);
+}
