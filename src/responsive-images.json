@@ -12314,5 +12314,430 @@
         "width": 960
       }
     ]
+  },
+  "/assets/portfolio-before-geometry-v1/work315-before-short-v5.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work315-before-short-v5.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work315-before-short-v5-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work315-before-short-v5-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work315-before-short-v5.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work317-before-glass-v4.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work317-before-glass-v4.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work317-before-glass-v4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work317-before-glass-v4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work317-before-glass-v4.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work317-after-glass-v4.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work317-after-glass-v4.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work317-after-glass-v4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work317-after-glass-v4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work317-after-glass-v4.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-realism-v2/work318-after-straight-v3.webp": {
+    "src": "/assets/portfolio-realism-v2/work318-after-straight-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-realism-v2/work318-after-straight-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-realism-v2/work318-after-straight-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-realism-v2/work318-after-straight-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work9-before-sill-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work9-before-sill-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work9-before-sill-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work9-before-sill-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work9-before-sill-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work311-before-short-v6.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work311-before-short-v6.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work311-before-short-v6-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work311-before-short-v6-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work311-before-short-v6.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work85-before-small-handles-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work85-before-small-handles-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work85-before-small-handles-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work85-before-small-handles-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work85-before-small-handles-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work81-before-short-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work81-before-short-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work81-before-short-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work81-before-short-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work81-before-short-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work12-before-closed-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work12-before-closed-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work12-before-closed-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work12-before-closed-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work12-before-closed-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work9-before-short-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work9-before-short-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work9-before-short-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work9-before-short-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work9-before-short-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work13-before-no-handles-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work13-before-no-handles-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work13-before-no-handles-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work13-before-no-handles-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work13-before-no-handles-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work10-before-level-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work10-before-level-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work10-before-level-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work10-before-level-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work10-before-level-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work10-after-level-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work10-after-level-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work10-after-level-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work10-after-level-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work10-after-level-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work72-before-depth-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work72-before-depth-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work72-before-depth-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work72-before-depth-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work72-before-depth-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work76-before-depth-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work76-before-depth-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work76-before-depth-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work76-before-depth-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work76-before-depth-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work97-before-depth-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work97-before-depth-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work97-before-depth-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work97-before-depth-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work97-before-depth-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work99-before-double-door-v4.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work99-before-double-door-v4.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work99-before-double-door-v4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work99-before-double-door-v4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work99-before-double-door-v4.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work19-before-solid-depth-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work19-before-solid-depth-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work19-before-solid-depth-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work19-before-solid-depth-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work19-before-solid-depth-v2.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work287-before-clutter-handles-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work287-before-clutter-handles-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work287-before-clutter-handles-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work287-before-clutter-handles-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work287-before-clutter-handles-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work291-before-no-handles-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work291-before-no-handles-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work291-before-no-handles-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work291-before-no-handles-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work291-before-no-handles-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work292-before-no-electrics-v3.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work292-before-no-electrics-v3.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work292-before-no-electrics-v3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work292-before-no-electrics-v3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work292-before-no-electrics-v3.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/portfolio-before-geometry-v1/work296-before-blue-parapet-v2.webp": {
+    "src": "/assets/portfolio-before-geometry-v1/work296-before-blue-parapet-v2.webp",
+    "variants": [
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work296-before-blue-parapet-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work296-before-blue-parapet-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/portfolio-before-geometry-v1/work296-before-blue-parapet-v2.webp",
+        "width": 960
+      }
+    ]
   }
 }

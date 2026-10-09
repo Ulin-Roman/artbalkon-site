@@ -2,10 +2,10 @@
 export const beforeWeatherAssets = {
   "before-hardware-v4/finish-turnkey-015-no-hardware.png": "before-weather-v1/before-001.webp", // early-morning
   "before-hardware-v4/finish-turnkey-004-no-hardware.png": "before-weather-v1/before-002.webp", // overcast-noon
-  "before-hardware-v4/finish-turnkey-018-no-hardware.png": "before-weather-v1/before-003.webp", // morning-haze
+  "before-hardware-v4/finish-turnkey-018-no-hardware.png": "portfolio-before-geometry-v1/work9-before-short-v3.webp", // morning-haze
   "before-hardware-v4/finish-turnkey-019-no-hardware.png": "before-weather-v1/before-005.webp", // cloudy-morning
-  "before-hardware-v4/finish-turnkey-013-no-hardware.png": "before-weather-v1/before-006.webp", // light-rain
-  "before-hardware-v4/finish-turnkey-002-no-hardware.png": "before-weather-v1/before-007.webp", // early-morning
+  "before-hardware-v4/finish-turnkey-013-no-hardware.png": "portfolio-before-geometry-v1/work12-before-closed-v2.webp", // light-rain
+  "before-hardware-v4/finish-turnkey-002-no-hardware.png": "portfolio-before-geometry-v1/work13-before-no-handles-v2.webp", // early-morning
   "before-hardware-v4/finish-turnkey-014-no-hardware.png": "before-weather-v1/before-008.webp", // overcast-noon
   "before-hardware-v4/finish-turnkey-003-no-hardware.png": "before-weather-v1/before-009.webp", // morning-haze
   "before-hardware-v4/finish-turnkey-017-no-hardware.png": "before-weather-v1/before-010.webp", // late-afternoon
@@ -14,18 +14,18 @@ export const beforeWeatherAssets = {
   "before-daytime/before-014.webp": "before-weather-v1/before-015.webp", // morning-haze
   "before-daytime/before-028.webp": "before-weather-v1/before-020.webp", // overcast-noon
   "before-daytime/before-029.webp": "before-weather-v1/before-021.webp", // morning-haze
-  "before-hardware-v4/finish-turnkey-021-no-hardware.png": "before-weather-v1/before-027.webp", // morning-haze
-  "before-hardware-v4/finish-turnkey-008-no-hardware.png": "before-weather-v1/before-029.webp", // cloudy-morning
+  "before-hardware-v4/finish-turnkey-021-no-hardware.png": "portfolio-before-geometry-v1/work70-before-pull-handles-v2.webp", // morning-haze
+  "before-hardware-v4/finish-turnkey-008-no-hardware.png": "portfolio-before-geometry-v1/work72-before-depth-v2.webp", // cloudy-morning
   "before-hardware-v4/finish-turnkey-010-no-hardware.png": "before-weather-v1/before-031.webp", // early-morning
   "before-hardware-v4/finish-turnkey-011-no-hardware.png": "before-weather-v1/before-032.webp", // overcast-noon
-  "before-hardware-v4/finish-turnkey-012-no-hardware.png": "before-weather-v1/before-033.webp", // morning-haze
+  "before-hardware-v4/finish-turnkey-012-no-hardware.png": "portfolio-before-geometry-v1/work76-before-depth-v2.webp", // morning-haze
   "before-hardware-v4/finish-turnkey-022-no-hardware.png": "before-weather-v1/before-035.webp", // cloudy-morning
   "before-hardware-v4/finish-turnkey-023-no-hardware.png": "before-weather-v1/before-036.webp", // light-rain
   "before-hardware-v4/finish-turnkey-024-no-hardware.png": "before-weather-v1/before-037.webp", // early-morning
   "service-before-after/turnkey-electrical-02-before-v2.webp": "before-weather-v1/before-039.webp", // morning-haze
   "service-before-after/turnkey-furniture-04-before-v3.webp": "before-weather-v1/before-040.webp", // late-afternoon
   "service-before-after/turnkey-electrical-05-before-v2.webp": "before-weather-v1/before-041.webp", // cloudy-morning
-  "service-before-after/turnkey-furniture-09-before-v2.webp": "before-weather-v1/before-042.webp", // light-rain
+  "service-before-after/turnkey-furniture-09-before-v2.webp": "portfolio-before-geometry-v1/work97-before-depth-v2.webp", // light-rain
   "service-before-after/turnkey-electrical-10-before-v2.webp": "before-weather-v1/before-043.webp", // early-morning
   "service-before-after/balcony-roof-3-before.jpg": "before-weather-v1/before-044.webp", // early-morning
   "service-before-after/balcony-roof-4-before.jpg": "before-weather-v1/before-045.webp", // morning-haze

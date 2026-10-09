@@ -1,6 +1,6 @@
 // Generated AFTER edits only; source photos and BEFORE views are preserved.
 export const realismAfterAssets = Object.freeze({
-  "portfolio-finish-refs-v3/work318-after.webp": "portfolio-realism-v2/work318-after-floor-v2.webp",
+  "portfolio-finish-refs-v3/work318-after.webp": "portfolio-realism-v2/work318-after-straight-v3.webp",
   "portfolio-extra-v2/panoramnoe-osteklenie-2-after.webp": "panorama-no-handles-v3/work277-after-no-handles-v3.webp",
   "gallery-angles-v1/panoramnoe-osteklenie-3-after.webp": "panorama-no-handles-v3/work275-after-no-handles-v3.webp",
   "service-before-after/panoramic-loggia-09-after.jpg": "panorama-no-handles-v2/work270-after-no-handles-v2.webp",

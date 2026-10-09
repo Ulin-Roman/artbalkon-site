@@ -19,7 +19,7 @@ const renderedGalleries=[renderHome(),...services.map(service=>servicePageWithSe
 for(const [source,target] of Object.entries(beforeWeatherAssets)){
  assert.ok(generatedBeforeAssets.has(source),`Weather variant must come from a generated BEFORE: ${source}`);
  assert.ok(!allAfterAssets.has(source),`Weather variant must not change a shared AFTER: ${source}`);
- assert.match(target,/^before-weather-v1\/before-\d{3}\.webp$/);
+ assert.match(target,/^(?:before-weather-v1\/before-\d{3}|portfolio-before-geometry-v1\/(?:work9-before-short-v3|work12-before-closed-v2|work13-before-no-handles-v2|work72-before-depth-v2|work76-before-depth-v2|work70-before-pull-handles-v2|work97-before-depth-v2))\.webp$/);
  assert.ok(renderedGalleries.includes(`/assets/${target}`),`Weather variant must appear in a rendered gallery: ${target}`);
 }
 for(const original of allPhotoPairs.filter(p=>p.beforeReal===true))assert.ok(!beforeWeatherAssets[original.before],`Original BEFORE must be preserved: ${original.before}`);
@@ -189,7 +189,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
  gallery.filter(p=>!['gallery-angles-v1/balkon-pod-klyuch-3-after.webp','owner-projects/balcony-office-after.webp','turnkey-loft-v3/after.webp','turnkey-office-low-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v2/after.webp'].includes(p.after)).forEach(p=>{
-  const reviewedAfter=p.after==='portfolio-floor-work73-v1/after-chair-v2.webp'?'service-before-after/renovation-balcony-09-after.webp':['portfolio-diverse-v4/work10-low-v1-after.webp','portfolio-diverse-v4/work10-empty-v2-after.webp'].includes(p.after)?'service-before-after/renovation-balcony-05-after.webp':p.after==='service-before-after/renovation-loggia-11-after-one-handle-v2.webp'?'service-before-after/renovation-loggia-11-after.webp':['service-before-after/work71-top-folding-v2-after.webp','portfolio-perspectives-v3/work71-brick-v3-after.webp'].includes(p.after)?'service-before-after/renovation-balcony-07-after.webp':['service-before-after/renovation-loggia-07-after-junction-v2.webp','service-before-after/renovation-loggia-07-after-countertop-v3.webp'].includes(p.after)?'service-before-after/renovation-loggia-07-after.webp':p.after;
+  const reviewedAfter=p.after==='portfolio-floor-work73-v1/after-chair-v2.webp'?'service-before-after/renovation-balcony-09-after.webp':['portfolio-diverse-v4/work10-low-v1-after.webp','portfolio-diverse-v4/work10-empty-v2-after.webp','portfolio-before-geometry-v1/work10-after-level-v3.webp'].includes(p.after)?'service-before-after/renovation-balcony-05-after.webp':p.after==='service-before-after/renovation-loggia-11-after-one-handle-v2.webp'?'service-before-after/renovation-loggia-11-after.webp':['service-before-after/work71-top-folding-v2-after.webp','portfolio-perspectives-v3/work71-brick-v3-after.webp'].includes(p.after)?'service-before-after/renovation-balcony-07-after.webp':['service-before-after/renovation-loggia-07-after-junction-v2.webp','service-before-after/renovation-loggia-07-after-countertop-v3.webp'].includes(p.after)?'service-before-after/renovation-loggia-07-after.webp':p.after;
   const sourceNumber=reviewedAfter==='window-details-v2/balcony-04-handles.webp'?4:Number(reviewedAfter.match(/renovation-(?:balcony|loggia)-(\d{2})-after\.webp$/)?.[1]);
   assert.ok(sourceNumber,`${slug}: unexpected finished room`);
   const key=`service-before-after/renovation-${type}-${String(sourceNumber).padStart(2,'0')}`;
@@ -198,7 +198,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   const expectedBefore=type==='loggia'&&sourceNumber===11?'window-details-v2/old-window-clean.webp':`${key}-finish-before.webp`;
   const hardwareAdjustedBefore=beforeHardwareReplacements[expectedBefore] || expectedBefore;
   const expectedGalleryBefore=finishBeforeLatchReplacements[hardwareAdjustedBefore] || hardwareAdjustedBefore;
-  assert.equal(p.before==='portfolio-floor-work73-v1/before.webp'?'before-hardware-v4/finish-turnkey-009-no-hardware.png':p.before==='portfolio-diverse-v4/work10-low-v1-before.webp'?'before-hardware-v4/finish-turnkey-005-no-hardware.png':['service-before-after/work71-top-folding-v2-before.webp','portfolio-perspectives-v3/work71-brick-v4-before.webp'].includes(p.before)?'before-hardware-v4/finish-turnkey-007-no-hardware.png':p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
+  assert.equal(p.before==='portfolio-floor-work73-v1/before.webp'?'before-hardware-v4/finish-turnkey-009-no-hardware.png':['portfolio-diverse-v4/work10-low-v1-before.webp','portfolio-before-geometry-v1/work10-before-level-v3.webp'].includes(p.before)?'before-hardware-v4/finish-turnkey-005-no-hardware.png':['service-before-after/work71-top-folding-v2-before.webp','portfolio-perspectives-v3/work71-brick-v4-before.webp'].includes(p.before)?'before-hardware-v4/finish-turnkey-007-no-hardware.png':p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
   assert.equal(reviewedAfter,type==='balcony'&&sourceNumber===4?'window-details-v2/balcony-04-handles.webp':`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);
@@ -405,7 +405,7 @@ for (const previous of Object.values(beforeWindowCorrections)) {
  assert.ok(renderedGalleries.includes(`/assets/${target}`), `Corrected before must appear: ${target}`);
 }
 
-assert.equal(Object.keys(beforeGeometryCorrections).length,10);
+assert.equal(Object.keys(beforeGeometryCorrections).length,21);
 for (const target of Object.values(beforeGeometryCorrections)) {
  const matches=allPhotoPairs.filter(p=>p.before===target);
  assert.ok(matches.length>0 && matches.every(p=>p.beforeReal!==true && p.beforeVisualized===true));
