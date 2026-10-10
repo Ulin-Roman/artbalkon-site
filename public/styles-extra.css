@@ -1972,52 +1972,6 @@ h1,h2,h3,h4,
 }
 
 /* Compact campaign message inside the home-page hero copy. */
-.campaign-offer{
- display:grid;
- grid-template-columns:1fr;
- align-items:center;
- justify-items:center;
- justify-content:center;
- gap:8px;
- width:min(100%,570px);
- margin-top:22px;
- padding:13px 15px;
- border:1px solid #f0b2b2;
- border-radius:14px;
- background:#fff3f3;
- color:var(--ink);
- box-shadow:0 10px 26px rgba(190,35,35,.09);
- text-align:center;
-}
-.campaign-offer strong{
- display:inline-flex;
- min-height:32px;
- align-items:center;
- padding:6px 12px;
- border-radius:999px;
- background:#d83232;
- color:#fff;
- font-size:13px;
- font-weight:800;
- white-space:nowrap;
-}
-.campaign-offer span{
- font-size:13px;
- font-weight:600;
- line-height:1.5;
-}
-.campaign-offer-row{
- display:flex;
- justify-content:center;
- padding-top:28px;
-}
-.campaign-offer-row .campaign-offer{
- width:100%;
- max-width:none;
- margin-top:0;
-}
-.campaign-offer-row + .section,
-.campaign-offer-row + #services{padding-top:54px}
 
 /* Chrome's “Desktop site” on phones commonly reports a viewport near 980px.
    Treat that range as a compact layout instead of squeezing desktop grids. */
@@ -2071,21 +2025,6 @@ h1,h2,h3,h4,
 }
 .before-after-title,
 .promotion-card-copy{flex:1}
-@media(max-width:640px){
- .campaign-offer{
-  grid-template-columns:1fr;
-  justify-items:center;
-  gap:8px;
-  margin-top:17px;
-  padding:12px 13px;
-  background:rgba(255,245,245,.96);
- }
- .campaign-offer strong{justify-self:center}
- .campaign-offer span{font-size:12px;line-height:1.45}
- .campaign-offer-row{padding-top:18px}
- .campaign-offer-row + .section,
- .campaign-offer-row + #services{padding-top:42px}
-}
 
 /* Compact, consistent vertical rhythm across every page. */
 .section,
@@ -2095,8 +2034,6 @@ h1,h2,h3,h4,
  padding-top:64px;
  padding-bottom:64px;
 }
-.campaign-offer-row + .section,
-.campaign-offer-row + #services{padding-top:44px}
 
 @media(max-width:900px){
  .section,
@@ -2106,8 +2043,6 @@ h1,h2,h3,h4,
   padding-top:52px;
   padding-bottom:52px;
  }
- .campaign-offer-row + .section,
- .campaign-offer-row + #services{padding-top:40px}
 }
 
 @media(max-width:640px){
@@ -2119,8 +2054,6 @@ h1,h2,h3,h4,
   padding-bottom:44px;
  }
  .partner-brands{padding-top:24px}
- .campaign-offer-row + .section,
- .campaign-offer-row + #services{padding-top:34px}
 }
 
 /* Keep the four consecutive proof sections on one compact vertical rhythm. */
@@ -3360,8 +3293,6 @@ body{min-width:0;max-width:100%}
  padding-top:40px;
  padding-bottom:40px;
 }
-.campaign-offer-row + .section,
-.campaign-offer-row + #services{padding-top:32px}
 .before-after-section>.section{padding-bottom:28px}
 .before-after-section+.partner-brands{padding-top:28px}
 .promotion-section>.section{padding-bottom:28px}
@@ -3391,8 +3322,6 @@ body{min-width:0;max-width:100%}
   padding-top:36px;
   padding-bottom:36px;
  }
- .campaign-offer-row + .section,
- .campaign-offer-row + #services{padding-top:30px}
  .final-section.final-visual-cta{margin-block:28px;padding-block:40px}
  .contact-location{margin-bottom:30px}
  .glazing-benefits-showcase{padding-block:42px}
@@ -3407,8 +3336,6 @@ body{min-width:0;max-width:100%}
   padding-top:30px;
   padding-bottom:30px;
  }
- .campaign-offer-row + .section,
- .campaign-offer-row + #services{padding-top:26px}
  .before-after-section>.section{padding-bottom:22px}
  .before-after-section+.partner-brands{padding-top:22px}
  .promotion-section>.section{padding-bottom:22px}
@@ -5021,14 +4948,5 @@ main > .social-subscribe,
 .repair-hero-photo .repair-compare{height:100%;min-height:0;border-radius:inherit}
 .repair-hero-photo .repair-label,.repair-hero-photo .repair-divider{z-index:2}
 .repair-hero-photo input[type=range]{z-index:3}
-
-@media(max-width:640px){
- .landing-hero .landing-grid.repair-hero-grid{grid-template-areas:"landing-copy" "landing-photo";gap:20px}
- .landing-hero .repair-hero-grid>div:first-child{grid-area:landing-copy;padding:0;text-align:left;color:var(--ink)}
- .landing-hero .repair-hero-grid h1{color:var(--ink);text-shadow:none}
- .landing-hero .repair-hero-grid h1 .location-accent{color:var(--teal)}
- .landing-hero .repair-hero-grid .hero-description{color:var(--muted);text-shadow:none}
- .landing-hero .repair-hero-grid .repair-hero-photo{grid-area:landing-photo;height:auto;min-height:0}
- .landing-hero .repair-hero-grid .repair-hero-photo::after{display:none}
- .repair-hero-grid .repair-hero-photo .repair-compare{height:auto;aspect-ratio:3/4}
-}
+.repair-hero-photo .gift-badge{z-index:6}
+@media(max-width:640px){.repair-hero-photo .repair-before,.repair-hero-photo .repair-label,.repair-hero-photo .repair-divider,.repair-hero-photo input[type=range]{display:none}}

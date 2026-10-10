@@ -779,9 +779,6 @@ const galleryQualityReplacements={
  'service-before-after/panoramic-balcony-01-after.jpg':'window-details-v2/panoramic-clean-dark.webp',
  'service-before-after/panoramic-balcony-03-after.jpg':'window-details-v2/panoramic-clean-white.webp',
  'service-before-after/renovation-loggia-11-finish-before.webp':'window-details-v2/old-window-clean.webp',
- 'service-gallery-v2/real-after-025.jpg':'gallery-quality-v2/real025.webp',
- 'service-gallery-v2/real-after-047.jpg':'gallery-quality-v2/real047.webp',
- 'service-gallery-v2/real-after-103.jpg':'gallery-quality-v2/real103.webp',
  'service-before-after/cottage-glazing-2-after-hq.webp':'gallery-quality-v2/cottage2After.webp'
 };
 for(let number=7;number<=12;number++){
@@ -2004,3 +2001,28 @@ Object.assign(serviceSeo['remont-balkonov'],{
  steps:[['Осмотр','Оценим состояние балкона или лоджии и обсудим задачи ремонта.'],['Смета','Согласуем объём работ, материалы и стоимость.'],['Ремонт','Выполним подготовку, необходимые замены и монтаж выбранных покрытий.'],['Приёмка','Проверим результат и передадим готовый балкон.']],
  faq:[['Что входит в ремонт балкона или лоджии?','Объём зависит от состояния пространства. В проект могут входить демонтаж старых покрытий, подготовка поверхностей, замена окон, утепление, монтаж покрытий, электрика и мебель. Согласуем конкретный перечень после осмотра.'],['Можно ли отремонтировать балкон без замены остекления?','Да, если существующие окна пригодны для дальнейшего использования и соответствуют вашим задачам. Их состояние и примыкания оцениваем на замере.'],['Сколько стоит ремонт балкона в Москве и Московской области?','Стоимость зависит от размеров, состояния основания, выбранных материалов и необходимых работ. Подготовим смету после замера; цены отдельных материалов не являются ценой ремонта целиком.'],['Нужно ли утеплять балкон при ремонте?','Это зависит от того, как вы планируете пользоваться пространством. Для сезонного хранения утепление может не понадобиться. Для использования зимой согласуем тёплое остекление, утепление и безопасный обогрев.']]
 });
+
+// Owner-requested original photographs from the ArtBalkon Yandex gallery.
+// Archive photos remain unedited; generated BEFORE images retain disclosure.
+const yandexOriginalPhotos = {
+ 'service-gallery-v2/real-after-025.jpg':'yandex-originals-v1/real-025-original.webp',
+ 'service-gallery-v2/real-after-047.jpg':'yandex-originals-v1/real-047-original.webp',
+ 'service-gallery-v2/real-after-103.jpg':'yandex-originals-v1/real-103-original.webp'
+};
+for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
+ for (const project of gallery) {
+  if (yandexOriginalPhotos[project.before]) {
+   project.before=yandexOriginalPhotos[project.before];
+   project.beforeReal=true;
+   project.beforeVisualized=false;
+  }
+  if (yandexOriginalPhotos[project.after]) {
+   project.after=yandexOriginalPhotos[project.after];
+   project.afterReal=true;
+   project.afterVisualized=false;
+   project.visualized=false;
+   delete project.qualityReconstructed;
+   project.source='https://yandex.ru/maps/org/art_balkon/99931581991/gallery/';
+  }
+ }
+}

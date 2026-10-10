@@ -19,7 +19,7 @@ const renderedGalleries=[renderHome(),...services.map(service=>servicePageWithSe
 for(const [source,target] of Object.entries(beforeWeatherAssets)){
  assert.ok(generatedBeforeAssets.has(source),`Weather variant must come from a generated BEFORE: ${source}`);
  assert.ok(!allAfterAssets.has(source),`Weather variant must not change a shared AFTER: ${source}`);
- assert.match(target,/^(?:before-weather-v1\/before-\d{3}|portfolio-before-geometry-v1\/(?:work9-before-short-v3|work12-before-closed-v2|work13-before-no-handles-v2|work72-before-depth-v2|work76-before-depth-v2|work70-before-pull-handles-v2|work97-before-depth-v2))\.webp$/);
+ assert.match(target,/^(?:before-weather-v1\/before-\d{3}|portfolio-before-geometry-v1\/(?:work9-before-short-v3|work12-before-closed-v2|work13-before-no-handles-v2|work72-before-depth-v2|work76-before-double-window-v3|work70-before-pull-handles-v2|work97-before-depth-v2))\.webp$/);
  assert.ok(renderedGalleries.includes(`/assets/${target}`),`Weather variant must appear in a rendered gallery: ${target}`);
 }
 for(const original of allPhotoPairs.filter(p=>p.beforeReal===true))assert.ok(!beforeWeatherAssets[original.before],`Original BEFORE must be preserved: ${original.before}`);
