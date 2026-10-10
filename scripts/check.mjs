@@ -91,7 +91,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  const hero=html.match(/<div[^>]*data-hero-slider[^>]*>([\s\S]*?)<\/div>/)?.[1];
  if(label==='home'){
   assert.ok(!html.includes('<div class="hero-visual hero-slideshow"'),'home hero must remain static');
-  assert.ok(html.includes('/assets/home-liked-works-v1/balcony-folding-table-after.webp'),'home hero must keep the selected project image');
+  assert.ok(html.includes('/assets/service-before-after/furniture-interior-v2-04-after.webp'),'home hero must keep the selected project image');
   continue;
  }
  if(label==='osteklenie-balkonov'){
@@ -422,7 +422,9 @@ const repairService=services.find(s=>s.slug==='remont-balkonov');
 assert.ok(repairService);
 assert.match(servicePageWithSeo(repairService),/Ремонт балконов и лоджий/);
 assert.match(renderHome(),/href="\/remont-balkonov\/"/);
-assert.match(renderHome(),/data-repair-range/);
+assert.doesNotMatch(renderHome(),/data-repair-range|repair-feature-card/);
+assert.match(servicePageWithSeo(repairService),/class="landing-photo repair-hero-photo"/);
+assert.match(servicePageWithSeo(repairService),/data-repair-range/);
 
 const repairMarkup=servicePageWithSeo(repairService);
 assert.match(repairMarkup,/Что нужно отремонтировать/);

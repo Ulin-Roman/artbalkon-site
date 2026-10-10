@@ -3,6 +3,10 @@
  document.querySelectorAll('[data-repair-range]').forEach(range=>{
   const frame=range.closest('[data-repair-compare]');
   const update=()=>{frame.style.setProperty('--split',range.value+'%');range.setAttribute('aria-valuetext',range.value+'% фото до ремонта');};
+  const move=e=>{const box=frame.getBoundingClientRect();range.value=String(Math.round(Math.max(0,Math.min(100,(e.clientX-box.left)/box.width*100))));update();};
+  range.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();range.focus({preventScroll:true});range.setPointerCapture(e.pointerId);move(e);});
+  range.addEventListener('pointermove',e=>{if(range.hasPointerCapture(e.pointerId))move(e);});
+  range.addEventListener('pointerup',e=>{if(range.hasPointerCapture(e.pointerId))range.releasePointerCapture(e.pointerId);});
   range.addEventListener('input',update);update();
  });
  // Keep the same ratings row above the title on desktop and at its original slot on phones.
