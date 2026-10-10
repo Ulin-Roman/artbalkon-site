@@ -1,5 +1,7 @@
 // Display names only: preserve source titles used by selectors and lead analytics.
+import {newLandingDisplayTitles} from './landing-pages.mjs';
 export const portfolioDisplayTitles = Object.freeze({
+  ...newLandingDisplayTitles,
   "Скамья с хранением и столик для двоих": "Балкон со скамьёй для хранения и столиком для двоих",
   "Уголок чтения со встроенной библиотекой": "Лоджия с уголком для чтения и встроенной библиотекой",
   "Зелёный встроенный шкаф и тумба": "Лоджия с зелёным встроенным шкафом и тумбой",

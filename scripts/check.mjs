@@ -1,3 +1,4 @@
+import {newLandingDefinitions,newLandingSlugs} from '../src/landing-pages.mjs';
 import {beforeGeometryCorrections} from '../src/portfolio-before-geometry-corrections.mjs';
 const beforeGeometrySources = new Map(Object.entries(beforeGeometryCorrections).map(([source,target])=>[target,source]));
 import {beforeWindowCorrections} from '../src/portfolio-before-window-corrections.mjs';
@@ -115,6 +116,15 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  if(label==='home'){
   assert.ok(!html.includes('data-hero-slider'),'home turnkey hero must remain static');
   assert.ok(html.includes('/assets/'+homeHeroImage),'home hero must use the selected turnkey office image');
+  continue;
+ }
+ if(newLandingSlugs.has(label)){
+  assert.ok(!html.includes('data-hero-slider'),label+': new landing hero must remain static');
+  const selected=projects[0];
+  const landingPhoto=html.match(/<div class="landing-photo">([\s\S]*?)<\/div>/)?.[1];
+  assert.ok(landingPhoto,label+': missing new landing photo');
+  assert.ok(landingPhoto.includes('/assets/'+selected.after),label+': hero must use its own selected AFTER');
+  assert.ok(landingPhoto.includes(esc(projectDisplayTitle(selected))+' — тематическая визуализация'),label+': hero needs its own disclosed alt');
   continue;
  }
  if(label==='osteklenie-balkonov'){
@@ -365,7 +375,7 @@ const total=await Promise.all(files.filter(f=>f.endsWith('.webp')).map(f=>stat(f
 console.log(`PASS: ${pages.length} pages, ${refs} local references, unique metadata, JSON-LD, image alt, no orphan assets, JS syntax. WebP total: ${Math.round(total.reduce((a,b)=>a+b,0)/1024)} KB.`);
 
 // Keep the approved camera views; one panoramic comparison was removed at the user's request.
-for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
+for(const service of services.filter(s=>!s.landingVariant&&!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newAngleSeries);
  assert.equal(added.length,['panoramnoe-osteklenie','frantsuzskoe-osteklenie'].includes(service.slug) ? 2 : 3,`${service.slug}: approved camera view count`);
  for(const p of added){
@@ -378,7 +388,7 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
 // New series must add three complete labeled comparisons to every active landing.
 assert.equal(beforeAfterProjects.filter(p=>p.newPortfolioSeries).length,2);
 assert.ok(!beforeAfterProjects.some(p=>p.title==='Балкон под ключ с рабочим столом'),'Removed work must stay out of the home gallery');
-for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
+for(const service of services.filter(s=>!s.landingVariant&&!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newPortfolioSeries);
  assert.equal(added.length,3,`${service.slug}: expected three new pairs`);
  assert.equal(new Set(added.map(p=>p.after)).size,3);
@@ -387,7 +397,7 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
 
 // Approved perspective comparisons: the unwanted turnkey storage pair was removed.
 assert.equal(beforeAfterProjects.filter(p=>p.newPerspectiveSeries).length,2);
-for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
+for(const service of services.filter(s=>!s.landingVariant&&!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newPerspectiveSeries);
  const expected=["balkon-pod-klyuch","teploe-osteklenie"].includes(service.slug) ? 2 : 3;
  assert.equal(added.length,expected,`${service.slug}: approved perspective pair count`);
@@ -397,7 +407,7 @@ for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balk
 
 // New diverse compositions use complete pairs and explicit outcome-based names.
 assert.equal(beforeAfterProjects.filter(p=>p.newDiverseSeries).length,2);
-for(const service of services.filter(s=>!bundledServiceSlugs.includes(s.slug))){
+for(const service of services.filter(s=>!s.landingVariant&&!bundledServiceSlugs.includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newDiverseSeries);
  const expected=service.slug==='uteplenie-balkonov'?1:service.slug==='osteklenie-balkonov'?2:3; // Selected work-46, work-66 and work-67 were withdrawn from their respective galleries.
  assert.equal(added.length,expected,service.slug+': expected retained diverse pairs');
@@ -532,3 +542,40 @@ assert.ok(!frenchPage.includes('class="landing-price"'),'French hero must not ad
 assert.ok(header('/osteklenie-balkonov/').includes('href="/frantsuzskoe-osteklenie/"'),'Glazing navigation links to the French page');
 assert.ok(feed.includes('<offer id="110"'));
 assert.ok(sitemapUrls.some(url=>url.endsWith('/frantsuzskoe-osteklenie/')));
+
+
+// New generated galleries are separate from the previously approved series.
+assert.equal(newLandingDefinitions.length,9);
+assert.equal(newLandingSlugs.size,9);
+const newPairs=newLandingDefinitions.flatMap(definition=>serviceBeforeAfterProjects[definition.slug]);
+assert.equal(newPairs.length,54);
+for(const key of ['title','before','after'])assert.equal(new Set(newPairs.map(pair=>pair[key])).size,54,'New '+key+' values must be unique');
+assert.equal(new Set(newPairs.flatMap(pair=>[pair.before,pair.after])).size,108);
+assert.equal(new Set(allPhotoPairs.map(pair=>pair.title)).size,new Set(allPhotoPairs.map(portfolioCaseId)).size,'Public case IDs may not collide');
+for(const definition of newLandingDefinitions){
+ const service=services.find(service=>service.slug===definition.slug),gallery=serviceBeforeAfterProjects[definition.slug];
+ assert.ok(service?.landingVariant);
+ assert.equal(gallery.length,6);
+ assert.equal(prices[service.price],null,'Unconfirmed rates must not be advertised');
+ const markup=servicePageWithSeo(service);
+ assert.equal((markup.match(/data-comparison /g)||[]).length,6);
+ assert.ok(markup.includes('Визуализации проектов'));
+ assert.ok(markup.includes('name="service" value="'+esc(service.title)+'"'));
+ assert.ok(markup.includes('landing-service-scope'));
+ assert.ok(!markup.includes('class="landing-price"'));
+ assert.ok(header('/').includes('href="/'+definition.slug+'/"'));
+ assert.ok(sitemapUrls.some(url=>url.endsWith('/'+definition.slug+'/')));
+ assert.equal(serviceSeo[definition.slug].faq.length,4);
+ for(const pair of gallery){
+  assert.ok(pair.landingSeries&&pair.visualized&&pair.beforeVisualized&&pair.afterVisualized&&!pair.beforeReal&&!pair.afterReal);
+  assert.ok(portfolioDisplayTitles[pair.title]);
+  assert.match(portfolioCaseId(pair),/^work-(?:32[3-9]|3[3-6][0-9]|37[0-6])$/);
+  for(const photo of [pair.before,pair.after])assert.ok(responsiveImages['/assets/'+photo],'Each generated photo needs responsive variants');
+ }
+}
+const mailOptionsPath=join(root,'api/lead-options.json');
+if(process.env.SITE_MAIL_FORMS==='true'){
+ const options=JSON.parse(await readFile(mailOptionsPath,'utf8'));
+ for(const definition of newLandingDefinitions)assert.ok(options.service.includes(definition.title),'PHP must accept '+definition.title);
+}
+console.log('PASS: nine new landings, 54 unique visualized pairs, 108 responsive sources, navigation and form contexts.');

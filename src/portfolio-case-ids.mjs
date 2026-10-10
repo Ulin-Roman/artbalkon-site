@@ -1,6 +1,8 @@
 // Stable public case IDs: retain assigned numbers when galleries are reordered.
 import {createHash} from 'node:crypto';
+import {newLandingCaseIds} from './landing-pages.mjs';
 const caseIds=Object.freeze({
+  ...newLandingCaseIds,
   "Балкон с отделкой под серо-коричневый дуб и встроенным светом": "work-322",
   "Балкон с ореховой скамьёй и белым кирпичным парапетом": "work-321",
   "Балкон с песочными панелями и белыми жалюзи": "work-318",

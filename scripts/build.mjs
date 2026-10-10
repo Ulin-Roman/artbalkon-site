@@ -37,7 +37,11 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
   };
   sizes='(max-width:640px) max(calc((100vw - 80px) / 2), '+Math.ceil(190*ratio*1.025)+'px), (max-width:900px) '+gallerySize(430,215,300)+'px, '+gallerySize(460,210,285)+'px';
  }else sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
- return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
+ // Newly generated comparisons retain their actual source dimensions.
+ const dimensionedTag=src.startsWith('/assets/landing-gallery-v1/')
+  ?tag.replace(/\bwidth="\d+"/,'width="'+entry.width+'"').replace(/\bheight="\d+"/,'height="'+entry.height+'"')
+  :tag;
+ return dimensionedTag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
 }).replace(/\/(styles\.css|app\.js)\?v=[^" ]+/g,(_,file)=>'/'+file+'?v='+fingerprint(file==='styles.css'?cssResult.code:appCode));
 import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,projectPage,projectCards,contact,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';
 import {company,services,serviceSeo,projects,integrations} from '../src/content.mjs';

@@ -1,8 +1,10 @@
+import {newLandingDefinitions} from '../src/landing-pages.mjs';
 import {mkdir,readFile,writeFile,rename} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 export const allowed={
  service:[
+  ...newLandingDefinitions.map(service=>service.title),
   'Остекление','Утепление','Ремонт балконов и лоджий','Отделка','Под ключ','Балкон под ключ',
   'Холодное остекление','Тёплое остекление','Панорамное остекление','Французское остекление','Нужна консультация','Отделка балкона или лоджии','Утепление балкона или лоджии','Объединение с комнатой',
   'Холодное остекление балкона','Тёплое остекление балкона','Панорамное остекление балкона','Французское остекление балкона',

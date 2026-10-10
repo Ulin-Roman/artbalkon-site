@@ -43,3 +43,16 @@ test('callback and portfolio requests are accepted with bounded project context'
  assert.equal(project.project,'Балкон с местом для отдыха');
  for(const input of [{form:'unknown'},{form:'transformation'},{form:'transformation',project:' '},{form:'transformation',project:'x'.repeat(301)}])assert.throws(()=>validateLead({...valid(),...input}));
 });
+
+
+test('new landing consultations preserve the service and allow the matching object',()=>{
+ const additions=services.filter(service=>service.landingVariant);
+ assert.equal(additions.length,9);
+ for(const service of additions){
+  const markup=quiz(service);
+  assert.ok(markup.includes('type="hidden" name="service" value="'+service.title+'"'));
+  const balconyOnly=['osteklenie-balkona-s-vynosom','osteklenie-balkona-v-hrushchevke'].includes(service.slug);
+  assert.ok(markup.includes('data-total-steps="'+(balconyOnly?2:3)+'"'));
+  for(const object of balconyOnly?['Балкон']:['Балкон','Лоджия'])assert.equal(validateLead({...valid(),service:service.title,object}).service,service.title);
+ }
+});

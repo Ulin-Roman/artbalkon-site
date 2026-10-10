@@ -2034,3 +2034,13 @@ prices.french=null;
 services.push(frenchGlazing.service);
 serviceBeforeAfterProjects['frantsuzskoe-osteklenie']=frenchGlazing.gallery;
 serviceSeo['frantsuzskoe-osteklenie']=frenchGlazingSeo;
+
+// Dedicated landings use newly generated pairs and retain explicit disclosure.
+import {newLandingDefinitions} from './landing-pages.mjs';
+prices.custom=null;
+for(const definition of newLandingDefinitions){
+ const {works,metaTitle,metaDescription,faq,scope,...service}=definition;
+ services.push({...service,label:definition.title.toLocaleUpperCase('ru-RU'),price:'custom',image:works[0].after,landingVariant:true});
+ serviceSeo[definition.slug]={metaTitle,metaDescription,faq,scope};
+ serviceBeforeAfterProjects[definition.slug]=works.map(({displayTitle,id,...work})=>({...work,stage:definition.slug.startsWith('otdelka-')?'finish':'glazing',objectType:/лоджи/i.test(displayTitle)?'loggia':'balcony',landingSeries:true,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,afterReal:false}));
+}

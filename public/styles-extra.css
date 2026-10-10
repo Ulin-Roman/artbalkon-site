@@ -4335,6 +4335,25 @@ main > .social-subscribe,
  .glazing-benefits-copy .glazing-benefit-item>p{max-height:none;margin-top:7px;opacity:1;overflow:visible;transition:none}
 }
 
+/* Crop the portrait facade photos in the French and panoramic benefits. */
+.glazing-benefits-showcase--compact .glazing-benefits-photo{
+ height:clamp(520px,34vw,600px);
+ min-height:0;
+ align-self:center;
+}
+.glazing-benefits-showcase--compact .glazing-benefits-photo img{
+ position:absolute;
+ inset:0;
+ object-position:50% 50%;
+}
+@media(max-width:640px){
+ .glazing-benefits-showcase--compact .glazing-benefits-photo{
+  height:auto;
+  min-height:520px;
+  align-self:stretch;
+ }
+}
+
 /* Place certificate navigation at the sides of the gallery. */
 .certificate-gallery{position:relative;min-width:0}
 .certificates-heading .certificate-count{margin:0;align-self:center}
@@ -4692,3 +4711,9 @@ main > .social-subscribe,
 @media(max-width:430px){.before-after-section+.cost-calculator-section::before{width:calc(100% + 32px)}}
 
 .nav-services summary>a{padding:0;border:0;color:inherit;font:inherit}
+
+/* Additional landing services retain the existing four-column scope layout. */
+.landing-related-services{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.landing-related-services a{min-width:0;max-width:100%;padding:10px 15px;border:1px solid var(--line);border-radius:24px;font-size:14px;color:var(--teal);background:#fff;overflow-wrap:anywhere}
+.landing-related-services a:hover{border-color:var(--teal);background:#eef6f5}
+@media(min-width:1101px){.nav-services-panel{max-height:calc(100dvh - 110px);overflow-y:auto}}
