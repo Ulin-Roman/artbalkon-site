@@ -4,6 +4,8 @@ import {realismAfterAssets} from './portfolio-realism.mjs';
 import {portfolioDisplayTitles} from './portfolio-titles.mjs';
 import {beforeWeatherAssets} from './before-weather.mjs';
 import {company,prices,finishingWallRates,projects,beforeAfterProjects,serviceBeforeAfterProjects,services,serviceSeo,integrations} from './content.mjs';
+// The home page presents the turnkey service at its own canonical URL.
+const serviceForPath=path=>services.find(service=>path==='/'?service.slug==='balkon-pod-klyuch':path===`/${service.slug}/`);
 export const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const headingWithLocation=value=>esc(value).replace(/в Москве и Московской области/g,'<span class="location-accent">в Москве и Московской области</span>');
 export const projectDisplayTitle=p=>portfolioDisplayTitles[p.title]||p.title;
@@ -60,10 +62,11 @@ const serviceCardImages={
 const serviceImage=s=>pic(serviceCardImages[s.slug]||s.image,`${s.title} — фотография услуги ArtBalkon`);
 const uniqueImages=images=>images.filter((name,index,list)=>name&&list.indexOf(name)===index);
 const serviceGallerySlides=service=>uniqueImages((serviceBeforeAfterProjects[service.slug]||[]).map(project=>project.after));
-export const homeHeroImage='service-before-after/furniture-interior-v2-04-after.webp';
+
 const glazingHeroImage='service-before-after/glazing-new-09-after.jpg';
 const finishingHeroImage='service-before-after/renovation-loggia-12-after.webp';
 const turnkeyHeroImage='service-before-after/furniture-interior-v2-02-after.webp';
+export const homeHeroImage=turnkeyHeroImage;
 const coldGlazingHeroImage='service-before-after/cold-loggia-finished-12-after.png';
 const warmGlazingHeroImage='service-before-after/renovation-loggia-02-after.webp';
 const panoramicGlazingHeroImage='service-before-after/panoramic-glazing-after.jpg';
@@ -104,7 +107,8 @@ const headerNavigation=path=>{
  return [['Главная','/'],['Наши работы','/#before-after'],['Получить консультацию','#quiz']];
 };
 const glazingNavigation=()=>`<details class="nav-services"><summary><a class="nav-glazing-link" href="/osteklenie-balkonov/">Остекление</a> <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="m1 1 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="nav-services-panel">${[['Холодное остекление','holodnoe-osteklenie'],['Тёплое остекление','teploe-osteklenie'],['Панорамное остекление','panoramnoe-osteklenie'],['Французское остекление','frantsuzskoe-osteklenie'],['Остекление домов','osteklenie-kottedzhej']].map(([label,slug])=>`<a href="/${slug}/">${label}</a>`).join('')}</div></details>`;
-const headerNavigationMarkup=items=>items.map(([label,href])=>href==='#quiz'?`<button class="nav-quiz-trigger" type="button" data-quiz-open>${label}</button>`:`<a${label==='Наши работы'?' class="nav-page-start"':''} href="${href}">${label}</a>`).join('');
+const repairNavigation=()=>`<details class="nav-services nav-repair"><summary><a class="nav-repair-link" href="/remont-balkonov/">Ремонт</a> <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="m1 1 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="nav-services-panel"><a href="/obedinenie-balkona-s-komnatoj/">Объединение с комнатой</a></div></details>`;
+const headerNavigationMarkup=items=>items.map(([label,href])=>href==='/remont-balkonov/'?repairNavigation():href==='#quiz'?`<button class="nav-quiz-trigger" type="button" data-quiz-open>${label}</button>`:`<a${label==='Наши работы'?' class="nav-page-start"':''} href="${href}">${label}</a>`).join('');
 export function header(path='/'){
  const navigation=[['Отделка','/otdelka-balkonov/'],['Утепление','/uteplenie-balkonov/'],['Ремонт','/remont-balkonov/'],['Под ключ','/balkon-pod-klyuch/'],...headerNavigation(path).filter(([label])=>!['Главная','Услуги'].includes(label))];
  const navigationMarkup=glazingNavigation()+headerNavigationMarkup(navigation),callbackHref=['/privacy/','/consent/','/404.html'].includes(path)?'/#callback':'#callback';
@@ -210,7 +214,7 @@ const finishingStyles=[
  {id:'eco',label:'Эко',title:'Экостиль',text:'Дерево, природные оттенки, мягкий свет и живая зелень создают ощущение тёплого пространства рядом с природой.',note:'Подходит для уютной зоны отдыха и спокойного семейного интерьера.',images:['concept-finishing.jpg','concept-furniture.jpg','concept-cottage.jpg']},
  {id:'neoclassic',label:'Неоклассика',title:'Неоклассика',text:'Сдержанная симметрия, качественные материалы и тёплые световые акценты соединяют классику с современным комфортом.',note:'Для пространства, которое должно стать полноценным продолжением комнаты.',images:['concept-furniture.jpg','concept-room.jpg','concept-turnkey.jpg']}
 ];
-// The complete styles gallery belongs only to the home page.
+// The complete styles gallery is shared by the home and turnkey pages.
 const finishingStyleContexts={};
 const finishingStyleImages={
  loft:['finishing-original-loft-1.png','finishing-original-loft-2.png','finishing-original-loft-3.jpg','finishing-original-loft-4.png'],
@@ -304,7 +308,7 @@ const giftDialogs=service=>{
  return `<dialog class="gift-modal" id="gift-modal" aria-labelledby="gift-title"><button type="button" class="gift-close" data-gift-close aria-label="Закрыть акцию"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6 18 18M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>${choices}</dialog>${lead}`;
 };
 
-export function shellWithQuiz(body,options){const path=options?.path||'/';const pageContext=services.find(item=>path===`/${item.slug}/`)||projects.find(item=>path===`/nashi-raboty/${item.slug}/`)||null;let pageBody=body.includes('id="quiz-modal"')?body:body+quizModal(pageContext);if(!pageBody.includes('id="callback-modal"'))pageBody+=callbackModal();const giftTarget=/<div class="(?:hero-visual|landing-photo|case-photo)(?:\s[^"]*)?"[^>]*>/;pageBody=giftTarget.test(pageBody)?pageBody.replace(giftTarget,match=>match+giftBadge()):'<div class="container gift-banner">'+giftBadge()+'</div>'+pageBody;pageBody+=giftDialogs(pageContext||{title:'Балкон или лоджия под ключ'});return shell(pageBody,options).replace('/app.js?v=performance-1','/app.js?v=performance-context-1').replace(`<a class="messenger" href="${company.telegram}" target="_blank" rel="noopener" data-event="telegram_click">Написать в Telegram ${arrow}</a>`,socialIconLinks('final-social-icons')).replace(`<a href="${company.telegram}" target="_blank" rel="noopener" data-event="telegram_click">Telegram ↗</a>`,socialIconLinks('footer-social-icons'));}
+export function shellWithQuiz(body,options){const path=options?.path||'/';const pageContext=serviceForPath(path)||projects.find(item=>path===`/nashi-raboty/${item.slug}/`)||null;let pageBody=body.includes('id="quiz-modal"')?body:body+quizModal(pageContext);if(!pageBody.includes('id="callback-modal"'))pageBody+=callbackModal();const giftTarget=/<div class="(?:hero-visual|landing-photo|case-photo)(?:\s[^"]*)?"[^>]*>/;pageBody=giftTarget.test(pageBody)?pageBody.replace(giftTarget,match=>match+giftBadge()):'<div class="container gift-banner">'+giftBadge()+'</div>'+pageBody;pageBody+=giftDialogs(pageContext||{title:'Балкон или лоджия под ключ'});return shell(pageBody,options).replace('/app.js?v=performance-1','/app.js?v=performance-context-1').replace(`<a class="messenger" href="${company.telegram}" target="_blank" rel="noopener" data-event="telegram_click">Написать в Telegram ${arrow}</a>`,socialIconLinks('final-social-icons')).replace(`<a href="${company.telegram}" target="_blank" rel="noopener" data-event="telegram_click">Telegram ↗</a>`,socialIconLinks('footer-social-icons'));}
 const certificateFiles=['cert-01.png','cert-02.png','cert-03.jpg','cert-04.jpg','cert-05.jpg','cert-06.jpg','cert-07.jpg','cert-08.png','cert-09.jpg','cert-10.jpg','cert-11.jpg','cert-12.png','cert-13.png','cert-14.png'];
 export const certificates=()=>`<section class="certificates-section" id="certificates" data-certificates><div class="section container"><div class="certificates-heading"><div><p class="eyebrow">ДОКУМЕНТЫ И ГАРАНТИИ</p><h2>Сертификаты соответствия</h2><p>Документы на материалы и продукцию, которые мы используем.</p></div><div class="certificate-count"><span><strong data-cert-current>1</strong> / ${certificateFiles.length}</span></div></div><div class="certificate-gallery"><div class="certificate-track" data-cert-track tabindex="0" role="region" aria-label="Слайдер сертификатов">${certificateFiles.map((file,i)=>`<figure class="certificate-card"><a href="/assets/certificates/${file}" data-cert-open aria-haspopup="dialog" aria-controls="certificate-modal" aria-label="Открыть сертификат ${i+1} крупно"><span class="certificate-paper"><img src="/assets/certificates/${file}" width="566" height="800" loading="lazy" decoding="async" alt="Сертификат соответствия №${i+1} — документ ArtBalkon"></span><figcaption><span>СЕРТИФИКАТ</span></figcaption></a></figure>`).join('')}</div><div class="certificate-controls"><button type="button" data-cert-prev aria-label="Предыдущий сертификат">←</button><button type="button" data-cert-next aria-label="Следующий сертификат">→</button></div></div></div><dialog class="certificate-modal" id="certificate-modal" aria-labelledby="certificate-modal-title"><div class="certificate-modal-shell"><div class="certificate-modal-head"><h2 id="certificate-modal-title" aria-live="polite">Сертификат</h2><button class="comparison-close" type="button" data-cert-close aria-label="Закрыть сертификат">×</button></div><div class="certificate-modal-view"><img data-cert-image width="566" height="800" alt="Сертификат соответствия"><button class="comparison-nav certificate-modal-prev" type="button" data-cert-modal-prev aria-label="Предыдущий сертификат">‹</button><button class="comparison-nav certificate-modal-next" type="button" data-cert-modal-next aria-label="Следующий сертификат">›</button></div></div></dialog></section>`;
 export function contact(context=null){
@@ -356,7 +360,7 @@ const structuredData=({path,title,description,image})=>{
   {'@type':'WebPage','@id':`${canonical}#webpage`,url:canonical,name:title,description,isPartOf:{'@id':websiteId},about:{'@id':businessId},primaryImageOfPage:{'@type':'ImageObject',url:imageUrl},inLanguage:'ru-RU'}
  ];
  const crumbs=breadcrumbSchema(path);if(crumbs)graph.push(crumbs);
- const service=services.find(item=>path===`/${item.slug}/`),project=projects.find(item=>path===`/nashi-raboty/${item.slug}/`);
+ const service=serviceForPath(path),project=projects.find(item=>path===`/nashi-raboty/${item.slug}/`);
  if(service){const seo=serviceSeo[service.slug],price=prices[service.price];graph.push({'@type':'Service','@id':`${canonical}#service`,name:service.h1,serviceType:service.title,description:seo?.metaDescription||service.offer,url:canonical,image:imageUrl,provider:{'@id':businessId},areaServed:[{'@type':'City',name:'Москва'},{'@type':'AdministrativeArea',name:'Московская область'}],...(price===null?{}:{offers:{'@type':'Offer',priceCurrency:'RUB',price:String(price),url:canonical,availability:'https://schema.org/InStock',priceSpecification:{'@type':'UnitPriceSpecification',price:String(price),priceCurrency:'RUB',unitText:'м²'}}})});if(seo?.faq?.length)graph.push({'@type':'FAQPage','@id':`${canonical}#faq`,mainEntity:seo.faq.map(([question,answer])=>({'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:answer}}))});}
  if(project)graph.push({'@type':'Article','@id':`${canonical}#project`,headline:project.title,description:project.intro,url:canonical,image:imageUrl,author:{'@id':businessId},publisher:{'@id':businessId},about:project.type,inLanguage:'ru-RU'});
  return {'@context':'https://schema.org','@graph':graph};
@@ -376,24 +380,13 @@ export function shell(body,{title='Балконы и лоджии под клю�
 
     ym(113425011, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
-<!-- /Yandex.Metrika counter --></head><body${path==='/'&&!noindex?' class="home-page"':''}><noscript><div><img src="https://mc.yandex.ru/watch/113425011" style="position:absolute; left:-9999px;" alt="" /></div></noscript>${header(path)}<main id="main">${body}</main>${footer(path)}<aside class="cookie-notice" id="cookie-notice" aria-label="Использование файлов cookie" hidden><button class="cookie-notice-close" type="button" data-cookie-dismiss aria-label="Закрыть уведомление">×</button><p><strong>Мы используем файлы cookie</strong></p><p>Они помогают сайту работать и позволяют анализировать посещаемость. Подробнее — в <a href="/privacy/">политике конфиденциальности</a>.</p><button class="button button-small cookie-notice-accept" type="button" data-cookie-dismiss><span>Хорошо</span></button></aside><button class="scroll-top" id="scroll-top" type="button" aria-label="Вернуться наверх" title="Наверх" hidden>↑</button><script src="https://cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8" defer></script></body></html>`;
+<!-- /Yandex.Metrika counter --></head><body${!noindex&&(path==='/'||path==='/balkon-pod-klyuch/')?' class="turnkey-page"':''}><noscript><div><img src="https://mc.yandex.ru/watch/113425011" style="position:absolute; left:-9999px;" alt="" /></div></noscript>${header(path)}<main id="main">${body}</main>${footer(path)}<aside class="cookie-notice" id="cookie-notice" aria-label="Использование файлов cookie" hidden><button class="cookie-notice-close" type="button" data-cookie-dismiss aria-label="Закрыть уведомление">×</button><p><strong>Мы используем файлы cookie</strong></p><p>Они помогают сайту работать и позволяют анализировать посещаемость. Подробнее — в <a href="/privacy/">политике конфиденциальности</a>.</p><button class="button button-small cookie-notice-accept" type="button" data-cookie-dismiss><span>Хорошо</span></button></aside><button class="scroll-top" id="scroll-top" type="button" aria-label="Вернуться наверх" title="Наверх" hidden>↑</button><script src="https://cdn.callibri.ru/callibri.js" type="text/javascript" charset="utf-8" defer></script></body></html>`;
 }
 const heroRatingBadges=()=>`<div class="hero-rating-badges" aria-label="Рейтинги на независимых площадках"><a class="hero-rating-badge" href="${company.reviews}" target="_blank" rel="noopener" aria-label="Яндекс Карты: рейтинг 5,0 из 5, 151 отзыв"><img src="/assets/yandex-maps-rating-icon.png" width="64" height="64" alt="Яндекс Карты"><span class="hero-rating-details"><strong>5,0 <span class="hero-rating-star" aria-hidden="true">★</span></strong><span class="hero-rating-count">151 отзыв</span></span></a><a class="hero-rating-badge" href="${company.avito}" target="_blank" rel="noopener" aria-label="Авито: рейтинг 4,9 из 5, 127 отзывов"><img src="/assets/avito-rating-icon.png" width="64" height="64" alt="Авито"><span class="hero-rating-details"><strong>4,9 <span class="hero-rating-star" aria-hidden="true">★</span></strong><span class="hero-rating-count">127 отзывов</span></span></a></div>`;
-export function home(){return `<section class="hero container"><div class="hero-content"><p class="eyebrow"><span></span> Остекление, утепление и отделка — от замера до готового интерьера</p><h1>${headingWithLocation('Остекление, утепление и отделка балконов и лоджий в Москве и Московской области')}</h1><p class="hero-description">Превратим балкон или лоджию в ещё одно любимое место дома — остеклим, утеплим и отделаем под ключ.</p><div class="hero-cta-stack"><div class="hero-actions">${button('Получить консультацию','#quiz','button-no-icon',true,true)}</div>${heroRatingBadges()}</div></div><div class="hero-visual">${pic(homeHeroImage,'Готовый балкон с зоной отдыха и встроенной мебелью ArtBalkon','hero-image is-active',true)}</div></section>${trust()}${campaignOffer()}
-${turnkeyIncludedExtrasSection({slug:'balkon-pod-klyuch'})}
-
-${beforeAfterSection()}
-${quiz(null,{consultation:true})}
-${partnerBrandsSection()}
-${promotionSection({title:'Балкон или лоджия под ключ'})}
-${reviewsSection()}
-${thermalInspectionSection()}
-${processVideoSection()}
-${advantagesSection()}
-${finishingStylesSection()}
-${finishingCalculator(prices,finishingWallRates).replace('CALCULATOR_CONTACT_FIELDS',contactFields('finishing-calc-consent'))}
-${socialSubscribeSection()}
-${certificates()}${contact()}`;}
+export function home(){
+ const service=serviceForPath('/');
+ return servicePageWithSeo(service).replace(serviceBreadcrumbMarkup(service),'');
+}
 export function servicePage(s){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy">${serviceBreadcrumbMarkup(s)}<div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description">${s.heroSubtitle||s.offer}</p>${s.heroPrice?`<p class="landing-price">${esc(s.heroPrice)}${s.heroPriceUnit?` <small>${esc(s.heroPriceUnit)}</small>`:''}</p>`:prices[s.price]===null?'':`<p class="landing-price">${money(prices[s.price])} <small>/м²</small></p>`}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s)}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
 const turnkeyIncludedExtrasSection=service=>{
  if(service?.slug!=='balkon-pod-klyuch')return '';
@@ -414,6 +407,31 @@ const turnkeyIncludedExtrasSection=service=>{
   return `<article class="turnkey-extra-card reveal${project.roofComparison||project.electricalComparison?' turnkey-extra-full-photo':''}"><div class="turnkey-extra-media"><span class="before-after-preview"><span><img src="/assets/${previewBefore}" width="960" height="1280" loading="lazy" decoding="async" alt="${esc(projectDisplayTitle(project))} — ${beforeAlt}"><b>До</b></span><span><img src="/assets/${previewAfter}" width="960" height="1280" loading="lazy" decoding="async" alt="${esc(projectDisplayTitle(project))} — ${afterAlt}"><b>После</b></span></span></div><div class="turnkey-extra-body"><h3>${title}</h3><p>${text}</p></div></article>`;
  }).join('');
  return `<section class="section container turnkey-extras" id="complex-options"><div class="section-heading services-heading"><div><h2>Дополнительные услуги</h2><p class="services-subtitle">Эти работы выполняем только вместе с остеклением и отделкой — как часть одного комплексного заказа.</p></div></div><div class="turnkey-extra-grid">${cards}</div></section>`;
+};
+// Keep the full project overview shared while retaining each page's own hero and forms.
+const mergedTurnkeyProjects=()=>{
+ const cases=new Set(),photos=new Set();
+ return [...beforeAfterProjects,...serviceBeforeAfterProjects['balkon-pod-klyuch']].filter(project=>{
+  const caseId=portfolioCaseId(project),after=afterPhotoAsset(project.after);
+  if(cases.has(caseId)||photos.has(after))return false;
+  cases.add(caseId);photos.add(after);return true;
+ });
+};
+const completeProjectSections=(service=null)=>{
+ const items=service?mergedTurnkeyProjects():beforeAfterProjects;
+ return `${turnkeyIncludedExtrasSection(service||{slug:'balkon-pod-klyuch'})}
+
+${beforeAfterSection(items,{serviceTitle:service?.title||''})}
+${quiz(service,{consultation:true})}
+${partnerBrandsSection()}
+${promotionSection(service||{title:'Балкон или лоджия под ключ'})}
+${reviewsSection()}
+${thermalInspectionSection()}
+${processVideoSection()}
+${advantagesSection()}
+${finishingStylesSection()}
+${finishingCalculator(prices,finishingWallRates).replace('CALCULATOR_CONTACT_FIELDS',contactFields('finishing-calc-consent'))}
+${socialSubscribeSection()}`;
 };
 const glazingBenefitsShowcases={
  'holodnoe-osteklenie':{title:'Преимущества холодного остекления',intro:'Практичное решение для балкона, которому прежде всего нужна защита от улицы без устройства тёплого контура.',image:'cold-sliding-glazing-v2.png',width:1536,height:1152,alt:'Готовый балкон с раздвижным холодным алюминиевым остеклением ArtBalkon',caption:'Готовая работа · раздвижное холодное остекление',items:[['Лёгкая конструкция','Создаёт меньшую нагрузку на основание и подходит для многих типовых балконов.'],['Защита от погоды','Закрывает пространство от дождя, снега, ветра и городской пыли.'],['Удобное открывание','Раздвижные створки движутся по направляющим и не занимают место внутри балкона.'],['Рациональная стоимость','Практичный вариант для сезонного использования и хранения.']],note:'Холодная система не поддерживает жилую температуру зимой — это важно учитывать при выборе.'},
@@ -440,7 +458,7 @@ export function servicePageWithSeo(s){
  const scopedQuiz=quiz(s,{consultation:true});
  const finishingMaterials=(/^otdelka-(?:balkonov|lodzhii)$/.test(s.slug)||s.slug==='remont-balkonov')?sourceServiceDetailsSection(s):'';
  const openingSections=isTurnkey
-  ?`${beforeAfterSection(serviceProjects,{serviceTitle:s.title,photoCards:s.slug==='osteklenie-balkonov'})}${turnkeyIncludedExtrasSection(s)}${scopedQuiz}${partnerBrandsSection()}${promotionSection(s)}${reviewsSection()}${thermalSection}${advantagesSection()}`
+  ?completeProjectSections(s)
   :`${beforeAfterSection(serviceProjects,{serviceTitle:s.title,photoCards:s.slug==='osteklenie-balkonov'})}${turnkeyIncludedExtrasSection(s)}${repairIntegrationSection(s)}${scopedQuiz}${finishingMaterials}${insulationMaterialsSection(s)}${thermalAfterMaterials?thermalSection:''}${partnerBrandsSection()}${promotionSection(s)}${reviewsSection()}${finishingSection}${thermalAfterMaterials?'':thermalSection}${advantagesSection()}`;
  const offer=campaignOffer();
  const quizSlot='<!-- scoped-quiz-slot -->';

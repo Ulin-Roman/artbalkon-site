@@ -4,13 +4,14 @@ import {beforeWindowCorrections} from '../src/portfolio-before-window-correction
 const beforeWindowSources = new Map(Object.entries(beforeWindowCorrections).map(([source,target])=>[target,source]));
 const originalWindowBefore = before => { const prior = beforeGeometrySources.get(before) || before; return beforeWindowSources.get(prior) || prior; };
 import {portfolioDisplayTitles} from '../src/portfolio-titles.mjs';
+import {portfolioCaseId} from '../src/portfolio-case-ids.mjs';
 import {beforeWeatherAssets} from '../src/before-weather.mjs';
 import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {prices,projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
-import {header,esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
+import {company,serviceSeo,prices,projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
+import {header,esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,shellWithQuiz,homeHeroImage,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
 const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
 const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).flatMap(p=>[p.before,originalWindowBefore(p.before)]));
@@ -52,13 +53,36 @@ const requiredLocation='в Москве и Московской области';
 const bundledServiceSlugs=['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'];
 const homeHtml=renderHome();
 assert.ok(homeHtml.includes('Получить консультацию'),'home hero must invite visitors to get a consultation');
-assert.match(homeHtml,/<div class="hero-actions"><button class="button button-no-icon"[^>]*>\s*<span class="button-label">Получить консультацию<\/span>/,'home consultation button must not contain an icon');
+assert.match(homeHtml,/<section class="container landing-hero">/,'Home must use the turnkey hero');
 for(const slug of bundledServiceSlugs)assert.ok(!homeHtml.includes(`href="/${slug}/"`),`Home must not advertise ${slug} as a standalone service`);
 const turnkeyHtml=servicePageWithSeo(services.find(service=>service.slug==='balkon-pod-klyuch'));
 assert.ok(!turnkeyHtml.includes('id="complex-projects"'),'Removed bundled galleries must stay off the turnkey page');
 for(const title of ['Работы в составе проектов под ключ','Мебель в готовых интерьерах','Электрика и освещение в проектах'])assert.ok(!turnkeyHtml.includes(title),`Removed section must stay absent: ${title}`);
 assert.match(turnkeyHtml,/id="complex-options"/,'Turnkey page must contain bundled options');
 for(const title of ['Крыша над балконом','Мебель для балкона или лоджии','Электрика и освещение'])assert.ok(turnkeyHtml.includes(title),`Turnkey page must contain ${title}`);
+// The turnkey overview preserves both portfolios and shares each home block once.
+const turnkeyCases=[...turnkeyHtml.matchAll(/data-comparison data-case="([^"]+)"/g)].map(match=>match[1]);
+const expectedTurnkeyCases=new Set([...beforeAfterProjects,...serviceBeforeAfterProjects['balkon-pod-klyuch']].map(portfolioCaseId));
+assert.equal(turnkeyCases.length,expectedTurnkeyCases.size,'Merged turnkey gallery must contain every work exactly once');
+assert.deepEqual(new Set(turnkeyCases),expectedTurnkeyCases,'Home and existing turnkey works must all remain reachable');
+const turnkeyAfterPhotos=[...turnkeyHtml.matchAll(/data-after="([^"]+)"/g)].map(match=>match[1]);
+assert.equal(new Set(turnkeyAfterPhotos).size,turnkeyAfterPhotos.length,'Merged gallery must not repeat a result photo');
+const turnkeyIds=[...turnkeyHtml.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+assert.equal(new Set(turnkeyIds).size,turnkeyIds.length,'Merged page must not duplicate form or dialog IDs');
+for(const id of ['before-after','quiz','video-process','finishing-styles','finishing-calculator','social-subscribe-title']){
+ assert.equal(turnkeyIds.filter(value=>value===id).length,1,'Shared home block must appear once on turnkey: '+id);
+ assert.ok(homeHtml.includes('id="'+id+'"'),'Migrating blocks must preserve the home page: '+id);
+}
+assert.equal(homeHtml,turnkeyHtml.replace(/<nav class="breadcrumbs"[^>]*>[\s\S]*?<\/nav>/,''),'Home must clone the turnkey content without a self breadcrumb');
+const homeShell=shellWithQuiz(homeHtml,{path:'/',image:'/assets/'+homeHeroImage});
+assert.match(homeShell,/<body class="turnkey-page">/,'Home must use the same layout rules as turnkey');
+assert.ok(homeShell.includes('<link rel="canonical" href="'+company.origin+'/">'),'Home must keep its own canonical URL');
+const homeQuizModal=homeShell.match(/<dialog class="quiz-modal"[\s\S]*?<\/dialog>/)?.[0];
+assert.ok(homeQuizModal?.includes('name="service" value="Под ключ"'),'Home consultation modal must retain the turnkey service');
+const homeGraph=JSON.parse(homeShell.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1])['@graph'];
+assert.equal(homeGraph.find(item=>item['@type']==='Service')?.url,company.origin+'/','Home service schema must use the root URL');
+assert.equal(homeGraph.find(item=>item['@type']==='FAQPage')?.mainEntity.length,serviceSeo['balkon-pod-klyuch'].faq.length,'Home FAQ markup and schema must stay together');
+assert.ok(!homeGraph.some(item=>item['@type']==='BreadcrumbList'),'Root must not publish service-page breadcrumbs');
 for(const [label,html] of [['home',renderHome()],...services.map(service=>[service.slug,servicePage(service)])]){
  const h1=html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g,' ');
  assert.ok(h1?.includes(requiredLocation),`${label}: H1 must include ${requiredLocation}`);
@@ -87,8 +111,8 @@ for(const project of roofPairs.filter(project=>!project.qualityReconstructed))as
 for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],...services.map(s=>[s.slug,servicePage(s),serviceBeforeAfterProjects[s.slug]])]){
  const hero=html.match(/<div[^>]*data-hero-slider[^>]*>([\s\S]*?)<\/div>/)?.[1];
  if(label==='home'){
-  assert.ok(!html.includes('<div class="hero-visual hero-slideshow"'),'home hero must remain static');
-  assert.ok(html.includes('/assets/service-before-after/furniture-interior-v2-04-after.webp'),'home hero must keep the selected project image');
+  assert.ok(!html.includes('data-hero-slider'),'home turnkey hero must remain static');
+  assert.ok(html.includes('/assets/'+homeHeroImage),'home hero must use the selected turnkey office image');
   continue;
  }
  if(label==='osteklenie-balkonov'){

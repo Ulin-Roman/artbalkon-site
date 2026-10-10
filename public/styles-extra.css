@@ -1520,7 +1520,8 @@ h1,h2,h3,h4,
 }
 
 /* Keep the home page focused on its primary section titles. */
-.home-page main .eyebrow{
+.home-page main .eyebrow,
+.turnkey-page main .eyebrow{
  display:none;
 }
 
@@ -1663,7 +1664,9 @@ h1,h2,h3,h4,
 /* Preserve intentional word separation in multiline mobile headings. */
 @media(max-width:900px){
  .home-page .quiz-intro h2 br,
- .home-page .final-copy h2 br{
+ .home-page .final-copy h2 br,
+ .turnkey-page .quiz-intro h2 br,
+ .turnkey-page .final-copy h2 br{
   display:block;
  }
 }
@@ -4485,7 +4488,9 @@ body.home-page,
 .home-page .service-card,
 .home-page .extra-card,
 .home-page .before-after-card,
-.home-page .quiz-layout{
+.home-page .quiz-layout,
+.turnkey-page .before-after-card,
+.turnkey-page .quiz-layout{
  background-color:#fff;
  border-color:#e6e7ea;
  box-shadow:0 8px 28px rgba(35,43,49,.055);
@@ -5059,4 +5064,4 @@ main > .social-subscribe,
 
 @media(max-width:430px){.before-after-section+.cost-calculator-section::before{width:calc(100% + 32px)}}
 
-.nav-services summary>a.nav-glazing-link{padding:0;border:0;color:inherit;font:inherit}
+.nav-services summary>a{padding:0;border:0;color:inherit;font:inherit}
