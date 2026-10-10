@@ -10757,13 +10757,15 @@
   },
   "/assets/panorama-no-handles-v2/work267-after-no-handles-v2.webp": {
     "src": "/assets/panorama-no-handles-v2/work267-after-no-handles-v2.webp",
+    "width": 1083,
+    "height": 1452,
     "variants": [
       {
-        "src": "/assets/panorama-no-handles-v2/work267-after-no-handles-v2-320.webp",
+        "src": "/assets/panorama-no-handles-v2/work267-after-proportional-v3-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/panorama-no-handles-v2/work267-after-no-handles-v2-640.webp",
+        "src": "/assets/panorama-no-handles-v2/work267-after-proportional-v3-640.webp",
         "width": 640
       },
       {
