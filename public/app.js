@@ -306,14 +306,15 @@
 function createCalculatorScene(root) {
  const canvas=root.querySelector('[data-calc-canvas]'),ctx=canvas.getContext('2d');
  if(!ctx)return ()=>{};
- const base=new Image(),atlas=new Image(),cache=new Map();
+ const base=new Image(),atlas=new Image(),insulation=new Image(),cache=new Map();
  let selection=null,ready=false,frame=0;
  const cells={laminate:0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
  const polygon=q=>{ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();};
  function texture(key,rx=1,ry=1,rotate=false){
   const id=[key,rx,ry,rotate].join(':');if(cache.has(id))return cache.get(id);
   const tile=document.createElement('canvas');tile.width=tile.height=416;const t=tile.getContext('2d');
-  if(key==='stretch'){t.fillStyle='#f1f0eb';t.fillRect(0,0,416,416);}
+  if(key==='insulated'){t.drawImage(insulation,0,0,416,416);}
+  else if(key==='stretch'){t.fillStyle='#f1f0eb';t.fillRect(0,0,416,416);}
   else {const cell=cells[key],size=atlas.width/3;t.drawImage(atlas,(cell%3)*size+2,Math.floor(cell/3)*size+2,size-4,size-4,0,0,416,416);}
   const out=document.createElement('canvas');out.width=out.height=1024;const c=out.getContext('2d');
   if(rotate){c.translate(1024,0);c.rotate(Math.PI/2);}
@@ -351,16 +352,16 @@ function createCalculatorScene(root) {
  function render(){
   frame=0;if(!ready||!selection)return;const s=selection;
   ctx.setTransform(3,0,0,3,0,0);ctx.clearRect(0,0,340,480);ctx.translate(340,0);ctx.scale(-1,1);ctx.drawImage(base,0,0,340,480);
-  const wall=s['walls-enabled']?s.walls:'concrete',floor=s['floor-enabled']?s.floor:'concrete',ceiling=s['ceiling-enabled']?s.ceiling:'concrete';
-  plane([[108,140],[230,140],[228,317],[113,317]],wall,1,1,false,{axis:[108,210,230,210],stops:[[0,'#28231540'],[.25,'#28231512'],[.8,'#28231525'],[1,'#28231555']]});
-  plane([[230,140],[298,57],[297,426],[228,317]],wall,2.8,1,false,{axis:[230,190,298,190],stops:[[0,'#30291f48'],[.3,'#30291f08'],[1,'#ffffff12']]});
+  const wall=s['walls-enabled']?s.walls:s.insulation==='yes'?'insulated':'concrete',floor=s['floor-enabled']?s.floor:s.insulation==='yes'?'insulated':'concrete',ceiling=s['ceiling-enabled']?s.ceiling:s.insulation==='yes'?'insulated':'concrete';
+  plane([[108,140],[220,140],[220,317],[113,317]],wall,1,1,false,{axis:[108,210,230,210],stops:[[0,'#28231540'],[.25,'#28231512'],[.8,'#28231525'],[1,'#28231555']]});
+  plane([[220,140],[298,57],[297,426],[220,317]],wall,2.8,1,false,{axis:[220,190,298,190],stops:[[0,'#30291f48'],[.3,'#30291f08'],[1,'#ffffff12']]});
   plane([[47,310],[114,279],[113,317],[47,425]],wall,2.8,.48,false,{axis:[47,360,114,295],stops:[[0,'#30291f30'],[1,'#30291f60']]});
-  plane([[43,56],[298,56],[230,140],[108,140]],ceiling,1,2.6,ceiling==='laminate',{axis:[170,56,170,140],stops:[[0,'#ffffff10'],[.65,'#342b1920'],[1,'#342b1955']]});
-  plane([[113,317],[228,317],[296,429],[45,429]],floor,2.4,1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
+  plane([[43,56],[298,56],[220,140],[108,140]],ceiling,1,2.6,ceiling==='laminate',{axis:[170,56,170,140],stops:[[0,'#ffffff10'],[.65,'#342b1920'],[1,'#342b1955']]});
+  plane([[113,317],[220,317],[296,429],[45,429]],floor,2.4,1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
   // Slim painted skirting and contact shadows hide joins without covering materials.
-  line([[47,425],[113,317],[228,317],[294,425]],'#403b3366',3.5);
-  if(s['floor-enabled'])line([[47,425],[113,318],[228,318],[294,425]],'#ddd7c7',1.5);
-  line([[108,140],[230,140],[228,317]],'#36302738',1.1);
+  line([[47,425],[113,317],[220,317],[294,425]],'#403b3366',3.5);
+  if(s['floor-enabled'])line([[47,425],[113,318],[220,318],[294,425]],'#ddd7c7',1.5);
+  line([[108,140],[220,140],[220,317]],'#36302738',1.1);
   line([[43,56],[108,140]],'#ffffff55',.65);
   if(!s['glazing-enabled']||s.glazing==='cold'){
    const window=[[43,78],[108,142],[108,270],[43,310]];
@@ -374,6 +375,11 @@ function createCalculatorScene(root) {
     ctx.save();polygon(window);ctx.clip();const glass=ctx.createLinearGradient(43,140,108,220);glass.addColorStop(0,'#ffffff28');glass.addColorStop(.48,'#bed8de18');glass.addColorStop(.5,'#ffffff42');glass.addColorStop(1,'#e4eff51a');ctx.fillStyle=glass;ctx.fillRect(40,70,70,250);ctx.restore();
    }
   }
+  // Apartment door/window, projecting sills and switch stay above all finish layers.
+  const restore=q=>{ctx.save();polygon(q);ctx.clip();ctx.drawImage(base,0,0,340,480);ctx.restore();};
+  restore([[225.4,140.8],[283.7,80.6],[283.7,413.8],[250.7,369.3],[250.7,275.7],[246.3,277.3],[218.1,260.3],[218.1,255.2],[225.4,254.8]]);
+  restore([[236.7,276.5],[240.6,279],[240.6,288.1],[236.7,285.6]]);
+  restore([[46.3,300.8],[111.7,263.5],[116,259.7],[116,263.5],[48.1,308.5],[43.1,306.5]]);
   if(s['exterior-enabled']){
    const metal=s.exterior==='metal',q=[[28,311],[36,308],[36,427],[28,427]];
    ctx.save();polygon(q);ctx.clip();ctx.fillStyle=metal?'#8a9891':'#d6d6c5';ctx.fillRect(28,308,8,120);
@@ -395,7 +401,8 @@ function createCalculatorScene(root) {
   canvas.hidden=false;root.querySelector('[data-calc-fallback]').hidden=true;
  }
  const schedule=()=>{if(!frame)frame=requestAnimationFrame(render);};
- Promise.all([base,atlas].map(img=>new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;}))).then(()=>{ready=true;schedule();}).catch(()=>{root.querySelector('figcaption').textContent='Предпросмотр отделки временно недоступен';});
+ Promise.all([base,atlas,insulation].map(img=>new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;}))).then(()=>{ready=true;schedule();}).catch(()=>{canvas.hidden=true;root.querySelector('[data-calc-fallback]').hidden=false;});
+ insulation.src=new URL('assets/calculator-realistic-v1/insulation-battens-v1.webp',siteBase).href;
  base.src=root.querySelector('[data-calc-fallback]').src;atlas.src=new URL('assets/calculator-realistic-v1/material-atlas-v2.webp',siteBase).href;
  return state=>{selection=state;schedule();};
 }
@@ -411,13 +418,14 @@ function createCalculatorScene(root) {
   const materialName=key=>controls.querySelector(`input[name="${key}"]:checked`)?.closest('label').querySelector('.finish-calc-swatch+span')?.textContent||'';
   function updateEstimate(){
    finishCalculator.querySelectorAll('[data-calc-group]').forEach(group=>{const toggle=group.querySelector('input[type="checkbox"]');if(toggle)group.querySelectorAll('input[type="radio"]').forEach(input=>input.disabled=!toggle.checked);});
-   const state=read(),L=Number(state.length)/100,W=Number(state.width)/100,H=Number(state.height)/100,G=Number(state.windowHeight)/100;
-   const valid=controls.checkValidity()&&G<H;
-   finishCalculator.querySelector('[data-calc-error]').textContent=valid?'':G>=H?'Высота окон должна быть меньше высоты помещения.':'Укажите размеры в пределах, указанных в полях.';
+   // Standard estimate geometry; exact dimensions are confirmed at the survey.
+   const state=read(),L=Number(state.length)/100,W=Number(state.width)/100,H=2.5,G=1.4;
+   const valid=controls.checkValidity();
+   finishCalculator.querySelector('[data-calc-error]').textContent=valid?'':'Укажите размеры в пределах, указанных в полях.';
    finishCalculator.querySelector('[data-calc-request]').disabled=!valid;
-   if(!valid){calculation='';finishCalculator.querySelector('[data-calc-total]').textContent='—';finishCalculator.querySelector('[data-calc-breakdown]').replaceChildren();return;}
-   const glazedLength=L+(state.object==='balcony'?2*W:0),floorArea=L*W,glazingArea=glazedLength*G;
-   const wallArea=L*H+glazedLength*(H-G)+(state.object==='loggia'?2*W*H:0);
+   if(!valid){calculation='';finishCalculator.querySelector('[data-calc-total]').textContent='—';finishCalculator.querySelector('[data-calc-from]').hidden=true;return;}
+   const glazedLength=L+2*W,floorArea=L*W,glazingArea=glazedLength*G;
+   const wallArea=L*H+glazedLength*(H-G);
    const items=[],extra=[];
    if(state['walls-enabled'])items.push(['Стены · '+area(wallArea),wallArea*rates.walls[state.walls]]);
    if(state['glazing-enabled'])items.push(['Остекление · '+area(glazingArea),glazingArea*rates[state.glazing]]);
@@ -426,14 +434,10 @@ function createCalculatorScene(root) {
    for(const [key,name] of Object.entries(names))if(state[key+'-enabled'])extra.push(name);
    const total=items.reduce((sum,item)=>sum+item[1],0);
    finishCalculator.querySelector('[data-calc-total]').textContent=items.length?currency(total):'По замеру';
-   finishCalculator.querySelector('[data-calc-additions]').textContent=extra.length?extra.join(', ')+' — отдельно по замеру':'Точная стоимость — после замера';
-   finishCalculator.querySelector('[data-calc-area]').textContent=area(floorArea);
-   const breakdown=finishCalculator.querySelector('[data-calc-breakdown]');breakdown.replaceChildren();
-   for(const [label,amount] of items){const row=document.createElement('p'),title=document.createElement('span'),value=document.createElement('strong');title.textContent=label;value.textContent='от '+currency(amount);row.append(title,value);breakdown.append(row);}
-   if(!items.length){const row=document.createElement('p');row.textContent='Выбранные работы рассчитываются после замера.';breakdown.append(row);}
+   finishCalculator.querySelector('[data-calc-from]').hidden=!items.length;
    renderCalculatorScene(state);
    const selected=['walls','ceiling','floor','exterior','glazing','lighting'].filter(key=>state[key+'-enabled']).map(key=>({walls:'Стены',...names,glazing:'Остекление'})[key]+': '+materialName(key));
-   calculation=[state.object==='balcony'?'Балкон':'Лоджия',`Размеры: ${state.length} × ${state.width} см; высота ${state.height} см; окна ${state.windowHeight} см`,...selected,'Утепление: '+(state.insulation==='yes'?'да':'нет'),items.length?'Предварительно от '+currency(total):'Стоимость по замеру',...items.map(([label,amount])=>label+': от '+currency(amount)),extra.length?'Отдельно по замеру: '+extra.join(', '):'', 'Площадь стен без вычета квартирных проёмов; итог уточняется после замера.'].filter(Boolean).join('\n');
+   calculation=['Балкон / лоджия',`Размеры: ${state.length} × ${state.width} см`, 'Для предварительного расчёта приняты: высота 250 см, остекление 140 см, периметр остекления — длина + две ширины',...selected,'Утепление: '+(state.insulation==='yes'?'да':'нет'),items.length?'Предварительно от '+currency(total):'Стоимость по замеру',...items.map(([label,amount])=>label+': от '+currency(amount)),extra.length?'Отдельно по замеру: '+extra.join(', '):'', 'Площадь стен без вычета квартирных проёмов; итог уточняется после замера.'].filter(Boolean).join('\n');
   }
   controls.addEventListener('input',updateEstimate);controls.addEventListener('change',updateEstimate);controls.addEventListener('submit',e=>e.preventDefault());
   finishCalculator.querySelector('[data-calc-request]').addEventListener('click',()=>{updateEstimate();if(!calculation)return;const form=dialog.querySelector('[data-calc-lead]');if(form.querySelector('[name="calculation"]')){form.querySelector('[name="calculation"]').value=calculation;dialog.querySelector('[data-calc-summary]').textContent=calculation;}openDialogAtCurrentScroll(dialog,form.querySelector('input[name="name"]')||form.querySelector('.thank-you'));track('calculator_lead_open');});

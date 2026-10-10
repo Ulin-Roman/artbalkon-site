@@ -430,7 +430,7 @@ const glazingBenefitsShowcases={
 const glazingBenefitsShowcase=service=>{const data=glazingBenefitsShowcases[service?.slug];if(!data)return '';return `<section class="glazing-benefits-showcase" aria-labelledby="glazing-benefits-title"><div class="container glazing-benefits-showcase-grid"><div class="glazing-benefits-copy"><div class="glazing-benefits-heading"><h2 id="glazing-benefits-title">${data.title}</h2><p class="glazing-benefits-intro">${data.intro}</p></div><div class="glazing-benefits-overlay"><ul>${data.items.map(([title,text],index)=>`<li class="glazing-benefit-item${index===0?' is-open':''}"><button class="glazing-benefit-toggle" type="button" aria-expanded="${index===0?'true':'false'}"><span class="glazing-benefit-check" aria-hidden="true">✓</span><h3>${title}</h3><span class="glazing-benefit-marker" aria-hidden="true">+</span></button><p>${text}</p></li>`).join('')}</ul><p class="glazing-benefits-note">${data.note}</p>${button('Получить консультацию','#quiz')}</div></div><figure class="glazing-benefits-photo reveal"><img src="/assets/${data.image}" width="${data.width}" height="${data.height}" loading="lazy" decoding="async" alt="${data.alt}"><figcaption>${data.caption}</figcaption></figure></div></section>`;};
 export function servicePageWithSeo(s){
  const isTurnkey=s.slug==='balkon-pod-klyuch';
- const serviceSeoWithoutScope=s.slug==='remont-balkonov'?serviceSeoSection(s):serviceSeoSection(s)
+ const serviceSeoWithoutScope=serviceSeoSection(s)
   .replace(/<section class="section container service-seo-intro">[\s\S]*?<\/section>/,'')
   .replace(/<section class="soft-section"><div class="section container service-scope">[\s\S]*?<\/div><\/section>/,'');
  const serviceProjects=serviceBeforeAfterProjects[s.slug]||[];

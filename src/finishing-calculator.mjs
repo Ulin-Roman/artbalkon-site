@@ -11,10 +11,10 @@ const choices = {
 };
 function group(key, title, selected, enabled, rates) {
  const toggle = key === 'insulation' ? '' : `<label class="finish-calc-switch"><input type="checkbox" name="${key}-enabled" ${enabled?'checked':''} aria-label="Включить: ${title.toLowerCase()}"><span aria-hidden="true"></span></label>`;
- return `<fieldset class="finish-calc-group" data-calc-group="${key}"><legend>${title}</legend><div class="finish-calc-group-head" aria-hidden="true">${title}</div>${toggle}<div class="finish-calc-options">${choices[key].map(([value,label])=>`<label class="finish-calc-option"><input type="radio" name="${key}" value="${value}" ${value===selected?'checked':''} ${!enabled&&key!=='insulation'?'disabled':''}><span class="finish-calc-swatch" data-swatch="${value}" aria-hidden="true">${key==='glazing'?'▥':key==='lighting'?(value==='spots'?'◉':'▱'):key==='insulation'?(value==='yes'?'◈':'—'):''}</span><span>${label}</span>${rates?.[value]?`<small>от ${format(rates[value])} ₽/м²</small>`:''}</label>`).join('')}</div></fieldset>`;
+ return `<fieldset class="finish-calc-group" data-calc-group="${key}"><legend>${title}</legend><div class="finish-calc-group-head" aria-hidden="true">${title}</div>${toggle}<div class="finish-calc-options">${choices[key].map(([value,label])=>`<label class="finish-calc-option"><input type="radio" name="${key}" value="${value}" ${value===selected?'checked':''} ${!enabled&&key!=='insulation'?'disabled':''}><span class="finish-calc-swatch" data-swatch="${value}" aria-hidden="true"></span><span>${label}</span>${rates?.[value]?`<small>от ${format(rates[value])} ₽/м²</small>`:''}</label>`).join('')}</div></fieldset>`;
 }
 function scene() {
- return `<div class="finish-calc-scene-wrap"><img data-calc-fallback class="finish-calc-scene finish-calc-fallback" src="/assets/calculator-realistic-v1/balcony-house-wall.webp" width="340" height="480" alt="Балкон в разрезе: наружное остекление справа, стена дома слева"><canvas data-calc-canvas class="finish-calc-scene" width="1020" height="1440" role="img" aria-label="Выбранная отделка балкона: остекление справа, стена дома слева" hidden></canvas></div>`;
+ return `<div class="finish-calc-scene-wrap"><img data-calc-fallback class="finish-calc-scene finish-calc-fallback" src="/assets/calculator-realistic-v1/balcony-apartment-v4.webp" width="340" height="480" alt="Балкон в разрезе: наружное остекление справа, дверь и окно в квартиру слева"><canvas data-calc-canvas class="finish-calc-scene" width="1020" height="1440" role="img" aria-label="Выбранная отделка балкона: остекление справа, дверь и окно в квартиру слева" hidden></canvas></div>`;
 }
 export function finishingCalculator(prices, wallRates) {
  return `<section class="section container finishing-calculator" id="finishing-calculator" data-finishing-calculator data-rates='${JSON.stringify({...prices,walls:wallRates})}' aria-labelledby="finishing-calculator-title">
@@ -22,7 +22,7 @@ export function finishingCalculator(prices, wallRates) {
  <p class="finish-calc-intro">Укажите размеры, выберите материалы и посмотрите предварительную стоимость работ.</p>
  <div class="finish-calc-layout"><div class="finish-calc-controls">
  <form data-calc-controls>
- <div class="finish-calc-dimensions"><label>Объект<select name="object"><option value="balcony">Балкон</option><option value="loggia">Лоджия</option></select></label>${[['length','Длина, см',300,100,1200],['width','Ширина, см',100,50,400],['height','Высота, см',250,180,350],['windowHeight','Высота окон, см',140,50,250]].map(([name,label,value,min,max])=>`<label>${label}<input name="${name}" type="number" inputmode="decimal" value="${value}" min="${min}" max="${max}" step="1" required></label>`).join('')}</div>
+ <div class="finish-calc-topline"><p class="finish-calc-gift">Сделайте расчёт и получите подарок <span aria-hidden="true">🎁</span></p><div class="finish-calc-dimensions">${[['length','Длина, см',300,100,1200],['width','Ширина, см',100,50,400]].map(([name,label,value,min,max])=>`<label>${label}<input name="${name}" type="number" inputmode="decimal" value="${value}" min="${min}" max="${max}" step="1" required></label>`).join('')}</div></div>
  <p class="finish-calc-validation" data-calc-error role="status"></p>
  <div class="finish-calc-groups">
  ${group('walls','Отделка стен','laminate',true,wallRates)}
@@ -32,11 +32,10 @@ export function finishingCalculator(prices, wallRates) {
  ${group('glazing','Остекление','warm',true,{cold:prices.cold,warm:prices.warm})}
  ${group('insulation','Утепление','yes',true)}
  ${group('floor','Отделка пола','laminate',true)}
- <div class="finish-calc-result"><span class="finish-calc-result-label">Предварительно, от</span><output data-calc-total>—</output><p data-calc-additions>Дополнительные работы — по замеру</p><button class="button" type="button" data-calc-request>Получить точный расчёт <span aria-hidden="true">↗</span></button></div>
+ <div class="finish-calc-result"><div class="finish-calc-price"><span class="finish-calc-result-label" data-calc-from>от</span><output data-calc-total>—</output></div><button class="button" type="button" data-calc-request>Получить точный расчёт <span aria-hidden="true">↗</span></button></div>
  </div></form>
- <details class="finish-calc-breakdown"><summary>Что входит в расчёт</summary><div data-calc-breakdown></div><p>Площадь стен рассчитана без вычета проёмов со стороны квартиры. Пол, потолок, наружная отделка и освещение считаются отдельно после замера. Итог зависит от основания, материалов и комплектации.</p></details>
  <noscript><p>Для интерактивного расчёта включите JavaScript или позвоните: <a href="tel:+74951653905">+7 (495) 165-39-05</a>.</p></noscript>
- </div><figure class="finish-calc-preview"><div class="finish-calc-preview-head"><span>Ваш вариант отделки</span><span data-calc-area>3 м²</span></div>${scene()}<figcaption>Визуализация выбранной отделки</figcaption></figure></div>
+ </div><figure class="finish-calc-preview">${scene()}</figure></div>
  <dialog class="application-modal" id="finishing-calc-modal" aria-labelledby="finishing-calc-modal-title"><div class="application-modal-shell"><button class="application-close" type="button" data-calc-close aria-label="Закрыть форму">×</button><div class="application-modal-copy"><p class="eyebrow">РАСЧЁТ ВАШЕГО ПРОЕКТА</p><h2 id="finishing-calc-modal-title">Уточним стоимость</h2><p>Менеджер получит выбранные размеры и материалы и поможет составить точную смету.</p><p class="finish-calc-summary" data-calc-summary></p></div><form class="contact-form application-form" data-calc-lead data-lead-form="callback" novalidate>CALCULATOR_CONTACT_FIELDS<input type="hidden" name="calculation"><p class="form-error" role="alert"></p><button class="button" type="submit">Получить расчёт</button><p class="contact-note">Перезвоним в рабочее время, с 9:00 до 21:00.</p></form></div></dialog>
  </section>`;
 }
