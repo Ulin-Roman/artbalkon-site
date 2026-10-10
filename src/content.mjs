@@ -775,7 +775,7 @@ serviceBeforeAfterProjects['mebel-dlya-balkona']=furnitureConcepts.map(([objectT
 
 // Reviewed high-resolution reconstructions; retain originals and disclose visualizations.
 const galleryQualityReplacements={
- 'service-before-after/renovation-balcony-04-after.webp':'window-details-v2/balcony-04-handles.webp',
+ 'service-before-after/renovation-balcony-04-after.webp':'window-details-v2/balcony-04-handle-next-sash-v3.webp',
  'service-before-after/panoramic-balcony-01-after.jpg':'window-details-v2/panoramic-clean-dark.webp',
  'service-before-after/panoramic-balcony-03-after.jpg':'window-details-v2/panoramic-clean-white.webp',
  'service-before-after/renovation-loggia-11-finish-before.webp':'window-details-v2/old-window-clean.webp',
@@ -1527,8 +1527,8 @@ beforeAfterProjects.push({
   "beforeReal": false,
   "importedHomeWork": true,
   "description": "Визуализация обновления балкона: новые окна, отделка, рабочий стол и полки с подсветкой.",
-  "before": "home-liked-works-v1/balcony-office-shelves-central-v3-before-removed-v4.webp",
-  "after": "home-liked-works-v1/balcony-office-shelves-central-v3-after.webp"
+  "before": "home-liked-works-v1/work5-before-photoreal-v5.webp",
+  "after": "home-liked-works-v1/work5-after-photoreal-v5.webp"
 });
 
 // Show the five latest approved home portfolio pairs first, in their existing order.
@@ -1990,3 +1990,13 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  if(!project)throw new Error('Work 192 not found');
  project.description='Визуализация холодного остекления балкона по передней и правой сторонам с сохранением глухой стены слева.';
 }
+
+// Repair landing reuses the finishing service, prices and portfolio.
+const finishingService=services.find(s=>s.slug==='otdelka-balkonov');
+services.push({...finishingService,slug:'remont-balkonov',title:'Ремонт балконов и лоджий',h1:'Ремонт балконов и лоджий в Москве и Московской области',short:'Обновим балкон или лоджию: от подготовки поверхностей до готового интерьера.',offer:'Подготовим стены, пол и потолок, подберём отделку и согласуем необходимые работы.',heroSubtitle:'Превратим старый балкон или лоджию в удобное место для отдыха, работы и хранения. Состав ремонта согласуем после замера.'});
+serviceSeo['remont-balkonov']={...serviceSeo['otdelka-balkonov'],metaTitle:'Ремонт балконов и лоджий в Москве и Московской области | ArtBalkon',metaDescription:'Ремонт балконов и лоджий в Москве и Московской области: подготовка поверхностей, отделка стен, пола и потолка, освещение и хранение. Замер и подбор материалов.',title:'Ремонт балкона под ваши задачи',eyebrow:'НОВАЯ ЖИЗНЬ ВАШЕГО БАЛКОНА',paragraphs:['Начинаем с осмотра балкона или лоджии: оцениваем состояние поверхностей, остекление и будущие задачи пространства. Согласуем, что нужно заменить, подготовить и отделать.','Подбираем покрытия для стен, пола и потолка с учётом влажности и температурного режима. Электрику, утепление и замену окон включаем в смету по необходимости, до чистовой отделки.','После замера вы получите согласованный состав работ и материалов. Покажем варианты отделки и поможем организовать отдых, рабочее место или хранение.']};
+serviceBeforeAfterProjects['remont-balkonov']=[...serviceBeforeAfterProjects['otdelka-balkonov']];
+const featuredRepair=beforeAfterProjects.find(p=>p.title==='Балкон со шкафом и складным столом');
+if(!featuredRepair)throw new Error('Featured repair work-4 not found');
+beforeAfterProjects.splice(beforeAfterProjects.indexOf(featuredRepair),1);
+beforeAfterProjects.unshift(featuredRepair);

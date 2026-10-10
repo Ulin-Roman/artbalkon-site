@@ -1,5 +1,10 @@
 (() => {
  'use strict';
+ document.querySelectorAll('[data-repair-range]').forEach(range=>{
+  const frame=range.closest('[data-repair-compare]');
+  const update=()=>{frame.style.setProperty('--split',range.value+'%');range.setAttribute('aria-valuetext',range.value+'% фото до ремонта');};
+  range.addEventListener('input',update);update();
+ });
  // Keep the same ratings row above the title on desktop and at its original slot on phones.
  const ratingsRow=document.querySelector('main .hero-rating-badges');
  const pageTitle=document.querySelector('main h1');
@@ -231,9 +236,24 @@
   const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),beforeLabel=$('#comparison-before-label'),afterLabel=$('#comparison-after-label'),comparisonTitle=$('#comparison-title');
   const comparisonCards=[...document.querySelectorAll('[data-comparison]')],comparisonPrev=comparisonModal.querySelector('.comparison-prev'),comparisonNext=comparisonModal.querySelector('.comparison-next');
   let comparisonIndex=0;
+  const comparisonGrid=comparisonModal.querySelector('.comparison-modal-grid');
+  const repairControl=document.createElement('input');
+  repairControl.type='range';repairControl.min='0';repairControl.max='100';repairControl.value='50';repairControl.hidden=true;
+  repairControl.setAttribute('aria-label','Показать больше фото до или после ремонта');
+  const repairDivider=document.createElement('span');repairDivider.className='repair-divider';repairDivider.innerHTML='<span>↔</span>';repairDivider.hidden=true;repairDivider.setAttribute('aria-hidden','true');
+  comparisonGrid.append(repairDivider,repairControl);
+  repairControl.addEventListener('input',()=>{comparisonGrid.style.setProperty('--split',repairControl.value+'%');repairControl.setAttribute('aria-valuetext',repairControl.value+'% фото до ремонта');});
   const fitComparison=()=>{
    if(!comparisonModal.open||![beforeImage,afterImage].every(img=>img.complete&&img.naturalWidth))return;
    const grid=comparisonModal.querySelector('.comparison-modal-grid'),shell=comparisonModal.querySelector('.comparison-modal-shell');
+   if(comparisonGrid.classList.contains('repair-modal-compare')){
+    const ratio=afterImage.naturalWidth/afterImage.naturalHeight;
+    const height=Math.max(120,innerHeight-180);
+    comparisonModal.style.width=Math.min(900,innerWidth-24,height*ratio+32)+'px';
+    comparisonGrid.style.gridTemplateColumns='minmax(0,1fr)';comparisonGrid.style.aspectRatio=String(ratio);
+    return;
+   }
+   comparisonGrid.style.removeProperty('aspect-ratio');
    const ratios=[beforeImage,afterImage].map(img=>Math.max(3/4,img.naturalWidth/img.naturalHeight));
    [beforeImage,afterImage].forEach((img,index)=>{img.style.aspectRatio=String(ratios[index]);img.style.objectFit='cover';});
    const mobile=matchMedia('(max-width:640px)').matches;
@@ -248,11 +268,11 @@
   afterImage.addEventListener('load',fitComparison);
   new MutationObserver(fitComparison).observe(comparisonModal,{attributes:true,attributeFilter:['open']});
   window.addEventListener('resize',fitComparison);
-  const showComparison=(index,trackOpen=false,syncUrl=true)=>{if(!comparisonCards.length)return;comparisonIndex=(index+comparisonCards.length)%comparisonCards.length;const card=comparisonCards[comparisonIndex],beforeReal=card.dataset.beforeReal==='true',beforeVisualized=card.dataset.beforeVisualized==='true',visualized=card.dataset.visualized==='true';beforeImage.src=new URL(card.dataset.before,siteBase).href;afterImage.src=new URL(card.dataset.after,siteBase).href;comparisonTitle.textContent=card.dataset.title;beforeLabel.textContent='До';afterLabel.textContent='После';beforeImage.alt=`${card.dataset.title} — ${beforeVisualized||visualized?'до работ, тематическая визуализация':beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция'}`;afterImage.alt=`${card.dataset.title} — ${visualized?'после работ, тематическая визуализация':'после работ ArtBalkon'}`;if(syncUrl){const url=new URL(location.href);url.searchParams.set('case',card.dataset.case);history[comparisonModal.open?'replaceState':'pushState'](history.state,'',url);}if(!comparisonModal.open)openDialogAtCurrentScroll(comparisonModal,comparisonModal.querySelector('.comparison-close'));if(trackOpen)track('before_after_open',{project:card.dataset.title});};
+  const showComparison=(index,trackOpen=false,syncUrl=true)=>{if(!comparisonCards.length)return;comparisonIndex=(index+comparisonCards.length)%comparisonCards.length;const card=comparisonCards[comparisonIndex],beforeReal=card.dataset.beforeReal==='true',beforeVisualized=card.dataset.beforeVisualized==='true',visualized=card.dataset.visualized==='true';const repair=card.dataset.case==='work-4';comparisonGrid.classList.toggle('repair-modal-compare',repair);repairControl.hidden=!repair;repairDivider.hidden=!repair;repairControl.value='50';comparisonGrid.style.setProperty('--split','50%');beforeImage.style.removeProperty('aspect-ratio');afterImage.style.removeProperty('aspect-ratio');beforeImage.src=new URL(card.dataset.before,siteBase).href;afterImage.src=new URL(card.dataset.after,siteBase).href;comparisonTitle.textContent=card.dataset.title;beforeLabel.textContent='До';afterLabel.textContent='После';beforeImage.alt=`${card.dataset.title} — ${beforeVisualized||visualized?'до работ, тематическая визуализация':beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция'}`;afterImage.alt=`${card.dataset.title} — ${visualized?'после работ, тематическая визуализация':'после работ ArtBalkon'}`;if(syncUrl){const url=new URL(location.href);url.searchParams.set('case',card.dataset.case);history[comparisonModal.open?'replaceState':'pushState'](history.state,'',url);}if(!comparisonModal.open)openDialogAtCurrentScroll(comparisonModal,comparisonModal.querySelector('.comparison-close'));if(trackOpen)track('before_after_open',{project:card.dataset.title});};
   document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;showComparison(comparisonCards.indexOf(card),true);});
   comparisonPrev?.addEventListener('click',()=>showComparison(comparisonIndex-1));
   comparisonNext?.addEventListener('click',()=>showComparison(comparisonIndex+1));
-  comparisonModal.addEventListener('keydown',e=>{if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();showComparison(comparisonIndex+(e.key==='ArrowRight'?1:-1));});
+  comparisonModal.addEventListener('keydown',e=>{if(e.target===repairControl)return;if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();showComparison(comparisonIndex+(e.key==='ArrowRight'?1:-1));});
   comparisonModal.querySelector('.comparison-close')?.addEventListener('click',()=>comparisonModal.close());
   comparisonModal.addEventListener('click',e=>{if(e.target===comparisonModal)comparisonModal.close();});
   comparisonModal.addEventListener('close',()=>{beforeImage.removeAttribute('src');afterImage.removeAttribute('src');const url=new URL(location.href);if(url.searchParams.has('case')){url.searchParams.delete('case');history.replaceState(history.state,'',url);}});

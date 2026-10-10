@@ -99,7 +99,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
   assert.ok(html.includes('/assets/service-before-after/glazing-new-09-after.jpg'),'glazing hero must show the selected exterior balcony image');
   continue;
  }
- if(label==='otdelka-balkonov'){
+ if(['otdelka-balkonov','remont-balkonov'].includes(label)){
   assert.ok(!html.includes('data-hero-slider'),'finishing page hero must remain static');
   assert.ok(html.includes('/assets/service-before-after/renovation-loggia-12-after.webp'),'finishing page hero must keep the selected portfolio image');
   continue;
@@ -189,8 +189,8 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
  assert.equal(gallery.length,expectedCount,`${slug}: unexpected pair count`);
  assert.equal(new Set(gallery.map(p=>p.after)).size,expectedCount,`${slug}: duplicate rooms`);
  gallery.filter(p=>!['gallery-angles-v1/balkon-pod-klyuch-3-after.webp','owner-projects/balcony-office-after.webp','turnkey-loft-v3/after.webp','turnkey-office-low-v1/after.webp','turnkey-books-v1/after.webp','turnkey-green-v2/after.webp'].includes(p.after)).forEach(p=>{
-  const reviewedAfter=p.after==='portfolio-floor-work73-v1/after-chair-v2.webp'?'service-before-after/renovation-balcony-09-after.webp':['portfolio-diverse-v4/work10-low-v1-after.webp','portfolio-diverse-v4/work10-empty-v2-after.webp','portfolio-before-geometry-v1/work10-after-level-v3.webp'].includes(p.after)?'service-before-after/renovation-balcony-05-after.webp':p.after==='service-before-after/renovation-loggia-11-after-one-handle-v2.webp'?'service-before-after/renovation-loggia-11-after.webp':['service-before-after/work71-top-folding-v2-after.webp','portfolio-perspectives-v3/work71-brick-v3-after.webp'].includes(p.after)?'service-before-after/renovation-balcony-07-after.webp':['service-before-after/renovation-loggia-07-after-junction-v2.webp','service-before-after/renovation-loggia-07-after-countertop-v3.webp'].includes(p.after)?'service-before-after/renovation-loggia-07-after.webp':p.after;
-  const sourceNumber=reviewedAfter==='window-details-v2/balcony-04-handles.webp'?4:Number(reviewedAfter.match(/renovation-(?:balcony|loggia)-(\d{2})-after\.webp$/)?.[1]);
+  const reviewedAfter=p.after==='window-details-v2/balcony-04-handle-next-sash-v3.webp'?'window-details-v2/balcony-04-handle-next-sash-v3.webp':p.after==='portfolio-floor-work73-v1/after-chair-v2.webp'?'service-before-after/renovation-balcony-09-after.webp':['portfolio-diverse-v4/work10-low-v1-after.webp','portfolio-diverse-v4/work10-empty-v2-after.webp','portfolio-before-geometry-v1/work10-after-level-v3.webp'].includes(p.after)?'service-before-after/renovation-balcony-05-after.webp':p.after==='service-before-after/renovation-loggia-11-after-one-handle-v2.webp'?'service-before-after/renovation-loggia-11-after.webp':['service-before-after/work71-top-folding-v2-after.webp','portfolio-perspectives-v3/work71-brick-v3-after.webp'].includes(p.after)?'service-before-after/renovation-balcony-07-after.webp':['service-before-after/renovation-loggia-07-after-junction-v2.webp','service-before-after/renovation-loggia-07-after-countertop-v3.webp'].includes(p.after)?'service-before-after/renovation-loggia-07-after.webp':p.after;
+  const sourceNumber=reviewedAfter==='window-details-v2/balcony-04-handle-next-sash-v3.webp'?4:Number(reviewedAfter.match(/renovation-(?:balcony|loggia)-(\d{2})-after\.webp$/)?.[1]);
   assert.ok(sourceNumber,`${slug}: unexpected finished room`);
   const key=`service-before-after/renovation-${type}-${String(sourceNumber).padStart(2,'0')}`;
   assert.equal(p.objectType,type);
@@ -199,7 +199,7 @@ for(const [slug,type,stage] of [['otdelka-balkonov','balcony','finish'],['otdelk
   const hardwareAdjustedBefore=beforeHardwareReplacements[expectedBefore] || expectedBefore;
   const expectedGalleryBefore=finishBeforeLatchReplacements[hardwareAdjustedBefore] || hardwareAdjustedBefore;
   assert.equal(p.before==='portfolio-floor-work73-v1/before.webp'?'before-hardware-v4/finish-turnkey-009-no-hardware.png':['portfolio-diverse-v4/work10-low-v1-before.webp','portfolio-before-geometry-v1/work10-before-level-v3.webp'].includes(p.before)?'before-hardware-v4/finish-turnkey-005-no-hardware.png':['service-before-after/work71-top-folding-v2-before.webp','portfolio-perspectives-v3/work71-brick-v4-before.webp'].includes(p.before)?'before-hardware-v4/finish-turnkey-007-no-hardware.png':p.before,expectedGalleryBefore,`${slug}: before must show the matched room with worn finishes, not bare concrete`);
-  assert.equal(reviewedAfter,type==='balcony'&&sourceNumber===4?'window-details-v2/balcony-04-handles.webp':`${key}-after.webp`,`${slug}: wrong after room`);
+  assert.equal(reviewedAfter,type==='balcony'&&sourceNumber===4?'window-details-v2/balcony-04-handle-next-sash-v3.webp':`${key}-after.webp`,`${slug}: wrong after room`);
   assert.equal(p.visualized,true);
   assert.equal(p.beforeReal,false);
  });
@@ -383,16 +383,16 @@ assert.ok(panoramaReference[0].beforeVisualized&&panoramaReference[0].afterVisua
 assert.notEqual(panoramaReference[0].before,panoramaReference[0].after);
 assert.ok(!beforeAfterProjects.some(p=>p.title===panoramaReference[0].title));
 
-{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishSecondSeries);assert.equal(additions.length,8);assert.equal(new Set(additions.map(p=>p.after)).size,8);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(slug!=="otdelka-balkonov")assert.ok(items.every(p=>!p.referenceFinishSecondSeries));}}
+{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishSecondSeries);assert.equal(additions.length,8);assert.equal(new Set(additions.map(p=>p.after)).size,8);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","remont-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishSecondSeries));}}
 
-{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishThirdSeries);assert.equal(additions.length,3);assert.equal(new Set(additions.map(p=>p.after)).size,3);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(slug!=="otdelka-balkonov")assert.ok(items.every(p=>!p.referenceFinishThirdSeries));}}
+{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishThirdSeries);assert.equal(additions.length,3);assert.equal(new Set(additions.map(p=>p.after)).size,3);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","remont-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishThirdSeries));}}
 
 const homeSecondReference=beforeAfterProjects.filter(p=>p.referenceHomeSecondSeries);
 assert.equal(homeSecondReference.length,1);
 assert.equal(new Set(homeSecondReference.map(p=>p.after)).size,1);
 for(const p of homeSecondReference){assert.equal(p.stage,"turnkey");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);assert.ok(!Object.values(serviceBeforeAfterProjects).some(list=>list.some(item=>item.title===p.title)));}
 
-{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishFourthSeries);assert.equal(additions.length,1);assert.equal(new Set(additions.map(p=>p.after)).size,1);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(slug!=="otdelka-balkonov")assert.ok(items.every(p=>!p.referenceFinishFourthSeries));}}
+{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishFourthSeries);assert.equal(additions.length,1);assert.equal(new Set(additions.map(p=>p.after)).size,1);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","remont-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishFourthSeries));}}
 
 // Corrected generated before assets stay distinct from originals and all after assets.
 assert.equal(Object.keys(beforeWindowCorrections).length,26);
@@ -414,3 +414,11 @@ for (const target of Object.values(beforeGeometryCorrections)) {
 }
 
 assert.ok(!serviceBeforeAfterProjects['uteplenie-balkonov'].some(p=>['Утепление балкона со скамьёй','Утепление лоджии с рабочим столом'].includes(p.title)),'Withdrawn insulation works 66 and 67 must remain absent');
+
+// Repair intentionally reuses the final finishing gallery and remains a separate service.
+assert.deepEqual(serviceBeforeAfterProjects['remont-balkonov'],serviceBeforeAfterProjects['otdelka-balkonov']);
+const repairService=services.find(s=>s.slug==='remont-balkonov');
+assert.ok(repairService);
+assert.match(servicePageWithSeo(repairService),/Ремонт балконов и лоджий/);
+assert.match(renderHome(),/href="\/remont-balkonov\/"/);
+assert.match(renderHome(),/data-repair-range/);

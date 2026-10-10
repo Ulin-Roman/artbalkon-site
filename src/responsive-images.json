@@ -13215,5 +13215,56 @@
         "width": 1086
       }
     ]
+  },
+  "/assets/home-liked-works-v1/work5-before-photoreal-v5.webp": {
+    "src": "/assets/responsive/04c093093741c73b-1219.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/04c093093741c73b-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/04c093093741c73b-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/04c093093741c73b-1219.webp",
+        "width": 1219
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work5-after-photoreal-v5.webp": {
+    "src": "/assets/responsive/30ad9d435da79198-1220.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/30ad9d435da79198-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/30ad9d435da79198-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/30ad9d435da79198-1220.webp",
+        "width": 1220
+      }
+    ]
+  },
+  "/assets/window-details-v2/balcony-04-handle-next-sash-v3.webp": {
+    "src": "/assets/responsive/9655fc8cd5e681a2-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/9655fc8cd5e681a2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/9655fc8cd5e681a2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/9655fc8cd5e681a2-1086.webp",
+        "width": 1086
+      }
+    ]
   }
 }
