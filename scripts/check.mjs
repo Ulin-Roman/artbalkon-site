@@ -144,8 +144,9 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
   continue;
  }
  if(['panoramnoe-osteklenie','frantsuzskoe-osteklenie'].includes(label)){
-  assert.ok(!html.includes('data-hero-slider'),'panoramic glazing page hero must remain static');
-  assert.ok(html.includes('/assets/service-before-after/panoramic-glazing-after.jpg'),'panoramic glazing page hero must keep the selected exterior image');
+  assert.ok(!html.includes('data-hero-slider'),label+' page hero must remain static');
+  const selectedHero=label==='frantsuzskoe-osteklenie'?'glazing-new-06-after.jpg':'panoramic-glazing-after.jpg';
+  assert.ok(html.includes('/assets/service-before-after/'+selectedHero),label+' page hero must keep its selected exterior image');
   continue;
  }
  if(label==='uteplenie-balkonov'){

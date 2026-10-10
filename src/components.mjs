@@ -57,7 +57,7 @@ const serviceCardImages={
  'holodnoe-osteklenie':'service-before-after/cold-loggia-finished-12-after.png',
  'teploe-osteklenie':'service-before-after/renovation-loggia-02-after.webp',
  'panoramnoe-osteklenie':'service-before-after/panoramic-glazing-after.jpg',
- 'frantsuzskoe-osteklenie':'service-before-after/panoramic-glazing-after.jpg'
+ 'frantsuzskoe-osteklenie':'service-before-after/glazing-new-06-after.jpg'
 };
 const serviceImage=s=>pic(serviceCardImages[s.slug]||s.image,`${s.title} — фотография услуги ArtBalkon`);
 const uniqueImages=images=>images.filter((name,index,list)=>name&&list.indexOf(name)===index);
@@ -70,9 +70,10 @@ export const homeHeroImage=turnkeyHeroImage;
 const coldGlazingHeroImage='service-before-after/cold-loggia-finished-12-after.png';
 const warmGlazingHeroImage='service-before-after/renovation-loggia-02-after.webp';
 const panoramicGlazingHeroImage='service-before-after/panoramic-glazing-after.jpg';
+const frenchGlazingHeroImage='service-before-after/glazing-new-06-after.jpg';
 const insulationHeroImage='before-daytime/before-032.webp';
 export const serviceHeroAsset=service=>pictureAsset(({
- 'osteklenie-balkonov':glazingHeroImage,'uteplenie-balkonov':insulationHeroImage,'remont-balkonov':'home-liked-works-v1/balcony-folding-table-after.webp','otdelka-balkonov':finishingHeroImage,'balkon-pod-klyuch':turnkeyHeroImage,'holodnoe-osteklenie':coldGlazingHeroImage,'teploe-osteklenie':warmGlazingHeroImage,'panoramnoe-osteklenie':panoramicGlazingHeroImage,'frantsuzskoe-osteklenie':panoramicGlazingHeroImage
+ 'osteklenie-balkonov':glazingHeroImage,'uteplenie-balkonov':insulationHeroImage,'remont-balkonov':'home-liked-works-v1/balcony-folding-table-after.webp','otdelka-balkonov':finishingHeroImage,'balkon-pod-klyuch':turnkeyHeroImage,'holodnoe-osteklenie':coldGlazingHeroImage,'teploe-osteklenie':warmGlazingHeroImage,'panoramnoe-osteklenie':panoramicGlazingHeroImage,'frantsuzskoe-osteklenie':frenchGlazingHeroImage
 })[service.slug]||serviceGallerySlides(service)[0]||service.image);
 export const button=(label,href='#quiz',extra='',withArrow=true,forceArrow=false)=>{const isConsultation=label==='Получить консультацию';const icon=isConsultation||extra.includes('button-no-icon')?'':buttonIcon(label);const showArrow=withArrow&&(!isConsultation||forceArrow);return href.endsWith('#quiz')?`<button class="button ${extra}" type="button" data-quiz-open>${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</button>`:href.endsWith('#callback')?`<button class="button ${extra}" type="button" data-callback-open>${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</button>`:`<a class="button ${extra}" href="${href}">${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</a>`;};
 export function pic(name,alt,classes='',eager=false){const cleanName=cleanPortfolioAsset(name);const src=pictureAsset(cleanName);const responsive=smallPictureAssets.has(cleanName);const srcset=responsive?` srcset="/assets/${pictureAsset(cleanName,'-small')} 480w, /assets/${src} 1000w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1000px) 50vw, 600px"`:'';return `<img class="${classes}" src="/assets/${src}"${srcset} width="1000" height="1100" loading="${eager?'eager':'lazy'}" ${eager?'fetchpriority="high"':''} decoding="async" alt="${esc(alt)}">`;}
@@ -90,7 +91,7 @@ const serviceHeroSlideshow=service=>{
  if(service.slug==='holodnoe-osteklenie')return `<div class="landing-photo">${pic(coldGlazingHeroImage,`${service.title} — лоджия с раздвижными окнами ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='teploe-osteklenie')return `<div class="landing-photo">${pic(warmGlazingHeroImage,`${service.title} — тёплая лоджия со светлой отделкой ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='panoramnoe-osteklenie')return `<div class="landing-photo">${pic(panoramicGlazingHeroImage,`${service.title} — панорамное остекление выступающего балкона ArtBalkon`,'hero-image is-active',true)}</div>`;
- if(service.slug==='frantsuzskoe-osteklenie')return `<div class="landing-photo">${pic(panoramicGlazingHeroImage,`${service.title} — пример французского остекления балкона от пола до потолка`,'hero-image is-active',true)}</div>`;
+ if(service.slug==='frantsuzskoe-osteklenie')return `<div class="landing-photo">${pic(frenchGlazingHeroImage,`${service.title} — пример французского остекления балкона от пола до потолка`,'hero-image is-active',true)}</div>`;
  if(service.slug==='uteplenie-balkonov')return `<div class="landing-photo">${pic(insulationHeroImage,`${service.title} — утепление балкона плитами ПЕНОПЛЭКС ArtBalkon`,'hero-image is-active',true)}</div>`;
  return `<div class="landing-photo hero-slideshow" data-hero-slider>${slides.map((name,index)=>index===0
   ?pic(name,`${service.title} — ${service.slug==='mebel-dlya-balkona'?'визуализация мебели на заказ':'фотография из портфолио ArtBalkon'}`,'hero-image is-active',true)
