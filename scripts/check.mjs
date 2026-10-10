@@ -9,8 +9,8 @@ import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
-import {esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
+import {prices,projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
+import {header,esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
 const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
 const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).flatMap(p=>[p.before,originalWindowBefore(p.before)]));
@@ -117,7 +117,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
   assert.ok(html.includes('/assets/service-before-after/renovation-loggia-02-after.webp'),'warm glazing page hero must keep the selected finished loggia image');
   continue;
  }
- if(label==='panoramnoe-osteklenie'){
+ if(['panoramnoe-osteklenie','frantsuzskoe-osteklenie'].includes(label)){
   assert.ok(!html.includes('data-hero-slider'),'panoramic glazing page hero must remain static');
   assert.ok(html.includes('/assets/service-before-after/panoramic-glazing-after.jpg'),'panoramic glazing page hero must keep the selected exterior image');
   continue;
@@ -277,7 +277,7 @@ console.log(`PASS: ${pages.length} pages, ${refs} local references, unique metad
 // Keep the approved camera views; one panoramic comparison was removed at the user's request.
 for(const service of services.filter(s=>!['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'].includes(s.slug))){
  const added=serviceBeforeAfterProjects[service.slug].filter(p=>p.newAngleSeries);
- assert.equal(added.length,service.slug === 'panoramnoe-osteklenie' ? 2 : 3,`${service.slug}: approved camera view count`);
+ assert.equal(added.length,['panoramnoe-osteklenie','frantsuzskoe-osteklenie'].includes(service.slug) ? 2 : 3,`${service.slug}: approved camera view count`);
  for(const p of added){
   assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized&&!p.beforeReal);
   assert.ok(originalWindowBefore(p.before).startsWith('gallery-angles-v1/')&&p.after.startsWith('gallery-angles-v1/'));
@@ -426,3 +426,19 @@ const repairMarkup=servicePageWithSeo(repairService);
 assert.match(repairMarkup,/Что нужно отремонтировать/);
 assert.match(repairMarkup,/Материалы для ремонта балконов и лоджий/);
 assert.doesNotMatch(repairMarkup,/Что нужно отделать|Чем отделываем|>ОТДЕЛКА</);
+
+// The French variant must be reachable and submit its own service, without a guessed rate.
+const frenchService=services.find(s=>s.slug==='frantsuzskoe-osteklenie');
+assert.ok(frenchService,'French glazing service is registered');
+const frenchPage=servicePageWithSeo(frenchService);
+assert.match(frenchPage,/Французское остекление/);
+assert.ok(frenchPage.includes('name="service" value="Французское остекление"'),'French consultation must retain its service');
+assert.ok(frenchPage.includes('Преимущества французского остекления'));
+assert.ok(frenchPage.includes('Чем французское остекление отличается от панорамного?'));
+assert.ok(!serviceBeforeAfterProjects[frenchService.slug].some(p=>p.title==='Безрамное панорамное остекление'));
+assert.equal(frenchService.price,'french');
+assert.equal(prices.french,null,'French rate remains unset until confirmed');
+assert.ok(!frenchPage.includes('class="landing-price"'),'French hero must not advertise an unconfirmed rate');
+assert.ok(header('/osteklenie-balkonov/').includes('href="/frantsuzskoe-osteklenie/"'),'Glazing navigation links to the French page');
+assert.ok(feed.includes('<offer id="110"'));
+assert.ok(sitemapUrls.some(url=>url.endsWith('/frantsuzskoe-osteklenie/')));

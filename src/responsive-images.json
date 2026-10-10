@@ -1285,344 +1285,452 @@
     ]
   },
   "/assets/finishing-original-eco-1.jpg": {
-    "src": "/assets/responsive/d4a330489992f6c6-1280.webp",
+    "src": "/assets/responsive/7acacad4e1068e3e-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/d4a330489992f6c6-320.webp",
+        "src": "/assets/responsive/7acacad4e1068e3e-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/d4a330489992f6c6-640.webp",
+        "src": "/assets/responsive/7acacad4e1068e3e-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/d4a330489992f6c6-1280.webp",
+        "src": "/assets/responsive/7acacad4e1068e3e-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/7acacad4e1068e3e-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1680,
+    "height": 1406
   },
   "/assets/finishing-original-eco-2.jpg": {
-    "src": "/assets/responsive/097fce036839869d-1280.webp",
+    "src": "/assets/responsive/5ebb4d1b383e4812-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/097fce036839869d-320.webp",
+        "src": "/assets/responsive/5ebb4d1b383e4812-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/097fce036839869d-640.webp",
+        "src": "/assets/responsive/5ebb4d1b383e4812-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/097fce036839869d-1280.webp",
+        "src": "/assets/responsive/5ebb4d1b383e4812-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/5ebb4d1b383e4812-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1680,
+    "height": 1454
   },
   "/assets/finishing-original-eco-3.jpg": {
-    "src": "/assets/responsive/1ded399cdee87e87-1156.webp",
+    "src": "/assets/responsive/9463e28e9728152f-1156.webp",
     "variants": [
       {
-        "src": "/assets/responsive/1ded399cdee87e87-320.webp",
+        "src": "/assets/responsive/9463e28e9728152f-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/1ded399cdee87e87-640.webp",
+        "src": "/assets/responsive/9463e28e9728152f-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/1ded399cdee87e87-1156.webp",
+        "src": "/assets/responsive/9463e28e9728152f-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/9463e28e9728152f-1156.webp",
         "width": 1156
       }
-    ]
+    ],
+    "width": 1156,
+    "height": 1556
   },
   "/assets/finishing-original-eco-4.jpg": {
-    "src": "/assets/responsive/e126cce25ad9f9a1-1280.webp",
+    "src": "/assets/responsive/9b7a08ed09a4eec5-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/e126cce25ad9f9a1-320.webp",
+        "src": "/assets/responsive/9b7a08ed09a4eec5-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/e126cce25ad9f9a1-640.webp",
+        "src": "/assets/responsive/9b7a08ed09a4eec5-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/e126cce25ad9f9a1-1280.webp",
+        "src": "/assets/responsive/9b7a08ed09a4eec5-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/9b7a08ed09a4eec5-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1422,
+    "height": 1556
   },
   "/assets/finishing-original-loft-1.png": {
-    "src": "/assets/responsive/408746008285dfe3-912.webp",
+    "src": "/assets/responsive/9892a5a5caf0762c-912.webp",
     "variants": [
       {
-        "src": "/assets/responsive/408746008285dfe3-320.webp",
+        "src": "/assets/responsive/9892a5a5caf0762c-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/408746008285dfe3-640.webp",
+        "src": "/assets/responsive/9892a5a5caf0762c-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/408746008285dfe3-912.webp",
+        "src": "/assets/responsive/9892a5a5caf0762c-912.webp",
         "width": 912
       }
-    ]
+    ],
+    "width": 912,
+    "height": 776
   },
   "/assets/finishing-original-loft-2.png": {
-    "src": "/assets/responsive/6dd9ab41e5c27389-912.webp",
+    "src": "/assets/responsive/bbdbdf35acaffd70-912.webp",
     "variants": [
       {
-        "src": "/assets/responsive/6dd9ab41e5c27389-320.webp",
+        "src": "/assets/responsive/bbdbdf35acaffd70-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/6dd9ab41e5c27389-640.webp",
+        "src": "/assets/responsive/bbdbdf35acaffd70-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/6dd9ab41e5c27389-912.webp",
+        "src": "/assets/responsive/bbdbdf35acaffd70-912.webp",
         "width": 912
       }
-    ]
+    ],
+    "width": 912,
+    "height": 776
   },
   "/assets/finishing-original-loft-3.jpg": {
-    "src": "/assets/responsive/69627dc6470595cb-912.webp",
+    "src": "/assets/responsive/8a1cebc238e4e9bf-912.webp",
     "variants": [
       {
-        "src": "/assets/responsive/69627dc6470595cb-320.webp",
+        "src": "/assets/responsive/8a1cebc238e4e9bf-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/69627dc6470595cb-640.webp",
+        "src": "/assets/responsive/8a1cebc238e4e9bf-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/69627dc6470595cb-912.webp",
+        "src": "/assets/responsive/8a1cebc238e4e9bf-912.webp",
         "width": 912
       }
-    ]
+    ],
+    "width": 912,
+    "height": 1556
   },
   "/assets/finishing-original-loft-4.png": {
-    "src": "/assets/responsive/65d5e1cfbb0a801f-986.webp",
+    "src": "/assets/responsive/2832d6297a6e1ced-986.webp",
     "variants": [
       {
-        "src": "/assets/responsive/65d5e1cfbb0a801f-320.webp",
+        "src": "/assets/responsive/2832d6297a6e1ced-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/65d5e1cfbb0a801f-640.webp",
+        "src": "/assets/responsive/2832d6297a6e1ced-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/65d5e1cfbb0a801f-986.webp",
+        "src": "/assets/responsive/2832d6297a6e1ced-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/2832d6297a6e1ced-986.webp",
         "width": 986
       }
-    ]
+    ],
+    "width": 986,
+    "height": 1632
   },
   "/assets/finishing-original-minimal-1.jpg": {
-    "src": "/assets/responsive/fd50e30e52621a07-1280.webp",
+    "src": "/assets/responsive/6dd425702fc0cfae-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/fd50e30e52621a07-320.webp",
+        "src": "/assets/responsive/6dd425702fc0cfae-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/fd50e30e52621a07-640.webp",
+        "src": "/assets/responsive/6dd425702fc0cfae-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/fd50e30e52621a07-1280.webp",
+        "src": "/assets/responsive/6dd425702fc0cfae-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/6dd425702fc0cfae-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1680,
+    "height": 1276
   },
   "/assets/finishing-original-minimal-2.jpg": {
-    "src": "/assets/responsive/89591de1572b304d-1280.webp",
+    "src": "/assets/responsive/20fc53191d358786-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/89591de1572b304d-320.webp",
+        "src": "/assets/responsive/20fc53191d358786-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/89591de1572b304d-640.webp",
+        "src": "/assets/responsive/20fc53191d358786-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/89591de1572b304d-1280.webp",
+        "src": "/assets/responsive/20fc53191d358786-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/20fc53191d358786-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1680,
+    "height": 1276
   },
   "/assets/finishing-original-minimal-3.jpg": {
-    "src": "/assets/responsive/0bf473d27cdd50a0-1160.webp",
+    "src": "/assets/responsive/481e2a7f2c98b326-1160.webp",
     "variants": [
       {
-        "src": "/assets/responsive/0bf473d27cdd50a0-320.webp",
+        "src": "/assets/responsive/481e2a7f2c98b326-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/0bf473d27cdd50a0-640.webp",
+        "src": "/assets/responsive/481e2a7f2c98b326-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/0bf473d27cdd50a0-1160.webp",
+        "src": "/assets/responsive/481e2a7f2c98b326-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/481e2a7f2c98b326-1160.webp",
         "width": 1160
       }
-    ]
+    ],
+    "width": 1160,
+    "height": 1556
   },
   "/assets/finishing-original-minimal-4.jpg": {
-    "src": "/assets/responsive/81a5bcc54c2c626a-1144.webp",
+    "src": "/assets/responsive/60baf1143d9f6980-1144.webp",
     "variants": [
       {
-        "src": "/assets/responsive/81a5bcc54c2c626a-320.webp",
+        "src": "/assets/responsive/60baf1143d9f6980-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/81a5bcc54c2c626a-640.webp",
+        "src": "/assets/responsive/60baf1143d9f6980-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/81a5bcc54c2c626a-1144.webp",
+        "src": "/assets/responsive/60baf1143d9f6980-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/60baf1143d9f6980-1144.webp",
         "width": 1144
       }
-    ]
+    ],
+    "width": 1144,
+    "height": 1556
   },
   "/assets/finishing-original-neoclassic-1.jpg": {
-    "src": "/assets/responsive/7d59bba6946ba169-1280.webp",
+    "src": "/assets/responsive/834bc26db02181b2-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/7d59bba6946ba169-320.webp",
+        "src": "/assets/responsive/834bc26db02181b2-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/7d59bba6946ba169-640.webp",
+        "src": "/assets/responsive/834bc26db02181b2-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/7d59bba6946ba169-1280.webp",
+        "src": "/assets/responsive/834bc26db02181b2-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/834bc26db02181b2-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1680,
+    "height": 1496
   },
   "/assets/finishing-original-neoclassic-2.jpg": {
-    "src": "/assets/responsive/f22c64b7040a4823-1280.webp",
+    "src": "/assets/responsive/6345a4fc0192795a-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/f22c64b7040a4823-320.webp",
+        "src": "/assets/responsive/6345a4fc0192795a-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/f22c64b7040a4823-640.webp",
+        "src": "/assets/responsive/6345a4fc0192795a-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/f22c64b7040a4823-1280.webp",
+        "src": "/assets/responsive/6345a4fc0192795a-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/6345a4fc0192795a-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1680,
+    "height": 1276
   },
   "/assets/finishing-original-neoclassic-3.jpg": {
-    "src": "/assets/responsive/3cb19bbcc4c05125-1272.webp",
+    "src": "/assets/responsive/3f7f4ef9abb58789-1272.webp",
     "variants": [
       {
-        "src": "/assets/responsive/3cb19bbcc4c05125-320.webp",
+        "src": "/assets/responsive/3f7f4ef9abb58789-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/3cb19bbcc4c05125-640.webp",
+        "src": "/assets/responsive/3f7f4ef9abb58789-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/3cb19bbcc4c05125-1272.webp",
+        "src": "/assets/responsive/3f7f4ef9abb58789-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/3f7f4ef9abb58789-1272.webp",
         "width": 1272
       }
-    ]
+    ],
+    "width": 1272,
+    "height": 1556
   },
   "/assets/finishing-original-neoclassic-4.jpg": {
-    "src": "/assets/responsive/42c5ef622d5a4b60-1280.webp",
+    "src": "/assets/responsive/57a5bacbbf98681c-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/42c5ef622d5a4b60-320.webp",
+        "src": "/assets/responsive/57a5bacbbf98681c-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/42c5ef622d5a4b60-640.webp",
+        "src": "/assets/responsive/57a5bacbbf98681c-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/42c5ef622d5a4b60-1280.webp",
+        "src": "/assets/responsive/57a5bacbbf98681c-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/57a5bacbbf98681c-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1612,
+    "height": 1556
   },
   "/assets/finishing-original-scandi-1.jpg": {
-    "src": "/assets/responsive/729de794d19c3817-1100.webp",
+    "src": "/assets/responsive/3e9549e0aac0ad17-1100.webp",
     "variants": [
       {
-        "src": "/assets/responsive/729de794d19c3817-320.webp",
+        "src": "/assets/responsive/3e9549e0aac0ad17-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/729de794d19c3817-640.webp",
+        "src": "/assets/responsive/3e9549e0aac0ad17-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/729de794d19c3817-1100.webp",
+        "src": "/assets/responsive/3e9549e0aac0ad17-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/3e9549e0aac0ad17-1100.webp",
         "width": 1100
       }
-    ]
+    ],
+    "width": 1100,
+    "height": 1556
   },
   "/assets/finishing-original-scandi-2.jpg": {
-    "src": "/assets/responsive/cad9cf6d680de081-1280.webp",
+    "src": "/assets/responsive/614e8ad6fdb78a60-1280.webp",
     "variants": [
       {
-        "src": "/assets/responsive/cad9cf6d680de081-320.webp",
+        "src": "/assets/responsive/614e8ad6fdb78a60-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/cad9cf6d680de081-640.webp",
+        "src": "/assets/responsive/614e8ad6fdb78a60-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/cad9cf6d680de081-1280.webp",
+        "src": "/assets/responsive/614e8ad6fdb78a60-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/614e8ad6fdb78a60-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1680,
+    "height": 1276
   },
   "/assets/finishing-original-scandi-3.jpg": {
-    "src": "/assets/responsive/d8cb9c1f989c7dad-1100.webp",
+    "src": "/assets/responsive/3e9549e0aac0ad17-1100.webp",
     "variants": [
       {
-        "src": "/assets/responsive/d8cb9c1f989c7dad-320.webp",
+        "src": "/assets/responsive/3e9549e0aac0ad17-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/d8cb9c1f989c7dad-640.webp",
+        "src": "/assets/responsive/3e9549e0aac0ad17-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/d8cb9c1f989c7dad-1100.webp",
+        "src": "/assets/responsive/3e9549e0aac0ad17-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/3e9549e0aac0ad17-1100.webp",
         "width": 1100
       }
-    ]
+    ],
+    "width": 1100,
+    "height": 1556
   },
   "/assets/finishing-original-scandi-4.jpg": {
-    "src": "/assets/responsive/4623b987caa596ec-1098.webp",
+    "src": "/assets/responsive/cfdfb83a963d4cd8-1098.webp",
     "variants": [
       {
-        "src": "/assets/responsive/4623b987caa596ec-320.webp",
+        "src": "/assets/responsive/cfdfb83a963d4cd8-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/4623b987caa596ec-640.webp",
+        "src": "/assets/responsive/cfdfb83a963d4cd8-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/4623b987caa596ec-1098.webp",
+        "src": "/assets/responsive/cfdfb83a963d4cd8-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/assets/responsive/cfdfb83a963d4cd8-1098.webp",
         "width": 1098
       }
-    ]
+    ],
+    "width": 1098,
+    "height": 1556
   },
   "/assets/gallery-angles-v1/balkon-pod-klyuch-1-after.webp": {
     "src": "/assets/responsive/77f287a730e771a4-1280.webp",

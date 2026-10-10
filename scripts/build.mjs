@@ -19,7 +19,23 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
 }).replace(/href="(\/assets\/certificates\/[^"<>]+)"/g,(_,src)=>'href="'+(responsiveImages[src]?.src||src)+'"').replace(/(data-(?:before|after)=")([^"]+)(")/g,(_,prefix,src,suffix)=>prefix+comparisonAsset(src)+suffix).replace(/<img\b[^>]*>/g,tag=>{
  const src=tag.match(/\bsrc="([^"]+)"/)?.[1],entry=responsiveImages[src];if(!entry)return tag;
  if(tag.includes('data-src="'))return tag.replace('data-src="'+src+'"','data-src="'+entry.src+'"');
- const sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
+ // Cover crops need enough source pixels for both the card width and height.
+ const finishingPhoto=tag.match(/data-finishing-photo="(\d+)"/);
+ let sizes;
+ if(finishingPhoto){
+  const ratio=entry.width/entry.height,small=Number(finishingPhoto[1])<2;
+  if(!Number.isFinite(ratio)||ratio<=0)throw Error('Missing finishing photo dimensions: '+src);
+  const coverWidth=(height,width)=>Math.ceil(Math.max(height*ratio,width)*1.025);
+  // A portrait in the first column can make both grid rows taller than the minimum.
+  const stylePrefix=src.replace(/-\d+\.[^.]+$/,'-');
+  const firstPhotos=Object.entries(responsiveImages).filter(([key])=>key.startsWith(stylePrefix)&&/-[12]\.[^/]+$/.test(key)).map(([,photo])=>photo);
+  if(firstPhotos.length!==2)throw Error('Missing finishing gallery companions: '+src);
+  const gallerySize=(minimumHeight,firstWidth,wideWidth)=>{
+   const rowHeight=Math.max((minimumHeight-12)/2,...firstPhotos.map(photo=>firstWidth*photo.height/photo.width));
+   return coverWidth(small?rowHeight:2*rowHeight+12,small?firstWidth:wideWidth);
+  };
+  sizes='(max-width:640px) max(calc((100vw - 80px) / 2), '+Math.ceil(190*ratio*1.025)+'px), (max-width:900px) '+gallerySize(430,215,300)+'px, '+gallerySize(460,210,285)+'px';
+ }else sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
 }).replace(/\/(styles\.css|app\.js)\?v=[^" ]+/g,(_,file)=>'/'+file+'?v='+fingerprint(file==='styles.css'?cssResult.code:appCode));
 import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,projectPage,projectCards,contact,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';

@@ -1990,7 +1990,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 
 // Repair landing reuses the finishing service, prices and portfolio.
 const finishingService=services.find(s=>s.slug==='otdelka-balkonov');
-services.push({...finishingService,slug:'remont-balkonov',price:'repair',heroPrice:'',image:'home-liked-works-v1/balcony-folding-table-after.webp',features:['Подготовка стен, пола и потолка','Остекление и утепление при необходимости','Материалы, освещение и хранение по согласованному проекту'],question:'Что входит в ремонт балкона?',answer:'На замере оценим состояние поверхностей и окон и согласуем подготовку, необходимые замены и обустройство пространства. Состав ремонта и смету фиксируем до начала работ.',title:'Ремонт балконов и лоджий',h1:'Ремонт балконов и лоджий в Москве и Московской области',short:'Обновим балкон или лоджию: от подготовки поверхностей до готового интерьера.',offer:'Подготовим стены, пол и потолок, подберём отделку и согласуем необходимые работы.',heroSubtitle:'Превратим старый балкон или лоджию в удобное место для отдыха, работы и хранения. Состав ремонта согласуем после замера.'});
+services.push({...finishingService,slug:'remont-balkonov',heroPrice:'',image:'home-liked-works-v1/balcony-folding-table-after.webp',features:['Подготовка стен, пола и потолка','Остекление и утепление при необходимости','Материалы, освещение и хранение по согласованному проекту'],question:'Что входит в ремонт балкона?',answer:'На замере оценим состояние поверхностей и окон и согласуем подготовку, необходимые замены и обустройство пространства. Состав ремонта и смету фиксируем до начала работ.',title:'Ремонт балконов и лоджий',h1:'Ремонт балконов и лоджий в Москве и Московской области',short:'Обновим балкон или лоджию: от подготовки поверхностей до готового интерьера.',offer:'Подготовим стены, пол и потолок, подберём отделку и согласуем необходимые работы.',heroSubtitle:'Превратим старый балкон или лоджию в удобное место для отдыха, работы и хранения. Состав ремонта согласуем после замера.'});
 serviceSeo['remont-balkonov']={...serviceSeo['otdelka-balkonov'],metaTitle:'Ремонт балконов и лоджий в Москве и Московской области | ArtBalkon',metaDescription:'Ремонт балконов и лоджий в Москве и Московской области: подготовка поверхностей, отделка стен, пола и потолка, освещение и хранение. Замер и подбор материалов.',title:'Ремонт балкона под ваши задачи',eyebrow:'НОВАЯ ЖИЗНЬ ВАШЕГО БАЛКОНА',paragraphs:['Начинаем с осмотра балкона или лоджии: оцениваем состояние поверхностей, остекление и будущие задачи пространства. Согласуем, что нужно заменить, подготовить и отделать.','Подбираем покрытия для стен, пола и потолка с учётом влажности и температурного режима. Электрику, утепление и замену окон включаем в смету по необходимости, до чистовой отделки.','После замера вы получите согласованный состав работ и материалов. Покажем варианты отделки и поможем организовать отдых, рабочее место или хранение.']};
 serviceBeforeAfterProjects['remont-balkonov']=[...serviceBeforeAfterProjects['otdelka-balkonov']];
 
@@ -2026,3 +2026,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   }
  }
 }
+
+// Add the French variant after all approved gallery corrections and withdrawals.
+import {createFrenchGlazing,frenchGlazingSeo} from './french-glazing.mjs';
+const frenchGlazing=createFrenchGlazing(services.find(s=>s.slug==='panoramnoe-osteklenie'),serviceBeforeAfterProjects['panoramnoe-osteklenie']);
+prices.french=null;
+services.push(frenchGlazing.service);
+serviceBeforeAfterProjects['frantsuzskoe-osteklenie']=frenchGlazing.gallery;
+serviceSeo['frantsuzskoe-osteklenie']=frenchGlazingSeo;

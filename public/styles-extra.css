@@ -2095,7 +2095,7 @@ h1,h2,h3,h4,
   position:absolute;
   top:0;
   left:50%;
-  width:100vw;
+  width:calc(100% + 40px);
   height:8px;
   background:#e5e7ea;
   box-shadow:inset 0 1px rgba(20,32,33,.035),inset 0 -1px rgba(255,255,255,.75);
@@ -4860,7 +4860,7 @@ main > .social-subscribe,
 .finishing-calculator h2 span{color:var(--red)}
 .finishing-calculator .section-heading{margin-bottom:18px}
 .finish-calc-intro{color:var(--muted);margin-bottom:30px;max-width:720px}
-.finish-calc-layout{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr);gap:32px;align-items:start}
+.finish-calc-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start}
 .finish-calc-controls,.finish-calc-preview,.finish-calc-controls form{min-width:0}
 .finish-calc-topline{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:end}.finish-calc-gift{margin:0;background:#007b83;color:#fff;border-radius:10px;padding:13px 16px;font-size:14px;line-height:1.4;font-weight:600}.finish-calc-dimensions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .finish-calc-dimensions label{font-size:12px;color:var(--muted);min-width:0}
@@ -4879,6 +4879,7 @@ main > .social-subscribe,
 .finish-calc-switch input:checked+span:after{transform:translateX(12px)}
 .finish-calc-switch input:focus-visible+span{outline:3px solid #386eac;outline-offset:4px}
 .finish-calc-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.finish-calc-group[data-calc-group=insulation] .finish-calc-options{grid-template-columns:minmax(0,1fr)}
 .finish-calc-group[data-calc-group=walls] .finish-calc-options,.finish-calc-group[data-calc-group=ceiling] .finish-calc-options,.finish-calc-group[data-calc-group=floor] .finish-calc-options{grid-template-columns:repeat(4,minmax(0,1fr))}
 .finish-calc-option{position:relative;min-width:0;padding:7px 3px;border:1px solid transparent;border-radius:9px;text-align:center;font-size:11px;line-height:1.3;cursor:pointer;overflow-wrap:anywhere;display:flex;flex-direction:column;align-items:center;gap:7px}
 .finish-calc-option input{position:absolute;opacity:0;width:100%;height:100%;top:0;left:0;margin:0;cursor:pointer}
@@ -4895,11 +4896,19 @@ main > .social-subscribe,
 .finish-calc-result p{font-size:11px;color:var(--muted);max-width:320px}
 .finish-calc-result .button{margin-top:10px;width:100%;gap:10px;font-size:14px;min-height:48px;padding:12px}
 .finish-calc-result .button:disabled{opacity:.5;cursor:default}
-.finish-calc-preview{margin:0;border-radius:16px;background:#f3f5f1;padding:0;text-align:center;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.finish-calc-preview{margin:0;border-radius:16px;background:transparent;padding:0;text-align:center;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
 .finish-calc-scene-wrap{width:100%;margin:auto;min-width:0}
 .finish-calc-scene{width:100%;height:auto;max-height:none;object-fit:contain;display:block;margin:auto}
 .finish-calc-scene[hidden]{display:none}
+.finish-calc-raster-wrap{width:340px;height:480px}
+.finish-calc-raster{display:block;width:100%;height:100%;max-width:none;object-fit:fill}
+.finish-calc-raster[hidden]{display:none}
 .finish-calc-fallback{transform:scaleX(-1)}
+@media(min-width:1101px){
+ .finish-calc-preview{position:relative;min-height:0}
+ .finish-calc-scene-wrap{position:absolute;inset:0;margin:0}
+ .finish-calc-scene{width:100%;height:100%;margin:0}
+}
 .finish-calc-swatch:is([data-swatch=laminate],[data-swatch=lining],[data-swatch=parquet],[data-swatch=pvc],[data-swatch=vinyl],[data-swatch=tile],[data-swatch=linoleum]){background-image:url(/assets/calculator-realistic-v1/material-atlas-v2.webp);background-size:300% 300%}
 .finish-calc-swatch[data-swatch=laminate]{background-position:0 0}
 .finish-calc-swatch[data-swatch=lining]{background-position:50% 0}
@@ -4917,8 +4926,11 @@ main > .social-subscribe,
 .repair-compare{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:14px;background:#e9eeea;min-width:0}
 .repair-compare>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
 .repair-before{clip-path:inset(0 calc(100% - var(--split)) 0 0)}
-.repair-label{position:absolute;top:auto;bottom:16px;transform:translateX(-50%);padding:5px 12px;border-radius:6px;background:rgba(26,43,40,.78);color:#fff;font-size:13px;pointer-events:none}
-.repair-label-before{left:calc(var(--split)/2)}.repair-label-after{left:calc(50% + var(--split)/2);right:auto}
+/* Safe centering keeps each label on its own side; narrow regions push it outside the frame. */
+.repair-label-region{position:absolute;bottom:16px;display:flex;justify-content:safe center;min-width:0;pointer-events:none}
+.repair-label-region-before{left:0;width:var(--split);direction:rtl}
+.repair-label-region-after{left:var(--split);width:calc(100% - var(--split))}
+.repair-label{flex:none;direction:ltr;margin:0 8px;padding:5px 12px;border-radius:6px;background:rgba(26,43,40,.78);color:#fff;font-size:13px;white-space:nowrap;pointer-events:none}
 .repair-divider{position:absolute;top:0;bottom:0;left:var(--split);width:3px;background:#fff;transform:translateX(-50%);pointer-events:none;box-shadow:0 0 8px #0005}
 .repair-divider>span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#fff;color:#00777e;font-size:28px;box-shadow:0 2px 10px #0003}
 .repair-divider>span svg{display:block;width:28px;height:28px}
@@ -4942,10 +4954,10 @@ main > .social-subscribe,
 .comparison-modal-grid.repair-modal-compare figure:last-of-type>span{left:auto!important;right:14px!important}
 
 .repair-hero-photo .repair-compare{height:100%;min-height:0;border-radius:inherit}
-.repair-hero-photo .repair-label,.repair-hero-photo .repair-divider{z-index:2}
+.repair-hero-photo .repair-label-region,.repair-hero-photo .repair-divider{z-index:2}
 .repair-hero-photo input[type=range]{z-index:3}
 .repair-hero-photo .gift-badge{z-index:6}
-@media(max-width:640px){.repair-hero-photo .repair-before,.repair-hero-photo .repair-label,.repair-hero-photo .repair-divider,.repair-hero-photo input[type=range]{display:none}}
+@media(max-width:640px){.repair-hero-photo .repair-before,.repair-hero-photo .repair-label-region,.repair-hero-photo .repair-divider,.repair-hero-photo input[type=range]{display:none}}
 
 /* Service navigation shared by all page headers. */
 .nav-services{position:relative;min-width:0}
@@ -4972,5 +4984,79 @@ main > .social-subscribe,
 .finish-calc-swatch[data-swatch=no]{background-position:0 100%}
 .finish-calc-swatch[data-swatch=spots]{background-position:50% 100%}
 .finish-calc-swatch[data-swatch=pendant]{background-position:100% 100%}
+
+/* Match reading order to the compact mobile rows, with the established desktop positions. */
+.finish-calc-groups{grid-template-areas:"walls exterior lighting" "ceiling glazing insulation" "floor result result"}
+.finish-calc-group[data-calc-group=walls]{grid-area:walls}
+.finish-calc-group[data-calc-group=ceiling]{grid-area:ceiling}
+.finish-calc-group[data-calc-group=floor]{grid-area:floor}
+.finish-calc-group[data-calc-group=exterior]{grid-area:exterior}
+.finish-calc-group[data-calc-group=lighting]{grid-area:lighting}
+.finish-calc-group[data-calc-group=glazing]{grid-area:glazing}
+.finish-calc-group[data-calc-group=insulation]{grid-area:insulation}
+.finish-calc-result{grid-area:result}
+@media(min-width:701px) and (max-width:1100px){.finish-calc-groups{grid-template-areas:"walls walls" "exterior lighting" "ceiling ceiling" "glazing insulation" "floor floor" "result result"}}
+
+/* Keep the mobile calculator together: finishes beside the live cutaway. */
+.finish-calc-heading-short{display:none}
+@media(max-width:700px){
+ .finishing-calculator{width:calc(100% - 24px);padding-block:8px}
+ .finishing-calculator .section-heading{margin-bottom:12px}
+ .finishing-calculator .section-heading .eyebrow,.finish-calc-intro{display:none}
+ .finishing-calculator h2{font-size:21px;line-height:1.15;letter-spacing:-.035em}
+ .finish-calc-layout{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;grid-template-areas:"top top top top" "walls ceiling preview preview" "floor floor floor floor" "exterior exterior lighting lighting" "glazing glazing insulation insulation" "result result result result"}
+ .finish-calc-controls,.finish-calc-controls form,.finish-calc-groups{display:contents}
+ .finish-calc-topline{grid-area:top;grid-template-columns:minmax(0,1fr);gap:6px;margin-bottom:2px}
+ .finish-calc-gift{font-size:11px;line-height:1.3;padding:6px 9px;border-radius:7px}
+ .finish-calc-dimensions{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .finish-calc-dimensions label{font-size:11px;line-height:1.2}
+ .finish-calc-dimensions input{height:36px;font-size:16px;line-height:1.2;margin-top:3px;padding:6px 8px;border-radius:7px}
+ .finish-calc-validation{grid-area:warning;margin:0;min-height:0;font-size:12px;line-height:1.3}
+ .finish-calc-validation:empty{display:none}
+ .finish-calc-layout:has(.finish-calc-validation:not(:empty)){grid-template-areas:"top top top top" "warning warning warning warning" "walls ceiling preview preview" "floor floor floor floor" "exterior exterior lighting lighting" "glazing glazing insulation insulation" "result result result result"}
+ .finish-calc-group{grid-column:auto;padding:28px 4px 4px;border-radius:8px}
+ .finish-calc-group[data-calc-group=walls]{grid-area:walls}
+ .finish-calc-group[data-calc-group=ceiling]{grid-area:ceiling}
+ .finish-calc-group[data-calc-group=floor]{grid-area:floor}
+ .finish-calc-group[data-calc-group=exterior]{grid-area:exterior}
+ .finish-calc-group[data-calc-group=lighting]{grid-area:lighting}
+ .finish-calc-group[data-calc-group=glazing]{grid-area:glazing}
+ .finish-calc-group[data-calc-group=insulation]{grid-area:insulation}
+ .finish-calc-group-head{top:7px;left:5px;right:29px;font-size:9px;line-height:1.15;letter-spacing:0}
+ .finish-calc-heading-long{display:none}
+ .finish-calc-heading-short{display:inline}
+ .finish-calc-switch{right:4px;top:4px;min-width:24px;min-height:24px;align-items:center;justify-content:center}
+ .finish-calc-switch input{width:24px;height:24px}
+ .finish-calc-switch span{width:22px;height:14px}
+ .finish-calc-switch span:after{width:10px;height:10px}
+ .finish-calc-switch input:checked+span:after{transform:translateX(8px)}
+ .finish-calc-options{gap:2px}
+ .finish-calc-group[data-calc-group=walls] .finish-calc-options,.finish-calc-group[data-calc-group=ceiling] .finish-calc-options{grid-template-columns:minmax(0,1fr)}
+ .finish-calc-group[data-calc-group=floor] .finish-calc-options{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .finish-calc-option{font-size:11px;line-height:1.1;min-height:44px;padding:2px 1px;gap:2px;border-radius:6px;justify-content:center}
+ .finish-calc-option small{display:none}
+ .finish-calc-swatch,.finish-calc-swatch:is([data-swatch=cold],[data-swatch=warm],[data-swatch=yes],[data-swatch=no],[data-swatch=spots],[data-swatch=pendant]){width:26px;height:26px}
+ .finish-calc-preview{grid-area:preview;position:relative;top:auto;min-height:0;align-self:stretch;padding:0;border-radius:8px}
+ .finish-calc-preview .finish-calc-scene-wrap{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center}
+ .finish-calc-preview .finish-calc-scene{width:100%;height:100%;max-height:none;margin:0;object-fit:contain}
+ .finish-calc-preview .finish-calc-scene[hidden]{display:none}
+ .finish-calc-result{grid-area:result;padding:2px 0 0;gap:4px}
+ .finish-calc-result output{font-size:28px;line-height:1.1;letter-spacing:-.6px}
+ .finish-calc-result-label{font-size:14px}
+ .finish-calc-result .button{min-height:44px;font-size:13px;line-height:1.2;padding:10px 12px;margin-top:0;gap:10px}
+ .finish-calc-result .button span[aria-hidden]{font-size:19px;line-height:1}
+ .finish-calc-controls>noscript{grid-column:1/-1;font-size:12px}
+}
+@media(max-width:350px){
+ .finishing-calculator{width:calc(100% - 16px)}
+ .finishing-calculator h2{font-size:20px}
+ .finish-calc-group-head{font-size:8.5px;left:4px;right:28px}
+ .finish-calc-option{font-size:10px}
+ .finish-calc-swatch,.finish-calc-swatch:is([data-swatch=cold],[data-swatch=warm],[data-swatch=yes],[data-swatch=no],[data-swatch=spots],[data-swatch=pendant]){width:24px;height:24px}
+}
+
+@media(min-width:351px) and (max-width:440px){.finish-calc-swatch,.finish-calc-swatch:is([data-swatch=cold],[data-swatch=warm],[data-swatch=yes],[data-swatch=no],[data-swatch=spots],[data-swatch=pendant]){width:24px;height:24px}}
+
+@media(max-width:430px){.before-after-section+.cost-calculator-section::before{width:calc(100% + 32px)}}
 
 .nav-services summary>a.nav-glazing-link{padding:0;border:0;color:inherit;font:inherit}

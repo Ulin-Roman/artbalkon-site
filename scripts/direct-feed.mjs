@@ -5,7 +5,7 @@ import {company,services,prices} from '../src/content.mjs';
 
 const xml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 // Stable IDs; extras are available only within a larger order, not independently.
-const ids={'osteklenie-balkonov':101,'holodnoe-osteklenie':107,'teploe-osteklenie':108,'panoramnoe-osteklenie':109,'uteplenie-balkonov':102,'otdelka-balkonov':103,'balkon-pod-klyuch':104,'osteklenie-kottedzhej':106};
+const ids={'osteklenie-balkonov':101,'holodnoe-osteklenie':107,'teploe-osteklenie':108,'panoramnoe-osteklenie':109,'frantsuzskoe-osteklenie':110,'uteplenie-balkonov':102,'otdelka-balkonov':103,'balkon-pod-klyuch':104,'osteklenie-kottedzhej':106};
 export async function renderDirectFeed({origin=company.origin,now=new Date()}={}){
  const root=origin.replace(/\/$/,'');
  const entries=await Promise.all(Object.entries(ids).map(async([slug,id])=>{
