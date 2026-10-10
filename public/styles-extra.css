@@ -4972,3 +4972,5 @@ main > .social-subscribe,
 .finish-calc-swatch[data-swatch=no]{background-position:0 100%}
 .finish-calc-swatch[data-swatch=spots]{background-position:50% 100%}
 .finish-calc-swatch[data-swatch=pendant]{background-position:100% 100%}
+
+.nav-services summary>a.nav-glazing-link{padding:0;border:0;color:inherit;font:inherit}
