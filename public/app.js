@@ -317,8 +317,8 @@ function createCalculatorScene(root) {
  const surfaces={back:[[108.5,140],[220,140],[220,317],[108.5,317]],house:[[220,140],[298,57],[297,427.5],[220,317]],parapet:[[47.5,304],[108.5,267],[108.5,317],[47.5,427.5]],ceiling:[[43,63],[298,63],[220,140],[108.5,140]],floor:[[113,317],[220,317],[293,427.5],[47.5,427.5]]};
  const polygon=q=>{ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();};
  const fill=(q,color)=>{polygon(q);ctx.fillStyle=color;ctx.fill();};
- function texture(key,rx=1,ry=1,rotate=false){
-  const id=[key,rx,ry,rotate].join(':');if(cache.has(id))return cache.get(id);
+ function texture(key,rx=1,ry=1,rotate=false,offset=0){
+  const id=[key,rx,ry,rotate,offset].join(':');if(cache.has(id))return cache.get(id);
   if(key==='tile')for(const cached of cache.keys())if(cached.startsWith('tile:'))cache.delete(cached);
   const tile=document.createElement('canvas');tile.width=tile.height=416;const t=tile.getContext('2d');
   // The foam texture is separate from the timber geometry, so it sits below
@@ -329,13 +329,17 @@ function createCalculatorScene(root) {
   else {const cell=cells[key],size=atlas.width/3;
    // Use one tile face; grout is drawn as a continuous, evenly spaced grid.
    if(key==='tile')t.drawImage(atlas,(cell%3)*size+size*.38,Math.floor(cell/3)*size+size*.38,size*.24,size*.24,0,0,416,416);
+   else if(key==='parquet'){
+    // Repeat complete plank rows so the edge rows do not merge into a wide board.
+    t.drawImage(atlas,(cell%3)*size+2,Math.floor(cell/3)*size+40,size-4,size-90,0,0,416,416);
+   }
    else t.drawImage(atlas,(cell%3)*size+2,Math.floor(cell/3)*size+2,size-4,size-4,0,0,416,416);
   }
   const out=document.createElement('canvas');out.width=out.height=1024;const c=out.getContext('2d');
   if(rotate){c.translate(1024,0);c.rotate(Math.PI/2);}
   const tw=1024/rx,th=1024/ry,gap=key==='tile'?.005:0;
   if(gap){c.fillStyle='#92918b';c.fillRect(0,0,1024,1024);}
-  for(let y=0;y<Math.ceil(ry);y++)for(let x=0;x<Math.ceil(rx);x++)c.drawImage(tile,x*tw+tw*gap/2,y*th+th*gap/2,tw*(1-gap),th*(1-gap));
+  for(let y=0;y<Math.ceil(ry+offset);y++)for(let x=0;x<Math.ceil(rx);x++)c.drawImage(tile,x*tw+tw*gap/2,(y-offset)*th+th*gap/2,tw*(1-gap),th*(1-gap));
   cache.set(id,out);return out;
  }
  function projection(q){
@@ -351,8 +355,8 @@ function createCalculatorScene(root) {
   ctx.save();polygon(p.map(([x,y])=>{const dx=x-center[0],dy=y-center[1],r=Math.hypot(dx,dy);return[x+dx/r*.22,y+dy/r*.22];}));ctx.clip();
   ctx.transform(aa,bb,cc,dd,A[0]-aa*a[0]-cc*a[1],A[1]-bb*a[0]-dd*a[1]);ctx.drawImage(img,0,0);ctx.restore();
  }
- function plane(q,key,rx=1,ry=1,rotate=false,shade=null,n=16){
-  const img=texture(key,rx,ry,rotate),map=projection(q);
+ function plane(q,key,rx=1,ry=1,rotate=false,shade=null,n=16,offset=0){
+  const img=texture(key,rx,ry,rotate,offset),map=projection(q);
   ctx.save();polygon(q);ctx.clip();
   for(let y=0;y<n;y++)for(let x=0;x<n;x++){
    const uv=[[x/n,y/n],[(x+1)/n,y/n],[(x+1)/n,(y+1)/n],[x/n,(y+1)/n]];
@@ -509,7 +513,15 @@ function createCalculatorScene(root) {
    [surfaces.back,1,1,{axis:[108,210,230,210],stops:[[0,'#28231540'],[.25,'#28231512'],[.8,'#28231525'],[1,'#28231555']]}],
    [surfaces.house,2.8,1,{axis:[220,190,298,190],stops:[[0,'#30291f48'],[.3,'#30291f08'],[1,'#ffffff12']]}],
    [surfaces.parapet,2.8,.48,{axis:[47,360,114,295],stops:[[0,'#30291f30'],[1,'#30291f60']]}]
-  ]){if(!s['walls-enabled'])insulatedSurface(q,false,insulated);else plane(q,wall,rx,ry,false,shade);}
+  ]){
+   if(!s['walls-enabled'])insulatedSurface(q,false,insulated);
+   else {
+    // Narrow parquet rows share the same height at the back/parapet corner.
+    const rows=wall==='parquet'?2.5*(q===surfaces.parapet?50/177:1):ry;
+    const offset=wall==='parquet'&&q===surfaces.parapet?127/177*2.5:0;
+    plane(q,wall,rx,rows,false,shade,16,offset);
+   }
+  }
   if(!s['ceiling-enabled'])insulatedSurface(surfaces.ceiling,false,insulated);else plane(surfaces.ceiling,ceiling,1,2.6,ceiling==='laminate',{axis:[170,63,170,140],stops:[[0,'#ffffff10'],[.65,'#342b1920'],[1,'#342b1955']]});
   if(!s['floor-enabled'])insulatedSurface(floorQ,true,insulated);else plane(floorQ,floor,floor==='tile'?Number(s.width)/40:2.4,floor==='tile'?Number(s.length)/40:1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
   ctx.save();polygon(floorQ);ctx.clip();
