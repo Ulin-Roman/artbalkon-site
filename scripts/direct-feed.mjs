@@ -5,7 +5,7 @@ import {company,services,prices} from '../src/content.mjs';
 
 const xml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 // Stable IDs; extras are available only within a larger order, not independently.
-const ids={'osteklenie-balkonov':101,'holodnoe-osteklenie':107,'teploe-osteklenie':108,'panoramnoe-osteklenie':109,'frantsuzskoe-osteklenie':110,'uteplenie-balkonov':102,'otdelka-balkonov':103,'balkon-pod-klyuch':104,'osteklenie-kottedzhej':106};
+const ids={'osteklenie-balkonov':101,'holodnoe-osteklenie':107,'teploe-osteklenie':108,'panoramnoe-osteklenie':109,'frantsuzskoe-osteklenie':110,'uteplenie-balkonov':102,'otdelka-balkonov':103,'remont-balkonov':111,'balkon-pod-klyuch':104,'osteklenie-kottedzhej':106};
 export async function renderDirectFeed({origin=company.origin,now=new Date()}={}){
  const root=origin.replace(/\/$/,'');
  const entries=await Promise.all(Object.entries(ids).map(async([slug,id])=>{
@@ -15,7 +15,7 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   if(bytes.length>10*1024*1024)throw Error(`Feed picture too large: ${asset}`);
   const hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
   const title=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
-  const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
+  const price=slug==='remont-balkonov'?prices.repair:service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
   if(price!=null&&!(price>0))throw Error(`Invalid feed price: ${slug}`);
   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
   const priceText=price?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
