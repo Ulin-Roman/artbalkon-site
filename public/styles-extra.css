@@ -776,7 +776,9 @@ h1,h2,h3,h4,
  transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
 }
 .before-after-lead:hover{transform:translateY(-2px);filter:saturate(1.08);box-shadow:0 11px 24px rgba(0,106,112,.25)}
-.before-after-lead:focus-visible,.before-after-compare:focus-visible{outline:3px solid rgba(0,119,126,.32);outline-offset:3px}
+.before-after-lead:focus-visible{outline:3px solid rgba(0,119,126,.32);outline-offset:3px}
+.before-after-compare:focus-visible{outline:3px solid rgba(0,119,126,.32);outline-offset:-3px}
+.before-after-compare.is-pointer-dialog-return:focus-visible{outline:none}
 
 .application-modal{
  width:min(780px,calc(100% - 36px));

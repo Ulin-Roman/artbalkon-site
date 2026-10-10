@@ -252,6 +252,8 @@
  });
  const comparisonModal=$('#comparison-modal');
  if(comparisonModal){
+  let comparisonOpener=null,comparisonOpenedByPointer=false;
+  document.addEventListener('keydown',e=>{if(!['Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','Enter',' '].includes(e.key))return;comparisonOpenedByPointer=false;document.querySelectorAll('[data-comparison].is-pointer-dialog-return').forEach(card=>card.classList.remove('is-pointer-dialog-return'));});
   const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),beforeLabel=$('#comparison-before-label'),afterLabel=$('#comparison-after-label'),comparisonTitle=$('#comparison-title');
   const comparisonCards=[...document.querySelectorAll('[data-comparison]')],comparisonPrev=comparisonModal.querySelector('.comparison-prev'),comparisonNext=comparisonModal.querySelector('.comparison-next');
   let comparisonIndex=0;
@@ -288,13 +290,13 @@
   new MutationObserver(fitComparison).observe(comparisonModal,{attributes:true,attributeFilter:['open']});
   window.addEventListener('resize',fitComparison);
   const showComparison=(index,trackOpen=false,syncUrl=true)=>{if(!comparisonCards.length)return;comparisonIndex=(index+comparisonCards.length)%comparisonCards.length;const card=comparisonCards[comparisonIndex],beforeReal=card.dataset.beforeReal==='true',beforeVisualized=card.dataset.beforeVisualized==='true',visualized=card.dataset.visualized==='true';const repair=card.dataset.case==='work-4';comparisonGrid.classList.toggle('repair-modal-compare',repair);repairControl.hidden=!repair;repairDivider.hidden=!repair;repairControl.value='50';comparisonGrid.style.setProperty('--split','50%');beforeImage.style.removeProperty('aspect-ratio');afterImage.style.removeProperty('aspect-ratio');beforeImage.src=new URL(card.dataset.before,siteBase).href;afterImage.src=new URL(card.dataset.after,siteBase).href;comparisonTitle.textContent=card.dataset.title;beforeLabel.textContent='До';afterLabel.textContent='После';beforeImage.alt=`${card.dataset.title} — ${beforeVisualized||visualized?'до работ, тематическая визуализация':beforeReal?'до работ ArtBalkon':'до ремонта, визуальная реконструкция'}`;afterImage.alt=`${card.dataset.title} — ${visualized?'после работ, тематическая визуализация':'после работ ArtBalkon'}`;if(syncUrl){const url=new URL(location.href);url.searchParams.set('case',card.dataset.case);history[comparisonModal.open?'replaceState':'pushState'](history.state,'',url);}if(!comparisonModal.open)openDialogAtCurrentScroll(comparisonModal,comparisonModal.querySelector('.comparison-close'));if(trackOpen)track('before_after_open',{project:card.dataset.title});};
-  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;showComparison(comparisonCards.indexOf(card),true);});
+  document.addEventListener('click',e=>{const card=e.target.closest('[data-comparison]');if(!card)return;comparisonOpener=card;comparisonOpenedByPointer=e.detail>0;card.classList.toggle('is-pointer-dialog-return',comparisonOpenedByPointer);showComparison(comparisonCards.indexOf(card),true);});
   comparisonPrev?.addEventListener('click',()=>showComparison(comparisonIndex-1));
   comparisonNext?.addEventListener('click',()=>showComparison(comparisonIndex+1));
   comparisonModal.addEventListener('keydown',e=>{if(e.target===repairControl)return;if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;e.preventDefault();showComparison(comparisonIndex+(e.key==='ArrowRight'?1:-1));});
   comparisonModal.querySelector('.comparison-close')?.addEventListener('click',()=>comparisonModal.close());
   comparisonModal.addEventListener('click',e=>{if(e.target===comparisonModal)comparisonModal.close();});
-  comparisonModal.addEventListener('close',()=>{beforeImage.removeAttribute('src');afterImage.removeAttribute('src');const url=new URL(location.href);if(url.searchParams.has('case')){url.searchParams.delete('case');history.replaceState(history.state,'',url);}});
+  comparisonModal.addEventListener('close',()=>{if(comparisonOpener?.isConnected){const opener=comparisonOpener;opener.classList.toggle('is-pointer-dialog-return',comparisonOpenedByPointer);opener.focus({preventScroll:true});opener.addEventListener('blur',()=>opener.classList.remove('is-pointer-dialog-return'),{once:true});}comparisonOpener=null;comparisonOpenedByPointer=false;beforeImage.removeAttribute('src');afterImage.removeAttribute('src');const url=new URL(location.href);if(url.searchParams.has('case')){url.searchParams.delete('case');history.replaceState(history.state,'',url);}});
   const restoreCaseFromUrl=()=>{const id=new URL(location.href).searchParams.get('case');const index=comparisonCards.findIndex(card=>card.dataset.case===id);if(index>=0)showComparison(index,true,false);else if(comparisonModal.open)comparisonModal.close();};
   window.addEventListener('popstate',restoreCaseFromUrl);
   restoreCaseFromUrl();
