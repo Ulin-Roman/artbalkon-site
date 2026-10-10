@@ -244,7 +244,7 @@
   const repairControl=document.createElement('input');
   repairControl.type='range';repairControl.min='0';repairControl.max='100';repairControl.value='50';repairControl.hidden=true;
   repairControl.setAttribute('aria-label','Показать больше фото до или после ремонта');
-  const repairDivider=document.createElement('span');repairDivider.className='repair-divider';repairDivider.innerHTML='<span>↔</span>';repairDivider.hidden=true;repairDivider.setAttribute('aria-hidden','true');
+  const repairDivider=document.createElement('span');repairDivider.className='repair-divider';repairDivider.innerHTML='<span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/></svg></span>';repairDivider.hidden=true;repairDivider.setAttribute('aria-hidden','true');
   comparisonGrid.append(repairDivider,repairControl);
   repairControl.addEventListener('input',()=>{comparisonGrid.style.setProperty('--split',repairControl.value+'%');repairControl.setAttribute('aria-valuetext',repairControl.value+'% фото до ремонта');});
   const fitComparison=()=>{
@@ -324,7 +324,7 @@
    const fills={pvc:'url(#calc-pvc)',laminate:'url(#calc-laminate)',lining:'url(#calc-lining)',parquet:'url(#calc-parquet)',stretch:'#fbfaf5',linoleum:'#c8b49b',vinyl:'#adb1a7',tile:'url(#calc-tile)'};
    finishCalculator.querySelectorAll('[data-calc-surface]').forEach(surface=>{const key=surface.dataset.calcSurface;surface.setAttribute('fill',state[key+'-enabled']?fills[state[key]]:'#e7e5df');});
    finishCalculator.querySelector('[data-calc-windows]').toggleAttribute('hidden',!state['glazing-enabled']);
-   finishCalculator.querySelector('[data-calc-loggia]').toggleAttribute('hidden',state.object!=='loggia');
+   finishCalculator.querySelector('[data-calc-open-windows]').toggleAttribute('hidden',!!state['glazing-enabled']);
    finishCalculator.querySelector('[data-calc-insulation]').toggleAttribute('hidden',state.insulation!=='yes');
    finishCalculator.querySelector('[data-calc-exterior]').toggleAttribute('hidden',!state['exterior-enabled']);
    finishCalculator.querySelector('[data-calc-exterior]').setAttribute('stroke',state.exterior==='metal'?'#79877d':'#aeb7a2');

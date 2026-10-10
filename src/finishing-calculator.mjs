@@ -14,36 +14,33 @@ function group(key, title, selected, enabled, rates) {
  return `<fieldset class="finish-calc-group" data-calc-group="${key}"><legend>${title}</legend><div class="finish-calc-group-head" aria-hidden="true">${title}</div>${toggle}<div class="finish-calc-options">${choices[key].map(([value,label])=>`<label class="finish-calc-option"><input type="radio" name="${key}" value="${value}" ${value===selected?'checked':''} ${!enabled&&key!=='insulation'?'disabled':''}><span class="finish-calc-swatch" data-swatch="${value}" aria-hidden="true">${key==='glazing'?'▥':key==='lighting'?(value==='spots'?'◉':'▱'):key==='insulation'?(value==='yes'?'◈':'—'):''}</span><span>${label}</span>${rates?.[value]?`<small>от ${format(rates[value])} ₽/м²</small>`:''}</label>`).join('')}</div></fieldset>`;
 }
 function scene() {
- return `<svg class="finish-calc-scene" viewBox="0 0 340 480" role="img" aria-label="Условная схема балкона с выбранной отделкой" xmlns="http://www.w3.org/2000/svg">
+ const textures={laminate:'moisture-resistant-laminate',lining:'lining-and-wall-parquet',parquet:'lining-and-wall-parquet',pvc:'pvc-panels'};
+ const sideWindows='M46 86L107 146V264L46 307Z';
+ return `<svg class="finish-calc-scene" viewBox="0 0 340 480" role="img" aria-label="Объёмная визуализация балкона с выбранной отделкой и срезами бетонных плит" xmlns="http://www.w3.org/2000/svg">
  <defs>
- <pattern id="calc-laminate" width="48" height="68" patternUnits="userSpaceOnUse"><rect width="48" height="68" fill="#c6a47e"/><path d="M0 0H48M0 34H48M24 0V34M12 34V68M4 4L20 30M30 38L43 63" stroke="#b48c61" stroke-width="1.2"/></pattern>
- <pattern id="calc-lining" width="18" height="80" patternUnits="userSpaceOnUse"><rect width="18" height="80" fill="#d9bb95"/><path d="M1 0V80M5 0V80M13 0V80" stroke="#c1a077" stroke-width="1"/></pattern>
- <pattern id="calc-parquet" width="36" height="72" patternUnits="userSpaceOnUse"><rect width="36" height="72" fill="#b88b62"/><path d="M0 0L36 36L0 72M0 36L36 72M0-36L36 0" fill="none" stroke="#e3c5a4" stroke-width="2"/></pattern>
- <pattern id="calc-pvc" width="21" height="50" patternUnits="userSpaceOnUse"><rect width="21" height="50" fill="#f0ede5"/><path d="M1 0V50" stroke="#cfcbbf" stroke-width="1"/></pattern>
- <pattern id="calc-tile" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#d4d7d5"/><path d="M0 0H40V40" fill="none" stroke="#f7f7f4" stroke-width="2"/></pattern>
- <linearGradient id="calc-glass" x2="1" y2="1"><stop stop-color="#d4e6ea" stop-opacity=".85"/><stop offset="1" stop-color="#f6fbfc" stop-opacity=".6"/></linearGradient>
+ ${Object.entries(textures).map(([key,file])=>`<pattern id="calc-${key}" width="60" height="90" patternUnits="userSpaceOnUse"><svg width="60" height="90" viewBox="${({laminate:'90 40 180 260',lining:'65 75 230 450',parquet:'355 70 220 450',pvc:'90 10 420 430'})[key]}" preserveAspectRatio="none"><image href="/assets/finishing-materials/${file}.jpg" width="640" height="640"/></svg></pattern>`).join('')}
+ <pattern id="calc-tile" width="38" height="38" patternUnits="userSpaceOnUse"><rect width="38" height="38" fill="#c7ccc8"/><path d="M0 0H38V38" fill="none" stroke="#f6f6f2" stroke-width="1.5"/></pattern>
+ <linearGradient id="calc-depth"><stop stop-color="#444c43" stop-opacity=".34"/><stop offset=".18" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#444c43" stop-opacity=".3"/></linearGradient>
+ <linearGradient id="calc-floor-shade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#24251e" stop-opacity=".42"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+ <linearGradient id="calc-open-sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b8d9ed"/><stop offset=".65" stop-color="#eff5ed"/><stop offset="1" stop-color="#b7c4a1"/></linearGradient>
+ <radialGradient id="calc-lamp-glow"><stop stop-color="#fff6d3" stop-opacity=".85"/><stop offset="1" stop-color="#fff6d3" stop-opacity="0"/></radialGradient>
  </defs>
- <ellipse cx="170" cy="445" rx="145" ry="16" fill="#dce0d9"/>
- <path d="M22 54L111 103H229L318 54V429L228 376H112L22 429Z" fill="#e7e5df" stroke="#c5c9c3" stroke-width="2"/>
- <path data-calc-surface="walls" d="M111 103H229V376H111Z" fill="url(#calc-laminate)"/>
- <path data-calc-surface="walls" d="M22 54L111 103V376L22 429Z" fill="url(#calc-laminate)"/>
- <path data-calc-surface="walls" d="M229 103L318 54V429L229 376Z" fill="url(#calc-laminate)"/>
- <path data-calc-surface="ceiling" d="M22 54H318L229 103H111Z" fill="url(#calc-pvc)" stroke="#d0c9ba"/>
- <path data-calc-surface="floor" d="M111 376H229L318 429H22Z" fill="url(#calc-laminate)" stroke="#c1b29c"/>
- <g data-calc-windows>
- <path d="M28 72L103 111V284L28 327ZM237 111L312 72V327L237 284Z" fill="url(#calc-glass)" stroke="#fafbf7" stroke-width="8"/>
- <path d="M67 92V304M273 92V304" stroke="#fafbf7" stroke-width="5"/>
- <path d="M27 328L104 284M236 284L313 328" stroke="#fafbf7" stroke-width="9"/>
- <path d="M61 184V204M266 184V204" stroke="#6f807d" stroke-width="3" stroke-linecap="round"/>
+ <image href="/assets/calculator-realistic-v1/balcony-house-wall.webp" width="340" height="480" preserveAspectRatio="xMidYMid meet"/>
+ <g class="finish-calc-materials">
+ <path data-calc-surface="walls" d="M109 141H232V316H113Z"/>
+ <path data-calc-surface="walls" d="M47 310L114 279V317L47 425Z"/>
+ <path data-calc-surface="walls" d="M233 140L293 62V424L231 317Z"/>
+ <path data-calc-surface="ceiling" d="M45 57H297L231 138H109Z"/>
+ <path data-calc-surface="floor" d="M114 324H226L290 425H49Z"/>
  </g>
- <g data-calc-loggia hidden><path d="M28 72L103 111V284L28 327ZM237 111L312 72V327L237 284Z" data-calc-surface="walls" fill="url(#calc-laminate)"/></g>
- <path d="M133 143H209V354H133Z" fill="#e9e5dc" stroke="#fafbf7" stroke-width="5"/>
- <path d="M139 150H202V259H139Z" fill="url(#calc-glass)" stroke="#fafbf7" stroke-width="3"/>
- <path d="M201 273V287" stroke="#8b918c" stroke-width="3" stroke-linecap="round"/>
- <g data-calc-light="spots" hidden><ellipse cx="104" cy="71" rx="9" ry="4" fill="#fff8d5" stroke="#ccc9bc"/><ellipse cx="172" cy="83" rx="8" ry="4" fill="#fff8d5" stroke="#ccc9bc"/><ellipse cx="239" cy="71" rx="9" ry="4" fill="#fff8d5" stroke="#ccc9bc"/></g>
- <g data-calc-light="pendant" hidden><path d="M171 84V114" stroke="#555e58" stroke-width="2"/><path d="M157 113H185L193 130H149Z" fill="#707e74"/><ellipse cx="171" cy="130" rx="21" ry="3" fill="#fff4c7"/></g>
- <path data-calc-insulation d="M24 432H316" stroke="#d7aa56" stroke-width="7"/>
- <path data-calc-exterior d="M24 440H316" stroke="#a0a99f" stroke-width="5" hidden/>
+ <path d="M109 141H232V316H113Z" fill="url(#calc-depth)"/>
+ <path d="M114 324H226L290 425H49Z" fill="url(#calc-floor-shade)" opacity=".45"/>
+ <g data-calc-windows><path class="finish-calc-frame-tint" d="M43 79L108 143V268L43 310" fill="none" stroke="#fafbf7" stroke-width="1.2" opacity=".3"/></g>
+ <g data-calc-open-windows hidden><path d="${sideWindows}" fill="url(#calc-open-sky)"/><path d="M46 307L107 264" stroke="#eeeae1" stroke-width="3"/></g>
+ <g data-calc-light="spots" hidden>${[[119,98,4.5],[170,81,6],[220,98,4.5]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r*5}" ry="${r*3}" fill="url(#calc-lamp-glow)"/><ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.38}" fill="#6a6c63"/><ellipse cx="${x}" cy="${y-.3}" rx="${r*.75}" ry="${r*.26}" fill="#fff5c5"/>`).join('')}</g>
+ <g data-calc-light="pendant" hidden><path d="M170 89V133" stroke="#333b3c" stroke-width="1.5"/><path d="M161 132H179L184 145H156Z" fill="#424b4c"/><ellipse cx="170" cy="145" rx="14" ry="3" fill="#fff2ba"/><ellipse cx="170" cy="148" rx="35" ry="18" fill="url(#calc-lamp-glow)"/></g>
+ <path data-calc-insulation d="M45 428H293" stroke="#cfb47d" stroke-width="2" opacity=".8"/>
+ <path data-calc-exterior d="M39 430H301" stroke="#a0a99f" stroke-width="4" hidden/>
  </svg>`;
 }
 export function finishingCalculator(prices, wallRates) {
@@ -66,7 +63,7 @@ export function finishingCalculator(prices, wallRates) {
  </div></form>
  <details class="finish-calc-breakdown"><summary>Что входит в расчёт</summary><div data-calc-breakdown></div><p>Площадь стен рассчитана без вычета проёмов со стороны квартиры. Пол, потолок, наружная отделка и освещение считаются отдельно после замера. Итог зависит от основания, материалов и комплектации.</p></details>
  <noscript><p>Для интерактивного расчёта включите JavaScript или позвоните: <a href="tel:+74951653905">+7 (495) 165-39-05</a>.</p></noscript>
- </div><figure class="finish-calc-preview"><div class="finish-calc-preview-head"><span>Ваш вариант отделки</span><span data-calc-area>3 м²</span></div>${scene()}<figcaption>Схема для выбора материалов</figcaption></figure></div>
+ </div><figure class="finish-calc-preview"><div class="finish-calc-preview-head"><span>Ваш вариант отделки</span><span data-calc-area>3 м²</span></div>${scene()}<figcaption>Визуализация выбранной отделки</figcaption></figure></div>
  <dialog class="application-modal" id="finishing-calc-modal" aria-labelledby="finishing-calc-modal-title"><div class="application-modal-shell"><button class="application-close" type="button" data-calc-close aria-label="Закрыть форму">×</button><div class="application-modal-copy"><p class="eyebrow">РАСЧЁТ ВАШЕГО ПРОЕКТА</p><h2 id="finishing-calc-modal-title">Уточним стоимость</h2><p>Менеджер получит выбранные размеры и материалы и поможет составить точную смету.</p><p class="finish-calc-summary" data-calc-summary></p></div><form class="contact-form application-form" data-calc-lead data-lead-form="callback" novalidate>CALCULATOR_CONTACT_FIELDS<input type="hidden" name="calculation"><p class="form-error" role="alert"></p><button class="button" type="submit">Получить расчёт</button><p class="contact-note">Перезвоним в рабочее время, с 9:00 до 21:00.</p></form></div></dialog>
  </section>`;
 }
