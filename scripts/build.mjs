@@ -4,6 +4,7 @@ import {resolve,relative,join,sep} from 'node:path';
 import {createHash} from 'node:crypto';
 import {optimizeCss,optimizeJs} from './optimize.mjs';
 import {renderDirectFeed} from './direct-feed.mjs';
+import {deduplicatePublishedAssets} from './deduplicate-assets.mjs';
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
 const appSource=await readFile('public/app.js','utf8');
 const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource+'\n'+await readFile(new URL(import.meta.url),'utf8');
@@ -59,28 +60,40 @@ await rm('dist/styles-extra.css');
 await writeFile('dist/.nojekyll','');
 const routes=[];
 async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(optimizeHtml(shell(body,{path,...meta}))));if(!meta.noindex)routes.push(path);}
+const permanentRedirects=[];
 async function redirect(path,target,label){
- const dir='dist'+path,destination=base==='/'?target:`${base}${target.slice(1)}`,targetPage=target.split('#')[0];
+ const dir='dist'+path,destination=base==='/'?target:base+target.slice(1),canonical=company.origin.replace(/\/$/,'')+target.split('#')[0];
  await mkdir(dir,{recursive:true});
- const body=`<section class="section container legal" id="callback"><p class="eyebrow">УСЛУГИ ОБЪЕДИНЕНЫ</p><h1>${esc(label)}</h1><p>Мы объединили страницы для балконов и лоджий. Сейчас откроется общая страница услуги.</p><a class="button" href="${target}">Перейти к услуге ↗</a></section>`;
- const metaTitle=`${label.replace(' и Московской области',' и МО')} | ArtBalkon`;
- const html=shell(body,{path,title:metaTitle,description:`Страница услуги объединена с общей страницей для балконов и лоджий. Перейдите к актуальному описанию работ, примерам и расчёту стоимости.`,noindex:true}).replaceAll(`href="${path}#`,`href="${targetPage}#`).replace('</head>',`<meta http-equiv="refresh" content="0;url=${destination}"><script>location.replace(${JSON.stringify(destination)}+location.search+location.hash)</script></head>`);
- await writeFile(dir+'index.html',baseHtml(optimizeHtml(html)));
+ // GitHub Pages cannot issue HTTP redirects; keep only a small, non-indexable fallback.
+ const html='<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,follow"><title>Страница перенесена — ArtBalkon</title><link rel="canonical" href="'+esc(canonical)+'"><meta http-equiv="refresh" content="0;url='+esc(destination)+'"><script>const destination=new URL('+JSON.stringify(destination)+',location.href);destination.search=location.search;if(location.hash)destination.hash=location.hash;location.replace(destination.href);</script></head><body><h1>Страница перенесена</h1><p>'+esc(label)+'</p><p><a href="'+esc(destination)+'">Перейти к актуальной странице</a></p></body></html>';
+ await writeFile(dir+'index.html',html);
+ permanentRedirects.push({path,target});
 }
 await page('/',home(),{image:imageAsset(homeHeroImage)});
-const bundledServiceSlugs=new Set(['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone']);
+const bundledServiceSlugs=new Set(['balkon-pod-klyuch','krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone']);
 for(const s of services.filter(service=>!bundledServiceSlugs.has(service.slug))){const seo=serviceSeo[s.slug];await page(`/${s.slug}/`,servicePage(s),{title:seo?.metaTitle||`${s.h1} — цены и замер | ArtBalkon`,description:seo?.metaDescription||s.offer,image:imageAsset(serviceHeroAsset(s))});}
-await redirect('/krysha-nad-balkonom/','/balkon-pod-klyuch/#complex-options','Крыша над балконом — только в составе проекта под ключ');
-await redirect('/mebel-dlya-balkona/','/balkon-pod-klyuch/#complex-options','Мебель для балкона или лоджии — только в составе проекта под ключ');
-await redirect('/elektrika-na-balkone/','/balkon-pod-klyuch/#complex-options','Электрика и освещение — только в составе проекта под ключ');
+await redirect('/balkon-pod-klyuch/','/','Балконы и лоджии под ключ — теперь на главной странице');
+await redirect('/krysha-nad-balkonom/','/#complex-options','Крыша над балконом — только в составе проекта под ключ');
+await redirect('/mebel-dlya-balkona/','/#complex-options','Мебель для балкона или лоджии — только в составе проекта под ключ');
+await redirect('/elektrika-na-balkone/','/#complex-options','Электрика и освещение — только в составе проекта под ключ');
 await redirect('/osteklenie-lodzhii/','/osteklenie-balkonov/','Остекление балконов и лоджий в Москве и Московской области');
 await redirect('/uteplenie-lodzhii/','/uteplenie-balkonov/','Утепление балконов и лоджий в Москве и Московской области');
 await redirect('/otdelka-lodzhii/','/otdelka-balkonov/','Отделка балконов и лоджий в Москве и Московской области');
-await redirect('/lodzhiya-pod-klyuch/','/balkon-pod-klyuch/','Балконы и лоджии под ключ в Москве и Московской области');
+await redirect('/lodzhiya-pod-klyuch/','/','Балконы и лоджии под ключ в Москве и Московской области');
 await redirect('/holodnoe-osteklenie-lodzhii/','/holodnoe-osteklenie/','Холодное остекление балконов и лоджий в Москве и Московской области');
 await redirect('/teploe-osteklenie-lodzhii/','/teploe-osteklenie/','Тёплое остекление балконов и лоджий в Москве и Московской области');
 await redirect('/panoramnoe-osteklenie-lodzhii/','/panoramnoe-osteklenie/','Панорамное остекление балконов и лоджий в Москве и Московской области');
-await page('/nashi-raboty/',`<section class="section container"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span aria-hidden="true">/</span><span aria-current="page">Наши работы</span></nav><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы и лоджии <br>в Москве и Московской области</h1><p class="hero-description">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
+// Apache production hosting sends permanent redirects before serving the static fallback.
+if(!staticOnly){
+ const escapePattern=value=>value.replace(/[.*+?^$\{\}()|[\]\\]/g,'\\$&');
+ const rules=permanentRedirects.map(({path,target})=>{
+  const source=escapePattern(base+path.slice(1).replace(/\/$/,''));
+  const destination=company.origin.replace(/\/$/,'')+target;
+  return 'RedirectMatch 301 "^'+source+'(?:/index\\.html|/)?$" "'+destination+'"';
+ });
+ await writeFile('dist/.htaccess','# Generated permanent redirects for merged service pages.\n'+rules.join('\n')+'\n');
+}
+await page('/nashi-raboty/',`<section class="section container"><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы и лоджии <br>в Москве и Московской области</h1><p class="hero-description">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
 for(const p of projects){
  await page(`/nashi-raboty/${p.slug}/`,projectPage(p),{title:`${p.title} — ${p.location} | ArtBalkon`,description:p.intro,image:imageAsset(p.image)});
 }
@@ -101,13 +114,15 @@ await writeFile('dist/yandex-direct.xml',await renderDirectFeed());
 // Keep source originals in public; publish only assets referenced by the built site.
 async function builtFiles(dir){const files=[];for(const entry of await readdir(dir,{withFileTypes:true})){const file=join(dir,entry.name);files.push(...entry.isDirectory()?await builtFiles(file):[file]);}return files;}
 const builtRoot=resolve('dist'),assetRoot=join(builtRoot,'assets');
+const duplicates=await deduplicatePublishedAssets(builtRoot);
 const built=await builtFiles(builtRoot);
-const referenceText=(await Promise.all(built.filter(file=>/\.(html|css|js|json|xml|txt)$/.test(file)).map(file=>readFile(file,'utf8')))).join('\n').replaceAll('\\','/');
+const referenceText=(await Promise.all(built.filter(file=>/\.(html|css|js|json|xml|txt|svg)$/.test(file)).map(file=>readFile(file,'utf8')))).join('\n').replaceAll('\\','/');
 let omitted=0;
 for(const file of built){
  if(!file.startsWith(assetRoot+sep))continue;
  const asset=relative(builtRoot,file).replaceAll('\\','/');
  if(!referenceText.includes(asset)){await rm(file);omitted++;}
 }
+console.log(`Shared assets: ${duplicates.aliases} byte-identical duplicates (${duplicates.duplicateBytes} bytes)`);
 console.log(`Optimized CSS: ${cssResult.removed.length} unused selectors removed; CSS ${Buffer.byteLength(cssResult.code)} bytes, JS ${Buffer.byteLength(appCode)} bytes`);
 console.log(`ArtBalkon: ${routes.length+2} pages built; ${omitted} unused source assets omitted from dist`);

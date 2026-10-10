@@ -58,7 +58,9 @@ jobs:
           SITE_BASE_PATH: /
           SITE_ORIGIN: https://artbalkon.site
           SITE_MAIL_FORMS: 'true'
-        run: npm run build
+        run: |
+          npm run build
+          npm run check
 
       - name: Deploy to REG.RU
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
@@ -69,6 +71,6 @@ jobs:
           local-dir: ./dist/
           server-dir: ./
 
-      - name: Verify production form endpoint
+      - name: Verify production redirects and form endpoint
         run: |
           python3 scripts/verify-mail-host.py

@@ -19,7 +19,7 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   if(price!=null&&!(price>0))throw Error(`Invalid feed price: ${slug}`);
   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
   const priceText=price?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
-  return {id,slug,title,price,unit,url:`${root}/${slug}/`,picture:`${root}/assets/${asset}?v=${hash}`,description:service.short+priceText};
+  return {id,slug,title,price,unit,url:slug==='balkon-pod-klyuch'?`${root}/`:`${root}/${slug}/`,picture:`${root}/assets/${asset}?v=${hash}`,description:service.short+priceText};
  }));
  const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
  const offers=entries.map(e=>`      <offer id="${e.id}" available="true">
