@@ -28,6 +28,10 @@ export function validateLead(input){
  if(typeof input.requestId!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input.requestId))throw Error('Обновите страницу и попробуйте ещё раз.');
  const lead={requestId:input.requestId,name:input.name.trim(),phone,form:input.form,consent:true,consentVersion:'2026-09-16',page:typeof input.page==='string'?input.page.slice(0,500):'/',attribution:{}};
  for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid','landing','referrer'])if(typeof input.attribution?.[key]==='string')lead.attribution[key]=input.attribution[key].slice(0,300);
+ if(input.calculation!==undefined){
+  if(input.form!=='callback'||typeof input.calculation!=='string'||!input.calculation.trim()||input.calculation.length>2000||/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(input.calculation))throw Error('Некорректные параметры расчёта.');
+  lead.calculation=input.calculation.trim();
+ }
  if(input.form==='transformation'){
   if(typeof input.project!=='string'||!input.project.trim()||input.project.length>300)throw Error('Выберите работу для заявки.');
   lead.project=input.project.trim();

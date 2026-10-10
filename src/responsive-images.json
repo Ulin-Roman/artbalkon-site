@@ -13164,5 +13164,56 @@
         "width": 960
       }
     ]
+  },
+  "/assets/home-liked-works-v1/work1_relax_corner-added-handle-v4-after.webp": {
+    "src": "/assets/responsive/48dfbba2c29b45a5-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/48dfbba2c29b45a5-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/48dfbba2c29b45a5-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/48dfbba2c29b45a5-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work3_cozy_storage-handle-right-lower-v5-after.webp": {
+    "src": "/assets/responsive/4857abacbf6a6267-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/4857abacbf6a6267-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/4857abacbf6a6267-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/4857abacbf6a6267-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/portfolio-realism-v1/after-97-left-wall-v2.webp": {
+    "src": "/assets/responsive/6e78d606cf7d6756-1086.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/6e78d606cf7d6756-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/6e78d606cf7d6756-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/6e78d606cf7d6756-1086.webp",
+        "width": 1086
+      }
+    ]
   }
 }

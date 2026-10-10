@@ -18,6 +18,11 @@ function normalize_mail_lead($input, $options) {
     $id = $input['requestId'] ?? '';
     if (!is_string($id) || !preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i', $id)) throw new InvalidArgumentException('Обновите страницу и попробуйте ещё раз.');
     $lead = ['requestId'=>strtolower($id),'form'=>$form,'name'=>$name,'phone'=>'+7'.substr($phone,1),'consent'=>true,'consentVersion'=>'2026-09-16','page'=>lead_text($input['page'] ?? '/',500)];
+    if (isset($input['calculation'])) {
+        if ($form !== 'callback') throw new InvalidArgumentException('Некорректные параметры расчёта.');
+        $lead['calculation'] = lead_text($input['calculation'],2000);
+        if ($lead['calculation'] === '') throw new InvalidArgumentException('Укажите параметры расчёта.');
+    }
     if ($form === 'transformation') {
         $lead['project'] = lead_text($input['project'] ?? null,300);
         if ($lead['project'] === '') throw new InvalidArgumentException('Выберите работу для заявки.');
@@ -75,7 +80,7 @@ function deliver_mail_lead($lead, $sender, $directory, $ip) {
             if (!ftruncate($file,0) || fwrite($file,$data) !== strlen($data) || !fflush($file)) throw new RuntimeException('Storage unavailable');
         };
         $write();
-        $labels = ['form'=>'Форма','name'=>'Имя','phone'=>'Телефон','service'=>'Услуга','object'=>'Объект','timing'=>'Срок','gift'=>'Подарок','project'=>'Работа / подарок','size'=>'Размер','detail'=>'Уточнение','page'=>'Страница','requestId'=>'Номер заявки','consentVersion'=>'Версия согласия'];
+        $labels = ['form'=>'Форма','name'=>'Имя','phone'=>'Телефон','service'=>'Услуга','object'=>'Объект','timing'=>'Срок','gift'=>'Подарок','project'=>'Работа / подарок','size'=>'Размер','detail'=>'Уточнение','calculation'=>'Калькулятор — размеры и материалы','page'=>'Страница','requestId'=>'Номер заявки','consentVersion'=>'Версия согласия'];
         $lines = ['Заявка с artbalkon.site', 'Дата: '.gmdate('c'),'Согласие на обработку данных: получено'];
         foreach ($labels as $field=>$label) if (isset($lead[$field])) $lines[] = $label.': '.$lead[$field];
         foreach ($lead['attribution'] as $field=>$value) $lines[] = $field.': '.$value;

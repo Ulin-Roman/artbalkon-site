@@ -11,6 +11,7 @@ export const company = {
 };
 // Единственный источник цен для карточек, таблицы, SEO и посадочных страниц.
 export const prices = {cold:7000,warm:11000,panoramic:11500,insulation:700,finishing:1900,turnkey:null};
+export const finishingWallRates = {pvc:2500,laminate:3800,lining:4000,parquet:4000};
 export const integrations = {metrikaId:113425011,webvisor:true,leadEndpoint:'/api/leads',externalScripts:[],whatsapp:company.whatsapp,telegram:company.telegram};
 export const projects = [
  {slug:'lodzhiya-v-golubom',title:'Лоджия с характером',location:'Деревня Голубое · Тверецкий проезд',type:'Утепление и отделка',image:'before-after/after-05.jpg',alt:'Готовая лоджия с отделкой натуральным деревом и встроенным освещением',intro:'Натуральное дерево, цветная стена и продуманное освещение. Утеплённая лоджия с тёплым полом и комбинированной отделкой.',works:['Утепление стен, пола и потолка','Комбинированная отделка стен и потолка','Тёплый пол и чистовая отделка','Освещение и розетки'],materials:['Декоративная рейка «Ель Сибирская»','Окрашенный стеновой паркет из липы под кирпич','Ламинат «Дуб Тремоли»'],duration:null,cost:null,source:'https://artbalkon.pro/nashi-raboty1#rec864516955'},
@@ -1470,7 +1471,7 @@ beforeAfterProjects.push(...[
     "importedHomeWork": true,
     "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
     "before": "home-liked-works-v1/work1_relax_corner-no-marked-handles-v3-before.webp",
-    "after": "home-liked-works-v1/work1_relax_corner-no-marked-handles-v3-after.webp"
+    "after": "home-liked-works-v1/work1_relax_corner-added-handle-v4-after.webp"
   },
   {
     "title": "Лоджия с письменным столом и полками из архива",
@@ -1496,7 +1497,7 @@ beforeAfterProjects.push(...[
     "importedHomeWork": true,
     "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
     "before": "home-liked-works-v1/work3_cozy_storage-handles-v2-before-removed-v4.webp",
-    "after": "home-liked-works-v1/work3_cozy_storage-handles-v2-after-removed-v4.webp"
+    "after": "home-liked-works-v1/work3_cozy_storage-handle-right-lower-v5-after.webp"
   }
 ]);
 
@@ -1981,4 +1982,11 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  const gallery=serviceBeforeAfterProjects['uteplenie-balkonov'];
  if(gallery.filter(project=>project.title===title).length!==1)throw new Error('Selected insulation work-67 was not found');
  serviceBeforeAfterProjects['uteplenie-balkonov']=gallery.filter(project=>project.title!==title);
+}
+
+// Keep work 192 consistent with its original opaque left side wall.
+{
+ const project=serviceBeforeAfterProjects['holodnoe-osteklenie'].find(item=>item.title==='Балкон с остеклением по трём сторонам');
+ if(!project)throw new Error('Work 192 not found');
+ project.description='Визуализация холодного остекления балкона по передней и правой сторонам с сохранением глухой стены слева.';
 }

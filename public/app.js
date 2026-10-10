@@ -93,7 +93,7 @@
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
  let modalTriggerScrollY=null;
  const dialogScrollPositions=new WeakMap();
- document.addEventListener('pointerdown',e=>{if(e.target.closest('[data-quiz-open],[data-callback-open],[data-application],[data-comparison],[data-cert-open],[data-gift-open],[data-promo-choice]'))modalTriggerScrollY=scrollY;},{passive:true});
+ document.addEventListener('pointerdown',e=>{if(e.target.closest('[data-calc-request],[data-quiz-open],[data-callback-open],[data-application],[data-comparison],[data-cert-open],[data-gift-open],[data-promo-choice]'))modalTriggerScrollY=scrollY;},{passive:true});
  const restoreScrollPosition=top=>{if(!Number.isFinite(top))return;const root=document.documentElement,previousBehavior=root.style.scrollBehavior;root.style.scrollBehavior='auto';scrollTo(0,top);requestAnimationFrame(()=>requestAnimationFrame(()=>{scrollTo(0,top);root.style.scrollBehavior=previousBehavior;}));};
  const openDialogAtCurrentScroll=(dialog,focusTarget)=>{if(!dialog)return;const top=modalTriggerScrollY??scrollY;modalTriggerScrollY=null;dialogScrollPositions.set(dialog,top);if(!dialog.open)dialog.showModal();focusTarget?.focus({preventScroll:true});restoreScrollPosition(top);};
  document.querySelectorAll('dialog').forEach(dialog=>dialog.addEventListener('close',()=>{const top=dialogScrollPositions.get(dialog);dialogScrollPositions.delete(dialog);restoreScrollPosition(top);}));
@@ -267,6 +267,54 @@
   const selectFinishingStyle=(id,focus=false)=>{finishingTabs.forEach(tab=>{const active=tab.dataset.finishingTab===id;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus({preventScroll:true});});finishingPanels.forEach(panel=>panel.hidden=panel.dataset.finishingPanel!==id);};
   finishingTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>{selectFinishingStyle(tab.dataset.finishingTab);track('finishing_style_view',{style:tab.dataset.finishingTab});});tab.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?finishingTabs.length-1:(index+(e.key==='ArrowRight'?1:-1)+finishingTabs.length)%finishingTabs.length;selectFinishingStyle(finishingTabs[next].dataset.finishingTab,true);});});
  }
+ // Interactive finish estimate; unknown-rate work is deliberately quoted separately.
+ const finishCalculator=document.querySelector('[data-finishing-calculator]');
+ if(finishCalculator){
+  const controls=finishCalculator.querySelector('[data-calc-controls]'),rates=JSON.parse(finishCalculator.dataset.rates),dialog=finishCalculator.querySelector('dialog');
+  const currency=n=>Math.round(n).toLocaleString('ru-RU')+' ₽',area=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:2})+' м²';
+  let calculation='';
+  const read=()=>Object.fromEntries(new FormData(controls));
+  const materialName=key=>controls.querySelector(`input[name="${key}"]:checked`)?.closest('label').querySelector('.finish-calc-swatch+span')?.textContent||'';
+  function updateEstimate(){
+   finishCalculator.querySelectorAll('[data-calc-group]').forEach(group=>{const toggle=group.querySelector('input[type="checkbox"]');if(toggle)group.querySelectorAll('input[type="radio"]').forEach(input=>input.disabled=!toggle.checked);});
+   const state=read(),L=Number(state.length)/100,W=Number(state.width)/100,H=Number(state.height)/100,G=Number(state.windowHeight)/100;
+   const valid=controls.checkValidity()&&G<H;
+   finishCalculator.querySelector('[data-calc-error]').textContent=valid?'':G>=H?'Высота окон должна быть меньше высоты помещения.':'Укажите размеры в пределах, указанных в полях.';
+   finishCalculator.querySelector('[data-calc-request]').disabled=!valid;
+   if(!valid){calculation='';finishCalculator.querySelector('[data-calc-total]').textContent='—';finishCalculator.querySelector('[data-calc-breakdown]').replaceChildren();return;}
+   const glazedLength=L+(state.object==='balcony'?2*W:0),floorArea=L*W,glazingArea=glazedLength*G;
+   const wallArea=L*H+glazedLength*(H-G)+(state.object==='loggia'?2*W*H:0);
+   const items=[],extra=[];
+   if(state['walls-enabled'])items.push(['Стены · '+area(wallArea),wallArea*rates.walls[state.walls]]);
+   if(state['glazing-enabled'])items.push(['Остекление · '+area(glazingArea),glazingArea*rates[state.glazing]]);
+   if(state.insulation==='yes')items.push(['Утепление · '+area(wallArea+2*floorArea),(wallArea+2*floorArea)*rates.insulation]);
+   const names={ceiling:'Потолок',floor:'Пол',exterior:'Наружная отделка',lighting:'Освещение'};
+   for(const [key,name] of Object.entries(names))if(state[key+'-enabled'])extra.push(name);
+   const total=items.reduce((sum,item)=>sum+item[1],0);
+   finishCalculator.querySelector('[data-calc-total]').textContent=items.length?currency(total):'По замеру';
+   finishCalculator.querySelector('[data-calc-additions]').textContent=extra.length?extra.join(', ')+' — отдельно по замеру':'Точная стоимость — после замера';
+   finishCalculator.querySelector('[data-calc-area]').textContent=area(floorArea);
+   const breakdown=finishCalculator.querySelector('[data-calc-breakdown]');breakdown.replaceChildren();
+   for(const [label,amount] of items){const row=document.createElement('p'),title=document.createElement('span'),value=document.createElement('strong');title.textContent=label;value.textContent='от '+currency(amount);row.append(title,value);breakdown.append(row);}
+   if(!items.length){const row=document.createElement('p');row.textContent='Выбранные работы рассчитываются после замера.';breakdown.append(row);}
+   const fills={pvc:'url(#calc-pvc)',laminate:'url(#calc-laminate)',lining:'url(#calc-lining)',parquet:'url(#calc-parquet)',stretch:'#fbfaf5',linoleum:'#c8b49b',vinyl:'#adb1a7',tile:'url(#calc-tile)'};
+   finishCalculator.querySelectorAll('[data-calc-surface]').forEach(surface=>{const key=surface.dataset.calcSurface;surface.setAttribute('fill',state[key+'-enabled']?fills[state[key]]:'#e7e5df');});
+   finishCalculator.querySelector('[data-calc-windows]').toggleAttribute('hidden',!state['glazing-enabled']);
+   finishCalculator.querySelector('[data-calc-loggia]').toggleAttribute('hidden',state.object!=='loggia');
+   finishCalculator.querySelector('[data-calc-insulation]').toggleAttribute('hidden',state.insulation!=='yes');
+   finishCalculator.querySelector('[data-calc-exterior]').toggleAttribute('hidden',!state['exterior-enabled']);
+   finishCalculator.querySelector('[data-calc-exterior]').setAttribute('stroke',state.exterior==='metal'?'#79877d':'#aeb7a2');
+   finishCalculator.querySelectorAll('[data-calc-light]').forEach(light=>light.toggleAttribute('hidden',!state['lighting-enabled']||state.lighting!==light.dataset.calcLight));
+   finishCalculator.querySelectorAll('[data-calc-windows] path').forEach(frame=>{if(frame.getAttribute('stroke-width')!=='3')frame.setAttribute('stroke',state.glazing==='cold'?'#8b9995':'#fafbf7');});
+   const selected=['walls','ceiling','floor','exterior','glazing','lighting'].filter(key=>state[key+'-enabled']).map(key=>({walls:'Стены',...names,glazing:'Остекление'})[key]+': '+materialName(key));
+   calculation=[state.object==='balcony'?'Балкон':'Лоджия',`Размеры: ${state.length} × ${state.width} см; высота ${state.height} см; окна ${state.windowHeight} см`,...selected,'Утепление: '+(state.insulation==='yes'?'да':'нет'),items.length?'Предварительно от '+currency(total):'Стоимость по замеру',...items.map(([label,amount])=>label+': от '+currency(amount)),extra.length?'Отдельно по замеру: '+extra.join(', '):'', 'Площадь стен без вычета квартирных проёмов; итог уточняется после замера.'].filter(Boolean).join('\n');
+  }
+  controls.addEventListener('input',updateEstimate);controls.addEventListener('change',updateEstimate);controls.addEventListener('submit',e=>e.preventDefault());
+  finishCalculator.querySelector('[data-calc-request]').addEventListener('click',()=>{updateEstimate();if(!calculation)return;const form=dialog.querySelector('[data-calc-lead]');if(form.querySelector('[name="calculation"]')){form.querySelector('[name="calculation"]').value=calculation;dialog.querySelector('[data-calc-summary]').textContent=calculation;}openDialogAtCurrentScroll(dialog,form.querySelector('input[name="name"]')||form.querySelector('.thank-you'));track('calculator_lead_open');});
+  dialog.querySelector('[data-calc-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+  updateEstimate();
+ }
+
  const certificateSlider=$('[data-certificates]');
  if(certificateSlider){
   const certificateTrack=certificateSlider.querySelector('[data-cert-track]');
