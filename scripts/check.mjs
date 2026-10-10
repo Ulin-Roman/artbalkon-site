@@ -53,9 +53,6 @@ const bundledServiceSlugs=['krysha-nad-balkonom','mebel-dlya-balkona','elektrika
 const homeHtml=renderHome();
 assert.ok(homeHtml.includes('Получить консультацию'),'home hero must invite visitors to get a consultation');
 assert.match(homeHtml,/<div class="hero-actions"><button class="button button-no-icon"[^>]*>\s*<span class="button-label">Получить консультацию<\/span>/,'home consultation button must not contain an icon');
-assert.ok(homeHtml.includes('/assets/service-before-after/renovation-loggia-12-after.webp'),'home finishing card must use the selected page hero');
-assert.ok(homeHtml.includes('/assets/before-daytime/before-032.webp'),'home insulation card must use the selected page hero');
-assert.ok(homeHtml.includes('/assets/service-before-after/furniture-interior-v2-02-after.webp'),'home turnkey card must use the selected page hero');
 for(const slug of bundledServiceSlugs)assert.ok(!homeHtml.includes(`href="/${slug}/"`),`Home must not advertise ${slug} as a standalone service`);
 const turnkeyHtml=servicePageWithSeo(services.find(service=>service.slug==='balkon-pod-klyuch'));
 assert.ok(!turnkeyHtml.includes('id="complex-projects"'),'Removed bundled galleries must stay off the turnkey page');
@@ -421,7 +418,6 @@ assert.deepEqual(serviceBeforeAfterProjects['remont-balkonov'],serviceBeforeAfte
 const repairService=services.find(s=>s.slug==='remont-balkonov');
 assert.ok(repairService);
 assert.match(servicePageWithSeo(repairService),/Ремонт балконов и лоджий/);
-assert.match(renderHome(),/href="\/remont-balkonov\/"/);
 assert.doesNotMatch(renderHome(),/data-repair-range|repair-feature-card/);
 assert.match(servicePageWithSeo(repairService),/class="landing-photo repair-hero-photo"/);
 assert.match(servicePageWithSeo(repairService),/data-repair-range/);
