@@ -561,7 +561,7 @@ for(const definition of newLandingDefinitions){
  assert.equal((markup.match(/data-comparison /g)||[]).length,6);
  assert.ok(markup.includes('Визуализации проектов'));
  assert.ok(markup.includes('name="service" value="'+esc(service.title)+'"'));
- assert.ok(markup.includes('landing-service-scope'));
+ assert.equal(markup.includes('landing-service-scope'),definition.slug!=='otdelka-balkona-laminatom');
  assert.ok(!markup.includes('class="landing-price"'));
  assert.ok(header('/').includes('href="/'+definition.slug+'/"'));
  assert.ok(sitemapUrls.some(url=>url.endsWith('/'+definition.slug+'/')));
