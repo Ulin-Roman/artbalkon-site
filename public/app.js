@@ -319,16 +319,23 @@ function createCalculatorScene(root) {
  const fill=(q,color)=>{polygon(q);ctx.fillStyle=color;ctx.fill();};
  function texture(key,rx=1,ry=1,rotate=false){
   const id=[key,rx,ry,rotate].join(':');if(cache.has(id))return cache.get(id);
+  if(key==='tile')for(const cached of cache.keys())if(cached.startsWith('tile:'))cache.delete(cached);
   const tile=document.createElement('canvas');tile.width=tile.height=416;const t=tile.getContext('2d');
   // The foam texture is separate from the timber geometry, so it sits below
   // the joists instead of carrying a flattened photograph of the whole frame.
   if(key==='insulated'){t.drawImage(insulation,72,70,250,250,0,0,416,416);}
   else if(key==='timber'){t.drawImage(insulation,60,365,285,27,0,0,416,416);}
   else if(key==='stretch'){t.fillStyle='#f1f0eb';t.fillRect(0,0,416,416);}
-  else {const cell=cells[key],size=atlas.width/3;t.drawImage(atlas,(cell%3)*size+2,Math.floor(cell/3)*size+2,size-4,size-4,0,0,416,416);}
+  else {const cell=cells[key],size=atlas.width/3;
+   // Use one tile face; grout is drawn as a continuous, evenly spaced grid.
+   if(key==='tile')t.drawImage(atlas,(cell%3)*size+size*.38,Math.floor(cell/3)*size+size*.38,size*.24,size*.24,0,0,416,416);
+   else t.drawImage(atlas,(cell%3)*size+2,Math.floor(cell/3)*size+2,size-4,size-4,0,0,416,416);
+  }
   const out=document.createElement('canvas');out.width=out.height=1024;const c=out.getContext('2d');
   if(rotate){c.translate(1024,0);c.rotate(Math.PI/2);}
-  for(let y=0;y<Math.ceil(ry);y++)for(let x=0;x<Math.ceil(rx);x++)c.drawImage(tile,x*1024/rx,y*1024/ry,1024/rx,1024/ry);
+  const tw=1024/rx,th=1024/ry,gap=key==='tile'?.005:0;
+  if(gap){c.fillStyle='#92918b';c.fillRect(0,0,1024,1024);}
+  for(let y=0;y<Math.ceil(ry);y++)for(let x=0;x<Math.ceil(rx);x++)c.drawImage(tile,x*tw+tw*gap/2,y*th+th*gap/2,tw*(1-gap),th*(1-gap));
   cache.set(id,out);return out;
  }
  function projection(q){
@@ -504,7 +511,7 @@ function createCalculatorScene(root) {
    [surfaces.parapet,2.8,.48,{axis:[47,360,114,295],stops:[[0,'#30291f30'],[1,'#30291f60']]}]
   ]){if(!s['walls-enabled'])insulatedSurface(q,false,insulated);else plane(q,wall,rx,ry,false,shade);}
   if(!s['ceiling-enabled'])insulatedSurface(surfaces.ceiling,false,insulated);else plane(surfaces.ceiling,ceiling,1,2.6,ceiling==='laminate',{axis:[170,63,170,140],stops:[[0,'#ffffff10'],[.65,'#342b1920'],[1,'#342b1955']]});
-  if(!s['floor-enabled'])insulatedSurface(floorQ,true,insulated);else plane(floorQ,floor,2.4,1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
+  if(!s['floor-enabled'])insulatedSurface(floorQ,true,insulated);else plane(floorQ,floor,floor==='tile'?Number(s.width)/40:2.4,floor==='tile'?Number(s.length)/40:1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
   ctx.save();polygon(floorQ);ctx.clip();
   line([floorQ[3],floorQ[0],floorQ[1],floorQ[2]],'#403b3366',3.5);
   if(s['floor-enabled'])line([floorQ[3],floorQ[0],floorQ[1],floorQ[2]],'#ddd7c7',1.5);ctx.restore();
