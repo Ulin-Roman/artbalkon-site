@@ -1469,8 +1469,8 @@ beforeAfterProjects.push(...[
     "beforeReal": false,
     "importedHomeWork": true,
     "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
-    "before": "home-liked-works-v1/work1_relax_corner-before.webp",
-    "after": "home-liked-works-v1/work1_relax_corner-after.webp"
+    "before": "home-liked-works-v1/work1_relax_corner-no-marked-handles-v3-before.webp",
+    "after": "home-liked-works-v1/work1_relax_corner-no-marked-handles-v3-after.webp"
   },
   {
     "title": "Лоджия с письменным столом и полками из архива",
@@ -1482,7 +1482,7 @@ beforeAfterProjects.push(...[
     "beforeReal": false,
     "importedHomeWork": true,
     "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
-    "before": "home-liked-works-v1/work2_office_loggia-before.webp",
+    "before": "home-liked-works-v1/work2_office_loggia-handles-v2-before-removed-v4.webp",
     "after": "home-liked-works-v1/work2_office_loggia-after.webp"
   },
   {
@@ -1495,8 +1495,8 @@ beforeAfterProjects.push(...[
     "beforeReal": false,
     "importedHomeWork": true,
     "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
-    "before": "home-liked-works-v1/work3_cozy_storage-handles-v2-before.webp",
-    "after": "home-liked-works-v1/work3_cozy_storage-after.webp"
+    "before": "home-liked-works-v1/work3_cozy_storage-handles-v2-before-removed-v4.webp",
+    "after": "home-liked-works-v1/work3_cozy_storage-handles-v2-after-removed-v4.webp"
   }
 ]);
 
@@ -1511,7 +1511,7 @@ beforeAfterProjects.push({
   "beforeReal": false,
   "importedHomeWork": true,
   "description": "Визуализация обновления балкона с новыми окнами, отделкой, шкафом и складным столом.",
-  "before": "home-liked-works-v1/balcony-folding-table-before.webp",
+  "before": "home-liked-works-v1/balcony-folding-table-before-removed-v4.webp",
   "after": "home-liked-works-v1/balcony-folding-table-after.webp"
 });
 
@@ -1526,8 +1526,8 @@ beforeAfterProjects.push({
   "beforeReal": false,
   "importedHomeWork": true,
   "description": "Визуализация обновления балкона: новые окна, отделка, рабочий стол и полки с подсветкой.",
-  "before": "home-liked-works-v1/balcony-office-shelves-before-brackets-v2.webp",
-  "after": "home-liked-works-v1/balcony-office-shelves-after.webp"
+  "before": "home-liked-works-v1/balcony-office-shelves-central-v3-before-removed-v4.webp",
+  "after": "home-liked-works-v1/balcony-office-shelves-central-v3-after.webp"
 });
 
 // Show the five latest approved home portfolio pairs first, in their existing order.

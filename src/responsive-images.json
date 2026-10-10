@@ -540,18 +540,18 @@
     ]
   },
   "/assets/before-weather-v1/before-001.webp": {
-    "src": "/assets/responsive/ec21b322fdb0b23d-1086.webp",
+    "src": "/assets/responsive/ab3741a44b80cfc9-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/ec21b322fdb0b23d-320.webp",
+        "src": "/assets/responsive/ab3741a44b80cfc9-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/ec21b322fdb0b23d-640.webp",
+        "src": "/assets/responsive/ab3741a44b80cfc9-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/ec21b322fdb0b23d-1086.webp",
+        "src": "/assets/responsive/ab3741a44b80cfc9-1086.webp",
         "width": 1086
       }
     ]
@@ -608,18 +608,18 @@
     ]
   },
   "/assets/before-weather-v1/before-005.webp": {
-    "src": "/assets/responsive/31d160b4fe786757-1086.webp",
+    "src": "/assets/responsive/d3eac959e9cdaf7d-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/31d160b4fe786757-320.webp",
+        "src": "/assets/responsive/d3eac959e9cdaf7d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/31d160b4fe786757-640.webp",
+        "src": "/assets/responsive/d3eac959e9cdaf7d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/31d160b4fe786757-1086.webp",
+        "src": "/assets/responsive/d3eac959e9cdaf7d-1086.webp",
         "width": 1086
       }
     ]
@@ -761,19 +761,19 @@
     ]
   },
   "/assets/before-weather-v1/before-020.webp": {
-    "src": "/assets/responsive/0d0f86f07c1c63e9-1280.webp",
+    "src": "/assets/responsive/8b10093d5703295e-1448.webp",
     "variants": [
       {
-        "src": "/assets/responsive/0d0f86f07c1c63e9-320.webp",
+        "src": "/assets/responsive/8b10093d5703295e-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/0d0f86f07c1c63e9-640.webp",
+        "src": "/assets/responsive/8b10093d5703295e-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/0d0f86f07c1c63e9-1280.webp",
-        "width": 1280
+        "src": "/assets/responsive/8b10093d5703295e-1448.webp",
+        "width": 1448
       }
     ]
   },
@@ -863,18 +863,18 @@
     ]
   },
   "/assets/before-weather-v1/before-031.webp": {
-    "src": "/assets/responsive/a9b4828b53d50061-1086.webp",
+    "src": "/assets/responsive/200f685d2a995c15-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/a9b4828b53d50061-320.webp",
+        "src": "/assets/responsive/200f685d2a995c15-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/a9b4828b53d50061-640.webp",
+        "src": "/assets/responsive/200f685d2a995c15-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/a9b4828b53d50061-1086.webp",
+        "src": "/assets/responsive/200f685d2a995c15-1086.webp",
         "width": 1086
       }
     ]
@@ -1914,19 +1914,19 @@
     ]
   },
   "/assets/gallery-angles-v1/balkon-pod-klyuch-2-after.webp": {
-    "src": "/assets/responsive/e2cd7ccfdc51fdde-1280.webp",
+    "src": "/assets/responsive/81315947f8dab1ca-1448.webp",
     "variants": [
       {
-        "src": "/assets/responsive/e2cd7ccfdc51fdde-320.webp",
+        "src": "/assets/responsive/81315947f8dab1ca-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/e2cd7ccfdc51fdde-640.webp",
+        "src": "/assets/responsive/81315947f8dab1ca-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/e2cd7ccfdc51fdde-1280.webp",
-        "width": 1280
+        "src": "/assets/responsive/81315947f8dab1ca-1448.webp",
+        "width": 1448
       }
     ]
   },
@@ -2390,19 +2390,19 @@
     ]
   },
   "/assets/gallery-angles-v1/otdelka-balkonov-2-after.webp": {
-    "src": "/assets/responsive/138e6695302a18bf-1280.webp",
+    "src": "/assets/responsive/9811c22a36396d7d-1448.webp",
     "variants": [
       {
-        "src": "/assets/responsive/138e6695302a18bf-320.webp",
+        "src": "/assets/responsive/9811c22a36396d7d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/138e6695302a18bf-640.webp",
+        "src": "/assets/responsive/9811c22a36396d7d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/138e6695302a18bf-1280.webp",
-        "width": 1280
+        "src": "/assets/responsive/9811c22a36396d7d-1448.webp",
+        "width": 1448
       }
     ]
   },
@@ -2458,19 +2458,19 @@
     ]
   },
   "/assets/gallery-angles-v1/panoramnoe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/c8518708bff7ebee-1280.webp",
+    "src": "/assets/responsive/bb1f92dcfe426327-1448.webp",
     "variants": [
       {
-        "src": "/assets/responsive/c8518708bff7ebee-320.webp",
+        "src": "/assets/responsive/bb1f92dcfe426327-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/c8518708bff7ebee-640.webp",
+        "src": "/assets/responsive/bb1f92dcfe426327-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/c8518708bff7ebee-1280.webp",
-        "width": 1280
+        "src": "/assets/responsive/bb1f92dcfe426327-1448.webp",
+        "width": 1448
       }
     ]
   },
@@ -2509,19 +2509,19 @@
     ]
   },
   "/assets/gallery-angles-v1/teploe-osteklenie-1-after.webp": {
-    "src": "/assets/responsive/c42fd0a8c1b015a9-1280.webp",
+    "src": "/assets/responsive/fc1f06d532083555-1448.webp",
     "variants": [
       {
-        "src": "/assets/responsive/c42fd0a8c1b015a9-320.webp",
+        "src": "/assets/responsive/fc1f06d532083555-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/c42fd0a8c1b015a9-640.webp",
+        "src": "/assets/responsive/fc1f06d532083555-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/c42fd0a8c1b015a9-1280.webp",
-        "width": 1280
+        "src": "/assets/responsive/fc1f06d532083555-1448.webp",
+        "width": 1448
       }
     ]
   },
@@ -2645,19 +2645,19 @@
     ]
   },
   "/assets/gallery-angles-v1/uteplenie-balkonov-2-after.webp": {
-    "src": "/assets/responsive/ff56bf908fccdfa2-1280.webp",
+    "src": "/assets/responsive/3ef150290ea37f30-1448.webp",
     "variants": [
       {
-        "src": "/assets/responsive/ff56bf908fccdfa2-320.webp",
+        "src": "/assets/responsive/3ef150290ea37f30-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/ff56bf908fccdfa2-640.webp",
+        "src": "/assets/responsive/3ef150290ea37f30-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/ff56bf908fccdfa2-1280.webp",
-        "width": 1280
+        "src": "/assets/responsive/3ef150290ea37f30-1448.webp",
+        "width": 1448
       }
     ]
   },
@@ -2730,19 +2730,19 @@
     ]
   },
   "/assets/gallery-quality-v2/real025.webp": {
-    "src": "/assets/responsive/2fdb0c59d95ec1a3-1280.webp",
+    "src": "/assets/responsive/b4cedb242dfc47cd-1448.webp",
     "variants": [
       {
-        "src": "/assets/responsive/2fdb0c59d95ec1a3-320.webp",
+        "src": "/assets/responsive/b4cedb242dfc47cd-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/2fdb0c59d95ec1a3-640.webp",
+        "src": "/assets/responsive/b4cedb242dfc47cd-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/2fdb0c59d95ec1a3-1280.webp",
-        "width": 1280
+        "src": "/assets/responsive/b4cedb242dfc47cd-1448.webp",
+        "width": 1448
       }
     ]
   },
@@ -3087,18 +3087,18 @@
     ]
   },
   "/assets/portfolio-extra-v2/balkon-pod-klyuch-2-after.webp": {
-    "src": "/assets/responsive/3a635353db04c632-1086.webp",
+    "src": "/assets/responsive/045fd7cb40d7fa21-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/3a635353db04c632-320.webp",
+        "src": "/assets/responsive/045fd7cb40d7fa21-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/3a635353db04c632-640.webp",
+        "src": "/assets/responsive/045fd7cb40d7fa21-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/3a635353db04c632-1086.webp",
+        "src": "/assets/responsive/045fd7cb40d7fa21-1086.webp",
         "width": 1086
       }
     ]
@@ -3750,18 +3750,18 @@
     ]
   },
   "/assets/portfolio-extra-v2/teploe-osteklenie-1-after.webp": {
-    "src": "/assets/responsive/097c000af6b20b1d-1086.webp",
+    "src": "/assets/responsive/7fbfa7f50269de51-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/097c000af6b20b1d-320.webp",
+        "src": "/assets/responsive/7fbfa7f50269de51-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/097c000af6b20b1d-640.webp",
+        "src": "/assets/responsive/7fbfa7f50269de51-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/097c000af6b20b1d-1086.webp",
+        "src": "/assets/responsive/7fbfa7f50269de51-1086.webp",
         "width": 1086
       }
     ]
@@ -3784,18 +3784,18 @@
     ]
   },
   "/assets/portfolio-extra-v2/teploe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/65b6ba5b05a90f54-1086.webp",
+    "src": "/assets/responsive/7e056a1c7771a803-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/65b6ba5b05a90f54-320.webp",
+        "src": "/assets/responsive/7e056a1c7771a803-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/65b6ba5b05a90f54-640.webp",
+        "src": "/assets/responsive/7e056a1c7771a803-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/65b6ba5b05a90f54-1086.webp",
+        "src": "/assets/responsive/7e056a1c7771a803-1086.webp",
         "width": 1086
       }
     ]
@@ -3818,18 +3818,18 @@
     ]
   },
   "/assets/portfolio-extra-v2/teploe-osteklenie-3-after.webp": {
-    "src": "/assets/responsive/f19c9f39de6389be-1086.webp",
+    "src": "/assets/responsive/250f2772a1ad03f8-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/f19c9f39de6389be-320.webp",
+        "src": "/assets/responsive/250f2772a1ad03f8-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/f19c9f39de6389be-640.webp",
+        "src": "/assets/responsive/250f2772a1ad03f8-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/f19c9f39de6389be-1086.webp",
+        "src": "/assets/responsive/250f2772a1ad03f8-1086.webp",
         "width": 1086
       }
     ]
@@ -4668,18 +4668,18 @@
     ]
   },
   "/assets/portfolio-realism-v1/after-170.webp": {
-    "src": "/assets/responsive/ae4dbc16471e0a9c-1083.webp",
+    "src": "/assets/responsive/cfa256efd49b9dc1-1083.webp",
     "variants": [
       {
-        "src": "/assets/responsive/ae4dbc16471e0a9c-320.webp",
+        "src": "/assets/responsive/cfa256efd49b9dc1-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/ae4dbc16471e0a9c-640.webp",
+        "src": "/assets/responsive/cfa256efd49b9dc1-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/ae4dbc16471e0a9c-1083.webp",
+        "src": "/assets/responsive/cfa256efd49b9dc1-1083.webp",
         "width": 1083
       }
     ]
@@ -4770,18 +4770,18 @@
     ]
   },
   "/assets/portfolio-realism-v1/after-61.webp": {
-    "src": "/assets/responsive/5f7cff5686ec119b-1086.webp",
+    "src": "/assets/responsive/89ea9950cd93ad89-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/5f7cff5686ec119b-320.webp",
+        "src": "/assets/responsive/89ea9950cd93ad89-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/5f7cff5686ec119b-640.webp",
+        "src": "/assets/responsive/89ea9950cd93ad89-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/5f7cff5686ec119b-1086.webp",
+        "src": "/assets/responsive/89ea9950cd93ad89-1086.webp",
         "width": 1086
       }
     ]
@@ -6028,18 +6028,18 @@
     ]
   },
   "/assets/service-before-after/renovation-balcony-03-after.webp": {
-    "src": "/assets/responsive/e2e2736c7d0afec7-1086.webp",
+    "src": "/assets/responsive/b7cc8b44cc039583-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/e2e2736c7d0afec7-320.webp",
+        "src": "/assets/responsive/b7cc8b44cc039583-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/e2e2736c7d0afec7-640.webp",
+        "src": "/assets/responsive/b7cc8b44cc039583-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/e2e2736c7d0afec7-1086.webp",
+        "src": "/assets/responsive/b7cc8b44cc039583-1086.webp",
         "width": 1086
       }
     ]
@@ -6062,18 +6062,18 @@
     ]
   },
   "/assets/service-before-after/renovation-balcony-06-after.webp": {
-    "src": "/assets/responsive/1461d9c04282ea9a-1086.webp",
+    "src": "/assets/responsive/b43cf569b980bd7c-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/1461d9c04282ea9a-320.webp",
+        "src": "/assets/responsive/b43cf569b980bd7c-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/1461d9c04282ea9a-640.webp",
+        "src": "/assets/responsive/b43cf569b980bd7c-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/1461d9c04282ea9a-1086.webp",
+        "src": "/assets/responsive/b43cf569b980bd7c-1086.webp",
         "width": 1086
       }
     ]
@@ -6096,18 +6096,18 @@
     ]
   },
   "/assets/service-before-after/renovation-balcony-08-after.webp": {
-    "src": "/assets/responsive/63a5676d6e5bae79-1086.webp",
+    "src": "/assets/responsive/b63819c5e5779ff8-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/63a5676d6e5bae79-320.webp",
+        "src": "/assets/responsive/b63819c5e5779ff8-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/63a5676d6e5bae79-640.webp",
+        "src": "/assets/responsive/b63819c5e5779ff8-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/63a5676d6e5bae79-1086.webp",
+        "src": "/assets/responsive/b63819c5e5779ff8-1086.webp",
         "width": 1086
       }
     ]
@@ -6130,18 +6130,18 @@
     ]
   },
   "/assets/service-before-after/renovation-balcony-10-after.webp": {
-    "src": "/assets/responsive/d676dd01028b80eb-1086.webp",
+    "src": "/assets/responsive/a7cb281f80fe3bf3-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/d676dd01028b80eb-320.webp",
+        "src": "/assets/responsive/a7cb281f80fe3bf3-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/d676dd01028b80eb-640.webp",
+        "src": "/assets/responsive/a7cb281f80fe3bf3-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/d676dd01028b80eb-1086.webp",
+        "src": "/assets/responsive/a7cb281f80fe3bf3-1086.webp",
         "width": 1086
       }
     ]
@@ -6164,18 +6164,18 @@
     ]
   },
   "/assets/service-before-after/renovation-balcony-12-after.webp": {
-    "src": "/assets/responsive/cc57b3ad4154dc1c-1086.webp",
+    "src": "/assets/responsive/f2daa9ebe04ed703-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/cc57b3ad4154dc1c-320.webp",
+        "src": "/assets/responsive/f2daa9ebe04ed703-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/cc57b3ad4154dc1c-640.webp",
+        "src": "/assets/responsive/f2daa9ebe04ed703-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/cc57b3ad4154dc1c-1086.webp",
+        "src": "/assets/responsive/f2daa9ebe04ed703-1086.webp",
         "width": 1086
       }
     ]
@@ -6198,35 +6198,35 @@
     ]
   },
   "/assets/service-before-after/renovation-loggia-02-after.webp": {
-    "src": "/assets/responsive/b2f3127fc30febea-1280.webp",
+    "src": "/assets/responsive/666570c71d7141e4-1448.webp",
     "variants": [
       {
-        "src": "/assets/responsive/b2f3127fc30febea-320.webp",
+        "src": "/assets/responsive/666570c71d7141e4-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/b2f3127fc30febea-640.webp",
+        "src": "/assets/responsive/666570c71d7141e4-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/b2f3127fc30febea-1280.webp",
-        "width": 1280
+        "src": "/assets/responsive/666570c71d7141e4-1448.webp",
+        "width": 1448
       }
     ]
   },
   "/assets/service-before-after/renovation-loggia-03-after.webp": {
-    "src": "/assets/responsive/928cef8dec82d148-1086.webp",
+    "src": "/assets/responsive/b9fa86b0c0f2d4f6-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/928cef8dec82d148-320.webp",
+        "src": "/assets/responsive/b9fa86b0c0f2d4f6-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/928cef8dec82d148-640.webp",
+        "src": "/assets/responsive/b9fa86b0c0f2d4f6-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/928cef8dec82d148-1086.webp",
+        "src": "/assets/responsive/b9fa86b0c0f2d4f6-1086.webp",
         "width": 1086
       }
     ]
@@ -6368,18 +6368,18 @@
     ]
   },
   "/assets/service-before-after/turnkey-furniture-01-before-v2.webp": {
-    "src": "/assets/responsive/b422515ed720c8cc-1086.webp",
+    "src": "/assets/responsive/c0c858b900d80a33-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/b422515ed720c8cc-320.webp",
+        "src": "/assets/responsive/c0c858b900d80a33-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/b422515ed720c8cc-640.webp",
+        "src": "/assets/responsive/c0c858b900d80a33-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/b422515ed720c8cc-1086.webp",
+        "src": "/assets/responsive/c0c858b900d80a33-1086.webp",
         "width": 1086
       }
     ]
@@ -6725,19 +6725,19 @@
     ]
   },
   "/assets/service-gallery-v2/real-after-004.jpg": {
-    "src": "/assets/responsive/fd0de81af22ffa10-768.webp",
+    "src": "/assets/responsive/6a53280d822e66a1-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/fd0de81af22ffa10-320.webp",
+        "src": "/assets/responsive/6a53280d822e66a1-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/fd0de81af22ffa10-640.webp",
+        "src": "/assets/responsive/6a53280d822e66a1-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/fd0de81af22ffa10-768.webp",
-        "width": 768
+        "src": "/assets/responsive/6a53280d822e66a1-1086.webp",
+        "width": 1086
       }
     ]
   },
@@ -7027,18 +7027,18 @@
     ]
   },
   "/assets/service-gallery-v3/insulation-004-before.webp": {
-    "src": "/assets/responsive/245dd3176edb30f5-1086.webp",
+    "src": "/assets/responsive/e5fd499294b0a677-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/245dd3176edb30f5-320.webp",
+        "src": "/assets/responsive/e5fd499294b0a677-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/245dd3176edb30f5-640.webp",
+        "src": "/assets/responsive/e5fd499294b0a677-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/245dd3176edb30f5-1086.webp",
+        "src": "/assets/responsive/e5fd499294b0a677-1086.webp",
         "width": 1086
       }
     ]
@@ -7316,19 +7316,19 @@
     ]
   },
   "/assets/portfolio-perspectives-v3/otdelka-balkonov-3-standard-v2-before.webp": {
-    "src": "/assets/responsive/539741c0583e1f51-724.webp",
+    "src": "/assets/responsive/eb6c4025c8f7bed8-1024.webp",
     "variants": [
       {
-        "src": "/assets/responsive/539741c0583e1f51-320.webp",
+        "src": "/assets/responsive/eb6c4025c8f7bed8-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/539741c0583e1f51-640.webp",
+        "src": "/assets/responsive/eb6c4025c8f7bed8-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/539741c0583e1f51-724.webp",
-        "width": 724
+        "src": "/assets/responsive/eb6c4025c8f7bed8-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -7367,18 +7367,18 @@
     ]
   },
   "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-2-standard-v2-after.webp": {
-    "src": "/assets/responsive/9539c4b8c73610f3-724.webp",
+    "src": "/assets/responsive/cd9f2b9b4fc21582-724.webp",
     "variants": [
       {
-        "src": "/assets/responsive/9539c4b8c73610f3-320.webp",
+        "src": "/assets/responsive/cd9f2b9b4fc21582-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/9539c4b8c73610f3-640.webp",
+        "src": "/assets/responsive/cd9f2b9b4fc21582-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/9539c4b8c73610f3-724.webp",
+        "src": "/assets/responsive/cd9f2b9b4fc21582-724.webp",
         "width": 724
       }
     ]
@@ -9480,19 +9480,19 @@
     ]
   },
   "/assets/portfolio-floor-work73-v1/after-chair-v2.webp": {
-    "src": "/assets/responsive/6e3a1181343e74d7-724.webp",
+    "src": "/assets/responsive/867806771e1b895d-1086.webp",
     "variants": [
       {
-        "src": "/assets/responsive/6e3a1181343e74d7-320.webp",
+        "src": "/assets/responsive/867806771e1b895d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/6e3a1181343e74d7-640.webp",
+        "src": "/assets/responsive/867806771e1b895d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/6e3a1181343e74d7-724.webp",
-        "width": 724
+        "src": "/assets/responsive/867806771e1b895d-1086.webp",
+        "width": 1086
       }
     ]
   },
@@ -9735,19 +9735,19 @@
     ]
   },
   "/assets/portfolio-perspectives-v3/work44-floor-v3-after.webp": {
-    "src": "/assets/portfolio-perspectives-v3/work44-floor-v3-after-640.webp",
+    "src": "/assets/responsive/381b8dd13d3e75f6-1021.webp",
     "variants": [
       {
-        "width": 320,
-        "src": "/assets/portfolio-perspectives-v3/work44-floor-v3-after-320.webp"
+        "src": "/assets/responsive/381b8dd13d3e75f6-320.webp",
+        "width": 320
       },
       {
-        "width": 640,
-        "src": "/assets/portfolio-perspectives-v3/work44-floor-v3-after-640.webp"
+        "src": "/assets/responsive/381b8dd13d3e75f6-640.webp",
+        "width": 640
       },
       {
-        "width": 960,
-        "src": "/assets/portfolio-perspectives-v3/work44-floor-v3-after.webp"
+        "src": "/assets/responsive/381b8dd13d3e75f6-1021.webp",
+        "width": 1021
       }
     ]
   },
@@ -9820,19 +9820,19 @@
     ]
   },
   "/assets/portfolio-perspectives-v3/work71-brick-v3-after.webp": {
-    "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-after-640.webp",
+    "src": "/assets/responsive/0097cf23a8cd70b3-960.webp",
     "variants": [
       {
-        "width": 320,
-        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-after-320.webp"
+        "src": "/assets/responsive/0097cf23a8cd70b3-320.webp",
+        "width": 320
       },
       {
-        "width": 640,
-        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-after-640.webp"
+        "src": "/assets/responsive/0097cf23a8cd70b3-640.webp",
+        "width": 640
       },
       {
-        "width": 960,
-        "src": "/assets/portfolio-perspectives-v3/work71-brick-v3-after.webp"
+        "src": "/assets/responsive/0097cf23a8cd70b3-960.webp",
+        "width": 960
       }
     ]
   },
@@ -10381,19 +10381,19 @@
     ]
   },
   "/assets/portfolio-finish-refs-v1/work304-after.webp": {
-    "src": "/assets/portfolio-finish-refs-v1/work304-after-640.webp",
+    "src": "/assets/responsive/42778554d7acb57e-1024.webp",
     "variants": [
       {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v1/work304-after-320.webp"
+        "src": "/assets/responsive/42778554d7acb57e-320.webp",
+        "width": 320
       },
       {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v1/work304-after-640.webp"
+        "src": "/assets/responsive/42778554d7acb57e-640.webp",
+        "width": 640
       },
       {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v1/work304-after.webp"
+        "src": "/assets/responsive/42778554d7acb57e-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -10925,19 +10925,19 @@
     ]
   },
   "/assets/portfolio-finish-refs-v3/work320-after.webp": {
-    "src": "/assets/portfolio-finish-refs-v3/work320-after-640.webp",
+    "src": "/assets/responsive/05904cb2e4a1ae3f-1024.webp",
     "variants": [
       {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v3/work320-after-320.webp"
+        "src": "/assets/responsive/05904cb2e4a1ae3f-320.webp",
+        "width": 320
       },
       {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v3/work320-after-640.webp"
+        "src": "/assets/responsive/05904cb2e4a1ae3f-640.webp",
+        "width": 640
       },
       {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v3/work320-after.webp"
+        "src": "/assets/responsive/05904cb2e4a1ae3f-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11044,19 +11044,19 @@
     ]
   },
   "/assets/portfolio-finish-refs-v1/work303-after-v2.webp": {
-    "src": "/assets/portfolio-finish-refs-v1/work303-after-v2-640.webp",
+    "src": "/assets/responsive/b1fb4d70baa30e1a-1024.webp",
     "variants": [
       {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v1/work303-after-v2-320.webp"
+        "src": "/assets/responsive/b1fb4d70baa30e1a-320.webp",
+        "width": 320
       },
       {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v1/work303-after-v2-640.webp"
+        "src": "/assets/responsive/b1fb4d70baa30e1a-640.webp",
+        "width": 640
       },
       {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v1/work303-after-v2.webp"
+        "src": "/assets/responsive/b1fb4d70baa30e1a-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11197,19 +11197,19 @@
     ]
   },
   "/assets/portfolio-turnkey-refs-v1/work293-after-v2.webp": {
-    "src": "/assets/portfolio-turnkey-refs-v1/work293-after-v2-640.webp",
+    "src": "/assets/responsive/6894487e24d4ef9b-1024.webp",
     "variants": [
       {
-        "width": 320,
-        "src": "/assets/portfolio-turnkey-refs-v1/work293-after-v2-320.webp"
+        "src": "/assets/responsive/6894487e24d4ef9b-320.webp",
+        "width": 320
       },
       {
-        "width": 640,
-        "src": "/assets/portfolio-turnkey-refs-v1/work293-after-v2-640.webp"
+        "src": "/assets/responsive/6894487e24d4ef9b-640.webp",
+        "width": 640
       },
       {
-        "width": 960,
-        "src": "/assets/portfolio-turnkey-refs-v1/work293-after-v2.webp"
+        "src": "/assets/responsive/6894487e24d4ef9b-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11299,87 +11299,87 @@
     ]
   },
   "/assets/portfolio-before-windows-v1/work316-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work316-before-v2.webp",
+    "src": "/assets/responsive/ceb90f86de30044c-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work316-before-v2-320.webp",
+        "src": "/assets/responsive/ceb90f86de30044c-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work316-before-v2-640.webp",
+        "src": "/assets/responsive/ceb90f86de30044c-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work316-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/ceb90f86de30044c-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work318-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work318-before-v2.webp",
+    "src": "/assets/responsive/04b5936200cfd88b-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work318-before-v2-320.webp",
+        "src": "/assets/responsive/04b5936200cfd88b-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work318-before-v2-640.webp",
+        "src": "/assets/responsive/04b5936200cfd88b-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work318-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/04b5936200cfd88b-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work319-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work319-before-v2.webp",
+    "src": "/assets/responsive/08691d9ce14a0ffe-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work319-before-v2-320.webp",
+        "src": "/assets/responsive/08691d9ce14a0ffe-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work319-before-v2-640.webp",
+        "src": "/assets/responsive/08691d9ce14a0ffe-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work319-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/08691d9ce14a0ffe-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work320-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work320-before-v2.webp",
+    "src": "/assets/responsive/1665aaec95e734d1-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work320-before-v2-320.webp",
+        "src": "/assets/responsive/1665aaec95e734d1-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work320-before-v2-640.webp",
+        "src": "/assets/responsive/1665aaec95e734d1-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work320-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/1665aaec95e734d1-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work84-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work84-before-v2.webp",
+    "src": "/assets/responsive/7e57ace7b13bc660-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work84-before-v2-320.webp",
+        "src": "/assets/responsive/7e57ace7b13bc660-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work84-before-v2-640.webp",
+        "src": "/assets/responsive/7e57ace7b13bc660-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work84-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/7e57ace7b13bc660-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11418,53 +11418,53 @@
     ]
   },
   "/assets/portfolio-before-windows-v1/work87-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work87-before-v2.webp",
+    "src": "/assets/responsive/d832c6707d700eac-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work87-before-v2-320.webp",
+        "src": "/assets/responsive/d832c6707d700eac-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work87-before-v2-640.webp",
+        "src": "/assets/responsive/d832c6707d700eac-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work87-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/d832c6707d700eac-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work90-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work90-before-v2.webp",
+    "src": "/assets/responsive/702abcd86b8f4711-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work90-before-v2-320.webp",
+        "src": "/assets/responsive/702abcd86b8f4711-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work90-before-v2-640.webp",
+        "src": "/assets/responsive/702abcd86b8f4711-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work90-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/702abcd86b8f4711-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work92-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work92-before-v2.webp",
+    "src": "/assets/responsive/7ac531fb77579579-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work92-before-v2-320.webp",
+        "src": "/assets/responsive/7ac531fb77579579-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work92-before-v2-640.webp",
+        "src": "/assets/responsive/7ac531fb77579579-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work92-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/7ac531fb77579579-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11486,19 +11486,19 @@
     ]
   },
   "/assets/portfolio-before-windows-v1/work289-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work289-before-v2.webp",
+    "src": "/assets/responsive/b30501fbe903fb7e-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work289-before-v2-320.webp",
+        "src": "/assets/responsive/b30501fbe903fb7e-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work289-before-v2-640.webp",
+        "src": "/assets/responsive/b30501fbe903fb7e-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work289-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/b30501fbe903fb7e-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11520,36 +11520,36 @@
     ]
   },
   "/assets/portfolio-before-windows-v1/work298-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work298-before-v2.webp",
+    "src": "/assets/responsive/a857549abdc3597b-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work298-before-v2-320.webp",
+        "src": "/assets/responsive/a857549abdc3597b-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work298-before-v2-640.webp",
+        "src": "/assets/responsive/a857549abdc3597b-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work298-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/a857549abdc3597b-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work299-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work299-before-v2.webp",
+    "src": "/assets/responsive/4d1b332f52219ddb-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work299-before-v2-320.webp",
+        "src": "/assets/responsive/4d1b332f52219ddb-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work299-before-v2-640.webp",
+        "src": "/assets/responsive/4d1b332f52219ddb-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work299-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/4d1b332f52219ddb-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11571,53 +11571,53 @@
     ]
   },
   "/assets/portfolio-before-windows-v1/work302-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work302-before-v2.webp",
+    "src": "/assets/responsive/a6a6a3f83deee4be-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work302-before-v2-320.webp",
+        "src": "/assets/responsive/a6a6a3f83deee4be-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work302-before-v2-640.webp",
+        "src": "/assets/responsive/a6a6a3f83deee4be-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work302-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/a6a6a3f83deee4be-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work303-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work303-before-v2.webp",
+    "src": "/assets/responsive/a3966971f4fecb7f-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work303-before-v2-320.webp",
+        "src": "/assets/responsive/a3966971f4fecb7f-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work303-before-v2-640.webp",
+        "src": "/assets/responsive/a3966971f4fecb7f-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work303-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/a3966971f4fecb7f-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work304-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work304-before-v2.webp",
+    "src": "/assets/responsive/429f352128ae4a02-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work304-before-v2-320.webp",
+        "src": "/assets/responsive/429f352128ae4a02-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work304-before-v2-640.webp",
+        "src": "/assets/responsive/429f352128ae4a02-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work304-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/429f352128ae4a02-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11639,70 +11639,70 @@
     ]
   },
   "/assets/portfolio-before-windows-v1/work310-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work310-before-v2.webp",
+    "src": "/assets/responsive/dcbfa75be3c16134-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work310-before-v2-320.webp",
+        "src": "/assets/responsive/dcbfa75be3c16134-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work310-before-v2-640.webp",
+        "src": "/assets/responsive/dcbfa75be3c16134-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work310-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/dcbfa75be3c16134-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work311-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work311-before-v2.webp",
+    "src": "/assets/responsive/25143bef47b989cc-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work311-before-v2-320.webp",
+        "src": "/assets/responsive/25143bef47b989cc-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work311-before-v2-640.webp",
+        "src": "/assets/responsive/25143bef47b989cc-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work311-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/25143bef47b989cc-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work313-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work313-before-v2.webp",
+    "src": "/assets/responsive/7cddba091191bced-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work313-before-v2-320.webp",
+        "src": "/assets/responsive/7cddba091191bced-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work313-before-v2-640.webp",
+        "src": "/assets/responsive/7cddba091191bced-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work313-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/7cddba091191bced-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-windows-v1/work314-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work314-before-v2.webp",
+    "src": "/assets/responsive/c849d9ee89519f62-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-windows-v1/work314-before-v2-320.webp",
+        "src": "/assets/responsive/c849d9ee89519f62-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work314-before-v2-640.webp",
+        "src": "/assets/responsive/c849d9ee89519f62-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-windows-v1/work314-before-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/c849d9ee89519f62-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -11758,19 +11758,19 @@
     ]
   },
   "/assets/portfolio-before-geometry-v1/work88-before-v3.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work88-before-v3.webp",
+    "src": "/assets/responsive/975b4e8a217468a9-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work88-before-v3-320.webp",
+        "src": "/assets/responsive/975b4e8a217468a9-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work88-before-v3-640.webp",
+        "src": "/assets/responsive/975b4e8a217468a9-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work88-before-v3.webp",
-        "width": 960
+        "src": "/assets/responsive/975b4e8a217468a9-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -12146,19 +12146,19 @@
     ]
   },
   "/assets/portfolio-before-geometry-v1/work300-before-v4.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work300-before-v4.webp",
+    "src": "/assets/responsive/2d8774482af0cafe-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work300-before-v4-320.webp",
+        "src": "/assets/responsive/2d8774482af0cafe-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work300-before-v4-640.webp",
+        "src": "/assets/responsive/2d8774482af0cafe-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work300-before-v4.webp",
-        "width": 960
+        "src": "/assets/responsive/2d8774482af0cafe-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -12367,19 +12367,19 @@
     ]
   },
   "/assets/portfolio-realism-v2/work318-after-straight-v3.webp": {
-    "src": "/assets/portfolio-realism-v2/work318-after-straight-v3.webp",
+    "src": "/assets/responsive/5ce9ada86c76b69d-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-realism-v2/work318-after-straight-v3-320.webp",
+        "src": "/assets/responsive/5ce9ada86c76b69d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-realism-v2/work318-after-straight-v3-640.webp",
+        "src": "/assets/responsive/5ce9ada86c76b69d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-realism-v2/work318-after-straight-v3.webp",
-        "width": 960
+        "src": "/assets/responsive/5ce9ada86c76b69d-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -12401,53 +12401,53 @@
     ]
   },
   "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3.webp",
+    "src": "/assets/responsive/90328129831d456e-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3-320.webp",
+        "src": "/assets/responsive/90328129831d456e-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3-640.webp",
+        "src": "/assets/responsive/90328129831d456e-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work86-before-fixed-v3.webp",
-        "width": 960
+        "src": "/assets/responsive/90328129831d456e-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3.webp",
+    "src": "/assets/responsive/ebf6d36ccd5e410d-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3-320.webp",
+        "src": "/assets/responsive/ebf6d36ccd5e410d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3-640.webp",
+        "src": "/assets/responsive/ebf6d36ccd5e410d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work302-before-fixed-v3.webp",
-        "width": 960
+        "src": "/assets/responsive/ebf6d36ccd5e410d-1024.webp",
+        "width": 1024
       }
     ]
   },
   "/assets/portfolio-before-geometry-v1/work311-before-short-v6.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work311-before-short-v6.webp",
+    "src": "/assets/responsive/c34fb290d59d1b5f-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work311-before-short-v6-320.webp",
+        "src": "/assets/responsive/c34fb290d59d1b5f-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work311-before-short-v6-640.webp",
+        "src": "/assets/responsive/c34fb290d59d1b5f-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work311-before-short-v6.webp",
-        "width": 960
+        "src": "/assets/responsive/c34fb290d59d1b5f-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -12486,18 +12486,18 @@
     ]
   },
   "/assets/portfolio-before-geometry-v1/work12-before-closed-v2.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work12-before-closed-v2.webp",
+    "src": "/assets/responsive/9b04cbbc9d4f6ee7-960.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work12-before-closed-v2-320.webp",
+        "src": "/assets/responsive/9b04cbbc9d4f6ee7-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work12-before-closed-v2-640.webp",
+        "src": "/assets/responsive/9b04cbbc9d4f6ee7-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work12-before-closed-v2.webp",
+        "src": "/assets/responsive/9b04cbbc9d4f6ee7-960.webp",
         "width": 960
       }
     ]
@@ -12537,35 +12537,35 @@
     ]
   },
   "/assets/portfolio-before-geometry-v1/work10-before-level-v3.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work10-before-level-v3.webp",
+    "src": "/assets/responsive/2cbd3590c21f8f98-960.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work10-before-level-v3-320.webp",
+        "src": "/assets/responsive/2cbd3590c21f8f98-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work10-before-level-v3-640.webp",
+        "src": "/assets/responsive/2cbd3590c21f8f98-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work10-before-level-v3.webp",
+        "src": "/assets/responsive/2cbd3590c21f8f98-960.webp",
         "width": 960
       }
     ]
   },
   "/assets/portfolio-before-geometry-v1/work10-after-level-v3.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work10-after-level-v3.webp",
+    "src": "/assets/responsive/a8945a1ea975740a-960.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work10-after-level-v3-320.webp",
+        "src": "/assets/responsive/a8945a1ea975740a-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work10-after-level-v3-640.webp",
+        "src": "/assets/responsive/a8945a1ea975740a-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work10-after-level-v3.webp",
+        "src": "/assets/responsive/a8945a1ea975740a-960.webp",
         "width": 960
       }
     ]
@@ -12588,52 +12588,52 @@
     ]
   },
   "/assets/portfolio-before-geometry-v1/work76-before-depth-v2.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work76-before-depth-v2.webp",
+    "src": "/assets/responsive/fc92c1b0188e0cb6-960.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work76-before-depth-v2-320.webp",
+        "src": "/assets/responsive/fc92c1b0188e0cb6-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work76-before-depth-v2-640.webp",
+        "src": "/assets/responsive/fc92c1b0188e0cb6-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work76-before-depth-v2.webp",
+        "src": "/assets/responsive/fc92c1b0188e0cb6-960.webp",
         "width": 960
       }
     ]
   },
   "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2.webp",
+    "src": "/assets/responsive/87d86041277028ec-1086.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2-320.webp",
+        "src": "/assets/responsive/87d86041277028ec-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2-640.webp",
+        "src": "/assets/responsive/87d86041277028ec-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work70-before-pull-handles-v2.webp",
-        "width": 960
+        "src": "/assets/responsive/87d86041277028ec-1086.webp",
+        "width": 1086
       }
     ]
   },
   "/assets/portfolio-before-geometry-v1/work97-before-depth-v2.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work97-before-depth-v2.webp",
+    "src": "/assets/responsive/f8379e6b231e49ba-960.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work97-before-depth-v2-320.webp",
+        "src": "/assets/responsive/f8379e6b231e49ba-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work97-before-depth-v2-640.webp",
+        "src": "/assets/responsive/f8379e6b231e49ba-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work97-before-depth-v2.webp",
+        "src": "/assets/responsive/f8379e6b231e49ba-960.webp",
         "width": 960
       }
     ]
@@ -12843,18 +12843,18 @@
     ]
   },
   "/assets/before-weather-v1/before-137.webp": {
-    "src": "/assets/before-weather-v1/before-137.webp",
+    "src": "/assets/responsive/f7545979f5750381-960.webp",
     "variants": [
       {
-        "src": "/assets/before-weather-v1/before-137-320.webp",
+        "src": "/assets/responsive/f7545979f5750381-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/before-weather-v1/before-137-640.webp",
+        "src": "/assets/responsive/f7545979f5750381-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/before-weather-v1/before-137.webp",
+        "src": "/assets/responsive/f7545979f5750381-960.webp",
         "width": 960
       }
     ]
@@ -12911,19 +12911,19 @@
     ]
   },
   "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5.webp": {
-    "src": "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5.webp",
+    "src": "/assets/responsive/54c488fe76df2e59-1024.webp",
     "variants": [
       {
-        "src": "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5-320.webp",
+        "src": "/assets/responsive/54c488fe76df2e59-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5-640.webp",
+        "src": "/assets/responsive/54c488fe76df2e59-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/portfolio-before-geometry-v1/work314-before-flat-wall-v5.webp",
-        "width": 960
+        "src": "/assets/responsive/54c488fe76df2e59-1024.webp",
+        "width": 1024
       }
     ]
   },
@@ -12958,6 +12958,210 @@
       {
         "src": "/assets/responsive/0efbce1a39e819bd-724.webp",
         "width": 724
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work1_relax_corner-handle-v2-after.webp": {
+    "src": "/assets/responsive/cdac3d1b80a811cc-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/cdac3d1b80a811cc-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/cdac3d1b80a811cc-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/cdac3d1b80a811cc-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work2_office_loggia-handles-v2-before.webp": {
+    "src": "/assets/responsive/67214778f5f9c02e-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/67214778f5f9c02e-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/67214778f5f9c02e-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/67214778f5f9c02e-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work3_cozy_storage-handles-v2-after.webp": {
+    "src": "/assets/responsive/c56e22d04faa9556-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c56e22d04faa9556-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c56e22d04faa9556-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c56e22d04faa9556-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/balcony-office-shelves-central-v3-before.webp": {
+    "src": "/assets/responsive/c969b2221c90dfcb-960.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c969b2221c90dfcb-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c969b2221c90dfcb-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c969b2221c90dfcb-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/balcony-office-shelves-central-v3-after.webp": {
+    "src": "/assets/responsive/94da69d562c1fe49-863.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/94da69d562c1fe49-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/94da69d562c1fe49-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/94da69d562c1fe49-863.webp",
+        "width": 863
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work1_relax_corner-no-marked-handles-v3-before.webp": {
+    "src": "/assets/responsive/c649ed38527669b3-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/c649ed38527669b3-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/c649ed38527669b3-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/c649ed38527669b3-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work1_relax_corner-no-marked-handles-v3-after.webp": {
+    "src": "/assets/responsive/53936159e28218c2-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/53936159e28218c2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/53936159e28218c2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/53936159e28218c2-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work2_office_loggia-handles-v2-before-removed-v4.webp": {
+    "src": "/assets/responsive/a1d7481863bef357-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/a1d7481863bef357-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/a1d7481863bef357-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/a1d7481863bef357-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work3_cozy_storage-handles-v2-before-removed-v4.webp": {
+    "src": "/assets/responsive/6698fec4a1141ff1-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/6698fec4a1141ff1-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/6698fec4a1141ff1-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/6698fec4a1141ff1-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/work3_cozy_storage-handles-v2-after-removed-v4.webp": {
+    "src": "/assets/responsive/3830b7a90a750ab1-1122.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/3830b7a90a750ab1-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/3830b7a90a750ab1-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/3830b7a90a750ab1-1122.webp",
+        "width": 1122
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/balcony-folding-table-before-removed-v4.webp": {
+    "src": "/assets/responsive/d5e67db950bdd63c-768.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/d5e67db950bdd63c-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/d5e67db950bdd63c-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/d5e67db950bdd63c-768.webp",
+        "width": 768
+      }
+    ]
+  },
+  "/assets/home-liked-works-v1/balcony-office-shelves-central-v3-before-removed-v4.webp": {
+    "src": "/assets/responsive/156b24d52015a767-960.webp",
+    "variants": [
+      {
+        "src": "/assets/responsive/156b24d52015a767-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/responsive/156b24d52015a767-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/responsive/156b24d52015a767-960.webp",
+        "width": 960
       }
     ]
   }
