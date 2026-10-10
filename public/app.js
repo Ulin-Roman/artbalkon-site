@@ -84,6 +84,16 @@
  document.querySelectorAll('[data-mobile-menu-close]').forEach(el=>el.addEventListener('click',()=>closeMenu()));
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&toggle?.getAttribute('aria-expanded')==='true')closeMenu();});
  addEventListener('resize',()=>{if(innerWidth>1100&&toggle?.getAttribute('aria-expanded')==='true')closeMenu(false);},{passive:true});
+ document.querySelectorAll('.nav-services').forEach(dropdown=>{
+  const desktop=dropdown.closest('.desktop-nav');
+  if(desktop){
+   dropdown.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')dropdown.open=true;});
+   dropdown.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'&&!dropdown.contains(document.activeElement))dropdown.open=false;});
+   dropdown.addEventListener('focusout',()=>{requestAnimationFrame(()=>{if(!dropdown.contains(document.activeElement))dropdown.open=false;});});
+  }
+  dropdown.addEventListener('keydown',e=>{if(e.key==='Escape'&&dropdown.open){e.preventDefault();e.stopPropagation();dropdown.open=false;dropdown.querySelector('summary').focus();}});
+ });
+ document.addEventListener('click',e=>{document.querySelectorAll('.nav-services[open]').forEach(dropdown=>{if(!dropdown.contains(e.target))dropdown.open=false;});});
  const heroSlider=$('[data-hero-slider]');
  if(heroSlider){
   const slides=[...heroSlider.querySelectorAll('.hero-image')];
@@ -291,11 +301,111 @@
   const selectFinishingStyle=(id,focus=false)=>{finishingTabs.forEach(tab=>{const active=tab.dataset.finishingTab===id;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus({preventScroll:true});});finishingPanels.forEach(panel=>panel.hidden=panel.dataset.finishingPanel!==id);};
   finishingTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>{selectFinishingStyle(tab.dataset.finishingTab);track('finishing_style_view',{style:tab.dataset.finishingTab});});tab.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=e.key==='Home'?0:e.key==='End'?finishingTabs.length-1:(index+(e.key==='ArrowRight'?1:-1)+finishingTabs.length)%finishingTabs.length;selectFinishingStyle(finishingTabs[next].dataset.finishingTab,true);});});
  }
+// Texture planes share the photograph's vanishing point. The entire cutaway is
+// mirrored at render time, placing the street facade on the visitor's right.
+function createCalculatorScene(root) {
+ const canvas=root.querySelector('[data-calc-canvas]'),ctx=canvas.getContext('2d');
+ if(!ctx)return ()=>{};
+ const base=new Image(),atlas=new Image(),cache=new Map();
+ let selection=null,ready=false,frame=0;
+ const cells={laminate:0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
+ const polygon=q=>{ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();};
+ function texture(key,rx=1,ry=1,rotate=false){
+  const id=[key,rx,ry,rotate].join(':');if(cache.has(id))return cache.get(id);
+  const tile=document.createElement('canvas');tile.width=tile.height=416;const t=tile.getContext('2d');
+  if(key==='stretch'){t.fillStyle='#f1f0eb';t.fillRect(0,0,416,416);}
+  else {const cell=cells[key],size=atlas.width/3;t.drawImage(atlas,(cell%3)*size+2,Math.floor(cell/3)*size+2,size-4,size-4,0,0,416,416);}
+  const out=document.createElement('canvas');out.width=out.height=1024;const c=out.getContext('2d');
+  if(rotate){c.translate(1024,0);c.rotate(Math.PI/2);}
+  for(let y=0;y<Math.ceil(ry);y++)for(let x=0;x<Math.ceil(rx);x++)c.drawImage(tile,x*1024/rx,y*1024/ry,1024/rx,1024/ry);
+  cache.set(id,out);return out;
+ }
+ // Project a unit square onto a planar quadrilateral (not a bilinear warp).
+ function projection(q){
+  const [[x0,y0],[x1,y1],[x2,y2],[x3,y3]]=q;
+  const dx1=x1-x2,dx2=x3-x2,dx3=x0-x1+x2-x3,dy1=y1-y2,dy2=y3-y2,dy3=y0-y1+y2-y3;
+  const d=dx1*dy2-dx2*dy1,g=(dx3*dy2-dx2*dy3)/d,h=(dx1*dy3-dx3*dy1)/d;
+  return (u,v)=>[(x0+(x1-x0+g*x1)*u+(x3-x0+h*x3)*v)/(1+g*u+h*v),(y0+(y1-y0+g*y1)*u+(y3-y0+h*y3)*v)/(1+g*u+h*v)];
+ }
+ function triangle(img,s,p){
+  const [a,b,c]=s,[A,B,C]=p,det=(b[0]-a[0])*(c[1]-a[1])-(c[0]-a[0])*(b[1]-a[1]);
+  const m=(i)=>[((B[i]-A[i])*(c[1]-a[1])-(C[i]-A[i])*(b[1]-a[1]))/det,((C[i]-A[i])*(b[0]-a[0])-(B[i]-A[i])*(c[0]-a[0]))/det];
+  const [aa,cc]=m(0),[bb,dd]=m(1);
+  // Slightly overlapping clips prevent hairline seams between mesh triangles.
+  const center=[(A[0]+B[0]+C[0])/3,(A[1]+B[1]+C[1])/3];
+  ctx.save();polygon(p.map(([x,y])=>{const dx=x-center[0],dy=y-center[1],r=Math.hypot(dx,dy);return[x+dx/r*.22,y+dy/r*.22];}));ctx.clip();
+  ctx.transform(aa,bb,cc,dd,A[0]-aa*a[0]-cc*a[1],A[1]-bb*a[0]-dd*a[1]);ctx.drawImage(img,0,0);ctx.restore();
+ }
+ function plane(q,key,rx,ry,rotate,shade){
+  const img=texture(key,rx,ry,rotate),map=projection(q),n=16;
+  ctx.save();polygon(q);ctx.clip();
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+   const uv=[[x/n,y/n],[(x+1)/n,y/n],[(x+1)/n,(y+1)/n],[x/n,(y+1)/n]];
+   for(const ids of [[0,1,2],[0,2,3]])triangle(img,ids.map(i=>uv[i].map(v=>v*1024)),ids.map(i=>map(...uv[i])));
+  }
+  if(shade){const grad=ctx.createLinearGradient(...shade.axis);shade.stops.forEach(([p,c])=>grad.addColorStop(p,c));ctx.fillStyle=grad;ctx.fillRect(0,0,340,480);}
+  ctx.restore();
+ }
+ const line=(points,color,width)=>{ctx.beginPath();points.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();};
+ function glow(x,y,r,alpha){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(255,241,198,${alpha})`);g.addColorStop(1,'rgba(255,241,198,0)');ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2);}
+ function render(){
+  frame=0;if(!ready||!selection)return;const s=selection;
+  ctx.setTransform(3,0,0,3,0,0);ctx.clearRect(0,0,340,480);ctx.translate(340,0);ctx.scale(-1,1);ctx.drawImage(base,0,0,340,480);
+  const wall=s['walls-enabled']?s.walls:'concrete',floor=s['floor-enabled']?s.floor:'concrete',ceiling=s['ceiling-enabled']?s.ceiling:'concrete';
+  plane([[108,140],[230,140],[228,317],[113,317]],wall,1,1,false,{axis:[108,210,230,210],stops:[[0,'#28231540'],[.25,'#28231512'],[.8,'#28231525'],[1,'#28231555']]});
+  plane([[230,140],[298,57],[297,426],[228,317]],wall,2.8,1,false,{axis:[230,190,298,190],stops:[[0,'#30291f48'],[.3,'#30291f08'],[1,'#ffffff12']]});
+  plane([[47,310],[114,279],[113,317],[47,425]],wall,2.8,.48,false,{axis:[47,360,114,295],stops:[[0,'#30291f30'],[1,'#30291f60']]});
+  plane([[43,56],[298,56],[230,140],[108,140]],ceiling,1,2.6,ceiling==='laminate',{axis:[170,56,170,140],stops:[[0,'#ffffff10'],[.65,'#342b1920'],[1,'#342b1955']]});
+  plane([[113,317],[228,317],[296,429],[45,429]],floor,2.4,1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
+  // Slim painted skirting and contact shadows hide joins without covering materials.
+  line([[47,425],[113,317],[228,317],[294,425]],'#403b3366',3.5);
+  if(s['floor-enabled'])line([[47,425],[113,318],[228,318],[294,425]],'#ddd7c7',1.5);
+  line([[108,140],[230,140],[228,317]],'#36302738',1.1);
+  line([[43,56],[108,140]],'#ffffff55',.65);
+  if(!s['glazing-enabled']||s.glazing==='cold'){
+   const window=[[43,78],[108,142],[108,270],[43,310]];
+   plane(window,'outside',1,1,false);
+   line([[43,78],[108,142],[108,270],[43,310]],'#e8e8e1',3);
+   if(s['glazing-enabled']){
+    const p=projection(window);
+    for(const u of [0,.34,.67,1])line([p(u,0),p(u,1)],'#879391',2.1);
+    line([p(0,.02),p(1,.02)],'#c6ceca',1.1);line([p(0,.99),p(1,.99)],'#8b9692',2);
+    for(const u of [.34,.67]){const a=p(u,.63),b=p(u,.71);line([a,b],'#48524f',.9);}
+    ctx.save();polygon(window);ctx.clip();const glass=ctx.createLinearGradient(43,140,108,220);glass.addColorStop(0,'#ffffff28');glass.addColorStop(.48,'#bed8de18');glass.addColorStop(.5,'#ffffff42');glass.addColorStop(1,'#e4eff51a');ctx.fillStyle=glass;ctx.fillRect(40,70,70,250);ctx.restore();
+   }
+  }
+  if(s['exterior-enabled']){
+   const metal=s.exterior==='metal',q=[[28,311],[36,308],[36,427],[28,427]];
+   ctx.save();polygon(q);ctx.clip();ctx.fillStyle=metal?'#8a9891':'#d6d6c5';ctx.fillRect(28,308,8,120);
+   if(metal){for(let x=28;x<37;x+=2){const g=ctx.createLinearGradient(x,0,x+2,0);g.addColorStop(0,'#515f5b');g.addColorStop(.5,'#c1cbc5');g.addColorStop(1,'#79877f');ctx.fillStyle=g;ctx.fillRect(x,308,2,120);}}
+   else for(let y=309;y<428;y+=9){line([[28,y],[36,y-.5]],'#9faaa1',1);line([[28,y+1],[36,y+.5]],'#f3f1e8',.7);}
+   ctx.restore();
+  }
+  if(s.insulation==='yes'){
+   ctx.fillStyle='#d6bf83';ctx.fillRect(38,312,3,114);ctx.fillRect(46,430,249,2.8);
+   line([[40,313],[40,425]],'#eee0b9',.65);
+  }
+  if(s['lighting-enabled']){
+   if(s.lighting==='spots'){
+    for(const [x,y,r] of [[170,76,5],[170,105,3.7],[170,124,2.6]]){glow(x,y,18,.17);ctx.fillStyle='#747469';ctx.beginPath();ctx.ellipse(x,y,r,r*.38,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff7d4';ctx.beginPath();ctx.ellipse(x,y-.25,r*.77,r*.25,0,0,Math.PI*2);ctx.fill();}
+   }else{
+    line([[170,92],[170,126]],'#373933',1);ctx.fillStyle='#353935';polygon([[161,126],[179,126],[184,139],[156,139]]);ctx.fill();ctx.fillStyle='#ffebba';ctx.beginPath();ctx.ellipse(170,139,14,2.5,0,0,Math.PI*2);ctx.fill();glow(170,145,25,.18);
+   }
+  }
+  canvas.hidden=false;root.querySelector('[data-calc-fallback]').hidden=true;
+ }
+ const schedule=()=>{if(!frame)frame=requestAnimationFrame(render);};
+ Promise.all([base,atlas].map(img=>new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;}))).then(()=>{ready=true;schedule();}).catch(()=>{root.querySelector('figcaption').textContent='Предпросмотр отделки временно недоступен';});
+ base.src=root.querySelector('[data-calc-fallback]').src;atlas.src=new URL('assets/calculator-realistic-v1/material-atlas-v2.webp',siteBase).href;
+ return state=>{selection=state;schedule();};
+}
+
  // Interactive finish estimate; unknown-rate work is deliberately quoted separately.
  const finishCalculator=document.querySelector('[data-finishing-calculator]');
  if(finishCalculator){
   const controls=finishCalculator.querySelector('[data-calc-controls]'),rates=JSON.parse(finishCalculator.dataset.rates),dialog=finishCalculator.querySelector('dialog');
   const currency=n=>Math.round(n).toLocaleString('ru-RU')+' ₽',area=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:2})+' м²';
+  const renderCalculatorScene=createCalculatorScene(finishCalculator);
   let calculation='';
   const read=()=>Object.fromEntries(new FormData(controls));
   const materialName=key=>controls.querySelector(`input[name="${key}"]:checked`)?.closest('label').querySelector('.finish-calc-swatch+span')?.textContent||'';
@@ -321,15 +431,7 @@
    const breakdown=finishCalculator.querySelector('[data-calc-breakdown]');breakdown.replaceChildren();
    for(const [label,amount] of items){const row=document.createElement('p'),title=document.createElement('span'),value=document.createElement('strong');title.textContent=label;value.textContent='от '+currency(amount);row.append(title,value);breakdown.append(row);}
    if(!items.length){const row=document.createElement('p');row.textContent='Выбранные работы рассчитываются после замера.';breakdown.append(row);}
-   const fills={pvc:'url(#calc-pvc)',laminate:'url(#calc-laminate)',lining:'url(#calc-lining)',parquet:'url(#calc-parquet)',stretch:'#fbfaf5',linoleum:'#c8b49b',vinyl:'#adb1a7',tile:'url(#calc-tile)'};
-   finishCalculator.querySelectorAll('[data-calc-surface]').forEach(surface=>{const key=surface.dataset.calcSurface;surface.setAttribute('fill',state[key+'-enabled']?fills[state[key]]:'#e7e5df');});
-   finishCalculator.querySelector('[data-calc-windows]').toggleAttribute('hidden',!state['glazing-enabled']);
-   finishCalculator.querySelector('[data-calc-open-windows]').toggleAttribute('hidden',!!state['glazing-enabled']);
-   finishCalculator.querySelector('[data-calc-insulation]').toggleAttribute('hidden',state.insulation!=='yes');
-   finishCalculator.querySelector('[data-calc-exterior]').toggleAttribute('hidden',!state['exterior-enabled']);
-   finishCalculator.querySelector('[data-calc-exterior]').setAttribute('stroke',state.exterior==='metal'?'#79877d':'#aeb7a2');
-   finishCalculator.querySelectorAll('[data-calc-light]').forEach(light=>light.toggleAttribute('hidden',!state['lighting-enabled']||state.lighting!==light.dataset.calcLight));
-   finishCalculator.querySelectorAll('[data-calc-windows] path').forEach(frame=>{if(frame.getAttribute('stroke-width')!=='3')frame.setAttribute('stroke',state.glazing==='cold'?'#8b9995':'#fafbf7');});
+   renderCalculatorScene(state);
    const selected=['walls','ceiling','floor','exterior','glazing','lighting'].filter(key=>state[key+'-enabled']).map(key=>({walls:'Стены',...names,glazing:'Остекление'})[key]+': '+materialName(key));
    calculation=[state.object==='balcony'?'Балкон':'Лоджия',`Размеры: ${state.length} × ${state.width} см; высота ${state.height} см; окна ${state.windowHeight} см`,...selected,'Утепление: '+(state.insulation==='yes'?'да':'нет'),items.length?'Предварительно от '+currency(total):'Стоимость по замеру',...items.map(([label,amount])=>label+': от '+currency(amount)),extra.length?'Отдельно по замеру: '+extra.join(', '):'', 'Площадь стен без вычета квартирных проёмов; итог уточняется после замера.'].filter(Boolean).join('\n');
   }
