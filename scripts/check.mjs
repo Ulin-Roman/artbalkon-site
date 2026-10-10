@@ -91,7 +91,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  const hero=html.match(/<div[^>]*data-hero-slider[^>]*>([\s\S]*?)<\/div>/)?.[1];
  if(label==='home'){
   assert.ok(!html.includes('<div class="hero-visual hero-slideshow"'),'home hero must remain static');
-  assert.ok(html.includes('/assets/service-before-after/furniture-interior-v2-04-after.webp'),'home hero must keep the selected project image');
+  assert.ok(html.includes('/assets/home-liked-works-v1/balcony-folding-table-after.webp'),'home hero must keep the selected project image');
   continue;
  }
  if(label==='osteklenie-balkonov'){
@@ -99,7 +99,8 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
   assert.ok(html.includes('/assets/service-before-after/glazing-new-09-after.jpg'),'glazing hero must show the selected exterior balcony image');
   continue;
  }
- if(['otdelka-balkonov','remont-balkonov'].includes(label)){
+ if(label==='remont-balkonov'){assert.ok(html.includes('/assets/home-liked-works-v1/balcony-folding-table-after.webp'));assert.ok(!html.includes('data-hero-slider'));continue;}
+ if(label==='otdelka-balkonov'){
   assert.ok(!html.includes('data-hero-slider'),'finishing page hero must remain static');
   assert.ok(html.includes('/assets/service-before-after/renovation-loggia-12-after.webp'),'finishing page hero must keep the selected portfolio image');
   continue;
@@ -422,3 +423,8 @@ assert.ok(repairService);
 assert.match(servicePageWithSeo(repairService),/Ремонт балконов и лоджий/);
 assert.match(renderHome(),/href="\/remont-balkonov\/"/);
 assert.match(renderHome(),/data-repair-range/);
+
+const repairMarkup=servicePageWithSeo(repairService);
+assert.match(repairMarkup,/Что нужно отремонтировать/);
+assert.match(repairMarkup,/Материалы для ремонта балконов и лоджий/);
+assert.doesNotMatch(repairMarkup,/Что нужно отделать|Чем отделываем|>ОТДЕЛКА</);
