@@ -315,7 +315,7 @@ function createCalculatorScene(root) {
  if(!ctx)return ()=>{};
  const base=new Image(),atlas=new Image(),insulation=new Image(),cache=new Map();
  let selection=null,ready=false,frame=0;
- const cells={laminate:0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
+ const cells={laminate:0,'laminate-wall':0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
  const surfaces={back:[[108.5,140],[220,140],[220,317],[108.5,317]],house:[[220,140],[298,57],[297,427.5],[220,317]],parapet:[[47.5,304],[108.5,267],[108.5,317],[47.5,427.5]],ceiling:[[43,63],[298,63],[220,140],[108.5,140]],floor:[[113,317],[220,317],[293,427.5],[47.5,427.5]]};
  const polygon=q=>{ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();};
  const fill=(q,color)=>{polygon(q);ctx.fillStyle=color;ctx.fill();};
@@ -331,6 +331,10 @@ function createCalculatorScene(root) {
   else {const cell=cells[key],size=atlas.width/3;
    // Use one tile face; grout is drawn as a continuous, evenly spaced grid.
    if(key==='tile')t.drawImage(atlas,(cell%3)*size+size*.38,Math.floor(cell/3)*size+size*.38,size*.24,size*.24,0,0,416,416);
+   else if(key==='laminate-wall'){
+    // Five complete rows repeat cleanly; only the wall uses this crop.
+    t.drawImage(atlas,(cell%3)*size+2,Math.floor(cell/3)*size+size*39/418,size-4,size*310/418,0,0,416,416);
+   }
    else if(key==='parquet'){
     // Repeat complete plank rows so the edge rows do not merge into a wide board.
     t.drawImage(atlas,(cell%3)*size+2,Math.floor(cell/3)*size+40,size-4,size-90,0,0,416,416);
@@ -518,10 +522,11 @@ function createCalculatorScene(root) {
   ]){
    if(!s['walls-enabled'])insulatedSurface(q,false,insulated);
    else {
-    // Narrow parquet rows share the same height at the back/parapet corner.
-    const rows=wall==='parquet'?2.5*(q===surfaces.parapet?50/177:1):ry;
-    const offset=wall==='parquet'&&q===surfaces.parapet?127/177*2.5:0;
-    plane(q,wall,rx,rows,false,shade,16,offset);
+    // Laminate and parquet use the same plank height across adjoining walls.
+    const narrowRows=wall==='parquet'||wall==='laminate',repeats=wall==='laminate'?3:2.5;
+    const rows=narrowRows?repeats*(q===surfaces.parapet?50/177:1):ry;
+    const offset=narrowRows&&q===surfaces.parapet?127/177*repeats:0;
+    plane(q,wall==='laminate'?'laminate-wall':wall,rx,rows,false,shade,16,offset);
    }
   }
   if(!s['ceiling-enabled'])insulatedSurface(surfaces.ceiling,false,insulated);else plane(surfaces.ceiling,ceiling,1,2.6,ceiling==='laminate',{axis:[170,63,170,140],stops:[[0,'#ffffff10'],[.65,'#342b1920'],[1,'#342b1955']]});
@@ -561,7 +566,7 @@ function createCalculatorScene(root) {
    // rings and mounting points. The pendant cord stays vertical under gravity.
    if(s.lighting==='spots'){
     ctx.save();polygon(surfaces.ceiling);ctx.clip();
-    for(const v of [.075,.4,.725]){
+    for(const v of [.23,.66]){
      const [x,y]=ceilingMap(.5,v),width=ceilingMap(1,v)[0]-ceilingMap(0,v)[0];
      glow(x,y,18*width/255,.17);
      fill(ceilingCircle(v,.022,.014),'#747469');
