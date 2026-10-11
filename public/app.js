@@ -453,6 +453,7 @@ function createCalculatorScene(root) {
   line([[left[0],bottom],[right[0],bottom]],'#3e392c66',.8);
  }
  function sideSection(filled){
+  // This inner lining remains separate from the mineral core ending at x41.5.
   const left=41.5,right=47.5,top=303.3,bottom=418.5,map=projection(surfaces.parapet),ribs=[top,...[.26,.49,.72].map(v=>map(0,v)[1]-.7),bottom-2.3];
   if(filled)cavity([[left,top],[right,top],[right,bottom],[left,bottom]],true);
   else for(let i=0;i<ribs.length-1;i++)recessedBay([[left,ribs[i]+2.3],[right,ribs[i]+2.3],[right,ribs[i+1]],[left,ribs[i+1]]],'side');
@@ -550,96 +551,102 @@ function createCalculatorScene(root) {
  }
 
  function glazingSection(enabled,warm){
-  // The exposed glass and profile cut share the sill's receding perspective.
+  // The cut faces recede into the balcony, along the same axis as the sill.
   const cut=[[30,64],[43.4,65],[43.4,300.3],[30,303.2]];
   ctx.save();polygon(cut);ctx.clip();ctx.clearRect(29.5,63.8,14.4,239.5);ctx.restore();
   if(!enabled)return;
   const outer=warm?30.9:36.2,inner=43.1,top=warm?65:68.5,bottom=warm?301.4:299.3;
-  const p=projection([[outer,top],[inner,top+3],[inner,bottom-2],[outer,bottom]]),railTop=warm?.057:.04,railBottom=warm?.95:.966;
-  // Open gaps separate the glass edges; they are not a solid tinted panel.
-  fill(section(p,0,warm?.052:.037,1,warm?.956:.97),warm?'#b6c9c409':'#a6b8b40c');
+  const p=projection([[outer,top],[inner,top+3],[inner,bottom-2],[outer,bottom]]),railTop=warm?.062:.043,railBottom=warm?.947:.963;
+  fill(section(p,0,warm?.057:.04,1,warm?.953:.967),'#b4c6d009');
   const panes=warm?[.19,.46,.73]:[.47];
   for(const u of panes){
-   const pane=section(p,u,warm?.052:.037,u+(warm?.044:.052),warm?.956:.97),edge=pane.map(([x,y],i)=>[x+.22,y+(i<2?.28:-.18)]);
-   fill([pane[1],edge[1],edge[2],pane[2]],'#8ca6a27a');
-   const g=ctx.createLinearGradient(outer,78,inner,291);
-   g.addColorStop(0,'#eff9f7');g.addColorStop(.26,'#aec5c6');g.addColorStop(.51,'#e7f2ee');g.addColorStop(.8,'#a3bdbe');g.addColorStop(1,'#f5faf4');fill(pane,g);
-   line([pane[0],pane[3]],'#527b7d91',.32);line([pane[1],pane[2]],'#ffffffcf',.28);
+   const pane=section(p,u,warm?.057:.04,u+(warm?.044:.052),warm?.953:.967),edge=pane.map(([x,y],i)=>[x+.28,y+(i<2?.34:-.21)]);
+   fill([pane[1],edge[1],edge[2],pane[2]],'#7e9aa6a6');
+   const glass=ctx.createLinearGradient(outer,78,inner,291);
+   glass.addColorStop(0,'#f5fcff');glass.addColorStop(.26,'#91adb9');glass.addColorStop(.51,'#edf6fa');glass.addColorStop(.8,'#a4bbc6');glass.addColorStop(1,'#f9fcfe');fill(pane,glass);
+   line([pane[0],pane[3]],'#527684b0',.34);line([pane[1],pane[2]],'#ffffffed',.3);
   }
-  line([p(.02,.06),p(.02,.95)],warm?'#9eafaa':'#627a7a',.6);
-  line([p(.97,.055),p(.97,.955)],'#fbfdf8',.75);
+  line([p(.02,.065),p(.02,.945)],warm?'#9caab2':'#627782',.5);
+  line([p(.97,.06),p(.97,.95)],'#ffffff',.7);
   function profile(v0,v1){
    const q=section(p,0,v0,1,v1),map=projection(q),upper=v0===0;
-   // The lower rail faces the glass above it; the upper rail faces it below.
    const m=(u,w)=>map(u,upper?w:1-w),rect=(u0,w0,u1,w1)=>[[u0,w0],[u1,w0],[u1,w1],[u0,w1]].map(uv=>m(...uv));
    const outline=(warm?[[0,0],[1,0],[1,1],[.86,1],[.86,.84],[.15,.84],[.15,1],[0,1]]:[[0,0],[1,0],[1,1],[.68,1],[.68,.33],[.34,.33],[.34,1],[.29,1],[.29,.48],[.12,.48],[.12,1],[0,1]]).map(uv=>m(...uv));
-   const depth=warm?3.4:2.5,far=outline.map(([x,y])=>[x+depth,y+(upper?depth*.9:-depth*.6)]);
-   fill(far,warm?'#afb9b1':'#8a9993');
+   const depth=warm?4.4:3.7,recede=[depth,upper?depth*1.07:-depth*.62],far=outline.map(([x,y])=>[x+recede[0],y+recede[1]]);
+   // An actual side face connects the near section to the uncut rail behind it.
+   ctx.save();ctx.shadowColor='#24313b45';ctx.shadowBlur=1.15;ctx.shadowOffsetX=.45;ctx.shadowOffsetY=upper?.55:-.2;
+   fill(far,warm?'#c2c6ca':'#99a8b1');ctx.restore();
    for(let i=0;i<outline.length;i++){
     const j=(i+1)%outline.length,a=outline[i],b=outline[j],face=[a,b,far[j],far[i]];
     const shade=ctx.createLinearGradient(a[0],a[1],far[i][0],far[i][1]);
-    shade.addColorStop(0,warm?'#f3f4ed':'#d7dfd9');shade.addColorStop(1,warm?'#9da89e':'#6e807a');fill(face,shade);
+    shade.addColorStop(0,warm?'#f5f5f5':'#e0e8ed');shade.addColorStop(.35,warm?'#dfdfdf':'#bdcbd3');shade.addColorStop(1,warm?'#90979e':'#627785');fill(face,shade);
+    line([far[i],far[j]],'#73859266',.25);
    }
    const face=ctx.createLinearGradient(outer,q[0][1],inner,q[2][1]);
-   face.addColorStop(0,warm?'#f5f6f0':'#c4cec8');face.addColorStop(.32,'#ffffff');face.addColorStop(1,warm?'#e4e9df':'#a9b9b1');fill(outline,face);
-   line([...outline,outline[0]],warm?'#85958d':'#5f756d',.45);
-   function chamber(u0,w0,u1,w1){
-    const opening=rect(u0,w0,u1,w1),inset=rect(u0+.035,w0+.045,u1-.035,w1-.055);
-    const darkness=ctx.createLinearGradient(opening[0][0],opening[0][1],opening[2][0],opening[2][1]);
-    darkness.addColorStop(0,'#3d4740');darkness.addColorStop(.6,'#626c61');darkness.addColorStop(1,'#a0aa97');
-    fill(opening,'#8c9687');fill(inset,darkness);
-    fill([opening[0],opening[1],inset[1],inset[0]],'#667160');
-    fill([opening[2],opening[3],inset[3],inset[2]],'#c1c9b7');
-    line([opening[3],opening[0],opening[1]],'#fbfcf2',.36);
+   face.addColorStop(0,warm?'#f8f8f8':'#c8d3db');face.addColorStop(.34,'#ffffff');face.addColorStop(.74,warm?'#f0f0f0':'#e3ebef');face.addColorStop(1,warm?'#dcdcdc':'#a4b5c0');fill(outline,face);
+   line([...outline,outline[0]],warm?'#7c8c9a':'#526f81',.42);
+   function chamber(u0,w0,u1,w1,open=false){
+    const opening=rect(u0,w0,u1,w1),back=opening.map(([x,y])=>[x+recede[0]*.58,y+recede[1]*.58]);
+    // The cavity has a dark back and sloping inner walls, rather than an inset box.
+    ctx.save();polygon(opening);ctx.clip();
+    const cavity=ctx.createLinearGradient(opening[0][0],opening[0][1],opening[2][0],opening[2][1]);
+    cavity.addColorStop(0,'#303639');cavity.addColorStop(.45,'#4f565b');cavity.addColorStop(1,'#91989d');fill(opening,cavity);
+    const interior=ctx.createLinearGradient(back[0][0],back[0][1],back[2][0],back[2][1]);
+    interior.addColorStop(0,'#394147');interior.addColorStop(.65,'#6b747b');interior.addColorStop(1,'#a8afb5');fill(back,interior);
+    for(let i=0;i<4;i++){
+     const j=(i+1)%4,a=opening[i],b=opening[j],side=[a,b,back[j],back[i]],wall=ctx.createLinearGradient(a[0],a[1],back[i][0],back[i][1]);
+     wall.addColorStop(0,i===0?'#aebbc5':i===3?'#9daab5':'#cbd4dc');wall.addColorStop(.25,i===0?'#6b7c8a':'#9caab6');wall.addColorStop(1,i===0?'#273b4b':'#526777');fill(side,wall);
+    }
+    ctx.restore();
+    line([opening[3],opening[0],opening[1]],'#ffffffed',.4);
+    line([opening[1],opening[2],opening[3]],'#617889',.33);
+    if(open)line([opening[3],opening[2]],'#263d4e',.48);
    }
    if(warm){
-    // One large reinforced chamber and two small cells, rather than a grid of holes.
     chamber(.09,.12,.91,.60);
-    const steel=[[.20,.52],[.20,.23],[.79,.23],[.79,.52]].map(uv=>m(...uv));
-    line(steel,'#b0b8b3',.9);line(steel,'#7c8780',.42);
+    const steel=[[.20,.52],[.20,.23],[.79,.23],[.79,.52]].map(uv=>m(...uv)),steelBack=steel.map(([x,y])=>[x+.55,y+(upper?.65:-.45)]);
+    line(steelBack,'#263f5078',1.25);line(steel,'#82939f',1.05);line(steel,'#e3e9ef',.43);
     chamber(.075,.68,.27,.78);chamber(.75,.68,.925,.78);
-    // The glazing rebate is open towards the glass; rubber seals grip its edges.
-    fill(rect(.15,.84,.86,1),'#69756a');
-    fill(rect(.18,.85,.83,.89),'#c4cdbd');
-    for(const u of panes){fill(rect(u,.89,u+.044,1.045),'#d5e8e3');line([m(u,.89),m(u,1.045)],'#6f8d87',.3);}
-    fill(rect(.11,.89,.165,.985),'#354238');fill(rect(.84,.89,.89,.985),'#354238');
+    // Three glass leaves seat separately in the open rebate, with two spacers.
+    chamber(.15,.84,.86,1,true);
+    fill(rect(.18,.85,.83,.89),'#b8c7d2');
+    for(const u of panes){fill(rect(u,.89,u+.044,1.045),'#e1f0f8');line([m(u,.89),m(u,1.045)],'#668797',.31);line([m(u+.044,.89),m(u+.044,1.045)],'#ffffff',.24);}
+    fill(rect(.11,.89,.165,.985),'#28343e');fill(rect(.84,.89,.89,.985),'#28343e');
     for(const [u0,u1]of [[.234,.46],[.504,.73]]){
-     fill(rect(u0,.90,u1,.95),'#8c9890');
-     line([m(u0,.958),m(u1,.958)],'#344b43',.55);
+     const spacer=ctx.createLinearGradient(...m(u0,.90),...m(u1,.95));spacer.addColorStop(0,'#b8c6d0');spacer.addColorStop(.5,'#788e9e');spacer.addColorStop(1,'#c8d4de');fill(rect(u0,.90,u1,.95),spacer);
+     line([m(u0,.958),m(u1,.958)],'#263e50',.5);
     }
    }else{
-    // Open aluminium channels align with the two longitudinal sliding tracks.
-    fill(rect(.12,.48,.29,1),'#64756b');fill(rect(.40,.33,.62,1),'#64756b');
+    // Aluminium has two open longitudinal tracks and one glass leaf.
+    chamber(.12,.48,.29,1,true);chamber(.40,.33,.62,1,true);
     for(const [u0,u1]of [[.14,.27],[.42,.60]]){
-     fill(rect(u0,.49,u1,.54),'#c8d2c8');
-     line([m(u0,.54),m(u1,.54)],'#3d5149',.55);
+     fill(rect(u0,.49,u1,.54),'#bfced8');line([m(u0,.54),m(u1,.54)],'#334f63',.55);
     }
-    fill(rect(.47,.54,.522,1.05),'#d8e9e3');
-    fill(rect(.36,.85,.4,.98),'#344a40');fill(rect(.62,.85,.66,.98),'#344a40');
-    line([m(.12,.48),m(.12,1)],'#edf2e9',.45);line([m(.40,.33),m(.40,1)],'#edf2e9',.45);
+    fill(rect(.47,.54,.522,1.05),'#e2f2fa');line([m(.522,.54),m(.522,1.05)],'#ffffff',.27);
+    fill(rect(.36,.85,.4,.98),'#283e50');fill(rect(.62,.85,.66,.98),'#283e50');
+    line([m(.12,.48),m(.12,1)],'#ffffff',.5);line([m(.40,.33),m(.40,1)],'#ffffff',.5);
    }
-   // A bevel joins the exposed end to the intact frame behind it.
-   line([outline[outline.length-1],outline[outline.length-2],far[far.length-2]],'#fafcf4',.65);
+   line([outline[outline.length-1],outline[outline.length-2],far[far.length-2]],'#ffffff',.6);
   }
   profile(0,railTop);profile(railBottom,1);
   for(const v of [railTop-.003,railBottom+.004]){
-   for(const u of panes)line([p(u-.012,v),p(u+.058,v)],'#354841',.5);
+   for(const u of panes)line([p(u-.012,v),p(u+.058,v)],'#293e4d',.48);
   }
  }
 
 
  function parapetCore(){
-  // The permanent mineral wall sits between exterior cladding and the inner battens.
-  const left=36,right=41.5,top=302,bottom=429,q=[[left,top],[right,top],[right,bottom],[left,bottom]];
-  plane(q,'concrete',1,2,false,{axis:[left,top,right,top],stops:[[0,'#eeead730'],[.52,'#ebe7d91a'],[1,'#49483b45']]},5);
+  // One continuous mineral core reaches the exterior skin; the inner battens start at x41.5.
+  const left=28,right=41.5,top=302,bottom=429,q=[[left,top],[right,top],[right,bottom],[left,bottom]];
+  plane(q,'concrete',(right-left)/5.5,2,false,{axis:[left,top,right,top],stops:[[0,'#eeead730'],[.52,'#ebe7d91a'],[1,'#49483b45']]},5);
   line([[left,top],[left,bottom]],'#eeeade',.55);
   line([[right,top],[right,bottom]],'#665f4b',.65);
   const base=[[left,bottom-1.8],[right,bottom-1.8],[right,429.5],[left,429.5]];
   fill(base,'#89877b');line([[left,bottom-1.8],[right,bottom-1.8]],'#d4d0bb',.55);
  }
  function exteriorCladding(metal){
-  // The existing mineral wall starts at x28; its cut section remains visible.
-  // This thin skin sits over the outside face and continues over the slab edge.
+  // The thin skin overlaps the continuous core at x28 by .1, keeping their joint closed.
+  // The same uninterrupted strip covers the wall and the entire lower slab edge.
   const outer=24.5,inner=28.1,top=303.3,bottom=465.8,q=[[outer,top],[inner,top],[inner,bottom],[outer,bottom]];
   const shadow=ctx.createLinearGradient(inner,0,inner+.85,0);
   shadow.addColorStop(0,'#303d354d');shadow.addColorStop(1,'#303d3500');
@@ -664,33 +671,35 @@ function createCalculatorScene(root) {
   line([[outer,top],[inner,top]],metal?'#e7eee2':'#f7f8ef',.5);
   line([[outer,top],[outer,bottom]],metal?'#566c5d':'#9eac98',.35);
   line([[inner,top],[inner,bottom]],'#64725c80',.35);
+  line([[outer,bottom],[inner,bottom]],metal?'#566c5d':'#81927f',.35);
  }
  function wideStreetSill(){
   const top=[[30.8,300.5],[108.4,260.3],[119.8,260.3],[59.5,300.5]],inner=[top[3],top[2]],end=[top[0],top[3]],lowerInner=[[59.5,305.9],[119.8,263.1]],nose=[[59.5,308.1],[119.8,264.2]];
-  // Level crosswise edges belong to one broad board, with its thickness exposed at the cut.
-  ctx.save();polygon(surfaces.parapet);ctx.clip();ctx.shadowColor='#393b3266';ctx.shadowBlur=1.8;
-  fill([[59.5,308.1],[119.8,264.2],[119.8,268.2],[59.5,313.3]],'#34382f52');ctx.restore();
-  const underside=ctx.createLinearGradient(57.8,305.9,59.5,308.1);underside.addColorStop(0,'#b9bdb8');underside.addColorStop(1,'#737a74');
+  // Neutral white PVC, with a straight broad top and a visible rolled front lip.
+  ctx.save();polygon(surfaces.parapet);ctx.clip();ctx.shadowColor='#25313b66';ctx.shadowBlur=1.8;
+  fill([[59.5,308.1],[119.8,264.2],[119.8,268.2],[59.5,313.3]],'#26313a4d');ctx.restore();
+  const underside=ctx.createLinearGradient(57.8,305.9,59.5,308.1);underside.addColorStop(0,'#c7c7c7');underside.addColorStop(1,'#83888d');
   fill([[57.8,305.9],[119.1,263.1],nose[1],nose[0]],underside);
-  const face=ctx.createLinearGradient(59.5,300.5,59.5,308.1);face.addColorStop(0,'#ffffff');face.addColorStop(.25,'#f9faf7');face.addColorStop(.72,'#d9ddd5');face.addColorStop(1,'#a4ada3');
+  const face=ctx.createLinearGradient(59.5,300.5,59.5,308.1);face.addColorStop(0,'#ffffff');face.addColorStop(.25,'#f9f9f9');face.addColorStop(.72,'#e7e7e7');face.addColorStop(1,'#b3b8be');
   fill([inner[0],inner[1],nose[1],nose[0]],face);
-  const cap=ctx.createLinearGradient(30.8,300.5,30.8,305.9);cap.addColorStop(0,'#ffffff');cap.addColorStop(.23,'#f7f8f4');cap.addColorStop(.75,'#e7ebe3');cap.addColorStop(1,'#abb5a7');
+  const cap=ctx.createLinearGradient(30.8,300.5,30.8,305.9);cap.addColorStop(0,'#ffffff');cap.addColorStop(.23,'#f9f9f9');cap.addColorStop(.75,'#f0f0f0');cap.addColorStop(1,'#bdc1c5');
   fill([end[0],end[1],lowerInner[0],[30.8,305.9]],cap);
-  // Three hollow PVC chambers and white webs make the exposed end a real section.
+  // The exposed board end has three hollows with walls receding into the board.
   for(const [left,right]of [[31.65,39.2],[40.25,48.1],[49.15,57.1]]){
-   const q=[[left,301.35],[right,301.35],[right,304.85],[left,304.85]],inside=[[left+.45,302.15],[right-.65,302.15],[right-.65,304.2],[left+.45,304.2]];
-   const recess=ctx.createLinearGradient(left,301.35,left,304.85);recess.addColorStop(0,'#62675e');recess.addColorStop(.55,'#989c90');recess.addColorStop(1,'#c4c8bb');fill(q,recess);
-   fill(inside,'#94978d');fill([q[0],q[1],inside[1],inside[0]],'#73766e');fill([q[0],inside[0],inside[3],q[3]],'#818579');
-   fill([q[2],q[3],inside[3],inside[2]],'#d0d3c7');line([q[1],q[2],q[3]],'#edf1e3',.25);
+   const q=[[left,301.35],[right,301.35],[right,304.85],[left,304.85]],back=q.map(([x,y])=>[x+1.45,y-.8]);
+   ctx.save();polygon(q);ctx.clip();
+   const recess=ctx.createLinearGradient(left,301.35,right,304.85);recess.addColorStop(0,'#526271');recess.addColorStop(.45,'#7e8d9a');recess.addColorStop(1,'#aebbc6');fill(q,recess);
+   fill(back,'#7c8c99');
+   fill([q[0],q[1],back[1],back[0]],'#586d7e');fill([q[0],back[0],back[3],q[3]],'#aab7c3');fill([q[2],q[3],back[3],back[2]],'#d2dbe3');
+   ctx.restore();line([q[0],q[1],q[2]],'#758997',.28);line([q[2],q[3],q[0]],'#ffffff',.3);
   }
-  // The downturned room-side nose also has a small hollow return at the near end.
-  fill([[57.8,300.5],[59.5,300.5],[59.5,308.1],[57.8,307.3]],'#f1f4ec');
-  fill([[58.2,302.2],[58.8,302.2],[58.8,306.8],[58.2,306.5]],'#929a8b');
-  line([[59.5,300.5],nose[0]],'#fafff5',.45);
-  const board=ctx.createLinearGradient(31,300.5,59.5,300.5);board.addColorStop(0,'#d9dfd5');board.addColorStop(.2,'#f7f8f2');board.addColorStop(.75,'#ffffff');board.addColorStop(1,'#e5eadf');fill(top,board);
-  line(inner,'#ffffff',.85);line(nose,'#758775',.55);
-  line([top[0],top[1]],'#8d9b8b',.45);line(end,'#ffffff',.6);
-  line([[30.8,305.9],lowerInner[0]],'#879680',.5);
+  fill([[57.8,300.5],[59.5,300.5],[59.5,308.1],[57.8,307.3]],'#f7f7f7');
+  fill([[58.2,302.2],[58.8,302.2],[58.8,306.8],[58.2,306.5]],'#8b9ca9');
+  line([[59.5,300.5],nose[0]],'#ffffff',.45);
+  const board=ctx.createLinearGradient(31,300.5,59.5,300.5);board.addColorStop(0,'#e8e8e8');board.addColorStop(.2,'#fbfbfb');board.addColorStop(.75,'#ffffff');board.addColorStop(1,'#f1f1f1');fill(top,board);
+  line(inner,'#ffffff',.85);line(nose,'#7f91a0',.5);
+  line([top[0],top[1]],'#a1afb9',.4);line(end,'#ffffff',.6);
+  line([[30.8,305.9],lowerInner[0]],'#8395a4',.45);
  }
 
  function baseboards(q){
@@ -857,7 +866,7 @@ function createCalculatorScene(root) {
   const controls=finishCalculator.querySelector('[data-calc-controls]'),rates=JSON.parse(finishCalculator.dataset.rates),dialog=finishCalculator.querySelector('dialog');
   const currency=n=>Math.round(n).toLocaleString('ru-RU')+' ₽',area=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:2})+' м²';
   const renderCalculatorScene=createCalculatorScene(finishCalculator);
-  let calculation='';
+  let calculation='',calculationView=null;
   const read=()=>{const state=Object.fromEntries(new FormData(controls));state.insulation=state['insulation-enabled']?'yes':'no';return state;};
   const materialName=key=>controls.querySelector(`input[name="${key}"]:checked`)?.closest('label').querySelector('.finish-calc-swatch+span')?.textContent||'';
   function updateEstimate(){
@@ -867,7 +876,7 @@ function createCalculatorScene(root) {
    const valid=controls.checkValidity();
    finishCalculator.querySelector('[data-calc-error]').textContent=valid?'':'Укажите размеры в пределах, указанных в полях.';
    finishCalculator.querySelector('[data-calc-request]').disabled=!valid;
-   if(!valid){calculation='';finishCalculator.querySelector('[data-calc-total]').textContent='—';finishCalculator.querySelector('[data-calc-from]').hidden=true;return;}
+   if(!valid){calculation='';calculationView=null;finishCalculator.querySelector('[data-calc-total]').textContent='—';finishCalculator.querySelector('[data-calc-from]').hidden=true;return;}
    const glazedLength=L+2*W,floorArea=L*W,glazingArea=glazedLength*G;
    const wallArea=L*H+glazedLength*(H-G);
    const items=[],extra=[];
@@ -880,11 +889,34 @@ function createCalculatorScene(root) {
    finishCalculator.querySelector('[data-calc-total]').textContent=items.length?currency(total):'По замеру';
    finishCalculator.querySelector('[data-calc-from]').hidden=!items.length;
    renderCalculatorScene(state);
-   const selected=['walls','ceiling','floor','exterior','glazing','lighting'].filter(key=>state[key+'-enabled']).map(key=>({walls:'Стены',...names,glazing:'Остекление'})[key]+': '+materialName(key));
+   const attributes=['walls','ceiling','floor','exterior','glazing','lighting'].filter(key=>state[key+'-enabled']).map(key=>[({walls:'Стены',...names,glazing:'Остекление'})[key],materialName(key)]);
+   const selected=attributes.map(([name,value])=>name+': '+value);
+   calculationView={size:`${state.length} × ${state.width} см`,total:items.length?'от '+currency(total):'По замеру',attributes:[...attributes,['Утепление',state.insulation==='yes'?'да':'нет']],items,extra};
    calculation=['Балкон / лоджия',`Размеры: ${state.length} × ${state.width} см`, 'Для предварительного расчёта приняты: высота 250 см, остекление 140 см, периметр остекления — длина + две ширины',...selected,'Утепление: '+(state.insulation==='yes'?'да':'нет'),items.length?'Предварительно от '+currency(total):'Стоимость по замеру',...items.map(([label,amount])=>label+': от '+currency(amount)),extra.length?'Отдельно по замеру: '+extra.join(', '):'', 'Площадь стен без вычета квартирных проёмов; итог уточняется после замера.'].filter(Boolean).join('\n');
   }
   controls.addEventListener('input',updateEstimate);controls.addEventListener('change',updateEstimate);controls.addEventListener('submit',e=>e.preventDefault());
-  finishCalculator.querySelector('[data-calc-request]').addEventListener('click',()=>{updateEstimate();if(!calculation)return;const form=dialog.querySelector('[data-calc-lead]');if(form.querySelector('[name="calculation"]')){form.querySelector('[name="calculation"]').value=calculation;dialog.querySelector('[data-calc-summary]').textContent=calculation;}openDialogAtCurrentScroll(dialog,form.querySelector('input[name="name"]')||form.querySelector('.thank-you'));track('calculator_lead_open');});
+  function renderCalculationSummary(){
+   if(!calculationView)return;
+   const view=calculationView;
+   dialog.querySelector('[data-calc-summary-size]').textContent=view.size;
+   dialog.querySelector('[data-calc-summary-total]').textContent=view.total;
+   const materials=dialog.querySelector('[data-calc-summary-materials]');
+   materials.replaceChildren(...view.attributes.map(([name,value])=>{
+    const row=document.createElement('div'),label=document.createElement('dt'),choice=document.createElement('dd');
+    label.textContent=name;choice.textContent=value;row.append(label,choice);return row;
+   }));
+   const breakdown=dialog.querySelector('[data-calc-summary-breakdown]');
+   breakdown.hidden=!view.items.length;
+   breakdown.replaceChildren(...view.items.map(([name,amount])=>{
+    const row=document.createElement('div'),label=document.createElement('span'),price=document.createElement('strong');
+    row.className='finish-calc-breakdown-row';label.textContent=name;price.textContent='от '+currency(amount);row.append(label,price);return row;
+   }));
+   const extra=dialog.querySelector('[data-calc-summary-extra]');
+   extra.hidden=!view.extra.length;extra.replaceChildren();
+   if(view.extra.length){const label=document.createElement('strong');label.textContent='По замеру: ';extra.append(label,document.createTextNode(view.extra.join(', ')+'.'));}
+   dialog.querySelector('[data-calc-details]').open=false;
+  }
+  finishCalculator.querySelector('[data-calc-request]').addEventListener('click',()=>{updateEstimate();if(!calculation)return;const form=dialog.querySelector('[data-calc-lead]');if(form.querySelector('[name="calculation"]'))form.querySelector('[name="calculation"]').value=calculation;renderCalculationSummary();openDialogAtCurrentScroll(dialog,form.querySelector('input[name="name"]')||form.querySelector('.thank-you'));track('calculator_lead_open');});
   dialog.querySelector('[data-calc-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
   updateEstimate();
  }
