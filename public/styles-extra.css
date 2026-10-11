@@ -4715,7 +4715,4 @@ main > .social-subscribe,
 .nav-services summary>a{padding:0;border:0;color:inherit;font:inherit}
 
 /* Additional landing services retain the existing four-column scope layout. */
-.landing-related-services{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-.landing-related-services a{min-width:0;max-width:100%;padding:10px 15px;border:1px solid var(--line);border-radius:24px;font-size:14px;color:var(--teal);background:#fff;overflow-wrap:anywhere}
-.landing-related-services a:hover{border-color:var(--teal);background:#eef6f5}
 @media(min-width:1101px){.nav-services-panel{max-height:calc(100dvh - 110px);overflow-y:auto}}

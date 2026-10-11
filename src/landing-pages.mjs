@@ -26,14 +26,3 @@ export const newFinishingNavigation=[
  ['Дерево','otdelka-balkona-derevom'],
  ['МДФ-панели','otdelka-balkona-mdf-panelyami']
 ];
-export const newLandingScopeTitles={
- 'osteklenie-balkona-s-vynosom':'Что учитываем при остеклении с выносом',
- 'razdvizhnoe-osteklenie':'Как подбираем раздвижное остекление',
- 'osteklenie-balkona-v-hrushchevke':'Как остекляем балкон в хрущёвке',
- 'otdelka-balkona-pvh-panelyami':'Как выполняем отделку ПВХ-панелями',
- 'otdelka-balkona-laminatom':'Как отделываем балкон ламинатом',
- 'otdelka-balkona-vagonkoj':'Как отделываем балкон вагонкой',
- 'otdelka-balkona-kvarcvinilom':'Как подбираем кварцвинил для балкона',
- 'otdelka-balkona-derevom':'Как выполняем отделку балкона деревом',
- 'otdelka-balkona-mdf-panelyami':'Как отделываем балкон МДФ-панелями'
-};
