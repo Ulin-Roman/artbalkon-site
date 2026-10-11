@@ -12514,40 +12514,40 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-352-before.webp": {
-    "src": "/assets/landing-gallery-v1/work-352-before.webp",
+  "/assets/landing-gallery-v1/work-352-before-handles-v2.webp": {
+    "src": "/assets/landing-gallery-v1/work-352-before-handles-v2.webp",
     "width": 768,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-352-before-320.webp",
+        "src": "/assets/landing-gallery-v1/work-352-before-handles-v2-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-352-before-640.webp",
+        "src": "/assets/landing-gallery-v1/work-352-before-handles-v2-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-352-before.webp",
+        "src": "/assets/landing-gallery-v1/work-352-before-handles-v2.webp",
         "width": 768
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-352-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-352-after.webp",
+  "/assets/landing-gallery-v1/work-352-after-handles-v2.webp": {
+    "src": "/assets/landing-gallery-v1/work-352-after-handles-v2.webp",
     "width": 768,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-352-after-320.webp",
+        "src": "/assets/landing-gallery-v1/work-352-after-handles-v2-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-352-after-640.webp",
+        "src": "/assets/landing-gallery-v1/work-352-after-handles-v2-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-352-after.webp",
+        "src": "/assets/landing-gallery-v1/work-352-after-handles-v2.webp",
         "width": 768
       }
     ]
@@ -14364,6 +14364,54 @@
       },
       {
         "src": "/assets/glazing-choice-v1/warm-balcony.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/glazing-choice-v2/cold-balcony.webp": {
+    "src": "/assets/glazing-choice-v2/cold-balcony.webp",
+    "width": 1536,
+    "height": 1024,
+    "generated": true,
+    "variants": [
+      {
+        "src": "/assets/glazing-choice-v2/cold-balcony-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/glazing-choice-v2/cold-balcony-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/glazing-choice-v2/cold-balcony-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "/assets/glazing-choice-v2/cold-balcony.webp",
+        "width": 1536
+      }
+    ]
+  },
+  "/assets/glazing-choice-v2/warm-balcony.webp": {
+    "src": "/assets/glazing-choice-v2/warm-balcony.webp",
+    "width": 1536,
+    "height": 1024,
+    "generated": true,
+    "variants": [
+      {
+        "src": "/assets/glazing-choice-v2/warm-balcony-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/glazing-choice-v2/warm-balcony-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/glazing-choice-v2/warm-balcony-1280.webp",
+        "width": 1280
+      },
+      {
+        "src": "/assets/glazing-choice-v2/warm-balcony.webp",
         "width": 1536
       }
     ]

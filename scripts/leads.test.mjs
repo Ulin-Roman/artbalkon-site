@@ -120,7 +120,7 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   if(!knownObject){
    const objectPhoto=value=>object.find(input=>input.value===value)['data-estimate-photo'];
    assert.notEqual(objectPhoto('Балкон'),objectPhoto('Лоджия'),label+': balcony and loggia have distinct previews');
-   assert.equal(objectPhoto('Не знаю'),objectPhoto('Балкон'),label+': undecided object falls back to the balcony photo');
+   assert.equal(objectPhoto('Не знаю'),'object-unknown',label+': undecided object uses its dedicated requested photo');
   }
   assert.doesNotMatch(markup,/<figcaption\b/i,label+': keep estimate photos free of captions');
   assert.match(markup,/<figure\b[^>]*data-estimate-preview="gift-4"[^>]*>[\s\S]*?<img\b[^>]*src="\/assets\/promo-gift-card\.svg"/,label+': gift card has its dedicated illustration');

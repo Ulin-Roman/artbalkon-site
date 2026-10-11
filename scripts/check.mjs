@@ -65,7 +65,7 @@ const assertGlazingChoice=(html,label)=>{
  assert.equal(photos.length,2,label+': cold and warm photos must both be present');
  for(const [index,name] of ['cold-balcony','warm-balcony'].entries()){
   const photo=photos[index],src=photo.match(/\bsrc="([^"]+)"/)?.[1];
-  assert.ok(src?.endsWith('/assets/glazing-choice-v1/'+name+'.webp'),label+': preserve the '+name+' photo');
+  assert.ok(src?.endsWith('/assets/glazing-choice-v2/'+name+'.webp'),label+': preserve the '+name+' photo');
   assert.ok(/\bwidth="1536"/.test(photo)&&/\bheight="1024"/.test(photo),label+': comparison photos retain landscape dimensions');
   assert.ok(/\balt="[^"]+"/.test(photo),label+': comparison photos need descriptive alt text');
  }
@@ -181,7 +181,10 @@ for(const id of ['before-after','quiz','video-process','finishing-styles','finis
  assert.ok(homeHtml.includes('id="'+id+'"'),'Migrating blocks must preserve the home page: '+id);
 }
 assert.ok(quizSection(homeHtml)&&quizSection(turnkeyHtml),'Home and turnkey must each retain their calculation block');
-assert.equal(homeHtml.replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),''),'Home and turnkey keep the same content outside their distinct calculation blocks');
+const turnkeyThermal=turnkeyHtml.match(/<section\b[^>]*class="[^"]*\bthermal-section\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0];
+assert.doesNotMatch(homeHtml,/\bthermal-section\b/,'Home must omit the thermal inspection block');
+assert.ok(turnkeyThermal,'The service renderer must retain thermal inspection');
+assert.equal(homeHtml.replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their calculation blocks and home-only thermal removal');
 assert.doesNotMatch(renderedGalleries,/class="breadcrumbs"/,'Rendered pages must not restore removed breadcrumbs');
 assert.match(homeHtml,/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>\s*<section[^>]*id="about"/,'Additional services must immediately precede About');
 const homeShell=shellWithQuiz(homeHtml,{path:'/',image:'/assets/'+homeHeroImage});
@@ -374,7 +377,7 @@ assert.equal(addedOffice.beforeReal,true);
 assert.equal(addedOffice.afterReal,true);
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
 for(const name of ['cold-balcony','warm-balcony']){
- const asset='/assets/glazing-choice-v1/'+name+'.webp',entry=responsiveImages[asset];
+ const asset='/assets/glazing-choice-v2/'+name+'.webp',entry=responsiveImages[asset];
  assert.ok(entry,'Comparison photo needs responsive variants: '+name);
  assert.equal(entry.src,asset,'Comparison photo keeps its selected full-size source');
  assert.equal(entry.width,1536,'Comparison photo source width');

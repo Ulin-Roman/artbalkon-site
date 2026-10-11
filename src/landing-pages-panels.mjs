@@ -200,8 +200,8 @@ export const definitions=[
         "title": "Ламинат серо-бежевый дуб горизонтально — балкон с тумбой",
         "displayTitle": "Аккуратный балкон с удобным хранением",
         "description": "Широкие серо-бежевые ламели на стенах сухого утеплённого балкона и компактная напольная тумба.",
-        "before": "landing-gallery-v1/work-352-before.webp",
-        "after": "landing-gallery-v1/work-352-after.webp"
+        "before": "landing-gallery-v1/work-352-before-handles-v2.webp",
+        "after": "landing-gallery-v1/work-352-after-handles-v2.webp"
       }
     ]
   },

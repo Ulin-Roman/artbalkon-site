@@ -5093,10 +5093,10 @@ main > .social-subscribe,
 .project-estimate-section--quiz .project-estimate-contact-intro{min-width:0;margin:22px 0 0;color:var(--ink);font-size:14px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
 .project-estimate-section--quiz .project-estimate-step .field-row{margin-top:12px}
 .project-estimate-section--quiz .project-estimate-controls{display:flex;min-width:0;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:14px;margin-top:auto;padding-top:24px}
-.project-estimate-section--quiz .project-estimate-controls>button{min-width:0;max-width:100%;min-height:48px;margin:0;line-height:1.4;white-space:normal}
-.project-estimate-section--quiz .project-estimate-controls .back-button{flex:0 0 auto;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font-size:14px}
+.project-estimate-section--quiz .project-estimate-controls>button{min-width:0;max-width:100%;min-height:48px;margin:0;border-radius:999px;line-height:1.4;white-space:normal}
+.project-estimate-section--quiz .project-estimate-controls .back-button{flex:0 0 auto;padding:12px 13px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:14px}
 .project-estimate-section--quiz .project-estimate-controls .back-button:disabled{color:#8b9691;cursor:default}
-.project-estimate-section--quiz .project-estimate-controls .quiz-next-button{display:inline-flex;flex:0 1 190px;align-items:center;justify-content:center;gap:12px;margin-left:auto;padding:12px 20px;border:1px solid var(--teal);border-radius:10px;background:var(--teal);color:#fff;font-size:15px;font-weight:600}
+.project-estimate-section--quiz .project-estimate-controls .quiz-next-button{display:inline-flex;flex:0 1 190px;align-items:center;justify-content:center;gap:12px;margin-left:auto;padding:12px 20px;border:1px solid var(--teal);background:var(--teal);color:#fff;font-size:15px;font-weight:600}
 .project-estimate-section--quiz .project-estimate-controls .quiz-next-button:disabled{border-color:#dbe4e0;background:#eef3f0;color:#68796f;box-shadow:none;cursor:default}
 .project-estimate-section--quiz .project-estimate-controls .quiz-next-button.is-ready:hover{border-color:var(--teal-hover);background:var(--teal-hover);color:#fff}
 .project-estimate-section--quiz .project-estimate-controls .project-estimate-submit{display:inline-flex;flex:1;width:auto;margin:0;padding:12px 15px;font-size:15px}
