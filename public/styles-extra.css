@@ -5061,10 +5061,13 @@ main > .social-subscribe,
 .project-estimate-section--quiz .project-estimate-photo{min-width:0;min-height:0}
 .project-estimate-section--quiz .project-estimate-photo img{min-width:0;min-height:0}
 .project-estimate-section--quiz .project-estimate-photo--gift{background:#eef3ef}
-.project-estimate-section--quiz .project-estimate-photo--gift img{padding:24px;object-fit:contain;object-position:center}
+.project-estimate-section--quiz .project-estimate-photo--gift img{padding:0;object-fit:cover;object-position:center}
+.project-estimate-section--quiz [data-estimate-preview="gift-4"]{background:linear-gradient(135deg,#e1eeea,#bedad4)}
+.project-estimate-section--quiz [data-estimate-preview="gift-4"] img{object-fit:contain}
+.project-estimate-section--quiz .project-estimate-gift-media img[src$="promo-gift-card.svg"]{object-fit:contain;background:#d5e8e2}
 .project-estimate-section--quiz .project-estimate-copy{display:flex;min-width:0;min-height:480px;flex-direction:column;padding:30px 34px}
 .project-estimate-section--quiz .project-estimate-intro{margin-bottom:22px}
-.project-estimate-section--quiz .project-estimate-form--quiz{display:flex;min-width:0;min-height:0;flex:1;flex-direction:column;margin:0;padding:0;border:0;background:transparent}
+.project-estimate-section--quiz .project-estimate-form--quiz{display:flex;min-width:0;min-height:0;flex:1;flex-direction:column;margin:22px 0 0;padding:0;border:0;background:transparent}
 .project-estimate-section--quiz .project-estimate-progress-row{display:flex;min-width:0;align-items:center;justify-content:space-between;gap:10px;margin:0;color:var(--muted);font-size:11px;line-height:1.5;letter-spacing:0}
 .project-estimate-section--quiz .project-estimate-progress-row>span{min-width:0;overflow-wrap:anywhere}
 .project-estimate-section--quiz .project-estimate-progress-row>span:last-child{flex:0 0 auto;white-space:nowrap}
@@ -5077,7 +5080,7 @@ main > .social-subscribe,
 .project-estimate-section--quiz .project-estimate-step legend{max-width:100%;margin:0 0 16px;padding:0;color:var(--ink);font-size:21px;font-weight:600;line-height:1.3;letter-spacing:-.02em;overflow-wrap:anywhere}
 .project-estimate-section--quiz .project-estimate-options{min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 .project-estimate-section--quiz .project-estimate-option{min-width:0;min-height:58px}
-.project-estimate-section--quiz .project-estimate-gifts{display:grid;min-width:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.project-estimate-section--quiz .project-estimate-gifts{display:grid;min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 .project-estimate-section--quiz .project-estimate-gift{position:relative;display:flex;min-width:0;flex-direction:column;gap:0;margin:0;padding:8px;border:1px solid #dbe4e0;border-radius:12px;background:#fafcfb;cursor:pointer;transition:background .18s,border-color .18s,box-shadow .18s}
 .project-estimate-section--quiz .project-estimate-gift input{position:absolute;top:13px;left:13px;z-index:1;display:block;width:18px;height:18px;margin:0;accent-color:var(--teal);cursor:pointer}
 .project-estimate-section--quiz .project-estimate-gift-media{display:block;min-width:0;height:104px;border-radius:8px;background:#edf3ee}
@@ -5107,7 +5110,7 @@ main > .social-subscribe,
 }
 @media(max-width:800px){
  .project-estimate-section--quiz .project-estimate-visual{min-height:0;height:220px}
- .project-estimate-section--quiz .project-estimate-photo--gift img{padding:14px}
+ .project-estimate-section--quiz .project-estimate-photo--gift img{padding:0}
  .project-estimate-section--quiz .project-estimate-copy{min-height:0;padding:25px 26px}
  .project-estimate-section--quiz .project-estimate-form--quiz{flex:0 1 auto}
  .project-estimate-section--quiz .project-estimate-gift-media{height:130px}
@@ -5117,7 +5120,7 @@ main > .social-subscribe,
 @media(max-width:640px){
  .project-estimate-section--quiz .project-estimate-visual{height:200px}
  .project-estimate-section--quiz .project-estimate-copy{padding:22px 18px}
- .project-estimate-section--quiz .project-estimate-intro{margin-bottom:19px}
+ .project-estimate-section--quiz .project-estimate-form--quiz{margin-top:19px}
  .project-estimate-section--quiz .project-estimate-progress-row{font-size:10px}
  .project-estimate-section--quiz .project-estimate-progress{margin:8px 0 20px}
  .project-estimate-section--quiz .project-estimate-step legend{margin-bottom:13px;font-size:20px}

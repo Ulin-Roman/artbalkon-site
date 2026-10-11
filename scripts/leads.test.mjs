@@ -6,7 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {validateLead,saveLead} from './leads.mjs';
-import {contactFields,quiz,quizModal,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
+import {contactFields,quiz,quizModal,inlineEstimate,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
 import {services,projects} from '../src/content.mjs';
 const valid=()=>({requestId:randomUUID(),name:'Тест формы',phone:'+7 (999) 000-00-00',consent:true,form:'quiz',service:'Холодное остекление балкона',object:'Балкон',timing:'Пока интересуюсь',gift:'Тёплый пол',attribution:{utm_source:'test'}});
 test('validates phone, consent, all quiz answers and filters attribution',()=>{const input=valid();input.attribution.secret='must not persist';const lead=validateLead(input);assert.equal(lead.phone,'+79990000000');assert.equal(lead.attribution.secret,undefined);for(const bad of [{consent:false},{phone:'123'},{phone:'+7 (888) 888-88-88'},{phone:'+7 (999) 999-99-99'},{service:'xxx'},{size:' '},{name:' '},{requestId:'../../file'}])assert.throws(()=>validateLead({...input,...bad}));});
@@ -59,13 +59,12 @@ test('new landing consultations preserve the service and allow the matching obje
 
 
 test('home calculation quiz preserves photos, ordered questions, gifts and valid lead context',()=>{
- const contexts=['home'];
- assert.equal(contexts.length,1,'Only the home page uses the new calculation quiz');
+ const contexts=[['home',renderHome()],['known-object helper',inlineEstimate(services.find(service=>service.slug==='osteklenie-balkona-v-hrushchevke'))]];
  const decode=value=>value.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
  const attributes=tag=>Object.fromEntries([...tag.matchAll(/(?:^|\s)([\w:-]+)(?:="([^"]*)")?/g)].map(([,key,value])=>[key,value===undefined?true:decode(value)]));
  const inputsIn=markup=>[...markup.matchAll(/<input\b([^>]*)>/g)].map(([,tag])=>attributes(tag));
- for(const label of contexts){
-  const markup=renderHome().match(/<section\b(?=[^>]*\bid="quiz")[^>]*>[\s\S]*?<\/section>/)?.[0];
+ for(const [label,html] of contexts){
+  const markup=html.match(/<section\b(?=[^>]*\bid="quiz")[^>]*>[\s\S]*?<\/section>/)?.[0];
   assert.ok(markup,label+': the calculation block is present');
   const forms=[...markup.matchAll(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/g)];
   assert.equal(forms.length,1,label+': exactly one inline estimate');
@@ -76,11 +75,12 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   assert.equal(service.length,1,label+': one known service');
   assert.equal(service[0].type,'hidden',label+': do not repeat the known service question');
   const knownObject=object.length===1&&object[0].type==='hidden';
+  assert.equal(knownObject,label!=='home',label+': cover both explicit and known object flows');
   const stages=[...form.matchAll(/<fieldset\b([^>]*)>([\s\S]*?)<\/fieldset>/g)].map(([,tag,body])=>({attributes:attributes(tag),body,inputs:inputsIn(body)}));
-  const expectedStages=['goal',...knownObject?[]:['object'],'timing','gift'];
+  const expectedStages=['goal',...knownObject?[]:['object'],'timing','gift','contact'];
   assert.equal(Number(formAttributes['data-total-steps']),expectedStages.length,label+': known objects shorten the quiz');
   assert.equal(stages.length,expectedStages.length,label+': every stage has its own fieldset');
-  assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': ask goals, object, timing and gift in order');
+  assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': ask goals, object, timing, gift and contacts in order');
   assert.deepEqual(stages.map(stage=>stage.attributes['data-step']),expectedStages.map((_,index)=>String(index)),label+': consecutive navigation steps');
   assert.deepEqual(stages.map(stage=>Object.hasOwn(stage.attributes,'hidden')),expectedStages.map((_,index)=>index!==0),label+': only the first stage starts visible');
   assert.ok(details.length===5||details.length===6,label+': explicit project goals');
@@ -94,12 +94,17 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   }
   assert.equal(timing.length,3,label+': offer three work schedules');
   assert.deepEqual(stages.find(stage=>stage.attributes['data-estimate-stage']==='timing').inputs,timing,label+': timing answers belong to their stage');
-  assert.deepEqual(new Set(gifts.map(input=>input.value)),new Set(['Светильник и розетки','Тёплый пол','Потолочная сушилка']),label+': offer the three supported gifts');
-  assert.equal(gifts.length,3,label+': one choice per gift');
+  assert.deepEqual(new Set(gifts.map(input=>input.value)),new Set(['Светильник и розетки','Тёплый пол','Потолочная сушилка','Подарочная карта']),label+': offer the four supported gifts');
+  assert.equal(gifts.length,4,label+': one choice per gift');
+  assert.equal(gifts.find(input=>input.value==='Подарочная карта')['data-estimate-photo'],'gift-4',label+': gift card uses its dedicated preview');
   for(const group of [details,...knownObject?[]:[object],timing,gifts])assert.ok(group.every(input=>input.type==='radio'&&input.required&&!input.checked),label+': visitors explicitly answer every question');
-  const finalStage=stages.at(-1);
-  for(const stage of stages.slice(0,-1))assert.ok(!stage.inputs.some(input=>['gift','name','phone','consent'].includes(input.name)),label+': gifts and contacts wait until the final stage');
-  for(const name of ['gift','name','phone','consent'])assert.deepEqual(finalStage.inputs.filter(input=>input.name===name),fields(name),label+': '+name+' belongs only to the final stage');
+  const giftStage=stages.at(-2),finalStage=stages.at(-1);
+  assert.deepEqual(giftStage.inputs,gifts,label+': the gift stage contains only gift choices');
+  assert.equal(finalStage.attributes['data-estimate-stage'],'contact',label+': contacts are the final separate stage');
+  for(const stage of stages.slice(0,-2))assert.ok(!stage.inputs.some(input=>input.name==='gift'),label+': gifts wait until their own stage');
+  for(const stage of stages.slice(0,-1))assert.ok(!stage.inputs.some(input=>['name','phone','consent'].includes(input.name)),label+': contacts wait until after the gift choice');
+  for(const name of ['name','phone','consent'])assert.deepEqual(finalStage.inputs.filter(input=>input.name===name),fields(name),label+': '+name+' belongs only to the contact stage');
+  assert.ok(!finalStage.inputs.some(input=>input.name==='gift'),label+': the contact stage does not repeat gifts');
   const consent=fields('consent');
   assert.equal(consent.length,1,label+': one consent checkbox');
   assert.ok(consent[0].type==='checkbox'&&consent[0].required&&!consent[0].checked,label+': consent requires an explicit choice');
@@ -113,6 +118,7 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   assert.equal(new Set(previewKeys).size,previewKeys.length,label+': preview keys are unique');
   for(const choice of [...details,...gifts])assert.ok(choice['data-estimate-photo']&&previewKeys.includes(choice['data-estimate-photo']),label+': selected goals and gifts have matching photos');
   assert.doesNotMatch(markup,/<figcaption\b/i,label+': keep estimate photos free of captions');
+  assert.match(markup,/<figure\b[^>]*data-estimate-preview="gift-4"[^>]*>[\s\S]*?<img\b[^>]*src="\/assets\/promo-gift-card\.svg"/,label+': gift card has its dedicated illustration');
   const progress=attributes(form.match(/<progress\b([^>]*)>/)?.[1]||'');
   assert.equal(progress.id,'quiz-progress-inline',label+': separate inline progress from the consultation modal');
   assert.equal(progress.value,'1',label+': progress starts at the first step');
@@ -123,6 +129,7 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   const next=buttons.find(button=>button.class?.split(/\s+/).includes('quiz-next-button'));
   const submit=buttons.filter(button=>button.type==='submit');
   assert.ok(back?.disabled&&next?.disabled,label+': navigation waits for the first answer');
+  assert.ok(back.type==='button'&&next.type==='button'&&!next.hidden,label+': navigation advances without submitting');
   assert.equal(submit.length,1,label+': one final submit action');
   assert.ok(submit[0].hidden,label+': submission is hidden before contacts');
   const input={...valid(),service:service[0].value,object:object[0].value,timing:timing[0].value,gift:gifts[0].value};

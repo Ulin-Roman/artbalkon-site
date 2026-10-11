@@ -119,15 +119,23 @@ for(const [label,html] of inlineEstimatePages){
  assert.equal(formAttributes['data-lead-form'],'quiz',label+': preserve the lead endpoint contract');
  const knownObject=/<input\b(?=[^>]*\btype="hidden")(?=[^>]*\bname="object")[^>]*>/.test(form);
  const stages=[...form.matchAll(/<fieldset\b([^>]*)>([\s\S]*?)<\/fieldset>/g)].map(([,tag,body])=>({attributes:estimateAttributes(tag),body}));
- const expectedStages=['goal',...knownObject?[]:['object'],'timing','gift'];
+ const expectedStages=['goal',...knownObject?[]:['object'],'timing','gift','contact'];
  assert.equal(Number(formAttributes['data-total-steps']),expectedStages.length,label+': known objects shorten the quiz');
  assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': preserve the ordered calculation stages');
  assert.deepEqual(stages.map(stage=>stage.attributes['data-step']),expectedStages.map((_,index)=>String(index)),label+': preserve consecutive navigation');
  assert.deepEqual(stages.map(stage=>Object.hasOwn(stage.attributes,'hidden')),expectedStages.map((_,index)=>index!==0),label+': only the first step starts visible');
  for(const name of ['service','object','timing','detail','gift','name','phone','consent'])assert.ok(form.includes('name="'+name+'"'),label+': preserve '+name);
- const finalStage=stages.at(-1);
- for(const stage of stages.slice(0,-1))assert.doesNotMatch(stage.body,/\bname="(?:gift|name|phone|consent)"/,label+': gift and contacts belong only to the final step');
- for(const name of ['gift','name','phone','consent'])assert.ok(finalStage.body.includes('name="'+name+'"'),label+': final step preserves '+name);
+ const giftStage=stages.at(-2),finalStage=stages.at(-1);
+ assert.equal(finalStage.attributes['data-estimate-stage'],'contact',label+': contacts are the final separate stage');
+ for(const stage of stages.slice(0,-2))assert.doesNotMatch(stage.body,/\bname="gift"/,label+': gifts belong to their own step');
+ for(const stage of stages.slice(0,-1))assert.doesNotMatch(stage.body,/\bname="(?:name|phone|consent)"/,label+': contacts wait until after the gift choice');
+ const gifts=[...giftStage.body.matchAll(/<input\b([^>]*)>/g)].map(([,tag])=>estimateAttributes(tag));
+ assert.equal(gifts.length,4,label+': four gift choices');
+ assert.deepEqual(new Set(gifts.map(input=>input.value)),new Set(['Светильник и розетки','Тёплый пол','Потолочная сушилка','Подарочная карта']),label+': preserve the four gifts');
+ assert.ok(gifts.every(input=>input.name==='gift'&&input.type==='radio'&&input.required),label+': the gift step contains only gift choices');
+ assert.equal(gifts.find(input=>input.value==='Подарочная карта')['data-estimate-photo'],'gift-4',label+': gift card uses its dedicated preview');
+ for(const name of ['name','phone','consent'])assert.ok(finalStage.body.includes('name="'+name+'"'),label+': contact step preserves '+name);
+ assert.doesNotMatch(finalStage.body,/\bname="gift"/,label+': contacts do not repeat gifts');
  const section=html.match(/<section\b(?=[^>]*\bproject-estimate-section\b)[^>]*>[\s\S]*?<\/section>/)?.[0];
  assert.ok(section,label+': keep the estimate section');
  assert.doesNotMatch(section,/<figcaption\b/i,label+': estimate photos have no captions');
@@ -144,7 +152,9 @@ for(const [label,html] of inlineEstimatePages){
  const buttons=[...form.matchAll(/<button\b([^>]*)>/g)].map(([,tag])=>estimateAttributes(tag));
  assert.ok(buttons.find(button=>button.class?.split(/\s+/).includes('back-button'))?.disabled,label+': disable back on the first step');
  assert.ok(buttons.find(button=>button.class?.split(/\s+/).includes('quiz-next-button'))?.disabled,label+': wait for the first answer');
- assert.ok(buttons.find(button=>button.type==='submit')?.hidden,label+': wait until the final step before submitting');
+ const submit=buttons.filter(button=>button.type==='submit');
+ assert.equal(submit.length,1,label+': one final submit action');
+ assert.ok(submit[0].hidden,label+': wait until the contact step before submitting');
  assert.match(html,/\bid="quiz"/,label+': preserve existing estimate links');
 }
 for(const [label,html] of consultationPages.filter(([label])=>label!=='balkon-pod-klyuch'))assert.ok(!html.includes('id="cold-warm-balcony"'),label+': comparison is exclusive to the published home page');

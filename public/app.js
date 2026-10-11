@@ -152,7 +152,7 @@
   const begin=()=>{if(!started){track('quiz_start',inline?{source:'inline_estimate'}:{});started=true;}};
   const syncPreview=()=>{
    if(!previews.length)return;
-   const giftStep=steps[step]?.dataset.estimateStage==='gift';
+   const giftStep=['gift','contact'].includes(steps[step]?.dataset.estimateStage);
    const selected=form.querySelector(giftStep?'input[name="gift"]:checked':'input[name="detail"]:checked');
    const fallback=form.querySelector(giftStep?'input[name="gift"][data-estimate-photo]':'input[name="detail"][data-estimate-photo]');
    const key=selected?.dataset.estimatePhoto||fallback?.dataset.estimatePhoto;
