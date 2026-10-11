@@ -6,7 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {validateLead,saveLead} from './leads.mjs';
-import {contactFields,quiz,quizModal} from '../src/components.mjs';
+import {contactFields,quiz,quizModal,inlineEstimate} from '../src/components.mjs';
 import {services,projects} from '../src/content.mjs';
 const valid=()=>({requestId:randomUUID(),name:'Тест формы',phone:'+7 (999) 000-00-00',consent:true,form:'quiz',service:'Холодное остекление балкона',object:'Балкон',timing:'Пока интересуюсь',gift:'Тёплый пол',attribution:{utm_source:'test'}});
 test('validates phone, consent, all quiz answers and filters attribution',()=>{const input=valid();input.attribution.secret='must not persist';const lead=validateLead(input);assert.equal(lead.phone,'+79990000000');assert.equal(lead.attribution.secret,undefined);for(const bad of [{consent:false},{phone:'123'},{phone:'+7 (888) 888-88-88'},{phone:'+7 (999) 999-99-99'},{service:'xxx'},{size:' '},{name:' '},{requestId:'../../file'}])assert.throws(()=>validateLead({...input,...bad}));});
@@ -54,5 +54,56 @@ test('new landing consultations preserve the service and allow the matching obje
   const balconyOnly=['osteklenie-balkona-s-vynosom','osteklenie-balkona-v-hrushchevke'].includes(service.slug);
   assert.ok(markup.includes('data-total-steps="'+(balconyOnly?2:3)+'"'));
   for(const object of balconyOnly?['Балкон']:['Балкон','Лоджия'])assert.equal(validateLead({...valid(),service:service.title,object}).service,service.title);
+ }
+});
+
+
+test('inline estimates preserve valid lead context for every published service and the home page',()=>{
+ const redirected=new Set(['balkon-pod-klyuch','krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone']);
+ const contexts=[['home',services.find(service=>service.slug==='balkon-pod-klyuch')],...services.filter(service=>!redirected.has(service.slug)).map(service=>[service.slug,service])];
+ assert.equal(contexts.length,20,'Every published service and the home page need coverage');
+ const decode=value=>value.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
+ const attributes=tag=>Object.fromEntries([...tag.matchAll(/(?:^|\s)([\w:-]+)(?:="([^"]*)")?/g)].map(([,key,value])=>[key,value===undefined?true:decode(value)]));
+ for(const [label,subject] of contexts){
+  const markup=inlineEstimate(subject);
+  const forms=[...markup.matchAll(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/g)];
+  assert.equal(forms.length,1,label+': exactly one inline estimate');
+  const form=forms[0][0],inputs=[...form.matchAll(/<input\b[^>]*>/g)].map(([tag])=>attributes(tag));
+  assert.match(form,/data-lead-form="quiz"/);
+  assert.doesNotMatch(form,/\bdata-step=|\bdata-total-steps=|quiz-next-button|<progress\b/);
+  const choices=name=>{
+   const hidden=inputs.filter(input=>input.name===name&&input.type==='hidden');
+   const selects=[...form.matchAll(/<select\b([^>]*)>([\s\S]*?)<\/select>/g)].filter(([,tag])=>attributes(tag).name===name);
+   assert.equal(hidden.length+selects.length,1,label+': one '+name+' field');
+   if(hidden.length)return {values:[hidden[0].value],initial:hidden[0].value};
+   const options=[...selects[0][2].matchAll(/<option\b([^>]*)>([^<]*)<\/option>/g)].map(([,tag,text])=>{const attrs=attributes(tag);return {...attrs,value:attrs.value??decode(text)};});
+   assert.ok(options.length,label+': '+name+' has choices');
+   return {values:options.map(option=>option.value),initial:(options.find(option=>option.selected)||options[0]).value};
+  };
+  const service=choices('service'),object=choices('object'),timing=choices('timing');
+  assert.equal(timing.initial,'Пока выбираю',label+': neutral timing default');
+  if(object.values.length>1)assert.equal(object.initial,'Не знаю',label+': do not assume an object');
+  const details=inputs.filter(input=>input.name==='detail');
+  assert.ok(details.length>=4&&details.length<=5,label+': explicit project goals');
+  assert.ok(details.every(input=>input.type==='radio'&&input.required&&!input.checked),label+': visitors choose their own goal');
+  const consent=inputs.find(input=>input.name==='consent');
+  assert.ok(consent?.type==='checkbox'&&consent.required&&!consent.checked,label+': consent requires an explicit choice');
+  for(const name of ['name','phone']){
+   const contact=inputs.find(input=>input.name===name);
+   assert.ok(contact?.required&&contact.type!=='hidden',label+': '+name+' is a required contact field');
+  }
+  const input={...valid(),service:service.initial,object:object.initial,timing:timing.initial};
+  delete input.gift;
+  for(const detail of details){
+   for(const objectValue of object.values){
+    for(const timingValue of timing.values){
+     const lead=validateLead({...input,object:objectValue,timing:timingValue,detail:detail.value});
+     assert.equal(lead.service,service.initial,label+': service is accepted by the backend');
+     assert.equal(lead.detail,detail.value,label+': selected goal survives validation');
+    }
+   }
+  }
+  assert.throws(()=>validateLead({...input,detail:details[0].value,consent:false}),label+': consent remains mandatory');
+  for(const detail of [' ','x'.repeat(151)])assert.throws(()=>validateLead({...input,detail}),label+': invalid goal rejected');
  }
 });

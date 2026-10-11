@@ -138,20 +138,35 @@
  const phoneIsValid=value=>{const digits=phoneNationalDigits(value);return /^\d{10}$/.test(digits)&&!(/^(\d)\1{9}$/.test(digits));};
  document.querySelectorAll('input[name="phone"]').forEach(input=>{input.value=formatPhone(input.value);input.addEventListener('focus',()=>{if(!input.value.trim())input.value='+7 ';requestAnimationFrame(()=>input.setSelectionRange(input.value.length,input.value.length));});input.addEventListener('input',()=>{input.value=formatPhone(input.value);input.setCustomValidity('');});});
  function validate(form,scope=form){
-  const fields=[...scope.querySelectorAll('input')].filter(el=>!el.closest('.honeypot'));
+  const fields=[...scope.querySelectorAll('input,select,textarea')].filter(el=>!el.closest('.honeypot'));
   for(const el of fields){if(el.name==='phone')el.setCustomValidity(phoneIsValid(el.value)?'':'Введите 10 цифр после +7. Номер не должен состоять из одинаковых цифр.');if(el.name==='name'||el.name==='size')el.setCustomValidity(el.value.trim()?'':'Пожалуйста, заполните это поле.');if(!el.checkValidity()){el.reportValidity();el.focus();return false;}}
   return true;
  }
  document.querySelectorAll('input').forEach(el=>el.addEventListener('input',()=>{el.setCustomValidity('');el.closest('form')?.querySelector('.form-error')?.replaceChildren();}));
  const quizDialog=document.querySelector('dialog#quiz-modal');
  const quizControllers=new Map();
- document.querySelectorAll('[data-lead-form="quiz"]').forEach(form=>{let step=0,started=false;const steps=[...form.querySelectorAll('[data-step]')],lastStep=Math.max(0,steps.length-1),stepCount=form.querySelector('[id^="step-count"]'),progress=form.querySelector('[id^="quiz-progress"]'),back=form.querySelector('.back-button'),next=form.querySelector('.quiz-next-button'),submit=form.querySelector('[type="submit"]');
+ document.querySelectorAll('[data-lead-form="quiz"]:not([data-inline-estimate])').forEach(form=>{let step=0,started=false;const steps=[...form.querySelectorAll('[data-step]')],lastStep=Math.max(0,steps.length-1),stepCount=form.querySelector('[id^="step-count"]'),progress=form.querySelector('[id^="quiz-progress"]'),back=form.querySelector('.back-button'),next=form.querySelector('.quiz-next-button'),submit=form.querySelector('[type="submit"]');
   const begin=()=>{if(!started){track('quiz_start');started=true;}};
   const syncNextState=()=>{const current=steps[step];if(!current||!next)return;const radios=[...current.querySelectorAll('input[type="radio"][required]')],radioNames=[...new Set(radios.map(input=>input.name))],otherRequired=[...current.querySelectorAll('input[required]:not([type="radio"]),select[required],textarea[required]')].filter(input=>!input.closest('.honeypot')),ready=radioNames.every(name=>radios.some(input=>input.name===name&&input.checked))&&otherRequired.every(input=>input.checkValidity());next.classList.toggle('is-ready',ready);next.disabled=!ready;next.setAttribute('aria-disabled',String(!ready));};
   const showStep=(index,focus=true)=>{step=Math.max(0,Math.min(lastStep,index));steps.forEach((el,i)=>el.hidden=i!==step);stepCount.textContent=`Шаг ${step+1} из ${steps.length}`;progress.max=steps.length;progress.value=step+1;back.disabled=step===0;next.hidden=step===lastStep;submit.hidden=step!==lastStep;form.querySelector('.form-error').textContent='';syncNextState();if(focus)steps[step]?.querySelector('legend')?.focus({preventScroll:true});};
   const advance=()=>{begin();if(validate(form,steps[step]))showStep(Math.min(lastStep,step+1));};
   const controller={form,steps,lastStep,begin,showStep,advance,currentStep:()=>step,atLastStep:()=>step===lastStep};quizControllers.set(form,controller);
   form.addEventListener('change',()=>{begin();syncNextState();});form.addEventListener('input',syncNextState);next?.addEventListener('click',advance);back?.addEventListener('click',()=>showStep(Math.max(0,step-1)));form.addEventListener('keydown',e=>{if(e.key==='Enter'&&step<lastStep&&e.target.tagName==='INPUT'){e.preventDefault();if(next&&!next.disabled)advance();}});syncNextState();
+ });
+ document.querySelectorAll('[data-inline-estimate]').forEach(form=>{
+  let started=false;
+  const section=form.closest('.project-estimate-section');
+  const previews=[...(section?.querySelectorAll('[data-estimate-preview]')||[])];
+  const begin=()=>{if(!started){track('quiz_start',{source:'inline_estimate'});started=true;}};
+  const syncPreview=()=>{
+   const selected=form.querySelector('input[name="detail"]:checked'),key=selected?.dataset.estimatePhoto;
+   if(!key||!previews.some(preview=>preview.dataset.estimatePreview===key))return;
+   for(const preview of previews)preview.hidden=preview.dataset.estimatePreview!==key;
+  };
+  form.addEventListener('change',()=>{begin();syncPreview();form.querySelector('.form-error')?.replaceChildren();});
+  form.addEventListener('input',begin);
+  form.addEventListener('reset',()=>requestAnimationFrame(()=>{previews.forEach((preview,index)=>preview.hidden=index!==0);}));
+  syncPreview();
  });
  const modalQuiz=quizDialog?.querySelector('[data-lead-form="quiz"]');
  const primaryQuizController=quizControllers.get(modalQuiz)||quizControllers.values().next().value;
@@ -188,7 +203,7 @@
     const {response,result}=await sendLead(config.leadEndpoint||'/api/leads',{...values,consent:values.consent==='on',form:form.dataset.leadForm,attribution,page:location.pathname,requestId:id});
     if(!response.ok||result.ok!==true)throw new Error(result.message||'Не удалось отправить заявку.');
     showThanks(form,result.mode==='preview');
-    if(result.mode!=='preview'){trackFormSubmission(id);if(quizController)track('quiz_complete');}
+    if(result.mode!=='preview'){trackFormSubmission(id);if(form.dataset.leadForm==='quiz')track('quiz_complete');}
    }catch(err){error.textContent=(err.name==='TimeoutError'||err.name==='AbortError')?'Ответ задерживается. Попробуйте ещё раз или позвоните нам.':err.message==='Failed to fetch'?'Нет соединения. Проверьте интернет и попробуйте ещё раз.':err.message;submit.disabled=false;submit.removeAttribute('aria-busy');submit.innerHTML=old;submitting=false;}
   });
  });

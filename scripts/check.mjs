@@ -12,7 +12,7 @@ import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {company,serviceSeo,prices,projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
-import {header,esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,shellWithQuiz,homeHeroImage,home as renderHome} from '../src/components.mjs';
+import {header,esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,shellWithQuiz,quizModal,homeHeroImage,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
 const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
 const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).flatMap(p=>[p.before,originalWindowBefore(p.before)]));
@@ -53,6 +53,19 @@ for(const project of projects){
 const requiredLocation='в Москве и Московской области';
 const bundledServiceSlugs=['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'];
 const homeHtml=renderHome();
+
+const inlineEstimateServices=services.filter(service=>!['balkon-pod-klyuch',...bundledServiceSlugs].includes(service.slug));
+const inlineEstimatePages=[['home',homeHtml],...inlineEstimateServices.map(service=>[service.slug,servicePageWithSeo(service)])];
+assert.equal(inlineEstimatePages.length,20,'Every published service and home must keep an inline estimate');
+for(const [label,html] of inlineEstimatePages){
+ const forms=[...html.matchAll(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/g)];
+ assert.equal(forms.length,1,label+': exactly one inline estimate');
+ const form=forms[0][0];
+ assert.match(form,/data-lead-form="quiz"/,label+': preserve the lead endpoint contract');
+ assert.doesNotMatch(form,/\bdata-step=|\bdata-total-steps=|quiz-next-button|<progress\b/,label+': inline estimate must submit without quiz steps');
+ for(const name of ['service','object','timing','detail','name','phone','consent'])assert.ok(form.includes('name="'+name+'"'),label+': preserve '+name);
+ assert.match(html,/\bid="quiz"/,label+': preserve existing estimate links');
+}
 assert.ok(homeHtml.includes('Получить консультацию'),'home hero must invite visitors to get a consultation');
 assert.match(homeHtml,/<section class="container landing-hero">/,'Home must use the turnkey hero');
 for(const slug of bundledServiceSlugs)assert.ok(!homeHtml.includes(`href="/${slug}/"`),`Home must not advertise ${slug} as a standalone service`);
@@ -82,6 +95,8 @@ assert.match(homeShell,/<body class="turnkey-page">/,'Home must use the same lay
 assert.ok(homeShell.includes('<link rel="canonical" href="'+company.origin+'/">'),'Home must keep its own canonical URL');
 const homeQuizModal=homeShell.match(/<dialog class="quiz-modal"[\s\S]*?<\/dialog>/)?.[0];
 assert.ok(homeQuizModal?.includes('name="service" value="Под ключ"'),'Home consultation modal must retain the turnkey service');
+assert.match(homeQuizModal,/data-total-steps="3"/,'Home consultation modal retains its existing quiz steps');
+assert.doesNotMatch(homeQuizModal,/data-inline-estimate/,'Inline estimate must not replace the consultation modal');
 const homeGraph=JSON.parse(homeShell.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1])['@graph'];
 assert.equal(homeGraph.find(item=>item['@type']==='Service')?.url,company.origin+'/','Home service schema must use the root URL');
 assert.equal(homeGraph.find(item=>item['@type']==='FAQPage')?.mainEntity.length,serviceSeo['balkon-pod-klyuch'].faq.length,'Home FAQ markup and schema must stay together');
@@ -523,9 +538,13 @@ assert.match(servicePageWithSeo(repairService),/class="landing-photo repair-hero
 assert.match(servicePageWithSeo(repairService),/data-repair-range/);
 
 const repairMarkup=servicePageWithSeo(repairService);
-assert.match(repairMarkup,/Что нужно отремонтировать/);
+const repairEstimate=repairMarkup.match(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/)?.[0];
+assert.ok(repairEstimate?.includes('type="hidden" name="service" value="Ремонт балконов и лоджий"'),'Repair inline estimate must preserve the repair service');
+const repairQuizModal=quizModal(repairService);
+assert.ok(repairQuizModal.includes('Что нужно отремонтировать'),'Repair consultation modal must retain its object question');
+assert.ok(!repairQuizModal.includes('Что нужно отделать'),'Repair consultation modal must not use the finishing question');
 assert.match(repairMarkup,/Материалы для ремонта балконов и лоджий/);
-assert.doesNotMatch(repairMarkup,/Что нужно отделать|Чем отделываем|>ОТДЕЛКА</);
+assert.ok(!/Что нужно отделать|Чем отделываем|>ОТДЕЛКА</.test(repairMarkup),'Repair page must not restore finishing headings or questions');
 
 // The French variant retains its own service and the owner-confirmed panoramic starting rate.
 const frenchService=services.find(s=>s.slug==='frantsuzskoe-osteklenie');

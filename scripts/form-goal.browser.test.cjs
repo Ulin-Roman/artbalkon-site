@@ -39,6 +39,7 @@ const fs=require('node:fs/promises'),path=require('node:path'),http=require('nod
  async function prepare(page,index){
   const forms=page.locator('[data-lead-form]'),form=forms.nth(index);
   await form.evaluate(el=>{const dialog=el.closest('dialog');if(dialog&&!dialog.open)dialog.showModal();const project=el.querySelector('[name=project]');if(project&&!project.value)project.value='Тестовая работа / подарок';});
+  if(await form.evaluate(el=>el.hasAttribute('data-inline-estimate')))await form.locator('input[type=radio][name=detail]').first().check();
   if(await form.getAttribute('data-lead-form')==='quiz'){
    for(let n=0;n<12;n++){
     if(await form.locator('[type=submit]').isVisible())break;
