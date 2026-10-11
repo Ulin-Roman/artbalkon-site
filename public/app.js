@@ -438,7 +438,7 @@ function createCalculatorScene(root) {
   line([[left[0],bottom],[right[0],bottom]],'#3e392c66',.8);
  }
  function sideSection(filled){
-  const left=41.5,right=47.5,top=310.5,bottom=418.5,ribs=[top,337,363.5,390,bottom-2.3];
+  const left=41.5,right=47.5,top=303.3,bottom=418.5,ribs=[top,337,363.5,390,bottom-2.3];
   if(filled)cavity([[left,top],[right,top],[right,bottom],[left,bottom]],true);
   else for(let i=0;i<ribs.length-1;i++)recessedBay([[left,ribs[i]+2.3],[right,ribs[i]+2.3],[right,ribs[i+1]],[left,ribs[i+1]]],'side');
   // Horizontal blocking remains in front of the four open or filled bays.
@@ -477,7 +477,7 @@ function createCalculatorScene(root) {
   ctx.restore();
   // The projecting sill casts a narrow contact shadow onto the parapet.
   ctx.save();polygon(surfaces.parapet);ctx.clip();ctx.shadowColor='#302d2860';ctx.shadowBlur=1.4;
-  fill([[47.5,307],[108.5,270],[108.5,275.5],[47.5,319]],'#39352d2f');ctx.restore();
+  fill([[47.5,305],[108.5,267.5],[108.5,271],[47.5,309]],'#39352d2f');ctx.restore();
  }
  function switchPlate(){
   const q=[[241.2,278.5],[247.8,282.5],[247.8,293],[241.2,289]],p=projection(q);
@@ -596,16 +596,39 @@ function createCalculatorScene(root) {
   const base=[[left,bottom-1.8],[right,bottom-1.8],[right,429.5],[left,429.5]];
   fill(base,'#89877b');line([[left,bottom-1.8],[right,bottom-1.8]],'#d4d0bb',.55);
  }
+ function exteriorCladding(metal){
+  // The existing mineral wall starts at x28; its cut section remains visible.
+  // This thin skin sits over the outside face and continues over the slab edge.
+  const outer=26.6,inner=28.6,top=303.3,bottom=465.8,q=[[outer,top],[inner,top],[inner,bottom],[outer,bottom]];
+  const shadow=ctx.createLinearGradient(inner,0,inner+.85,0);
+  shadow.addColorStop(0,'#303d354d');shadow.addColorStop(1,'#303d3500');
+  fill([[inner,top],[inner+.85,top],[inner+.85,bottom],[inner,bottom]],shadow);
+  ctx.save();polygon(q);ctx.clip();
+  const skin=ctx.createLinearGradient(outer,0,inner,0);
+  if(metal){skin.addColorStop(0,'#66776d');skin.addColorStop(.3,'#c1cbc5');skin.addColorStop(.65,'#9daa9f');skin.addColorStop(1,'#6f8075');}
+  else {skin.addColorStop(0,'#a4aea3');skin.addColorStop(.3,'#eff0e8');skin.addColorStop(.72,'#d9dfd4');skin.addColorStop(1,'#b6c1b0');}
+  fill(q,skin);
+  if(metal){line([[outer+.7,top],[outer+.7,bottom]],'#e3e9df99',.35);line([[inner-.25,top],[inner-.25,bottom]],'#4f655861',.35);}
+  else for(let y=top+8.5;y<bottom;y+=9){
+   // Only the shallow lap at the edge is visible in this section.
+   line([[outer,y+.3],[inner,y]],'#81927f',.45);
+   line([[outer,y+.85],[inner,y+.55]],'#f8f9f0',.4);
+  }
+  ctx.restore();
+  line([[outer,top],[inner,top]],metal?'#e7eee2':'#f7f8ef',.5);
+  line([[outer,top],[outer,bottom]],metal?'#566c5d':'#9eac98',.35);
+  line([[inner,top],[inner,bottom]],'#64725c80',.35);
+ }
  function wideStreetSill(){
-  const top=[[30.8,300.5],[108.4,260.3],[118.8,264.6],[56.5,312.6]],inner=[top[3],top[2]],end=[top[0],top[3]],lowerInner=[[56.5,315.4],[118.8,266.0]];
-  // A wider board has a real horizontal top, rounded inner nose and a capped end.
+  const top=[[30.8,300.5],[108.4,260.3],[118.8,260.3],[56.5,300.5]],inner=[top[3],top[2]],end=[top[0],top[3]],lowerInner=[[56.5,303.3],[118.8,261.7]];
+  // Both crosswise edges are level; the long edges recede toward the floor vanishing point.
   ctx.save();polygon(surfaces.parapet);ctx.clip();ctx.shadowColor='#393b3266';ctx.shadowBlur=2.3;
-  fill([[47.5,312.5],[108.5,270.1],[108.5,277.5],[47.5,323.5]],'#34382f30');ctx.restore();
-  const face=ctx.createLinearGradient(56.5,312.6,56.5,315.4);face.addColorStop(0,'#e7e9e2');face.addColorStop(.35,'#fafbf6');face.addColorStop(1,'#a8afa5');
+  fill([[47.5,305],[108.5,267.5],[108.5,271],[47.5,309]],'#34382f30');ctx.restore();
+  const face=ctx.createLinearGradient(56.5,300.5,56.5,303.3);face.addColorStop(0,'#e7e9e2');face.addColorStop(.35,'#fafbf6');face.addColorStop(1,'#a8afa5');
   fill([inner[0],inner[1],lowerInner[1],lowerInner[0]],face);
   const cap=ctx.createLinearGradient(...end[0],...end[1]);cap.addColorStop(0,'#d7ddd5');cap.addColorStop(.5,'#f8f9f4');cap.addColorStop(1,'#b9c1b6');
   fill([end[0],end[1],lowerInner[0],[30.8,303.3]],cap);
-  const board=ctx.createLinearGradient(40,301,62,310);board.addColorStop(0,'#cfd6cd');board.addColorStop(.2,'#f5f6f0');board.addColorStop(.75,'#ffffff');board.addColorStop(1,'#e0e6dc');fill(top,board);
+  const board=ctx.createLinearGradient(31,300.5,56.5,300.5);board.addColorStop(0,'#cfd6cd');board.addColorStop(.2,'#f5f6f0');board.addColorStop(.75,'#ffffff');board.addColorStop(1,'#e0e6dc');fill(top,board);
   line(inner,'#ffffff',.75);line(lowerInner,'#929d8c',.45);
   line([top[0],top[1]],'#79897b',.45);
   line([end[0],end[1]],'#f5f8f0',.6);
@@ -719,13 +742,9 @@ function createCalculatorScene(root) {
   restore([[225.4,140.8],[283.7,80.6],[283.7,413.8],[250.7,369.3],[250.7,275.7],[246.3,277.3],[218.1,260.3],[218.1,255.2],[225.4,254.8]]);
   // Apartment sill: a shaded underside, with the switch just below near the door.
   ctx.save();polygon(surfaces.house);ctx.clip();line([[218.7,261],[246.1,278]],'#3e393148',1.3);ctx.restore();switchPlate();
-  if(s['exterior-enabled']){
-   // Exterior cladding covers the slab's outer end down to the cutout's lower edge.
-   const metal=s.exterior==='metal',top=308,bottom=465.8,q=[[28,311],[36,top],[36,bottom],[28,bottom]];ctx.save();polygon(q);ctx.clip();ctx.fillStyle=metal?'#8a9891':'#d6d6c5';ctx.fillRect(28,top,8,bottom-top);
-   if(metal){for(let x=28;x<37;x+=2){const g=ctx.createLinearGradient(x,0,x+2,0);g.addColorStop(0,'#515f5b');g.addColorStop(.5,'#c1cbc5');g.addColorStop(1,'#79877f');ctx.fillStyle=g;ctx.fillRect(x,top,2,bottom-top);}}
-   else for(let y=top+1;y<bottom;y+=9){line([[28,y],[36,y-.5]],'#9faaa1',1);line([[28,y+1],[36,y+.5]],'#f3f1e8',.7);}ctx.restore();
-  }
-  parapetCore();sideSection(insulated);floorSection(floorQ,!!s['floor-enabled'],insulated);roofSection(insulated);wideStreetSill();
+  parapetCore();sideSection(insulated);floorSection(floorQ,!!s['floor-enabled'],insulated);roofSection(insulated);
+  if(s['exterior-enabled'])exteriorCladding(s.exterior==='metal');
+  wideStreetSill();
   if(s['lighting-enabled']){
    const ceilingMap=projection(surfaces.ceiling);
    const ceilingCircle=(v,ru,rv)=>Array.from({length:40},(_,i)=>{const a=i*Math.PI/20;return ceilingMap(.5+ru*Math.cos(a),v+rv*Math.sin(a));});
