@@ -6,7 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {validateLead,saveLead} from './leads.mjs';
-import {contactFields,quiz,quizModal,inlineEstimate} from '../src/components.mjs';
+import {contactFields,quiz,quizModal,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
 import {services,projects} from '../src/content.mjs';
 const valid=()=>({requestId:randomUUID(),name:'Тест формы',phone:'+7 (999) 000-00-00',consent:true,form:'quiz',service:'Холодное остекление балкона',object:'Балкон',timing:'Пока интересуюсь',gift:'Тёплый пол',attribution:{utm_source:'test'}});
 test('validates phone, consent, all quiz answers and filters attribution',()=>{const input=valid();input.attribution.secret='must not persist';const lead=validateLead(input);assert.equal(lead.phone,'+79990000000');assert.equal(lead.attribution.secret,undefined);for(const bad of [{consent:false},{phone:'123'},{phone:'+7 (888) 888-88-88'},{phone:'+7 (999) 999-99-99'},{service:'xxx'},{size:' '},{name:' '},{requestId:'../../file'}])assert.throws(()=>validateLead({...input,...bad}));});
@@ -58,15 +58,15 @@ test('new landing consultations preserve the service and allow the matching obje
 });
 
 
-test('inline estimates preserve valid lead context for every published service and the home page',()=>{
- const redirected=new Set(['balkon-pod-klyuch','krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone']);
- const contexts=[['home',services.find(service=>service.slug==='balkon-pod-klyuch')],...services.filter(service=>!redirected.has(service.slug)).map(service=>[service.slug,service])];
- assert.equal(contexts.length,20,'Every published service and the home page need coverage');
+test('home calculation quiz preserves photos, ordered questions, gifts and valid lead context',()=>{
+ const contexts=['home'];
+ assert.equal(contexts.length,1,'Only the home page uses the new calculation quiz');
  const decode=value=>value.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
  const attributes=tag=>Object.fromEntries([...tag.matchAll(/(?:^|\s)([\w:-]+)(?:="([^"]*)")?/g)].map(([,key,value])=>[key,value===undefined?true:decode(value)]));
  const inputsIn=markup=>[...markup.matchAll(/<input\b([^>]*)>/g)].map(([,tag])=>attributes(tag));
- for(const [label,subject] of contexts){
-  const markup=inlineEstimate(subject);
+ for(const label of contexts){
+  const markup=renderHome().match(/<section\b(?=[^>]*\bid="quiz")[^>]*>[\s\S]*?<\/section>/)?.[0];
+  assert.ok(markup,label+': the calculation block is present');
   const forms=[...markup.matchAll(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/g)];
   assert.equal(forms.length,1,label+': exactly one inline estimate');
   const form=forms[0][0],formAttributes=attributes(form.match(/^<form\b([^>]*)>/)[1]),inputs=inputsIn(form);
@@ -137,5 +137,34 @@ test('inline estimates preserve valid lead context for every published service a
   assert.throws(()=>validateLead({...input,detail:details[0].value,consent:false}),label+': consent remains mandatory');
   assert.throws(()=>validateLead({...input,detail:details[0].value,gift:'Другой подарок'}),label+': unsupported gift rejected');
   for(const detail of [' ','x'.repeat(151)])assert.throws(()=>validateLead({...input,detail}),label+': invalid goal rejected');
+ }
+});
+
+
+test('service routes retain their previous consultation questions and valid lead context',()=>{
+ const decode=value=>value.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
+ const inputsIn=markup=>[...markup.matchAll(/<input\b([^>]*)>/g)].map(([,tag])=>Object.fromEntries([...tag.matchAll(/(?:^|\s)([\w:-]+)(?:="([^"]*)")?/g)].map(([,key,value])=>[key,value===undefined?true:decode(value)])));
+ const redirected=new Set(['balkon-pod-klyuch','krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone']);
+ assert.equal(services.filter(service=>!redirected.has(service.slug)).length,19,'Cover every published service route');
+ for(const service of services){
+  const markup=servicePageWithSeo(service),label=service.slug;
+  assert.doesNotMatch(markup,/\bdata-inline-estimate\b|\bproject-estimate-section\b/,label+': the home calculation must not spread to service routes');
+  const sections=[...markup.matchAll(/<section\b(?=[^>]*\bid="quiz")[^>]*>[\s\S]*?<\/section>/g)];
+  assert.equal(sections.length,1,label+': one service consultation');
+  const block=sections[0][0];
+  assert.equal(block,quiz(service,{consultation:true}),label+': preserve the previous service-specific block');
+  assert.match(block,/Получите\s+<br>консультацию/,label+': retain consultation copy');
+  assert.doesNotMatch(block,/name="gift"|data-estimate-stage|data-estimate-preview/,label+': keep the previous questions');
+  const inputs=inputsIn(block),fields=name=>inputs.filter(input=>input.name===name);
+  for(const name of ['service','object','timing','name','phone','consent'])assert.ok(fields(name).length,label+': preserve '+name);
+  assert.ok(fields('consent').every(input=>input.required&&!input.checked),label+': require explicit consent');
+  const input=valid();delete input.gift;
+  for(const serviceChoice of fields('service'))for(const object of fields('object'))for(const timing of fields('timing')){
+   const lead=validateLead({...input,service:serviceChoice.value,object:object.value,timing:timing.value});
+   assert.equal(lead.service,serviceChoice.value,label+': preserve the selected service');
+   assert.equal(lead.object,object.value,label+': preserve the selected object');
+   assert.equal(lead.timing,timing.value,label+': preserve the selected schedule');
+   assert.equal(lead.gift,undefined,label+': gifts remain optional for existing consultations');
+  }
  }
 });

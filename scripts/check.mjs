@@ -12,7 +12,7 @@ import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {company,serviceSeo,prices,projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
-import {header,esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,shellWithQuiz,quizModal,homeHeroImage,home as renderHome} from '../src/components.mjs';
+import {header,esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,shellWithQuiz,quiz,quizModal,homeHeroImage,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
 const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
 const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).flatMap(p=>[p.before,originalWindowBefore(p.before)]));
@@ -98,9 +98,19 @@ const assertGlazingChoice=(html,label)=>{
 };
 assertGlazingChoice(homeHtml,'Home source');
 
-const inlineEstimateServices=services.filter(service=>!['balkon-pod-klyuch',...bundledServiceSlugs].includes(service.slug));
-const inlineEstimatePages=[['home',homeHtml],...inlineEstimateServices.map(service=>[service.slug,servicePageWithSeo(service)])];
-assert.equal(inlineEstimatePages.length,20,'Every published service and home must keep an inline estimate');
+const publishedConsultationServices=services.filter(service=>!['balkon-pod-klyuch',...bundledServiceSlugs].includes(service.slug));
+assert.equal(publishedConsultationServices.length,19,'Every published service route needs consultation coverage');
+const consultationPages=services.map(service=>[service.slug,servicePageWithSeo(service),service]);
+const quizSection=html=>html.match(/<section\b(?=[^>]*\bid="quiz")[^>]*>[\s\S]*?<\/section>/)?.[0];
+for(const [label,html,service] of consultationPages){
+ assert.doesNotMatch(html,/\bdata-inline-estimate\b|\bproject-estimate-section\b/,label+': the new calculation block is exclusive to the home page');
+ const blocks=[...html.matchAll(/<section\b(?=[^>]*\bid="quiz")[^>]*>[\s\S]*?<\/section>/g)];
+ assert.equal(blocks.length,1,label+': keep one existing consultation block');
+ assert.equal(blocks[0][0],quiz(service,{consultation:true}),label+': restore the unchanged service-specific consultation');
+ assert.doesNotMatch(blocks[0][0],/name="gift"|data-estimate-stage|data-estimate-preview/,label+': service consultations retain their previous questions');
+}
+const inlineEstimatePages=[['home',homeHtml]];
+assert.equal(inlineEstimatePages.length,1,'Only the home page uses the new calculation quiz');
 const estimateAttributes=tag=>Object.fromEntries([...tag.matchAll(/(?:^|\s)([\w:-]+)(?:="([^"]*)")?/g)].map(([,key,value])=>[key,value===undefined?true:value]));
 for(const [label,html] of inlineEstimatePages){
  const forms=[...html.matchAll(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/g)];
@@ -137,7 +147,7 @@ for(const [label,html] of inlineEstimatePages){
  assert.ok(buttons.find(button=>button.type==='submit')?.hidden,label+': wait until the final step before submitting');
  assert.match(html,/\bid="quiz"/,label+': preserve existing estimate links');
 }
-for(const [label,html] of inlineEstimatePages.filter(([label])=>label!=='home'))assert.ok(!html.includes('id="cold-warm-balcony"'),label+': comparison is exclusive to the published home page');
+for(const [label,html] of consultationPages.filter(([label])=>label!=='balkon-pod-klyuch'))assert.ok(!html.includes('id="cold-warm-balcony"'),label+': comparison is exclusive to the published home page');
 assert.ok(homeHtml.includes('Получить консультацию'),'home hero must invite visitors to get a consultation');
 assert.match(homeHtml,/<section class="container landing-hero">/,'Home must use the turnkey hero');
 for(const slug of bundledServiceSlugs)assert.ok(!homeHtml.includes(`href="/${slug}/"`),`Home must not advertise ${slug} as a standalone service`);
@@ -159,7 +169,8 @@ for(const id of ['before-after','quiz','video-process','finishing-styles','finis
  assert.equal(turnkeyIds.filter(value=>value===id).length,1,'Shared home block must appear once on turnkey: '+id);
  assert.ok(homeHtml.includes('id="'+id+'"'),'Migrating blocks must preserve the home page: '+id);
 }
-assert.equal(homeHtml,turnkeyHtml,'Home must retain the complete turnkey content');
+assert.ok(quizSection(homeHtml)&&quizSection(turnkeyHtml),'Home and turnkey must each retain their calculation block');
+assert.equal(homeHtml.replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),''),'Home and turnkey keep the same content outside their distinct calculation blocks');
 assert.doesNotMatch(renderedGalleries,/class="breadcrumbs"/,'Rendered pages must not restore removed breadcrumbs');
 assert.match(homeHtml,/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>\s*<section[^>]*id="about"/,'Additional services must immediately precede About');
 const homeShell=shellWithQuiz(homeHtml,{path:'/',image:'/assets/'+homeHeroImage});
@@ -629,8 +640,9 @@ assert.match(servicePageWithSeo(repairService),/class="landing-photo repair-hero
 assert.match(servicePageWithSeo(repairService),/data-repair-range/);
 
 const repairMarkup=servicePageWithSeo(repairService);
-const repairEstimate=repairMarkup.match(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/)?.[0];
-assert.ok(repairEstimate?.includes('type="hidden" name="service" value="Ремонт балконов и лоджий"'),'Repair inline estimate must preserve the repair service');
+const repairConsultation=quizSection(repairMarkup);
+assert.ok(repairConsultation?.includes('type="hidden" name="service" value="Ремонт балконов и лоджий"'),'Repair consultation must preserve the repair service');
+assert.equal(repairConsultation,quiz(repairService,{consultation:true}),'Repair page must retain its previous consultation block');
 const repairQuizModal=quizModal(repairService);
 assert.ok(repairQuizModal.includes('Что нужно отремонтировать'),'Repair consultation modal must retain its object question');
 assert.ok(!repairQuizModal.includes('Что нужно отделать'),'Repair consultation modal must not use the finishing question');

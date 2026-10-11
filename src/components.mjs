@@ -395,7 +395,7 @@ export function shell(body,{title='Балконы и лоджии под клю�
 const heroRatingBadges=()=>`<div class="hero-rating-badges" aria-label="Рейтинги на независимых площадках"><a class="hero-rating-badge" href="${company.reviews}" target="_blank" rel="noopener" aria-label="Яндекс Карты: рейтинг 5,0 из 5, 151 отзыв"><img src="/assets/yandex-maps-rating-icon.png" width="64" height="64" alt="Яндекс Карты"><span class="hero-rating-details"><strong>5,0 <span class="hero-rating-star" aria-hidden="true">★</span></strong><span class="hero-rating-count">151 отзыв</span></span></a><a class="hero-rating-badge" href="${company.avito}" target="_blank" rel="noopener" aria-label="Авито: рейтинг 4,9 из 5, 127 отзывов"><img src="/assets/avito-rating-icon.png" width="64" height="64" alt="Авито"><span class="hero-rating-details"><strong>4,9 <span class="hero-rating-star" aria-hidden="true">★</span></strong><span class="hero-rating-count">127 отзывов</span></span></a></div>`;
 export function home(){
  const service=serviceForPath('/');
- return servicePageWithSeo(service);
+ return servicePageWithSeo(service,{home:true});
 }
 export function servicePage(s){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description">${s.heroSubtitle||s.offer}</p>${s.heroPrice?`<p class="landing-price">${esc(s.heroPrice)}${s.heroPriceUnit?` <small>${esc(s.heroPriceUnit)}</small>`:''}</p>`:prices[s.price]===null?'':`<p class="landing-price">${money(prices[s.price])} <small>/м²</small></p>`}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s)}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
 const turnkeyIncludedExtrasSection=service=>{
@@ -440,10 +440,10 @@ const mergedTurnkeyProjects=()=>{
   cases.add(caseId);photos.add(after);return true;
  });
 };
-const completeProjectSections=(service=null)=>{
+const completeProjectSections=(service=null,{home=false}={})=>{
  const items=service?mergedTurnkeyProjects():beforeAfterProjects;
  return `${beforeAfterSection(items,{serviceTitle:service?.title||''})}
-${inlineEstimate(service)}
+${home?inlineEstimate(service):quiz(service,{consultation:true})}
 ${partnerBrandsSection()}
 ${promotionSection(service||{title:'Балкон или лоджия под ключ'})}
 ${reviewsSection()}
@@ -468,17 +468,17 @@ const repairIntegrationSection=service=>{
  const integration=services.find(item=>item.slug==='obedinenie-balkona-s-komnatoj');
  return `<section class="section container extra-services" id="repair-options"><div class="section-heading"><div><h2>Другие варианты ремонта</h2><p class="services-subtitle">Балкон или лоджия как продолжение комнаты.</p></div></div><div class="extra-grid home-extra-grid"><article class="extra-card reveal"><a class="extra-card-media" href="/${integration.slug}/">${serviceImage(integration)}<span class="extra-icon">${serviceIcon(integration.slug)}</span></a><div class="extra-card-body"><h3><a href="/${integration.slug}/">${integration.title}</a></h3><p>${integration.short}</p></div></article></div></section>`;
 };
-export function servicePageWithSeo(s){
+export function servicePageWithSeo(s,{home=false}={}){
  const isTurnkey=s.slug==='balkon-pod-klyuch';
  const serviceProjects=serviceBeforeAfterProjects[s.slug]||[];
 
  const thermalSection=thermalInspectionForService(s);
  const thermalAfterMaterials=/^uteplenie-(?:balkonov|lodzhii)$/.test(s.slug);
  const calculationQuiz=quiz(s);
- const scopedQuiz=inlineEstimate(s);
+ const scopedQuiz=quiz(s,{consultation:true});
  const finishingMaterials=(/^otdelka-(?:balkonov|lodzhii)$/.test(s.slug)||s.slug==='remont-balkonov')?sourceServiceDetailsSection(s):'';
  const openingSections=isTurnkey
-  ?completeProjectSections(s)
+  ?completeProjectSections(s,{home})
   :`${beforeAfterSection(serviceProjects,{serviceTitle:s.title,photoCards:s.slug==='osteklenie-balkonov'})}${repairIntegrationSection(s)}${scopedQuiz}${finishingMaterials}${insulationMaterialsSection(s)}${thermalAfterMaterials?thermalSection:''}${partnerBrandsSection()}${promotionSection(s)}${reviewsSection()}${thermalAfterMaterials?'':thermalSection}${advantagesSection()}`;
  const offer=campaignOffer();
  const quizSlot='<!-- scoped-quiz-slot -->';
