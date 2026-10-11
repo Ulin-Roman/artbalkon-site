@@ -11,7 +11,7 @@ export const company = {
 };
 // Единственный источник цен для карточек, таблицы, SEO и посадочных страниц.
 export const prices = {cold:7000,warm:11000,panoramic:11500,insulation:700,finishing:1900,repair:null,turnkey:null};
-export const finishingWallRates = {pvc:2500,laminate:3800,lining:4000,parquet:4000};
+export const finishingWallRates = {pvc:2500,laminate:3800,lining:4000,parquet:4000,wood:4500};
 export const integrations = {metrikaId:113425011,webvisor:true,leadEndpoint:'/api/leads',externalScripts:[],whatsapp:company.whatsapp,telegram:company.telegram};
 export const projects = [
  {slug:'lodzhiya-v-golubom',title:'Лоджия с характером',location:'Деревня Голубое · Тверецкий проезд',type:'Утепление и отделка',image:'before-after/after-05.jpg',alt:'Готовая лоджия с отделкой натуральным деревом и встроенным освещением',intro:'Натуральное дерево, цветная стена и продуманное освещение. Утеплённая лоджия с тёплым полом и комбинированной отделкой.',works:['Утепление стен, пола и потолка','Комбинированная отделка стен и потолка','Тёплый пол и чистовая отделка','Освещение и розетки'],materials:['Декоративная рейка «Ель Сибирская»','Окрашенный стеновой паркет из липы под кирпич','Ламинат «Дуб Тремоли»'],duration:null,cost:null,source:'https://artbalkon.pro/nashi-raboty1#rec864516955'},
@@ -2038,9 +2038,18 @@ serviceSeo['frantsuzskoe-osteklenie']=frenchGlazingSeo;
 // Dedicated landings use newly generated pairs and retain explicit disclosure.
 import {newLandingDefinitions} from './landing-pages.mjs';
 prices.custom=null;
+// Material rates match the finishing cards; sliding aluminium uses the cold rate.
+const newLandingPrices={
+ 'otdelka-balkona-pvh-panelyami':finishingWallRates.pvc,
+ 'otdelka-balkona-laminatom':finishingWallRates.laminate,
+ 'otdelka-balkona-vagonkoj':finishingWallRates.lining,
+ 'otdelka-balkona-derevom':finishingWallRates.wood,
+ 'razdvizhnoe-osteklenie':prices.cold
+};
+Object.assign(prices,newLandingPrices);
 for(const definition of newLandingDefinitions){
  const {works,metaTitle,metaDescription,faq,scope,...service}=definition;
- services.push({...service,label:definition.title.toLocaleUpperCase('ru-RU'),price:'custom',image:works[0].after,landingVariant:true});
+ services.push({...service,label:definition.title.toLocaleUpperCase('ru-RU'),price:Object.hasOwn(newLandingPrices,definition.slug)?definition.slug:'custom',image:works[0].after,landingVariant:true});
  serviceSeo[definition.slug]={metaTitle,metaDescription,faq,scope};
  serviceBeforeAfterProjects[definition.slug]=works.map(({displayTitle,id,...work})=>({...work,stage:definition.slug.startsWith('otdelka-')?'finish':'glazing',objectType:/лоджи/i.test(displayTitle)?'loggia':'balcony',landingSeries:true,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,afterReal:false}));
 }

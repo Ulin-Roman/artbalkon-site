@@ -2319,15 +2319,16 @@ main .eyebrow{display:none!important}
  .mobile-menu-links a{
   position:relative;
   display:block;
-  padding:13px 3px;
+  padding:13px 24px 13px 3px;
   border-bottom:1px solid #edf1f0;
-  color:var(--ink);
+  color:#111;
   font-size:17px;
   font-weight:600;
   letter-spacing:-.025em;
   text-align:left;
  }
- .mobile-menu-links a::after{
+ .mobile-menu-links>a::after,
+ .mobile-menu-links .nav-services-panel>a::after{
   content:"→";
   position:absolute;
   right:3px;
@@ -4624,9 +4625,9 @@ main > .social-subscribe,
 .nav-services-panel a:hover{background:#eef6f5;color:var(--red)}
 @media(min-width:1101px){.desktop-nav{gap:14px;font-size:13px}.header-inner{gap:18px}}
 @media(min-width:1101px) and (max-width:1450px){.header-cta{display:none}.header-contact{margin-left:0}.desktop-nav{gap:12px;font-size:12px}.header-inner{gap:16px}}
-.mobile-menu-links .nav-services summary{padding:11px 0;font-size:16px;border-bottom:1px solid var(--line);justify-content:space-between}
+.mobile-menu-links .nav-services summary{padding:11px 0;color:#111;font-size:16px;font-weight:600;border-bottom:1px solid var(--line);justify-content:space-between}
 .mobile-menu-links .nav-services-panel{position:static;min-width:0;padding:4px 0 8px 14px;border:0;border-radius:0;box-shadow:none;background:transparent}
-.mobile-menu-links .nav-services-panel a{font-size:14px;padding:10px 0;white-space:normal}
+.mobile-menu-links .nav-services-panel a{color:#111;font-size:14px;font-weight:400;padding:10px 24px 10px 0;white-space:normal}
 .desktop-nav .nav-page-start{border-left:1px solid #d5dcdb;padding-left:12px;margin-left:2px}
 
 /* Photographic equipment samples use equal cells, not font glyphs. */
@@ -4748,7 +4749,3 @@ main > .social-subscribe,
  .landing-trust.landing-utp .trust-copy span{font-size:11px;min-height:4.2em}
  .landing-trust.company-trust .trust-copy strong{font-size:18px}
 }
-
-/* Match the selected finish-calculator option on both benefit rows. */
-.landing-trust.landing-utp > .trust-item,
-.landing-trust.company-trust > .trust-item{background:#eaf6f5}

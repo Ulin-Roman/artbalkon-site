@@ -557,17 +557,38 @@ assert.equal(newPairs.length,54);
 for(const key of ['title','before','after'])assert.equal(new Set(newPairs.map(pair=>pair[key])).size,54,'New '+key+' values must be unique');
 assert.equal(new Set(newPairs.flatMap(pair=>[pair.before,pair.after])).size,108);
 assert.equal(new Set(allPhotoPairs.map(pair=>pair.title)).size,new Set(allPhotoPairs.map(portfolioCaseId)).size,'Public case IDs may not collide');
+const confirmedLandingPrices={
+ 'otdelka-balkona-pvh-panelyami':2500,
+ 'otdelka-balkona-laminatom':3800,
+ 'otdelka-balkona-vagonkoj':4000,
+ 'otdelka-balkona-derevom':4500,
+ 'razdvizhnoe-osteklenie':7000
+};
 for(const definition of newLandingDefinitions){
  const service=services.find(service=>service.slug===definition.slug),gallery=serviceBeforeAfterProjects[definition.slug];
  assert.ok(service?.landingVariant);
  assert.equal(gallery.length,6);
- assert.equal(prices[service.price],null,'Unconfirmed rates must not be advertised');
+ const expectedPrice=confirmedLandingPrices[definition.slug]??null;
+ assert.equal(prices[service.price],expectedPrice,'Only confirmed rates may be advertised: '+definition.slug);
  const markup=servicePageWithSeo(service);
  assert.equal((markup.match(/data-comparison /g)||[]).length,6);
  assert.ok(markup.includes('Визуализации проектов'));
  assert.ok(markup.includes('name="service" value="'+esc(service.title)+'"'));
  assert.doesNotMatch(markup,/landing-service-scope|landing-related-services/,definition.slug+' must not render the retired process block');
- assert.ok(!markup.includes('class="landing-price"'));
+ const builtMarkup=await readFile(join(root,definition.slug,'index.html'),'utf8');
+ const heroPrice=builtMarkup.match(/<p class="landing-price">(.*?)<\/p>/)?.[1];
+ const graph=JSON.parse(builtMarkup.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1])['@graph'];
+ const offer=graph.find(item=>item['@type']==='Service')?.offers;
+ if(expectedPrice===null){
+  assert.equal(heroPrice,undefined,'Unconfirmed rate must stay absent from the hero');
+  assert.equal(offer,undefined,'Unconfirmed rate must stay absent from structured data');
+ }else{
+  assert.equal(heroPrice,'от '+expectedPrice.toLocaleString('ru-RU')+' ₽ <small>/м²</small>','Hero uses the confirmed rate and unit');
+  assert.equal(offer?.price,String(expectedPrice),'Structured offer matches the hero');
+  assert.equal(offer?.priceCurrency,'RUB');
+  assert.equal(offer?.priceSpecification.price,String(expectedPrice));
+  assert.equal(offer?.priceSpecification.unitText,'м²');
+ }
  assert.ok(header('/').includes('href="/'+definition.slug+'/"'));
  assert.ok(sitemapUrls.some(url=>url.endsWith('/'+definition.slug+'/')));
  assert.equal(serviceSeo[definition.slug].faq.length,4);
