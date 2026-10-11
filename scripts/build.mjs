@@ -21,7 +21,10 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
  const src=tag.match(/\bsrc="([^"]+)"/)?.[1],entry=responsiveImages[src];if(!entry)return tag;
  if(tag.includes('data-src="'))return tag.replace('data-src="'+src+'"','data-src="'+entry.src+'"');
  // Inline estimates use full-size WebP: tall cover crops can exceed thumbnail widths.
- if(tag.includes('data-estimate-image'))return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"');
+ if(tag.includes('data-estimate-image')){
+  const fullSize=entry.variants?.reduce((largest,variant)=>variant.width>(largest?.width||0)?variant:largest,null)?.src||entry.src;
+  return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+fullSize+'"');
+ }
  // Cover crops need enough source pixels for both the card width and height.
  const finishingPhoto=tag.match(/data-finishing-photo="(\d+)"/);
  let sizes;

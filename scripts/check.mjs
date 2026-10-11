@@ -119,7 +119,7 @@ for(const [label,html] of inlineEstimatePages){
  assert.equal(formAttributes['data-lead-form'],'quiz',label+': preserve the lead endpoint contract');
  const knownObject=/<input\b(?=[^>]*\btype="hidden")(?=[^>]*\bname="object")[^>]*>/.test(form);
  const stages=[...form.matchAll(/<fieldset\b([^>]*)>([\s\S]*?)<\/fieldset>/g)].map(([,tag,body])=>({attributes:estimateAttributes(tag),body}));
- const expectedStages=['goal',...knownObject?[]:['object'],'timing','gift','contact'];
+ const expectedStages=[...knownObject?[]:['object'],'goal','timing','gift','contact'];
  assert.equal(Number(formAttributes['data-total-steps']),expectedStages.length,label+': known objects shorten the quiz');
  assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': preserve the ordered calculation stages');
  assert.deepEqual(stages.map(stage=>stage.attributes['data-step']),expectedStages.map((_,index)=>String(index)),label+': preserve consecutive navigation');
@@ -142,7 +142,8 @@ for(const [label,html] of inlineEstimatePages){
  const previewKeys=[...section.matchAll(/\bdata-estimate-preview="([^"]+)"/g)].map(match=>match[1]);
  for(const [,tag] of form.matchAll(/<input\b([^>]*)>/g)){
   const input=estimateAttributes(tag);
-  if(['detail','gift'].includes(input.name))assert.ok(input['data-estimate-photo']&&previewKeys.includes(input['data-estimate-photo']),label+': goal and gift choices have matching photos');
+  if(['detail','gift'].includes(input.name)||(input.name==='object'&&input.type==='radio'))assert.ok(input['data-estimate-photo']&&previewKeys.includes(input['data-estimate-photo']),label+': object, goal and gift choices have matching photos');
+  if(input.name==='object'&&input.type==='radio')assert.ok(input.required,label+': choosing the object is required');
  }
  const progress=estimateAttributes(form.match(/<progress\b([^>]*)>/)?.[1]||'');
  assert.equal(progress.id,'quiz-progress-inline',label+': preserve distinct inline progress');

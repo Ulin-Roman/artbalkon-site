@@ -77,19 +77,19 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   const knownObject=object.length===1&&object[0].type==='hidden';
   assert.equal(knownObject,label!=='home',label+': cover both explicit and known object flows');
   const stages=[...form.matchAll(/<fieldset\b([^>]*)>([\s\S]*?)<\/fieldset>/g)].map(([,tag,body])=>({attributes:attributes(tag),body,inputs:inputsIn(body)}));
-  const expectedStages=['goal',...knownObject?[]:['object'],'timing','gift','contact'];
+  const expectedStages=[...knownObject?[]:['object'],'goal','timing','gift','contact'];
   assert.equal(Number(formAttributes['data-total-steps']),expectedStages.length,label+': known objects shorten the quiz');
   assert.equal(stages.length,expectedStages.length,label+': every stage has its own fieldset');
-  assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': ask goals, object, timing, gift and contacts in order');
+  assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': ask object, goals, timing, gift and contacts in order');
   assert.deepEqual(stages.map(stage=>stage.attributes['data-step']),expectedStages.map((_,index)=>String(index)),label+': consecutive navigation steps');
   assert.deepEqual(stages.map(stage=>Object.hasOwn(stage.attributes,'hidden')),expectedStages.map((_,index)=>index!==0),label+': only the first stage starts visible');
   assert.ok(details.length===5||details.length===6,label+': explicit project goals');
-  assert.deepEqual(stages[0].inputs,details,label+': goals belong to the first stage');
+  assert.deepEqual(stages.find(stage=>stage.attributes['data-estimate-stage']==='goal').inputs,details,label+': goals belong to their stage');
   if(label==='home')assert.deepEqual(details.map(input=>input.value),['Зона отдыха','Рабочее место','Удобное хранение','Объединить с комнатой','Освежить вид','Пока не знаю'],'Home must preserve the requested goal labels');
   const objectStage=stages.find(stage=>stage.attributes['data-estimate-stage']==='object');
   if(knownObject)assert.equal(objectStage,undefined,label+': known objects omit the object question');
   else{
-   assert.ok(object.length>=2,label+': offer explicit object choices');
+   assert.deepEqual(object.map(input=>input.value),['Балкон','Лоджия','Не знаю'],label+': preserve the three object choices');
    assert.deepEqual(objectStage.inputs,object,label+': object answers belong to their stage');
   }
   assert.equal(timing.length,3,label+': offer three work schedules');
@@ -116,7 +116,12 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   const previews=[...markup.matchAll(/<figure\b([^>]*)>/g)].map(([,tag])=>attributes(tag)).filter(tag=>tag['data-estimate-preview']);
   const previewKeys=previews.map(tag=>tag['data-estimate-preview']);
   assert.equal(new Set(previewKeys).size,previewKeys.length,label+': preview keys are unique');
-  for(const choice of [...details,...gifts])assert.ok(choice['data-estimate-photo']&&previewKeys.includes(choice['data-estimate-photo']),label+': selected goals and gifts have matching photos');
+  for(const choice of [...details,...gifts,...(knownObject?[]:object)])assert.ok(choice['data-estimate-photo']&&previewKeys.includes(choice['data-estimate-photo']),label+': selected objects, goals and gifts have matching photos');
+  if(!knownObject){
+   const objectPhoto=value=>object.find(input=>input.value===value)['data-estimate-photo'];
+   assert.notEqual(objectPhoto('Балкон'),objectPhoto('Лоджия'),label+': balcony and loggia have distinct previews');
+   assert.equal(objectPhoto('Не знаю'),objectPhoto('Балкон'),label+': undecided object falls back to the balcony photo');
+  }
   assert.doesNotMatch(markup,/<figcaption\b/i,label+': keep estimate photos free of captions');
   assert.match(markup,/<figure\b[^>]*data-estimate-preview="gift-4"[^>]*>[\s\S]*?<img\b[^>]*src="\/assets\/promo-gift-card\.svg"/,label+': gift card has its dedicated illustration');
   const progress=attributes(form.match(/<progress\b([^>]*)>/)?.[1]||'');
