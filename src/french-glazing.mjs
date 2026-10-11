@@ -1,5 +1,5 @@
 // French glazing uses the panoramic page structure and existing approved assets.
-// The company's separate rate is not yet confirmed, so no numeric price is advertised.
+// The owner confirmed the same starting rate as panoramic glazing; content.mjs shares that rate.
 export const frenchGlazingSeo = {
  metaTitle:'Французское остекление балконов и лоджий в Москве | ArtBalkon',
  metaDescription:'Французское остекление балконов и лоджий от пола до потолка в Москве и области. Подбор профиля, стеклопакетов и безопасной конструкции. Расчёт после замера.',

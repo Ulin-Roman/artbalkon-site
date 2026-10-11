@@ -527,7 +527,7 @@ assert.match(repairMarkup,/Что нужно отремонтировать/);
 assert.match(repairMarkup,/Материалы для ремонта балконов и лоджий/);
 assert.doesNotMatch(repairMarkup,/Что нужно отделать|Чем отделываем|>ОТДЕЛКА</);
 
-// The French variant must be reachable and submit its own service, without a guessed rate.
+// The French variant retains its own service and the owner-confirmed panoramic starting rate.
 const frenchService=services.find(s=>s.slug==='frantsuzskoe-osteklenie');
 assert.ok(frenchService,'French glazing service is registered');
 const frenchPage=servicePageWithSeo(frenchService);
@@ -537,8 +537,13 @@ assert.ok(frenchPage.includes('Преимущества французского
 assert.ok(frenchPage.includes('Чем французское остекление отличается от панорамного?'));
 assert.ok(!serviceBeforeAfterProjects[frenchService.slug].some(p=>p.title==='Безрамное панорамное остекление'));
 assert.equal(frenchService.price,'french');
-assert.equal(prices.french,null,'French rate remains unset until confirmed');
-assert.ok(!frenchPage.includes('class="landing-price"'),'French hero must not advertise an unconfirmed rate');
+assert.equal(prices.french,prices.panoramic,'French starting rate matches panoramic glazing');
+const panoramicService=services.find(s=>s.slug==='panoramnoe-osteklenie');
+const frenchHeroPrice=frenchPage.match(/<p class="landing-price">.*?<\/p>/)?.[0];
+assert.ok(frenchHeroPrice,'French hero advertises the confirmed starting rate');
+assert.equal(frenchHeroPrice,servicePage(panoramicService).match(/<p class="landing-price">.*?<\/p>/)?.[0],'French and panoramic heroes share price and unit');
+const frenchFeedOffer=feed.match(/<offer id="110"[\s\S]*?<\/offer>/)?.[0];
+assert.ok(frenchFeedOffer?.includes(`Цена от ${prices.french.toLocaleString('ru-RU')} ₽/м².`),'French feed price agrees with its landing page');
 assert.ok(header('/osteklenie-balkonov/').includes('href="/frantsuzskoe-osteklenie/"'),'Glazing navigation links to the French page');
 assert.ok(feed.includes('<offer id="110"'));
 assert.ok(sitemapUrls.some(url=>url.endsWith('/frantsuzskoe-osteklenie/')));

@@ -2030,7 +2030,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 // Add the French variant after all approved gallery corrections and withdrawals.
 import {createFrenchGlazing,frenchGlazingSeo} from './french-glazing.mjs';
 const frenchGlazing=createFrenchGlazing(services.find(s=>s.slug==='panoramnoe-osteklenie'),serviceBeforeAfterProjects['panoramnoe-osteklenie']);
-prices.french=null;
+prices.french=prices.panoramic;
 services.push(frenchGlazing.service);
 serviceBeforeAfterProjects['frantsuzskoe-osteklenie']=frenchGlazing.gallery;
 serviceSeo['frantsuzskoe-osteklenie']=frenchGlazingSeo;
