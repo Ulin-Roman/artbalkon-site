@@ -4735,17 +4735,26 @@ main > .social-subscribe,
  .landing-trust.company-trust .trust-copy strong{font-size:24px}
 }
 @media(max-width:640px){
- .landing-trust.landing-utp .trust-item{min-height:138px;padding:12px 7px!important;gap:7px}
- .landing-trust.landing-utp .trust-icon{width:32px;height:32px;flex-basis:32px;padding:7px}
+ .landing-hero>.landing-trust.landing-utp{grid-template-columns:minmax(0,1fr);gap:10px}
+ .landing-trust.landing-utp .trust-item{
+  width:89%;max-width:480px;min-width:0;min-height:76px;justify-self:start;
+  flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;
+  padding:12px 14px!important;text-align:left;
+ }
+ .landing-trust.landing-utp .trust-item:nth-child(2){justify-self:end}
+ .landing-trust.landing-utp .trust-icon{width:36px;height:36px;flex:0 0 36px;padding:8px}
+ .landing-trust.landing-utp .trust-copy{width:auto;min-width:0;flex:1;align-items:flex-start;text-align:left}
+ .landing-trust.landing-utp .trust-copy strong,
+ .landing-trust.landing-utp .trust-copy span{
+  width:auto;max-width:100%;min-height:0;justify-content:flex-start;text-align:left;overflow-wrap:anywhere;
+ }
  .landing-trust.landing-utp .trust-copy strong{font-size:20px}
- .landing-trust.landing-utp .trust-copy span{font-size:12px;min-height:2.8em}
+ .landing-trust.landing-utp .trust-copy span{font-size:12px}
  .landing-trust.company-trust{gap:8px;margin-top:24px}
  .landing-trust.company-trust .trust-item{padding:12px 7px!important}
  .landing-trust.company-trust .trust-copy strong{font-size:20px}
  .landing-trust.company-trust .trust-copy span{font-size:11px;line-height:1.4}
 }
 @media(max-width:430px){
- .landing-trust.landing-utp .trust-copy strong{font-size:18px;min-height:2.4em}
- .landing-trust.landing-utp .trust-copy span{font-size:11px;min-height:4.2em}
  .landing-trust.company-trust .trust-copy strong{font-size:18px}
 }

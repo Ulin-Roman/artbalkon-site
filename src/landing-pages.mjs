@@ -16,7 +16,7 @@ export const newLandingCaseIds=Object.freeze(Object.fromEntries(newLandingDefini
 export const newGlazingNavigation=[
  ['Остекление с выносом','osteklenie-balkona-s-vynosom'],
  ['Раздвижное остекление','razdvizhnoe-osteklenie'],
- ['Балконы в хрущёвке','osteklenie-balkona-v-hrushchevke']
+ ['Остекление хрущёвки','osteklenie-balkona-v-hrushchevke']
 ];
 export const newFinishingNavigation=[
  ['ПВХ-панели','otdelka-balkona-pvh-panelyami'],
