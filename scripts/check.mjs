@@ -54,6 +54,50 @@ const requiredLocation='в Москве и Московской области';
 const bundledServiceSlugs=['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'];
 const homeHtml=renderHome();
 
+// Both glazing choices must be readable together without interaction.
+const assertGlazingChoice=(html,label)=>{
+ const blocks=[...html.matchAll(/<section\b(?=[^>]*\bid="cold-warm-balcony")[^>]*>[\s\S]*?<\/section>/g)];
+ assert.equal(blocks.length,1,label+': exactly one cold/warm comparison');
+ const block=blocks[0][0];
+ assert.ok(/^\s*<section\b[^>]*\bid="complex-options"/.test(html.slice(blocks[0].index+block.length)),label+': comparison must immediately precede additional services');
+ assert.ok(!/<(?:button|input|select|details|dialog)\b|\srole="(?:tab|tablist|tabpanel)"|\s(?:hidden|inert)(?:\s|=|>)|\saria-hidden="true"|\saria-expanded=|\bdata-(?:tab|tabs|accordion|toggle)(?:\s|=|>)/i.test(block),label+': both choices and every fact must remain visible without controls');
+ const photos=[...block.matchAll(/<img\b[^>]*>/g)].map(match=>match[0]);
+ assert.equal(photos.length,2,label+': cold and warm photos must both be present');
+ for(const [index,name] of ['cold-balcony','warm-balcony'].entries()){
+  const photo=photos[index],src=photo.match(/\bsrc="([^"]+)"/)?.[1];
+  assert.ok(src?.endsWith('/assets/glazing-choice-v1/'+name+'.webp'),label+': preserve the '+name+' photo');
+  assert.ok(/\bwidth="1536"/.test(photo)&&/\bheight="1024"/.test(photo),label+': comparison photos retain landscape dimensions');
+  assert.ok(/\balt="[^"]+"/.test(photo),label+': comparison photos need descriptive alt text');
+ }
+ assert.ok(/<h3>Холодный балкон<\/h3>/.test(block)&&/<h3>Тёплый балкон<\/h3>/.test(block),label+': both photo captions must identify their choice');
+ const table=block.match(/<table\b[^>]*class="glazing-choice-table"[^>]*>[\s\S]*?<\/table>/)?.[0];
+ assert.ok(table,label+': both choices need one comparison table');
+ assert.ok(/aria-describedby="glazing-choice-price-note glazing-choice-load-note"/.test(table),label+': table must reference price and load conditions');
+ const headings=[...table.matchAll(/<th\b[^>]*scope="col"[^>]*>([^<]+)<\/th>/g)].map(match=>match[1]);
+ assert.deepEqual(headings,['Параметр','Холодный балкон','Тёплый балкон'],label+': table columns clearly identify both choices');
+ const rows=[...(table.match(/<tbody>([\s\S]*?)<\/tbody>/)?.[1]||'').matchAll(/<tr>([\s\S]*?)<\/tr>/g)].map(match=>match[1]);
+ const parameters=['Назначение','Остекление','Утепление и отделка','Плюсы','Ограничения','Бюджет'];
+ assert.equal(rows.length,parameters.length,label+': preserve all six comparison parameters');
+ const values=rows.map((row,index)=>{
+  const heading=row.match(/<th\b[^>]*scope="row"[^>]*>([^<]+)<\/th>/)?.[1];
+  assert.equal(heading,parameters[index],label+': preserve comparison parameter '+parameters[index]);
+  const cells=[...row.matchAll(/<td\b([^>]*)>([\s\S]*?)<\/td>/g)];
+  assert.equal(cells.length,2,label+': every parameter must show both values');
+  for(const [column,name] of ['cold','warm'].entries())assert.ok(cells[column][1].includes('headers="glazing-choice-row-'+index+' glazing-choice-'+name+'"'),label+': values must identify their row and choice');
+  return cells.map(cell=>cell[2].replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim());
+ });
+ assert.ok(/сезон|хранени/i.test(values[0][0])&&/круглый год.*утеплен.*обогрев/i.test(values[0][1]),label+': explain seasonal and year-round use');
+ assert.ok(/алюмини.*без терморазрыва.*одинарное стекло/i.test(values[1][0])&&/ПВХ.*стеклопакет/i.test(values[1][1]),label+': explain both glazing systems');
+ assert.ok(/влагостойк.*перепад/i.test(values[2][0])&&/утеплен.*герметичн.*отделк/i.test(values[2][1]),label+': explain finishing and insulation requirements');
+ assert.ok(/осадк.*ветр.*пыли.*раздвиж/i.test(values[3][0])&&/тепла.*утеплен.*обогрев/i.test(values[3][1]),label+': both choices include their benefits');
+ assert.ok(/зимой.*не.*комфорт/i.test(values[4][0])&&/недостаточно.*утеплен.*обогрев/i.test(values[4][1]),label+': preserve both limitations');
+ for(const [column,key] of ['cold','warm'].entries())assert.equal(values[5][column],'от '+prices[key].toLocaleString('ru-RU').replace(/\s+/g,' ')+' ₽ /м² за остекление',label+': budget uses the confirmed '+key+' rate');
+ assert.ok(/id="glazing-choice-price-note"[^>]*>[^<]*Утепление, отделка и обогрев рассчитываются отдельно после замера/.test(block),label+': distinguish glazing price from additional work');
+ assert.ok(/id="glazing-choice-load-note"[^>]*>[^<]*нагрузку[^<]*осмотра основания/.test(block),label+': preserve assessment of the balcony base');
+ return block;
+};
+assertGlazingChoice(homeHtml,'Home source');
+
 const inlineEstimateServices=services.filter(service=>!['balkon-pod-klyuch',...bundledServiceSlugs].includes(service.slug));
 const inlineEstimatePages=[['home',homeHtml],...inlineEstimateServices.map(service=>[service.slug,servicePageWithSeo(service)])];
 assert.equal(inlineEstimatePages.length,20,'Every published service and home must keep an inline estimate');
@@ -66,6 +110,7 @@ for(const [label,html] of inlineEstimatePages){
  for(const name of ['service','object','timing','detail','name','phone','consent'])assert.ok(form.includes('name="'+name+'"'),label+': preserve '+name);
  assert.match(html,/\bid="quiz"/,label+': preserve existing estimate links');
 }
+for(const [label,html] of inlineEstimatePages.filter(([label])=>label!=='home'))assert.ok(!html.includes('id="cold-warm-balcony"'),label+': comparison is exclusive to the published home page');
 assert.ok(homeHtml.includes('Получить консультацию'),'home hero must invite visitors to get a consultation');
 assert.match(homeHtml,/<section class="container landing-hero">/,'Home must use the turnkey hero');
 for(const slug of bundledServiceSlugs)assert.ok(!homeHtml.includes(`href="/${slug}/"`),`Home must not advertise ${slug} as a standalone service`);
@@ -279,6 +324,14 @@ assert.equal(addedOffice.visualized,false);
 assert.equal(addedOffice.beforeReal,true);
 assert.equal(addedOffice.afterReal,true);
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
+for(const name of ['cold-balcony','warm-balcony']){
+ const asset='/assets/glazing-choice-v1/'+name+'.webp',entry=responsiveImages[asset];
+ assert.ok(entry,'Comparison photo needs responsive variants: '+name);
+ assert.equal(entry.src,asset,'Comparison photo keeps its selected full-size source');
+ assert.equal(entry.width,1536,'Comparison photo source width');
+ assert.equal(entry.height,1024,'Comparison photo source height');
+ assert.deepEqual(entry.variants.map(variant=>variant.width),[320,640,1280,1536],'Comparison photo covers mobile and high-density desktop screens');
+}
 const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';
 const redirectTargets=new Map([
@@ -393,6 +446,9 @@ const searchable=files.filter(file=>/\.(?:html|css|js|json|xml|txt)$/.test(file)
 await assert.rejects(stat(join(root,'styles-extra.css')),/ENOENT/);
 for(const file of ['dist/app.js','scripts/build.mjs','scripts/optimize.mjs','public/app.js','scripts/server.mjs','scripts/leads.mjs','src/components.mjs','src/content.mjs'])execFileSync(process.execPath,['--check',file]);
 const home=await readFile(join(root,'index.html'),'utf8');
+const builtGlazingChoice=assertGlazingChoice(home,'Built home');
+for(const photo of builtGlazingChoice.matchAll(/<img\b[^>]*>/g))assert.ok(/\bsrcset="[^"]+"/.test(photo[0])&&/\bsizes="[^"]+"/.test(photo[0]),'Built comparison photos must use responsive sources');
+for(const page of pages.filter(page=>page!==join(root,'index.html')))assert.ok(!(await readFile(page,'utf8')).includes('id="cold-warm-balcony"'),'Published comparison belongs only on the home page: '+page);
 if(base!=='/'){assert.ok(home.includes(`href="${base}styles.css`));assert.ok(home.includes(`src="${base}app.js`));assert.ok(home.includes(`srcset="${base}assets/`));assert.ok(home.includes(`data-src="${base}assets/`));assert.ok(home.includes(`poster="${base}assets/video/process-poster.jpg"`));assert.ok(home.includes(`poster="${base}assets/video/result-poster.jpg"`));assert.ok(home.includes(`href="${base}osteklenie-balkonov/"`));assert.ok(home.includes(`<link rel="canonical" href="https://ulin-roman.github.io${base}"`));const css=await readFile(join(root,'styles.css'),'utf8');assert.ok(css.includes(`${base}assets/manrope.woff2`));assert.ok(!css.includes("url('/assets/"));assert.ok(!home.includes('srcset="/assets/'));assert.ok(!home.includes('data-src="/assets/'));assert.ok(!home.includes('poster="/assets/'));}
 const total=await Promise.all(files.filter(f=>f.endsWith('.webp')).map(f=>stat(f).then(s=>s.size)));
 console.log(`PASS: ${pages.length} pages, ${refs} local references, unique metadata, JSON-LD, image alt, no orphan assets, JS syntax. WebP total: ${Math.round(total.reduce((a,b)=>a+b,0)/1024)} KB.`);

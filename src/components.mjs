@@ -427,6 +427,19 @@ const turnkeyIncludedExtrasSection=service=>{
  }).join('');
  return `<section class="section container turnkey-extras" id="complex-options"><div class="section-heading services-heading"><div><h2>Дополнительные услуги</h2><p class="services-subtitle">Эти работы выполняем только вместе с остеклением и отделкой — как часть одного комплексного заказа.</p></div></div><div class="turnkey-extra-grid">${cards}</div></section>`;
 };
+const glazingChoiceSection=()=>{
+ const rows=[
+  ['Назначение','Сезонный отдых и хранение вещей.','Кабинет или зона отдыха круглый год — с утеплением и обогревом.'],
+  ['Остекление','Обычно алюминиевый профиль без терморазрыва и одинарное стекло.','Тёплый ПВХ-профиль со стеклопакетом.'],
+  ['Утепление и отделка','Влагостойкая отделка, которая выдерживает перепады температуры.','Утепление наружного контура, герметичные примыкания и отделка.'],
+  ['Плюсы',['Защита от осадков, ветра и пыли','Раздвижные створки сохраняют свободный проход'],['Сохранение тепла','Комфорт для повседневного использования — с утеплением и обогревом']],
+  ['Ограничения','Зимой не обеспечивает комнатный комфорт.','Одних окон недостаточно: нужны утепление и обогрев.'],
+  ['Бюджет',`${money(prices.cold)} /м² за остекление`,`${money(prices.warm)} /м² за остекление`]
+ ];
+ const cell=value=>Array.isArray(value)?`<ul class="glazing-choice-list">${value.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`:`<p>${esc(value)}</p>`;
+ return `<section class="section container glazing-choice" id="cold-warm-balcony" aria-labelledby="glazing-choice-title"><div class="section-heading"><div><h2 id="glazing-choice-title">Холодный или тёплый балкон?</h2><p class="section-description">Сравните два варианта и выберите, как хотите пользоваться пространством.</p></div></div><div class="glazing-choice-photos"><figure class="glazing-choice-photo glazing-choice-photo--cold"><img src="/assets/glazing-choice-v1/cold-balcony.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Балкон с холодным алюминиевым остеклением"><figcaption><h3>Холодный балкон</h3><p>Для сезонного использования</p></figcaption></figure><figure class="glazing-choice-photo glazing-choice-photo--warm"><img src="/assets/glazing-choice-v1/warm-balcony.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Утеплённый балкон с тёплым остеклением"><figcaption><h3>Тёплый балкон</h3><p>Круглый год — с утеплением и обогревом</p></figcaption></figure></div><div class="glazing-choice-table-wrap"><table class="glazing-choice-table" aria-labelledby="glazing-choice-title" aria-describedby="glazing-choice-price-note glazing-choice-load-note"><colgroup><col class="glazing-choice-parameter-column"><col><col></colgroup><thead><tr><th scope="col">Параметр</th><th scope="col" id="glazing-choice-cold">Холодный балкон</th><th scope="col" id="glazing-choice-warm">Тёплый балкон</th></tr></thead><tbody>${rows.map(([label,cold,warm],index)=>`<tr><th scope="row" id="glazing-choice-row-${index}">${esc(label)}</th><td class="glazing-choice-cold" headers="glazing-choice-row-${index} glazing-choice-cold">${cell(cold)}</td><td class="glazing-choice-warm" headers="glazing-choice-row-${index} glazing-choice-warm">${cell(warm)}</td></tr>`).join('')}</tbody></table></div><p class="glazing-choice-note" id="glazing-choice-price-note">Цены за остекление. Утепление, отделка и обогрев рассчитываются отдельно после замера.</p><p class="glazing-choice-note glazing-choice-load-note" id="glazing-choice-load-note">Конструкцию и допустимую нагрузку подбираем после осмотра основания.</p></section>`;
+};
+
 // Keep the full project overview shared while retaining each page's own hero and forms.
 const mergedTurnkeyProjects=()=>{
  const cases=new Set(),photos=new Set();
@@ -445,6 +458,7 @@ ${promotionSection(service||{title:'Балкон или лоджия под кл
 ${reviewsSection()}
 ${thermalInspectionSection()}
 ${processVideoSection()}
+${service?.slug==='balkon-pod-klyuch'?glazingChoiceSection():''}
 ${turnkeyIncludedExtrasSection(service)}
 ${advantagesSection()}
 ${finishingStylesSection()}

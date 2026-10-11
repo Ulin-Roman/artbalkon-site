@@ -4841,3 +4841,84 @@ main > .social-subscribe,
  .project-estimate-details,.project-estimate-form .field-row{grid-template-columns:minmax(0,1fr)}
 }
 @media(prefers-reduced-motion:reduce){.project-estimate-option{transition:none}}
+
+/* Both balcony options stay visible in one static comparison. */
+.glazing-choice{--choice-cold:#176677;--choice-cold-bg:#eef6f8;--choice-warm:#93543e;--choice-warm-bg:#fbf1eb;min-width:0;padding-block:36px}
+.glazing-choice .section-heading{margin-bottom:26px}
+.glazing-choice .section-heading h2{font-size:clamp(28px,3.1vw,38px);line-height:1.15;letter-spacing:-.035em;overflow-wrap:anywhere}
+.glazing-choice .section-description{max-width:650px;margin:12px auto 0;font-size:15px;line-height:1.65;color:var(--muted);overflow-wrap:anywhere}
+.glazing-choice-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;min-width:0}
+.glazing-choice-photo{display:flex;flex-direction:column;min-width:0;margin:0;border:1px solid var(--line);border-radius:18px;background:#fff}
+.glazing-choice-photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:17px 17px 0 0}
+.glazing-choice-photo figcaption{flex:1;min-width:0;padding:18px 20px 19px;border-top:1px solid var(--line);border-radius:0 0 17px 17px}
+.glazing-choice-photo h3{margin:0;font-size:24px;font-weight:650;line-height:1.25;letter-spacing:-.025em;overflow-wrap:anywhere}
+.glazing-choice-photo figcaption p{margin:6px 0 0;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.glazing-choice-photo--cold figcaption{background:var(--choice-cold-bg)}
+.glazing-choice-photo--cold h3,.glazing-choice-photo--cold figcaption p{color:var(--choice-cold)}
+.glazing-choice-photo--warm figcaption{background:var(--choice-warm-bg)}
+.glazing-choice-photo--warm h3,.glazing-choice-photo--warm figcaption p{color:var(--choice-warm)}
+.glazing-choice-table-wrap{min-width:0;margin-top:24px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.glazing-choice-table{width:100%;max-width:100%;margin:0;table-layout:fixed;border-collapse:separate;border-spacing:0;text-align:left}
+.glazing-choice-parameter-column{width:22%}
+.glazing-choice-table th,.glazing-choice-table td{min-width:0;padding:20px 22px;vertical-align:top;white-space:normal;overflow-wrap:anywhere;font-size:14px;line-height:1.65}
+.glazing-choice-table thead th{padding-block:18px;font-size:17px;font-weight:650;line-height:1.4;border-bottom:1px solid var(--line)}
+.glazing-choice-table thead th:first-child{border-radius:17px 0 0 0;background:#fafbfa;color:var(--muted);font-size:13px;font-weight:500}
+.glazing-choice-table thead th:nth-child(2){background:var(--choice-cold-bg);color:var(--choice-cold)}
+.glazing-choice-table thead th:nth-child(3){border-radius:0 17px 0 0;background:var(--choice-warm-bg);color:var(--choice-warm)}
+.glazing-choice-table tbody th{background:#fafbfa;color:var(--ink);font-size:13px;font-weight:600}
+.glazing-choice-table tbody tr+tr>*{border-top:1px solid var(--line)}
+.glazing-choice-table .glazing-choice-cold{background:#f8fbfc}
+.glazing-choice-table .glazing-choice-warm{background:#fdf9f6}
+.glazing-choice-table tbody td+td{border-left:1px solid var(--line)}
+.glazing-choice-table tbody tr:last-child th{border-radius:0 0 0 17px}
+.glazing-choice-table tbody tr:last-child td:last-child{border-radius:0 0 17px 0}
+.glazing-choice-table p{margin:0;color:var(--ink)}
+.glazing-choice-list{display:grid;gap:7px;margin:0;padding-left:17px;color:var(--ink)}
+.glazing-choice-list li{margin:0;padding-left:2px;overflow-wrap:anywhere}
+.glazing-choice-cold .glazing-choice-list li::marker{color:var(--choice-cold)}
+.glazing-choice-warm .glazing-choice-list li::marker{color:var(--choice-warm)}
+.glazing-choice-note{max-width:880px;margin:17px auto 0;color:var(--muted);font-size:13px;line-height:1.65;text-align:center;overflow-wrap:anywhere}
+.glazing-choice-load-note{margin-top:6px}
+@media(max-width:900px){
+ .glazing-choice-photos{gap:14px}
+ .glazing-choice-photo figcaption{padding:16px}
+ .glazing-choice-photo h3{font-size:22px}
+ .glazing-choice-table th,.glazing-choice-table td{padding:17px 16px;font-size:13px}
+ .glazing-choice-table thead th{font-size:16px}
+}
+@media(max-width:640px){
+ .glazing-choice{width:calc(100% - 32px);max-width:100%;padding-block:28px}
+ .glazing-choice .section-heading{margin-bottom:18px}
+ .glazing-choice .section-heading h2{font-size:28px;line-height:1.2}
+ .glazing-choice .section-description{margin-top:10px;font-size:13px;line-height:1.6}
+ .glazing-choice-photos{gap:10px}
+ .glazing-choice-photo{border-radius:13px}
+ .glazing-choice-photo img{border-radius:12px 12px 0 0}
+ .glazing-choice-photo figcaption{padding:12px 11px;border-radius:0 0 12px 12px}
+ .glazing-choice-photo h3{font-size:18px;line-height:1.25}
+ .glazing-choice-photo figcaption p{margin-top:5px;font-size:12px;line-height:1.45}
+ .glazing-choice-table-wrap{margin-top:18px;border-radius:14px}
+ .glazing-choice-table,.glazing-choice-table thead,.glazing-choice-table tbody{display:block;width:100%;min-width:0}
+ .glazing-choice-table colgroup{display:none}
+ .glazing-choice-table thead tr,.glazing-choice-table tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-width:0}
+ .glazing-choice-table thead th:first-child{display:none}
+ .glazing-choice-table thead th{min-width:0;padding:14px 12px;font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+ .glazing-choice-table thead th:nth-child(2){border-radius:13px 0 0 0}
+ .glazing-choice-table thead th:nth-child(3){border-radius:0 13px 0 0}
+ .glazing-choice-table tbody th{grid-column:1/-1;min-width:0;padding:11px 12px;background:#f5f7f5;font-size:13px;line-height:1.45;border-bottom:1px solid var(--line)}
+ .glazing-choice-table tbody td{min-width:0;padding:13px 12px;font-size:13px;line-height:1.6}
+ .glazing-choice-table tbody tr+tr>td{border-top:0}
+ .glazing-choice-table tbody tr:last-child th{border-radius:0}
+ .glazing-choice-table tbody tr:last-child td:nth-child(2){border-radius:0 0 0 13px}
+ .glazing-choice-table tbody tr:last-child td:last-child{border-radius:0 0 13px 0}
+ .glazing-choice-list{gap:7px;padding-left:13px}
+ .glazing-choice-list li{padding-left:0}
+ .glazing-choice-note{margin-top:14px;font-size:12px;line-height:1.6;text-align:left}
+}
+@media(max-width:360px){
+ .glazing-choice-photos{gap:8px}
+ .glazing-choice-photo figcaption{padding:11px 9px}
+ .glazing-choice-photo h3{font-size:17px}
+ .glazing-choice-table thead th,.glazing-choice-table tbody th{padding-inline:10px}
+ .glazing-choice-table tbody td{padding-inline:10px;font-size:12px;line-height:1.65}
+}
