@@ -13839,5 +13839,119 @@
         "width": 768
       }
     ]
+  },
+  "/assets/landing-gallery-v1/work-365-after-wood-v2.webp": {
+    "src": "/assets/landing-gallery-v1/work-365-after-wood-v2.webp",
+    "width": 768,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/landing-gallery-v1/work-365-after-wood-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-365-after-wood-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-365-after-wood-v2.webp",
+        "width": 768
+      }
+    ]
+  },
+  "/assets/landing-gallery-v1/work-366-after-wood-v2.webp": {
+    "src": "/assets/landing-gallery-v1/work-366-after-wood-v2.webp",
+    "width": 768,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/landing-gallery-v1/work-366-after-wood-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-366-after-wood-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-366-after-wood-v2.webp",
+        "width": 768
+      }
+    ]
+  },
+  "/assets/landing-gallery-v1/work-367-after-wood-v2.webp": {
+    "src": "/assets/landing-gallery-v1/work-367-after-wood-v2.webp",
+    "width": 768,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/landing-gallery-v1/work-367-after-wood-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-367-after-wood-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-367-after-wood-v2.webp",
+        "width": 768
+      }
+    ]
+  },
+  "/assets/landing-gallery-v1/work-368-after-wood-v2.webp": {
+    "src": "/assets/landing-gallery-v1/work-368-after-wood-v2.webp",
+    "width": 768,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/landing-gallery-v1/work-368-after-wood-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-368-after-wood-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-368-after-wood-v2.webp",
+        "width": 768
+      }
+    ]
+  },
+  "/assets/landing-gallery-v1/work-369-after-wood-v2.webp": {
+    "src": "/assets/landing-gallery-v1/work-369-after-wood-v2.webp",
+    "width": 768,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/landing-gallery-v1/work-369-after-wood-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-369-after-wood-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-369-after-wood-v2.webp",
+        "width": 768
+      }
+    ]
+  },
+  "/assets/landing-gallery-v1/work-370-after-wood-v2.webp": {
+    "src": "/assets/landing-gallery-v1/work-370-after-wood-v2.webp",
+    "width": 768,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/landing-gallery-v1/work-370-after-wood-v2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-370-after-wood-v2-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-370-after-wood-v2.webp",
+        "width": 768
+      }
+    ]
   }
 }

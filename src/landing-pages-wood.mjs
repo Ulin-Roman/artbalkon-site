@@ -1,4 +1,4 @@
-const work=(id,title,displayTitle,description)=>({id,title,displayTitle,description,before:`landing-gallery-v1/work-${id}-before.webp`,after:`landing-gallery-v1/work-${id}-after.webp`});
+const work=(id,title,displayTitle,description)=>({id,title,displayTitle,description,before:`landing-gallery-v1/work-${id}-before.webp`,after:`landing-gallery-v1/work-${id}-after${id>=365&&id<=370?'-wood-v2':''}.webp`});
 
 export const definitions=[
  {
