@@ -2040,6 +2040,8 @@ import {newLandingDefinitions} from './landing-pages.mjs';
 prices.custom=null;
 // Material rates match the finishing cards; sliding aluminium uses the cold rate.
 const newLandingPrices={
+ 'osteklenie-balkona-s-vynosom':prices.cold,
+ 'osteklenie-balkona-v-hrushchevke':prices.cold,
  'otdelka-balkona-pvh-panelyami':finishingWallRates.pvc,
  'otdelka-balkona-laminatom':finishingWallRates.laminate,
  'otdelka-balkona-vagonkoj':finishingWallRates.lining,

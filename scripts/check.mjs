@@ -558,6 +558,8 @@ for(const key of ['title','before','after'])assert.equal(new Set(newPairs.map(pa
 assert.equal(new Set(newPairs.flatMap(pair=>[pair.before,pair.after])).size,108);
 assert.equal(new Set(allPhotoPairs.map(pair=>pair.title)).size,new Set(allPhotoPairs.map(portfolioCaseId)).size,'Public case IDs may not collide');
 const confirmedLandingPrices={
+ 'osteklenie-balkona-s-vynosom':7000,
+ 'osteklenie-balkona-v-hrushchevke':7000,
  'otdelka-balkona-pvh-panelyami':2500,
  'otdelka-balkona-laminatom':3800,
  'otdelka-balkona-vagonkoj':4000,
