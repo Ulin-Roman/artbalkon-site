@@ -16,27 +16,32 @@ function group(key, title, selected, enabled, rates) {
  return `<fieldset class="finish-calc-group" data-calc-group="${key}"><legend>${title}</legend><div class="finish-calc-group-head" aria-hidden="true">${heading}</div>${toggle}<div class="finish-calc-options">${choices[key].map(([value,label])=>`<label class="finish-calc-option"><input type="radio" name="${key}" value="${value}" ${value===selected?'checked':''} ${!enabled?'disabled':''}><span class="finish-calc-swatch" data-swatch="${value}" aria-hidden="true"></span><span>${label}</span>${rates?.[value]?`<small>от ${format(rates[value])} ₽/м²</small>`:''}</label>`).join('')}</div></fieldset>`;
 }
 function scene() {
- // Both roof edges converge with the ceiling. The sheet is outside the window
- // and behind the cutaway, so the intact frame supplies its own occlusion.
- const innerNear=[297,64],innerFar=[231.5,140],outerNear=[338,77.2],outerFar=[249.7,146];
+ // The flashing starts under the slab, above the window head. Both long edges
+ // meet the mirrored ceiling's vanishing point; the cutaway hides the fixing.
+ const vanishing=[180.606,199.829],innerNear=[309.5,54.5],outerNear=[337,63.5];
+ const farScale=(vanishing[1]-140)/(vanishing[1]-innerNear[1]);
+ const far=near=>near.map((value,i)=>vanishing[i]+(value-vanishing[i])*farScale);
+ const innerFar=far(innerNear),outerFar=far(outerNear),thickness=1.4;
  const along=(near,far,v)=>near.map((value,i)=>Number((value+(far[i]-value)*v).toFixed(2))).join(' ');
- const roofRibs=Array.from({length:15},(_,i)=>{const v=(i+1)/16;return `<path d="M${along(innerNear,innerFar,v)} ${along(outerNear,outerFar,v)}"/>`;}).join('');
- return `<div class="finish-calc-scene-wrap"><svg class="finish-calc-scene" viewBox="16 18 324 448" role="img" aria-label="Выбранная отделка балкона с наружной крышей: остекление справа, дверь и окно в квартиру слева">
+ const point=p=>p.map(v=>Number(v.toFixed(2))).join(' ');
+ const lower=(p,scale=1)=>[p[0],p[1]+thickness*scale];
+ const roofRibs=Array.from({length:7},(_,i)=>{const depth=(i+1)/8,v=depth/(farScale+(1-farScale)*depth);return `<path d="M${along(innerNear,innerFar,v)} ${along(outerNear,outerFar,v)}"/>`;}).join('');
+ return `<div class="finish-calc-scene-wrap"><svg class="finish-calc-scene" viewBox="16 18 324 448" role="img" aria-label="Выбранная отделка балкона с козырьком: остекление справа, дверь и окно в квартиру слева">
  <defs>
  <clipPath id="finish-calc-cutout" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 314.86,19.01 315.18,44.46 321.31,45.42 321.31,54.44 309.5,69.91 309.5,292.51 313.90,296.70 313.57,415.57 322.60,430.39 322.60,439.41 318.73,439.73 318.73,464.86 41.5,464.86"/></clipPath>
  <clipPath id="finish-calc-cutout-exterior" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 314.86,19.01 315.18,44.46 321.31,45.42 321.31,54.44 309.5,69.91 309.5,292.51 313.90,296.70 313.57,415.57 322.60,430.39 322.60,439.41 318.73,439.73 318.73,464.86 41.5,464.86"/><rect x="311.9" y="303.3" width="3.6" height="162.5"/></clipPath>
- <linearGradient id="finish-calc-canopy-metal" x1="297" y1="64" x2="338" y2="77.2" gradientUnits="userSpaceOnUse"><stop stop-color="#c3cbd0"/><stop offset=".35" stop-color="#e1e5e8"/><stop offset=".78" stop-color="#d6dce0"/><stop offset="1" stop-color="#afb9c0"/></linearGradient>
- <linearGradient id="finish-calc-canopy-end" x1="297" y1="64" x2="338" y2="78.6" gradientUnits="userSpaceOnUse"><stop stop-color="#cbd0d4"/><stop offset=".45" stop-color="#f6f7f8"/><stop offset="1" stop-color="#a4adb3"/></linearGradient>
+ <linearGradient id="finish-calc-canopy-metal" x1="309.5" y1="54.5" x2="337" y2="63.5" gradientUnits="userSpaceOnUse"><stop stop-color="#aeb8be"/><stop offset=".35" stop-color="#dce2e5"/><stop offset=".78" stop-color="#d2d9de"/><stop offset="1" stop-color="#adb8bf"/></linearGradient>
+ <linearGradient id="finish-calc-canopy-end" x1="309.5" y1="54.5" x2="337" y2="64.9" gradientUnits="userSpaceOnUse"><stop stop-color="#a4adb2"/><stop offset=".45" stop-color="#edf0f1"/><stop offset="1" stop-color="#929fa7"/></linearGradient>
  </defs>
  <style>.finishing-calculator:has([name="exterior-enabled"]:checked) .finish-calc-scene>foreignObject{clip-path:url(#finish-calc-cutout-exterior)}</style>
  <g data-calc-canopy aria-hidden="true" pointer-events="none">
- <path d="M297 64 338 77.2 249.7 146 231.5 140Z" fill="url(#finish-calc-canopy-metal)"/>
+ <path d="M${point(innerNear)} ${point(outerNear)} ${point(outerFar)} ${point(innerFar)}Z" fill="url(#finish-calc-canopy-metal)"/>
  <g fill="none" stroke="#89949b30" stroke-width=".28">${roofRibs}</g>
- <path d="M338 77.2 249.7 146 249.7 146.6 338 78.6Z" fill="#a6b0b7"/>
- <path d="M297 64 338 77.2 338 78.6 297 65.4Z" fill="url(#finish-calc-canopy-end)"/>
- <path d="M231.5 140 249.7 146 249.7 146.6 231.5 140.6Z" fill="#b6bfc5"/>
- <path d="M297 64 338 77.2 249.7 146" fill="none" stroke="#ffffff" stroke-width=".65"/>
- <path d="M297 65.4 338 78.6 249.7 146.6" fill="none" stroke="#88959e" stroke-width=".4"/>
+ <path d="M${point(outerNear)} ${point(outerFar)} ${point(lower(outerFar,farScale))} ${point(lower(outerNear))}Z" fill="#939fa7"/>
+ <path d="M${point(innerNear)} ${point(outerNear)} ${point(lower(outerNear))} ${point(lower(innerNear))}Z" fill="url(#finish-calc-canopy-end)"/>
+ <path d="M${point(innerNear)} ${point(outerNear)} ${point(outerFar)}" fill="none" stroke="#f2f5f6" stroke-width=".55"/>
+ <path d="M${point(lower(innerNear))} ${point(lower(outerNear))} ${point(lower(outerFar,farScale))}" fill="none" stroke="#7b8a94" stroke-width=".4"/>
+ <path d="M318.8 57.6 321.9 58.6" fill="none" stroke="#59676b70" stroke-width=".7"/>
  </g>
  <foreignObject x="0" y="0" width="340" height="480" clip-path="url(#finish-calc-cutout)"><div xmlns="http://www.w3.org/1999/xhtml" class="finish-calc-raster-wrap"><img data-calc-fallback class="finish-calc-raster finish-calc-fallback" src="/assets/calculator-realistic-v1/balcony-apartment-v4.webp" width="340" height="480" alt="Балкон в разрезе: наружное остекление справа, дверь и окно в квартиру слева"><canvas data-calc-canvas class="finish-calc-raster" width="1020" height="1440" hidden></canvas></div></foreignObject>
  </svg></div>`;

@@ -333,7 +333,11 @@ function createCalculatorScene(root) {
  const base=new Image(),atlas=new Image(),insulation=new Image(),cache=new Map();
  let selection=null,ready=false,frame=0;
  const cells={laminate:0,'laminate-wall':0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
- const surfaces={back:[[108.5,140],[220,140],[220,317],[108.5,317]],house:[[220,140],[298,57],[297,427.5],[220,317]],parapet:[[47.5,304],[108.5,267],[108.5,317],[47.5,427.5]],ceiling:[[43,63],[298,63],[220,140],[108.5,140]],floor:[[113,317],[220,317],[293,427.5],[47.5,427.5]]};
+ const floorBase=[[108.5,317],[220,317],[293,427.5],[47.5,427.5]];
+ const floorSurface=floorBase.map(([x,y],i)=>[x,y-(i<2?2.5:9)]);
+ const floorRecess={far:.8,near:3.2};
+ // Wall finishes stop at the same raised floor edge; the slab stays below it.
+ const surfaces={back:[[108.5,140],[220,140],floorSurface[1],floorSurface[0]],house:[[220,140],[298,57],floorSurface[2],floorSurface[1]],parapet:[[47.5,304],[108.5,267],floorSurface[0],floorSurface[3]],ceiling:[[43,63],[298,63],[220,140],[108.5,140]],floor:floorSurface};
  const polygon=q=>{ctx.beginPath();q.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.closePath();};
  const fill=(q,color)=>{polygon(q);ctx.fillStyle=color;ctx.fill();};
  function texture(key,rx=1,ry=1,rotate=false,offset=0){
@@ -392,8 +396,8 @@ function createCalculatorScene(root) {
  const section=(map,u0,v0,u1,v1)=>[[u0,v0],[u1,v0],[u1,v1],[u0,v1]].map(p=>map(...p));
  function glow(x,y,r,alpha){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(255,241,198,${alpha})`);g.addColorStop(1,'rgba(255,241,198,0)');ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2);}
  function insulatedSurface(q,isFloor=false,filled=true){
-  const map=projection(q),depth=isFloor?[.7,3.2]:[1.2,1.3];
-  const recessed=isFloor?q.map(([x,y],i)=>[x,y+(i<2?.8:3.2)]):q,foamMap=projection(recessed);
+  const map=projection(q),depth=isFloor?[.7,floorRecess.near]:[1.2,1.3];
+  const recessed=isFloor?(filled?q.map(([x,y],i)=>[x,y+(i<2?floorRecess.far:floorRecess.near)]):floorBase):q,foamMap=projection(recessed);
   plane(recessed,filled?'insulated':'concrete',2,2,false,{axis:[q[0][0],q[0][1],q[2][0],q[2][1]],stops:[[0,'#392f2250'],[.6,'#fff4c509'],[1,'#392f2240']]});
   ctx.save();polygon(q);ctx.clip();
   function batten(u0,v0,u1,v1,vertical){
@@ -411,54 +415,65 @@ function createCalculatorScene(root) {
   for(const u of [0,.19,.38,.57,.76,.955])batten(u,0,Math.min(1,u+.035),1,true);
   ctx.restore();
  }
- function recessedBay(q,kind){
+ function recessedBay(q,kind,filled=false,flushTop=false){
   const [[left,top],,[right,bottom]]=q,width=right-left;
-  // The back and four inner faces stay within the existing frame opening.
+  // Insulation sits slightly behind the timber ends, inside each separate bay.
+  const setback=filled?.42:1;
   const shift=kind==='side'?0:Math.max(-1.5,Math.min(1.5,(170-(left+right)/2)*.02));
-  const rear=kind==='side'?[[left+width*3/8.5,top+1.3],[right-width*.65/8.5,top+1.3],[right-width*.65/8.5,bottom-3],[left+width*3/8.5,bottom-3]]:
-   [[left+2.7+shift,top+(kind==='roof'?2.5:.8)],[right-2.7+shift,top+(kind==='roof'?2.5:.8)],[right-2.7+shift,bottom-(kind==='roof'?.8:3)],[left+2.7+shift,bottom-(kind==='roof'?.8:3)]];
+  const rearTop=top+(flushTop?0:(kind==='roof'?2.5:.8)*setback);
+  const rear=kind==='side'?[[left+width*3/8.5*setback,top+1.3*setback],[right-width*.65/8.5*setback,top+1.3*setback],[right-width*.65/8.5*setback,bottom-3*setback],[left+width*3/8.5*setback,bottom-3*setback]]:
+   [[left+(2.7+shift)*setback,rearTop],[right-(2.7-shift)*setback,rearTop],[right-(2.7-shift)*setback,bottom-(kind==='roof'?.8:3)*setback],[left+(2.7+shift)*setback,bottom-(kind==='roof'?.8:3)*setback]];
   ctx.save();polygon(q);ctx.clip();
-  fill(q,'#36332e');
-  plane(rear,'concrete',Math.max(1,width/35),1,false,{axis:[rear[0][0],rear[0][1],rear[2][0],rear[2][1]],stops:[[0,'#151511ce'],[.45,'#25241eab'],[1,'#39362ba3']]},4);
+  fill(q,filled?'#6e6047':'#36332e');
+  plane(rear,filled?'insulated':'concrete',Math.max(1,width/35),1,false,{axis:[rear[0][0],rear[0][1],rear[2][0],rear[2][1]],stops:filled?[[0,'#5b462c3d'],[.45,'#fff0c50d'],[1,'#50412d45']]:[[0,'#151511ce'],[.45,'#25241eab'],[1,'#39362ba3']]},4);
   for(let i=0;i<4;i++){
+   if(flushTop&&i===0)continue;
    const j=(i+1)%4,face=[q[i],q[j],rear[j],rear[i]],timber=kind==='side'?(i===0||i===2):(i===1||i===3);
    plane(face,timber?'timber':'concrete',1,1,kind!=='side',null,3);
    const g=ctx.createLinearGradient(q[i][0],q[i][1],rear[i][0],rear[i][1]);
    const shadow=i===0?'#1b1c1759':i===3?'#34332b48':'#b9ab8910';
-   g.addColorStop(0,i===2?'#fff1ca20':shadow);g.addColorStop(1,i===2?'#302d214d':'#24231b9e');
+   g.addColorStop(0,i===2?'#fff1ca20':shadow);g.addColorStop(1,filled?'#342c205c':i===2?'#302d214d':'#24231b9e');
    fill(face,g);
   }
   // Contact shadows sit at the rear corners, behind the unchanged timber ends.
-  line([rear[3],rear[0],rear[1]],'#191b17a6',.6);
-  line([rear[1],rear[2],rear[3]],'#0f130f70',.45);
+  line([rear[3],rear[0],rear[1]],filled?'#59452d80':'#191b17a6',.6);
+  line([rear[1],rear[2],rear[3]],filled?'#5e503b60':'#0f130f70',.45);
   ctx.restore();
  }
- function cavity(q,filled){
-  if(filled)plane(q,'insulated',2,1,false,{axis:[q[0][0],q[0][1],q[2][0],q[2][1]],stops:[[0,'#53321345'],[.25,'#53321308'],[1,'#53321325']]},4);
-  line([q[3],q[0],q[1]],'#5c411e66',.65);
- }
- function floorSection(q,covered,filled){
-  const left=q[3],right=q[2],top=covered?left[1]+1:left[1],bottom=428.7,width=right[0]-left[0],ribs=[0,.19,.38,.57,.76,.955];
+ function floorSection(q,material,filled){
+  const left=q[3],right=q[2],bottom=floorBase[3][1]+1.2,width=right[0]-left[0],ribs=[0,.19,.38,.57,.76,.955];
+  const finish=({tile:{thickness:1,bed:.75,colors:['#c4c6bd','#8e948d'],base:['#a8aca3','#747b72']},laminate:{thickness:.65,bed:.35,colors:['#d3bf96','#958264'],base:['#b0a58c','#837960']},vinyl:{thickness:.35,bed:.2,colors:['#aaa99d','#74796f'],base:['#b7b9ad','#929a8d']},linoleum:{thickness:.25,bed:.3,colors:['#b8b3a0','#898878'],base:['#acae9f','#858d7d']}})[material];
+  const deck=finish?1.2:0,top=left[1]+(finish?finish.thickness+finish.bed+deck:0);
+  const openFoam=filled&&!finish,bayTop=top+(openFoam?floorRecess.near:0);
   // The same front joists bound the recessed bays, with or without insulation.
-  if(filled)cavity([[left[0],top],[right[0],top],[right[0],bottom],[left[0],bottom]],true);
-  else for(let i=0;i<ribs.length-1;i++){
+  for(let i=0;i<ribs.length-1;i++){
    const x0=left[0]+(ribs[i]+.035)*width,x1=left[0]+ribs[i+1]*width;
-   recessedBay([[x0,top],[x1,top],[x1,bottom],[x0,bottom]],'floor');
+   recessedBay([[x0,bayTop],[x1,bayTop],[x1,bottom],[x0,bottom]],'floor',filled,openFoam);
   }
-  for(const u of ribs){
-   const x=left[0]+u*width,w=Math.min(.035,1-u)*width;
+  ribs.forEach((u,index)=>{
+   const x=left[0]+u*width,w=(index===ribs.length-1?1-u:.035)*width;
    const g=ctx.createLinearGradient(x,top,x+w,bottom);g.addColorStop(0,'#e4cc9f');g.addColorStop(.5,'#bea477');g.addColorStop(1,'#987d52');ctx.fillStyle=g;ctx.fillRect(x,top,w,bottom-top);
    for(let y=top+1;y<bottom;y+=2)line([[x+.4,y],[x+w-.4,y+.4]],'#6d542c30',.35);
    line([[x,top],[x,bottom]],'#674b2a55',.5);
+  });
+  if(finish){
+   const strip=(start,end,colors)=>{const g=ctx.createLinearGradient(left[0],left[1]+start,left[0],left[1]+end);g.addColorStop(0,colors[0]);g.addColorStop(1,colors[1]);fill([[left[0],left[1]+start],[right[0],right[1]+start],[right[0],right[1]+end],[left[0],left[1]+end]],g);};
+   strip(0,finish.thickness,finish.colors);strip(finish.thickness,finish.thickness+finish.bed,finish.base);
+   // A continuous load-bearing deck separates every finish from the joists.
+   strip(finish.thickness+finish.bed,finish.thickness+finish.bed+deck,material==='tile'?['#b9b9ab','#858d82']:['#c6b493','#897859']);
+   line([left,right],material==='tile'?'#e0e1d7':'#e3d8be',.45);
+   if(material==='tile'){
+    const tiles=Number(selection.width)/40,map=projection(q);
+    for(let i=1;i<tiles;i++){const p=map(i/tiles,1);line([p,[p[0],p[1]+finish.thickness]],'#69756b',.38);}
+   }
+   line([[left[0],top],[right[0],top]],'#4e51455c',.35);
   }
-  if(covered){line([[left[0],left[1]],[right[0],right[1]]],'#eee2c3',1.8);line([[left[0],left[1]+1.5],[right[0],right[1]+1.5]],'#856d4966',.65);}
   line([[left[0],bottom],[right[0],bottom]],'#3e392c66',.8);
  }
  function sideSection(filled){
   // This inner lining remains separate from the mineral core ending at x41.5.
-  const left=41.5,right=47.5,top=303.3,bottom=418.5,map=projection(surfaces.parapet),ribs=[top,...[.26,.49,.72].map(v=>map(0,v)[1]-.7),bottom-2.3];
-  if(filled)cavity([[left,top],[right,top],[right,bottom],[left,bottom]],true);
-  else for(let i=0;i<ribs.length-1;i++)recessedBay([[left,ribs[i]+2.3],[right,ribs[i]+2.3],[right,ribs[i+1]],[left,ribs[i+1]]],'side');
+  const left=41.5,right=surfaces.floor[3][0],top=303.3,bottom=surfaces.floor[3][1],map=projection(surfaces.parapet),ribs=[top,...[.26,.49,.72].map(v=>map(0,v)[1]-.7),bottom-2.3];
+  for(let i=0;i<ribs.length-1;i++)recessedBay([[left,ribs[i]+2.3],[right,ribs[i]+2.3],[right,ribs[i+1]],[left,ribs[i+1]]],'side',filled);
   // Horizontal blocking remains in front of the four open or filled bays.
   for(const y of ribs){
    const q=[[left,y],[right,y],[right,y+2.3],[left,y+2.3]];
@@ -469,12 +484,11 @@ function createCalculatorScene(root) {
  }
  function roofSection(filled){
   const q=[[43,55],[298,55],[298,62.5],[43,62.5]],map=projection(q),ribs=[0,.19,.38,.57,.76,.955];
-  if(filled)cavity(q,true);
-  else for(let i=0;i<ribs.length-1;i++)recessedBay(section(map,ribs[i]+.035,0,ribs[i+1],1),'roof');
-  for(const u of ribs){
-   const rib=section(map,u,0,Math.min(1,u+.035),1);plane(rib,'timber',1,1,false,null,2);
+  for(let i=0;i<ribs.length-1;i++)recessedBay(section(map,ribs[i]+.035,0,ribs[i+1],1),'roof',filled);
+  ribs.forEach((u,index)=>{
+   const rib=section(map,u,0,index===ribs.length-1?1:Math.min(1,u+.035),1);plane(rib,'timber',1,1,false,null,2);
    line([rib[1],rib[2]],'#72502d80',.6);line([rib[0],rib[3]],'#f4dfb580',.45);
-  }
+  });
   line([[43,63],[298,63]],'#e7e2d5',1);line([[43,63.5],[298,63.5]],'#39342b50',.55);
  }
 
@@ -639,7 +653,7 @@ function createCalculatorScene(root) {
 
  function parapetCore(){
   // One continuous mineral core reaches the exterior skin; the inner battens start at x41.5.
-  const left=28,right=41.5,top=302,bottom=429,q=[[left,top],[right,top],[right,bottom],[left,bottom]];
+  const left=28,right=41.5,top=302,bottom=floorBase[3][1]+1.5,q=[[left,top],[right,top],[right,bottom],[left,bottom]];
   plane(q,'concrete',(right-left)/5.5,2,false,{axis:[left,top,right,top],stops:[[0,'#eeead730'],[.52,'#ebe7d91a'],[1,'#49483b45']]},5);
   line([[left,top],[left,bottom]],'#eeeade',.55);
   line([[right,top],[right,bottom]],'#665f4b',.65);
@@ -799,7 +813,7 @@ function createCalculatorScene(root) {
   frame=0;if(!ready||!selection)return;const s=selection,insulated=s.insulation==='yes';
   ctx.setTransform(3,0,0,3,0,0);ctx.clearRect(0,0,340,480);ctx.translate(340,0);ctx.scale(-1,1);ctx.drawImage(base,0,0,340,480);
   const wall=s['walls-enabled']?s.walls:insulated?'insulated':'concrete',floor=s['floor-enabled']?s.floor:insulated?'insulated':'concrete',ceiling=s['ceiling-enabled']?s.ceiling:insulated?'insulated':'concrete';
-  const floorQ=surfaces.floor.map(([x,y],i)=>[x,y-(i<2?2.5:9)]);
+  const floorQ=surfaces.floor;
   for(const [q,rx,ry,shade] of [
    [surfaces.back,1,1,{axis:[108,210,230,210],stops:[[0,'#28231540'],[.25,'#28231512'],[.8,'#28231525'],[1,'#28231555']]}],
    [surfaces.house,2.8,1,{axis:[220,190,298,190],stops:[[0,'#30291f48'],[.3,'#30291f08'],[1,'#ffffff12']]}],
@@ -816,10 +830,20 @@ function createCalculatorScene(root) {
   }
   if(!s['ceiling-enabled'])insulatedSurface(surfaces.ceiling,false,insulated);else plane(surfaces.ceiling,ceiling,1,2.6,ceiling==='laminate',{axis:[170,63,170,140],stops:[[0,'#ffffff10'],[.65,'#342b1920'],[1,'#342b1955']]});
   if(!s['floor-enabled'])insulatedSurface(floorQ,true,insulated);else plane(floorQ,floor,floor==='tile'?Number(s.width)/40:2.4,floor==='tile'?Number(s.length)/40:1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
+  if(s['floor-enabled']&&floor==='tile'){
+   const map=projection(floorQ),tilesX=Number(s.width)/40,tilesY=Number(s.length)/40;
+   ctx.save();polygon(floorQ);ctx.clip();
+   for(let i=1;i<tilesX;i++)line([map(i/tilesX,0),map(i/tilesX,1)],'#737a726e',.3);
+   for(let j=1;j<tilesY;j++){
+    const a=map(0,j/tilesY),b=map(1,j/tilesY),depth=(a[1]-floorQ[0][1])/(floorQ[3][1]-floorQ[0][1]);
+    line([a,b],'#737a726e',.15+.2*depth);
+   }
+   ctx.restore();
+  }
   ctx.save();polygon(floorQ);ctx.clip();
   line([floorQ[3],floorQ[0],floorQ[1],floorQ[2]],'#403b3366',3.5);
   ctx.restore();
-  line([[108.5,140],[220,140],[220,314.5]],'#36302738',1.1);line([[43,63],[108.5,140]],'#ffffff55',.65);
+  line([surfaces.back[0],surfaces.back[1],floorQ[1]],'#36302738',1.1);line([[43,63],[108.5,140]],'#ffffff55',.65);
   daylight(floorQ,!!s['glazing-enabled']);
   if(s['lighting-enabled'])roomLighting(floorQ,s.lighting==='pendant');
   if(!s['glazing-enabled']||s.glazing==='cold'){
@@ -832,7 +856,7 @@ function createCalculatorScene(root) {
   // Apartment sill: a shaded underside, with the switch just below near the door.
   ctx.save();polygon(surfaces.house);ctx.clip();line([[218.7,261],[246.1,278]],'#3e393148',1.3);ctx.restore();switchPlate();
   if(s['floor-enabled'])baseboards(floorQ);
-  parapetCore();sideSection(insulated);floorSection(floorQ,!!s['floor-enabled'],insulated);roofSection(insulated);
+  parapetCore();sideSection(insulated);floorSection(floorQ,s['floor-enabled']?s.floor:null,insulated);roofSection(insulated);
   if(s['exterior-enabled'])exteriorCladding(s.exterior==='metal');
   wideStreetSill();
   if(s['lighting-enabled']){
