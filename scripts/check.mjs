@@ -139,7 +139,9 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
   const landingPhoto=html.match(/<div class="landing-photo">([\s\S]*?)<\/div>/)?.[1];
   assert.ok(landingPhoto,label+': missing new landing photo');
   assert.ok(landingPhoto.includes('/assets/'+selected.after),label+': hero must use its own selected AFTER');
-  assert.ok(landingPhoto.includes(esc(projectDisplayTitle(selected))+' — тематическая визуализация'),label+': hero needs its own disclosed alt');
+  const landingPhotoAlt=landingPhoto.match(/\balt="([^"]+)"/)?.[1];
+  assert.ok(landingPhotoAlt?.includes(esc(projectDisplayTitle(selected))),label+': hero alt must describe its selected project');
+  assert.ok(!/визуализац/i.test(landingPhotoAlt),label+': hero alt must use neutral customer-facing copy');
   continue;
  }
  if(label==='osteklenie-balkonov'){
@@ -296,6 +298,7 @@ const files=await walk(root),pages=files.filter(f=>f.endsWith('.html'));let refs
 const titles=new Map(),descriptions=new Map(),canonicals=new Map(),indexedCanonicals=new Set();
 for(const file of pages){
  const html=await readFile(file,'utf8'),isRedirect=html.includes('http-equiv="refresh"'),isNoindex=html.includes('name="robots" content="noindex');
+ assert.ok(!/визуализац/i.test(html),file+' must use neutral customer-facing copy, including metadata and image descriptions');
  const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1],title=html.match(/<title>([^<]+)<\/title>/)?.[1];
  assert.match(html,/<html lang="ru"/,'Page language must be Russian: '+file);
  assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,file+' must have one H1');
@@ -367,6 +370,11 @@ for(const file of pages){
 }
 for(const page of pages){const html=await readFile(page,'utf8');for(const match of html.matchAll(/srcset="([^"]+)"/g)){for(const candidate of match[1].split(',')){const url=candidate.trim().split(/\s+/)[0];if(url.startsWith('/'))await stat(join(root,base==='/'?url:url.slice(base.length-1)));}}}
 const feed=await readFile(join(root,'yandex-direct.xml'),'utf8');
+assert.ok(!/визуализац/i.test(feed),'Published advertising descriptions must use neutral customer-facing copy');
+for(const script of ['public/app.js',join(root,'app.js')]){
+ const appText=await readFile(script,'utf8');
+ assert.ok(!/визуализац/i.test(appText),script+' must keep dynamic customer-facing captions neutral');
+}
 for(const [,picture] of feed.matchAll(/<picture>([^<]+)<\/picture>/g)){
  const imagePath=new URL(picture.replaceAll('&amp;','&')).pathname;
  await stat(join(root,base==='/'?imagePath:imagePath.slice(base.length-1)));
@@ -593,7 +601,9 @@ for(const definition of newLandingDefinitions){
  assert.equal(prices[service.price],expectedPrice,'Only confirmed rates may be advertised: '+definition.slug);
  const markup=servicePageWithSeo(service);
  assert.equal((markup.match(/data-comparison /g)||[]).length,6);
- assert.ok(markup.includes('Визуализации проектов'));
+ const galleryHeading=markup.match(/\bid="before-after"[\s\S]*?<h2\b[^>]*>([\s\S]*?)<\/h2>/)?.[1];
+ assert.ok(galleryHeading?.replace(/<[^>]*>/g,'').trim(),definition.slug+': project gallery needs a meaningful heading');
+ assert.ok(!/визуализац/i.test(markup),definition.slug+': project gallery and landing copy must remain neutral');
  assert.ok(markup.includes('name="service" value="'+esc(service.title)+'"'));
  assert.doesNotMatch(markup,/landing-service-scope|landing-related-services/,definition.slug+' must not render the retired process block');
  const builtMarkup=await readFile(join(root,definition.slug,'index.html'),'utf8');

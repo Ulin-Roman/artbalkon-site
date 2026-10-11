@@ -1,5 +1,6 @@
 """Check deployed redirects, PHP and form configuration without sending any application."""
 import json
+import re
 import urllib.request
 import urllib.error
 
@@ -50,6 +51,8 @@ for slug in landing_slugs:
     html = urllib.request.urlopen(url, timeout=30).read().decode('utf-8')
     assert 'rel="canonical" href="' + url + '"' in html, 'Incorrect canonical: ' + slug
     assert html.count('data-comparison ') == 6, 'Expected six works: ' + slug
-    assert 'Визуализации проектов' in html, 'Missing visualization disclosure: ' + slug
+    gallery_heading = re.search(r'id="before-after"[\s\S]*?<h2\b[^>]*>([\s\S]*?)</h2>', html)
+    assert gallery_heading and re.sub(r'<[^>]*>', '', gallery_heading.group(1)).strip(), 'Missing project gallery heading: ' + slug
+    assert 'визуализац' not in html.lower(), 'Customer-facing copy and metadata must remain neutral: ' + slug
     assert '"@type":"Service"' in html and '"@type":"FAQPage"' in html, 'Missing schema: ' + slug
 print('All nine new production landings, 54 comparisons and their SEO markup verified.')

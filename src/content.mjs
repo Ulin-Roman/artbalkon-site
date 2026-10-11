@@ -179,14 +179,14 @@ export const serviceBeforeAfterProjects={
   visualPair('balcony-glazing-11','Остекление балкона тёмным профилем','Собрали герметичный оконный контур и полностью закрыли нижнюю часть.')
  ],
  'uteplenie-balkonov':[
-  {...matchedFinishingPair(4,"Контрастная отделка после утепления","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
-  {...matchedFinishingPair(25,"Утепление длинного пространства","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
-  {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before-raised-blinds-penoplex-v2.webp',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
+  {...matchedFinishingPair(4,"Контрастная отделка после утепления","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Вариант утепления плитами XPS с пенофолом и готовая отделка."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(25,"Утепление длинного пространства","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(29,"Утепление оконной зоны","Вариант утепления плитами XPS с пенофолом и готовая отделка."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(80,"Утепление под светлую отделку","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-120-before-raised-blinds-penoplex-v2.webp',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(164,"Утепление компактного пространства","Вариант утепления плитами XPS с пенофолом и готовая отделка."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
  'otdelka-balkonov':[
   matchedFinishingPair(4,'Контрастная отделка длинного балкона','Сочетали тёмные стеновые панели, светлый потолок и равномерное освещение.'),
@@ -222,14 +222,14 @@ export const serviceBeforeAfterProjects={
   galleryPair(3,'Остекление узкой лоджии','Обновили оконный контур и сохранили удобное открывание створок в узком пространстве.')
  ],
  'uteplenie-lodzhii':[
-  {...matchedFinishingPair(4,"Контрастная отделка после утепления","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
-  {...matchedFinishingPair(25,"Утепление длинного пространства","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(29,"Утепление оконной зоны","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
-  {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(80,"Утепление под светлую отделку","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Визуализация этапа с плитным утеплителем XPS (пеноплекс / Технониколь) и фото готовой отделки."),before:'service-gallery-v3/insulation-120-before-raised-blinds-penoplex-v2.webp',stage:'insulation',material:'xps'},
-  {...matchedFinishingPair(164,"Утепление компактного пространства","Визуализация этапа XPS с пенофолом и фото готовой отделки."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
+  {...matchedFinishingPair(4,"Контрастная отделка после утепления","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-004-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(5,"Светло-серый интерьер после утепления","Вариант утепления плитами XPS с пенофолом и готовая отделка."),before:'service-gallery-v3/insulation-005-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(25,"Утепление длинного пространства","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-025-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(29,"Утепление оконной зоны","Вариант утепления плитами XPS с пенофолом и готовая отделка."),before:'service-gallery-v3/insulation-029-before.png',stage:'insulation',material:'xps-penofol'},
+  {...matchedFinishingPair(30,"Утепление вокруг дверного блока","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-030-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(80,"Утепление под светлую отделку","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-080-before.png',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(120,"Утепление под тёмное дерево","Вариант утепления плитами XPS (пеноплекс / Технониколь) и готовая отделка."),before:'service-gallery-v3/insulation-120-before-raised-blinds-penoplex-v2.webp',stage:'insulation',material:'xps'},
+  {...matchedFinishingPair(164,"Утепление компактного пространства","Вариант утепления плитами XPS с пенофолом и готовая отделка."),before:'service-gallery-v3/insulation-164-before.png',stage:'insulation',material:'xps-penofol'}
  ],
  'otdelka-lodzhii':[
   matchedFinishingPair(5,"Серая отделка лоджии","Светлый потолок, серые стеновые панели и готовый пол."),
@@ -288,12 +288,12 @@ export const serviceBeforeAfterProjects={
   {...matchedFinishingPair(92,'Встроенные потолочные светильники','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-092-before.png',stage:'electrical'},
   {...matchedFinishingPair(103,'Свет и розетки вдоль лоджии','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-103-before.png',stage:'electrical'},
   {...matchedFinishingPair(105,'Направленный трековый свет','Монтаж электрических приборов в готовой отделке; этап до установки показан как реконструкция.'),before:'service-gallery-v3/electric-105-before.png',stage:'electrical'},
-  {title:'Интернет-розетка на балконе',description:'Визуализация вывода интернет-кабеля с розеткой RJ45 рядом с электропитанием.',before:'service-gallery-v2/real-after-014.jpg',after:'service-gallery-v3/electric-014-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'electrical',sourcePhoto:14}
+  {title:'Интернет-розетка на балконе',description:'Вариант вывода интернет-кабеля с розеткой RJ45 рядом с электропитанием.',before:'service-gallery-v2/real-after-014.jpg',after:'service-gallery-v3/electric-014-after.png',beforeReal:true,afterVisualized:true,visualized:true,stage:'electrical',sourcePhoto:14}
  ],
  'obedinenie-balkona-s-komnatoj':[
   {
     "title": "Гостиная с кабинетом на лоджии",
-    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "description": "Вариант изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
     "before": "service-gallery-v3/combined-room-01-before.png",
     "after": "service-gallery-v2/combined-room-01.png",
     "visualized": true,
@@ -302,7 +302,7 @@ export const serviceBeforeAfterProjects={
   },
   {
     "title": "Кухня с зоной отдыха у окон",
-    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "description": "Вариант изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
     "before": "service-gallery-v3/combined-room-02-before.png",
     "after": "service-gallery-v2/combined-room-02.png",
     "visualized": true,
@@ -311,7 +311,7 @@ export const serviceBeforeAfterProjects={
   },
   {
     "title": "Спальня с домашним кабинетом",
-    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "description": "Вариант изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
     "before": "service-gallery-v3/combined-room-03-before.png",
     "after": "service-gallery-v2/combined-room-03.png",
     "visualized": true,
@@ -320,7 +320,7 @@ export const serviceBeforeAfterProjects={
   },
   {
     "title": "Лоджия как продолжение гостиной",
-    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "description": "Вариант изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
     "before": "service-gallery-v3/combined-room-04-before.png",
     "after": "service-gallery-v2/combined-room-04.png",
     "visualized": true,
@@ -329,7 +329,7 @@ export const serviceBeforeAfterProjects={
   },
   {
     "title": "Кухня со столом-подоконником",
-    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "description": "Вариант изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
     "before": "service-gallery-v3/combined-room-05-before.png",
     "after": "service-gallery-v2/combined-room-05.png",
     "visualized": true,
@@ -338,7 +338,7 @@ export const serviceBeforeAfterProjects={
   },
   {
     "title": "Светлый кабинет за широким проёмом",
-    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "description": "Вариант изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
     "before": "service-gallery-v3/combined-room-06-before.png",
     "after": "service-gallery-v2/combined-room-06.png",
     "visualized": true,
@@ -347,7 +347,7 @@ export const serviceBeforeAfterProjects={
   },
   {
     "title": "Гостиная с угловой лоджией",
-    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "description": "Вариант изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
     "before": "service-gallery-v3/combined-room-07-before.png",
     "after": "service-gallery-v2/combined-room-07.png",
     "visualized": true,
@@ -356,7 +356,7 @@ export const serviceBeforeAfterProjects={
   },
   {
     "title": "Столовая и лоджия",
-    "description": "Визуализация изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
+    "description": "Вариант изменения оконно-дверного проёма в одном помещении. Решение требует оценки конструкции и согласования.",
     "before": "service-gallery-v3/combined-room-08-before.png",
     "after": "service-gallery-v2/combined-room-08.png",
     "visualized": true,
@@ -440,9 +440,9 @@ export const serviceBeforeAfterProjects={
 // Reviewed loggias: one long glazed opening, solid end walls and finished interiors.
 const coldLoggiaPool=['Лоджия с белыми панелями и холодным остеклением','Холодное остекление лоджии с бежевой отделкой','Лоджия с отделкой под дерево','Холодное остекление лоджии и светлая отделка','Остекление лоджии с зимним видом','Холодное остекление лоджии в коричневом профиле','Остекление узкой лоджии','Холодное остекление широкой лоджии','Остекление лоджии на высоком этаже','Холодное остекление лоджии в графитовом профиле'].map((title,index)=>{
  const key=`service-before-after/cold-ordinary-${String(index+3).padStart(2,'0')}`;
- return {title,description:'Визуализация холодного остекления вдоль лоджии над глухим парапетом с отделкой потолка, торцевой стены и пола.',before:`${key}-before.webp`,after:`${key}-after.webp`,objectType:'loggia',glazingType:'cold-parapet',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
+ return {title,description:'Вариант холодного остекления вдоль лоджии над глухим парапетом с отделкой потолка, торцевой стены и пола.',before:`${key}-before.webp`,after:`${key}-after.webp`,objectType:'loggia',glazingType:'cold-parapet',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false};
 });
-const coldMatchedPair=(key,title,before,objectType)=>({title,before:`service-before-after/${before}`,after:`service-before-after/${key}-after.png`,description:`Визуализация холодного раздвижного остекления ${objectType==='balcony'?'балкона с остеклёнными торцами':'лоджии вдоль длинного проёма'} с завершённой отделкой.`,objectType,glazingType:'cold-parapet',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false});
+const coldMatchedPair=(key,title,before,objectType)=>({title,before:`service-before-after/${before}`,after:`service-before-after/${key}-after.png`,description:`Вариант холодного раздвижного остекления ${objectType==='balcony'?'балкона с остеклёнными торцами':'лоджии вдоль длинного проёма'} с завершённой отделкой.`,objectType,glazingType:'cold-parapet',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false});
 coldLoggiaPool[9].after='service-before-after/cold-loggia-graphite-fixed-after.png';
 coldLoggiaPool.push(
  coldMatchedPair('cold-loggia-finished-11','Холодное остекление длинной лоджии с отделкой','cold-loggia-01-before.png','loggia'),
@@ -462,7 +462,7 @@ serviceBeforeAfterProjects['osteklenie-kottedzhej'][4]={
  ...serviceBeforeAfterProjects['osteklenie-kottedzhej'][4],
  before:'service-before-after/cottage-bay-aged-before.png',
  after:'service-before-after/cottage-glazing-4-after-hq.webp',
- description:'Визуализация замены изношенных деревянных рам эркера новыми белыми окнами без изменения проёмов.',
+ description:'Вариант замены изношенных деревянных рам эркера новыми белыми окнами без изменения проёмов.',
  visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false
 };
 const projectAssetKey=project=>`${project.before}|${project.after}`;
@@ -696,7 +696,7 @@ for(const projects of Object.values(serviceBeforeAfterProjects)){
 const matchedFurnitureTitles=["Компьютерный стол вдоль окон","Компактная тумба для хранения","Компьютерный стол","Тумба под окном","Шкаф-купе в торце","Настенные полки","Стеллаж и открытые полки","Светлый распашной шкаф","Угловой шкаф","Низкая тумба","Откидной стол","Стол-стойка вдоль окон"];
 serviceBeforeAfterProjects['mebel-dlya-balkona']=serviceBeforeAfterProjects['mebel-dlya-balkona'].map((project,index)=>{
  const {source,pairVerified,...preserved}=project;
- return {...preserved,title:matchedFurnitureTitles[index],description:'Визуализация мебели на том же балконе: отделка, окна и ракурс сохранены.',after:`service-gallery-v3/furniture-matched-${String(index+1).padStart(2,'0')}-after.webp`,afterVisualized:true,visualized:true,stage:'furniture'};
+ return {...preserved,title:matchedFurnitureTitles[index],description:'Вариант мебели на том же балконе: отделка, окна и ракурс сохранены.',after:`service-gallery-v3/furniture-matched-${String(index+1).padStart(2,'0')}-after.webp`,afterVisualized:true,visualized:true,stage:'furniture'};
 });
 // Page-specific reconstructions: do not mutate the shared warm-glazing pool.
 const warmLoggiaBeforeWithoutHandles=[
@@ -732,7 +732,7 @@ for(const [slug,objectType,stage] of [
  serviceBeforeAfterProjects[slug]=renovationTitles[objectType].map((title,index)=>{
   const key=`service-before-after/renovation-${objectType}-${String(index+1).padStart(2,'0')}`;
   return {title,objectType,stage,before:`${key}-finish-before.webp`,after:`${key}-after.webp`,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
-   description:stage==='finish'?'Визуализация обновления старых окон и изношенной отделки. До ремонта — пустое помещение без электрики; после — готовый интерьер.':'Визуализация ремонта под ключ. До ремонта — старые окна, деревянные подоконники и изношенная отделка советского времени, без электрики и вещей; после — новые окна, отделка, освещение и мебель.'};
+   description:stage==='finish'?'Вариант обновления старых окон и изношенной отделки. До ремонта — пустое помещение без электрики; после — готовый интерьер.':'Вариант ремонта под ключ. До ремонта — старые окна, деревянные подоконники и изношенная отделка советского времени, без электрики и вещей; после — новые окна, отделка, освещение и мебель.'};
  });
 }
 // Do not show this project in service galleries, the home selection, or modals.
@@ -748,7 +748,7 @@ beforeAfterProjects.splice(0,beforeAfterProjects.length,...Array.from({length:6}
 serviceBeforeAfterProjects['osteklenie-kottedzhej']=serviceBeforeAfterProjects['osteklenie-kottedzhej'].map(project=>project.title==='Новые окна загородного дома'?{
  ...project,title:'Замена окон без изменения проёмов',
  before:'service-before-after/cottage-same-openings-before.png',after:'service-before-after/cottage-same-openings-after.png',
- description:'Визуализация замены старых деревянных рам современными окнами в существующих проёмах, без изменения кирпичной кладки.',
+ description:'Вариант замены старых деревянных рам современными окнами в существующих проёмах, без изменения кирпичной кладки.',
  visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false
 }:project);
 
@@ -770,7 +770,7 @@ const furnitureConcepts=[
 ];
 serviceBeforeAfterProjects['mebel-dlya-balkona']=furnitureConcepts.map(([objectType,category,title],index)=>{
  const key=`service-before-after/furniture-interior-v2-${String(index+1).padStart(2,'0')}`;
- return {title,category,before:`${key}-before.webp`,after:`${key}-after.webp`,objectType,stage:'furniture',builtIn:true,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,description:'Дизайн-визуализация мебели на заказ: слева готовое помещение до установки, справа — встроенная мебель, подобранные кресла, текстиль и декор. Отделка и геометрия помещения сохранены.'};
+ return {title,category,before:`${key}-before.webp`,after:`${key}-after.webp`,objectType,stage:'furniture',builtIn:true,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,description:'Вариант дизайна мебели на заказ: слева готовое помещение до установки, справа — встроенная мебель, подобранные кресла, текстиль и декор. Отделка и геометрия помещения сохранены.'};
 });
 
 // Reviewed high-resolution reconstructions; retain originals and disclose visualizations.
@@ -818,7 +818,7 @@ const electricalConceptTitles=["Потолочный свет и розетки 
 serviceBeforeAfterProjects['elektrika-na-balkone']=electricalConceptTitles.map((title,index)=>({
  title,before:`electrical-v2/el${index+1}Before.webp`,after:`electrical-v2/el${index+1}After.webp`,
  stage:'electrical',electricalComparison:true,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
- description:'Визуализация монтажа электрики: тот же интерьер до установки светильников, розеток и выключателей и после. Отделка, окна и геометрия сохранены.'
+ description:'Вариант монтажа электрики: тот же интерьер до установки светильников, розеток и выключателей и после. Отделка, окна и геометрия сохранены.'
 }));
 
 export const beforeHardwareReplacements = {
@@ -1067,7 +1067,7 @@ for(const [sourceSlug,after,before,title,objectType] of turnkeyExpansion){
  if(!finished)throw new Error(`Не найдён готовый интерьер для подборки под ключ: ${after}`);
  turnkeyGallery.push({title,objectType,stage:'turnkey',before,after:finished.after,turnkeyExpansion:true,
   visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
-  description:'Визуализация проекта под ключ: готовый интерьер взят из подборки мебели или освещения, а состояние до ремонта реконструировано по тому же ракурсу.'});
+  description:'Вариант проекта под ключ: готовый интерьер взят из подборки мебели или освещения, а состояние до ремонта реконструировано по тому же ракурсу.'});
 }
 
 export const serviceSeo = {
@@ -1256,7 +1256,7 @@ export const serviceSeo = {
   eyebrow:'ХРАНЕНИЕ БЕЗ ПОТЕРИ ПРОХОДА',
   title:'Встроенная мебель как часть вашего интерьера',
   paragraphs:['Изготавливаем мебель на заказ для балконов и лоджий: от встроенного шкафа до тумбы под подоконником, скамьи с хранением или рабочей столешницы. Размеры, глубину и наполнение определяем по замеру, фасады подбираем к цвету стен, пола и окон.','На балконе с остеклением с трёх сторон размещаем низкую мебель ниже окон: сохраняем свет и доступ к створкам. В глухом торце лоджии можно предусмотреть шкаф во всю высоту или систему полок. Не закрываем мебелью стекло, вентиляцию и инженерные узлы.','Согласуем примыкания к стенам, подоконникам и плинтусам, проверяем открывание фасадов и оставляем место для прохода. В галерее сравниваем готовое помещение до установки мебели и тот же интерьер со встроенным решением.'],
-  concept:['service-before-after/furniture-interior-v2-09-after.webp','Визуализация зелёного встроенного шкафа и тумбы в лоджии','Шкаф и тумба по размерам ниши'],
+  concept:['service-before-after/furniture-interior-v2-09-after.webp','Зелёный встроенный шкаф и тумба в лоджии','Шкаф и тумба по размерам ниши'],
   scope:[['Замер ниш','Фиксируем геометрию стен, подоконников и свободный ход створок.'],['Функция','Определяем, что будет храниться и где нужен стол, тумба или сиденье.'],['Материалы','Подбираем фасады, корпус и фурнитуру под условия балкона.'],['Монтаж','Устанавливаем мебель и регулируем все открывающиеся элементы.']],
   photos:[['project-goluboe','Интерьер лоджии с продуманными зонами хранения','Мебель как часть отделки лоджии'],['project-khimki','Светлая лоджия с местом для работы и хранения','Функциональное пространство под ключ']],
   steps:[['Задача','Составляем список вещей и функций будущей мебели.'],['Замер','Проверяем ниши, створки и ширину прохода.'],['Проект','Согласовываем конструкцию, материалы и цвет.'],['Установка','Собираем мебель на объекте и проверяем удобство.']],
@@ -1387,7 +1387,7 @@ for(const [slug,projects] of Object.entries(additionalAngleProjects)){
 // Night comparison demonstrates the installed lights, preserving the source pair.
 serviceBeforeAfterProjects['elektrika-na-balkone']=serviceBeforeAfterProjects['elektrika-na-balkone'].map(project=>project.title==='Два бра и удобные розетки'?{...project,
  before:'electrical-v2/el3-before-dark-v4.webp',after:'electrical-v2/el3-after-floor-v3.webp',
- description:'Ночная визуализация: тот же интерьер без освещения и с включёнными бра и потолочными светильниками. Исходные изображения сохранены.'
+ description:'Ночной вариант освещения: тот же интерьер без освещения и с включёнными бра и потолочными светильниками. Исходные изображения сохранены.'
 }:project);
 
 // Three new visualizations per active landing page and three selected homepage examples.
@@ -1400,7 +1400,7 @@ beforeAfterProjects.push(...extraPortfolioProjects['balkon-pod-klyuch'].filter(p
 serviceBeforeAfterProjects['osteklenie-balkonov'].push({
  title:'Балкон с выносом — вид изнутри',
  before:'offset-interior-v1/before.webp',after:'offset-interior-v1/after.webp',
- description:'Визуализация остекления с выносом по подоконнику: оконный контур вынесен наружу, устроен широкий подоконник, обновлены потолок и пол. Размер плиты сохранён.',
+ description:'Вариант остекления с выносом по подоконнику: оконный контур вынесен наружу, устроен широкий подоконник, обновлены потолок и пол. Размер плиты сохранён.',
  stage:'glazing',objectType:'balcony',visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false
 });
 
@@ -1466,7 +1466,7 @@ beforeAfterProjects.push(...[
     "afterVisualized": true,
     "beforeReal": false,
     "importedHomeWork": true,
-    "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
+    "description": "Вариант преображения балкона или лоджии: новые окна, отделка и мебель.",
     "before": "home-liked-works-v1/work1_relax_corner-no-marked-handles-v3-before.webp",
     "after": "home-liked-works-v1/work1_relax_corner-added-handle-v4-after.webp"
   },
@@ -1479,7 +1479,7 @@ beforeAfterProjects.push(...[
     "afterVisualized": true,
     "beforeReal": false,
     "importedHomeWork": true,
-    "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
+    "description": "Вариант преображения балкона или лоджии: новые окна, отделка и мебель.",
     "before": "home-liked-works-v1/work2_office_loggia-handles-v2-before-removed-v4.webp",
     "after": "home-liked-works-v1/work2_office_loggia-after.webp"
   },
@@ -1492,7 +1492,7 @@ beforeAfterProjects.push(...[
     "afterVisualized": true,
     "beforeReal": false,
     "importedHomeWork": true,
-    "description": "Визуализация преображения балкона или лоджии: новые окна, отделка и мебель.",
+    "description": "Вариант преображения балкона или лоджии: новые окна, отделка и мебель.",
     "before": "home-liked-works-v1/work3_cozy_storage-handles-v2-before-removed-v4.webp",
     "after": "home-liked-works-v1/work3_cozy_storage-handle-right-lower-v5-after.webp"
   }
@@ -1508,7 +1508,7 @@ beforeAfterProjects.push({
   "afterVisualized": true,
   "beforeReal": false,
   "importedHomeWork": true,
-  "description": "Визуализация обновления балкона с новыми окнами, отделкой, шкафом и складным столом.",
+  "description": "Вариант обновления балкона с новыми окнами, отделкой, шкафом и складным столом.",
   "before": "home-liked-works-v1/balcony-folding-table-before-removed-v4.webp",
   "after": "home-liked-works-v1/balcony-folding-table-after.webp"
 });
@@ -1523,7 +1523,7 @@ beforeAfterProjects.push({
   "afterVisualized": true,
   "beforeReal": false,
   "importedHomeWork": true,
-  "description": "Визуализация обновления балкона: новые окна, отделка, рабочий стол и полки с подсветкой.",
+  "description": "Вариант обновления балкона: новые окна, отделка, рабочий стол и полки с подсветкой.",
   "before": "home-liked-works-v1/work5-before-photoreal-v5.webp",
   "after": "home-liked-works-v1/work5-after-photoreal-v5.webp"
 });
@@ -1551,7 +1551,7 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "visualized": true,
   "beforeVisualized": true,
   "beforeReal": false,
-  "description": "Визуальная пара по выбранному референсу: старая лоджия с вещами превратилась в зону отдыха с мягкими лежанками и отделанным потолком. До и после — визуализации.",
+  "description": "Визуальная пара по выбранному референсу: старая лоджия с вещами превратилась в зону отдыха с мягкими лежанками и отделанным потолком.",
   "sourceUrl": "https://www.pinterest.com/pin/665547651213847585/"
 });
 
@@ -1565,7 +1565,7 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "visualized": true,
   "beforeVisualized": true,
   "beforeReal": false,
-  "description": "Визуальная пара по выбранному референсу: хранение старых вещей сменилось светлым кабинетом с угловой столешницей. До и после — визуализации.",
+  "description": "Визуальная пара по выбранному референсу: хранение старых вещей сменилось светлым кабинетом с угловой столешницей.",
   "sourceUrl": "https://www.pinterest.com/pin/388294799145454158/"
 });
 
@@ -1591,7 +1591,7 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "visualized": true,
   "beforeVisualized": true,
   "beforeReal": false,
-  "description": "Визуальная пара по выбранному референсу: старый балкон стал местом отдыха с лежанкой. До и после — визуализации с разным временем съёмки.",
+  "description": "Визуальная пара по выбранному референсу: старый балкон стал местом отдыха с лежанкой.",
   "sourceUrl": "https://www.pinterest.com/pin/511651207682062121/"
 });
 
@@ -1649,7 +1649,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  for (const project of gallery) if (project.title === 'Панорамное остекление длинной лоджии') {
   project.before = 'panorama-work253-top-v2/before.webp';
   project.after = 'panorama-work253-top-v2/after.webp';
-  project.description = 'Визуализация преображения открытой лоджии: панорамное остекление, светлая отделка стен и потолка, аккуратный пол под дерево.';
+  project.description = 'Вариант преображения открытой лоджии: панорамное остекление, светлая отделка стен и потолка, аккуратный пол под дерево.';
   project.visualized = true;
   project.beforeVisualized = true;
   project.afterVisualized = true;
@@ -1699,7 +1699,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  for (const project of gallery) if (project.title === 'Лоджия под ключ с местом для работы') {
   project.before = 'portfolio-diverse-v4/work23-top-v3-before.webp';
   project.after = 'portfolio-diverse-v4/work23-top-v3-after.webp';
-  project.description = 'Визуализация преображения лоджии: новые окна, светлая отделка, шкаф в торце и отдельный мягкий пуфик перед ним.';
+  project.description = 'Вариант преображения лоджии: новые окна, светлая отделка, шкаф в торце и отдельный мягкий пуфик перед ним.';
  }
 }
 
@@ -1708,7 +1708,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  for (const project of gallery) if (project.title === 'Серая отделка и стол у окна') {
   project.before = 'portfolio-diverse-v4/work10-low-v1-before.webp';
   project.after = 'portfolio-diverse-v4/work10-low-v1-after.webp';
-  project.description = 'Визуализация обновления балкона: новые окна, светлая отделка и компактный рабочий уголок у торцевого окна.';
+  project.description = 'Вариант обновления балкона: новые окна, светлая отделка и компактный рабочий уголок у торцевого окна.';
  }
 }
 
@@ -1814,54 +1814,54 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 }
 
 // Additional reference-inspired finishing comparison.
-serviceBeforeAfterProjects['otdelka-balkonov'].push({title:'Балкон с деревянной отделкой и откидным столиком', before:'portfolio-perspectives-v3/work289-reading-v4-before.webp', after:'portfolio-perspectives-v3/work289-reading-v3-after.webp', stage:'finish', objectType:'balcony', description:'Визуализация отделки балкона с компактным местом для чтения.', visualized:true, beforeVisualized:true, afterVisualized:true, beforeReal:false, afterReal:false, referenceFinishSeries:true});
+serviceBeforeAfterProjects['otdelka-balkonov'].push({title:'Балкон с деревянной отделкой и откидным столиком', before:'portfolio-perspectives-v3/work289-reading-v4-before.webp', after:'portfolio-perspectives-v3/work289-reading-v3-after.webp', stage:'finish', objectType:'balcony', description:'Вариант отделки балкона с компактным местом для чтения.', visualized:true, beforeVisualized:true, afterVisualized:true, beforeReal:false, afterReal:false, referenceFinishSeries:true});
 
 // Additional reference-inspired turnkey and finishing concepts.
-serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с барной столешницей и серыми рейками","before":"portfolio-turnkey-refs-v1/work290-before.webp","after":"portfolio-turnkey-refs-v1/work290-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Рабочее место вдоль окон балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
-serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с розовой скамьёй и белым столиком","before":"portfolio-turnkey-refs-v1/work291-before-v2.webp","after":"portfolio-turnkey-refs-v1/work291-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Мягкий уголок для отдыха и работы.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
-serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с белыми ящиками и зелёными подушками","before":"portfolio-turnkey-refs-v1/work292-before-v2.webp","after":"portfolio-turnkey-refs-v1/work292-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Скамьи добавили места для отдыха и хранения.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
-serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с серой скамьёй и узорчатым полом","before":"portfolio-turnkey-refs-v1/work293-before-v2.webp","after":"portfolio-turnkey-refs-v1/work293-after-v2.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: На балконе удобно работать и отдыхать.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
-serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с деревянным кабинетом и белым кирпичом","before":"portfolio-turnkey-refs-v1/work294-before.webp","after":"portfolio-turnkey-refs-v1/work294-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Отдельный кабинет рядом с комнатой.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
-serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с серым деревом и скамьёй","before":"portfolio-turnkey-refs-v1/work295-before.webp","after":"portfolio-turnkey-refs-v1/work295-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Небольшой балкон для спокойных вечеров.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
-serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с жёлтым креслом и серым кирпичом","before":"portfolio-turnkey-refs-v1/work296-before.webp","after":"portfolio-turnkey-refs-v1/work296-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Яркий уголок для чтения у окна.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
-serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с серой обшивкой и цветочными шторами","before":"portfolio-turnkey-refs-v1/work297-before.webp","after":"portfolio-turnkey-refs-v1/work297-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Уютная скамья у окна и место для хранения.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон со светлым ясенем и белым кирпичом","before":"portfolio-finish-refs-v1/work298-pov-v2-before.webp","after":"portfolio-finish-refs-v1/work298-pov-v2-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Светлая отделка объединила пол и потолок.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с серым кирпичом на всех стенах","before":"portfolio-finish-refs-v1/work299-before.webp","after":"portfolio-finish-refs-v1/work299-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Балкон приобрёл аккуратную отделку под кирпич.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с горизонтальными панелями и узким шкафом","before":"portfolio-finish-refs-v1/work300-before-v2.webp","after":"portfolio-finish-refs-v1/work300-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Шкаф занял место в торце балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с серо-синими панелями и дубовыми подоконниками","before":"portfolio-finish-refs-v1/work301-before-v2.webp","after":"portfolio-finish-refs-v1/work301-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Дерево и цветные панели обновили балкон.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с тумбой под торцевым окном","before":"portfolio-finish-refs-v1/work302-before.webp","after":"portfolio-finish-refs-v1/work302-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Под окном появилось закрытое хранение.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с серым жалюзийным шкафом и светлым кирпичом","before":"portfolio-finish-refs-v1/work303-before.webp","after":"portfolio-finish-refs-v1/work303-after-v2.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Вещи спрятали в шкаф за жалюзийными дверцами.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с белым кирпичом и направленным светом","before":"portfolio-finish-refs-v1/work304-before-v2.webp","after":"portfolio-finish-refs-v1/work304-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Новая отделка подчеркнула фактуру стен.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
+serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с барной столешницей и серыми рейками","before":"portfolio-turnkey-refs-v1/work290-before.webp","after":"portfolio-turnkey-refs-v1/work290-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Рабочее место вдоль окон балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
+serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с розовой скамьёй и белым столиком","before":"portfolio-turnkey-refs-v1/work291-before-v2.webp","after":"portfolio-turnkey-refs-v1/work291-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Мягкий уголок для отдыха и работы.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
+serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с белыми ящиками и зелёными подушками","before":"portfolio-turnkey-refs-v1/work292-before-v2.webp","after":"portfolio-turnkey-refs-v1/work292-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Скамьи добавили места для отдыха и хранения.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
+serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с серой скамьёй и узорчатым полом","before":"portfolio-turnkey-refs-v1/work293-before-v2.webp","after":"portfolio-turnkey-refs-v1/work293-after-v2.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: На балконе удобно работать и отдыхать.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
+serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с деревянным кабинетом и белым кирпичом","before":"portfolio-turnkey-refs-v1/work294-before.webp","after":"portfolio-turnkey-refs-v1/work294-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Отдельный кабинет рядом с комнатой.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
+serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с серым деревом и скамьёй","before":"portfolio-turnkey-refs-v1/work295-before.webp","after":"portfolio-turnkey-refs-v1/work295-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Небольшой балкон для спокойных вечеров.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
+serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с жёлтым креслом и серым кирпичом","before":"portfolio-turnkey-refs-v1/work296-before.webp","after":"portfolio-turnkey-refs-v1/work296-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Яркий уголок для чтения у окна.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
+serviceBeforeAfterProjects["balkon-pod-klyuch"].push({"title":"Балкон с серой обшивкой и цветочными шторами","before":"portfolio-turnkey-refs-v1/work297-before.webp","after":"portfolio-turnkey-refs-v1/work297-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Уютная скамья у окна и место для хранения.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceTurnkeySeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон со светлым ясенем и белым кирпичом","before":"portfolio-finish-refs-v1/work298-pov-v2-before.webp","after":"portfolio-finish-refs-v1/work298-pov-v2-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Светлая отделка объединила пол и потолок.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с серым кирпичом на всех стенах","before":"portfolio-finish-refs-v1/work299-before.webp","after":"portfolio-finish-refs-v1/work299-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Балкон приобрёл аккуратную отделку под кирпич.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с горизонтальными панелями и узким шкафом","before":"portfolio-finish-refs-v1/work300-before-v2.webp","after":"portfolio-finish-refs-v1/work300-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Шкаф занял место в торце балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с серо-синими панелями и дубовыми подоконниками","before":"portfolio-finish-refs-v1/work301-before-v2.webp","after":"portfolio-finish-refs-v1/work301-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Дерево и цветные панели обновили балкон.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с тумбой под торцевым окном","before":"portfolio-finish-refs-v1/work302-before.webp","after":"portfolio-finish-refs-v1/work302-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Под окном появилось закрытое хранение.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с серым жалюзийным шкафом и светлым кирпичом","before":"portfolio-finish-refs-v1/work303-before.webp","after":"portfolio-finish-refs-v1/work303-after-v2.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Вещи спрятали в шкаф за жалюзийными дверцами.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с белым кирпичом и направленным светом","before":"portfolio-finish-refs-v1/work304-before-v2.webp","after":"portfolio-finish-refs-v1/work304-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Новая отделка подчеркнула фактуру стен.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishExpansionSeries":true});
 
 // Additional reference-inspired homepage concepts.
-beforeAfterProjects.push({"title":"Балкон с белой барной столешницей и двумя стульями","before":"portfolio-home-refs-v1/work305-before.webp","after":"portfolio-home-refs-v1/work305-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: У окна появилось место для вечера вдвоём.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSeries":true});
-beforeAfterProjects.push({"title":"Балкон с зелёно-серым шкафом и деревянным потолком","before":"portfolio-home-refs-v1/work306-before.webp","after":"portfolio-home-refs-v1/work306-after-matte-v2.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: В торце балкона разместили шкаф и тумбу.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSeries":true});
-beforeAfterProjects.push({"title":"Балкон со скамьёй и полками для растений","before":"portfolio-home-refs-v1/work307-before-sill-level-v2.webp","after":"portfolio-home-refs-v1/work307-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Место для отдыха рядом с домашними растениями.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSeries":true});
-beforeAfterProjects.push({"title":"Балкон с тёмной столешницей и белой отделкой","before":"portfolio-home-refs-v1/work308-before.webp","after":"portfolio-home-refs-v1/work308-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: Рабочая столешница заняла торец балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSeries":true});
+beforeAfterProjects.push({"title":"Балкон с белой барной столешницей и двумя стульями","before":"portfolio-home-refs-v1/work305-before.webp","after":"portfolio-home-refs-v1/work305-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: У окна появилось место для вечера вдвоём.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSeries":true});
+beforeAfterProjects.push({"title":"Балкон с зелёно-серым шкафом и деревянным потолком","before":"portfolio-home-refs-v1/work306-before.webp","after":"portfolio-home-refs-v1/work306-after-matte-v2.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: В торце балкона разместили шкаф и тумбу.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSeries":true});
+beforeAfterProjects.push({"title":"Балкон со скамьёй и полками для растений","before":"portfolio-home-refs-v1/work307-before-sill-level-v2.webp","after":"portfolio-home-refs-v1/work307-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Место для отдыха рядом с домашними растениями.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSeries":true});
+beforeAfterProjects.push({"title":"Балкон с тёмной столешницей и белой отделкой","before":"portfolio-home-refs-v1/work308-before.webp","after":"portfolio-home-refs-v1/work308-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: Рабочая столешница заняла торец балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSeries":true});
 
 // Reference-inspired panoramic balcony comparison.
-serviceBeforeAfterProjects["panoramnoe-osteklenie"].push({"title":"Панорамный балкон с деревянными полками и скамьёй","before":"portfolio-panorama-refs-v1/work309-before.webp","after":"portfolio-panorama-refs-v1/work309-after.webp","stage":"glazing","objectType":"balcony","description":"Визуализация проекта с панорамными окнами, деревянными полками и скамьёй с хранением.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referencePanoramaSeries":true});
+serviceBeforeAfterProjects["panoramnoe-osteklenie"].push({"title":"Панорамный балкон с деревянными полками и скамьёй","before":"portfolio-panorama-refs-v1/work309-before.webp","after":"portfolio-panorama-refs-v1/work309-after.webp","stage":"glazing","objectType":"balcony","description":"Вариант проекта с панорамными окнами, деревянными полками и скамьёй с хранением.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referencePanoramaSeries":true});
 
 // Additional finishing reference concepts with distinct weather between paired photos.
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Длинный балкон со светло-серыми деревянными панелями","before":"portfolio-finish-refs-v2/work310-before.webp","after":"portfolio-finish-refs-v2/work310-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Светлая отделка обновила длинный балкон.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с дубовым потолком и коричневым жалюзийным шкафом","before":"portfolio-finish-refs-v2/work311-before.webp","after":"portfolio-finish-refs-v2/work311-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Закрытое хранение дополнило деревянную отделку.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с голубыми панелями и тёмным полом","before":"portfolio-finish-refs-v2/work312-before-v2.webp","after":"portfolio-finish-refs-v2/work312-after-no-bar-v2.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Балкон со спокойной отделкой в голубых тонах.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с белыми панелями и полосатой угловой скамьёй","before":"portfolio-finish-refs-v2/work313-before.webp","after":"portfolio-finish-refs-v2/work313-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Угловая скамья сохранила свободный проход.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с кожаным диваном и белым торцевым шкафом","before":"portfolio-finish-refs-v2/work314-before.webp","after":"portfolio-finish-refs-v2/work314-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: На балконе появилось место для отдыха на диване.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с кремовым шкафом и шоколадными подоконниками","before":"portfolio-finish-refs-v2/work315-before.webp","after":"portfolio-finish-refs-v2/work315-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Шкаф и тумба вместились в торце балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с выбеленными панелями и раздвижной тумбой","before":"portfolio-finish-refs-v2/work316-before.webp","after":"portfolio-finish-refs-v2/work316-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Под столешницей разместили раздвижную тумбу.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с бежевыми панелями и тёмным деревянным полом","before":"portfolio-finish-refs-v2/work317-before-v2.webp","after":"portfolio-before-geometry-v1/work317-after-glass-v4.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Аккуратная отделка без лишней мебели.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Длинный балкон со светло-серыми деревянными панелями","before":"portfolio-finish-refs-v2/work310-before.webp","after":"portfolio-finish-refs-v2/work310-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Светлая отделка обновила длинный балкон.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с дубовым потолком и коричневым жалюзийным шкафом","before":"portfolio-finish-refs-v2/work311-before.webp","after":"portfolio-finish-refs-v2/work311-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Закрытое хранение дополнило деревянную отделку.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с голубыми панелями и тёмным полом","before":"portfolio-finish-refs-v2/work312-before-v2.webp","after":"portfolio-finish-refs-v2/work312-after-no-bar-v2.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Балкон со спокойной отделкой в голубых тонах.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с белыми панелями и полосатой угловой скамьёй","before":"portfolio-finish-refs-v2/work313-before.webp","after":"portfolio-finish-refs-v2/work313-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Угловая скамья сохранила свободный проход.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с кожаным диваном и белым торцевым шкафом","before":"portfolio-finish-refs-v2/work314-before.webp","after":"portfolio-finish-refs-v2/work314-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: На балконе появилось место для отдыха на диване.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с кремовым шкафом и шоколадными подоконниками","before":"portfolio-finish-refs-v2/work315-before.webp","after":"portfolio-finish-refs-v2/work315-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Шкаф и тумба вместились в торце балкона.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с выбеленными панелями и раздвижной тумбой","before":"portfolio-finish-refs-v2/work316-before.webp","after":"portfolio-finish-refs-v2/work316-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Под столешницей разместили раздвижную тумбу.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с бежевыми панелями и тёмным деревянным полом","before":"portfolio-finish-refs-v2/work317-before-v2.webp","after":"portfolio-before-geometry-v1/work317-after-glass-v4.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Аккуратная отделка без лишней мебели.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishSecondSeries":true});
 
 // Additional finishing reference concepts with distinct weather between paired photos.
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с песочными панелями и белыми жалюзи","before":"portfolio-finish-refs-v3/work318-before.webp","after":"portfolio-finish-refs-v3/work318-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Светлая отделка и жалюзи сделали балкон уютнее.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishThirdSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с серой отделкой под бетон и тёмным полом","before":"portfolio-finish-refs-v3/work319-before.webp","after":"portfolio-finish-refs-v3/work319-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Серая отделка придала балкону спокойный вид.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishThirdSeries":true});
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с дубовыми панелями и потолочной сушилкой","before":"portfolio-finish-refs-v3/work320-before.webp","after":"portfolio-finish-refs-v3/work320-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Деревянная отделка и место для сушки белья.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishThirdSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с песочными панелями и белыми жалюзи","before":"portfolio-finish-refs-v3/work318-before.webp","after":"portfolio-finish-refs-v3/work318-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Светлая отделка и жалюзи сделали балкон уютнее.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishThirdSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с серой отделкой под бетон и тёмным полом","before":"portfolio-finish-refs-v3/work319-before.webp","after":"portfolio-finish-refs-v3/work319-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Серая отделка придала балкону спокойный вид.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishThirdSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с дубовыми панелями и потолочной сушилкой","before":"portfolio-finish-refs-v3/work320-before.webp","after":"portfolio-finish-refs-v3/work320-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Деревянная отделка и место для сушки белья.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishThirdSeries":true});
 
 // Additional reference-inspired homepage concepts.
-beforeAfterProjects.push({"title":"Балкон с ореховой скамьёй и белым кирпичным парапетом","before":"portfolio-home-refs-v2/work321-before.webp","after":"portfolio-home-refs-v2/work321-after.webp","stage":"turnkey","objectType":"balcony","description":"Визуализация проекта: На балконе появился уютный уголок со скамьёй.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSecondSeries":true});
+beforeAfterProjects.push({"title":"Балкон с ореховой скамьёй и белым кирпичным парапетом","before":"portfolio-home-refs-v2/work321-before.webp","after":"portfolio-home-refs-v2/work321-after.webp","stage":"turnkey","objectType":"balcony","description":"Вариант проекта: На балконе появился уютный уголок со скамьёй.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceHomeSecondSeries":true});
 
 // Additional finishing reference concepts with distinct weather between paired photos.
-serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с отделкой под серо-коричневый дуб и встроенным светом","before":"portfolio-finish-refs-v4/work322-before-v2.webp","after":"portfolio-finish-refs-v4/work322-after.webp","stage":"finish","objectType":"balcony","description":"Визуализация проекта: Отделка под дерево объединила стены, пол и потолок.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishFourthSeries":true});
+serviceBeforeAfterProjects["otdelka-balkonov"].push({"title":"Балкон с отделкой под серо-коричневый дуб и встроенным светом","before":"portfolio-finish-refs-v4/work322-before-v2.webp","after":"portfolio-finish-refs-v4/work322-after.webp","stage":"finish","objectType":"balcony","description":"Вариант проекта: Отделка под дерево объединила стены, пол и потолок.","visualized":true,"beforeVisualized":true,"afterVisualized":true,"beforeReal":false,"afterReal":false,"referenceFinishFourthSeries":true});
 
 // Keep every shared portfolio occurrence on the same corrected before photograph.
 import { beforeWindowCorrections } from './portfolio-before-window-corrections.mjs';
@@ -1906,7 +1906,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  for(const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterProjects)]) {
   for(const project of gallery) if(project.title===title) {
    project.after='portfolio-before-geometry-v1/work10-after-level-v3.webp';
-   project.description='Визуализация обновлённого балкона с остеклением и свободным пространством без мебели.';
+   project.description='Вариант обновлённого балкона с остеклением и свободным пространством без мебели.';
   }
  }
  const index=beforeAfterProjects.findIndex(p=>p.title===title);
@@ -1985,7 +1985,7 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
 {
  const project=serviceBeforeAfterProjects['holodnoe-osteklenie'].find(item=>item.title==='Балкон с остеклением по трём сторонам');
  if(!project)throw new Error('Work 192 not found');
- project.description='Визуализация холодного остекления балкона по передней и правой сторонам с сохранением глухой стены слева.';
+ project.description='Вариант холодного остекления балкона по передней и правой сторонам с сохранением глухой стены слева.';
 }
 
 // Repair landing reuses the finishing service, prices and portfolio.
@@ -1996,7 +1996,7 @@ serviceBeforeAfterProjects['remont-balkonov']=[...serviceBeforeAfterProjects['ot
 
 // Repair has its own scope and FAQ, also used by Service and FAQPage structured data.
 Object.assign(serviceSeo['remont-balkonov'],{
- concept:['home-liked-works-v1/balcony-folding-table-after.webp','Балкон после ремонта со шкафом и местом для чаепития','Визуализация ремонта балкона со шкафом и зоной чаепития',true],
+ concept:['home-liked-works-v1/balcony-folding-table-after.webp','Балкон после ремонта со шкафом и местом для чаепития','Вариант ремонта балкона со шкафом и зоной чаепития',true],
  scope:[['Осмотр и подготовка','Оцениваем стены, пол, потолок и существующие окна. Согласуем демонтаж старых покрытий и подготовку основания.'],['Окна и утепление','Определяем, нужна ли замена остекления, герметизация примыканий и утепление. Эти работы включаем в смету по необходимости.'],['Стены, пол и потолок','Восстанавливаем и подготавливаем поверхности, монтируем покрытия под условия эксплуатации балкона или лоджии.'],['Свет и хранение','До завершения ремонта согласуем расположение освещения, розеток и мебели, чтобы сохранить удобный проход.']],
  steps:[['Осмотр','Оценим состояние балкона или лоджии и обсудим задачи ремонта.'],['Смета','Согласуем объём работ, материалы и стоимость.'],['Ремонт','Выполним подготовку, необходимые замены и монтаж выбранных покрытий.'],['Приёмка','Проверим результат и передадим готовый балкон.']],
  faq:[['Что входит в ремонт балкона или лоджии?','Объём зависит от состояния пространства. В проект могут входить демонтаж старых покрытий, подготовка поверхностей, замена окон, утепление, монтаж покрытий, электрика и мебель. Согласуем конкретный перечень после осмотра.'],['Можно ли отремонтировать балкон без замены остекления?','Да, если существующие окна пригодны для дальнейшего использования и соответствуют вашим задачам. Их состояние и примыкания оцениваем на замере.'],['Сколько стоит ремонт балкона в Москве и Московской области?','Стоимость зависит от размеров, состояния основания, выбранных материалов и необходимых работ. Подготовим смету после замера; цены отдельных материалов не являются ценой ремонта целиком.'],['Нужно ли утеплять балкон при ремонте?','Это зависит от того, как вы планируете пользоваться пространством. Для сезонного хранения утепление может не понадобиться. Для использования зимой согласуем тёплое остекление, утепление и безопасный обогрев.']]
