@@ -620,19 +620,31 @@ function createCalculatorScene(root) {
   line([[inner,top],[inner,bottom]],'#64725c80',.35);
  }
  function wideStreetSill(){
-  const top=[[30.8,300.5],[108.4,260.3],[118.8,260.3],[56.5,300.5]],inner=[top[3],top[2]],end=[top[0],top[3]],lowerInner=[[56.5,303.3],[118.8,261.7]];
-  // Both crosswise edges are level; the long edges recede toward the floor vanishing point.
-  ctx.save();polygon(surfaces.parapet);ctx.clip();ctx.shadowColor='#393b3266';ctx.shadowBlur=2.3;
-  fill([[47.5,305],[108.5,267.5],[108.5,271],[47.5,309]],'#34382f30');ctx.restore();
-  const face=ctx.createLinearGradient(56.5,300.5,56.5,303.3);face.addColorStop(0,'#e7e9e2');face.addColorStop(.35,'#fafbf6');face.addColorStop(1,'#a8afa5');
-  fill([inner[0],inner[1],lowerInner[1],lowerInner[0]],face);
-  const cap=ctx.createLinearGradient(...end[0],...end[1]);cap.addColorStop(0,'#d7ddd5');cap.addColorStop(.5,'#f8f9f4');cap.addColorStop(1,'#b9c1b6');
-  fill([end[0],end[1],lowerInner[0],[30.8,303.3]],cap);
-  const board=ctx.createLinearGradient(31,300.5,56.5,300.5);board.addColorStop(0,'#cfd6cd');board.addColorStop(.2,'#f5f6f0');board.addColorStop(.75,'#ffffff');board.addColorStop(1,'#e0e6dc');fill(top,board);
-  line(inner,'#ffffff',.75);line(lowerInner,'#929d8c',.45);
-  line([top[0],top[1]],'#79897b',.45);
-  line([end[0],end[1]],'#f5f8f0',.6);
-  line([[30.8,303.3],lowerInner[0]],'#8c998b',.55);
+  const top=[[30.8,300.5],[108.4,260.3],[118.8,260.3],[56.5,300.5]],inner=[top[3],top[2]],end=[top[0],top[3]],lowerInner=[[56.5,304.7],[118.8,262.4]],nose=[[56.5,306],[118.8,263.2]];
+  // Level crosswise edges belong to one broad board, with its thickness exposed at the cut.
+  ctx.save();polygon(surfaces.parapet);ctx.clip();ctx.shadowColor='#393b3266';ctx.shadowBlur=1.8;
+  fill([[56.5,306],[118.8,263.2],[118.8,266.4],[56.5,310.8]],'#34382f38');ctx.restore();
+  const underside=ctx.createLinearGradient(55.2,304.7,56.5,306);underside.addColorStop(0,'#b5b9b3');underside.addColorStop(1,'#838b82');
+  fill([[55.2,304.7],[118.2,262.4],nose[1],nose[0]],underside);
+  const face=ctx.createLinearGradient(56.5,300.5,56.5,306);face.addColorStop(0,'#ffffff');face.addColorStop(.36,'#f2f4ee');face.addColorStop(.77,'#cdd2c9');face.addColorStop(1,'#a3ab9c');
+  fill([inner[0],inner[1],nose[1],nose[0]],face);
+  const cap=ctx.createLinearGradient(30.8,300.5,30.8,304.7);cap.addColorStop(0,'#ffffff');cap.addColorStop(.23,'#f3f5ee');cap.addColorStop(.75,'#e6ece1');cap.addColorStop(1,'#b0bcaa');
+  fill([end[0],end[1],lowerInner[0],[30.8,304.7]],cap);
+  // Three hollow PVC chambers and white webs make the exposed end a real section.
+  for(const [left,right]of [[31.65,38.35],[39.3,46.45],[47.4,54.4]]){
+   const q=[[left,301.25],[right,301.25],[right,303.75],[left,303.75]],inside=[[left+.35,301.8],[right-.45,301.8],[right-.45,303.3],[left+.35,303.3]];
+   const recess=ctx.createLinearGradient(left,301.25,left,303.75);recess.addColorStop(0,'#70746d');recess.addColorStop(.55,'#9b9e95');recess.addColorStop(1,'#bfc2b7');fill(q,recess);
+   fill(inside,'#94978d');fill([q[0],q[1],inside[1],inside[0]],'#73766e');fill([q[0],inside[0],inside[3],q[3]],'#818579');
+   fill([q[2],q[3],inside[3],inside[2]],'#d0d3c7');line([q[1],q[2],q[3]],'#edf1e3',.25);
+  }
+  // The downturned room-side nose also has a small hollow return at the near end.
+  fill([[55.2,300.5],[56.5,300.5],[56.5,306],[55.2,305.4]],'#eff3e8');
+  fill([[55.45,302],[55.95,302],[55.95,305.1],[55.45,304.8]],'#939a8a');
+  line([[56.5,300.5],nose[0]],'#fafff5',.35);
+  const board=ctx.createLinearGradient(31,300.5,56.5,300.5);board.addColorStop(0,'#dce2d7');board.addColorStop(.2,'#f7f8f2');board.addColorStop(.75,'#ffffff');board.addColorStop(1,'#e5eadf');fill(top,board);
+  line(inner,'#ffffff',.75);line(nose,'#83967e',.45);
+  line([top[0],top[1]],'#8d9b8b',.45);line(end,'#ffffff',.6);
+  line([[30.8,304.7],lowerInner[0]],'#9aa995',.4);
  }
 
 
