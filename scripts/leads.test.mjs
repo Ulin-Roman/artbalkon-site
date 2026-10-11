@@ -64,46 +64,78 @@ test('inline estimates preserve valid lead context for every published service a
  assert.equal(contexts.length,20,'Every published service and the home page need coverage');
  const decode=value=>value.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
  const attributes=tag=>Object.fromEntries([...tag.matchAll(/(?:^|\s)([\w:-]+)(?:="([^"]*)")?/g)].map(([,key,value])=>[key,value===undefined?true:decode(value)]));
+ const inputsIn=markup=>[...markup.matchAll(/<input\b([^>]*)>/g)].map(([,tag])=>attributes(tag));
  for(const [label,subject] of contexts){
   const markup=inlineEstimate(subject);
   const forms=[...markup.matchAll(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/g)];
   assert.equal(forms.length,1,label+': exactly one inline estimate');
-  const form=forms[0][0],inputs=[...form.matchAll(/<input\b[^>]*>/g)].map(([tag])=>attributes(tag));
-  assert.match(form,/data-lead-form="quiz"/);
-  assert.doesNotMatch(form,/\bdata-step=|\bdata-total-steps=|quiz-next-button|<progress\b/);
-  const choices=name=>{
-   const hidden=inputs.filter(input=>input.name===name&&input.type==='hidden');
-   const selects=[...form.matchAll(/<select\b([^>]*)>([\s\S]*?)<\/select>/g)].filter(([,tag])=>attributes(tag).name===name);
-   assert.equal(hidden.length+selects.length,1,label+': one '+name+' field');
-   if(hidden.length)return {values:[hidden[0].value],initial:hidden[0].value};
-   const options=[...selects[0][2].matchAll(/<option\b([^>]*)>([^<]*)<\/option>/g)].map(([,tag,text])=>{const attrs=attributes(tag);return {...attrs,value:attrs.value??decode(text)};});
-   assert.ok(options.length,label+': '+name+' has choices');
-   return {values:options.map(option=>option.value),initial:(options.find(option=>option.selected)||options[0]).value};
-  };
-  const service=choices('service'),object=choices('object'),timing=choices('timing');
-  assert.equal(timing.initial,'Пока выбираю',label+': neutral timing default');
-  if(object.values.length>1)assert.equal(object.initial,'Не знаю',label+': do not assume an object');
-  const details=inputs.filter(input=>input.name==='detail');
-  assert.ok(details.length>=4&&details.length<=6,label+': explicit project goals');
-  assert.ok(details.every(input=>input.type==='radio'&&input.required&&!input.checked),label+': visitors choose their own goal');
-  const consent=inputs.find(input=>input.name==='consent');
-  assert.ok(consent?.type==='checkbox'&&consent.required&&!consent.checked,label+': consent requires an explicit choice');
-  for(const name of ['name','phone']){
-   const contact=inputs.find(input=>input.name===name);
-   assert.ok(contact?.required&&contact.type!=='hidden',label+': '+name+' is a required contact field');
+  const form=forms[0][0],formAttributes=attributes(form.match(/^<form\b([^>]*)>/)[1]),inputs=inputsIn(form);
+  assert.equal(formAttributes['data-lead-form'],'quiz',label+': preserve the lead endpoint contract');
+  const fields=name=>inputs.filter(input=>input.name===name);
+  const service=fields('service'),object=fields('object'),timing=fields('timing'),details=fields('detail'),gifts=fields('gift');
+  assert.equal(service.length,1,label+': one known service');
+  assert.equal(service[0].type,'hidden',label+': do not repeat the known service question');
+  const knownObject=object.length===1&&object[0].type==='hidden';
+  const stages=[...form.matchAll(/<fieldset\b([^>]*)>([\s\S]*?)<\/fieldset>/g)].map(([,tag,body])=>({attributes:attributes(tag),body,inputs:inputsIn(body)}));
+  const expectedStages=['goal',...knownObject?[]:['object'],'timing','gift'];
+  assert.equal(Number(formAttributes['data-total-steps']),expectedStages.length,label+': known objects shorten the quiz');
+  assert.equal(stages.length,expectedStages.length,label+': every stage has its own fieldset');
+  assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': ask goals, object, timing and gift in order');
+  assert.deepEqual(stages.map(stage=>stage.attributes['data-step']),expectedStages.map((_,index)=>String(index)),label+': consecutive navigation steps');
+  assert.deepEqual(stages.map(stage=>Object.hasOwn(stage.attributes,'hidden')),expectedStages.map((_,index)=>index!==0),label+': only the first stage starts visible');
+  assert.ok(details.length===5||details.length===6,label+': explicit project goals');
+  assert.deepEqual(stages[0].inputs,details,label+': goals belong to the first stage');
+  if(label==='home')assert.deepEqual(details.map(input=>input.value),['Зона отдыха','Рабочее место','Удобное хранение','Объединить с комнатой','Освежить вид','Пока не знаю'],'Home must preserve the requested goal labels');
+  const objectStage=stages.find(stage=>stage.attributes['data-estimate-stage']==='object');
+  if(knownObject)assert.equal(objectStage,undefined,label+': known objects omit the object question');
+  else{
+   assert.ok(object.length>=2,label+': offer explicit object choices');
+   assert.deepEqual(objectStage.inputs,object,label+': object answers belong to their stage');
   }
-  const input={...valid(),service:service.initial,object:object.initial,timing:timing.initial};
-  delete input.gift;
-  for(const detail of details){
-   for(const objectValue of object.values){
-    for(const timingValue of timing.values){
-     const lead=validateLead({...input,object:objectValue,timing:timingValue,detail:detail.value});
-     assert.equal(lead.service,service.initial,label+': service is accepted by the backend');
-     assert.equal(lead.detail,detail.value,label+': selected goal survives validation');
-    }
-   }
+  assert.equal(timing.length,3,label+': offer three work schedules');
+  assert.deepEqual(stages.find(stage=>stage.attributes['data-estimate-stage']==='timing').inputs,timing,label+': timing answers belong to their stage');
+  assert.deepEqual(new Set(gifts.map(input=>input.value)),new Set(['Светильник и розетки','Тёплый пол','Потолочная сушилка']),label+': offer the three supported gifts');
+  assert.equal(gifts.length,3,label+': one choice per gift');
+  for(const group of [details,...knownObject?[]:[object],timing,gifts])assert.ok(group.every(input=>input.type==='radio'&&input.required&&!input.checked),label+': visitors explicitly answer every question');
+  const finalStage=stages.at(-1);
+  for(const stage of stages.slice(0,-1))assert.ok(!stage.inputs.some(input=>['gift','name','phone','consent'].includes(input.name)),label+': gifts and contacts wait until the final stage');
+  for(const name of ['gift','name','phone','consent'])assert.deepEqual(finalStage.inputs.filter(input=>input.name===name),fields(name),label+': '+name+' belongs only to the final stage');
+  const consent=fields('consent');
+  assert.equal(consent.length,1,label+': one consent checkbox');
+  assert.ok(consent[0].type==='checkbox'&&consent[0].required&&!consent[0].checked,label+': consent requires an explicit choice');
+  for(const name of ['name','phone']){
+   const contacts=fields(name);
+   assert.equal(contacts.length,1,label+': one '+name+' field');
+   assert.ok(contacts[0].required&&contacts[0].type!=='hidden',label+': '+name+' is a required contact field');
+  }
+  const previews=[...markup.matchAll(/<figure\b([^>]*)>/g)].map(([,tag])=>attributes(tag)).filter(tag=>tag['data-estimate-preview']);
+  const previewKeys=previews.map(tag=>tag['data-estimate-preview']);
+  assert.equal(new Set(previewKeys).size,previewKeys.length,label+': preview keys are unique');
+  for(const choice of [...details,...gifts])assert.ok(choice['data-estimate-photo']&&previewKeys.includes(choice['data-estimate-photo']),label+': selected goals and gifts have matching photos');
+  assert.doesNotMatch(markup,/<figcaption\b/i,label+': keep estimate photos free of captions');
+  const progress=attributes(form.match(/<progress\b([^>]*)>/)?.[1]||'');
+  assert.equal(progress.id,'quiz-progress-inline',label+': separate inline progress from the consultation modal');
+  assert.equal(progress.value,'1',label+': progress starts at the first step');
+  assert.equal(Number(progress.max),stages.length,label+': progress covers every stage');
+  assert.ok(form.includes('id="step-count-inline"')&&form.includes('Шаг 1 из '+stages.length),label+': show the initial step count');
+  const buttons=[...form.matchAll(/<button\b([^>]*)>/g)].map(([,tag])=>attributes(tag));
+  const back=buttons.find(button=>button.class?.split(/\s+/).includes('back-button'));
+  const next=buttons.find(button=>button.class?.split(/\s+/).includes('quiz-next-button'));
+  const submit=buttons.filter(button=>button.type==='submit');
+  assert.ok(back?.disabled&&next?.disabled,label+': navigation waits for the first answer');
+  assert.equal(submit.length,1,label+': one final submit action');
+  assert.ok(submit[0].hidden,label+': submission is hidden before contacts');
+  const input={...valid(),service:service[0].value,object:object[0].value,timing:timing[0].value,gift:gifts[0].value};
+  for(const detail of details)for(const objectValue of object.map(input=>input.value))for(const timingValue of timing.map(input=>input.value))for(const gift of gifts){
+   const lead=validateLead({...input,object:objectValue,timing:timingValue,detail:detail.value,gift:gift.value});
+   assert.equal(lead.service,service[0].value,label+': service is accepted by the backend');
+   assert.equal(lead.object,objectValue,label+': selected object survives validation');
+   assert.equal(lead.timing,timingValue,label+': selected timing survives validation');
+   assert.equal(lead.detail,detail.value,label+': selected goal survives validation');
+   assert.equal(lead.gift,gift.value,label+': selected gift survives validation');
   }
   assert.throws(()=>validateLead({...input,detail:details[0].value,consent:false}),label+': consent remains mandatory');
+  assert.throws(()=>validateLead({...input,detail:details[0].value,gift:'Другой подарок'}),label+': unsupported gift rejected');
   for(const detail of [' ','x'.repeat(151)])assert.throws(()=>validateLead({...input,detail}),label+': invalid goal rejected');
  }
 });

@@ -101,13 +101,40 @@ assertGlazingChoice(homeHtml,'Home source');
 const inlineEstimateServices=services.filter(service=>!['balkon-pod-klyuch',...bundledServiceSlugs].includes(service.slug));
 const inlineEstimatePages=[['home',homeHtml],...inlineEstimateServices.map(service=>[service.slug,servicePageWithSeo(service)])];
 assert.equal(inlineEstimatePages.length,20,'Every published service and home must keep an inline estimate');
+const estimateAttributes=tag=>Object.fromEntries([...tag.matchAll(/(?:^|\s)([\w:-]+)(?:="([^"]*)")?/g)].map(([,key,value])=>[key,value===undefined?true:value]));
 for(const [label,html] of inlineEstimatePages){
  const forms=[...html.matchAll(/<form\b(?=[^>]*\bdata-inline-estimate\b)[^>]*>[\s\S]*?<\/form>/g)];
  assert.equal(forms.length,1,label+': exactly one inline estimate');
- const form=forms[0][0];
- assert.match(form,/data-lead-form="quiz"/,label+': preserve the lead endpoint contract');
- assert.doesNotMatch(form,/\bdata-step=|\bdata-total-steps=|quiz-next-button|<progress\b/,label+': inline estimate must submit without quiz steps');
- for(const name of ['service','object','timing','detail','name','phone','consent'])assert.ok(form.includes('name="'+name+'"'),label+': preserve '+name);
+ const form=forms[0][0],formAttributes=estimateAttributes(form.match(/^<form\b([^>]*)>/)[1]);
+ assert.equal(formAttributes['data-lead-form'],'quiz',label+': preserve the lead endpoint contract');
+ const knownObject=/<input\b(?=[^>]*\btype="hidden")(?=[^>]*\bname="object")[^>]*>/.test(form);
+ const stages=[...form.matchAll(/<fieldset\b([^>]*)>([\s\S]*?)<\/fieldset>/g)].map(([,tag,body])=>({attributes:estimateAttributes(tag),body}));
+ const expectedStages=['goal',...knownObject?[]:['object'],'timing','gift'];
+ assert.equal(Number(formAttributes['data-total-steps']),expectedStages.length,label+': known objects shorten the quiz');
+ assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': preserve the ordered calculation stages');
+ assert.deepEqual(stages.map(stage=>stage.attributes['data-step']),expectedStages.map((_,index)=>String(index)),label+': preserve consecutive navigation');
+ assert.deepEqual(stages.map(stage=>Object.hasOwn(stage.attributes,'hidden')),expectedStages.map((_,index)=>index!==0),label+': only the first step starts visible');
+ for(const name of ['service','object','timing','detail','gift','name','phone','consent'])assert.ok(form.includes('name="'+name+'"'),label+': preserve '+name);
+ const finalStage=stages.at(-1);
+ for(const stage of stages.slice(0,-1))assert.doesNotMatch(stage.body,/\bname="(?:gift|name|phone|consent)"/,label+': gift and contacts belong only to the final step');
+ for(const name of ['gift','name','phone','consent'])assert.ok(finalStage.body.includes('name="'+name+'"'),label+': final step preserves '+name);
+ const section=html.match(/<section\b(?=[^>]*\bproject-estimate-section\b)[^>]*>[\s\S]*?<\/section>/)?.[0];
+ assert.ok(section,label+': keep the estimate section');
+ assert.doesNotMatch(section,/<figcaption\b/i,label+': estimate photos have no captions');
+ const previewKeys=[...section.matchAll(/\bdata-estimate-preview="([^"]+)"/g)].map(match=>match[1]);
+ for(const [,tag] of form.matchAll(/<input\b([^>]*)>/g)){
+  const input=estimateAttributes(tag);
+  if(['detail','gift'].includes(input.name))assert.ok(input['data-estimate-photo']&&previewKeys.includes(input['data-estimate-photo']),label+': goal and gift choices have matching photos');
+ }
+ const progress=estimateAttributes(form.match(/<progress\b([^>]*)>/)?.[1]||'');
+ assert.equal(progress.id,'quiz-progress-inline',label+': preserve distinct inline progress');
+ assert.equal(progress.value,'1',label+': start progress at step one');
+ assert.equal(Number(progress.max),stages.length,label+': progress covers all stages');
+ assert.ok(form.includes('id="step-count-inline"')&&form.includes('Шаг 1 из '+stages.length),label+': show the initial step count');
+ const buttons=[...form.matchAll(/<button\b([^>]*)>/g)].map(([,tag])=>estimateAttributes(tag));
+ assert.ok(buttons.find(button=>button.class?.split(/\s+/).includes('back-button'))?.disabled,label+': disable back on the first step');
+ assert.ok(buttons.find(button=>button.class?.split(/\s+/).includes('quiz-next-button'))?.disabled,label+': wait for the first answer');
+ assert.ok(buttons.find(button=>button.type==='submit')?.hidden,label+': wait until the final step before submitting');
  assert.match(html,/\bid="quiz"/,label+': preserve existing estimate links');
 }
 for(const [label,html] of inlineEstimatePages.filter(([label])=>label!=='home'))assert.ok(!html.includes('id="cold-warm-balcony"'),label+': comparison is exclusive to the published home page');

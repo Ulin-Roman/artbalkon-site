@@ -5054,3 +5054,95 @@ main > .social-subscribe,
  .social-subscribe--cards .social-card-cta{padding-inline:13px}
 }
 @media(prefers-reduced-motion:reduce){.social-subscribe--cards .social-card-cta{transition:none}}
+
+/* Project estimate step quiz. */
+.project-estimate-section--quiz .project-estimate-card{min-width:0;min-height:0;align-items:stretch}
+.project-estimate-section--quiz .project-estimate-visual{min-width:0;min-height:0;height:auto}
+.project-estimate-section--quiz .project-estimate-photo{min-width:0;min-height:0}
+.project-estimate-section--quiz .project-estimate-photo img{min-width:0;min-height:0}
+.project-estimate-section--quiz .project-estimate-photo--gift{background:#eef3ef}
+.project-estimate-section--quiz .project-estimate-photo--gift img{padding:24px;object-fit:contain;object-position:center}
+.project-estimate-section--quiz .project-estimate-copy{display:flex;min-width:0;min-height:480px;flex-direction:column;padding:30px 34px}
+.project-estimate-section--quiz .project-estimate-intro{margin-bottom:22px}
+.project-estimate-section--quiz .project-estimate-form--quiz{display:flex;min-width:0;min-height:0;flex:1;flex-direction:column;margin:0;padding:0;border:0;background:transparent}
+.project-estimate-section--quiz .project-estimate-progress-row{display:flex;min-width:0;align-items:center;justify-content:space-between;gap:10px;margin:0;color:var(--muted);font-size:11px;line-height:1.5;letter-spacing:0}
+.project-estimate-section--quiz .project-estimate-progress-row>span{min-width:0;overflow-wrap:anywhere}
+.project-estimate-section--quiz .project-estimate-progress-row>span:last-child{flex:0 0 auto;white-space:nowrap}
+.project-estimate-section--quiz .project-estimate-progress{display:block;width:100%;min-width:0;height:6px;flex:0 0 auto;margin:9px 0 24px;border:0;border-radius:999px;background:#e4eeeb;color:var(--teal);accent-color:var(--teal);appearance:none}
+.project-estimate-section--quiz .project-estimate-progress::-webkit-progress-bar{border-radius:999px;background:#e4eeeb}
+.project-estimate-section--quiz .project-estimate-progress::-webkit-progress-value{border-radius:999px;background:var(--teal)}
+.project-estimate-section--quiz .project-estimate-progress::-moz-progress-bar{border-radius:999px;background:var(--teal)}
+.project-estimate-section--quiz .project-estimate-step{min-width:0;min-inline-size:0;margin:0;padding:0;border:0}
+.project-estimate-section--quiz .project-estimate-step:not([hidden]){display:block}
+.project-estimate-section--quiz .project-estimate-step legend{max-width:100%;margin:0 0 16px;padding:0;color:var(--ink);font-size:21px;font-weight:600;line-height:1.3;letter-spacing:-.02em;overflow-wrap:anywhere}
+.project-estimate-section--quiz .project-estimate-options{min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.project-estimate-section--quiz .project-estimate-option{min-width:0;min-height:58px}
+.project-estimate-section--quiz .project-estimate-gifts{display:grid;min-width:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.project-estimate-section--quiz .project-estimate-gift{position:relative;display:flex;min-width:0;flex-direction:column;gap:0;margin:0;padding:8px;border:1px solid #dbe4e0;border-radius:12px;background:#fafcfb;cursor:pointer;transition:background .18s,border-color .18s,box-shadow .18s}
+.project-estimate-section--quiz .project-estimate-gift input{position:absolute;top:13px;left:13px;z-index:1;display:block;width:18px;height:18px;margin:0;accent-color:var(--teal);cursor:pointer}
+.project-estimate-section--quiz .project-estimate-gift-media{display:block;min-width:0;height:104px;border-radius:8px;background:#edf3ee}
+.project-estimate-section--quiz .project-estimate-gift-media img{display:block;min-width:0;min-height:0;width:100%;height:100%;border-radius:inherit;object-fit:cover;object-position:center}
+.project-estimate-section--quiz .project-estimate-gift-label{display:block;min-width:0;min-height:43px;padding:10px 2px 0;color:var(--ink);font-size:13px;font-weight:600;line-height:1.4;overflow-wrap:anywhere}
+.project-estimate-section--quiz .project-estimate-gift:hover{border-color:#a9cbc5;background:#f4faf8}
+.project-estimate-section--quiz .project-estimate-gift:has(input:checked){border-color:var(--teal);background:#eef8f5;box-shadow:inset 0 0 0 1px var(--teal)}
+.project-estimate-section--quiz .project-estimate-gift:has(input:focus-visible){outline:3px solid #008a8733;outline-offset:2px}
+.project-estimate-section--quiz .project-estimate-gift-terms{min-width:0;margin:12px 0 0;color:var(--muted);font-size:11px;line-height:1.6;overflow-wrap:anywhere}
+.project-estimate-section--quiz .project-estimate-contact-intro{min-width:0;margin:22px 0 0;color:var(--ink);font-size:14px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+.project-estimate-section--quiz .project-estimate-step .field-row{margin-top:12px}
+.project-estimate-section--quiz .project-estimate-controls{display:flex;min-width:0;align-items:center;justify-content:space-between;flex-wrap:nowrap;gap:14px;margin-top:auto;padding-top:24px}
+.project-estimate-section--quiz .project-estimate-controls>button{min-width:0;max-width:100%;min-height:48px;margin:0;line-height:1.4;white-space:normal}
+.project-estimate-section--quiz .project-estimate-controls .back-button{flex:0 0 auto;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font-size:14px}
+.project-estimate-section--quiz .project-estimate-controls .back-button:disabled{color:#8b9691;cursor:default}
+.project-estimate-section--quiz .project-estimate-controls .quiz-next-button{display:inline-flex;flex:0 1 190px;align-items:center;justify-content:center;gap:12px;margin-left:auto;padding:12px 20px;border:1px solid var(--teal);border-radius:10px;background:var(--teal);color:#fff;font-size:15px;font-weight:600}
+.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:disabled{border-color:#dbe4e0;background:#eef3f0;color:#68796f;box-shadow:none;cursor:default}
+.project-estimate-section--quiz .project-estimate-controls .quiz-next-button.is-ready:hover{border-color:var(--teal-hover);background:var(--teal-hover);color:#fff}
+.project-estimate-section--quiz .project-estimate-controls .project-estimate-submit{display:inline-flex;flex:1;width:auto;margin:0;padding:12px 15px;font-size:15px}
+.project-estimate-section--quiz :is(.project-estimate-step,.project-estimate-photo,.project-estimate-controls button)[hidden]{display:none!important}
+@media(max-width:1100px){
+ .project-estimate-section--quiz .project-estimate-copy{padding:27px 25px}
+ .project-estimate-section--quiz .project-estimate-gifts{gap:7px}
+ .project-estimate-section--quiz .project-estimate-gift{padding:6px}
+ .project-estimate-section--quiz .project-estimate-gift-media{height:96px}
+ .project-estimate-section--quiz .project-estimate-gift-label{padding-top:9px;font-size:12px}
+}
+@media(max-width:800px){
+ .project-estimate-section--quiz .project-estimate-visual{min-height:0;height:220px}
+ .project-estimate-section--quiz .project-estimate-photo--gift img{padding:14px}
+ .project-estimate-section--quiz .project-estimate-copy{min-height:0;padding:25px 26px}
+ .project-estimate-section--quiz .project-estimate-form--quiz{flex:0 1 auto}
+ .project-estimate-section--quiz .project-estimate-gift-media{height:130px}
+ .project-estimate-section--quiz .project-estimate-gift-label{font-size:13px}
+ .project-estimate-section--quiz .project-estimate-controls{margin-top:0}
+}
+@media(max-width:640px){
+ .project-estimate-section--quiz .project-estimate-visual{height:200px}
+ .project-estimate-section--quiz .project-estimate-copy{padding:22px 18px}
+ .project-estimate-section--quiz .project-estimate-intro{margin-bottom:19px}
+ .project-estimate-section--quiz .project-estimate-progress-row{font-size:10px}
+ .project-estimate-section--quiz .project-estimate-progress{margin:8px 0 20px}
+ .project-estimate-section--quiz .project-estimate-step legend{margin-bottom:13px;font-size:20px}
+ .project-estimate-section--quiz .project-estimate-options{gap:7px}
+ .project-estimate-section--quiz .project-estimate-option{min-height:56px;padding:10px 9px}
+ .project-estimate-section--quiz .project-estimate-gifts{grid-template-columns:minmax(0,1fr);gap:8px}
+ .project-estimate-section--quiz .project-estimate-gift{display:grid;grid-template-columns:86px minmax(0,1fr);align-items:center;gap:12px;min-height:88px;padding:8px}
+ .project-estimate-section--quiz .project-estimate-gift input{top:14px;left:14px;width:17px;height:17px}
+ .project-estimate-section--quiz .project-estimate-gift-media{height:70px}
+ .project-estimate-section--quiz .project-estimate-gift-label{min-height:0;padding:0 5px 0 0;font-size:14px}
+ .project-estimate-section--quiz .project-estimate-gift-terms{margin-top:10px;font-size:10px}
+ .project-estimate-section--quiz .project-estimate-contact-intro{margin-top:19px;font-size:13px}
+ .project-estimate-section--quiz .project-estimate-controls{gap:10px;padding-top:20px}
+ .project-estimate-section--quiz .project-estimate-controls .back-button{padding-inline:10px;font-size:13px}
+ .project-estimate-section--quiz .project-estimate-controls .quiz-next-button{flex:1;gap:9px;padding-inline:14px;font-size:14px}
+ .project-estimate-section--quiz .project-estimate-controls .project-estimate-submit{gap:8px;padding-inline:10px;font-size:14px}
+}
+@media(max-width:360px){
+ .project-estimate-section--quiz .project-estimate-visual{height:180px}
+ .project-estimate-section--quiz .project-estimate-copy{padding:20px 14px}
+ .project-estimate-section--quiz .project-estimate-step legend{font-size:19px}
+ .project-estimate-section--quiz .project-estimate-option{min-height:52px}
+ .project-estimate-section--quiz .project-estimate-gift{grid-template-columns:76px minmax(0,1fr);gap:10px}
+ .project-estimate-section--quiz .project-estimate-gift-label{font-size:13px}
+ .project-estimate-section--quiz .project-estimate-controls{gap:8px}
+ .project-estimate-section--quiz .project-estimate-controls .project-estimate-submit{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.project-estimate-section--quiz .project-estimate-gift{transition:none}}
