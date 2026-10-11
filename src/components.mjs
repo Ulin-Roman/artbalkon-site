@@ -287,7 +287,7 @@ export function quiz(subject=null,{consultation=true}={}){const context=quizCont
 const estimateGoal=(label,match)=>({label,match});
 const estimateProfile=subject=>{
  const slug=subject?.slug||'balkon-pod-klyuch';
- const advice=estimateGoal('Помогите определиться',null);
+ const advice=estimateGoal('Пока не знаю',null);
  if(slug==='osteklenie-kottedzhej')return {subject:'остекления',photoSubject:'остекления',goals:[estimateGoal('Остеклить террасу',/террас/i),estimateGoal('Остеклить веранду',/веранд/i),estimateGoal('Заменить окна дома',/дом|окон|окна/i),estimateGoal('Остеклить беседку',/бесед/i),advice]};
  if(slug==='obedinenie-balkona-s-komnatoj')return {subject:'вашего проекта',goals:[estimateGoal('Рабочая зона',/рабоч|кабинет/i),estimateGoal('Зона отдыха',/отдых|уют/i),estimateGoal('Продолжение кухни',/кухн/i),estimateGoal('Больше места для хранения',/хран|шкаф|тумб/i),advice]};
  if(slug.startsWith('uteplenie-'))return {subject:'утепления',goals:[estimateGoal('Утеплить весь контур',/контур|утеплен/i),estimateGoal('Подготовить к отделке',/отдел/i),estimateGoal('Дополнить тёплое остекление',/окон|остекл/i),estimateGoal('Обновить старое утепление',/утеплен/i),advice]};
@@ -295,10 +295,10 @@ const estimateProfile=subject=>{
  if(slug==='osteklenie-balkona-s-vynosom')return {subject:'остекления с выносом',goals:[estimateGoal('Расширить подоконник',/широк|подокон/i),estimateGoal('Заменить старые рамы',/замен|стар/i),estimateGoal('Сохранить площадь пола',/сохран|площад/i),estimateGoal('Остеклить открытый балкон',/открыт/i),advice]};
  if(slug==='osteklenie-balkona-v-hrushchevke')return {subject:'остекления в хрущёвке',goals:[estimateGoal('Остеклить открытый балкон',/открыт/i),estimateGoal('Заменить старые рамы',/стар|замен/i),estimateGoal('Удобно открывать окна',/компакт|небольш/i),estimateGoal('Подобрать лёгкую конструкцию',/остекл/i),advice]};
  if(slug.startsWith('teploe-osteklenie'))return {subject:'тёплого остекления',goals:[estimateGoal('Сделать тёплый контур',/тёпл|тепл/i),estimateGoal('Заменить старые окна',/замен|остекл/i),estimateGoal('Подготовить к утеплению',/отдел|утепл/i),estimateGoal('Уменьшить сквозняки',/остекл/i),advice]};
- if(/^(?:panoramnoe|frantsuzskoe)-osteklenie/.test(slug))return {subject:'остекления',goals:[estimateGoal('Больше света и обзора',/панорам|свет/i),estimateGoal('Окна от пола до потолка',/француз|панорам/i),estimateGoal('Заменить старые окна',/замен|остекл/i),estimateGoal('Обновить балкон целиком',/отдел|лоджи|балкон/i),advice]};
+ if(/^(?:panoramnoe|frantsuzskoe)-osteklenie/.test(slug))return {subject:'остекления',goals:[estimateGoal('Больше света и обзора',/панорам|свет/i),estimateGoal('Окна от пола до потолка',/француз|панорам/i),estimateGoal('Заменить старые окна',/замен|остекл/i),estimateGoal('Объединить с комнатой',/объедин|комнат|кухн/i),estimateGoal('Освежить вид',/отдел|светл|обнов/i),advice]};
  if(slug==='razdvizhnoe-osteklenie'||slug.startsWith('holodnoe-osteklenie'))return {subject:'холодного остекления',goals:[estimateGoal('Защитить от ветра и дождя',/остекл/i),estimateGoal('Заменить старые рамы',/замен|стар/i),estimateGoal('Удобно открывать створки',/раздвиж|створк/i),estimateGoal('Сохранить свободный проход',/компакт|узк/i),advice]};
  if(slug==='osteklenie-balkonov'||slug==='osteklenie-lodzhii')return {subject:'остекления',goals:[estimateGoal('Защитить от ветра и дождя',/остекл/i),estimateGoal('Заменить старые рамы',/замен|стар/i),estimateGoal('Удобно открывать окна',/углов|компакт|лоджи/i),estimateGoal('Больше света и обзора',/панорам/i),advice]};
- return {subject:slug==='remont-balkonov'?'ремонта':'вашего проекта',goals:[estimateGoal('Зона отдыха',/отдых|уют/i),estimateGoal('Рабочее место',/рабоч|кабинет|стол/i),estimateGoal('Удобное хранение',/хран|шкаф|тумб/i),estimateGoal('Обновить балкон целиком',/под ключ|отдел/i),advice]};
+ return {subject:slug==='remont-balkonov'?'ремонта':'вашего проекта',goals:[estimateGoal('Зона отдыха',/отдых|уют/i),estimateGoal('Рабочее место',/рабоч|кабинет|стол/i),estimateGoal('Удобное хранение',/хран|шкаф|тумб/i),estimateGoal('Объединить с комнатой',/объедин|комнат|кухн/i),estimateGoal('Освежить вид',/отдел|светл|обнов/i),advice]};
 };
 export function inlineEstimate(subject=null){
  const context=quizContext(subject),profile=estimateProfile(subject);

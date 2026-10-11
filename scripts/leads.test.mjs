@@ -84,7 +84,7 @@ test('inline estimates preserve valid lead context for every published service a
   assert.equal(timing.initial,'Пока выбираю',label+': neutral timing default');
   if(object.values.length>1)assert.equal(object.initial,'Не знаю',label+': do not assume an object');
   const details=inputs.filter(input=>input.name==='detail');
-  assert.ok(details.length>=4&&details.length<=5,label+': explicit project goals');
+  assert.ok(details.length>=4&&details.length<=6,label+': explicit project goals');
   assert.ok(details.every(input=>input.type==='radio'&&input.required&&!input.checked),label+': visitors choose their own goal');
   const consent=inputs.find(input=>input.name==='consent');
   assert.ok(consent?.type==='checkbox'&&consent.required&&!consent.checked,label+': consent requires an explicit choice');
