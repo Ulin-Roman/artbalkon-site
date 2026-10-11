@@ -4748,3 +4748,7 @@ main > .social-subscribe,
  .landing-trust.landing-utp .trust-copy span{font-size:11px;min-height:4.2em}
  .landing-trust.company-trust .trust-copy strong{font-size:18px}
 }
+
+/* Match the selected finish-calculator option on both benefit rows. */
+.landing-trust.landing-utp > .trust-item,
+.landing-trust.company-trust > .trust-item{background:#eaf6f5}
