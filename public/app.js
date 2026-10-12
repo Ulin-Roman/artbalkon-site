@@ -950,10 +950,10 @@ function createCalculatorScene(root) {
   ctx.restore();
  }
 
- function baseboards(q,dark=false){
+ function baseboards(q,wallFinish=null){
   // Vertical boards stand on the finished floor; their faces belong to the walls.
   const lerp=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
-  const colors=dark?{top:'#967455',middle:'#7a573c',bottom:'#483321',lip:'#a57c55',cap:'#60432d',cut:'#382516aa',edge:'#c39b70',foot:'#38251799'}:{top:'#f9faf5',middle:'#eaece4',bottom:'#b5b8ab',lip:'#fffef7',cap:'#c2c5bb',cut:'#858b8080',edge:'#ffffff',foot:'#7d807260'};
+  const colors=wallFinish==='parquet'?{top:'#967455',middle:'#7a573c',bottom:'#483321',lip:'#a57c55',cap:'#60432d',cut:'#382516aa',edge:'#c39b70',foot:'#38251799'}:['laminate','lining'].includes(wallFinish)?{top:'#d8bd93',middle:'#c6a579',bottom:'#9a7851',lip:'#e2c7a0',cap:'#b39269',cut:'#6f523680',edge:'#ead2ae',foot:'#6f523675'}:{top:'#f9faf5',middle:'#eaece4',bottom:'#b5b8ab',lip:'#fffef7',cap:'#c2c5bb',cut:'#858b8080',edge:'#ffffff',foot:'#7d807260'};
   function board(a,b,ha,hb,inside,cut=false){
    const at=[a[0],a[1]-ha],bt=[b[0],b[1]-hb];
    ctx.save();ctx.shadowColor='#322c244f';ctx.shadowBlur=.8;
@@ -1095,7 +1095,7 @@ function createCalculatorScene(root) {
   const restore=q=>{ctx.save();polygon(q);ctx.clip();ctx.drawImage(base,0,0,340,480);ctx.restore();};
   restore([[225.4,140.8],[283.7,80.6],apartmentFloorPoint(floorContact,283.7),apartmentFloorPoint(floorContact,250.7),[250.7,275.7],[246.3,277.3],[218.1,260.3],[218.1,255.2],[225.4,254.8]]);
   apartmentDoorFoot(floorContact);
-  if(s['floor-enabled'])baseboards(floorQ,s['walls-enabled']&&s.walls==='parquet');
+  if(s['floor-enabled'])baseboards(floorQ,s['walls-enabled']?s.walls:null);
   // Apartment sill: a shaded underside, with the switch just below near the door.
   ctx.save();polygon(surfaces.house);ctx.clip();line([[218.7,261],[246.1,278]],'#3e393148',1.3);ctx.restore();switchPlate();
   parapetCore();sideSection(insulated);floorSection(floorQ,s['floor-enabled']?s.floor:null,insulated);roofSection(insulated);
