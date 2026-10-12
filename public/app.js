@@ -481,15 +481,22 @@ function createCalculatorScene(root) {
   const outer=selection['glazing-enabled']&&selection.glazing==='cold'?36.3:31,inner=outer+5.4;
   return {outer,inner,core:parapetNear-sectionInsulationDepth};
  }
+ // Use the front floor cut as the timber-size reference for both side cuts.
+ const sectionTimber={width:(floorSurface[2][0]-floorSurface[3][0])*.035,pitch:(floorSurface[2][0]-floorSurface[3][0])*.19};
+ function sideTimberRuns(top,bottom){
+  const runs=[[bottom-sectionTimber.width,bottom]];
+  // Both cuts share one grid, anchored to the floor. Keep end bays at least as wide.
+  for(let y=bottom-sectionTimber.width-sectionTimber.pitch;y>=top+sectionTimber.pitch;y-=sectionTimber.pitch)runs.unshift([y,y+sectionTimber.width]);
+  runs.unshift([top,top+sectionTimber.width]);return runs;
+ }
  function sideSection(filled){
   // The inner lining remains separate from the mineral core.
-  const left=streetSection().core,right=surfaces.floor[3][0],top=303.3,bottom=surfaces.floor[3][1],map=projection(surfaces.parapet),ribs=[top,...[.26,.49,.72].map(v=>map(0,v)[1]-.7),bottom-2.3];
-  for(let i=0;i<ribs.length-1;i++)recessedBay([[left,ribs[i]+2.3],[right,ribs[i]+2.3],[right,ribs[i+1]],[left,ribs[i+1]]],'side',filled);
-  // Horizontal blocking remains in front of the four open or filled bays.
-  for(const y of ribs){
-   const q=[[left,y],[right,y],[right,y+2.3],[left,y+2.3]];
-   plane(q,'timber',1,1,false,null,2);line([[left,y+2.3],[right,y+2.3]],'#62482880',.65);
-   line([[left,y],[right,y]],'#f3dfbca6',.45);
+  const left=streetSection().core,right=surfaces.floor[3][0],top=303.3,bottom=surfaces.floor[3][1],ribs=sideTimberRuns(top,bottom);
+  for(let i=0;i<ribs.length-1;i++)recessedBay([[left,ribs[i][1]],[right,ribs[i][1]],[right,ribs[i+1][0]],[left,ribs[i+1][0]]],'side',filled);
+  for(const [y0,y1] of ribs){
+   const q=[[left,y0],[right,y0],[right,y1],[left,y1]];
+   plane(q,'timber',1,1,false,null,2);line([[left,y1],[right,y1]],'#62482880',.65);
+   line([[left,y0],[right,y0]],'#f3dfbca6',.45);
   }
   line([[left,top],[left,bottom]],'#725b3f',Math.min(.8,(right-left)*.15));line([[right-.4,top],[right-.4,bottom]],'#eedabc',Math.min(.85,(right-left)*.17));
   // The thicker lining bears on a continuous mineral foot above the slab.
@@ -513,7 +520,7 @@ function createCalculatorScene(root) {
   const inner=finish?finish.thickness:0,core=inner+sectionInsulationDepth,depth=core+2;
   const end=surfaces.floor[2],nearTop=surfaces.house[1],top=63,bottom=end[1];
   const start=[nearTop[0]+(end[0]-nearTop[0])*(top-nearTop[1])/(bottom-nearTop[1]),top];
-  const q=[start,[start[0]+depth,top],[end[0]+depth,bottom],end],map=projection(q),wallMap=projection(surfaces.house);
+  const q=[start,[start[0]+depth,top],[end[0]+depth,bottom],end],map=projection(q);
   // Clear the old bevel within the largest supported finish before drawing this cut.
   const maxDepth=sectionInsulationDepth+2+1.15+.7;
   ctx.save();polygon([[nearTop[0],55],[nearTop[0]+maxDepth,55],[start[0]+maxDepth,top],[end[0]+maxDepth,429.5],[end[0],429.5],end,start]);ctx.clip();ctx.clearRect(290,55,25,374.5);ctx.restore();
@@ -523,7 +530,7 @@ function createCalculatorScene(root) {
   const slice=(y0,y1,x0=inner,x1=core)=>section(map,x0/depth,(y0-top)/(bottom-top),x1/depth,(y1-top)/(bottom-top));
   // The mineral wall is continuous behind the separate lining and frame.
   plane(slice(top,bottom,core,depth),'concrete',1,3,false,{axis:[start[0]+core,top,start[0]+depth,top],stops:[[0,'#403e3445'],[1,'#e4e0d020']]},5);
-  const ribs=[0,.26,.49,.72,.96].map(v=>[Math.max(top,wallMap(1,v)[1]),Math.min(bottom,wallMap(1,Math.min(1,v+.04))[1])]);
+  const ribs=sideTimberRuns(top,bottom);
   let cursor=top;
   for(const [y0,y1] of ribs){
    if(y0>cursor)recessedBay(slice(cursor,y0),'side',filled);
@@ -890,23 +897,39 @@ function createCalculatorScene(root) {
   line([[30.8,303.7],lowerInner[0]],'#7b8b8c',.3);
  }
 
- function baseboards(q){
+ function apartmentFloorPoint(q,x){
+  const t=(x-q[1][0])/(q[2][0]-q[1][0]);return [x,q[1][1]+(q[2][1]-q[1][1])*t];
+ }
+ function apartmentDoorFoot(q){
+  // Keep the upper door and handle intact; fit its lower frame to the finished floor.
+  const source=projection([[250.7,275],[283.7,275],[282.3,409.5],[250.7,369.3]]);
+  const face=[[250.7,275],[283.7,275],apartmentFloorPoint(q,283.7),apartmentFloorPoint(q,250.7)],target=projection(face),n=12;
+  ctx.save();polygon(face);ctx.clip();
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+   const uv=[[x/n,y/n],[(x+1)/n,y/n],[(x+1)/n,(y+1)/n],[x/n,(y+1)/n]];
+   for(const ids of [[0,1,2],[0,2,3]])triangle(base,ids.map(i=>{const point=source(...uv[i]);return [point[0]*base.width/340,point[1]*base.height/480];}),ids.map(i=>target(...uv[i])));
+  }
+  ctx.restore();
+ }
+
+ function baseboards(q,dark=false){
   // Vertical boards stand on the finished floor; their faces belong to the walls.
   const lerp=(a,b,t)=>a.map((v,i)=>v+(b[i]-v)*t);
+  const colors=dark?{top:'#967455',middle:'#7a573c',bottom:'#483321',lip:'#a57c55',cap:'#60432d',cut:'#382516aa',edge:'#c39b70',foot:'#38251799'}:{top:'#f9faf5',middle:'#eaece4',bottom:'#b5b8ab',lip:'#fffef7',cap:'#c2c5bb',cut:'#858b8080',edge:'#ffffff',foot:'#7d807260'};
   function board(a,b,ha,hb,inside,cut=false){
    const at=[a[0],a[1]-ha],bt=[b[0],b[1]-hb];
    ctx.save();ctx.shadowColor='#322c244f';ctx.shadowBlur=.8;
    line([a,b],'#3e352c59',1.7);ctx.restore();
    const face=ctx.createLinearGradient(at[0],at[1],a[0],a[1]);
-   face.addColorStop(0,'#f9faf5');face.addColorStop(.35,'#eaece4');face.addColorStop(1,'#b5b8ab');
+   face.addColorStop(0,colors.top);face.addColorStop(.35,colors.middle);face.addColorStop(1,colors.bottom);
    fill([at,bt,b,a],face);
    const ledge=[at.map((v,i)=>v+(i===0?inside:0)),bt.map((v,i)=>v+(i===0?inside:0))];
-   fill([ledge[0],ledge[1],bt,at],'#fffef7');
+   fill([ledge[0],ledge[1],bt,at],colors.lip);
    if(cut){
-    fill([bt,ledge[1],[b[0]+inside,b[1]],b],'#c2c5bb');
-    line([ledge[1],[b[0]+inside,b[1]]],'#858b8080',.3);
+    fill([bt,ledge[1],[b[0]+inside,b[1]],b],colors.cap);
+    line([ledge[1],[b[0]+inside,b[1]]],colors.cut,.3);
    }
-   line([at,bt],'#ffffff',.7);line([a,b],'#7d807260',.45);
+   line([at,bt],colors.edge,.7);line([a,b],colors.foot,.45);
   }
   board(q[0],q[1],4.2,4.2,0);
   board(q[3],q[0],6.4,4.2,1.05);
@@ -1030,9 +1053,11 @@ function createCalculatorScene(root) {
    streetView(window);canopyThroughGlass(window);coldWindow(window,geometry.depth/(geometry.bottom-canopyJoint[1]));ctx.restore();
   }else streetView([[43,78],[108,142],[108,256.5],[43,291.5]]);
   const drawWindowHead=glazingSection(!!s['glazing-enabled'],s.glazing==='warm');
-  if(s['floor-enabled'])baseboards(floorQ);
+  const floorContact=s['floor-enabled']||insulated?floorQ:floorBase;
   const restore=q=>{ctx.save();polygon(q);ctx.clip();ctx.drawImage(base,0,0,340,480);ctx.restore();};
-  restore([[225.4,140.8],[283.7,80.6],[283.7,413.8],[250.7,369.3],[250.7,275.7],[246.3,277.3],[218.1,260.3],[218.1,255.2],[225.4,254.8]]);
+  restore([[225.4,140.8],[283.7,80.6],apartmentFloorPoint(floorContact,283.7),apartmentFloorPoint(floorContact,250.7),[250.7,275.7],[246.3,277.3],[218.1,260.3],[218.1,255.2],[225.4,254.8]]);
+  apartmentDoorFoot(floorContact);
+  if(s['floor-enabled'])baseboards(floorQ,s['walls-enabled']&&s.walls==='parquet');
   // Apartment sill: a shaded underside, with the switch just below near the door.
   ctx.save();polygon(surfaces.house);ctx.clip();line([[218.7,261],[246.1,278]],'#3e393148',1.3);ctx.restore();switchPlate();
   parapetCore();sideSection(insulated);floorSection(floorQ,s['floor-enabled']?s.floor:null,insulated);roofSection(insulated);
