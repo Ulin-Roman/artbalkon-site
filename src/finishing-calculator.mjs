@@ -25,7 +25,7 @@ function scene() {
  const point=p=>p.map(v=>Number(v.toFixed(2))).join(' ');
  const lower=(p,scale=1)=>[p[0],p[1]+thickness*scale];
  const roofRibs=Array.from({length:7},(_,i)=>{const depth=(i+1)/8,v=depth/(farScale+(1-farScale)*depth);return `<path d="M${along(houseNear,houseFar,v)} ${along(innerNear,innerFar,v)} ${along(outerNear,outerFar,v)}"/>`;}).join('');
- return `<div class="finish-calc-scene-wrap"><svg class="finish-calc-scene" viewBox="16 18 340 448" data-calc-canopy-joint="${point([340-innerNear[0],innerNear[1]+thickness])}" role="img" aria-label="Выбранная отделка балкона с козырьком: остекление справа, дверь и окно в квартиру слева">
+ return `<div class="finish-calc-scene-wrap"><svg class="finish-calc-scene" viewBox="16 18 340 448" data-calc-canopy-joint="${point([340-innerNear[0],innerNear[1]+thickness])}" data-calc-canopy-surface="${[innerNear,outerNear,outerFar,innerFar].map((p,i)=>point([340-p[0],p[1]+thickness*(i<2?1:farScale)])).join(';')}" role="img" aria-label="Выбранная отделка балкона с козырьком: остекление справа, дверь и окно в квартиру слева">
  <defs>
  <clipPath id="finish-calc-cutout" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,292.51 313.90,296.70 313.57,415.57 313.57,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 36,464.86 36,418.5 31.08,63 31,55 33.5,55"/></clipPath>
  <clipPath id="finish-calc-cutout-exterior" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,304.8 309,304.8 309,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 36,464.86 36,418.5 31.08,63 31,55 33.5,55"/></clipPath>
@@ -51,7 +51,7 @@ function scene() {
  <path d="M${point(lower(innerNear))} ${point(lower(outerNear))} ${point(lower(outerFar,farScale))}" fill="none" stroke="#7b8a94" stroke-width=".4"/>
  <path d="M318.8 57.6 321.9 58.6" fill="none" stroke="#59676b70" stroke-width=".7"/>
  </g></g>
- <foreignObject x="0" y="0" width="340" height="480" clip-path="url(#finish-calc-cutout)"><div xmlns="http://www.w3.org/1999/xhtml" class="finish-calc-raster-wrap"><img data-calc-fallback class="finish-calc-raster finish-calc-fallback" src="/assets/calculator-realistic-v1/balcony-apartment-v4.webp" width="340" height="480" alt="Балкон в разрезе: наружное остекление справа, дверь и окно в квартиру слева"><canvas data-calc-canvas class="finish-calc-raster" width="1020" height="1440" hidden></canvas></div></foreignObject>
+ <foreignObject x="0" y="0" width="340" height="480" clip-path="url(#finish-calc-cutout)"><div xmlns="http://www.w3.org/1999/xhtml" class="finish-calc-raster-wrap"><img data-calc-fallback class="finish-calc-raster finish-calc-fallback" src="/assets/calculator-realistic-v1/balcony-apartment-v5.webp" width="340" height="480" alt="Балкон в разрезе: наружное остекление справа, дверь и окно в квартиру слева"><canvas data-calc-canvas class="finish-calc-raster" width="1020" height="1440" hidden></canvas></div></foreignObject>
  <g class="finish-calc-canopy-fixing" aria-hidden="true" pointer-events="none">
  <path d="M${point(houseNear)} ${point(innerNear)} ${point(lower(innerNear))} ${point(lower(houseNear))}Z" fill="#b3bec2"/>
  <path d="M${point(houseNear)} ${point(innerNear)}" fill="none" stroke="#edf1f2" stroke-width=".45"/>

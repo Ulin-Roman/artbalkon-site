@@ -196,7 +196,7 @@ for(const [label,html] of [['home',homeHtml],...services.map(service=>[service.s
  assert.equal((html.match(/\bid="waste-removal"/g)||[]).length,1,label+': waste removal must appear exactly once');
  assert.match(html,/<section\b[^>]*id="about"[^>]*>[\s\S]*?<\/section>\s*<section\b[^>]*id="waste-removal"/,label+': waste removal must immediately follow About');
 }
-assert.match(homeWaste,/src="\/assets\/site-home\/waste-removal-v3\.webp"/,'Waste removal must use the updated two-colour photo');
+assert.match(homeWaste,/src="\/assets\/site-home\/waste-removal-worker-v1\.webp"/,'Waste removal must use the supplied worker photo');
 assert.equal(homeHtml.replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their calculation blocks and thermal difference');
 assert.doesNotMatch(renderedGalleries,/class="breadcrumbs"/,'Rendered pages must not restore removed breadcrumbs');
 assert.match(homeHtml,/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>\s*<section[^>]*id="about"/,'Additional services must immediately precede About');

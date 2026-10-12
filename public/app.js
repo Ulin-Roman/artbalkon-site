@@ -148,7 +148,7 @@
  document.querySelectorAll('[data-lead-form="quiz"]').forEach(form=>{
   let step=0,started=false;
   const steps=[...form.querySelectorAll('[data-step]')],lastStep=Math.max(0,steps.length-1),stepCount=form.querySelector('[id^="step-count"]'),progress=form.querySelector('[id^="quiz-progress"]'),back=form.querySelector('.back-button'),next=form.querySelector('.quiz-next-button'),submit=form.querySelector('[type="submit"]');
-  const inline=form.hasAttribute('data-inline-estimate'),section=inline?form.closest('.project-estimate-section'):null,previews=[...(section?.querySelectorAll('[data-estimate-preview]')||[])];
+  const inline=form.hasAttribute('data-inline-estimate'),section=inline?form.closest('.project-estimate-section'):null,gallery=section?.querySelector('[data-estimate-gallery]'),previews=[...(section?.querySelectorAll('[data-estimate-preview]')||[])];
   const begin=()=>{if(!started){track('quiz_start',inline?{source:'inline_estimate'}:{});started=true;}};
   const syncPreview=()=>{
    if(!previews.length)return;
@@ -156,7 +156,7 @@
    const photoField=['gift','contact'].includes(stage)?'gift':stage==='object'?'object':'detail';
    const selected=form.querySelector('input[name="'+photoField+'"]:checked');
    const fallback=form.querySelector('input[name="'+photoField+'"][data-estimate-photo]');
-   const key=selected?.dataset.estimatePhoto||fallback?.dataset.estimatePhoto;
+   const key=selected?.dataset.estimatePhoto||(photoField==='object'?gallery?.dataset.estimateDefault:fallback?.dataset.estimatePhoto);
    if(!key||!previews.some(preview=>preview.dataset.estimatePreview===key))return;
    previews.forEach(preview=>preview.hidden=preview.dataset.estimatePreview!==key);
   };
@@ -333,6 +333,7 @@ function createCalculatorScene(root) {
  if(!ctx)return ()=>{};
  const base=new Image(),atlas=new Image(),insulation=new Image(),cache=new Map();
  const canopyJoint=(root.querySelector('[data-calc-canopy-joint]')?.dataset.calcCanopyJoint||'30.5 55.9').split(' ').map(Number);
+ const canopySurface=(root.querySelector('[data-calc-canopy-surface]')?.dataset.calcCanopySurface||'').split(';').filter(Boolean).map(point=>point.split(' ').map(Number));
  let selection=null,ready=false,frame=0;
  const cells={laminate:0,'laminate-wall':0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
  // A deeper parapet grows into the room; its street face stays below the glass.
@@ -590,7 +591,25 @@ function createCalculatorScene(root) {
   ctx.save();polygon(q);ctx.clip();ctx.filter='saturate(.86) contrast(.95)';
   ctx.drawImage(photo,center-size*.32,q[0][1],size,size);ctx.restore();
  }
- function coldWindow(q){
+ function canopyThroughGlass(q,apertures=null){
+  if(canopySurface.length!==4)return;
+  const glass=projection(q),roof=projection(canopySurface);
+  ctx.save();polygon(q);ctx.clip();
+  if(apertures){
+   ctx.beginPath();for(const aperture of apertures){aperture.forEach(([u,v],i)=>{const [x,y]=glass(u,v);if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y);});ctx.closePath();}ctx.clip();
+  }
+  polygon(canopySurface);ctx.clip();
+  const shade=ctx.createLinearGradient(...roof(0,.25),...roof(1,.7));
+  shade.addColorStop(0,'#8f9da5');shade.addColorStop(.4,'#b5c1c7');shade.addColorStop(1,'#cbd3d6');
+  ctx.globalAlpha=selection.glazing==='warm'?.93:.97;fill(canopySurface,shade);
+  for(let i=1;i<8;i++)line([roof(0,i/8),roof(1,i/8)],'#71828f45',.28);
+  line([canopySurface[1],canopySurface[2]],'#657883',.6);
+  line([roof(.03,0),roof(.03,1)],'#e4edf24d',.35);
+  // A faint cool veil keeps this exterior metal behind the glass surface.
+  fill(canopySurface,'#d9eef10d');ctx.restore();
+ }
+
+ function coldWindow(q,railDepth=.025){
   const p=projection(q),stiles=[0,.34,.67,1];
   ctx.save();polygon(q);ctx.clip();
   // Each sliding pane has its own faint reflection and edge seal.
@@ -607,8 +626,8 @@ function createCalculatorScene(root) {
    g.addColorStop(0,'#f7f8f3');g.addColorStop(.27,'#d6dcd5');g.addColorStop(.58,'#a6b0a9');g.addColorStop(1,'#eef1ea');fill(face,g);
   }
   // The surrounding rails and overlapping stiles have separate metal faces.
-  aluminium(section(p,0,0,1,.025),3);aluminium(section(p,0,.969,1,1),3);
-  line([p(0,.027),p(1,.027)],'#55615b80',.55);line([p(0,.006),p(1,.006)],'#fafcf6',.65);
+  aluminium(section(p,0,0,1,railDepth),3);aluminium(section(p,0,1-railDepth,1,1),3);
+  line([p(0,railDepth+.002),p(1,railDepth+.002)],'#55615b80',.55);line([p(0,.006),p(1,.006)],'#fafcf6',.65);
   for(const u of stiles){
    const halfWidth=u>0&&u<1?.019:.014,u0=Math.max(0,u-halfWidth),u1=Math.min(1,u+halfWidth);
    aluminium(section(p,u0,.018,u1,.977));
@@ -632,35 +651,60 @@ function createCalculatorScene(root) {
   ctx.restore();
  }
 
+ function glazingGeometry(warm){
+  const outer=warm?30.9:33.8,inner=43.1,top=warm?65:68.5,bottom=300.5;
+  const p=projection([[outer,top],[inner,top+3],[inner,bottom],[outer,bottom]]),railBottom=warm?.947:.944;
+  // Reflect the lower extrusion without changing its depth, chambers or width.
+  const lowerCut=section(p,0,railBottom,1,1),lowerMap=projection(lowerCut);
+  const profilePoint=(upper,u,w)=>{
+   const point=lowerMap(u,1-w);
+   return upper?[point[0],canopyJoint[1]+bottom-point[1]]:point;
+  };
+  return {outer,inner,bottom,lowerCut,profilePoint,depth:bottom-lowerMap(1,0)[1]};
+ }
+ function warmWindowHead(geometry){
+  // Reproject the existing photograph so its top rail joins the cut glass seat.
+  // The lower edge and the original view, stiles and handle remain in this plane.
+  const near=geometry.profilePoint(true,1,.90),source=projection([[43,78],[108,142],[108,256.5],[43,291.5]]);
+  const q=[[43,near[1]],[108,142],[108,256.5],[43,291.5]],target=projection(q),n=16;
+  ctx.save();polygon(q);ctx.clip();
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++){
+   const uv=[[x/n,y/n],[(x+1)/n,y/n],[(x+1)/n,(y+1)/n],[x/n,(y+1)/n]];
+   for(const ids of [[0,1,2],[0,2,3]])triangle(base,ids.map(i=>{const point=source(...uv[i]);return [point[0]*base.width/340,point[1]*base.height/480];}),ids.map(i=>target(...uv[i])));
+  }
+  ctx.restore();
+  // These apertures follow the original photograph through the same reprojection,
+  // so the opaque PVC stiles and top rail stay in front of the exterior canopy.
+  canopyThroughGlass(q,[[[0.031615,0.04414],[0.205314,0.055585],[0.205314,0.414488],[0.031615,0.444075]],[[0.394238,0.076801],[0.540744,0.0872],[0.540744,0.357352],[0.394238,0.382307]],[[0.724829,0.107543],[0.805549,0.117699],[0.805549,0.312246],[0.724829,0.325996]]]);
+  ctx.save();polygon([[43,63],[108.5,140],[108.5,267],[43,304]]);ctx.clip();
+  const rail=[[43,canopyJoint[1]],[108,140],[108,142],[43,near[1]]],shade=ctx.createLinearGradient(43,canopyJoint[1],43,near[1]);
+  shade.addColorStop(0,'#f5f6f0');shade.addColorStop(.48,'#e3e6e0');shade.addColorStop(.83,'#ffffff');shade.addColorStop(1,'#bbc1bc');fill(rail,shade);
+  line([rail[3],rail[2]],'#657276',.42);line([[43,near[1]-.65],[108,141.6]],'#f8fbf4',.5);ctx.restore();
+ }
+
  function glazingSection(enabled,warm){
   // The cut faces recede into the balcony, along the same axis as the sill.
   // Remove the original head too, so no second cut survives above the new one.
   const cut=[[30,54.5],[43.4,54.5],[43.4,300.3],[30,303.2]];
   ctx.save();polygon(cut);ctx.clip();ctx.clearRect(29.5,54.3,14.4,249);ctx.restore();
   if(!enabled)return;
-  const outer=warm?30.9:33.8,inner=43.1,top=warm?65:68.5,bottom=300.5;
-  // Both frame feet meet the sill's flat cut at y300.5.
-  const p=projection([[outer,top],[inner,top+3],[inner,bottom],[outer,bottom]]),railTop=warm?.062:.05,railBottom=warm?.947:.944;
-  // The head section reaches the flashing; its lower edge keeps the glass seat.
-  const headSeat=section(p,0,railTop-(1-railBottom),1,railTop);
-  const headCut=[[canopyJoint[0]-.45,canopyJoint[1]-.25],[inner,62.8],headSeat[2],headSeat[3]];
-  fill(section(p,0,warm?.057:.04,1,warm?.953:.967),'#b4c6d009');
+  const {outer,inner,lowerCut,profilePoint}=glazingGeometry(warm);
+  const glassSeat=warm?.90:.54;
+  const glassFace=(u0,u1)=>[profilePoint(true,u0,glassSeat),profilePoint(true,u1,glassSeat),profilePoint(false,u1,glassSeat),profilePoint(false,u0,glassSeat)];
+  fill(glassFace(0,1),'#b4c6d009');
   const panes=warm?[.20,.46,.72]:[.47],glassThickness=warm?.035:.045;
   for(const u of panes){
-   const pane=section(p,u,warm?.057:.04,u+glassThickness,warm?.953:.967),edge=pane.map(([x,y],i)=>[x+.18,y+(i<2?.24:-.16)]);
+   const pane=glassFace(u,u+glassThickness),edge=pane.map(([x,y],i)=>[x+.18,y+(i<2?.24:-.16)]);
    fill([pane[1],edge[1],edge[2],pane[2]],'#7e9aa6a6');
    const glass=ctx.createLinearGradient(outer,78,inner,291);
    glass.addColorStop(0,'#f5fcff');glass.addColorStop(.26,'#91adb9');glass.addColorStop(.51,'#edf6fa');glass.addColorStop(.8,'#a4bbc6');glass.addColorStop(1,'#f9fcfe');fill(pane,glass);
    line([pane[0],pane[3]],'#617b88a6',.22);line([pane[1],pane[2]],'#ffffffd9',.22);
   }
-  line([p(.02,.065),p(.02,.945)],warm?'#9caab2':'#627782',.5);
-  line([p(.97,.06),p(.97,.95)],'#ffffff',.7);
-  function profile(v0,v1){
-   const upper=v0===0;
-   // The upper cut fills the whole head, including the chambers below the sheet.
-   // The glass rebate, lower rail and sill retain their original geometry.
-   const q=upper?headCut:section(p,0,v0,1,v1),map=projection(q);
-   const m=(u,w)=>map(u,upper?w:1-w),rect=(u0,w0,u1,w1)=>[[u0,w0],[u1,w0],[u1,w1],[u0,w1]].map(uv=>m(...uv));
+  line([profilePoint(true,.02,.96),profilePoint(false,.02,.96)],warm?'#9caab2':'#627782',.5);
+  line([profilePoint(true,.97,.96),profilePoint(false,.97,.96)],'#ffffff',.7);
+  function profile(upper){
+   const m=(u,w)=>profilePoint(upper,u,w),q=upper?[m(0,0),m(1,0),m(1,1),m(0,1)]:lowerCut;
+   const rect=(u0,w0,u1,w1)=>[[u0,w0],[u1,w0],[u1,w1],[u0,w1]].map(uv=>m(...uv));
    const depth=warm?1.8:1.2,recede=[depth,upper?depth*.62:-depth*.62];
    function shell(shape){
     const outline=shape.map(uv=>m(...uv)),far=outline.map(([x,y])=>[x+recede[0],y+recede[1]]);
@@ -754,18 +798,18 @@ function createCalculatorScene(root) {
    }
   }
   if(warm){
-   profile(railBottom,1);
-   for(const u of panes)line([p(u-.012,railBottom+.004),p(u+.058,railBottom+.004)],'#293e4d',.48);
+   profile(false);
+   for(const u of panes)line([profilePoint(false,u-.012,.925),profilePoint(false,u+.058,.925)],'#293e4d',.48);
   }
   // Draw the head after the roof cut, keeping their shared contact edge visible.
   return ()=>{
    // The cold rail bears on the board: its open cut must remain above that top.
    if(!warm){
-    profile(railBottom,1);
-    for(const u of panes)line([p(u-.012,railBottom+.004),p(u+.058,railBottom+.004)],'#293e4d',.48);
+    profile(false);
+    for(const u of panes)line([profilePoint(false,u-.012,.925),profilePoint(false,u+.058,.925)],'#293e4d',.48);
    }
-   profile(0,railTop);
-   for(const u of panes)line([p(u-.012,railTop-.003),p(u+.058,railTop-.003)],'#293e4d',.48);
+   profile(true);
+   for(const u of panes)line([profilePoint(true,u-.012,.925),profilePoint(true,u+.058,.925)],'#293e4d',.48);
   };
  }
 
@@ -979,10 +1023,12 @@ function createCalculatorScene(root) {
   line([surfaces.back[0],surfaces.back[1],floorQ[1]],'#36302738',1.1);line([[43,63],[108.5,140]],'#ffffff55',.65);
   daylight(floorQ,!!s['glazing-enabled']);
   if(s['lighting-enabled'])roomLighting(floorQ,s.lighting==='pendant');
-  if(!s['glazing-enabled']||s.glazing==='cold'){
-   const window=[[43,78],[108,142],[108,256.5],[43,291.5]];
-   streetView(window);if(s['glazing-enabled'])coldWindow(window);
-  }
+  if(s['glazing-enabled']&&s.glazing==='warm')warmWindowHead(glazingGeometry(true));
+  else if(s['glazing-enabled']){
+   const geometry=glazingGeometry(false),window=[[43,canopyJoint[1]],[108,140],[108,267],[43,geometry.bottom]];
+   ctx.save();polygon([[43,63],[108.5,140],[108.5,267],[43,304]]);ctx.clip();
+   streetView(window);canopyThroughGlass(window);coldWindow(window,geometry.depth/(geometry.bottom-canopyJoint[1]));ctx.restore();
+  }else streetView([[43,78],[108,142],[108,256.5],[43,291.5]]);
   const drawWindowHead=glazingSection(!!s['glazing-enabled'],s.glazing==='warm');
   if(s['floor-enabled'])baseboards(floorQ);
   const restore=q=>{ctx.save();polygon(q);ctx.clip();ctx.drawImage(base,0,0,340,480);ctx.restore();};
