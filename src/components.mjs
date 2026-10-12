@@ -424,7 +424,7 @@ export function home(){
  const service=serviceForPath('/');
  return servicePageWithSeo(service,{home:true});
 }
-export function servicePage(s){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description">${s.heroSubtitle||s.offer}</p>${s.heroPrice?`<p class="landing-price">${esc(s.heroPrice)}${s.heroPriceUnit?` <small>${esc(s.heroPriceUnit)}</small>`:''}</p>`:prices[s.price]===null?'':`<p class="landing-price">${money(prices[s.price])} <small>/м²</small></p>`}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s)}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
+export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description">${s.heroSubtitle||s.offer}</p>${s.heroPrice?`<p class="landing-price">${esc(s.heroPrice)}${s.heroPriceUnit?` <small>${esc(s.heroPriceUnit)}</small>`:''}</p>`:prices[s.price]===null?'':`<p class="landing-price">${money(prices[s.price])} <small>/м²</small></p>`}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div>${home?landingTrust():''}</div>${serviceHeroSlideshow(s)}</div>${home?'':landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
 const turnkeyIncludedExtrasSection=service=>{
  if(service?.slug!=='balkon-pod-klyuch')return '';
  const items=[
@@ -507,7 +507,7 @@ export function servicePageWithSeo(s,{home=false}={}){
   :`${beforeAfterSection(serviceProjects,{serviceTitle:s.title,photoCards:s.slug==='osteklenie-balkonov'})}${scopedQuiz}${finishingMaterials}${insulationMaterialsSection(s)}${thermalAfterMaterials?thermalSection:''}${partnerBrandsSection()}${promotionSection(s)}${reviewsSection()}${thermalAfterMaterials?'':thermalSection}${aboutAndWasteSection()}`;
  const offer=campaignOffer();
  const quizSlot='<!-- scoped-quiz-slot -->';
- const rawPage=servicePage(s).replace(calculationQuiz,quizSlot);
+ const rawPage=servicePage(s,{home}).replace(calculationQuiz,quizSlot);
 
  const page=rawPage.replace(offer,offer+openingSections);
  return page.replace(quizSlot,`${serviceFaqSection(s)}${glazingBenefitsShowcase(s)}${certificates()}`);

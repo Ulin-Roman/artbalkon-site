@@ -160,7 +160,7 @@ for(const [label,html] of inlineEstimatePages){
 }
 for(const [label,html] of consultationPages.filter(([label])=>label!=='balkon-pod-klyuch'))assert.ok(!html.includes('id="cold-warm-balcony"'),label+': comparison is exclusive to the published home page');
 assert.ok(homeHtml.includes('Получить консультацию'),'home hero must invite visitors to get a consultation');
-assert.match(homeHtml,/<section class="container landing-hero">/,'Home must use the turnkey hero');
+assert.match(homeHtml,/<section class="container landing-hero home-hero">/,'Home must use its scoped turnkey hero layout');
 for(const slug of bundledServiceSlugs)assert.ok(!homeHtml.includes(`href="/${slug}/"`),`Home must not advertise ${slug} as a standalone service`);
 const turnkeyHtml=servicePageWithSeo(services.find(service=>service.slug==='balkon-pod-klyuch'));
 assert.ok(!turnkeyHtml.includes('id="complex-projects"'),'Removed bundled galleries must stay off the turnkey page');
@@ -193,7 +193,10 @@ for(const [label,html] of [['home',homeHtml],...services.map(service=>[service.s
 }
 assert.match(homeWaste,/src="\/assets\/site-home\/waste-removal-worker-v3\.webp"/,'Waste removal must use the supplied worker photo');
 const normalizedHomeGallery=homeHtml.replace('<h2>Наши работы <span class="before-after-heading-accent">До и После</span></h2>','<h2>Наши работы</h2><p class="before-after-subtitle">До и После</p>');
-assert.equal(normalizedHomeGallery.replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their calculation blocks, thermal difference and home gallery heading');
+const heroSection=html=>html.match(/<section\b(?=[^>]*\blanding-hero\b)[^>]*>[\s\S]*?<\/section>/)?.[0];
+const homeHero=heroSection(homeHtml),turnkeyHero=heroSection(turnkeyHtml);
+assert.ok(homeHero&&turnkeyHero,'Both renderers preserve their hero sections');
+assert.equal(normalizedHomeGallery.replace(homeHero,turnkeyHero).replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their hero layout, calculation blocks, thermal difference and home gallery heading');
 assert.doesNotMatch(renderedGalleries,/class="breadcrumbs"/,'Rendered pages must not restore removed breadcrumbs');
 assert.match(homeHtml,/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>\s*<section[^>]*id="about"/,'Additional services must immediately precede About');
 const homeShell=shellWithQuiz(homeHtml,{path:'/',image:'/assets/'+homeHeroImage});

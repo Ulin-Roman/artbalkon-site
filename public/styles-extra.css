@@ -5175,3 +5175,29 @@ main > .social-subscribe,
  .project-estimate-section--quiz:has(.project-estimate-photo--portrait:not([hidden])) .project-estimate-visual{height:clamp(240px,75vw,480px)}
  .project-estimate-section--quiz .project-estimate-photo--portrait[data-estimate-preview="goal-2"] img{object-position:center 60%}
 }
+
+/* Home proof cards belong below the left CTA; the photograph spans their height. */
+.home-hero .landing-copy>.landing-trust{grid-area:auto;align-self:stretch;width:100%;max-width:100%;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0 0}
+@media(min-width:641px){
+ .home-hero .landing-copy-main{padding-block:24px 0}
+ .home-hero .landing-photo{height:auto;min-height:clamp(640px,54vw,740px);align-self:stretch}
+ .home-hero .landing-photo>.hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+ .home-hero .landing-trust.landing-utp .trust-item{min-height:126px;padding:14px 8px!important;gap:7px}
+ .home-hero .landing-trust.landing-utp .trust-icon{width:34px;height:34px;flex-basis:34px;padding:8px}
+ .home-hero .landing-trust.landing-utp .trust-copy strong{font-size:23px;line-height:1.2}
+ .home-hero .landing-trust.landing-utp .trust-copy span{font-size:11.5px;line-height:1.4;overflow-wrap:anywhere}
+}
+@media(min-width:641px) and (max-width:900px){
+ .home-hero .landing-copy>.landing-trust{gap:7px}
+ .home-hero .landing-trust.landing-utp .trust-item{padding:12px 5px!important;min-height:136px;gap:6px}
+ .home-hero .landing-trust.landing-utp .trust-icon{width:28px;height:28px;flex-basis:28px;padding:6px}
+ .home-hero .landing-trust.landing-utp .trust-copy strong{font-size:18px;min-height:2.4em}
+ .home-hero .landing-trust.landing-utp .trust-copy span{font-size:10.5px}
+}
+@media(max-width:640px){
+ .home-hero .landing-grid{grid-template-areas:"service-hero" "service-trust";gap:0}
+ .home-hero .landing-copy{display:contents;transform:none}
+ .home-hero .landing-copy-main{grid-area:service-hero;align-self:end;position:relative;z-index:4;padding:30px 20px 64px}
+ .home-hero .landing-copy>.landing-trust{grid-area:service-trust;position:relative;z-index:6;gap:8px;margin:-40px 0 18px}
+}
+@media(max-width:370px){.home-hero .landing-copy-main{padding:25px 17px 64px}}
