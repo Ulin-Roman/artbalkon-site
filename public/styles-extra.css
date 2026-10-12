@@ -3115,6 +3115,7 @@ body{min-width:0;max-width:100%}
  }
  .glazing-benefits-copy{display:contents}
  .glazing-benefits-heading{grid-area:glazing-benefits-heading}
+ .glazing-benefits-showcase--cold .glazing-benefits-heading{text-align:center}
  .glazing-benefits-overlay{
   z-index:2;
   grid-area:glazing-benefits-visual;
@@ -4516,7 +4517,7 @@ main > .social-subscribe,
 .finish-calc-intro{color:var(--muted);margin-bottom:30px;max-width:720px}
 .finish-calc-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;align-items:start}
 .finish-calc-controls,.finish-calc-preview,.finish-calc-controls form{min-width:0}
-.finish-calc-topline{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:end}.finish-calc-gift{margin:0;background:#fff3df;color:#4b3b28;box-shadow:inset 0 0 0 1px #eddcc0;border-radius:10px;padding:13px 16px;font-size:14px;line-height:1.4;font-weight:600}.finish-calc-dimensions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.finish-calc-topline{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:end}.finish-calc-gift{margin:0;background:var(--teal-soft);color:var(--teal-dark);box-shadow:inset 0 0 0 1px var(--line);border-radius:10px;padding:13px 16px;font-size:14px;line-height:1.4;font-weight:600}.finish-calc-dimensions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .finish-calc-dimensions label{font-size:12px;color:var(--muted);min-width:0}
 .finish-calc-dimensions input,.finish-calc-dimensions select{display:block;width:100%;min-width:0;margin-top:6px;border:1px solid var(--line);border-radius:8px;padding:10px 8px;background:#fff;color:var(--ink);height:46px}
 .finish-calc-dimensions input:invalid{border-color:var(--red)}
@@ -5109,18 +5110,20 @@ main > .social-subscribe,
  .project-estimate-section--quiz .project-estimate-gift-label{padding-top:9px;font-size:12px}
 }
 @media(max-width:800px){
- .project-estimate-section--quiz .project-estimate-visual{min-height:0;height:220px}
+ .project-estimate-section--quiz .project-estimate-card{grid-template-areas:"estimate-title" "estimate-visual" "estimate-form"}
+ .project-estimate-section--quiz .project-estimate-visual{grid-area:estimate-visual;min-height:0;height:220px;border-radius:0}
  .project-estimate-section--quiz .project-estimate-photo--gift img{padding:0}
- .project-estimate-section--quiz .project-estimate-copy{min-height:0;padding:25px 26px}
- .project-estimate-section--quiz .project-estimate-form--quiz{flex:0 1 auto}
+ .project-estimate-section--quiz .project-estimate-copy{display:contents}
+ .project-estimate-section--quiz .project-estimate-copy h2{grid-area:estimate-title;min-width:0;max-width:none;padding:25px 26px}
+ .project-estimate-section--quiz .project-estimate-form--quiz{grid-area:estimate-form;flex:0 1 auto;margin:0;padding:25px 26px}
  .project-estimate-section--quiz .project-estimate-gift-media{height:130px}
  .project-estimate-section--quiz .project-estimate-gift-label{font-size:13px}
  .project-estimate-section--quiz .project-estimate-controls{margin-top:0}
 }
 @media(max-width:640px){
  .project-estimate-section--quiz .project-estimate-visual{height:200px}
- .project-estimate-section--quiz .project-estimate-copy{padding:22px 18px}
- .project-estimate-section--quiz .project-estimate-form--quiz{margin-top:19px}
+ .project-estimate-section--quiz .project-estimate-copy h2{padding:22px 18px}
+ .project-estimate-section--quiz .project-estimate-form--quiz{margin:0;padding:22px 18px}
  .project-estimate-section--quiz .project-estimate-progress-row{font-size:10px}
  .project-estimate-section--quiz .project-estimate-progress{margin:8px 0 20px}
  .project-estimate-section--quiz .project-estimate-step legend{margin-bottom:13px;font-size:20px}
@@ -5140,7 +5143,7 @@ main > .social-subscribe,
 }
 @media(max-width:360px){
  .project-estimate-section--quiz .project-estimate-visual{height:180px}
- .project-estimate-section--quiz .project-estimate-copy{padding:20px 14px}
+ .project-estimate-section--quiz .project-estimate-copy h2,.project-estimate-section--quiz .project-estimate-form--quiz{padding:20px 14px}
  .project-estimate-section--quiz .project-estimate-step legend{font-size:19px}
  .project-estimate-section--quiz .project-estimate-option{min-height:52px}
  .project-estimate-section--quiz .project-estimate-gift{grid-template-columns:76px minmax(0,1fr);gap:10px}
@@ -5149,3 +5152,33 @@ main > .social-subscribe,
  .project-estimate-section--quiz .project-estimate-controls .project-estimate-submit{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.project-estimate-section--quiz .project-estimate-gift{transition:none}}
+
+/* Home construction waste removal. */
+.waste-removal{padding-block:34px 38px}
+.waste-removal-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-width:0;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--site-panel-shadow)}
+.waste-removal-card>*{min-width:0}
+.waste-removal-copy{display:flex;flex-direction:column;justify-content:center;padding:42px 44px;background:var(--teal-soft);border-radius:23px 0 0 23px}
+.waste-removal-copy h2{max-width:16ch;margin:0 0 20px;color:var(--teal-dark);font-size:clamp(30px,3vw,42px);line-height:1.13;overflow-wrap:break-word}
+.waste-removal-copy p{max-width:44ch;color:var(--muted);font-size:17px;line-height:1.7;overflow-wrap:break-word}
+.waste-removal-copy p+p{margin-top:12px}
+.waste-removal-photo{margin:0;min-width:0;overflow:hidden;border-radius:0 23px 23px 0}
+.waste-removal-photo img{display:block;width:100%;height:100%;min-height:320px;object-fit:cover}
+@media(max-width:1000px){
+ .waste-removal-copy{padding:32px}
+ .waste-removal-copy p{font-size:16px}
+ .waste-removal-photo img{min-height:280px}
+}
+@media(max-width:800px){
+ .waste-removal-card{grid-template-columns:minmax(0,1fr)}
+ .waste-removal-copy{padding:30px 28px;border-radius:23px 23px 0 0}
+ .waste-removal-photo{border-radius:0 0 23px 23px}
+ .waste-removal-photo img{height:auto;min-height:0;aspect-ratio:3/2}
+}
+@media(max-width:640px){
+ .waste-removal{padding-block:28px 30px}
+ .waste-removal-card{border-radius:20px}
+ .waste-removal-copy{padding:24px 22px;border-radius:19px 19px 0 0}
+ .waste-removal-copy h2{margin-bottom:18px;font-size:30px}
+ .waste-removal-copy p{font-size:15px}
+ .waste-removal-photo{border-radius:0 0 19px 19px}
+}

@@ -92,7 +92,7 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
    assert.deepEqual(object.map(input=>input.value),['Балкон','Лоджия','Не знаю'],label+': preserve the three object choices');
    assert.deepEqual(objectStage.inputs,object,label+': object answers belong to their stage');
   }
-  assert.equal(timing.length,3,label+': offer three work schedules');
+  assert.deepEqual(timing.map(input=>input.value),['Как можно скорее','В течение недели','В течение месяца','Пока выбираю'],label+': offer all four work schedules in order');
   assert.deepEqual(stages.find(stage=>stage.attributes['data-estimate-stage']==='timing').inputs,timing,label+': timing answers belong to their stage');
   assert.deepEqual(new Set(gifts.map(input=>input.value)),new Set(['Светильник и розетки','Тёплый пол','Потолочная сушилка','Подарочная карта']),label+': offer the four supported gifts');
   assert.equal(gifts.length,4,label+': one choice per gift');
@@ -164,19 +164,32 @@ test('service routes retain their previous consultation questions and valid lead
   const sections=[...markup.matchAll(/<section\b(?=[^>]*\bid="quiz")[^>]*>[\s\S]*?<\/section>/g)];
   assert.equal(sections.length,1,label+': one service consultation');
   const block=sections[0][0];
-  assert.equal(block,quiz(service,{consultation:true}),label+': preserve the previous service-specific block');
+  const withGift=service.slug==='holodnoe-osteklenie';
+  assert.equal(block,quiz(service,{consultation:true,withGift}),label+': preserve the service-specific block');
   assert.match(block,/Получите\s+<br>консультацию/,label+': retain consultation copy');
-  assert.doesNotMatch(block,/name="gift"|data-estimate-stage|data-estimate-preview/,label+': keep the previous questions');
+  assert.doesNotMatch(block,/data-estimate-stage|data-estimate-preview/,label+': preserve the consultation layout');
+  if(!withGift)assert.doesNotMatch(block,/name="gift"/,label+': keep the other service questions');
   const inputs=inputsIn(block),fields=name=>inputs.filter(input=>input.name===name);
+  const gifts=withGift?fields('gift').map(input=>input.value):[undefined];
+  if(withGift){
+   assert.deepEqual(gifts,['Светильник и розетки','Тёплый пол','Потолочная сушилка','Подарочная карта'],label+': offer all four accepted gifts');
+   assert.ok(fields('gift').every(input=>input.type==='radio'&&input.required&&!input.checked),label+': visitors explicitly choose one gift');
+   assert.match(block,/>Электрика<\/span>/,label+': use the promotional display label');
+   const steps=[...block.matchAll(/<fieldset\b[^>]*>([\s\S]*?)<\/fieldset>/g)].map(([,body])=>inputsIn(body));
+   assert.equal(steps.length,4,label+': four separate steps');
+   assert.deepEqual(steps.slice(0,-1).map(inputs=>inputs[0]?.name),['object','timing','gift'],label+': place the gift immediately after timing');
+   for(const name of ['name','phone','consent'])assert.ok(steps.at(-1).some(input=>input.name===name),label+': contacts remain last');
+   assert.doesNotMatch(quizModal(service),/name="gift"/,label+': the separate consultation modal stays unchanged');
+  }
   for(const name of ['service','object','timing','name','phone','consent'])assert.ok(fields(name).length,label+': preserve '+name);
   assert.ok(fields('consent').every(input=>input.required&&!input.checked),label+': require explicit consent');
   const input=valid();delete input.gift;
-  for(const serviceChoice of fields('service'))for(const object of fields('object'))for(const timing of fields('timing')){
-   const lead=validateLead({...input,service:serviceChoice.value,object:object.value,timing:timing.value});
+  for(const serviceChoice of fields('service'))for(const object of fields('object'))for(const timing of fields('timing'))for(const gift of gifts){
+   const lead=validateLead({...input,service:serviceChoice.value,object:object.value,timing:timing.value,...(gift?{gift}:{})});
    assert.equal(lead.service,serviceChoice.value,label+': preserve the selected service');
    assert.equal(lead.object,object.value,label+': preserve the selected object');
    assert.equal(lead.timing,timing.value,label+': preserve the selected schedule');
-   assert.equal(lead.gift,undefined,label+': gifts remain optional for existing consultations');
+   assert.equal(lead.gift,gift,label+': preserve the selected gift while keeping other consultations optional');
   }
  }
 });

@@ -36,9 +36,9 @@ function scene() {
   `<polygon points="${[[u0,.032],[u1,.032],[u1,.963],[u0,.963]].map(uv=>point(windowPoint(...uv))).join(' ')}"/>`).join('');
  return `<div class="finish-calc-scene-wrap"><svg class="finish-calc-scene" viewBox="16 18 340 448" role="img" aria-label="Выбранная отделка балкона с козырьком: остекление справа, дверь и окно в квартиру слева">
  <defs>
- <clipPath id="finish-calc-cutout" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,292.51 313.90,296.70 313.57,415.57 313.57,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 38.5,464.86 38.5,418.5 33.5,63"/></clipPath>
- <clipPath id="finish-calc-cutout-exterior" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,304.8 309,304.8 309,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 38.5,464.86 38.5,418.5 33.5,63"/></clipPath>
- <clipPath id="finish-calc-cutout-exterior-cold" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,304.8 303.7,304.8 303.7,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 38.5,464.86 38.5,418.5 33.5,63"/></clipPath>
+ <clipPath id="finish-calc-cutout" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,292.51 313.90,296.70 313.57,415.57 313.57,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 36,464.86 36,418.5 31.08,63 31,55 33.5,55"/></clipPath>
+ <clipPath id="finish-calc-cutout-exterior" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,304.8 309,304.8 309,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 36,464.86 36,418.5 31.08,63 31,55 33.5,55"/></clipPath>
+ <clipPath id="finish-calc-cutout-exterior-cold" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,304.8 303.7,304.8 303.7,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 36,464.86 36,418.5 31.08,63 31,55 33.5,55"/></clipPath>
  <clipPath id="finish-calc-canopy-warm" clipPathUnits="userSpaceOnUse">
  <polygon points="292.95,91.17 272,115.97 271.68,266.74 292.95,274.79"/>
  <polygon points="261.04,123.38 249.76,136.91 249.12,257.4 261.04,261.26"/>

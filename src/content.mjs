@@ -2045,6 +2045,7 @@ const newLandingPrices={
  'otdelka-balkona-pvh-panelyami':finishingWallRates.pvc,
  'otdelka-balkona-laminatom':finishingWallRates.laminate,
  'otdelka-balkona-vagonkoj':finishingWallRates.lining,
+ 'otdelka-balkona-kvarcvinilom':5700,
  'otdelka-balkona-derevom':finishingWallRates.wood,
  'razdvizhnoe-osteklenie':prices.cold
 };

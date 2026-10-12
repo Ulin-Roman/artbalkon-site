@@ -335,6 +335,8 @@ function createCalculatorScene(root) {
  let selection=null,ready=false,frame=0;
  const cells={laminate:0,'laminate-wall':0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
  // A deeper parapet grows into the room; its street face stays below the glass.
+ // Side cavities match the 7.5-unit roof cut; the structural wall stays separate.
+ const sectionInsulationDepth=7.5;
  const parapetDepth=23,parapetNear=47.5+parapetDepth,parapetFar=108.5+parapetDepth*111.5/245.5;
  const floorBase=[[parapetFar,317],[220,317],[293,427.5],[parapetNear,427.5]];
  const floorSurface=floorBase.map(([x,y],i)=>[x,y-(i<2?2.5:9)]);
@@ -475,11 +477,11 @@ function createCalculatorScene(root) {
  }
  function streetSection(){
   const outer=selection['glazing-enabled']&&selection.glazing==='cold'?36.3:31,inner=outer+5.4;
-  return {outer,inner,core:Math.max(49.5,inner+12.8)};
+  return {outer,inner,core:parapetNear-sectionInsulationDepth};
  }
  function sideSection(filled){
   // The inner lining remains separate from the mineral core.
-  const left=selection['exterior-enabled']?streetSection().core:49.5,right=surfaces.floor[3][0],top=303.3,bottom=surfaces.floor[3][1],map=projection(surfaces.parapet),ribs=[top,...[.26,.49,.72].map(v=>map(0,v)[1]-.7),bottom-2.3];
+  const left=streetSection().core,right=surfaces.floor[3][0],top=303.3,bottom=surfaces.floor[3][1],map=projection(surfaces.parapet),ribs=[top,...[.26,.49,.72].map(v=>map(0,v)[1]-.7),bottom-2.3];
   for(let i=0;i<ribs.length-1;i++)recessedBay([[left,ribs[i]+2.3],[right,ribs[i]+2.3],[right,ribs[i+1]],[left,ribs[i+1]]],'side',filled);
   // Horizontal blocking remains in front of the four open or filled bays.
   for(const y of ribs){
@@ -505,13 +507,18 @@ function createCalculatorScene(root) {
  }
  function houseSection(material,filled){
   // The apartment-side cut follows the existing wall edge, outside the room.
-  const end=surfaces.floor[2],nearTop=surfaces.house[1],top=63,bottom=end[1],depth=8.5,core=6.5;
+  const finish=({pvc:{thickness:.85,colors:['#f3f4ed','#b8beb5']},laminate:{thickness:.7,colors:['#d9c29a','#9f8865']},lining:{thickness:1.1,colors:['#e3c590','#a98754']},parquet:{thickness:1.15,colors:['#ad8b65','#6f5139']}})[material];
+  const inner=finish?finish.thickness:0,core=inner+sectionInsulationDepth,depth=core+2;
+  const end=surfaces.floor[2],nearTop=surfaces.house[1],top=63,bottom=end[1];
   const start=[nearTop[0]+(end[0]-nearTop[0])*(top-nearTop[1])/(bottom-nearTop[1]),top];
   const q=[start,[start[0]+depth,top],[end[0]+depth,bottom],end],map=projection(q),wallMap=projection(surfaces.house);
+  // Clear the old bevel within the largest supported finish before drawing this cut.
+  const maxDepth=sectionInsulationDepth+2+1.15+.7;
+  ctx.save();polygon([[nearTop[0],55],[nearTop[0]+maxDepth,55],[start[0]+maxDepth,top],[end[0]+maxDepth,429.5],[end[0],429.5],end,start]);ctx.clip();ctx.clearRect(290,55,25,374.5);ctx.restore();
   // The mineral cap closes the wall-to-slab junction.
   plane([[nearTop[0],55],[nearTop[0]+depth,55],q[1],q[0]],'concrete',1,1,false,{axis:[nearTop[0],55,nearTop[0]+depth,55],stops:[[0,'#403e3420'],[1,'#e4e0d020']]},3);
-  const finish=({pvc:{thickness:.85,colors:['#f3f4ed','#b8beb5']},laminate:{thickness:.7,colors:['#d9c29a','#9f8865']},lining:{thickness:1.1,colors:['#e3c590','#a98754']},parquet:{thickness:1.15,colors:['#ad8b65','#6f5139']}})[material];
-  const inner=finish?finish.thickness:0,slice=(y0,y1,x0=inner,x1=core)=>section(map,x0/depth,(y0-top)/(bottom-top),x1/depth,(y1-top)/(bottom-top));
+
+  const slice=(y0,y1,x0=inner,x1=core)=>section(map,x0/depth,(y0-top)/(bottom-top),x1/depth,(y1-top)/(bottom-top));
   // The mineral wall is continuous behind the separate lining and frame.
   plane(slice(top,bottom,core,depth),'concrete',1,3,false,{axis:[start[0]+core,top,start[0]+depth,top],stops:[[0,'#403e3445'],[1,'#e4e0d020']]},5);
   const ribs=[0,.26,.49,.72,.96].map(v=>[Math.max(top,wallMap(1,v)[1]),Math.min(bottom,wallMap(1,Math.min(1,v+.04))[1])]);
@@ -633,6 +640,8 @@ function createCalculatorScene(root) {
   const outer=warm?30.9:33.8,inner=43.1,top=warm?65:68.5,bottom=300.5;
   // Both frame feet meet the sill's flat cut at y300.5.
   const p=projection([[outer,top],[inner,top+3],[inner,bottom],[outer,bottom]]),railTop=warm?.062:.05,railBottom=warm?.947:.944;
+  // Use the same section height as the foot, keeping the existing glass seat.
+  const headCut=section(p,0,railTop-(1-railBottom),1,railTop);
   fill(section(p,0,warm?.057:.04,1,warm?.953:.967),'#b4c6d009');
   const panes=warm?[.20,.46,.72]:[.47],glassThickness=warm?.035:.045;
   for(const u of panes){
@@ -646,9 +655,9 @@ function createCalculatorScene(root) {
   line([p(.97,.06),p(.97,.95)],'#ffffff',.7);
   function profile(v0,v1){
    const upper=v0===0;
-   // The head meets the flashing beneath the slab and the ceiling's cut edge.
-   // Its glass rebate stays in place; the lower rail and sill keep their geometry.
-   const q=upper?[[outer,warm?55.9:59.6],[inner,63],p(1,v1),p(0,v1)]:section(p,0,v0,1,v1),map=projection(q);
+   // The profile itself matches the lower cut; its mounting joint is separate.
+   // The glass rebate, lower rail and sill retain their original geometry.
+   const q=upper?headCut:section(p,0,v0,1,v1),map=projection(q);
    const m=(u,w)=>map(u,upper?w:1-w),rect=(u0,w0,u1,w1)=>[[u0,w0],[u1,w0],[u1,w1],[u0,w1]].map(uv=>m(...uv));
    const depth=warm?1.8:1.2,recede=[depth,upper?depth*.62:-depth*.62];
    function shell(shape){
@@ -753,6 +762,11 @@ function createCalculatorScene(root) {
     profile(railBottom,1);
     for(const u of panes)line([p(u-.012,railBottom+.004),p(u+.058,railBottom+.004)],'#293e4d',.48);
    }
+   // Close the gap beneath the flashing without stretching the profile chambers.
+   const mounting=[[outer,warm?55.9:59.6],[inner,63],[headCut[1][0],headCut[1][1]+.18],[headCut[0][0],headCut[0][1]+.18]];
+   const joint=ctx.createLinearGradient(mounting[0][0],mounting[0][1],mounting[2][0],mounting[2][1]);
+   joint.addColorStop(0,warm?'#aeb7b3':'#8e9ca5');joint.addColorStop(.42,warm?'#dde1d8':'#c9d3d8');joint.addColorStop(1,warm?'#bfc6be':'#a6b3ba');fill(mounting,joint);
+   line([mounting[0],mounting[1]],'#eef2ee',.4);line([mounting[0],mounting[3]],'#718084',.3);line([mounting[3],mounting[2]],'#647276',.3);
    profile(0,railTop);
    for(const u of panes)line([p(u-.012,railTop-.003),p(u+.058,railTop-.003)],'#293e4d',.48);
   };
@@ -762,7 +776,7 @@ function createCalculatorScene(root) {
  function parapetCore(){
   // The mineral core meets the skin beneath the selected window profile.
   const edge=streetSection(),clad=selection['exterior-enabled'];
-  const left=clad?edge.inner-.1:28,right=clad?edge.core:49.5,top=302,bottom=floorBase[3][1]+1.5,q=[[left,top],[right,top],[right,bottom],[left,bottom]];
+  const left=clad?edge.inner-.1:28,right=edge.core,top=302,bottom=floorBase[3][1]+1.5,q=[[left,top],[right,top],[right,bottom],[left,bottom]];
   plane(q,'concrete',(right-left)/5.5,2,false,{axis:[left,top,right,top],stops:[[0,'#eeead730'],[.52,'#ebe7d91a'],[1,'#49483b45']]},5);
   line([[left,top],[left,bottom]],'#eeeade',.55);
   line([[right,top],[right,bottom]],'#665f4b',.65);

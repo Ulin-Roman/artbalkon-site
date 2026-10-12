@@ -106,8 +106,13 @@ for(const [label,html,service] of consultationPages){
  assert.doesNotMatch(html,/\bdata-inline-estimate\b|\bproject-estimate-section\b/,label+': the new calculation block is exclusive to the home page');
  const blocks=[...html.matchAll(/<section\b(?=[^>]*\bid="quiz")[^>]*>[\s\S]*?<\/section>/g)];
  assert.equal(blocks.length,1,label+': keep one existing consultation block');
- assert.equal(blocks[0][0],quiz(service,{consultation:true}),label+': restore the unchanged service-specific consultation');
- assert.doesNotMatch(blocks[0][0],/name="gift"|data-estimate-stage|data-estimate-preview/,label+': service consultations retain their previous questions');
+ const withGift=service.slug==='holodnoe-osteklenie';
+ assert.equal(blocks[0][0],quiz(service,{consultation:true,withGift}),label+': retain the service-specific consultation');
+ assert.doesNotMatch(blocks[0][0],/data-estimate-stage|data-estimate-preview/,label+': keep the consultation layout');
+ if(withGift){
+  assert.match(blocks[0][0],/data-total-steps="4"/,label+': the gift has a separate step before contacts');
+  assert.equal((blocks[0][0].match(/name="gift"/g)||[]).length,4,label+': offer four promotional gifts');
+ }else assert.doesNotMatch(blocks[0][0],/name="gift"/,label+': other service questions remain unchanged');
 }
 const inlineEstimatePages=[['home',homeHtml]];
 assert.equal(inlineEstimatePages.length,1,'Only the home page uses the new calculation quiz');
@@ -184,7 +189,13 @@ assert.ok(quizSection(homeHtml)&&quizSection(turnkeyHtml),'Home and turnkey must
 const turnkeyThermal=turnkeyHtml.match(/<section\b[^>]*class="[^"]*\bthermal-section\b[^"]*"[^>]*>[\s\S]*?<\/section>/)?.[0];
 assert.doesNotMatch(homeHtml,/\bthermal-section\b/,'Home must omit the thermal inspection block');
 assert.ok(turnkeyThermal,'The service renderer must retain thermal inspection');
-assert.equal(homeHtml.replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their calculation blocks and home-only thermal removal');
+const homeWasteSections=[...homeHtml.matchAll(/<section\b(?=[^>]*\bid="waste-removal")[^>]*>[\s\S]*?<\/section>/g)].map(match=>match[0]);
+assert.equal(homeWasteSections.length,1,'Home must contain the waste removal block once');
+const homeWaste=homeWasteSections[0];
+assert.ok(homeHtml.indexOf('id="finishing-calculator"')<homeHtml.indexOf('id="waste-removal"'),'Waste removal follows the finishing calculator');
+assert.match(homeHtml.slice(homeHtml.indexOf(homeWaste)+homeWaste.length),/^\s*<section\b[^>]*class="[^"]*\bsocial-subscribe\b/,'Waste removal must immediately precede social subscription');
+assert.doesNotMatch(turnkeyHtml,/\bid="waste-removal"/,'Waste removal stays exclusive to home');
+assert.equal(homeHtml.replace(quizSection(homeHtml),'').replace(homeWaste,''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their calculation blocks, home-only waste removal and thermal difference');
 assert.doesNotMatch(renderedGalleries,/class="breadcrumbs"/,'Rendered pages must not restore removed breadcrumbs');
 assert.match(homeHtml,/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>\s*<section[^>]*id="about"/,'Additional services must immediately precede About');
 const homeShell=shellWithQuiz(homeHtml,{path:'/',image:'/assets/'+homeHeroImage});
@@ -403,6 +414,7 @@ const files=await walk(root),pages=files.filter(f=>f.endsWith('.html'));let refs
 const titles=new Map(),descriptions=new Map(),canonicals=new Map(),indexedCanonicals=new Set();
 for(const file of pages){
  const html=await readFile(file,'utf8'),isRedirect=html.includes('http-equiv="refresh"'),isNoindex=html.includes('name="robots" content="noindex');
+ assert.equal((html.match(/\bid="waste-removal"/g)||[]).length,file===join(root,'index.html')?1:0,file+': waste removal must appear once only on home');
  assert.ok(!/визуализац/i.test(html),file+' must use neutral customer-facing copy, including metadata and image descriptions');
  const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1],title=html.match(/<title>([^<]+)<\/title>/)?.[1];
  assert.match(html,/<html lang="ru"/,'Page language must be Russian: '+file);
@@ -699,6 +711,7 @@ const confirmedLandingPrices={
  'otdelka-balkona-pvh-panelyami':2500,
  'otdelka-balkona-laminatom':3800,
  'otdelka-balkona-vagonkoj':4000,
+ 'otdelka-balkona-kvarcvinilom':5700,
  'otdelka-balkona-derevom':4500,
  'razdvizhnoe-osteklenie':7000
 };
