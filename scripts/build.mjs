@@ -41,7 +41,8 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
    return coverWidth(small?rowHeight:2*rowHeight+12,small?firstWidth:wideWidth);
   };
   sizes='(max-width:640px) max(calc((100vw - 80px) / 2), '+Math.ceil(190*ratio*1.025)+'px), (max-width:900px) '+gallerySize(430,215,300)+'px, '+gallerySize(460,210,285)+'px';
- }else sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
+ }else if(src.startsWith('/assets/glazing-choice-v2/'))sizes='(max-width:760px) calc(100vw - 58px), (max-width:1100px) 50vw, 614px';
+ else sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  // Newly generated comparisons retain their actual source dimensions.
  const dimensionedTag=src.startsWith('/assets/landing-gallery-v1/')
   ?tag.replace(/\bwidth="\d+"/,'width="'+entry.width+'"').replace(/\bheight="\d+"/,'height="'+entry.height+'"')

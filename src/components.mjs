@@ -14,6 +14,12 @@ export const money=v=>v===null?'':`от ${v.toLocaleString('ru-RU')} ₽`;
 export const arrow='<span aria-hidden="true">↗</span>';
 const buttonArrow='<span aria-hidden="true">→</span>';
 const uiIconPaths={
+ rain:'<path d="M7 15H6a4 4 0 0 1-.2-8 6 6 0 0 1 11.6 0A4 4 0 0 1 18 15h-1"/><path d="m8 18-1 2m5-2-1 2m5-2-1 2"/>',
+ storage:'<rect x="4" y="7" width="16" height="14" rx="2"/><path d="M3 7V3h18v4H3Z"/><path d="M9 11h6v3H9v-3Z"/>',
+ coins:'<ellipse cx="9" cy="5" rx="6" ry="3"/><path d="M3 5v4c0 1.7 2.7 3 6 3m6-7v4M3 9v4c0 1.7 2.7 3 6 3M3 13v4c0 1.7 2.7 3 6 3"/><ellipse cx="16" cy="14" rx="5" ry="2.5"/><path d="M11 14v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4"/>',
+ thermometer:'<path d="M9 14.5V5a3 3 0 0 1 6 0v9.5a5 5 0 1 1-6 0Z"/><path d="M12 7v11m6-11h2m-2 4h2"/><circle cx="12" cy="18" r="1.5" fill="currentColor" stroke="none"/>',
+ chair:'<path d="M6 12V7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v5M6 12h12"/><path d="M5 10a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-4 0v3H7v-3a2 2 0 0 0-2-2Zm0 9v2m14-2v2"/>',
+ sound:'<path d="M4 9h4l5-5v16l-5-5H4V9Zm12-1a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>',
  ruler:'<path d="m16 3 5 5-13 13-5-5L16 3Z"/><path d="m14 5 2 2m-5 1 2 2m-5 1 2 2m-5 1 2 2"/>',
  contract:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z"/><path d="M14 2v6h6m-12 7 3 3 5-5"/>',
  phone:'<path fill="currentColor" stroke="none" d="M6.62 10.79a15.46 15.46 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z"/>',
@@ -440,16 +446,19 @@ const turnkeyIncludedExtrasSection=service=>{
  return `<section class="section container turnkey-extras" id="complex-options"><div class="section-heading services-heading"><div><h2>Дополнительные услуги</h2><p class="services-subtitle">Эти работы выполняем только вместе с остеклением и отделкой — как часть одного комплексного заказа.</p></div></div><div class="turnkey-extra-grid">${cards}</div></section>`;
 };
 const glazingChoiceSection=()=>{
- const rows=[
-  ['Назначение','Сезонный отдых и хранение вещей.','Кабинет или зона отдыха круглый год — с утеплением и обогревом.'],
-  ['Остекление','Обычно алюминиевый профиль без терморазрыва и одинарное стекло.','Тёплый ПВХ-профиль со стеклопакетом.'],
-  ['Утепление и отделка','Влагостойкая отделка, которая выдерживает перепады температуры.','Утепление наружного контура, герметичные примыкания и отделка.'],
-  ['Плюсы',['Защита от осадков, ветра и пыли','Раздвижные створки сохраняют свободный проход'],['Сохранение тепла','Комфорт для повседневного использования — с утеплением и обогревом']],
-  ['Ограничения','Зимой не обеспечивает комнатный комфорт.','Одних окон недостаточно: нужны утепление и обогрев.'],
-  ['Бюджет',`${money(prices.cold)} /м² за остекление`,`${money(prices.warm)} /м² за остекление`]
+ const choices=[
+  {key:'cold',className:'glazing-choice-card--cold',title:'Холодный балкон',subtitle:'Для сезонного использования',alt:'Балкон с холодным алюминиевым остеклением',features:[
+   ['rain','Защита от осадков и ветра','Надёжно защищает от дождя, снега и пыли.'],
+   ['storage','Хранение вещей','Удобное место для сезонных вещей.'],
+   ['coins','Доступная стоимость','Алюминиевый профиль с одинарным стеклом.']
+  ],condition:'Зимой не обеспечивает комнатный комфорт.'},
+  {key:'warm',className:'glazing-choice-card--warm',title:'Тёплый балкон',subtitle:'Комфорт круглый год',alt:'Утеплённый балкон с тёплым остеклением',features:[
+   ['thermometer','Тепло даже зимой','С утеплением и источником обогрева.'],
+   ['chair','Можно использовать как кабинет','Дополнительное пространство для работы.'],
+   ['sound','Улучшает шумоизоляцию','ПВХ-профиль со стеклопакетом.']
+  ],condition:'Одних окон недостаточно: нужны утепление и обогрев.'}
  ];
- const cell=value=>Array.isArray(value)?`<ul class="glazing-choice-list">${value.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`:`<p>${esc(value)}</p>`;
- return `<section class="section container glazing-choice" id="cold-warm-balcony" aria-labelledby="glazing-choice-title"><div class="section-heading"><div><h2 id="glazing-choice-title">Холодный или тёплый балкон?</h2><p class="section-description">Сравните два варианта и выберите, как хотите пользоваться пространством.</p></div></div><div class="glazing-choice-photos"><figure class="glazing-choice-photo glazing-choice-photo--cold"><img src="/assets/glazing-choice-v2/cold-balcony.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Балкон с холодным алюминиевым остеклением"><figcaption><h3>Холодный балкон</h3><p>Для сезонного использования</p></figcaption></figure><figure class="glazing-choice-photo glazing-choice-photo--warm"><img src="/assets/glazing-choice-v2/warm-balcony.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="Утеплённый балкон с тёплым остеклением"><figcaption><h3>Тёплый балкон</h3><p>Круглый год — с утеплением и обогревом</p></figcaption></figure></div><div class="glazing-choice-table-wrap"><table class="glazing-choice-table" aria-labelledby="glazing-choice-title" aria-describedby="glazing-choice-price-note glazing-choice-load-note"><colgroup><col class="glazing-choice-parameter-column"><col><col></colgroup><thead><tr><th scope="col">Параметр</th><th scope="col" id="glazing-choice-cold">Холодный балкон</th><th scope="col" id="glazing-choice-warm">Тёплый балкон</th></tr></thead><tbody>${rows.map(([label,cold,warm],index)=>`<tr><th scope="row" id="glazing-choice-row-${index}">${esc(label)}</th><td class="glazing-choice-cold" headers="glazing-choice-row-${index} glazing-choice-cold">${cell(cold)}</td><td class="glazing-choice-warm" headers="glazing-choice-row-${index} glazing-choice-warm">${cell(warm)}</td></tr>`).join('')}</tbody></table></div><p class="glazing-choice-note" id="glazing-choice-price-note">Цены за остекление. Утепление, отделка и обогрев рассчитываются отдельно после замера.</p><p class="glazing-choice-note glazing-choice-load-note" id="glazing-choice-load-note">Конструкцию и допустимую нагрузку подбираем после осмотра основания.</p></section>`;
+ return `<section class="section container glazing-choice" id="cold-warm-balcony" aria-labelledby="glazing-choice-title"><div class="section-heading"><div><h2 id="glazing-choice-title">Холодный или тёплый балкон?</h2><p class="section-description">Выберите вариант, который подходит именно вам</p></div></div><div class="glazing-choice-grid">${choices.map(choice=>`<article class="glazing-choice-card ${choice.className}" data-glazing-choice="${choice.key}" aria-labelledby="glazing-choice-${choice.key}" aria-describedby="glazing-choice-price-note glazing-choice-load-note"><figure class="glazing-choice-media"><img src="/assets/glazing-choice-v2/${choice.key}-balcony.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="${esc(choice.alt)}"></figure><div class="glazing-choice-body"><h3 id="glazing-choice-${choice.key}">${esc(choice.title)}</h3><p class="glazing-choice-subtitle">${esc(choice.subtitle)}</p><ul class="glazing-choice-features">${choice.features.map(([icon,title,description])=>`<li><span class="glazing-choice-icon">${uiIcon(icon)}</span><div><h4>${esc(title)}</h4><p>${esc(description)}</p></div></li>`).join('')}</ul><p class="glazing-choice-condition">${esc(choice.condition)}</p><div class="glazing-choice-footer"><p class="glazing-choice-price"><span class="glazing-choice-from">от</span> <strong>${prices[choice.key].toLocaleString('ru-RU')} ₽<span class="glazing-choice-unit">/м²</span></strong></p>${button('Рассчитать стоимость','#quiz','glazing-choice-cta button-no-icon')}</div></div></article>`).join('')}</div><p class="glazing-choice-note" id="glazing-choice-price-note">Цены за остекление. Утепление, отделка и обогрев рассчитываются отдельно после замера.</p><p class="glazing-choice-note glazing-choice-load-note" id="glazing-choice-load-note">Конструкцию и допустимую нагрузку подбираем после осмотра основания.</p></section>`;
 };
 
 // Keep the full project overview shared while retaining each page's own hero and forms.
