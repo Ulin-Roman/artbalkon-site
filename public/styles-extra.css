@@ -274,6 +274,7 @@ html{scroll-padding-top:104px}
 .quiz-modal .quiz-layout{border:0;border-radius:20px;box-shadow:none}
 .quiz-modal-close{position:absolute;z-index:5;top:14px;right:14px;width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(0,119,126,.2);border-radius:50%;background:#fff;color:var(--teal-dark);font-size:26px;line-height:1;box-shadow:0 5px 18px rgba(0,45,47,.12);transition:transform .2s,background .2s}
 .quiz-modal-close:hover{transform:rotate(5deg);background:var(--teal-soft)}
+@media(min-width:901px){.quiz-modal .quiz-progress-row{padding-right:54px}}
 .nav-quiz-trigger{padding:0;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer}
 .desktop-nav .nav-quiz-trigger:hover{color:var(--teal)}
 @media(max-width:900px){.quiz-modal{width:calc(100% - 24px);max-height:calc(100dvh - 24px)}.quiz-modal .quiz-intro{padding-right:70px}}
