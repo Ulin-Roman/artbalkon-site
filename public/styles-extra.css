@@ -4965,7 +4965,7 @@ main > .social-subscribe,
 }
 
 /* Social cards with photo previews. */
-.social-subscribe--cards{min-width:0;overflow:visible;margin-block:0;padding-block:44px;padding-inline:0;border-radius:0;background:radial-gradient(ellipse at 50% 0,#eaf5f580,transparent 72%),#f6fafc;box-shadow:none}
+.social-subscribe--cards{min-width:0;overflow:visible;margin-block:0;padding-block:44px;padding-inline:0;border-radius:0;background:transparent;box-shadow:none}
 .social-subscribe--cards::before,.social-subscribe--cards::after{content:none}
 .social-subscribe--cards .social-subscribe-heading{max-width:860px;margin:0 auto 30px;padding:0;text-align:center}
 .social-subscribe--cards .social-kicker{display:inline-flex;min-height:30px;align-items:center;margin:0 0 12px;padding:6px 14px;border-radius:999px;background:#e8f2ef;color:#487367;font-size:11px;font-weight:700;line-height:1.5;letter-spacing:.06em;text-transform:uppercase}
