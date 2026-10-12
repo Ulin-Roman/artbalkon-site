@@ -595,11 +595,40 @@ function createCalculatorScene(root) {
   const sill=ctx.createLinearGradient(...parapet(.5,0),...parapet(.5,.12));sill.addColorStop(0,'#302d2840');sill.addColorStop(.3,'#302d281c');sill.addColorStop(1,'#302d2800');fill(section(parapet,0,0,1,.12),sill);ctx.restore();
  }
  function switchPlate(){
-  const q=[[241.2,278.5],[247.8,282.5],[247.8,293],[241.2,289]],p=projection(q);
-  ctx.save();ctx.shadowColor='#463e336b';ctx.shadowBlur=.6;ctx.shadowOffsetX=.8;ctx.shadowOffsetY=.8;fill(q,'#b7b6ae');ctx.restore();
-  const g=ctx.createLinearGradient(241,279,248,293);g.addColorStop(0,'#ffffff');g.addColorStop(.65,'#eeeede');g.addColorStop(1,'#c8c9bf');fill(section(p,.035,.025,.965,.97),g);
-  fill(section(p,.18,.17,.82,.83),'#b6b9af');fill(section(p,.21,.18,.79,.77),'#f5f5ed');
-  line([p(.21,.18),p(.79,.18)],'#ffffff',.4);line([p(.79,.18),p(.79,.77)],'#8d948b',.45);
+  // The mounting footprint stays on the apartment wall. The plastic face
+  // stands slightly proud of it, with all corners following the wall plane.
+  const q=[[241.2,278.5],[247.8,282.5],[247.8,293],[241.2,289]],wall=projection(q);
+  const offset=[-.42,.16],face=(u,v)=>{const p=wall(u,v);return[p[0]+offset[0],p[1]+offset[1]];};
+  function rounded(map,u0,v0,u1,v1,ru,rv){
+   const points=[];
+   for(const [u,v,start] of [[u1-ru,v0+rv,-Math.PI/2],[u1-ru,v1-rv,0],[u0+ru,v1-rv,Math.PI/2],[u0+ru,v0+rv,Math.PI]]){
+    for(let i=0;i<=6;i++){const a=start+i*Math.PI/12;points.push(map(u+Math.cos(a)*ru,v+Math.sin(a)*rv));}
+   }
+   return points;
+  }
+  const gradient=(map,stops)=>{const g=ctx.createLinearGradient(...map(0,0),...map(1,1));stops.forEach(([at,color])=>g.addColorStop(at,color));return g;};
+  ctx.save();polygon(surfaces.house);ctx.clip();
+  // Soft wall contact, rather than a hard dark outline around the frame.
+  ctx.save();ctx.shadowColor='#302d2648';ctx.shadowBlur=2.7;ctx.shadowOffsetX=-1.7;ctx.shadowOffsetY=2;
+  fill(rounded(wall,.015,.01,.99,.995,.085,.055),'#b4b7ae');ctx.restore();
+  fill([wall(.06,.96),wall(.94,.96),face(.94,.96),face(.06,.96)],'#9da39a');
+  fill([wall(.96,.08),wall(.96,.92),face(.96,.92),face(.96,.08)],'#bcc1b7');
+  fill(rounded(face,0,0,1,1,.09,.057),gradient(face,[[0,'#fdfdfa'],[.36,'#f0f1ec'],[.78,'#e1e4dc'],[1,'#cdd2c8']]));
+  // A shallow moulded rim curves into the switch recess.
+  line([face(.09,.015),face(.89,.015)],'#ffffffb3',.2);
+  line([face(.99,.12),face(.99,.9)],'#a4ada077',.18);
+  fill(rounded(face,.145,.135,.855,.875,.05,.032),gradient(face,[[0,'#b5bcb0'],[.4,'#d8dcd2'],[1,'#989f93']]));
+  fill(rounded(face,.17,.158,.83,.856,.043,.028),'#c8cec2');
+  // One rocker: its upper lip rises slightly while the lower edge sits in
+  // a narrow recess. The bevel and curved highlight supply the depth.
+  const key=projection([face(.185,.175),face(.815,.175),face(.815,.831),face(.185,.831)].map(([x,y],i)=>[x+(i<2?-.18:0),y+(i<2?-.07:.04)]));
+  fill(rounded(key,0,0,1,1,.06,.045),gradient(key,[[0,'#fdfdf8'],[.22,'#f5f6ef'],[.67,'#e9ece2'],[1,'#d6dcd0']]));
+  const sheen=ctx.createRadialGradient(...key(.38,.24),0,...key(.4,.28),4.8);
+  sheen.addColorStop(0,'#ffffff38');sheen.addColorStop(.65,'#ffffff08');sheen.addColorStop(1,'#ffffff00');
+  fill(rounded(key,.035,.025,.965,.975,.055,.04),sheen);
+  line([key(.09,.045),key(.87,.045)],'#ffffffa6',.18);
+  line([key(.09,.98),key(.87,.98)],'#86917e80',.17);
+  ctx.restore();
  }
  function streetView(q){
   // The landscape belongs behind the glass, not on its perspective plane.
