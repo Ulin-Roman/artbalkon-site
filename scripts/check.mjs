@@ -192,7 +192,7 @@ for(const [label,html] of [['home',homeHtml],...services.map(service=>[service.s
  assert.match(html,/<section\b[^>]*id="about"[^>]*>[\s\S]*?<\/section>\s*<section\b[^>]*id="waste-removal"/,label+': waste removal must immediately follow About');
 }
 assert.match(homeWaste,/src="\/assets\/site-home\/waste-removal-worker-v3\.webp"/,'Waste removal must use the supplied worker photo');
-const normalizedHomeGallery=homeHtml.replace('<h2>Наши работы <span class="before-after-heading-accent">До и После</span></h2>','<h2>Наши работы</h2><p class="before-after-subtitle">До и После</p>');
+const normalizedHomeGallery=homeHtml.replace('<h2>Наши работы <span class="before-after-heading-accent">До и после</span></h2>','<h2>Наши работы</h2><p class="before-after-subtitle">До и после</p>');
 const heroSection=html=>html.match(/<section\b(?=[^>]*\blanding-hero\b)[^>]*>[\s\S]*?<\/section>/)?.[0];
 const homeHero=heroSection(homeHtml),turnkeyHero=heroSection(turnkeyHtml);
 assert.ok(homeHero&&turnkeyHero,'Both renderers preserve their hero sections');
