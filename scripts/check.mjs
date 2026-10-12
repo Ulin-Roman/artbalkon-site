@@ -191,7 +191,7 @@ for(const [label,html] of [['home',homeHtml],...services.map(service=>[service.s
  assert.equal((html.match(/\bid="waste-removal"/g)||[]).length,1,label+': waste removal must appear exactly once');
  assert.match(html,/<section\b[^>]*id="about"[^>]*>[\s\S]*?<\/section>\s*<section\b[^>]*id="waste-removal"/,label+': waste removal must immediately follow About');
 }
-assert.match(homeWaste,/src="\/assets\/site-home\/waste-removal-worker-v1\.webp"/,'Waste removal must use the supplied worker photo');
+assert.match(homeWaste,/src="\/assets\/site-home\/waste-removal-worker-v2\.webp"/,'Waste removal must use the supplied worker photo');
 const normalizedHomeGallery=homeHtml.replace('<h2>Наши работы <span class="before-after-heading-accent">До и После</span></h2>','<h2>Наши работы</h2><p class="before-after-subtitle">До и После</p>');
 assert.equal(normalizedHomeGallery.replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their calculation blocks, thermal difference and home gallery heading');
 assert.doesNotMatch(renderedGalleries,/class="breadcrumbs"/,'Rendered pages must not restore removed breadcrumbs');
