@@ -5147,7 +5147,8 @@ main > .social-subscribe,
 .waste-removal-card{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));min-width:0;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:var(--site-panel-shadow)}
 .waste-removal-card>*{min-width:0}
 .waste-removal-copy{display:flex;flex-direction:column;justify-content:center;padding:36px 44px;background:#fff;border-radius:23px 0 0 23px}
-.waste-removal-copy h2{max-width:16ch;margin:0 0 20px;color:var(--teal-dark);font-size:clamp(30px,3vw,42px);line-height:1.13;overflow-wrap:break-word}
+.waste-removal-copy h2{max-width:16ch;margin:0 0 20px;color:var(--ink);font-size:clamp(30px,3vw,42px);line-height:1.13;overflow-wrap:break-word}
+.waste-removal-copy h2>span{color:var(--teal)}
 .waste-removal-copy p{max-width:44ch;color:var(--muted);font-size:17px;line-height:1.7;overflow-wrap:break-word}
 .waste-removal-copy p+p{margin-top:12px}
 .waste-removal-body{margin-block:auto;min-width:0}
