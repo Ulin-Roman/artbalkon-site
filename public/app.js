@@ -99,6 +99,15 @@
   dropdown.addEventListener('keydown',e=>{if(e.key==='Escape'&&dropdown.open){e.preventDefault();e.stopPropagation();dropdown.open=false;dropdown.querySelector('summary').focus();}});
  });
  document.addEventListener('click',e=>{document.querySelectorAll('.nav-services[open]').forEach(dropdown=>{if(!dropdown.contains(e.target))dropdown.open=false;});});
+ document.querySelectorAll('.service-page-faq').forEach((faq,index)=>{
+  const answers=[...faq.querySelectorAll(':scope > div > details')];
+  answers.forEach(answer=>{
+   answer.setAttribute('name',`faq-${index}`);
+   answer.addEventListener('toggle',()=>{
+    if(answer.open)answers.forEach(other=>{if(other!==answer)other.open=false;});
+   });
+  });
+ });
  const heroSlider=$('[data-hero-slider]');
  if(heroSlider){
   const slides=[...heroSlider.querySelectorAll('.hero-image')];
