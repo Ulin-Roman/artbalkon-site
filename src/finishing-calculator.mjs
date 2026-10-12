@@ -55,6 +55,16 @@ function scene() {
  .finish-calc-canopy-through-glass{clip-path:url(#finish-calc-canopy-warm);opacity:.92}
  .finishing-calculator:has([name="glazing-enabled"]:checked):has([name="glazing"][value="cold"]:checked) .finish-calc-canopy-through-glass{clip-path:url(#finish-calc-canopy-cold)}
  .finishing-calculator:has([name="glazing-enabled"]:not(:checked)) .finish-calc-canopy-through-glass{clip-path:url(#finish-calc-canopy-opening);opacity:1}
+ .finishing-calculator [data-calc-warm-window]{display:none}
+ .finishing-calculator[data-warm-window-ready]:has([name="glazing-enabled"]:checked):has([name="glazing"][value="warm"]:checked) [data-calc-warm-window]{display:block}
+ .finishing-calculator[data-warm-window-ready]:has([name="glazing-enabled"]:checked):has([name="glazing"][value="warm"]:checked) #finish-calc-canopy,
+ .finishing-calculator[data-warm-window-ready]:has([name="glazing-enabled"]:checked):has([name="glazing"][value="warm"]:checked) .finish-calc-canopy-fixing,
+ .finishing-calculator[data-warm-window-ready]:has([name="glazing-enabled"]:checked):has([name="glazing"][value="warm"]:checked) .finish-calc-canopy-through-glass{display:none}
+ .finishing-calculator [data-calc-cold-window]{display:none}
+ .finishing-calculator[data-cold-window-ready]:has([name="glazing-enabled"]:checked):has([name="glazing"][value="cold"]:checked) [data-calc-cold-window]{display:block}
+ .finishing-calculator[data-cold-window-ready]:has([name="glazing-enabled"]:checked):has([name="glazing"][value="cold"]:checked) #finish-calc-canopy,
+ .finishing-calculator[data-cold-window-ready]:has([name="glazing-enabled"]:checked):has([name="glazing"][value="cold"]:checked) .finish-calc-canopy-fixing,
+ .finishing-calculator[data-cold-window-ready]:has([name="glazing-enabled"]:checked):has([name="glazing"][value="cold"]:checked) .finish-calc-canopy-through-glass{display:none}
  </style>
  <g id="finish-calc-canopy" data-calc-canopy aria-hidden="true" pointer-events="none">
  <path d="M${point(houseNear)} ${point(innerNear)} ${point(innerFar)} ${point(houseFar)}Z" fill="#c6cdd0"/>
@@ -73,6 +83,8 @@ function scene() {
  <path d="M${point(lower(houseNear))} ${point(lower(innerNear))}" fill="none" stroke="#6d7c8459" stroke-width=".35"/>
  </g>
  <g class="finish-calc-canopy-through-glass" aria-hidden="true" pointer-events="none"><use href="#finish-calc-canopy"/></g>
+ <image data-calc-warm-window x="0" y="0" width="356" height="480" aria-hidden="true" pointer-events="none"/>
+ <image data-calc-cold-window x="0" y="0" width="356" height="480" aria-hidden="true" pointer-events="none"/>
  </svg></div>`;
 }
 

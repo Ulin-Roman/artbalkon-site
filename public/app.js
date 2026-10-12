@@ -331,7 +331,7 @@
 function createCalculatorScene(root) {
  const canvas=root.querySelector('[data-calc-canvas]'),ctx=canvas.getContext('2d');
  if(!ctx)return ()=>{};
- const base=new Image(),atlas=new Image(),insulation=new Image(),cache=new Map();
+ const base=new Image(),atlas=new Image(),insulation=new Image(),warmWindow=new Image(),coldWindowImage=new Image(),cache=new Map();
  let selection=null,ready=false,frame=0;
  const cells={laminate:0,'laminate-wall':0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
  // A deeper parapet grows into the room; its street face stays below the glass.
@@ -631,12 +631,67 @@ function createCalculatorScene(root) {
   ctx.restore();
  }
 
+
+ // Source: https://balconia.ru/assets/img/calc/windows/teploe-okno.png
+ // Cold source: https://balconia.ru/assets/img/calc/windows/xolodnoeokno.png
+ // Fit vertical glazing and each horizontal surface separately. A single
+ // window-plane transform would lift the sill nose and pull the roof indoors.
+ function mountWindowReference(image,kind){
+  const layer=document.createElement('canvas');layer.width=1068;layer.height=1440;
+  const paint=layer.getContext('2d');paint.scale(3,3);paint.translate(340,0);paint.scale(-1,1);
+  function part(source,target,mask=source,remove=[]){
+   const rows=source.flatMap(([x,y],i)=>{const [u,v]=target[i];return [[x,y,1,0,0,0,-u*x,-u*y,u],[0,0,0,x,y,1,-v*x,-v*y,v]];});
+   for(let col=0;col<8;col++){
+    let pivot=col;for(let row=col+1;row<8;row++)if(Math.abs(rows[row][col])>Math.abs(rows[pivot][col]))pivot=row;
+    [rows[col],rows[pivot]]=[rows[pivot],rows[col]];
+    const divisor=rows[col][col];for(let k=col;k<=8;k++)rows[col][k]/=divisor;
+    for(let row=0;row<8;row++)if(row!==col){const factor=rows[row][col];for(let k=col;k<=8;k++)rows[row][k]-=factor*rows[col][k];}
+   }
+   const h=rows.map(row=>row[8]),map=([x,y])=>{const w=h[6]*x+h[7]*y+1;return [(h[0]*x+h[1]*y+h[2])/w,(h[3]*x+h[4]*y+h[5])/w];};
+   const clipped=document.createElement('canvas');clipped.width=image.naturalWidth;clipped.height=image.naturalHeight;
+   const cut=clipped.getContext('2d'),path=points=>{cut.beginPath();points.forEach(([x,y],i)=>cut[i?'lineTo':'moveTo'](x,y));cut.closePath();};
+   cut.save();path(mask);cut.clip();cut.drawImage(image,0,0);cut.restore();
+   cut.globalCompositeOperation='destination-out';for(const hole of remove){path(hole);cut.fill();}
+   const left=Math.floor(Math.min(...mask.map(p=>p[0]))),right=Math.ceil(Math.max(...mask.map(p=>p[0]))),top=Math.floor(Math.min(...mask.map(p=>p[1]))),bottom=Math.ceil(Math.max(...mask.map(p=>p[1])));
+   for(let y=top;y<bottom;y+=12)for(let x=left;x<right;x+=12){
+    const corners=[[x,y],[Math.min(x+12,right),y],[Math.min(x+12,right),Math.min(y+12,bottom)],[x,Math.min(y+12,bottom)]];
+    for(const ids of [[0,1,2],[0,2,3]]){
+     const points=ids.map(i=>corners[i]),mapped=points.map(map),[a,b,c]=points,[A,B,C]=mapped;
+     const det=(b[0]-a[0])*(c[1]-a[1])-(c[0]-a[0])*(b[1]-a[1]);
+     const axis=i=>[((B[i]-A[i])*(c[1]-a[1])-(C[i]-A[i])*(b[1]-a[1]))/det,((C[i]-A[i])*(b[0]-a[0])-(B[i]-A[i])*(c[0]-a[0]))/det];
+     const [aa,cc]=axis(0),[bb,dd]=axis(1),center=[(A[0]+B[0]+C[0])/3,(A[1]+B[1]+C[1])/3];
+     paint.save();paint.beginPath();mapped.forEach(([px,py],i)=>{const dx=px-center[0],dy=py-center[1],r=Math.hypot(dx,dy);paint[i?'lineTo':'moveTo'](px+dx/r*.025,py+dy/r*.025);});paint.closePath();paint.clip();
+     paint.transform(aa,bb,cc,dd,A[0]-aa*a[0]-cc*a[1],A[1]-bb*a[0]-dd*a[1]);paint.drawImage(clipped,0,0);paint.restore();
+    }
+   }
+  }
+  // Roof sheet: its inside edge follows the ceiling; the other edge is outside.
+  part([[50,135],[191,93],[286,300],[254,310]],[[-1,63.5],[43,55],[108.5,140],[95,146]]);
+  // The broad top, nose and exposed chambers occupy three different planes.
+  const near=59.5+parapetDepth,far=119.8+parapetDepth*11.4/28.7;
+  part([[103,613],[254,580],[309,580],[230,613]],[[30.8,300.5],[108.4,260.3],[far,260.3],[near,300.5]]);
+  part([[230,613],[309,580],[309,590],[230,633]],[[near,300.5],[far,260.3],[far,262.6],[near,304.8]]);
+  part([[103,613],[230,613],[230,633],[103,624]],[[30.8,300.5],[near,300.5],[near,304.8],[30.8,303.7]]);
+  const clearGlass=kind==='cold'?[[[119,158],[158,214],[158,261],[119,215]]]:[[[137,183],[164,219],[164,265],[137,231]]];
+  part([[120,143],[258,306],[258,580],[120,613]],[[33.8,65],[108.5,140],[108.5,260.3],[33.8,300.5]],[[106,116],[144,155],[260,308],[260,580],[106,613]],clearGlass);
+  root.querySelector('[data-calc-'+kind+'-window]').setAttribute('href',layer.toDataURL('image/png'));
+  root.setAttribute('data-'+kind+'-window-ready','');
+ }
+ const copiedWindow=warm=>{const image=warm?warmWindow:coldWindowImage;return image.complete&&image.naturalWidth>0;};
+
  function glazingSection(enabled,warm){
   // The cut faces recede into the balcony, along the same axis as the sill.
   // Remove the original head too, so no second cut survives above the new one.
   const cut=[[30,54.5],[43.4,54.5],[43.4,300.3],[30,303.2]];
   ctx.save();polygon(cut);ctx.clip();ctx.clearRect(29.5,54.3,14.4,249);ctx.restore();
   if(!enabled)return;
+  if(copiedWindow(warm)){
+   // Remove the previous frame and sill; the imported layer sits above the
+   // room finishes, while the transparent glass keeps the existing view.
+   ctx.save();polygon([[29.5,54.5],[43.5,54.5],[110,137],[110,267],[70.5,306],[29.5,306]]);ctx.clip();ctx.clearRect(29,54,82,253);ctx.restore();
+   streetView([[43,78],[108,142],[108,256.5],[43,291.5]]);
+   return;
+  }
   const outer=warm?30.9:33.8,inner=43.1,top=warm?65:68.5,bottom=300.5;
   // Both frame feet meet the sill's flat cut at y300.5.
   const p=projection([[outer,top],[inner,top+3],[inner,bottom],[outer,bottom]]),railTop=warm?.062:.05,railBottom=warm?.947:.944;
@@ -981,7 +1036,7 @@ function createCalculatorScene(root) {
   if(s['lighting-enabled'])roomLighting(floorQ,s.lighting==='pendant');
   if(!s['glazing-enabled']||s.glazing==='cold'){
    const window=[[43,78],[108,142],[108,256.5],[43,291.5]];
-   streetView(window);if(s['glazing-enabled'])coldWindow(window);
+   streetView(window);if(s['glazing-enabled']&&!copiedWindow(false))coldWindow(window);
   }
   const drawWindowHead=glazingSection(!!s['glazing-enabled'],s.glazing==='warm');
   if(s['floor-enabled'])baseboards(floorQ);
@@ -992,7 +1047,7 @@ function createCalculatorScene(root) {
   parapetCore();sideSection(insulated);floorSection(floorQ,s['floor-enabled']?s.floor:null,insulated);roofSection(insulated);
   houseSection(s['walls-enabled']?s.walls:null,insulated);
   if(s['exterior-enabled'])exteriorCladding(s.exterior==='metal');
-  wideStreetSill();
+  if(!s['glazing-enabled']||!copiedWindow(s.glazing==='warm'))wideStreetSill();
   drawWindowHead?.();
   if(s['lighting-enabled']){
    const ceilingMap=projection(surfaces.ceiling);
@@ -1014,6 +1069,10 @@ function createCalculatorScene(root) {
  }
  const schedule=()=>{if(!frame)frame=requestAnimationFrame(render);};
  Promise.all([base,atlas,insulation].map(img=>new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;}))).then(()=>{ready=true;schedule();}).catch(()=>{canvas.hidden=true;root.querySelector('[data-calc-fallback]').hidden=false;});
+ warmWindow.onload=()=>{mountWindowReference(warmWindow,'warm');schedule();};
+ coldWindowImage.onload=()=>{mountWindowReference(coldWindowImage,'cold');schedule();};
+ coldWindowImage.src=new URL('assets/calculator-realistic-v1/cold-window-reference.png',siteBase).href;
+ warmWindow.src=new URL('assets/calculator-realistic-v1/warm-window-reference.png',siteBase).href;
  insulation.src=new URL('assets/calculator-realistic-v1/insulation-battens-v1.webp',siteBase).href;
  base.src=root.querySelector('[data-calc-fallback]').src;atlas.src=new URL('assets/calculator-realistic-v1/material-atlas-v2.webp',siteBase).href;
  return state=>{selection=state;schedule();};
