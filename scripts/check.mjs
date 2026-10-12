@@ -192,10 +192,12 @@ assert.ok(turnkeyThermal,'The service renderer must retain thermal inspection');
 const homeWasteSections=[...homeHtml.matchAll(/<section\b(?=[^>]*\bid="waste-removal")[^>]*>[\s\S]*?<\/section>/g)].map(match=>match[0]);
 assert.equal(homeWasteSections.length,1,'Home must contain the waste removal block once');
 const homeWaste=homeWasteSections[0];
-assert.ok(homeHtml.indexOf('id="finishing-calculator"')<homeHtml.indexOf('id="waste-removal"'),'Waste removal follows the finishing calculator');
-assert.match(homeHtml.slice(homeHtml.indexOf(homeWaste)+homeWaste.length),/^\s*<section\b[^>]*class="[^"]*\bsocial-subscribe\b/,'Waste removal must immediately precede social subscription');
-assert.doesNotMatch(turnkeyHtml,/\bid="waste-removal"/,'Waste removal stays exclusive to home');
-assert.equal(homeHtml.replace(quizSection(homeHtml),'').replace(homeWaste,''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their calculation blocks, home-only waste removal and thermal difference');
+for(const [label,html] of [['home',homeHtml],...services.map(service=>[service.slug,servicePageWithSeo(service)])]){
+ assert.equal((html.match(/\bid="waste-removal"/g)||[]).length,1,label+': waste removal must appear exactly once');
+ assert.match(html,/<section\b[^>]*id="about"[^>]*>[\s\S]*?<\/section>\s*<section\b[^>]*id="waste-removal"/,label+': waste removal must immediately follow About');
+}
+assert.match(homeWaste,/src="\/assets\/site-home\/waste-removal-v2\.webp"/,'Waste removal must use the updated two-colour photo');
+assert.equal(homeHtml.replace(quizSection(homeHtml),''),turnkeyHtml.replace(quizSection(turnkeyHtml),'').replace(turnkeyThermal,''),'Home and turnkey retain shared content outside their calculation blocks and thermal difference');
 assert.doesNotMatch(renderedGalleries,/class="breadcrumbs"/,'Rendered pages must not restore removed breadcrumbs');
 assert.match(homeHtml,/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>\s*<section[^>]*id="about"/,'Additional services must immediately precede About');
 const homeShell=shellWithQuiz(homeHtml,{path:'/',image:'/assets/'+homeHeroImage});
@@ -414,7 +416,10 @@ const files=await walk(root),pages=files.filter(f=>f.endsWith('.html'));let refs
 const titles=new Map(),descriptions=new Map(),canonicals=new Map(),indexedCanonicals=new Set();
 for(const file of pages){
  const html=await readFile(file,'utf8'),isRedirect=html.includes('http-equiv="refresh"'),isNoindex=html.includes('name="robots" content="noindex');
- assert.equal((html.match(/\bid="waste-removal"/g)||[]).length,file===join(root,'index.html')?1:0,file+': waste removal must appear once only on home');
+ const isContentPage=!isRedirect&&!isNoindex;
+ assert.equal((html.match(/\bid="about"/g)||[]).length,isContentPage?1:0,file+': every content page must contain About once');
+ assert.equal((html.match(/\bid="waste-removal"/g)||[]).length,isContentPage?1:0,file+': every content page must contain waste removal once');
+ if(isContentPage)assert.match(html,/<section\b[^>]*id="about"[^>]*>[\s\S]*?<\/section>\s*<section\b[^>]*id="waste-removal"/,file+': waste removal must immediately follow About');
  assert.ok(!/визуализац/i.test(html),file+' must use neutral customer-facing copy, including metadata and image descriptions');
  const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1],title=html.match(/<title>([^<]+)<\/title>/)?.[1];
  assert.match(html,/<html lang="ru"/,'Page language must be Russian: '+file);
