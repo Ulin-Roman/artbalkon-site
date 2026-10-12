@@ -66,7 +66,6 @@ const assertGlazingChoice=(html,label)=>{
  for(const [index,key] of ['cold','warm'].entries()){
   const card=cards[index];
   assert.match(card,new RegExp('data-glazing-choice="'+key+'"'),label+': correct card identity');
-  assert.match(card,/aria-describedby="glazing-choice-price-note glazing-choice-load-note"/,label+': card references price and load conditions');
   assert.match(card,new RegExp('<h3 id="glazing-choice-'+key+'">'+(key==='cold'?'Холодный':'Тёплый')+' балкон</h3>'),label+': correct card heading');
   const photos=[...card.matchAll(/<img\b[^>]*>/g)].map(match=>match[0]);
   assert.equal(photos.length,1,label+': one photo per card');
@@ -86,11 +85,8 @@ const assertGlazingChoice=(html,label)=>{
   assert.equal(price,'от '+prices[key].toLocaleString('ru-RU').replace(/\s+/g,' ')+' ₽ /м²',label+': confirmed '+key+' glazing rate');
  }
  assert.match(cards[0],/Для сезонного использования[\s\S]*Хранение вещей[\s\S]*Алюминиевый профиль с одинарным стеклом/,label+': seasonal use and cold system');
- assert.match(cards[0],/Зимой не обеспечивает комнатный комфорт/,label+': cold glazing limitation');
  assert.match(cards[1],/Комфорт круглый год[\s\S]*С утеплением и источником обогрева[\s\S]*ПВХ-профиль со стеклопакетом/,label+': warm system and heating condition');
- assert.match(cards[1],/Одних окон недостаточно: нужны утепление и обогрев/,label+': warm glazing limitation');
- assert.match(block,/id="glazing-choice-price-note"[^>]*>[^<]*Утепление, отделка и обогрев рассчитываются отдельно после замера/,label+': distinguish glazing price from additional work');
- assert.match(block,/id="glazing-choice-load-note"[^>]*>[^<]*нагрузку[^<]*осмотра основания/,label+': preserve assessment of the balcony base');
+ assert.doesNotMatch(block,/glazing-choice-(?:condition|note|price-note|load-note)|Зимой не обеспечивает комнатный комфорт|Одних окон недостаточно: нужны утепление и обогрев|Цены за остекление\. Утепление, отделка и обогрев рассчитываются отдельно после замера|Конструкцию и допустимую нагрузку подбираем после осмотра основания/,label+': requested notes and their accessibility references were removed');
  return block;
 };
 

@@ -4912,7 +4912,6 @@ main > .social-subscribe,
 .glazing-choice-icon .ui-icon{width:27px;height:27px}
 .glazing-choice-features h4{margin:0;color:var(--ink);font-size:18px;font-weight:550;line-height:1.35;letter-spacing:-.015em;overflow-wrap:anywhere}
 .glazing-choice-features p{margin:3px 0 0;color:var(--muted);font-size:14px;line-height:1.5;overflow-wrap:anywhere}
-.glazing-choice-condition{margin:0 0 18px;color:var(--muted);font-size:13px;line-height:1.55;overflow-wrap:anywhere}
 .glazing-choice-footer{min-width:0;margin-top:auto;padding-top:18px;border-top:1px solid var(--line)}
 .glazing-choice-price{display:flex;align-items:baseline;gap:10px;min-width:0;margin:0 0 18px;color:var(--ink);line-height:1.15;white-space:nowrap}
 .glazing-choice-from{font-size:24px}
@@ -4922,8 +4921,6 @@ main > .social-subscribe,
 .glazing-choice .glazing-choice-cta:hover{background:var(--teal-hover)}
 .glazing-choice .glazing-choice-cta .button-label{min-width:0;overflow-wrap:anywhere}
 .glazing-choice .glazing-choice-cta>span[aria-hidden]{display:inline;flex:0 0 auto;width:auto;height:auto;margin:0;padding:0;border:0;border-radius:0;background:none;color:inherit;font-size:25px;line-height:1}
-.glazing-choice-note{max-width:880px;margin:17px auto 0;color:var(--muted);font-size:13px;line-height:1.65;text-align:center;overflow-wrap:anywhere}
-.glazing-choice-load-note{margin-top:6px}
 @media(max-width:1000px) and (min-width:761px){
  .glazing-choice-grid{gap:18px}
  .glazing-choice-card{padding:14px}
@@ -4951,12 +4948,9 @@ main > .social-subscribe,
  .glazing-choice-icon .ui-icon{width:24px;height:24px}
  .glazing-choice-features h4{font-size:17px}
  .glazing-choice-features p{font-size:14px}
- .glazing-choice-condition{font-size:12px}
  .glazing-choice-price strong{font-size:36px}
  .glazing-choice-from{font-size:22px}
  .glazing-choice .glazing-choice-cta{font-size:15px;gap:14px;padding:14px 16px}
- .glazing-choice-note{margin-top:14px;font-size:12px;line-height:1.6;text-align:left}
- .glazing-choice-load-note{margin-top:6px}
 }
 @media(max-width:360px){
  .glazing-choice-body{padding:18px 14px}
