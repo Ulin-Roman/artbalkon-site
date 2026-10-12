@@ -3433,7 +3433,7 @@ body{min-width:0;max-width:100%}
   }
 }
 
-.before-after-heading-accent{display:block;margin-top:8px;color:#23834a;font:inherit}
+.before-after-heading-accent{display:block;margin-top:8px;color:var(--teal);font:inherit}
 
 /* Match the before/after label to the regular section subtitle style. */
 .before-after-subtitle {
@@ -4897,7 +4897,7 @@ main > .social-subscribe,
 .glazing-choice{--choice-cold:#14556a;--choice-cold-bg:#f0f9fd;--choice-warm:#914714;--choice-warm-bg:#fff7f1;min-width:0;padding-block:36px}
 .glazing-choice .section-heading{margin-bottom:30px;text-align:center}
 .glazing-choice .section-heading h2{font-size:clamp(28px,3.4vw,44px);font-weight:650;line-height:1.15;letter-spacing:-.035em;overflow-wrap:anywhere}
-.glazing-choice-title-accent{color:#23834a}
+.glazing-choice-title-accent{color:var(--teal)}
 .glazing-choice .section-description{max-width:720px;margin:12px auto 0;font-size:17px;line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
 .glazing-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;min-width:0}
 .glazing-choice-card{display:flex;flex-direction:column;min-width:0;padding:18px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--site-panel-shadow)}
