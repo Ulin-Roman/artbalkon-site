@@ -3433,6 +3433,8 @@ body{min-width:0;max-width:100%}
   }
 }
 
+.before-after-heading-accent{display:block;margin-top:8px;color:#23834a;font:inherit}
+
 /* Match the before/after label to the regular section subtitle style. */
 .before-after-subtitle {
   color: var(--muted);
