@@ -4371,7 +4371,7 @@ main > .social-subscribe,
 .certificate-gallery [data-cert-prev]{left:8px}
 .certificate-gallery [data-cert-next]{right:8px}
 .certificate-gallery .certificate-controls button:disabled{opacity:.6}
-@media(max-width:640px){.certificate-gallery [data-cert-prev]{left:4px}.certificate-gallery [data-cert-next]{right:4px}}
+@media(max-width:640px){.certificates-heading{gap:10px;margin-bottom:12px}.certificate-gallery [data-cert-prev]{left:4px}.certificate-gallery [data-cert-next]{right:4px}}
 /* Certificates open in an accessible viewer on the current page. */
 .certificate-modal{width:min(calc(100% - 24px),calc(min(800px,100dvh - 146px) * var(--certificate-ratio,.7075) + 40px));max-width:none;max-height:calc(100dvh - 24px);padding:0;border:0;border-radius:22px;background:var(--page-gray);color:var(--ink);overflow:auto}
 .certificate-modal::backdrop{background:rgba(3,20,20,.74);backdrop-filter:blur(8px)}
