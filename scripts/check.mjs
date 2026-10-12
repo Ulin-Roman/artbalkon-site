@@ -204,7 +204,7 @@ assert.match(homeShell,/<body class="turnkey-page">/,'Home must use the same lay
 assert.ok(homeShell.includes('<link rel="canonical" href="'+company.origin+'/">'),'Home must keep its own canonical URL');
 const homeQuizModal=homeShell.match(/<dialog class="quiz-modal"[\s\S]*?<\/dialog>/)?.[0];
 assert.ok(homeQuizModal?.includes('name="service" value="Под ключ"'),'Home consultation modal must retain the turnkey service');
-assert.match(homeQuizModal,/data-total-steps="3"/,'Home consultation modal retains its existing quiz steps');
+assert.match(homeQuizModal,/data-total-steps="4"/,'Home consultation modal includes the cold/warm choice');
 assert.doesNotMatch(homeQuizModal,/data-inline-estimate/,'Inline estimate must not replace the consultation modal');
 const homeGraph=JSON.parse(homeShell.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1])['@graph'];
 assert.equal(homeGraph.find(item=>item['@type']==='Service')?.url,company.origin+'/','Home service schema must use the root URL');

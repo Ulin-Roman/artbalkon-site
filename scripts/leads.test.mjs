@@ -6,7 +6,7 @@ import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {validateLead,saveLead} from './leads.mjs';
-import {contactFields,quiz,quizModal,inlineEstimate,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
+import {contactFields,quiz,quizModal,shellWithQuiz,inlineEstimate,servicePageWithSeo,home as renderHome} from '../src/components.mjs';
 import {services,projects} from '../src/content.mjs';
 const valid=()=>({requestId:randomUUID(),name:'Тест формы',phone:'+7 (999) 000-00-00',consent:true,form:'quiz',service:'Холодное остекление балкона',object:'Балкон',timing:'Пока интересуюсь',gift:'Тёплый пол',attribution:{utm_source:'test'}});
 test('validates phone, consent, all quiz answers and filters attribution',()=>{const input=valid();input.attribution.secret='must not persist';const lead=validateLead(input);assert.equal(lead.phone,'+79990000000');assert.equal(lead.attribution.secret,undefined);for(const bad of [{consent:false},{phone:'123'},{phone:'+7 (888) 888-88-88'},{phone:'+7 (999) 999-99-99'},{service:'xxx'},{size:' '},{name:' '},{requestId:'../../file'}])assert.throws(()=>validateLead({...input,...bad}));});
@@ -16,6 +16,21 @@ test('combined glazing page asks for the object and glazing type',()=>{const ser
 test('service page omits the already known service and uses three steps',()=>{const markup=quiz(services.find(item=>item.slug==='otdelka-balkonov'));assert.match(markup,/data-total-steps="3"/);assert.match(markup,/type="hidden" name="service" value="Отделка"/);assert.match(markup,/Что нужно отделать/);assert.doesNotMatch(markup,/Выберите подарок/);});
 test('furniture quiz supports balconies and loggias',()=>{const markup=quiz(services.find(s=>s.slug==='mebel-dlya-balkona'));assert.match(markup,/Где нужна встроенная мебель/);assert.doesNotMatch(markup,/type="hidden" name="object"/);assert.match(markup,/value="Балкон"/);assert.match(markup,/value="Лоджия"/);for(const object of ['Балкон','Лоджия'])assert.equal(validateLead({...valid(),object,service:'Мебель для балконов и лоджий'}).object,object);});
 test('project consultation keeps the project context',()=>{const markup=quizModal(projects[0]);assert.match(markup,/Получите\s+<br>консультацию/);assert.match(markup,/type="hidden" name="service" value="Утепление и отделка"/);assert.match(markup,/data-total-steps="2"/);});
+test('cold/warm choice belongs only to the home consultation modal',()=>{
+ const homeShell=shellWithQuiz(renderHome(),{path:'/'}),modal=homeShell.match(/<dialog class="quiz-modal"[\s\S]*?<\/dialog>/)?.[0];
+ assert.ok(modal,'Home consultation modal is present');
+ assert.match(modal,/data-total-steps="4"/);
+ assert.match(modal,/type="hidden" name="service" value="Под ключ"/);
+ const choices=[...modal.matchAll(/<input type="radio" name="detail" value="([^"]+)" required>/g)].map(match=>match[1]);
+ assert.deepEqual(choices,['Холодный балкон','Тёплый балкон']);
+ assert.ok(modal.indexOf('name="object"')<modal.indexOf('name="detail"'));
+ assert.ok(modal.indexOf('name="detail"')<modal.indexOf('name="timing"'));
+ for(const service of services){
+  const other=quizModal(service);
+  assert.doesNotMatch(other,/value="(?:Холодный|Тёплый) балкон"/,'Keep the original service consultation: '+service.slug);
+ }
+});
+
 test('gift is optional for the shorter calculation',()=>{const input=valid();delete input.gift;assert.equal(validateLead(input).gift,undefined);});
 test('preview is durable and duplicates are idempotent',async()=>{const directory=await mkdtemp(join(tmpdir(),'artbalkon-test-'));try{const input=valid();const [a,b]=await Promise.all([saveLead(input,{directory}),saveLead(input,{directory})]);assert.equal(a.id,b.id);assert.equal(a.mode,'preview');const saved=JSON.parse(await readFile(join(directory,a.id+'.json'),'utf8'));assert.equal(saved.status,'preview');assert.equal(saved.attribution.utm_source,'test');await assert.rejects(saveLead({...input,name:'Другой'},{directory}));}finally{await rm(directory,{recursive:true,force:true});}});
 test('failed delivery stays pending; retry delivers once',async()=>{const directory=await mkdtemp(join(tmpdir(),'artbalkon-test-'));try{const input=valid();await assert.rejects(saveLead(input,{directory,mode:'live',deliver:async()=>{throw Error('offline');}}));let record=JSON.parse(await readFile(join(directory,input.requestId+'.json'),'utf8'));assert.equal(record.status,'pending');let count=0;const options={directory,mode:'live',deliver:async()=>{count++;}};await saveLead(input,options);await saveLead(input,options);record=JSON.parse(await readFile(join(directory,input.requestId+'.json'),'utf8'));assert.equal(record.status,'delivered');assert.equal(count,1);}finally{await rm(directory,{recursive:true,force:true});}});

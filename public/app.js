@@ -184,7 +184,13 @@
  const primaryQuizController=quizControllers.get(modalQuiz)||quizControllers.values().next().value;
  const quiz=primaryQuizController?.form||null;
  function openQuiz(trackOpen=true){if(!quizDialog)return;openDialogAtCurrentScroll(quizDialog,quizDialog.querySelector('.quiz-modal-close'));if(trackOpen)track('quiz_open');}
- document.addEventListener('click',e=>{const trigger=e.target.closest('[data-quiz-open]');if(!trigger||!quizDialog)return;e.preventDefault();closeMenu();openQuiz();});
+ document.addEventListener('click',e=>{
+  const trigger=e.target.closest('[data-quiz-open]');if(!trigger||!quizDialog)return;e.preventDefault();closeMenu();
+  const glazing=trigger.closest('[data-glazing-choice]')?.dataset.glazingChoice,value={cold:'Холодный балкон',warm:'Тёплый балкон'}[glazing];
+  const option=value?modalQuiz?.querySelector('input[name="detail"][value="'+value+'"]'):null;
+  if(option){option.checked=true;primaryQuizController?.showStep(0,false);}
+  openQuiz();
+ });
  quizDialog?.querySelector('.quiz-modal-close')?.addEventListener('click',()=>quizDialog.close());
  quizDialog?.addEventListener('click',e=>{if(e.target===quizDialog)quizDialog.close();});
  if(location.hash==='#quiz'&&!document.querySelector('[data-inline-estimate]')){openQuiz(false);history.replaceState(null,'',location.pathname+location.search);}
