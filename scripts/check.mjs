@@ -124,6 +124,7 @@ for(const [label,html] of inlineEstimatePages){
  assert.equal(formAttributes['data-lead-form'],'quiz',label+': preserve the lead endpoint contract');
  const knownObject=/<input\b(?=[^>]*\btype="hidden")(?=[^>]*\bname="object")[^>]*>/.test(form);
  const stages=[...form.matchAll(/<fieldset\b([^>]*)>([\s\S]*?)<\/fieldset>/g)].map(([,tag,body])=>({attributes:estimateAttributes(tag),body}));
+ for(const stage of stages.slice(0,-1)){const radios=[...stage.body.matchAll(/<input\b([^>]*)>/g)].map(([,tag])=>estimateAttributes(tag)).filter(input=>input.type==='radio');assert.ok(radios.length,label+': answer choices are present');assert.deepEqual(radios.filter(input=>input.checked),[radios[0]],label+': default to only the first choice in every step');}
  const expectedStages=[...knownObject?[]:['object'],'goal','timing','gift','contact'];
  assert.equal(Number(formAttributes['data-total-steps']),expectedStages.length,label+': known objects shorten the quiz');
  assert.deepEqual(stages.map(stage=>stage.attributes['data-estimate-stage']),expectedStages,label+': preserve the ordered calculation stages');
@@ -157,7 +158,7 @@ for(const [label,html] of inlineEstimatePages){
  assert.ok(form.includes('id="step-count-inline"')&&form.includes('Шаг 1 из '+stages.length),label+': show the initial step count');
  const buttons=[...form.matchAll(/<button\b([^>]*)>/g)].map(([,tag])=>estimateAttributes(tag));
  assert.ok(buttons.find(button=>button.class?.split(/\s+/).includes('back-button'))?.disabled,label+': disable back on the first step');
- assert.ok(buttons.find(button=>button.class?.split(/\s+/).includes('quiz-next-button'))?.disabled,label+': wait for the first answer');
+ const initialNext=buttons.find(button=>button.class?.split(/\s+/).includes('quiz-next-button'));assert.ok(initialNext&&!initialNext.disabled,label+': the first selected answer enables Next');
  const submit=buttons.filter(button=>button.type==='submit');
  assert.equal(submit.length,1,label+': one final submit action');
  assert.ok(submit[0].hidden,label+': wait until the contact step before submitting');

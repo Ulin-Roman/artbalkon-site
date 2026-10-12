@@ -97,7 +97,7 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   assert.deepEqual(new Set(gifts.map(input=>input.value)),new Set(['Светильник и розетки','Тёплый пол','Потолочная сушилка','Подарочная карта']),label+': offer the four supported gifts');
   assert.equal(gifts.length,4,label+': one choice per gift');
   assert.equal(gifts.find(input=>input.value==='Подарочная карта')['data-estimate-photo'],'gift-4',label+': gift card uses its dedicated preview');
-  for(const group of [details,...knownObject?[]:[object],timing,gifts])assert.ok(group.every(input=>input.type==='radio'&&input.required&&!input.checked),label+': visitors explicitly answer every question');
+  for(const group of [details,...knownObject?[]:[object],timing,gifts]){assert.ok(group.every(input=>input.type==='radio'&&input.required),label+': preserve required radio choices');assert.deepEqual(group.filter(input=>input.checked),[group[0]],label+': default to only the first choice');}
   const giftStage=stages.at(-2),finalStage=stages.at(-1);
   assert.deepEqual(giftStage.inputs,gifts,label+': the gift stage contains only gift choices');
   assert.equal(finalStage.attributes['data-estimate-stage'],'contact',label+': contacts are the final separate stage');
@@ -115,6 +115,7 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   }
   const previews=[...markup.matchAll(/<figure\b([^>]*)>/g)].map(([,tag])=>attributes(tag)).filter(tag=>tag['data-estimate-preview']);
   const previewKeys=previews.map(tag=>tag['data-estimate-preview']);
+  assert.deepEqual(previews.filter(tag=>!Object.hasOwn(tag,'hidden')).map(tag=>tag['data-estimate-preview']),[(knownObject?details:object)[0]['data-estimate-photo']],label+': initial photo matches the first selected choice');
   assert.equal(new Set(previewKeys).size,previewKeys.length,label+': preview keys are unique');
   for(const choice of [...details,...gifts,...(knownObject?[]:object)])assert.ok(choice['data-estimate-photo']&&previewKeys.includes(choice['data-estimate-photo']),label+': selected objects, goals and gifts have matching photos');
   if(!knownObject){
@@ -133,7 +134,7 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
   const back=buttons.find(button=>button.class?.split(/\s+/).includes('back-button'));
   const next=buttons.find(button=>button.class?.split(/\s+/).includes('quiz-next-button'));
   const submit=buttons.filter(button=>button.type==='submit');
-  assert.ok(back?.disabled&&next?.disabled,label+': navigation waits for the first answer');
+  assert.ok(back?.disabled&&next&&!next.disabled,label+': first answer enables Next while Back stays disabled');
   assert.ok(back.type==='button'&&next.type==='button'&&!next.hidden,label+': navigation advances without submitting');
   assert.equal(submit.length,1,label+': one final submit action');
   assert.ok(submit[0].hidden,label+': submission is hidden before contacts');
