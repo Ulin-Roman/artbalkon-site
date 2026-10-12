@@ -332,6 +332,7 @@ function createCalculatorScene(root) {
  const canvas=root.querySelector('[data-calc-canvas]'),ctx=canvas.getContext('2d');
  if(!ctx)return ()=>{};
  const base=new Image(),atlas=new Image(),insulation=new Image(),cache=new Map();
+ const canopyJoint=(root.querySelector('[data-calc-canopy-joint]')?.dataset.calcCanopyJoint||'30.5 55.9').split(' ').map(Number);
  let selection=null,ready=false,frame=0;
  const cells={laminate:0,'laminate-wall':0,lining:1,parquet:2,pvc:3,vinyl:4,tile:5,linoleum:6,concrete:7,outside:8};
  // A deeper parapet grows into the room; its street face stays below the glass.
@@ -640,8 +641,9 @@ function createCalculatorScene(root) {
   const outer=warm?30.9:33.8,inner=43.1,top=warm?65:68.5,bottom=300.5;
   // Both frame feet meet the sill's flat cut at y300.5.
   const p=projection([[outer,top],[inner,top+3],[inner,bottom],[outer,bottom]]),railTop=warm?.062:.05,railBottom=warm?.947:.944;
-  // Use the same section height as the foot, keeping the existing glass seat.
-  const headCut=section(p,0,railTop-(1-railBottom),1,railTop);
+  // The head section reaches the flashing; its lower edge keeps the glass seat.
+  const headSeat=section(p,0,railTop-(1-railBottom),1,railTop);
+  const headCut=[[canopyJoint[0]-.45,canopyJoint[1]-.25],[inner,62.8],headSeat[2],headSeat[3]];
   fill(section(p,0,warm?.057:.04,1,warm?.953:.967),'#b4c6d009');
   const panes=warm?[.20,.46,.72]:[.47],glassThickness=warm?.035:.045;
   for(const u of panes){
@@ -655,7 +657,7 @@ function createCalculatorScene(root) {
   line([p(.97,.06),p(.97,.95)],'#ffffff',.7);
   function profile(v0,v1){
    const upper=v0===0;
-   // The profile itself matches the lower cut; its mounting joint is separate.
+   // The upper cut fills the whole head, including the chambers below the sheet.
    // The glass rebate, lower rail and sill retain their original geometry.
    const q=upper?headCut:section(p,0,v0,1,v1),map=projection(q);
    const m=(u,w)=>map(u,upper?w:1-w),rect=(u0,w0,u1,w1)=>[[u0,w0],[u1,w0],[u1,w1],[u0,w1]].map(uv=>m(...uv));
@@ -762,11 +764,6 @@ function createCalculatorScene(root) {
     profile(railBottom,1);
     for(const u of panes)line([p(u-.012,railBottom+.004),p(u+.058,railBottom+.004)],'#293e4d',.48);
    }
-   // Close the gap beneath the flashing without stretching the profile chambers.
-   const mounting=[[outer,warm?55.9:59.6],[inner,63],[headCut[1][0],headCut[1][1]+.18],[headCut[0][0],headCut[0][1]+.18]];
-   const joint=ctx.createLinearGradient(mounting[0][0],mounting[0][1],mounting[2][0],mounting[2][1]);
-   joint.addColorStop(0,warm?'#aeb7b3':'#8e9ca5');joint.addColorStop(.42,warm?'#dde1d8':'#c9d3d8');joint.addColorStop(1,warm?'#bfc6be':'#a6b3ba');fill(mounting,joint);
-   line([mounting[0],mounting[1]],'#eef2ee',.4);line([mounting[0],mounting[3]],'#718084',.3);line([mounting[3],mounting[2]],'#647276',.3);
    profile(0,railTop);
    for(const u of panes)line([p(u-.012,railTop-.003),p(u+.058,railTop-.003)],'#293e4d',.48);
   };
@@ -827,9 +824,10 @@ function createCalculatorScene(root) {
   fill([inner[0],inner[1],nose[1],nose[0]],face);
   const cap=ctx.createLinearGradient(30.8,300.5,30.8,303.7);cap.addColorStop(0,'#ffffff');cap.addColorStop(.23,'#f9faf7');cap.addColorStop(.75,'#edf0eb');cap.addColorStop(1,'#bac2bf');
   fill([end[0],end[1],lowerInner[0],[30.8,303.7]],cap);
-  // Thin white webs separate the open longitudinal chambers of the PVC board.
-  for(let left=31.55;left<near-2.4;left+=4.55){
-   const right=Math.min(left+3.9,near-2.4);
+  // Three broad chambers run through the board, separated by thin PVC webs.
+  const chamberStart=31.55,chamberStep=(near-2.4-chamberStart)/3;
+  for(let i=0;i<3;i++){
+   const left=chamberStart+i*chamberStep+(i?.35:0),right=chamberStart+(i+1)*chamberStep-.35;
    const q=[[left,301.15],[right,301.15],[right,303],[left,303]],back=q.map(([x,y])=>[x+.9,y-.45]);
    ctx.save();polygon(q);ctx.clip();
    const recess=ctx.createLinearGradient(left,301.15,right,303);recess.addColorStop(0,'#414a4c');recess.addColorStop(.55,'#6d787a');recess.addColorStop(1,'#929f9e');fill(q,recess);
@@ -838,7 +836,9 @@ function createCalculatorScene(root) {
    ctx.restore();line([q[0],q[1],q[2]],'#6e7c7f',.19);line([q[2],q[3],q[0]],'#ffffff',.24);
   }
   fill([[near-1.7,300.5],[near,300.5],[near,304.2],[near-.4,304.8],[near-1.7,304.3]],'#f7f9f5');
-  fill([[near-1.35,301.4],[near-.6,301.4],[near-.6,303.6],[near-.85,304],[near-1.35,303.7]],'#738285');
+  // The downturned nose has two separate chambers with a white web between.
+  fill([[near-1.35,300.95],[near-.6,300.95],[near-.6,302.05],[near-1.35,302.05]],'#738285');
+  fill([[near-1.35,302.5],[near-.6,302.5],[near-.6,303.6],[near-.85,304],[near-1.35,303.7]],'#738285');
   line([[near,300.5],[near,304.2],nose[0]],'#ffffff',.32);
   const board=ctx.createLinearGradient(31,300.5,near,300.5);board.addColorStop(0,'#e8e8e8');board.addColorStop(.2,'#fbfbfb');board.addColorStop(.75,'#ffffff');board.addColorStop(1,'#f1f1f1');fill(top,board);
   line(inner,'#ffffff',.85);line(nose,'#7f91a0',.5);
