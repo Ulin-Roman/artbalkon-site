@@ -4636,6 +4636,12 @@ main > .social-subscribe,
 .repair-hero-photo .gift-badge{z-index:6}
 @media(max-width:640px){.repair-hero-photo .repair-before,.repair-hero-photo .repair-label-region,.repair-hero-photo .repair-divider,.repair-hero-photo input[type=range]{display:none}}
 
+/* Phone indicator follows Moscow time, with a steady gray night state. */
+.phone-status-dot{display:inline-block;width:10px;height:10px;flex:0 0 10px;border-radius:50%;background:#9ca3af;opacity:1}
+.phone-status-dot.is-active{background:#22c55e;animation:phone-status-blink 1.4s ease-in-out infinite}
+@keyframes phone-status-blink{0%,100%{opacity:1}50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.phone-status-dot.is-active{animation:none}}
+
 /* Service navigation shared by all page headers. */
 .nav-services{position:relative;min-width:0}
 .nav-services summary{display:flex;align-items:center;gap:6px;cursor:pointer;list-style:none;color:inherit}

@@ -12,6 +12,25 @@ import {calculateFinishingEstimate} from './calculator-estimate.mjs';
  });
  const $=s=>document.querySelector(s);
  const siteBase=new URL('.',document.currentScript.src);
+ const phoneStatusDots=[...document.querySelectorAll('[data-phone-status]')];
+ if(phoneStatusDots.length){
+  const moscowHour=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Moscow',hour:'2-digit',hourCycle:'h23'});
+  let phoneStatusTimer=0;
+  const syncPhoneStatus=()=>{
+   clearTimeout(phoneStatusTimer);
+   const active=Number(moscowHour.format(new Date()))>=5;
+   phoneStatusDots.forEach(dot=>{
+    dot.classList.toggle('is-active',active);
+    dot.title=active?'С 05:00 до 00:00 по московскому времени':'С 00:00 до 05:00 по московскому времени';
+   });
+   if(!document.hidden)phoneStatusTimer=setTimeout(syncPhoneStatus,60000-Date.now()%60000+25);
+  };
+  syncPhoneStatus();
+  document.addEventListener('visibilitychange',syncPhoneStatus);
+  addEventListener('pageshow',syncPhoneStatus);
+  addEventListener('focus',syncPhoneStatus);
+  addEventListener('pagehide',()=>clearTimeout(phoneStatusTimer));
+ }
  const cookieNotice=$('#cookie-notice');
  if(cookieNotice){
   const noticeKey='artbalkon.cookie-notice.v1';
