@@ -5180,9 +5180,9 @@ main > .social-subscribe,
  .waste-removal-photo{border-radius:0 0 19px 19px}
 }
 
-/* Selected portrait goal photos. */
+/* A stable mobile photo frame keeps choices in place when the preview changes. */
 @media(max-width:800px){
- .project-estimate-section--quiz:has(.project-estimate-photo--portrait:not([hidden])) .project-estimate-visual{height:clamp(240px,75vw,480px)}
+ .project-estimate-section--quiz .project-estimate-visual{height:clamp(240px,75vw,480px)}
  .project-estimate-section--quiz .project-estimate-photo--portrait[data-estimate-preview="goal-2"] img{object-position:center 60%}
 }
 
