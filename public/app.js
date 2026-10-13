@@ -21,17 +21,6 @@
   placeRatings();
   desktopRatings.addEventListener('change',placeRatings);
  }
- // Keep one benefits block: inside the desktop copy and beneath the photo on phones.
- const homeHero=document.querySelector('.home-hero');
- const homeBenefits=homeHero?.querySelector(':scope>.landing-trust');
- const homeCta=homeHero?.querySelector('.landing-copy-main>.hero-cta-stack');
- if(homeBenefits&&homeCta){
-  const benefitsSlot=document.createComment('home benefits phone position');
-  homeBenefits.before(benefitsSlot);
-  const desktopBenefits=matchMedia('(min-width:641px)');
-  const placeBenefits=()=>{homeBenefits.classList.toggle('home-utp',desktopBenefits.matches);if(desktopBenefits.matches)homeCta.before(homeBenefits);else benefitsSlot.after(homeBenefits);};
-  placeBenefits();desktopBenefits.addEventListener('change',placeBenefits);
- }
  const $=s=>document.querySelector(s);
  const siteBase=new URL('.',document.currentScript.src);
  const cookieNotice=$('#cookie-notice');

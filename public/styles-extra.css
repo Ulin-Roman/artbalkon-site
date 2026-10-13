@@ -5203,36 +5203,6 @@ main > .social-subscribe,
 
 .home-hero+.before-after-section>.section{border-top:0}
 
-/* Home benefits stay above the CTA on desktop and use the shared phone cards below the photo. */
-@media(min-width:641px){
- .home-hero .landing-copy-main{flex:0 1 auto;padding-block:24px 0}
- .home-hero .landing-copy-main>.home-utp{grid-area:auto;align-self:stretch;width:100%;max-width:100%;grid-template-columns:repeat(3,minmax(0,1fr));margin:0 0 24px;padding:0;gap:12px;border:0;border-radius:0;background:transparent;box-shadow:none}
- .home-hero .home-utp.landing-utp .trust-item{position:relative;display:flex;min-width:0;min-height:110px;flex-direction:row;align-items:center;justify-content:flex-start;gap:10px;padding:16px 14px!important;border:1px solid #edf1f3!important;border-radius:20px;background:#fff;box-shadow:0 12px 28px rgba(35,71,91,.075);text-align:left}
- .home-hero .home-utp.landing-utp .trust-item::before,.home-hero .home-utp.landing-utp .trust-item::after{content:none}
- .home-hero .home-utp.landing-utp .trust-copy{width:auto;min-width:0;align-self:center;align-items:flex-start;gap:4px;text-align:left}
- .home-hero .home-utp.landing-utp .trust-copy strong,.home-hero .home-utp.landing-utp .trust-copy span{width:auto;max-width:none;min-height:0;justify-content:flex-start;line-height:1.45;letter-spacing:0;text-align:left;overflow-wrap:normal}
- .home-hero .home-utp.landing-utp .trust-copy strong{color:var(--ink);font-size:20px;font-weight:650;line-height:1.25;white-space:normal}
- .home-hero .home-utp.landing-utp .trust-copy span{color:#526763;font-size:14px;font-weight:500}
- .home-hero .home-utp.landing-utp .trust-icon{display:block;width:52px;height:52px;flex:0 0 52px;padding:13px;border:0;border-radius:50%;background:linear-gradient(135deg,#e3f7f7,#edfafa);color:var(--teal);stroke-width:1.8;box-shadow:none}
-}
-@media(min-width:641px) and (max-width:1400px){
- .home-hero .home-utp.landing-utp .trust-item{flex-direction:column;justify-content:flex-start;gap:8px;padding:16px 10px!important}
- .home-hero .home-utp.landing-utp .trust-copy{align-items:center;text-align:center}
- .home-hero .home-utp.landing-utp .trust-copy strong,.home-hero .home-utp.landing-utp .trust-copy span{justify-content:center;text-align:center}
- .home-hero .home-utp.landing-utp .trust-icon{width:44px;height:44px;flex-basis:44px;padding:11px}
-}
-@media(min-width:641px) and (max-width:1100px){
- .home-hero .home-utp.landing-utp .trust-copy strong{font-size:18px}
- .home-hero .home-utp.landing-utp .trust-copy span{font-size:13px;line-height:1.4}
-}
-@media(min-width:1800px){
- .home-hero .landing-copy-main>.home-utp{gap:16px}
- .home-hero .home-utp.landing-utp .trust-item{min-height:116px;gap:12px;padding:clamp(16px,1vw,24px) clamp(14px,.7vw,20px)!important;border-radius:22px;box-shadow:0 14px 32px rgba(35,71,91,.075)}
- .home-hero .home-utp.landing-utp .trust-icon{width:clamp(52px,2.65vw,68px);height:clamp(52px,2.65vw,68px);flex-basis:clamp(52px,2.65vw,68px);padding:clamp(13px,.66vw,17px)}
- .home-hero .home-utp.landing-utp .trust-copy strong{font-size:clamp(20px,calc(.5vw + 11px),26px)}
- .home-hero .home-utp.landing-utp .trust-copy span{font-size:clamp(14px,calc(.4vw + 6.8px),18px)}
-}
-
 /* Scale media with the wider grid while preserving each comparison's geometry. */
 @media(min-width:1800px){
  .legal.container{max-width:clamp(850px,calc(26vw + 382px),1100px)}
