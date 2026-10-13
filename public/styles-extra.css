@@ -5168,16 +5168,23 @@ main > .social-subscribe,
 }
 @media(max-width:1100px){
  .waste-removal-card{grid-template-columns:minmax(0,1fr)}
- .waste-removal-copy{padding:30px 28px;border-radius:23px 23px 0 0}
- .waste-removal-photo{border-radius:0 0 23px 23px}
+ /* Flatten only the copy wrappers so the existing photo can follow the heading. */
+ .waste-removal-copy,.waste-removal-body{display:contents}
+ .waste-removal-body>*,.waste-removal-note{min-width:0}
+ .waste-removal-copy h2{grid-row:1;max-width:none;margin:30px 28px 20px}
+ .waste-removal-photo{grid-row:2;border-radius:0}
+ .waste-removal-body>p{grid-row:3;margin:24px 28px 0}
+ .waste-removal-copy .waste-removal-cta{grid-row:4;justify-self:start;width:min(calc(100% - 56px),320px);margin:26px 28px 0}
+ .waste-removal-copy .waste-removal-note{grid-row:5;margin:32px 28px 30px}
 }
 @media(max-width:640px){
  .waste-removal{padding-block:28px 30px}
  .waste-removal-card{border-radius:20px}
- .waste-removal-copy{padding:24px 22px;border-radius:19px 19px 0 0}
- .waste-removal-copy h2{margin-bottom:18px;font-size:30px}
+ .waste-removal-copy h2{margin:24px 22px 18px;font-size:30px}
  .waste-removal-copy p{font-size:15px}
- .waste-removal-photo{border-radius:0 0 19px 19px}
+ .waste-removal-body>p{margin:22px 22px 0}
+ .waste-removal-copy .waste-removal-cta{width:calc(100% - 44px);margin:22px 22px 0}
+ .waste-removal-copy .waste-removal-note{margin:26px 22px 24px}
 }
 
 /* A stable mobile photo frame keeps choices in place when the preview changes. */
