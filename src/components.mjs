@@ -120,7 +120,15 @@ const headerNavigation=path=>{
 const glazingNavigation=()=>`<details class="nav-services"><summary><a class="nav-glazing-link" href="/osteklenie-balkonov/">Остекление</a> <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="m1 1 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="nav-services-panel">${[['Холодное остекление','holodnoe-osteklenie'],['Тёплое остекление','teploe-osteklenie'],['Панорамное остекление','panoramnoe-osteklenie'],['Французское остекление','frantsuzskoe-osteklenie'],...newGlazingNavigation,['Остекление домов','osteklenie-kottedzhej']].map(([label,slug])=>`<a href="/${slug}/">${label}</a>`).join('')}</div></details>`;
 const finishingNavigation=()=>`<details class="nav-services nav-finishing"><summary><a href="/otdelka-balkonov/">Отделка</a> <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="m1 1 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="nav-services-panel">${newFinishingNavigation.map(([label,slug])=>`<a href="/${slug}/">${label}</a>`).join('')}</div></details>`;
 const repairNavigation=()=>`<details class="nav-services nav-repair"><summary><a class="nav-repair-link" href="/remont-balkonov/">Ремонт</a> <svg viewBox="0 0 12 8" width="10" height="7" aria-hidden="true"><path d="m1 1 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></summary><div class="nav-services-panel"><a href="/obedinenie-balkona-s-komnatoj/">Объединение с комнатой</a></div></details>`;
-const headerNavigationMarkup=items=>items.map(([label,href])=>href==='/remont-balkonov/'?repairNavigation():href==='/otdelka-balkonov/'?finishingNavigation():href==='#quiz'?`<button class="nav-quiz-trigger" type="button" data-quiz-open>${label}</button>`:`<a${label==='Наши работы'?' class="nav-page-start"':''} href="${href}">${label}</a>`).join('');
+const headerSectionHashes=new Set(['#before-after','#reviews','#contacts']);
+const headerNavigationMarkup=items=>items.map(([label,href],index)=>{
+ if(href==='/remont-balkonov/')return repairNavigation();
+ if(href==='/otdelka-balkonov/')return finishingNavigation();
+ if(href==='#quiz')return `<button class="nav-quiz-trigger" type="button" data-quiz-open>${label}</button>`;
+ const section=headerSectionHashes.has(href);
+ const classes=[label==='Наши работы'?'nav-page-start':'',section?'nav-section-link':'',section&&!headerSectionHashes.has(items[index-1]?.[1])?'nav-section-start':''].filter(Boolean).join(' ');
+ return `<a${classes?` class="${classes}"`:''} href="${href}">${label}</a>`;
+}).join('');
 export function header(path='/'){
  const navigation=[['Отделка','/otdelka-balkonov/'],['Ремонт','/remont-balkonov/'],['Утепление','/uteplenie-balkonov/'],...headerNavigation(path).filter(([label])=>!['Главная','Услуги'].includes(label))];
  const navigationMarkup=glazingNavigation()+headerNavigationMarkup(navigation),callbackHref=['/privacy/','/consent/','/404.html'].includes(path)?'/#callback':'#callback';

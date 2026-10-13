@@ -2337,6 +2337,9 @@ main .eyebrow{display:none!important}
   color:#91a4a2;
   font-weight:400;
  }
+ .mobile-menu-links>.nav-section-link{color:var(--teal)}
+ .mobile-menu-links>.nav-section-link::after{content:"↓";color:var(--teal)}
+ .mobile-menu-links>.nav-section-start{margin-top:12px;padding-top:19px;border-top:2px solid #bfd5ce}
  .mobile-menu-contact{
   display:flex;
   flex-direction:column;
