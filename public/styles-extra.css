@@ -4462,37 +4462,43 @@ main > .social-subscribe,
  .quiz-form .quiz-controls .button,.quiz-form .quiz-controls .quiz-next-button{flex:0 1 auto;min-width:0;margin-left:auto;padding:12px 10px;font-size:12px;line-height:1.35;text-align:center;white-space:normal}
 }
 
-/* Compact linked review scores across the site. */
-.hero-rating-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:420px;margin-top:16px}
-.hero-rating-badge{display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;padding:3px 0;background:transparent;border:0;border-radius:0;box-shadow:none}
-.hero-rating-badge+.hero-rating-badge{border-left:1px solid var(--line);padding-left:16px}
+/* Linked review scores with the review count and platform name. */
+.hero-rating-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:540px;margin-top:16px}
+.hero-rating-badge{display:flex;align-items:center;justify-content:flex-start;gap:10px;min-width:0;padding:3px 0;background:transparent;border:0;border-radius:0;box-shadow:none}
+.hero-rating-badge+.hero-rating-badge{border-left:1px solid var(--line);padding-left:18px}
 .hero-rating-badge:hover .hero-rating-count{text-decoration:underline;text-underline-offset:3px}
-.hero-rating-badge>img{width:18px;height:18px;object-fit:contain;flex:0 0 18px}
-.hero-rating-details{display:flex;align-items:center;gap:7px;min-width:0}
-.hero-rating-details strong{font-size:15px;font-weight:600;line-height:1.4;white-space:nowrap}
-.hero-rating-star{color:#ffb21c;font-size:16px}
-.hero-rating-count{font-size:11px;line-height:1.4;color:var(--muted);white-space:nowrap}
+.hero-rating-badge>img{width:32px;height:32px;object-fit:contain;flex:0 0 32px}
+.hero-rating-details{display:flex;align-items:center;flex-wrap:wrap;gap:10px;min-width:0}
+.hero-rating-details strong{display:inline-flex;align-items:center;gap:6px;font-size:28px;font-weight:700;line-height:1.2;white-space:nowrap}
+.hero-rating-star{color:#ffb21c;font-size:26px}
+.hero-rating-meta{display:flex;flex-direction:column;gap:1px;min-width:0}
+.hero-rating-count{font-size:15px;line-height:1.4;color:var(--ink);white-space:nowrap}
+.hero-rating-platform{font-size:12px;line-height:1.4;color:var(--muted)}
 .hero-rating-badge,.hero-rating-details strong{color:var(--ink)}
+@media(min-width:641px) and (max-width:1100px){
+ .landing-hero .hero-rating-badges{grid-template-columns:minmax(0,1fr);gap:12px;max-width:300px}
+ .landing-hero .hero-rating-badge+.hero-rating-badge{border-left:0;border-top:1px solid var(--line);padding:12px 0 0}
+}
 @media(max-width:640px){
- .hero-rating-badges{gap:10px;margin-top:13px}
- .hero-rating-badge{gap:5px}
- .hero-rating-badge+.hero-rating-badge{padding-left:10px}
- .hero-rating-badge>img{width:16px;height:16px;flex-basis:16px}
- .hero-rating-details{gap:5px}
- .hero-rating-details strong,.hero-rating-star{font-size:14px}
- .hero-rating-count{font-size:10px}
- :is(.landing-hero) .hero-rating-badge,:is(.landing-hero) .hero-rating-details strong{color:#fff}
- :is(.landing-hero) .hero-rating-count{color:rgba(255,255,255,.85)}
- :is(.landing-hero) .hero-rating-badge+.hero-rating-badge{border-color:rgba(255,255,255,.35)}
+ .hero-rating-badges{gap:12px;max-width:420px;margin-top:13px}
+ .hero-rating-badge{align-items:flex-start;justify-content:center;gap:8px}
+ .hero-rating-badge+.hero-rating-badge{padding-left:12px}
+ .hero-rating-badge>img{width:24px;height:24px;flex-basis:24px;margin-top:2px}
+ .hero-rating-details{flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:3px}
+ .hero-rating-details strong,.hero-rating-star{font-size:22px}
+ .hero-rating-count{font-size:13px}
+ .hero-rating-platform{font-size:11px}
+ .landing-hero .hero-rating-badge,.landing-hero .hero-rating-details strong{color:#fff}
+ .landing-hero .hero-rating-count{color:#fff}
+ .landing-hero .hero-rating-platform{color:rgba(255,255,255,.85)}
+ .landing-hero .hero-rating-badge+.hero-rating-badge{border-color:rgba(255,255,255,.35)}
 }
 @media(max-width:360px){
- .hero-rating-badges{gap:8px}
- .hero-rating-badge{gap:4px}
- .hero-rating-badge+.hero-rating-badge{padding-left:8px}
- .hero-rating-badge>img{width:14px;height:14px;flex-basis:14px}
- .hero-rating-details{gap:4px}
- .hero-rating-details strong,.hero-rating-star{font-size:12px}
- .hero-rating-count{font-size:9px}
+ .hero-rating-badges{grid-template-columns:minmax(0,1fr);gap:10px;max-width:260px}
+ .hero-rating-badge{align-items:center;justify-content:flex-start}
+ .hero-rating-badge+.hero-rating-badge{border-left:0;border-top:1px solid var(--line);padding:10px 0 0}
+ .hero-rating-badge>img{margin-top:0}
+ .hero-rating-details{flex-direction:row;align-items:center;gap:10px}
 }
 
 .page-rating-row{margin-bottom:20px}
@@ -4508,7 +4514,9 @@ main > .social-subscribe,
 /* Keep desktop scores below consultation buttons at a readable width. */
 @media(min-width:641px){
  main h1+.page-rating-row{margin-bottom:20px}
- main .hero-rating-badges{width:320px;max-width:100%;margin:0 0 18px}
+ main .hero-rating-badges{width:540px;max-width:100%;margin:0 0 18px}
+ .hero-cta-stack{width:100%;align-items:flex-start}
+ .hero-cta-stack>.button{width:313px;max-width:100%}
  main .hero-rating-badge{justify-content:flex-start}
  main .page-rating-row{margin:0}
  main .page-rating-row .hero-rating-badges{margin-bottom:18px}
