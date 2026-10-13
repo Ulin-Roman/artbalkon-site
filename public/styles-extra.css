@@ -2339,7 +2339,7 @@ main .eyebrow{display:none!important}
  }
  .mobile-menu-links>.nav-section-link{color:var(--teal)}
  .mobile-menu-links>.nav-section-link::after{content:"↓";color:var(--teal)}
- .mobile-menu-links>.nav-section-start{margin-top:12px;padding-top:19px;border-top:2px solid #bfd5ce}
+ .mobile-menu-links>.nav-section-start{margin-top:12px;padding-top:19px}
  .mobile-menu-contact{
   display:flex;
   flex-direction:column;
