@@ -1,7 +1,7 @@
 const work=(number,title,displayTitle,description)=>({
  id:`work-${number}`,title,displayTitle,description,
  before:`landing-gallery-v1/work-${number}-before.webp`,
- after:`landing-gallery-v1/work-${number}-after${number>=323&&number<=328?'-cladding-v2':[334,335,337,340].includes(number)?'-finish-v3':number>=329&&number<=340?'-finish-v2':''}.webp`,
+ after:`landing-gallery-v1/work-${number}-after${number>=323&&number<=328?'-cladding-v3':[334,335,337,340].includes(number)?'-finish-v3':number>=329&&number<=340?'-finish-v2':''}.webp`,
  visualized:true,beforeVisualized:true,beforeReal:false
 });
 
