@@ -40,9 +40,9 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
    const rowHeight=Math.max((minimumHeight-12)/2,...firstPhotos.map(photo=>firstWidth*photo.height/photo.width));
    return coverWidth(small?rowHeight:2*rowHeight+12,small?firstWidth:wideWidth);
   };
-  sizes='(max-width:640px) max(calc((100vw - 80px) / 2), '+Math.ceil(190*ratio*1.025)+'px), (max-width:900px) '+gallerySize(430,215,300)+'px, (min-width:1800px) '+gallerySize(680,310,422)+'px, '+gallerySize(460,210,285)+'px';
- }else if(src.startsWith('/assets/glazing-choice-v2/'))sizes='(max-width:760px) calc(100vw - 58px), (max-width:1100px) 50vw, (min-width:1800px) clamp(614px,calc(35vw - 16px),932px), 614px';
- else sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), (min-width:1800px) clamp(220px,calc(11.7vw + 9.4px),326px), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, (min-width:1800px) clamp(700px,calc(35vw + 34px),980px), 700px';
+  sizes='(max-width:640px) max(calc((100vw - 80px) / 2), '+Math.ceil(190*ratio*1.025)+'px), (max-width:900px) '+gallerySize(430,215,300)+'px, '+gallerySize(460,210,285)+'px';
+ }else if(src.startsWith('/assets/glazing-choice-v2/'))sizes='(max-width:760px) calc(100vw - 58px), (max-width:1100px) 50vw, 614px';
+ else sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  // Newly generated comparisons retain their actual source dimensions.
  const dimensionedTag=src.startsWith('/assets/landing-gallery-v1/')
   ?tag.replace(/\bwidth="\d+"/,'width="'+entry.width+'"').replace(/\bheight="\d+"/,'height="'+entry.height+'"')
