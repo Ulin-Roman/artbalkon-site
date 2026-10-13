@@ -3945,7 +3945,7 @@ p{ text-wrap:pretty }
 }
 .hero h1 em,.location-accent{color:var(--teal)}
 .landing-hero .landing-copy-main>.hero-description{
- color:var(--muted);font-size:17px;line-height:1.75;max-width:490px;
+ color:#526060;font-size:18px;font-weight:400;line-height:1.5;opacity:1;max-width:490px;
 }
 .landing-hero .landing-photo{
  border-radius:26px;
@@ -4038,7 +4038,7 @@ p{ text-wrap:pretty }
 }
 @media(min-width:641px) and (max-width:900px){
  .landing-hero .landing-grid h1{font-size:30px}
- .landing-hero .landing-copy-main>.hero-description{font-size:15px}
+ .landing-hero .landing-copy-main>.hero-description{font-size:18px}
 }
 @media(max-width:640px){
  .section{padding-block:28px}
@@ -4046,7 +4046,7 @@ p{ text-wrap:pretty }
  .landing-hero .landing-grid h1{font-size:clamp(29px,7.5vw,37px);line-height:1.19;letter-spacing:-.035em}
  .landing-hero .landing-grid h1{color:#fff}
  .landing-hero h1 .location-accent{color:#a4e4d7}
- .landing-hero .landing-copy-main>.hero-description{font-size:15px;line-height:1.7}
+ .landing-hero .landing-copy-main>.hero-description{font-size:17px;line-height:1.5}
  .landing-hero .landing-photo{border-radius:20px}
  .trust-strip,.landing-trust{gap:7px}
  .trust-strip .trust-item,.landing-trust .trust-item{border-radius:13px;min-width:0}
@@ -5229,7 +5229,7 @@ main > .social-subscribe,
  .home-hero .landing-photo{min-height:clamp(320px,calc(100svh - 250px),510px)}
  .home-hero .landing-copy-main{padding-block:0}
  .home-hero .landing-grid h1{font-size:clamp(36px,5.75svh,44px)}
- .home-hero .landing-copy-main>.hero-description{margin-top:14px;font-size:16px;line-height:1.6}
+ .home-hero .landing-copy-main>.hero-description{margin-top:14px;font-size:18px;line-height:1.5}
  .home-hero .landing-copy-main>.landing-price{margin:16px 0 14px;font-size:28px}
  .home-hero .hero-cta-stack>.button{min-height:52px;padding:12px 24px}
  .home-hero .hero-cta-stack>.hero-rating-badges{margin:12px 0 0}
