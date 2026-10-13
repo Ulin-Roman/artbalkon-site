@@ -2893,8 +2893,8 @@ body{min-width:0;max-width:100%}
 
 /* Mobile header must fit on one line, including 401–480px devices. */
 @media(max-width:640px){
- .header-contact .phone .phone-link-icon,
- .mobile-menu-phone .phone-link-icon{display:none}
+ .header-contact .phone .phone-link-icon:not(.phone-status-dot),
+ .mobile-menu-phone .phone-link-icon:not(.phone-status-dot){display:none}
 }
 @media(max-width:480px){
  .header-inner{min-width:0;gap:5px}
@@ -4077,6 +4077,11 @@ p{ text-wrap:pretty }
  .site-header .header-messenger{width:25px;height:25px}
  .site-header .header-messengers{gap:3px}
  .site-header .menu-toggle{flex:0 0 28px;width:28px;min-width:28px}
+}
+
+/* Fit the status dot beside the number without resizing narrow-header controls. */
+@media(max-width:374px){
+ .site-header .header-inner,.site-header .header-contact{gap:2px}
 }
 
 /* Glazing choices share the regular photo-and-white-copy card layout. */
