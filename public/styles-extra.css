@@ -3945,7 +3945,7 @@ p{ text-wrap:pretty }
 }
 .hero h1 em,.location-accent{color:var(--teal)}
 .landing-hero .landing-copy-main>.hero-description{
- color:#526060;font-size:18px;font-weight:400;line-height:1.5;opacity:1;max-width:490px;
+ max-width:490px;
 }
 .landing-hero .landing-photo{
  border-radius:26px;
@@ -4048,7 +4048,6 @@ p{ text-wrap:pretty }
 }
 @media(min-width:641px) and (max-width:900px){
  .landing-hero .landing-grid h1{font-size:30px}
- .landing-hero .landing-copy-main>.hero-description{font-size:18px}
 }
 @media(max-width:640px){
  .section{padding-block:28px}
@@ -4056,7 +4055,6 @@ p{ text-wrap:pretty }
  .landing-hero .landing-grid h1{font-size:clamp(29px,7.5vw,37px);line-height:1.19;letter-spacing:-.035em}
  .landing-hero .landing-grid h1{color:#fff}
  .landing-hero h1 .location-accent{color:#a4e4d7}
- .landing-hero .landing-copy-main>.hero-description{font-size:17px;line-height:1.5}
  .landing-hero .landing-photo{border-radius:20px}
  .trust-strip,.landing-trust{gap:7px}
  .trust-strip .trust-item,.landing-trust .trust-item{border-radius:13px;min-width:0}
@@ -5245,7 +5243,7 @@ main > .social-subscribe,
  .home-hero .landing-photo{min-height:clamp(320px,calc(100svh - 250px),510px)}
  .home-hero .landing-copy-main{padding-block:0}
  .home-hero .landing-grid h1{font-size:clamp(36px,5.75svh,44px)}
- .home-hero .landing-copy-main>.hero-description{margin-top:14px;font-size:18px;line-height:1.5}
+ .home-hero .landing-copy-main>.hero-description{margin-top:14px}
  .home-hero .landing-copy-main>.landing-price{margin:16px 0 14px;font-size:28px}
  .home-hero .hero-cta-stack>.button{min-height:52px;padding:12px 24px}
  .home-hero .hero-cta-stack>.hero-rating-badges{margin:12px 0 0}
@@ -5261,4 +5259,19 @@ main > .social-subscribe,
 }
 @media(min-width:641px) and (max-width:760px){
  .finishing-materials .source-service-details-grid{grid-template-columns:minmax(0,1fr)}
+}
+
+/* Short explanatory paragraphs under page and section headings only.
+   Existing classes retain spacing, alignment and visibility; dialogs are excluded. */
+main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,.insulation-materials,.glazing-benefits-showcase,.final-section,.contact-location) p.explanatory-subtitle:not(dialog *){
+ color:var(--explanatory-subtitle-color,#526060);
+ font-size:max(18px,var(--explanatory-subtitle-min-size,0px));
+ font-weight:400;line-height:1.5;opacity:1;
+}
+.explanatory-subtitle--light{--explanatory-subtitle-color:#fff}
+/* Portfolio and project introductions already use 18px on phones. */
+.hero-description.explanatory-subtitle:not(.landing-hero *){--explanatory-subtitle-min-size:18px}
+@media(max-width:640px){
+ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,.insulation-materials,.glazing-benefits-showcase,.final-section,.contact-location) p.explanatory-subtitle:not(dialog *){font-size:max(17px,var(--explanatory-subtitle-min-size,0px))}
+ .landing-hero .explanatory-subtitle{--explanatory-subtitle-color:#fff}
 }

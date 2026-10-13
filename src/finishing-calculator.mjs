@@ -64,7 +64,7 @@ function scene() {
 export function finishingCalculator() {
  return `<section class="section container finishing-calculator" id="finishing-calculator" data-finishing-calculator aria-labelledby="finishing-calculator-title">
  <div class="section-heading"><div><p class="eyebrow">ВАШ БАЛКОН — ВАШ ВЫБОР</p><h2 id="finishing-calculator-title"><span>Калькулятор:</span> рассчитайте стоимость балкона онлайн</h2></div></div>
- <p class="finish-calc-intro">Укажите размеры, выберите материалы и посмотрите предварительную стоимость работ.</p>
+ <p class="finish-calc-intro explanatory-subtitle">Укажите размеры, выберите материалы и посмотрите предварительную стоимость работ.</p>
  <div class="finish-calc-layout"><div class="finish-calc-controls">
  <form data-calc-controls>
  <div class="finish-calc-topline"><p class="finish-calc-gift">Сделайте расчёт и получите подарок <span aria-hidden="true">🎁</span></p><div class="finish-calc-dimensions">${[['length','Длина, см',200,100,1200],['width','Ширина, см',70,50,400]].map(([name,label,value,min,max])=>`<label>${label}<input name="${name}" type="number" inputmode="decimal" value="${value}" min="${min}" max="${max}" step="1" required></label>`).join('')}</div></div>
