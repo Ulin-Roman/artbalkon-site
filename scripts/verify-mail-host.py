@@ -1,5 +1,6 @@
 """Check deployed redirects, PHP and form configuration without sending any application."""
 import json
+import gzip
 import re
 import urllib.request
 import urllib.error
@@ -56,3 +57,32 @@ for slug in landing_slugs:
     assert 'визуализац' not in html.lower(), 'Customer-facing copy and metadata must remain neutral: ' + slug
     assert '"@type":"Service"' in html and '"@type":"FAQPage"' in html, 'Missing schema: ' + slug
 print('All nine new production landings, 54 comparisons and their SEO markup verified.')
+
+
+# Inspect public SEO and delivery headers without submitting a valid application.
+request = urllib.request.Request('https://artbalkon.site/?technical-check=1', headers={'Accept-Encoding': 'gzip'})
+with urllib.request.urlopen(request, timeout=30) as response:
+    body = response.read()
+    html_encoding = response.headers.get('Content-Encoding', '')
+    html_cache = response.headers.get('Cache-Control', '')
+    if html_encoding == 'gzip':
+        body = gzip.decompress(body)
+    html = body.decode('utf-8')
+assert '<meta name="robots" content="index,follow,max-image-preview:large">' in html, 'Production must remain indexable'
+assert '<link rel="canonical" href="https://artbalkon.site/">' in html, 'Incorrect home canonical'
+assert 'href="/nashi-raboty/"' in html, 'Portfolio must be crawlable from the home page'
+css_path = re.search(r'<link rel="stylesheet" href="([^"]+)"', html).group(1)
+css_request = urllib.request.Request('https://artbalkon.site' + css_path, headers={'Accept-Encoding': 'gzip'})
+with urllib.request.urlopen(css_request, timeout=30) as response:
+    css_bytes = response.read()
+    css_encoding = response.headers.get('Content-Encoding', '')
+    css_cache = response.headers.get('Cache-Control', '')
+    css = gzip.decompress(css_bytes) if css_encoding == 'gzip' else css_bytes
+assert b'calculator-scene-ready' in css and b'100svh' in css, 'Published styles do not contain the latest responsive/performance fixes'
+robots = urllib.request.urlopen('https://artbalkon.site/robots.txt?technical-check=1', timeout=30).read().decode('utf-8')
+assert 'Sitemap: https://artbalkon.site/sitemap.xml' in robots, 'Production sitemap must remain discoverable'
+sitemap = urllib.request.urlopen('https://artbalkon.site/sitemap.xml?technical-check=1', timeout=30).read().decode('utf-8')
+assert len(re.findall(r'<loc>', sitemap)) == 24, 'Production sitemap must include 24 content pages'
+print('Production SEO and static delivery:', json.dumps({'html_encoding': html_encoding, 'html_cache': html_cache, 'css_encoding': css_encoding, 'css_cache': css_cache, 'css_transfer_bytes': len(css_bytes), 'css_decoded_bytes': len(css)}, ensure_ascii=False))
+if css_encoding != 'gzip':
+    print('NOTICE: the hosting front end did not apply gzip to CSS; inspect its static-file settings.')

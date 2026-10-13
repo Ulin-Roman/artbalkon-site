@@ -58,7 +58,11 @@ const staticOnly=process.env.SITE_STATIC_ONLY==='true';
 const mailForms=process.env.SITE_MAIL_FORMS==='true';
 if(mailForms&&(staticOnly||base!=='/'||company.origin!=='https://artbalkon.site'))throw Error('Mail forms are only supported on the production PHP host.');
 const imageAsset=name=>`/assets/${/\.[a-z0-9]+$/i.test(name)?name:`${name}.webp`}`;
-const baseHtml=html=>base==='/'?html:html.replace(/((?:href|src|poster|data-src)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
+// The publicly accessible Pages preview must not compete with the production site in search.
+const baseHtml=html=>{
+ if(staticOnly)html=html.replace(/(<meta name="robots" content=")[^"]+("\s*\/>|">)/,'$1noindex,follow$2');
+ return base==='/'?html:html.replace(/((?:href|src|poster|data-src)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
+};
 const baseCss=css=>base==='/'?css:css.replace(/url\((['"]?)\/(?!\/)/g,`url($1${base}`);
 await rm('dist',{recursive:true,force:true});
 await mkdir('dist',{recursive:true});
@@ -101,7 +105,23 @@ if(!staticOnly){
   const destination=company.origin.replace(/\/$/,'')+target;
   return 'RedirectMatch 301 "^'+source+'(?:/index\\.html|/)?$" "'+destination+'"';
  });
- await writeFile('dist/.htaccess','# Generated permanent redirects for merged service pages.\n'+rules.join('\n')+'\n');
+ const performanceRules=`# Compression and caching for the production Apache host.
+<IfModule mod_deflate.c>
+ AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript text/javascript application/json application/xml text/xml image/svg+xml
+</IfModule>
+<IfModule mod_headers.c>
+ <FilesMatch "\\.(?:html|json|xml|txt)$">
+  Header set Cache-Control "no-cache"
+ </FilesMatch>
+ <FilesMatch "^(?:styles\\.css|app\\.js|gift-3d\\.js)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+ </FilesMatch>
+ <FilesMatch "\\.(?:webp|jpg|jpeg|png|svg|ico|woff2|mp4)$">
+  Header set Cache-Control "public, max-age=604800"
+ </FilesMatch>
+</IfModule>
+`;
+ await writeFile('dist/.htaccess',performanceRules+'\n# Generated permanent redirects for merged service pages.\n'+rules.join('\n')+'\n');
 }
 await page('/nashi-raboty/',`<section class="section container"><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы и лоджии <br>в Москве и Московской области</h1><p class="hero-description">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${aboutAndWasteSection()}${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
 for(const p of projects){
@@ -118,8 +138,9 @@ if(mailForms){
  await writeFile('dist/api/lead-options.json',JSON.stringify(allowed));
 }
 await writeFile('dist/site-config.json',JSON.stringify({...integrations,basePath:base,leadEndpoint:mailForms?'/api/leads.php':staticOnly?null:integrations.leadEndpoint}));
-await writeFile('dist/robots.txt',`User-agent: *\nAllow: ${base}\nDisallow: ${base}api/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid\nSitemap: ${company.origin}/sitemap.xml\n`);
-await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+routes.map(path=>`<url><loc>${company.origin}${path}</loc></url>`).join('')+'</urlset>');
+// Keep preview pages crawlable so robots can see noindex; only production publishes a sitemap.
+await writeFile('dist/robots.txt',`User-agent: *\nAllow: ${base}\nDisallow: ${base}api/\nClean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid\n${staticOnly?'':`Sitemap: ${company.origin}/sitemap.xml\n`}`);
+if(!staticOnly)await writeFile('dist/sitemap.xml','<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+routes.map(path=>`<url><loc>${company.origin}${path}</loc></url>`).join('')+'</urlset>');
 await writeFile('dist/yandex-direct.xml',await renderDirectFeed());
 // Keep source originals in public; publish only assets referenced by the built site.
 async function builtFiles(dir){const files=[];for(const entry of await readdir(dir,{withFileTypes:true})){const file=join(dir,entry.name);files.push(...entry.isDirectory()?await builtFiles(file):[file]);}return files;}

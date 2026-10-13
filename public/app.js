@@ -1148,7 +1148,17 @@ function createCalculatorScene(root) {
  if(finishCalculator){
   const controls=finishCalculator.querySelector('[data-calc-controls]'),rates=JSON.parse(finishCalculator.dataset.rates),dialog=finishCalculator.querySelector('dialog');
   const currency=n=>Math.round(n).toLocaleString('ru-RU')+' ₽',area=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:2})+' м²';
-  const renderCalculatorScene=createCalculatorScene(finishCalculator);
+  // Keep calculation immediate; load the photograph and draw only near the section.
+  let calculatorScene=null,calculatorSelection=null,calculatorObserver=null;
+  const renderCalculatorScene=state=>{calculatorSelection=state;calculatorScene?.(state);};
+  const startCalculatorScene=()=>{
+   if(calculatorScene)return;
+   calculatorObserver?.disconnect();calculatorObserver=null;
+   finishCalculator.classList.add('calculator-scene-ready');
+   calculatorScene=createCalculatorScene(finishCalculator);
+   if(calculatorSelection)calculatorScene(calculatorSelection);
+  };
+  for(const event of ['pointerdown','focusin','input','change'])finishCalculator.addEventListener(event,startCalculatorScene,{once:true});
   let calculation='',calculationView=null;
   const read=()=>{const state=Object.fromEntries(new FormData(controls));state.insulation=state['insulation-enabled']?'yes':'no';return state;};
   const materialName=key=>controls.querySelector(`input[name="${key}"]:checked`)?.closest('label').querySelector('.finish-calc-swatch+span')?.textContent||'';
@@ -1202,6 +1212,10 @@ function createCalculatorScene(root) {
   finishCalculator.querySelector('[data-calc-request]').addEventListener('click',()=>{updateEstimate();if(!calculation)return;const form=dialog.querySelector('[data-calc-lead]');if(form.querySelector('[name="calculation"]'))form.querySelector('[name="calculation"]').value=calculation;renderCalculationSummary();openDialogAtCurrentScroll(dialog,form.querySelector('input[name="name"]')||form.querySelector('.thank-you'));track('calculator_lead_open');});
   dialog.querySelector('[data-calc-close]').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
   updateEstimate();
+  if('IntersectionObserver' in window){
+   calculatorObserver=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting))startCalculatorScene();},{rootMargin:'400px 0px'});
+   calculatorObserver.observe(finishCalculator);
+  }else startCalculatorScene();
  }
 
  const certificateSlider=$('[data-certificates]');

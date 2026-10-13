@@ -398,6 +398,7 @@ for(const name of ['cold-balcony','warm-balcony']){
 }
 const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';
+const staticOnly=process.env.SITE_STATIC_ONLY==='true';
 const redirectTargets=new Map([
  ['balkon-pod-klyuch','/'],
  ...bundledServiceSlugs.map(slug=>[slug,'/#complex-options']),
@@ -412,10 +413,17 @@ const redirectTargets=new Map([
 for(const slug of redirectTargets.keys())await stat(join(root,slug,'index.html'));
 async function walk(dir){const files=[];for(const ent of await readdir(dir,{withFileTypes:true})){const path=join(dir,ent.name);files.push(...ent.isDirectory()?await walk(path):[path]);}return files;}
 const files=await walk(root),pages=files.filter(f=>f.endsWith('.html'));let refs=0;
-const titles=new Map(),descriptions=new Map(),canonicals=new Map(),indexedCanonicals=new Set();
+const titles=new Map(),descriptions=new Map(),canonicals=new Map(),indexedCanonicals=new Set(),contentCanonicals=new Set(),contentFiles=new Set(),pageHtml=new Map();
 for(const file of pages){
  const html=await readFile(file,'utf8'),isRedirect=html.includes('http-equiv="refresh"'),isNoindex=html.includes('name="robots" content="noindex');
- const isContentPage=!isRedirect&&!isNoindex;
+ pageHtml.set(file,html);
+ // A preview's noindex must not bypass the same content and metadata checks as production.
+ const localPath=file.slice(root.length+1).replaceAll('\\','/');
+ const isUtilityPage=['privacy/index.html','consent/index.html','404.html'].includes(localPath);
+ const isContentPage=!isRedirect&&!isUtilityPage;
+ if(isContentPage)contentFiles.add(file);
+ const expectedRobots=staticOnly||isRedirect||isUtilityPage?'noindex,follow':'index,follow,max-image-preview:large';
+ assert.ok(html.includes('<meta name="robots" content="'+expectedRobots+'">'),file+': wrong robots directive for this build and page type');
  assert.equal((html.match(/\bid="about"/g)||[]).length,isContentPage?1:0,file+': every content page must contain About once');
  assert.equal((html.match(/\bid="waste-removal"/g)||[]).length,isContentPage?1:0,file+': every content page must contain waste removal once');
  if(isContentPage)assert.match(html,/<section\b[^>]*id="about"[^>]*>[\s\S]*?<\/section>\s*<section\b[^>]*id="waste-removal"/,file+': waste removal must immediately follow About');
@@ -444,7 +452,8 @@ for(const file of pages){
   assert.ok(!titles.has(title),file+' repeats title from '+titles.get(title));
   assert.ok(!canonicals.has(canonical),file+' repeats canonical from '+canonicals.get(canonical));
   titles.set(title,file);canonicals.set(canonical,file);
-  if(!isNoindex){assert.ok(!descriptions.has(description),file+' repeats indexable description');descriptions.set(description,file);indexedCanonicals.add(canonical);}
+  if(isContentPage){assert.ok(!descriptions.has(description),file+' repeats content description');descriptions.set(description,file);contentCanonicals.add(canonical);}
+  if(!isNoindex)indexedCanonicals.add(canonical);
   for(const tag of ['property="og:image"','property="og:image:alt"','name="twitter:card"','name="twitter:image"','hreflang="ru-RU"','hreflang="x-default"'])assert.ok(html.includes(tag),file+' missing '+tag);
   for(const [,imageUrl] of html.matchAll(/<meta (?:property="og:image"|name="twitter:image") content="([^"]+)"/g)){
    const imagePath=new URL(imageUrl).pathname;
@@ -482,14 +491,26 @@ for(const file of pages){
   const [pathWithQuery,fragment]=url.split('#'),path=pathWithQuery.split('?')[0];
   if(path&&base!=='/'&&!path.startsWith(base))assert.fail(file+' uses path outside Pages base: '+url);
   const sitePath=base==='/'?path:'/'+path.slice(base.length);
-  if(!isNoindex)assert.notEqual(sitePath,'/balkon-pod-klyuch/',file+' must link directly to the root instead of the retired page');
+  if(isContentPage)assert.notEqual(sitePath,'/balkon-pod-klyuch/',file+' must link directly to the root instead of the retired page');
   let target=path?join(root,base==='/'?path:path.slice(base.length-1)):file;
   try{if((await stat(target)).isDirectory())target=join(target,'index.html');await stat(target);}catch{assert.fail(file+' missing '+url);}
   if(fragment){const content=await readFile(target,'utf8');assert.ok(content.includes('id="'+fragment+'"'),file+' missing anchor '+url);}
   refs++;
  }
 }
-for(const page of pages){const html=await readFile(page,'utf8');for(const match of html.matchAll(/srcset="([^"]+)"/g)){for(const candidate of match[1].split(',')){const url=candidate.trim().split(/\s+/)[0];if(url.startsWith('/'))await stat(join(root,base==='/'?url:url.slice(base.length-1)));}}}
+// Every content page, including the portfolio cluster, is reachable through ordinary HTML links.
+const reachableFiles=new Set([join(root,'index.html')]),pendingFiles=[join(root,'index.html')];
+while(pendingFiles.length){
+ const file=pendingFiles.shift(),html=pageHtml.get(file)||'';
+ for(const [,href] of html.matchAll(/<a\b[^>]*\shref="([^"]+)"/g)){
+  if(!href.startsWith(base))continue;
+  const path=href.split(/[?#]/)[0],sitePath=base==='/'?path:'/'+path.slice(base.length);
+  const target=join(root,sitePath.endsWith('/')?sitePath+'index.html':sitePath);
+  if(pageHtml.has(target)&&!reachableFiles.has(target)){reachableFiles.add(target);pendingFiles.push(target);}
+ }
+}
+for(const file of contentFiles)assert.ok(reachableFiles.has(file),file+': content page is orphaned from the home page');
+for(const page of pages){const html=pageHtml.get(page);for(const match of html.matchAll(/srcset="([^"]+)"/g)){for(const candidate of match[1].split(',')){const url=candidate.trim().split(/\s+/)[0];if(url.startsWith('/'))await stat(join(root,base==='/'?url:url.slice(base.length-1)));}}}
 const feed=await readFile(join(root,'yandex-direct.xml'),'utf8');
 assert.ok(!/визуализац/i.test(feed),'Published advertising descriptions must use neutral customer-facing copy');
 for(const script of ['public/app.js',join(root,'app.js')]){
@@ -500,7 +521,8 @@ for(const [,picture] of feed.matchAll(/<picture>([^<]+)<\/picture>/g)){
  const imagePath=new URL(picture.replaceAll('&amp;','&')).pathname;
  await stat(join(root,base==='/'?imagePath:imagePath.slice(base.length-1)));
 }
-const sitemap=await readFile(join(root,'sitemap.xml'),'utf8');
+const sitemap=staticOnly?'':await readFile(join(root,'sitemap.xml'),'utf8');
+if(staticOnly)await assert.rejects(stat(join(root,'sitemap.xml')),/ENOENT/,'Preview must not advertise noindex pages in a sitemap');
 const sitemapUrls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match[1]);
 assert.deepEqual(new Set(sitemapUrls),indexedCanonicals,'sitemap must contain exactly the indexable canonical URLs');
 assert.equal(sitemapUrls.length,indexedCanonicals.size,'sitemap must not contain duplicate URLs');
@@ -509,7 +531,11 @@ for(const [section,entry] of [['offer',feed.match(/<offer id="104"[\s\S]*?<\/off
 assert.ok(!/<(?:lastmod|changefreq|priority)>/.test(sitemap),'sitemap must not publish unverified dates or ignored ranking hints');
 const robots=await readFile(join(root,'robots.txt'),'utf8');
 assert.ok(!robots.includes(`Disallow: ${base}privacy/`)&&!robots.includes(`Disallow: ${base}consent/`),'noindex legal pages must remain crawlable');
-for(const asset of ['assets/manrope.woff2','assets/manrope-bold.woff2','robots.txt','sitemap.xml','site-config.json'])await stat(join(root,asset));
+assert.ok(robots.includes('Allow: '+base+'\n'),'Preview and production pages must remain crawlable');
+assert.deepEqual([...robots.matchAll(/^Disallow:\s*(.*)$/gm)].map(match=>match[1]),[base+'api/'],'Only the application endpoint may be blocked from crawling');
+if(staticOnly){assert.ok(!/^Sitemap:/m.test(robots),'Preview must not submit a sitemap');assert.equal(indexedCanonicals.size,0,'Every preview HTML page must be noindex');}
+else{assert.ok(robots.includes('Sitemap: '+company.origin+'/sitemap.xml\n'),'Production must advertise its sitemap');assert.equal(indexedCanonicals.size,contentCanonicals.size,'Production content must stay indexable');}
+for(const asset of ['assets/manrope.woff2','assets/manrope-bold.woff2','robots.txt','site-config.json',...(!staticOnly?['sitemap.xml']:[])])await stat(join(root,asset));
 const searchable=files.filter(file=>/\.(?:html|css|js|json|xml|txt)$/.test(file));const siteText=(await Promise.all(searchable.map(file=>readFile(file,'utf8')))).join('\n').replaceAll('\\','/');for(const asset of files.filter(file=>file.includes(`${join(root,'assets')}`))){const relative=asset.slice(root.length+1).replaceAll('\\','/');assert.ok(siteText.includes(relative),`unused built asset: ${relative}`);}
 await assert.rejects(stat(join(root,'styles-extra.css')),/ENOENT/);
 for(const file of ['dist/app.js','scripts/build.mjs','scripts/optimize.mjs','public/app.js','scripts/server.mjs','scripts/leads.mjs','src/components.mjs','src/content.mjs'])execFileSync(process.execPath,['--check',file]);
@@ -701,7 +727,7 @@ const frenchFeedOffer=feed.match(/<offer id="110"[\s\S]*?<\/offer>/)?.[0];
 assert.ok(frenchFeedOffer?.includes(`Цена от ${prices.french.toLocaleString('ru-RU')} ₽/м².`),'French feed price agrees with its landing page');
 assert.ok(header('/osteklenie-balkonov/').includes('href="/frantsuzskoe-osteklenie/"'),'Glazing navigation links to the French page');
 assert.ok(feed.includes('<offer id="110"'));
-assert.ok(sitemapUrls.some(url=>url.endsWith('/frantsuzskoe-osteklenie/')));
+assert.ok([...contentCanonicals].some(url=>url.endsWith('/frantsuzskoe-osteklenie/')));
 
 
 // New generated galleries are separate from the previously approved series.
@@ -750,7 +776,7 @@ for(const definition of newLandingDefinitions){
   assert.equal(offer?.priceSpecification.unitText,'м²');
  }
  assert.ok(header('/').includes('href="/'+definition.slug+'/"'));
- assert.ok(sitemapUrls.some(url=>url.endsWith('/'+definition.slug+'/')));
+ assert.ok([...contentCanonicals].some(url=>url.endsWith('/'+definition.slug+'/')));
  assert.equal(serviceSeo[definition.slug].faq.length,4);
  for(const pair of gallery){
   assert.ok(pair.landingSeries&&pair.visualized&&pair.beforeVisualized&&pair.afterVisualized&&!pair.beforeReal&&!pair.afterReal);
