@@ -10,18 +10,6 @@ import {calculateFinishingEstimate} from './calculator-estimate.mjs';
   range.addEventListener('pointerup',e=>{if(range.hasPointerCapture(e.pointerId))range.releasePointerCapture(e.pointerId);});
   range.addEventListener('input',update);update();
  });
- // Home ratings stay below the CTA; other pages move them above the title on desktop.
- const ratingsRow=document.querySelector('main .hero-rating-badges');
- const pageTitle=document.querySelector('main h1');
- if(ratingsRow&&pageTitle&&!ratingsRow.closest('.home-hero')){
-  const ratingsBlock=ratingsRow.closest('.page-rating-row')||ratingsRow;
-  const ratingsSlot=document.createComment('ratings mobile position');
-  ratingsBlock.before(ratingsSlot);
-  const desktopRatings=matchMedia('(min-width: 641px)');
-  const placeRatings=()=>{if(desktopRatings.matches)pageTitle.before(ratingsBlock);else ratingsSlot.after(ratingsBlock);};
-  placeRatings();
-  desktopRatings.addEventListener('change',placeRatings);
- }
  const $=s=>document.querySelector(s);
  const siteBase=new URL('.',document.currentScript.src);
  const cookieNotice=$('#cookie-notice');
