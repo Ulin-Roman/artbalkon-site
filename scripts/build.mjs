@@ -1,8 +1,8 @@
-import {build as bundleGift} from 'esbuild';
+import {build as bundleScript} from 'esbuild';
 import {mkdir,readFile,writeFile,cp,rm,readdir} from 'node:fs/promises';
 import {resolve,relative,join,sep} from 'node:path';
 import {createHash} from 'node:crypto';
-import {optimizeCss,optimizeJs} from './optimize.mjs';
+import {optimizeCss} from './optimize.mjs';
 import {renderDirectFeed} from './direct-feed.mjs';
 import {deduplicatePublishedAssets} from './deduplicate-assets.mjs';
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
@@ -10,7 +10,9 @@ const appSource=await readFile('public/app.js','utf8');
 const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource+'\n'+await readFile(new URL(import.meta.url),'utf8');
 const cssResult=await optimizeCss((await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8')),sourceText);
 const giftVersion=createHash('sha256').update(await readFile('src/gift-3d.mjs','utf8')).update(await readFile('package-lock.json','utf8')).digest('hex').slice(0,12);
-const appCode=await optimizeJs(appSource.replace("'gift-3d.js'","'gift-3d.js?v="+giftVersion+"'"));
+// Static imports are bundled into the existing classic deferred script.
+const appBundle=await bundleScript({stdin:{contents:appSource.replace("'gift-3d.js'","'gift-3d.js?v="+giftVersion+"'"),resolveDir:resolve('public'),sourcefile:'app.js',loader:'js'},bundle:true,minify:true,format:'iife',target:['chrome100','firefox100','safari15.4'],legalComments:'none',write:false});
+const appCode=appBundle.outputFiles[0].text;
 const fingerprint=text=>createHash('sha256').update(text).digest('hex').slice(0,12);
 // Use the prepared full-size WebP in comparisons as well as thumbnails.
 const comparisonAsset=src=>responsiveImages[src.startsWith('/')?src:'/'+src]?.src.slice(1)||src;
@@ -69,8 +71,10 @@ await mkdir('dist',{recursive:true});
 await cp('public','dist',{recursive:true});
 await writeFile('dist/styles.css',baseCss(cssResult.code));
 await writeFile('dist/app.js',appCode);
-await bundleGift({entryPoints:['src/gift-3d.mjs'],outfile:'dist/gift-3d.js',bundle:true,minify:true,format:'esm',target:['es2020'],legalComments:'eof'});
+await bundleScript({entryPoints:['src/gift-3d.mjs'],outfile:'dist/gift-3d.js',bundle:true,minify:true,format:'esm',target:['es2020'],legalComments:'eof'});
 await rm('dist/styles-extra.css');
+// The calculator module is already included in app.js.
+await rm('dist/calculator-estimate.mjs');
 await writeFile('dist/.nojekyll','');
 const routes=[];
 async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(optimizeHtml(shell(body,{path,...meta}))));if(!meta.noindex)routes.push(path);}

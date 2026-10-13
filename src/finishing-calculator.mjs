@@ -1,4 +1,4 @@
-// Rates come from the site's existing public price list.
+import {CALCULATOR_RATES as rates} from '../public/calculator-estimate.mjs';
 const format = value => value.toLocaleString('ru-RU');
 const choices = {
  walls: [['pvc','ПВХ-панели'],['laminate','Ламинат'],['lining','Вагонка'],['parquet','Стеновой паркет']],
@@ -61,8 +61,8 @@ function scene() {
  </svg></div>`;
 }
 
-export function finishingCalculator(prices, wallRates) {
- return `<section class="section container finishing-calculator" id="finishing-calculator" data-finishing-calculator data-rates='${JSON.stringify({...prices,walls:wallRates})}' aria-labelledby="finishing-calculator-title">
+export function finishingCalculator() {
+ return `<section class="section container finishing-calculator" id="finishing-calculator" data-finishing-calculator aria-labelledby="finishing-calculator-title">
  <div class="section-heading"><div><p class="eyebrow">ВАШ БАЛКОН — ВАШ ВЫБОР</p><h2 id="finishing-calculator-title"><span>Калькулятор:</span> рассчитайте стоимость балкона онлайн</h2></div></div>
  <p class="finish-calc-intro">Укажите размеры, выберите материалы и посмотрите предварительную стоимость работ.</p>
  <div class="finish-calc-layout"><div class="finish-calc-controls">
@@ -70,17 +70,17 @@ export function finishingCalculator(prices, wallRates) {
  <div class="finish-calc-topline"><p class="finish-calc-gift">Сделайте расчёт и получите подарок <span aria-hidden="true">🎁</span></p><div class="finish-calc-dimensions">${[['length','Длина, см',200,100,1200],['width','Ширина, см',70,50,400]].map(([name,label,value,min,max])=>`<label>${label}<input name="${name}" type="number" inputmode="decimal" value="${value}" min="${min}" max="${max}" step="1" required></label>`).join('')}</div></div>
  <p class="finish-calc-validation" data-calc-error role="status"></p>
  <div class="finish-calc-groups">
- ${group('walls','Отделка стен','laminate',true,wallRates)}
+ ${group('walls','Отделка стен','laminate',true,rates.walls)}
  ${group('ceiling','Отделка потолка','pvc',true)}
  ${group('floor','Отделка пола','laminate',true)}
  ${group('exterior','Наружная отделка','siding',false)}
  ${group('lighting','Освещение','spots',false)}
- ${group('glazing','Остекление','warm',true,{cold:prices.cold,warm:prices.warm})}
+ ${group('glazing','Остекление','warm',true,rates.glazing)}
  ${group('insulation','Утепление','yes',true)}
  <div class="finish-calc-result"><div class="finish-calc-price"><span class="finish-calc-result-label" data-calc-from>от</span><output data-calc-total>—</output></div><button class="button" type="button" data-calc-request>Получить расчёт <span aria-hidden="true">→</span></button></div>
  </div></form>
  <noscript><p>Для интерактивного расчёта включите JavaScript или позвоните: <a href="tel:+74951653905">+7 (495) 165-39-05</a>.</p></noscript>
  </div><figure class="finish-calc-preview">${scene()}</figure></div>
- <dialog class="application-modal" id="finishing-calc-modal" aria-labelledby="finishing-calc-modal-title"><div class="application-modal-shell"><button class="application-close" type="button" data-calc-close aria-label="Закрыть форму">×</button><div class="application-modal-copy"><p class="eyebrow">РАСЧЁТ ВАШЕГО ПРОЕКТА</p><h2 id="finishing-calc-modal-title">Уточним стоимость</h2><p>Уточним смету по вашим размерам и материалам.</p><div class="finish-calc-summary" data-calc-summary><div class="finish-calc-overview"><p class="finish-calc-overview-size"><strong>Размеры:</strong> <span data-calc-summary-size></span></p><p class="finish-calc-overview-total"><span>Предварительно</span><strong data-calc-summary-total></strong></p></div><details class="finish-calc-details" data-calc-details><summary>Материалы и расчёт</summary><div class="finish-calc-details-body"><dl class="finish-calc-attributes" data-calc-summary-materials></dl><div class="finish-calc-breakdown" data-calc-summary-breakdown></div><p class="finish-calc-note" data-calc-summary-extra></p><p class="finish-calc-note">Для расчёта приняты: высота 250 см, остекление 140 см. Периметр остекления — длина и две ширины.</p><p class="finish-calc-note">Площадь стен без вычета квартирных проёмов. Итог уточняется после замера.</p></div></details></div></div><form class="contact-form application-form" data-calc-lead data-lead-form="callback" novalidate>CALCULATOR_CONTACT_FIELDS<input type="hidden" name="calculation"><p class="form-error" role="alert"></p><button class="button" type="submit">Получить расчёт</button><p class="contact-note">Перезвоним в рабочее время, с 9:00 до 21:00.</p></form></div></dialog>
+ <dialog class="application-modal" id="finishing-calc-modal" aria-labelledby="finishing-calc-modal-title"><div class="application-modal-shell"><button class="application-close" type="button" data-calc-close aria-label="Закрыть форму">×</button><div class="application-modal-copy"><p class="eyebrow">РАСЧЁТ ВАШЕГО ПРОЕКТА</p><h2 id="finishing-calc-modal-title">Уточним стоимость</h2><p>Уточним смету по вашим размерам и материалам.</p><div class="finish-calc-summary" data-calc-summary><div class="finish-calc-overview"><p class="finish-calc-overview-size"><strong>Размеры:</strong> <span data-calc-summary-size></span></p><p class="finish-calc-overview-total"><span>Предварительно</span><strong data-calc-summary-total></strong></p></div><details class="finish-calc-details" data-calc-details><summary>Материалы и расчёт</summary><div class="finish-calc-details-body"><dl class="finish-calc-attributes" data-calc-summary-materials></dl><div class="finish-calc-breakdown" data-calc-summary-breakdown></div><p class="finish-calc-note">Для расчёта приняты: высота 260 см, переднее остекление высотой 160 см.</p><p class="finish-calc-note">Площадь стен без вычета квартирных проёмов. Итог уточняется после замера.</p></div></details></div></div><form class="contact-form application-form" data-calc-lead data-lead-form="callback" novalidate>CALCULATOR_CONTACT_FIELDS<input type="hidden" name="calculation"><p class="form-error" role="alert"></p><button class="button" type="submit">Получить расчёт</button><p class="contact-note">Перезвоним в рабочее время, с 9:00 до 21:00.</p></form></div></dialog>
  </section>`;
 }

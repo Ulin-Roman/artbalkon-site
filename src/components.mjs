@@ -484,7 +484,7 @@ ${service?.slug==='balkon-pod-klyuch'?glazingChoiceSection():''}
 ${turnkeyIncludedExtrasSection(service)}
 ${aboutAndWasteSection()}
 ${finishingStylesSection()}
-${finishingCalculator(prices,finishingWallRates).replace('CALCULATOR_CONTACT_FIELDS',contactFields('finishing-calc-consent'))}
+${finishingCalculator().replace('CALCULATOR_CONTACT_FIELDS',contactFields('finishing-calc-consent'))}
 ${socialSubscribeSection()}`;
 };
 const glazingBenefitsShowcases={

@@ -1,0 +1,341 @@
+{
+  "reference": "https://balconia.ru/#calc",
+  "observed": "2026-10-13",
+  "rates": {
+    "walls": {
+      "pvc": 3500,
+      "laminate": 4300,
+      "lining": 5200,
+      "parquet": 5900
+    },
+    "ceiling": {
+      "pvc": 3500,
+      "laminate": 4300,
+      "lining": 5200,
+      "stretch": 4500
+    },
+    "floor": {
+      "linoleum": 7000,
+      "laminate": 7500,
+      "vinyl": 9000,
+      "tile": 12400
+    },
+    "exterior": {
+      "siding": 4500,
+      "metal": 5800
+    },
+    "glazing": {
+      "cold": 11000,
+      "warm": 17000
+    },
+    "insulation": {
+      "yes": 2300
+    },
+    "lighting": {
+      "spots": 1700,
+      "pendant": 4500
+    }
+  },
+  "fixtures": [
+    {
+      "length": 200,
+      "width": 70,
+      "quantities": {
+        "walls": 10.84,
+        "ceiling": 1.4,
+        "floor": 1.4,
+        "exterior": 0.7,
+        "glazing": 3.2,
+        "insulation": 12.92,
+        "lighting": 1.3333333333333333
+      },
+      "items": {
+        "walls": {
+          "pvc": 37940,
+          "laminate": 46612,
+          "lining": 56368,
+          "parquet": 63956
+        },
+        "ceiling": {
+          "pvc": 4900,
+          "laminate": 6020,
+          "lining": 7280,
+          "stretch": 6300
+        },
+        "floor": {
+          "linoleum": 9800,
+          "laminate": 10500,
+          "vinyl": 12600,
+          "tile": 17360
+        },
+        "exterior": {
+          "siding": 3150,
+          "metal": 4060
+        },
+        "glazing": {
+          "cold": 35200,
+          "warm": 54400
+        },
+        "insulation": {
+          "yes": 29716
+        },
+        "lighting": {
+          "spots": 2267,
+          "pendant": 4500
+        }
+      },
+      "ownDefault": 146128,
+      "userShot": 153189
+    },
+    {
+      "length": 300,
+      "width": 70,
+      "quantities": {
+        "walls": 14.440000000000001,
+        "ceiling": 2.0999999999999996,
+        "floor": 2.0999999999999996,
+        "exterior": 0.7,
+        "glazing": 4.800000000000001,
+        "insulation": 18.12,
+        "lighting": 2
+      },
+      "items": {
+        "walls": {
+          "pvc": 50541,
+          "laminate": 62093,
+          "lining": 75088,
+          "parquet": 85197
+        },
+        "ceiling": {
+          "pvc": 7350,
+          "laminate": 9030,
+          "lining": 10920,
+          "stretch": 9450
+        },
+        "floor": {
+          "linoleum": 14700,
+          "laminate": 15750,
+          "vinyl": 18900,
+          "tile": 26040
+        },
+        "exterior": {
+          "siding": 3150,
+          "metal": 4060
+        },
+        "glazing": {
+          "cold": 52801,
+          "warm": 81601
+        },
+        "insulation": {
+          "yes": 41676
+        },
+        "lighting": {
+          "spots": 3400,
+          "pendant": 4500
+        }
+      },
+      "ownDefault": 208470,
+      "userShot": 214574
+    },
+    {
+      "length": 400,
+      "width": 120,
+      "quantities": {
+        "walls": 20.64,
+        "ceiling": 4.8,
+        "floor": 4.8,
+        "exterior": 1.2,
+        "glazing": 6.4,
+        "insulation": 25.12,
+        "lighting": 2.6666666666666665
+      },
+      "items": {
+        "walls": {
+          "pvc": 72240,
+          "laminate": 88752,
+          "lining": 107328,
+          "parquet": 121776
+        },
+        "ceiling": {
+          "pvc": 16800,
+          "laminate": 20640,
+          "lining": 24960,
+          "stretch": 21600
+        },
+        "floor": {
+          "linoleum": 33600,
+          "laminate": 36000,
+          "vinyl": 43200,
+          "tile": 59520
+        },
+        "exterior": {
+          "siding": 5400,
+          "metal": 6960
+        },
+        "glazing": {
+          "cold": 70400,
+          "warm": 108800
+        },
+        "insulation": {
+          "yes": 57776
+        },
+        "lighting": {
+          "spots": 4534,
+          "pendant": 4500
+        }
+      },
+      "ownDefault": 308128,
+      "userShot": 324686
+    },
+    {
+      "length": 299,
+      "width": 99,
+      "quantities": {
+        "walls": 15.912,
+        "ceiling": 2.9601,
+        "floor": 2.9601,
+        "exterior": 0.99,
+        "glazing": 4.784000000000001,
+        "insulation": 19.112,
+        "lighting": 1.9933333333333334
+      },
+      "items": {
+        "walls": {
+          "pvc": 55692,
+          "laminate": 68422,
+          "lining": 82743,
+          "parquet": 93881
+        },
+        "ceiling": {
+          "pvc": 10361,
+          "laminate": 12729,
+          "lining": 15393,
+          "stretch": 13321
+        },
+        "floor": {
+          "linoleum": 20721,
+          "laminate": 22201,
+          "vinyl": 26641,
+          "tile": 36706
+        },
+        "exterior": {
+          "siding": 4455,
+          "metal": 5742
+        },
+        "glazing": {
+          "cold": 52625,
+          "warm": 81329
+        },
+        "insulation": {
+          "yes": 43958
+        },
+        "lighting": {
+          "spots": 3389,
+          "pendant": 4500
+        }
+      },
+      "ownDefault": 226271,
+      "userShot": 238270
+    },
+    {
+      "length": 100,
+      "width": 50,
+      "quantities": {
+        "walls": 6.2,
+        "ceiling": 0.5,
+        "floor": 0.5,
+        "exterior": 0.5,
+        "glazing": 1.6,
+        "insulation": 7,
+        "lighting": 0.6666666666666666
+      },
+      "items": {
+        "walls": {
+          "pvc": 21700,
+          "laminate": 26660,
+          "lining": 32240,
+          "parquet": 36580
+        },
+        "ceiling": {
+          "pvc": 1750,
+          "laminate": 2150,
+          "lining": 2600,
+          "stretch": 2250
+        },
+        "floor": {
+          "linoleum": 3500,
+          "laminate": 3750,
+          "vinyl": 4500,
+          "tile": 6200
+        },
+        "exterior": {
+          "siding": 2250,
+          "metal": 2900
+        },
+        "glazing": {
+          "cold": 17600,
+          "warm": 27200
+        },
+        "insulation": {
+          "yes": 16100
+        },
+        "lighting": {
+          "spots": 1134,
+          "pendant": 4500
+        }
+      },
+      "ownDefault": 75460,
+      "userShot": 80414
+    },
+    {
+      "length": 1200,
+      "width": 400,
+      "quantities": {
+        "walls": 64,
+        "ceiling": 48,
+        "floor": 48,
+        "exterior": 4,
+        "glazing": 19.200000000000003,
+        "insulation": 76.80000000000001,
+        "lighting": 8
+      },
+      "items": {
+        "walls": {
+          "pvc": 224000,
+          "laminate": 275200,
+          "lining": 332800,
+          "parquet": 377600
+        },
+        "ceiling": {
+          "pvc": 168000,
+          "laminate": 206400,
+          "lining": 249600,
+          "stretch": 216000
+        },
+        "floor": {
+          "linoleum": 336000,
+          "laminate": 360000,
+          "vinyl": 432000,
+          "tile": 595200
+        },
+        "exterior": {
+          "siding": 18000,
+          "metal": 23200
+        },
+        "glazing": {
+          "cold": 211201,
+          "warm": 326401
+        },
+        "insulation": {
+          "yes": 176641
+        },
+        "lighting": {
+          "spots": 13600,
+          "pendant": 4500
+        }
+      },
+      "ownDefault": 1306242,
+      "userShot": 1445042
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import {calculateFinishingEstimate} from './calculator-estimate.mjs';
 (() => {
  'use strict';
  document.querySelectorAll('[data-repair-range]').forEach(range=>{
@@ -1143,11 +1144,11 @@ function createCalculatorScene(root) {
 
 
 
- // Interactive finish estimate; unknown-rate work is deliberately quoted separately.
+ // All selected works contribute to the estimate; every input recalculates it from scratch.
  const finishCalculator=document.querySelector('[data-finishing-calculator]');
  if(finishCalculator){
-  const controls=finishCalculator.querySelector('[data-calc-controls]'),rates=JSON.parse(finishCalculator.dataset.rates),dialog=finishCalculator.querySelector('dialog');
-  const currency=n=>Math.round(n).toLocaleString('ru-RU')+' ₽',area=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:2})+' м²';
+  const controls=finishCalculator.querySelector('[data-calc-controls]'),dialog=finishCalculator.querySelector('dialog');
+  const currency=n=>Math.round(n).toLocaleString('ru-RU')+' ₽',quantity=n=>n.toLocaleString('ru-RU',{maximumFractionDigits:2});
   // Keep calculation immediate; load the photograph and draw only near the section.
   let calculatorScene=null,calculatorSelection=null,calculatorObserver=null;
   const renderCalculatorScene=state=>{calculatorSelection=state;calculatorScene?.(state);};
@@ -1164,28 +1165,21 @@ function createCalculatorScene(root) {
   const materialName=key=>controls.querySelector(`input[name="${key}"]:checked`)?.closest('label').querySelector('.finish-calc-swatch+span')?.textContent||'';
   function updateEstimate(){
    finishCalculator.querySelectorAll('[data-calc-group]').forEach(group=>{const toggle=group.querySelector('input[type="checkbox"]');if(toggle)group.querySelectorAll('input[type="radio"]').forEach(input=>input.disabled=!toggle.checked);});
-   // Standard estimate geometry; exact dimensions are confirmed at the survey.
-   const state=read(),L=Number(state.length)/100,W=Number(state.width)/100,H=2.5,G=1.4;
-   const valid=controls.checkValidity();
+   const state=read(),estimate=calculateFinishingEstimate(state);
+   const valid=controls.checkValidity()&&estimate.valid;
    finishCalculator.querySelector('[data-calc-error]').textContent=valid?'':'Укажите размеры в пределах, указанных в полях.';
    finishCalculator.querySelector('[data-calc-request]').disabled=!valid;
    if(!valid){calculation='';calculationView=null;finishCalculator.querySelector('[data-calc-total]').textContent='—';finishCalculator.querySelector('[data-calc-from]').hidden=true;return;}
-   const glazedLength=L+2*W,floorArea=L*W,glazingArea=glazedLength*G;
-   const wallArea=L*H+glazedLength*(H-G);
-   const items=[],extra=[];
-   if(state['walls-enabled'])items.push(['Стены · '+area(wallArea),wallArea*rates.walls[state.walls]]);
-   if(state['glazing-enabled'])items.push(['Остекление · '+area(glazingArea),glazingArea*rates[state.glazing]]);
-   if(state.insulation==='yes')items.push(['Утепление · '+area(wallArea+2*floorArea),(wallArea+2*floorArea)*rates.insulation]);
-   const names={ceiling:'Потолок',floor:'Пол',exterior:'Наружная отделка',lighting:'Освещение'};
-   for(const [key,name] of Object.entries(names))if(state[key+'-enabled'])extra.push(name);
-   const total=items.reduce((sum,item)=>sum+item[1],0);
-   finishCalculator.querySelector('[data-calc-total]').textContent=items.length?currency(total):'По замеру';
+   const names={walls:'Стены',ceiling:'Потолок',floor:'Пол',exterior:'Наружная отделка',glazing:'Остекление',insulation:'Утепление',lighting:'Освещение'};
+   const items=estimate.items.map(item=>[names[item.key]+(item.key==='lighting'?'':' · '+quantity(item.quantity)+' '+item.unit),item.amount]);
+   const total=estimate.total;
+   finishCalculator.querySelector('[data-calc-total]').textContent=currency(total);
    finishCalculator.querySelector('[data-calc-from]').hidden=!items.length;
    renderCalculatorScene(state);
-   const attributes=['walls','ceiling','floor','exterior','glazing','lighting'].filter(key=>state[key+'-enabled']).map(key=>[({walls:'Стены',...names,glazing:'Остекление'})[key],materialName(key)]);
+   const attributes=['walls','ceiling','floor','exterior','glazing','lighting'].filter(key=>state[key+'-enabled']).map(key=>[names[key],materialName(key)]);
    const selected=attributes.map(([name,value])=>name+': '+value);
-   calculationView={size:`${state.length} × ${state.width} см`,total:items.length?'от '+currency(total):'По замеру',attributes:[...attributes,['Утепление',state.insulation==='yes'?'да':'нет']],items,extra};
-   calculation=['Балкон / лоджия',`Размеры: ${state.length} × ${state.width} см`, 'Для предварительного расчёта приняты: высота 250 см, остекление 140 см, периметр остекления — длина + две ширины',...selected,'Утепление: '+(state.insulation==='yes'?'да':'нет'),items.length?'Предварительно от '+currency(total):'Стоимость по замеру',...items.map(([label,amount])=>label+': от '+currency(amount)),extra.length?'Отдельно по замеру: '+extra.join(', '):'', 'Площадь стен без вычета квартирных проёмов; итог уточняется после замера.'].filter(Boolean).join('\n');
+   calculationView={size:`${state.length} × ${state.width} см`,total:(items.length?'от ':'')+currency(total),attributes:[...attributes,['Утепление',state.insulation==='yes'?'да':'нет']],items};
+   calculation=['Балкон / лоджия',`Размеры: ${state.length} × ${state.width} см`, 'Для предварительного расчёта приняты: высота 260 см, переднее остекление высотой 160 см',...selected,'Утепление: '+(state.insulation==='yes'?'да':'нет'),'Предварительно '+(items.length?'от ':'')+currency(total),...items.map(([label,amount])=>label+': от '+currency(amount)), 'Площадь стен без вычета квартирных проёмов; итог уточняется после замера.'].join('\n');
   }
   controls.addEventListener('input',updateEstimate);controls.addEventListener('change',updateEstimate);controls.addEventListener('submit',e=>e.preventDefault());
   function renderCalculationSummary(){
@@ -1204,9 +1198,6 @@ function createCalculatorScene(root) {
     const row=document.createElement('div'),label=document.createElement('span'),price=document.createElement('strong');
     row.className='finish-calc-breakdown-row';label.textContent=name;price.textContent='от '+currency(amount);row.append(label,price);return row;
    }));
-   const extra=dialog.querySelector('[data-calc-summary-extra]');
-   extra.hidden=!view.extra.length;extra.replaceChildren();
-   if(view.extra.length){const label=document.createElement('strong');label.textContent='По замеру: ';extra.append(label,document.createTextNode(view.extra.join(', ')+'.'));}
    dialog.querySelector('[data-calc-details]').open=false;
   }
   finishCalculator.querySelector('[data-calc-request]').addEventListener('click',()=>{updateEstimate();if(!calculation)return;const form=dialog.querySelector('[data-calc-lead]');if(form.querySelector('[name="calculation"]'))form.querySelector('[name="calculation"]').value=calculation;renderCalculationSummary();openDialogAtCurrentScroll(dialog,form.querySelector('input[name="name"]')||form.querySelector('.thank-you'));track('calculator_lead_open');});
