@@ -4467,8 +4467,9 @@ main > .social-subscribe,
 .hero-rating-badge{display:flex;align-items:center;justify-content:flex-start;gap:10px;min-width:0;padding:3px 0;background:transparent;border:0;border-radius:0;box-shadow:none}
 .hero-rating-badge+.hero-rating-badge{border-left:1px solid var(--line);padding-left:18px}
 .hero-rating-badge:hover .hero-rating-count{text-decoration:underline;text-underline-offset:3px}
-.hero-rating-badge>img{width:32px;height:32px;object-fit:contain;flex:0 0 32px}
+.hero-rating-score>img{width:32px;height:32px;object-fit:contain;flex:0 0 32px}
 .hero-rating-details{display:flex;align-items:center;flex-wrap:wrap;gap:10px;min-width:0}
+.hero-rating-score{display:flex;align-items:center;gap:10px;flex:0 0 auto;min-width:0}
 .hero-rating-details strong{display:inline-flex;align-items:center;gap:6px;font-size:28px;font-weight:700;line-height:1.2;white-space:nowrap}
 .hero-rating-star{color:#ffb21c;font-size:26px}
 .hero-rating-meta{display:flex;flex-direction:column;gap:1px;min-width:0}
@@ -4480,11 +4481,13 @@ main > .social-subscribe,
  .landing-hero .hero-rating-badge+.hero-rating-badge{border-left:0;border-top:1px solid var(--line);padding:12px 0 0}
 }
 @media(max-width:640px){
- .hero-rating-badges{gap:12px;max-width:420px;margin-top:13px}
+ .hero-rating-badges{gap:12px;max-width:420px;margin-top:13px;margin-inline:auto}
  .hero-rating-badge{align-items:flex-start;justify-content:center;gap:8px}
- .hero-rating-badge+.hero-rating-badge{padding-left:12px}
- .hero-rating-badge>img{width:24px;height:24px;flex-basis:24px;margin-top:2px}
- .hero-rating-details{flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:3px}
+ .hero-rating-badge+.hero-rating-badge{padding-left:0}
+ .hero-rating-score{gap:8px}
+ .hero-rating-score>img{width:24px;height:24px;flex-basis:24px;margin-top:0}
+ .hero-rating-details{flex-direction:column;align-items:center;flex-wrap:nowrap;gap:3px}
+ .hero-rating-meta{align-items:center;text-align:center}
  .hero-rating-details strong,.hero-rating-star{font-size:22px}
  .hero-rating-count{font-size:13px}
  .hero-rating-platform{font-size:11px}
@@ -4497,8 +4500,9 @@ main > .social-subscribe,
  .hero-rating-badges{grid-template-columns:minmax(0,1fr);gap:10px;max-width:260px}
  .hero-rating-badge{align-items:center;justify-content:flex-start}
  .hero-rating-badge+.hero-rating-badge{border-left:0;border-top:1px solid var(--line);padding:10px 0 0}
- .hero-rating-badge>img{margin-top:0}
+ .hero-rating-score>img{margin-top:0}
  .hero-rating-details{flex-direction:row;align-items:center;gap:10px}
+ .hero-rating-meta{align-items:stretch;text-align:inherit}
 }
 
 .page-rating-row{margin-bottom:20px}
