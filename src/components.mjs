@@ -75,7 +75,7 @@ const serviceGallerySlides=service=>uniqueImages((serviceBeforeAfterProjects[ser
 const glazingHeroImage='service-before-after/glazing-new-09-after.jpg';
 const finishingHeroImage='service-before-after/renovation-loggia-12-after.webp';
 const turnkeyHeroImage='service-before-after/furniture-interior-v2-02-after.webp';
-export const homeHeroImage=turnkeyHeroImage;
+export const homeHeroImage='turnkey-books-v1/after.webp';
 const coldGlazingHeroImage='service-before-after/cold-loggia-finished-12-after.png';
 const warmGlazingHeroImage='service-before-after/renovation-loggia-02-after.webp';
 const panoramicGlazingHeroImage='service-before-after/panoramic-glazing-after.jpg';
@@ -87,7 +87,8 @@ export const serviceHeroAsset=service=>pictureAsset(({
 export const button=(label,href='#quiz',extra='',withArrow=true,forceArrow=false)=>{const isConsultation=label==='Получить консультацию';const icon=isConsultation||extra.includes('button-no-icon')?'':buttonIcon(label);const showArrow=withArrow&&(!isConsultation||forceArrow);return href.endsWith('#quiz')?`<button class="button ${extra}" type="button" data-quiz-open>${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</button>`:href.endsWith('#callback')?`<button class="button ${extra}" type="button" data-callback-open>${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</button>`:`<a class="button ${extra}" href="${href}">${icon}<span class="button-label">${label}</span>${showArrow?` ${buttonArrow}`:''}</a>`;};
 export function pic(name,alt,classes='',eager=false){const cleanName=cleanPortfolioAsset(name);const src=pictureAsset(cleanName);const responsive=smallPictureAssets.has(cleanName);const srcset=responsive?` srcset="/assets/${pictureAsset(cleanName,'-small')} 480w, /assets/${src} 1000w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1000px) 50vw, 600px"`:'';return `<img class="${classes}" src="/assets/${src}"${srcset} width="1000" height="1100" loading="${eager?'eager':'lazy'}" ${eager?'fetchpriority="high"':''} decoding="async" alt="${esc(alt)}">`;}
 const deferredSlide=(name,alt)=>`<img class="hero-image" data-src="/assets/${pictureAsset(name)}" width="1000" height="1100" loading="lazy" decoding="async" aria-hidden="true" alt="${esc(alt)}">`;
-const serviceHeroSlideshow=service=>{
+const serviceHeroSlideshow=(service,{home=false}={})=>{
+ if(home)return `<div class="landing-photo"><img class="hero-image is-active" src="/assets/${pictureAsset(homeHeroImage)}" width="784" height="1168" loading="eager" fetchpriority="high" decoding="async" alt="Балкон с книжными полками и скамьёй — место для чтения"></div>`;
  const slides=serviceGallerySlides(service);
  if(service.landingVariant)return `<div class="landing-photo"><img class="hero-image is-active" src="/assets/${pictureAsset(service.image)}" width="768" height="1024" loading="eager" fetchpriority="high" decoding="async" alt="${esc(projectDisplayTitle(serviceBeforeAfterProjects[service.slug][0]))}"></div>`;
  if(service.slug==='osteklenie-balkonov')return `<div class="landing-photo">${pic(glazingHeroImage,`${service.title} — остеклённый балкон с выносом в кирпичном доме ArtBalkon`,'hero-image is-active',true)}</div>`;
@@ -439,7 +440,7 @@ const heroPriceMarkup=(value,unit='')=>{
  const amount=parts?parts[3]:text;
  return `<p class="landing-price"><span class="hero-price-line">${prefix}<span class="hero-price-amount">${esc(amount)}</span>${unit?` <small class="hero-price-unit">${esc(unit)}</small>`:''}</span></p>`;
 };
-export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description explanatory-subtitle">${s.heroSubtitle||s.offer}</p>${s.heroPrice?heroPriceMarkup(s.heroPrice,s.heroPriceUnit):prices[s.price]===null?'':heroPriceMarkup(money(prices[s.price]),'/м²')}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s)}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
+export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description explanatory-subtitle">${s.heroSubtitle||s.offer}</p>${s.heroPrice?heroPriceMarkup(s.heroPrice,s.heroPriceUnit):prices[s.price]===null?'':heroPriceMarkup(money(prices[s.price]),'/м²')}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s,{home})}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
 const turnkeyIncludedExtrasSection=service=>{
  if(service?.slug!=='balkon-pod-klyuch')return '';
  const items=[

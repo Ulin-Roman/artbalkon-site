@@ -239,7 +239,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  const hero=html.match(/<div[^>]*data-hero-slider[^>]*>([\s\S]*?)<\/div>/)?.[1];
  if(label==='home'){
   assert.ok(!html.includes('data-hero-slider'),'home turnkey hero must remain static');
-  assert.ok(html.includes('/assets/'+homeHeroImage),'home hero must use the selected turnkey office image');
+  assert.ok(heroSection(html)?.includes('/assets/'+homeHeroImage),'home hero must use the selected reading corner photo');
   continue;
  }
  if(newLandingSlugs.has(label)){
