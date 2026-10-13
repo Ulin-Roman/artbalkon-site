@@ -9,10 +9,10 @@
   range.addEventListener('pointerup',e=>{if(range.hasPointerCapture(e.pointerId))range.releasePointerCapture(e.pointerId);});
   range.addEventListener('input',update);update();
  });
- // Keep the same ratings row above the title on desktop and at its original slot on phones.
+ // Home ratings stay below the CTA; other pages move them above the title on desktop.
  const ratingsRow=document.querySelector('main .hero-rating-badges');
  const pageTitle=document.querySelector('main h1');
- if(ratingsRow&&pageTitle){
+ if(ratingsRow&&pageTitle&&!ratingsRow.closest('.home-hero')){
   const ratingsBlock=ratingsRow.closest('.page-rating-row')||ratingsRow;
   const ratingsSlot=document.createComment('ratings mobile position');
   ratingsBlock.before(ratingsSlot);

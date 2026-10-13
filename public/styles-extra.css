@@ -4512,6 +4512,7 @@ main > .social-subscribe,
  main .hero-rating-badge{justify-content:flex-start}
  main .page-rating-row{margin:0}
  main .page-rating-row .hero-rating-badges{margin-bottom:18px}
+ .home-hero .hero-cta-stack>.hero-rating-badges{margin:20px 0 0}
 }
 /* Centre the finishing materials CTA label and arrow with equal side padding. */
 .finishing-materials .section-cta .button{justify-content:center;align-items:center;padding-inline:24px;gap:12px;max-width:100%;min-width:0}
