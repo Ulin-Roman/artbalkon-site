@@ -3953,6 +3953,16 @@ p{ text-wrap:pretty }
  background:#e5ebe6;
 }
 .landing-price{font-weight:500;letter-spacing:-.03em}
+/* Keep hero price parts on one baseline without changing the amount size. */
+.landing-hero .landing-copy-main>.landing-price{font-weight:400;white-space:nowrap}
+.landing-hero .landing-price .hero-price-line{white-space:nowrap}
+.landing-hero .landing-price .hero-price-from{font-size:.85em;font-weight:400;vertical-align:baseline}
+.landing-hero .landing-price .hero-price-amount{font-size:inherit;font-weight:600;color:var(--ink);vertical-align:baseline}
+.landing-hero .landing-price .hero-price-unit{font-size:16px;font-weight:400;color:#526060;vertical-align:baseline}
+@media(max-width:640px){
+ .landing-hero .landing-price .hero-price-amount{color:#fff}
+ .landing-hero .landing-price .hero-price-unit{color:rgba(255,255,255,.86)}
+}
 .trust-strip,.landing-trust{background:transparent;border:0;gap:18px}
 .trust-strip .trust-item,.landing-trust .trust-item{
  background:#fff;

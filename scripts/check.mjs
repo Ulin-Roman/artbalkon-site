@@ -769,7 +769,9 @@ for(const definition of newLandingDefinitions){
   assert.equal(heroPrice,undefined,'Unconfirmed rate must stay absent from the hero');
   assert.equal(offer,undefined,'Unconfirmed rate must stay absent from structured data');
  }else{
-  assert.equal(heroPrice,'от '+expectedPrice.toLocaleString('ru-RU')+' ₽ <small>/м²</small>','Hero uses the confirmed rate and unit');
+  assert.equal(heroPrice?.replace(/<[^>]*>/g,''),'от '+expectedPrice.toLocaleString('ru-RU')+' ₽ /м²','Hero uses the confirmed rate and unit');
+  assert.equal(heroPrice?.match(/<span class="hero-price-amount">([^<]*)<\/span>/)?.[1],expectedPrice.toLocaleString('ru-RU')+' ₽','Hero amount and currency remain together');
+  assert.match(heroPrice,/<small class="hero-price-unit">\/м²<\/small>/,'Hero unit is preserved');
   assert.equal(offer?.price,String(expectedPrice),'Structured offer matches the hero');
   assert.equal(offer?.priceCurrency,'RUB');
   assert.equal(offer?.priceSpecification.price,String(expectedPrice));

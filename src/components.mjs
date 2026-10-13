@@ -433,7 +433,13 @@ export function home(){
  const service=serviceForPath('/');
  return servicePageWithSeo(service,{home:true});
 }
-export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description">${s.heroSubtitle||s.offer}</p>${s.heroPrice?`<p class="landing-price">${esc(s.heroPrice)}${s.heroPriceUnit?` <small>${esc(s.heroPriceUnit)}</small>`:''}</p>`:prices[s.price]===null?'':`<p class="landing-price">${money(prices[s.price])} <small>/м²</small></p>`}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s)}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
+const heroPriceMarkup=(value,unit='')=>{
+ const text=String(value),parts=text.match(/^(от)(\s+)(.*)$/u);
+ const prefix=parts?`<span class="hero-price-from">${esc(parts[1])}</span>${esc(parts[2])}`:'';
+ const amount=parts?parts[3]:text;
+ return `<p class="landing-price"><span class="hero-price-line">${prefix}<span class="hero-price-amount">${esc(amount)}</span>${unit?` <small class="hero-price-unit">${esc(unit)}</small>`:''}</span></p>`;
+};
+export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description">${s.heroSubtitle||s.offer}</p>${s.heroPrice?heroPriceMarkup(s.heroPrice,s.heroPriceUnit):prices[s.price]===null?'':heroPriceMarkup(money(prices[s.price]),'/м²')}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s)}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
 const turnkeyIncludedExtrasSection=service=>{
  if(service?.slug!=='balkon-pod-klyuch')return '';
  const items=[
