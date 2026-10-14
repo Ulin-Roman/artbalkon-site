@@ -38,7 +38,7 @@ const fs=require('node:fs/promises'),path=require('node:path'),http=require('nod
  const goals=page=>page.evaluate(()=>window.goalCalls.filter(c=>c.args[1]==='reachGoal'&&c.args[2]==='form_submit'));
  async function prepare(page,index){
   const forms=page.locator('[data-lead-form]'),form=forms.nth(index);
-  await form.evaluate(el=>{const dialog=el.closest('dialog');if(dialog&&!dialog.open)dialog.showModal();const project=el.querySelector('[name=project]');if(project&&!project.value)project.value='Тестовая работа / подарок';});
+  await form.evaluate(el=>{const dialog=el.closest('dialog');if(dialog&&!dialog.open)dialog.showModal();const project=el.querySelector('[name=project]');if(project&&!project.value)project.value='Тестовая работа / подарок';const trigger=el.querySelector('[name=trigger]');if(el.dataset.leadForm==='callback-popup'&&trigger&&!trigger.value)trigger.value='time-on-site';});
   if(await form.evaluate(el=>el.hasAttribute('data-inline-estimate')))await form.locator('input[type=radio][name=detail]').first().check();
   if(await form.getAttribute('data-lead-form')==='quiz'){
    for(let n=0;n<12;n++){
@@ -49,7 +49,7 @@ const fs=require('node:fs/promises'),path=require('node:path'),http=require('nod
     const next=form.locator('.quiz-next-button');if(await next.isDisabled())throw Error('Quiz cannot advance');await next.click();
    }
   }
-  await form.locator('[name=name]').fill('Технический тест');await form.locator('[name=phone]').fill('+7 999 123 45 67');await form.locator('[name=consent]').check();
+  const name=form.locator('[name=name]');if(await name.count())await name.fill('Технический тест');await form.locator('[name=phone]').fill('+7 999 123 45 67');await form.locator('[name=consent]').check();
   return form;
  }
  async function submit(form){await form.evaluate(el=>el.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true})));}

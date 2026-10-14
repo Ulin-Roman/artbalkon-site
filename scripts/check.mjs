@@ -416,6 +416,14 @@ const files=await walk(root),pages=files.filter(f=>f.endsWith('.html'));let refs
 const titles=new Map(),descriptions=new Map(),canonicals=new Map(),indexedCanonicals=new Set(),contentCanonicals=new Set(),contentFiles=new Set(),pageHtml=new Map();
 for(const file of pages){
  const html=await readFile(file,'utf8'),isRedirect=html.includes('http-equiv="refresh"'),isNoindex=html.includes('name="robots" content="noindex');
+ if(!isRedirect){
+  assert.equal([...html.matchAll(/id="retention-modal"/g)].length,1,file+': callback popup on every page');
+  const popup=html.match(/<dialog class="retention-modal"[\s\S]*?<\/dialog>/)?.[0];
+  assert.ok(popup?.includes('data-lead-form="callback-popup"'),file+': phone-only callback type');
+  assert.ok(popup.includes('name="phone"')&&popup.includes('name="consent"'),file+': callback contacts and consent');
+  assert.doesNotMatch(popup,/name="name"/,file+': popup must not require a name');
+  assert.ok(popup.includes('href="tel:'+company.tel+'"'),file+': Callibri-compatible canonical phone');
+ }
  pageHtml.set(file,html);
  // A preview's noindex must not bypass the same content and metadata checks as production.
  const localPath=file.slice(root.length+1).replaceAll('\\','/');

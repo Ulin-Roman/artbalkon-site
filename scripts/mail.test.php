@@ -27,6 +27,31 @@ try {
         $invalid = $base; $invalid[$key]=$value;
         fails(fn()=>normalize_mail_lead($invalid,$options),InvalidArgumentException::class);
     }
+    $popup = $base; $popup['form']='callback-popup'; unset($popup['name']);
+    foreach (['exit-intent','scroll-end','time-on-site'] as $index=>$trigger) {
+        $popup['requestId'] = sprintf('bbbbbbbb-1234-1234-1234-%012d',$index+1); $popup['trigger']=$trigger;
+        $lead=normalize_mail_lead($popup,$options);
+        check(!array_key_exists('name',$lead),'Popup fabricated a name');
+        check($lead['trigger']===$trigger,'Popup trigger missing');
+        $before=count($calls); check(deliver_mail_lead($lead,$sender,$dir,'127.0.0.4')['ok'],'Phone-only popup rejected');
+        check(deliver_mail_lead($lead,$sender,$dir,'127.0.0.4')['ok'],'Popup duplicate rejected');
+        check(count($calls)===$before+1,'Popup sent twice');
+        $mail=$calls[$before][2];
+        check(str_contains($mail,'Форма: Обратный звонок — всплывающее окно'),'Popup form missing');
+        check(str_contains($mail,'Имя: Не указано'),'Popup blank name not labeled');
+        check(str_contains($mail,'Условие показа: '),'Popup trigger not labeled');
+    }
+    foreach (['callback','contact','quiz','transformation'] as $form) {
+        $invalid=$base; $invalid['form']=$form; unset($invalid['name']);
+        fails(fn()=>normalize_mail_lead($invalid,$options),InvalidArgumentException::class);
+    }
+    foreach ([['consent',false],['website','bot'],['phone','123'],['name',null],['name',1],['name',str_repeat('x',71)],['trigger','unknown'],['trigger',null],['calculation','Размеры']] as [$key,$value]) {
+        $invalid=$popup; $invalid[$key]=$value;
+        fails(fn()=>normalize_mail_lead($invalid,$options),InvalidArgumentException::class);
+    }
+    foreach (['','   '] as $name) { $input=$popup; $input['name']=$name; check(!array_key_exists('name',normalize_mail_lead($input,$options)),'Blank name stored'); }
+    $input=$popup; $input['name']='  Анна  '; check(normalize_mail_lead($input,$options)['name']==='Анна','Optional name lost');
+    $invalid=$base; $invalid['trigger']='exit-intent'; fails(fn()=>normalize_mail_lead($invalid,$options),InvalidArgumentException::class);
     $quiz = $base; $quiz['form']='quiz';
     fails(fn()=>normalize_mail_lead($quiz,$options),InvalidArgumentException::class);
     $lead = normalize_mail_lead($base,$options);
@@ -44,5 +69,5 @@ try {
     $before=count($calls);
     fails(fn()=>deliver_mail_lead($lead,$sender,$dir,'127.0.0.3'),RuntimeException::class);
     check(count($calls)===$before,'Rate limit did not stop mail');
-    echo "Mail handler: five form flows, recipient, validation, retry, duplicate and rate limit checks passed.\n";
+    echo "Mail handler: five original form flows, automatic phone-only popup, recipient, validation, retry, duplicate and rate limit checks passed.\n";
 } finally { foreach(glob($dir.'/*') as $file) unlink($file); rmdir($dir); }

@@ -60,6 +60,18 @@ test('callback and portfolio requests are accepted with bounded project context'
 });
 
 
+test('only automatic callback popup accepts a phone without a name',()=>{
+ const input={...valid(),form:'callback-popup',trigger:'exit-intent'};delete input.name;
+ const lead=validateLead(input);
+ assert.equal(lead.form,'callback-popup');assert.equal(lead.phone,'+79990000000');assert.equal(Object.hasOwn(lead,'name'),false);assert.equal(lead.trigger,'exit-intent');
+ for(const trigger of ['exit-intent','scroll-end','time-on-site'])assert.equal(validateLead({...input,trigger}).trigger,trigger);
+ for(const name of ['', '   '])assert.equal(Object.hasOwn(validateLead({...input,name}),'name'),false);
+ assert.equal(validateLead({...input,name:'  Анна  '}).name,'Анна');
+ for(const form of ['callback','contact','quiz','transformation'])for(const name of [undefined,'',' '])assert.throws(()=>validateLead({...input,form,name}),form+': keep name required');
+ for(const bad of [{consent:false},{website:'bot'},{phone:'123'},{name:null},{name:1},{name:'x'.repeat(71)},{trigger:'unknown'},{trigger:null},{calculation:'Размеры'}])assert.throws(()=>validateLead({...input,...bad}));
+ assert.throws(()=>validateLead({...valid(),form:'callback',trigger:'exit-intent'}));
+});
+
 test('new landing consultations preserve the service and allow the matching object',()=>{
  const additions=services.filter(service=>service.landingVariant);
  assert.equal(additions.length,9);

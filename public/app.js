@@ -1,4 +1,5 @@
 import {calculateFinishingEstimate} from './calculator-estimate.mjs';
+import {mountRetentionPopup} from './retention-popup.mjs';
 (() => {
  'use strict';
  document.querySelectorAll('[data-repair-range]').forEach(range=>{
@@ -150,6 +151,7 @@ import {calculateFinishingEstimate} from './calculator-estimate.mjs';
  const restoreScrollPosition=top=>{if(!Number.isFinite(top))return;const root=document.documentElement,previousBehavior=root.style.scrollBehavior;root.style.scrollBehavior='auto';scrollTo(0,top);requestAnimationFrame(()=>requestAnimationFrame(()=>{scrollTo(0,top);root.style.scrollBehavior=previousBehavior;}));};
  const openDialogAtCurrentScroll=(dialog,focusTarget)=>{if(!dialog)return;const top=modalTriggerScrollY??scrollY;modalTriggerScrollY=null;dialogScrollPositions.set(dialog,top);if(!dialog.open)dialog.showModal();focusTarget?.focus({preventScroll:true});restoreScrollPosition(top);};
  document.querySelectorAll('dialog').forEach(dialog=>dialog.addEventListener('close',()=>{const top=dialogScrollPositions.get(dialog);dialogScrollPositions.delete(dialog);restoreScrollPosition(top);}));
+ const retentionController=mountRetentionPopup({dialog:$('#retention-modal'),initialSubmitted:formGoalState.sent.size>0,track,openDialog:(dialog,focusTarget)=>{modalTriggerScrollY=null;openDialogAtCurrentScroll(dialog,focusTarget);}});
  const hydrateVideo=video=>{const sources=[...video.querySelectorAll('source[data-src]')];if(!sources.length)return;for(const source of sources){source.src=source.dataset.src;delete source.dataset.src;}video.load();};
  const lazyVideos=[...document.querySelectorAll('[data-lazy-video]')];
  if('IntersectionObserver' in window){const videoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const video=entry.target;hydrateVideo(video);if(video.autoplay&&!reducedMotion.matches)video.play().catch(()=>{});videoObserver.unobserve(video);}),{rootMargin:'500px 0px'});lazyVideos.forEach(video=>videoObserver.observe(video));}
@@ -223,11 +225,11 @@ import {calculateFinishingEstimate} from './calculator-estimate.mjs';
  function showThanks(form,preview){
   const box=document.createElement('div');box.className='thank-you';box.setAttribute('role','status');box.tabIndex=-1;
   const icon=document.createElement('span');icon.className='success-icon';icon.textContent='✓';icon.setAttribute('aria-hidden','true');
-  const title=document.createElement('h3');title.textContent=preview?'Спасибо! Форма работает.':'Спасибо! Заявка принята.';
-  const text=document.createElement('p');text.textContent=preview?'Это предварительный просмотр сайта. Тестовая заявка сохранена, но менеджеру пока не отправлена.':'Свяжемся с вами, уточним детали и подготовим предварительный расчёт.';
+  const title=document.createElement('h3');title.textContent=preview?'Спасибо! Форма работает.':form.dataset.leadForm==='callback-popup'?'Заявка на звонок отправлена':'Спасибо! Заявка принята.';
+  const text=document.createElement('p');text.textContent=preview?'Это предварительный просмотр сайта. Тестовая заявка сохранена, но менеджеру пока не отправлена.':form.dataset.leadForm==='callback-popup'?'Позвоним вам, обсудим балкон или лоджию и ответим на вопросы.':'Свяжемся с вами, уточним детали и подготовим предварительный расчёт.';
   const phone=document.createElement('a');phone.className='text-link';phone.href='tel:+74951653905';phone.dataset.event='phone_click';phone.textContent='Позвонить: +7 (495) 165-39-05';
-  box.append(icon,title,text,phone);form.replaceChildren(box);
-  const dialog=form.closest('.application-modal,.quiz-modal');
+  box.append(icon,title,text);if(form.dataset.leadForm!=='callback-popup')box.append(phone);form.replaceChildren(box);
+  const dialog=form.closest('.application-modal,.quiz-modal,.retention-modal');
   if(dialog){dialog.classList.add('is-submitted');title.id=dialog.id+'-success-title';dialog.setAttribute('aria-labelledby',title.id);}
   box.focus({preventScroll:true});
  }
@@ -240,6 +242,7 @@ import {calculateFinishingEstimate} from './calculator-estimate.mjs';
     await configReady;if(!config.leadEndpoint)throw new Error('Отправка заявок через сайт пока не подключена. Позвоните нам: +7 (495) 165-39-05.');const values=Object.fromEntries(new FormData(form));id=id||crypto.randomUUID();
     const {response,result}=await sendLead(config.leadEndpoint||'/api/leads',{...values,consent:values.consent==='on',form:form.dataset.leadForm,attribution,page:location.pathname,requestId:id});
     if(!response.ok||result.ok!==true)throw new Error(result.message||'Не удалось отправить заявку.');
+    retentionController?.leadSucceeded();
     showThanks(form,result.mode==='preview');
     if(result.mode!=='preview'){trackFormSubmission(id);if(form.dataset.leadForm==='quiz')track('quiz_complete');}
    }catch(err){error.textContent=(err.name==='TimeoutError'||err.name==='AbortError')?'Ответ задерживается. Попробуйте ещё раз или позвоните нам.':err.message==='Failed to fetch'?'Нет соединения. Проверьте интернет и попробуйте ещё раз.':err.message;submit.disabled=false;submit.removeAttribute('aria-busy');submit.innerHTML=old;submitting=false;}

@@ -8,7 +8,7 @@
     "start": "node scripts/server.mjs",
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
-    "test": "node --test scripts/leads.test.mjs scripts/optimize.test.mjs scripts/calculator-estimate.test.mjs"
+    "test": "node --test scripts/leads.test.mjs scripts/optimize.test.mjs scripts/calculator-estimate.test.mjs scripts/retention-popup.test.mjs"
   },
   "engines": {
     "node": ">=22"

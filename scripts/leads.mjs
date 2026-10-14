@@ -22,13 +22,19 @@ export function validateLead(input){
  if(!input||typeof input!=='object'||Array.isArray(input))throw Error('Некорректная заявка.');
  if(input.website)throw Error('Не удалось отправить заявку. Позвоните нам.');
  if(input.consent!==true)throw Error('Нужно согласие на обработку персональных данных.');
- if(!['quiz','contact','callback','transformation'].includes(input.form))throw Error('Неизвестная форма.');
- if(typeof input.name!=='string'||!input.name.trim()||input.name.length>70)throw Error('Укажите имя.');
+ if(!['quiz','contact','callback','callback-popup','transformation'].includes(input.form))throw Error('Неизвестная форма.');
+ const popup=input.form==='callback-popup',name=popup&&input.name===undefined?'':input.name;
+ if(typeof name!=='string'||(!popup&&!name.trim())||name.length>70)throw Error('Укажите имя.');
  if(typeof input.phone!=='string'||input.phone.length>30)throw Error('Проверьте номер телефона.');
  let phone=input.phone.replace(/\D/g,'');if(phone.length===10)phone='7'+phone;
  if(!/^[78]\d{10}$/.test(phone)||/^(\d)\1{9}$/.test(phone.slice(1)))throw Error('Проверьте номер телефона.');phone='+7'+phone.slice(1);
  if(typeof input.requestId!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(input.requestId))throw Error('Обновите страницу и попробуйте ещё раз.');
- const lead={requestId:input.requestId,name:input.name.trim(),phone,form:input.form,consent:true,consentVersion:'2026-09-16',page:typeof input.page==='string'?input.page.slice(0,500):'/',attribution:{}};
+ const lead={requestId:input.requestId,name:name.trim(),phone,form:input.form,consent:true,consentVersion:'2026-09-16',page:typeof input.page==='string'?input.page.slice(0,500):'/',attribution:{}};
+ if(popup&&!lead.name)delete lead.name;
+ if(input.trigger!==undefined){
+  if(!popup||!['exit-intent','scroll-end','time-on-site'].includes(input.trigger))throw Error('Некорректное условие показа формы.');
+  lead.trigger=input.trigger;
+ }
  for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','yclid','landing','referrer'])if(typeof input.attribution?.[key]==='string')lead.attribution[key]=input.attribution[key].slice(0,300);
  if(input.calculation!==undefined){
   if(input.form!=='callback'||typeof input.calculation!=='string'||!input.calculation.trim()||input.calculation.length>2000||/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(input.calculation))throw Error('Некорректные параметры расчёта.');

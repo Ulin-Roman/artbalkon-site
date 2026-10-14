@@ -75,6 +75,7 @@ await bundleScript({entryPoints:['src/gift-3d.mjs'],outfile:'dist/gift-3d.js',bu
 await rm('dist/styles-extra.css');
 // The calculator module is already included in app.js.
 await rm('dist/calculator-estimate.mjs');
+await rm('dist/retention-popup.mjs');
 await writeFile('dist/.nojekyll','');
 const routes=[];
 async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(optimizeHtml(shell(body,{path,...meta}))));if(!meta.noindex)routes.push(path);}
