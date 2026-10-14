@@ -1,8 +1,12 @@
-import test from 'node:test';
+import test,{beforeEach} from 'node:test';
 import assert from 'node:assert/strict';
-import {createRetentionController,isExitIntent,hasReachedScrollDepth,mountRetentionPopup} from '../public/retention-popup.mjs';
+import {createRetentionController,isExitIntent,hasReachedScrollDepth,isMoscowQuietHours,mountRetentionPopup} from '../public/retention-popup.mjs';
 
-function visit({storage=new Map(),memory={},initialTime=0,initialVisible=true,initialBlocked=false,initialSubmitted=false,onShow}={}){
+const DAYTIME=Date.parse('2026-10-15T09:00:00Z');
+// Neither the runner's timezone nor the actual hour may change popup assertions.
+beforeEach(t=>t.mock.timers.enable({apis:['Date'],now:DAYTIME}));
+
+function visit({storage=new Map(),memory={},initialTime=DAYTIME,initialVisible=true,initialBlocked=false,initialSubmitted=false,onShow}={}){
  let time=initialTime,visible=initialVisible,blocked=initialBlocked;
  const shown=[];
  const persistence={getItem:key=>storage.get(key),setItem:(key,value)=>storage.set(key,value)};
@@ -110,13 +114,14 @@ function mountedScrollVisit(){
  const listen=(object,name,handler)=>{let events=handlers.get(object);if(!events){events=new Map();handlers.set(object,events);}const list=events.get(name)||[];list.push(handler);events.set(name,list);};
  const emit=(object,name,event={})=>handlers.get(object)?.get(name)?.forEach(handler=>handler(event));
  const trigger={value:''},closeButton={},opens=[],tracked=[];
+ let interval=null;
  const dialog={dataset:{},open:false,querySelector(selector){return selector==='input[name="trigger"]'?trigger:selector==='[data-retention-close]'?closeButton:null;},querySelectorAll(){return [];},addEventListener(name,handler){listen(this,name,handler);}};
  const body={classList:{contains(){return false;}},closest(){return null;}};
  const doc={body,activeElement:body,hidden:false,documentElement:{clientWidth:1280,clientHeight:800,scrollHeight:3000},querySelector(selector){return selector==='dialog[open], [data-lead-form] [aria-busy="true"]'&&dialog.open?dialog:null;},addEventListener(name,handler){listen(this,name,handler);}};
  const storage=new Map();
- const win={sessionStorage:{getItem:key=>storage.get(key),setItem:(key,value)=>storage.set(key,value)},scrollY:0,matchMedia(){return {matches:true};},setInterval(){return 1;},clearInterval(){},addEventListener(name,handler){listen(this,name,handler);},MutationObserver:class{observe(){}}};
+ const win={sessionStorage:{getItem:key=>storage.get(key),setItem:(key,value)=>storage.set(key,value)},scrollY:0,matchMedia(){return {matches:true};},setInterval(handler){interval=handler;return 1;},clearInterval(){interval=null;},addEventListener(name,handler){listen(this,name,handler);},MutationObserver:class{observe(){}}};
  mountRetentionPopup({dialog,document:doc,window:win,openDialog:(element,focus)=>{opens.push({element,focus});element.open=true;},track:(name,payload)=>tracked.push({name,payload})});
- return {dialog,closeButton,trigger,opens,tracked,body,wheel(deltaY){emit(doc,'wheel',{deltaY});},touchStart(clientY){emit(doc,'touchstart',{touches:[{clientY}]});},touchMove(clientY){emit(doc,'touchmove',{touches:[{clientY}]});},key(key){emit(doc,'keydown',{key,target:body});},scroll(scrollY){win.scrollY=scrollY;emit(win,'scroll');}};
+ return {dialog,closeButton,trigger,opens,tracked,body,persisted(){return JSON.parse([...storage.values()][0]||'{}');},poll(){interval?.();},visible(value){doc.hidden=!value;emit(doc,'visibilitychange');},exit(){emit(doc,'pointermove',{pointerType:'mouse',clientY:100,buttons:0});emit(doc,'pointerout',{pointerType:'mouse',clientY:0,relatedTarget:null});},wheel(deltaY){emit(doc,'wheel',{deltaY});},touchStart(clientY){emit(doc,'touchstart',{touches:[{clientY}]});},touchMove(clientY){emit(doc,'touchmove',{touches:[{clientY}]});},key(key){emit(doc,'keydown',{key,target:body});},scroll(scrollY){win.scrollY=scrollY;emit(win,'scroll');}};
 }
 
 test('mounted popup opens at 70% after a downward wheel scroll and keeps the existing analytics reason',()=>{
@@ -168,4 +173,84 @@ test('mounted popup follows Callibri replacement of the whole header phone befor
  currentHeaderPhone=phoneLink('+7 (495) 111-22-33','tel:+74951112233');tracking.callback([]);
  assert.equal(popupPhone.href,'tel:+74951112233');assert.equal(popupPhone.textContent,'+7 (495) 111-22-33');
  emit(doc,'pointerout',{pointerType:'mouse',clientY:0,relatedTarget:null});assert.equal(opens.length,1);
+});
+
+
+test('Moscow quiet hours include midnight and exclude 05:00 regardless of the device timezone',t=>{
+ const boundaries=[
+  ['2026-10-14T20:59:59.999Z',false], // 23:59:59.999 Moscow
+  ['2026-10-14T21:00:00.000Z',true],  // 00:00 Moscow, a different UTC date
+  ['2026-10-15T01:59:59.999Z',true],  // 04:59:59.999 Moscow
+  ['2026-10-15T02:00:00.000Z',false], // 05:00 Moscow
+  ['2026-12-31T21:00:00.000Z',true]   // Moscow also crosses a year boundary
+ ];
+ const previousTimezone=process.env.TZ;
+ try{
+  for(const timezone of ['UTC','America/Los_Angeles','Asia/Tokyo']){
+   process.env.TZ=timezone;
+   for(const [iso,quiet] of boundaries)assert.equal(isMoscowQuietHours(Date.parse(iso)),quiet,timezone+' '+iso);
+  }
+ }finally{if(previousTimezone===undefined)delete process.env.TZ;else process.env.TZ=previousTimezone;}
+ t.mock.timers.setTime(Date.parse('2026-10-14T21:00:00Z'));assert.equal(isMoscowQuietHours(),true);
+ t.mock.timers.setTime(Date.parse('2026-10-15T02:00:00Z'));assert.equal(isMoscowQuietHours(),false);
+});
+
+test('all three night triggers leave the visit unconsumed and the 30-second timer retries exactly at 05:00',()=>{
+ const session=visit({initialTime:Date.parse('2026-10-15T01:59:29.999Z')});
+ session.advance(30000);
+ for(const reason of ['time-on-site','scroll-end','exit-intent'])assert.equal(session.controller.request(reason),false);
+ assert.equal(session.controller.snapshot().elapsed,30000);assert.equal(session.controller.snapshot().shown,false);
+ assert.equal(session.controller.consumed(),false);assert.deepEqual(session.shown,[]);
+ session.advance(1);assert.deepEqual(session.shown,['time-on-site']);
+ assert.equal(session.controller.consumed(),true);
+});
+
+test('reaching the timer at midnight waits until morning and does not consume a new page visit',()=>{
+ const first=visit({initialTime:Date.parse('2026-10-14T20:59:30Z')});
+ first.advance(30000);assert.deepEqual(first.shown,[]);assert.equal(first.controller.snapshot().shown,false);
+ first.controller.pause();
+ const next=visit({storage:first.storage,initialTime:Date.parse('2026-10-15T02:00:00Z')});
+ // Retain the existing five-second quiet period for a page entered with accumulated time.
+ next.advance(4999);assert.deepEqual(next.shown,[]);
+ next.advance(1);assert.deepEqual(next.shown,['time-on-site']);
+});
+
+test('successful night submission still suppresses the popup after 05:00 and navigation',()=>{
+ const first=visit({initialTime:Date.parse('2026-10-15T01:59:29.999Z')});
+ first.advance(30000);first.controller.leadSucceeded();first.advance(1);
+ assert.deepEqual(first.shown,[]);assert.equal(first.controller.snapshot().submitted,true);
+ const next=visit({storage:first.storage,initialTime:Date.parse('2026-10-15T02:00:00Z')});
+ next.advance(60000);assert.equal(next.controller.request('exit-intent'),false);assert.equal(next.controller.request('scroll-end'),false);
+ assert.deepEqual(next.shown,[]);
+});
+
+test('mounted night popup sends no open analytics and its running timer opens it at 05:00 without reloading',t=>{
+ const start=Date.parse('2026-10-15T01:59:29.999Z');t.mock.timers.setTime(start);
+ const page=mountedScrollVisit();
+ page.exit();page.wheel(100);page.scroll(1540);
+ t.mock.timers.setTime(start+30000);page.poll();
+ assert.deepEqual(page.opens,[]);assert.deepEqual(page.tracked,[]);assert.equal(page.trigger.value,'');
+ assert.deepEqual(page.persisted(),{elapsed:30000,shown:false,submitted:false});
+ t.mock.timers.setTime(start+30001);page.poll();
+ assert.equal(page.opens.length,1);assert.equal(page.trigger.value,'time-on-site');
+ assert.deepEqual(page.tracked,[{name:'callback_popup_open',payload:{trigger:'time-on-site'}}]);
+ page.poll();assert.equal(page.opens.length,1);
+});
+
+test('a night exit is not queued for 05:00, while a fresh daytime exit remains available',t=>{
+ const start=Date.parse('2026-10-15T01:59:59.900Z');t.mock.timers.setTime(start);
+ const page=mountedScrollVisit();page.exit();assert.deepEqual(page.opens,[]);
+ t.mock.timers.setTime(start+100);page.poll();
+ assert.deepEqual(page.opens,[]);assert.equal(page.persisted().shown,false);
+ page.exit();assert.equal(page.opens.length,1);assert.equal(page.trigger.value,'exit-intent');
+});
+
+test('a popup opened before midnight stays open and the next morning cannot cause a second show',t=>{
+ const start=Date.parse('2026-10-14T20:59:59.900Z');t.mock.timers.setTime(start);
+ const page=mountedScrollVisit();page.exit();assert.equal(page.opens.length,1);assert.equal(page.dialog.open,true);
+ t.mock.timers.setTime(start+100);page.visible(false);page.visible(true);
+ assert.equal(page.dialog.open,true);assert.equal(page.opens.length,1);
+ page.dialog.open=false;
+ t.mock.timers.setTime(Date.parse('2026-10-15T02:00:00Z'));page.visible(false);page.visible(true);page.exit();page.wheel(100);page.scroll(1540);page.poll();
+ assert.equal(page.opens.length,1);assert.equal(page.persisted().shown,true);assert.equal(page.tracked.length,1);
 });

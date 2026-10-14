@@ -1,6 +1,12 @@
 const STORAGE_KEY='artbalkon.retention-popup.v1';
 // Keep existing trigger IDs compatible with lead validation and analytics.
 const TRIGGERS=new Set(['exit-intent','scroll-end','time-on-site']);
+const moscowHour=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Moscow',hour:'2-digit',hourCycle:'h23'});
+
+// Only new automatic opens are suppressed; an already open form stays usable.
+export function isMoscowQuietHours(time=Date.now()){
+ return Number(moscowHour.format(time))<5;
+}
 
 function savedState(storage){
  try{const saved=JSON.parse(storage?.getItem(STORAGE_KEY)||'{}');return saved&&typeof saved==='object'?saved:{};}catch{return {};}
@@ -26,7 +32,7 @@ export function createRetentionController({storage,memory={},now=Date.now,visibl
   persist();return time;
  };
  const show=(reason,time)=>{
-  if(!TRIGGERS.has(reason)||consumed()||paused||!wasVisible||wasBlocked||time<quietUntil)return false;
+  if(!TRIGGERS.has(reason)||consumed()||paused||!wasVisible||wasBlocked||time<quietUntil||isMoscowQuietHours(time))return false;
   // Reserve before opening: showModal can synchronously cause focus events.
   state.shown=true;persist();
   try{if(onShow?.(reason)===false){state.shown=false;persist();return false;}}catch{state.shown=false;persist();return false;}
