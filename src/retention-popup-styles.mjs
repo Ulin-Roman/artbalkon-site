@@ -3,7 +3,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 #retention-modal,#retention-modal *{box-sizing:border-box}
 .retention-modal{font-family:Manrope,Arial,sans-serif;font-size:16px;line-height:1.6;text-align:left;outline:0}
 .retention-modal:not([open]){display:none}
-.retention-copy h2,.retention-description,.retention-direct-call,.retention-copy .eyebrow{margin:0}
+.retention-copy h2,.retention-description,.retention-direct-call{margin:0}
 .retention-modal button,.retention-modal input{font-family:inherit}
 .retention-modal button{cursor:pointer}
 .retention-submit{display:flex;align-items:center;justify-content:center;padding:16px 24px;border:1px solid #00777e;background:#00777e;color:#fff;font-weight:600;line-height:1.25;text-align:center}
@@ -22,7 +22,6 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-modal::backdrop{background:rgba(3,20,20,.64);backdrop-filter:blur(4px)}
 .retention-shell{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);min-height:550px}
 .retention-copy{min-width:0;padding:40px 34px 34px 40px}
-.retention-copy .eyebrow{font-size:10px;letter-spacing:1.2px;color:var(--teal,#00777e);margin-bottom:18px}
 .retention-copy h2{font-size:34px;line-height:1.12;letter-spacing:-.05em;font-weight:650}
 .retention-description{margin-top:20px;color:var(--muted,#6e7474);font-size:17px;line-height:1.6}
 .retention-description strong{color:var(--ink,#222727);font-weight:550}
@@ -58,15 +57,17 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
  .retention-modal{width:calc(100% - 24px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);border-radius:20px}
  .retention-shell{display:block;min-height:0}
  .retention-copy{padding:26px 22px 24px}
- .retention-copy .eyebrow{margin-bottom:14px;padding-right:32px;font-size:9px}
- .retention-copy h2{min-height:100px;padding-right:100px;font-size:30px;line-height:1.13;max-width:380px}
+ .retention-copy h2{min-height:156px;padding-right:122px;font-size:28px;line-height:1.13;max-width:380px}
  .retention-description{margin-top:13px;font-size:15px}
  .retention-form{margin-top:22px}
  .retention-direct-call{margin-top:20px;font-size:12px}
  .retention-direct-call .phone{font-size:17px!important}
- .retention-photo{position:absolute;top:56px;right:22px;width:84px;height:106px;border-radius:12px}
- .retention-photo>img{object-position:50% 23%;width:100%;height:150%;top:-5px}
- .retention-consultant{display:none}
+ .retention-photo{position:absolute;top:46px;right:22px;width:108px;height:142px;border-radius:0;background:transparent;overflow:visible}
+ .retention-photo>img{object-position:50% 22%;left:11px;right:auto;top:0;width:86px;height:86px;border-radius:12px}
+ .retention-consultant{display:block;left:0;right:0;bottom:0;padding:0;border:0;background:transparent;box-shadow:none;text-align:center}
+ .retention-consultant-dot{display:none}
+ .retention-consultant strong{font-size:10.5px;line-height:1.25}
+ .retention-consultant div>span{margin-top:3px;font-size:9px;line-height:1.25}
  .retention-close{position:sticky;float:right;width:32px;height:32px;top:10px;right:auto;margin:10px 10px -42px 0}
 }
 @media(prefers-reduced-motion:reduce){.retention-modal[open]{animation:none}}
