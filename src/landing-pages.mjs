@@ -23,6 +23,6 @@ export const newFinishingNavigation=[
  ['Ламинат','otdelka-balkona-laminatom'],
  ['Вагонка','otdelka-balkona-vagonkoj'],
  ['Кварцвинил','otdelka-balkona-kvarcvinilom'],
- ['Дерево','otdelka-balkona-derevom'],
+ ['Стеновой паркет «Липа под кирпич»','otdelka-balkona-derevom'],
  ['МДФ-панели','otdelka-balkona-mdf-panelyami']
 ];

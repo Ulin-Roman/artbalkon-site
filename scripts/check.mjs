@@ -745,7 +745,7 @@ const confirmedLandingPrices={
  'otdelka-balkona-laminatom':3800,
  'otdelka-balkona-vagonkoj':4000,
  'otdelka-balkona-kvarcvinilom':5700,
- 'otdelka-balkona-derevom':4500,
+ 'otdelka-balkona-derevom':6600,
  'razdvizhnoe-osteklenie':7000
 };
 for(const definition of newLandingDefinitions){

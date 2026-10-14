@@ -12,7 +12,7 @@ const enabledState=(length,width,selected)=>({length:String(length),width:String
 test('calculator tariffs are isolated from published service and finishing prices',()=>{
  assert.deepEqual(CALCULATOR_RATES,reference.rates);
  assert.deepEqual(Object.fromEntries(['cold','warm','panoramic','insulation','finishing','repair','turnkey'].map(key=>[key,prices[key]])),{cold:7000,warm:11000,panoramic:11500,insulation:700,finishing:1900,repair:null,turnkey:null});
- assert.deepEqual(finishingWallRates,{pvc:2500,laminate:3800,lining:4000,parquet:4000,wood:4500});
+ assert.deepEqual(finishingWallRates,{pvc:2500,laminate:3800,lining:4000,parquet:4000,wood:4500,lipa:6600});
  assert.ok(Object.isFrozen(CALCULATOR_RATES));
  for(const rates of Object.values(CALCULATOR_RATES))assert.ok(Object.isFrozen(rates));
 });
