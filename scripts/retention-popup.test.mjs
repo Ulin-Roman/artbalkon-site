@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createRetentionController,isExitIntent,hasReachedBottom,mountRetentionPopup} from '../public/retention-popup.mjs';
+import {createRetentionController,isExitIntent,hasReachedScrollDepth,mountRetentionPopup} from '../public/retention-popup.mjs';
 
 function visit({storage=new Map(),memory={},initialTime=0,initialVisible=true,initialBlocked=false,initialSubmitted=false,onShow}={}){
  let time=initialTime,visible=initialVisible,blocked=initialBlocked;
@@ -10,15 +10,21 @@ function visit({storage=new Map(),memory={},initialTime=0,initialVisible=true,in
  return {controller,shown,storage,memory,advance(ms){time+=ms;return controller.sync();},visible(value){visible=value;controller.sync();},blocked(value){blocked=value;controller.sync();},time:()=>time};
 }
 
-test('a minute means foreground time and carries over to the next page in this tab',()=>{
+test('thirty seconds means foreground time and carries over to the next page in this tab',()=>{
  const first=visit();
- first.advance(20000);first.visible(false);first.advance(180000);first.visible(true);first.advance(10000);
- assert.equal(first.controller.snapshot().elapsed,30000);assert.deepEqual(first.shown,[]);
+ first.advance(20000);first.visible(false);first.advance(180000);first.visible(true);first.advance(5000);
+ assert.equal(first.controller.snapshot().elapsed,25000);assert.deepEqual(first.shown,[]);
  first.controller.pause();
  const next=visit({storage:first.storage,initialTime:first.time()});
- next.advance(29999);assert.deepEqual(next.shown,[]);
+ next.advance(4999);assert.deepEqual(next.shown,[]);
  next.advance(1);assert.deepEqual(next.shown,['time-on-site']);
  next.advance(120000);next.controller.request('exit-intent');assert.equal(next.shown.length,1);
+});
+
+test('the default timer opens at 30,000 milliseconds and never at 29,999',()=>{
+ const session=visit();
+ session.advance(29999);assert.equal(session.controller.snapshot().elapsed,29999);assert.deepEqual(session.shown,[]);
+ session.advance(1);assert.equal(session.controller.snapshot().elapsed,30000);assert.deepEqual(session.shown,['time-on-site']);
 });
 
 test('opening, dismissing and navigating cannot show a second popup during the visit',()=>{
@@ -31,7 +37,7 @@ test('opening, dismissing and navigating cannot show a second popup during the v
 
 test('an active dialog/menu/form defers the timer and leaves five quiet seconds after it closes',()=>{
  const session=visit();
- session.advance(55000);session.blocked(true);session.advance(10000);
+ session.advance(25000);session.blocked(true);session.advance(10000);
  assert.equal(session.controller.request('exit-intent'),false);assert.equal(session.controller.request('scroll-end'),false);
  assert.deepEqual(session.shown,[]);
  session.blocked(false);session.advance(4999);assert.deepEqual(session.shown,[]);
@@ -39,13 +45,13 @@ test('an active dialog/menu/form defers the timer and leaves five quiet seconds 
 });
 
 test('a short interaction observed between timer polls also gets a quiet period',()=>{
- const session=visit();session.advance(59000);session.controller.defer();
+ const session=visit();session.advance(29000);session.controller.defer();
  session.advance(1000);assert.deepEqual(session.shown,[]);
  session.advance(4000);assert.deepEqual(session.shown,['time-on-site']);
 });
 
 test('successful submission in any form suppresses all triggers across navigation',()=>{
- const first=visit();first.advance(30000);first.controller.leadSucceeded();first.advance(60000);
+ const first=visit();first.advance(15000);first.controller.leadSucceeded();first.advance(60000);
  assert.equal(first.controller.request('exit-intent'),false);assert.deepEqual(first.shown,[]);
  const next=visit({storage:first.storage});next.advance(60000);assert.equal(next.controller.request('scroll-end'),false);assert.deepEqual(next.shown,[]);
  const alreadySubmitted=visit({initialSubmitted:true});alreadySubmitted.advance(60000);assert.deepEqual(alreadySubmitted.shown,[]);
@@ -54,7 +60,8 @@ test('successful submission in any form suppresses all triggers across navigatio
 test('restoring from the back/forward cache does not count time spent off the page',()=>{
  const session=visit();session.advance(20000);session.controller.pause();session.advance(300000);session.controller.resume();
  assert.equal(session.controller.snapshot().elapsed,20000);assert.deepEqual(session.shown,[]);
- session.advance(40000);assert.deepEqual(session.shown,['time-on-site']);
+ session.advance(9999);assert.deepEqual(session.shown,[]);
+ session.advance(1);assert.deepEqual(session.shown,['time-on-site']);
 });
 
 test('unavailable storage still remembers consumption within this document',()=>{
@@ -81,10 +88,58 @@ test('exit intent requires a mouse that entered the page and left through its to
  assert.equal(isExitIntent(mouse,{...context,finePointer:false}),false);
 });
 
-test('bottom trigger requires fresh downward user input and an actual downward scroll',()=>{
- const position={scrollHeight:3000,clientHeight:800,scrollY:2200,previousScrollY:1800,time:10000,lastScrollIntent:9500};
- assert.equal(hasReachedBottom(position),true);
- for(const changed of [{lastScrollIntent:-Infinity},{lastScrollIntent:6000},{previousScrollY:2200},{scrollY:2000},{scrollHeight:800,scrollY:0,previousScrollY:0}])assert.equal(hasReachedBottom({...position,...changed}),false);
+test('scroll depth is 70% of the scrollable distance, not of the entire document',()=>{
+ const position={scrollHeight:3000,clientHeight:800,scrollY:1540,previousScrollY:1400,time:10000,lastScrollIntent:9500};
+ assert.equal(hasReachedScrollDepth(position),true);
+ assert.equal(hasReachedScrollDepth({...position,scrollY:1539.99}),false);
+ assert.equal(hasReachedScrollDepth({...position,scrollY:1800}),true);
+ assert.equal(hasReachedScrollDepth({...position,scrollY:2200}),true);
+ // Another viewport changes the scrollable range and therefore the boundary.
+ assert.equal(hasReachedScrollDepth({...position,clientHeight:1000,scrollY:1399.99,previousScrollY:1300}),false);
+ assert.equal(hasReachedScrollDepth({...position,clientHeight:1000,scrollY:1400,previousScrollY:1300}),true);
+});
+
+test('70% scroll trigger requires fresh downward user input and an actual downward scroll',()=>{
+ const position={scrollHeight:3000,clientHeight:800,scrollY:1540,previousScrollY:1400,time:10000,lastScrollIntent:9500};
+ for(const changed of [{lastScrollIntent:-Infinity},{lastScrollIntent:7999},{lastScrollIntent:10001},{previousScrollY:1540},{previousScrollY:1800},{scrollHeight:800,scrollY:0,previousScrollY:0},{scrollHeight:850,scrollY:50,previousScrollY:0}])assert.equal(hasReachedScrollDepth({...position,...changed}),false);
+ assert.equal(hasReachedScrollDepth({...position,lastScrollIntent:8000}),true);
+});
+
+function mountedScrollVisit(){
+ const handlers=new Map();
+ const listen=(object,name,handler)=>{let events=handlers.get(object);if(!events){events=new Map();handlers.set(object,events);}const list=events.get(name)||[];list.push(handler);events.set(name,list);};
+ const emit=(object,name,event={})=>handlers.get(object)?.get(name)?.forEach(handler=>handler(event));
+ const trigger={value:''},closeButton={},opens=[],tracked=[];
+ const dialog={dataset:{},open:false,querySelector(selector){return selector==='input[name="trigger"]'?trigger:selector==='[data-retention-close]'?closeButton:null;},querySelectorAll(){return [];},addEventListener(name,handler){listen(this,name,handler);}};
+ const body={classList:{contains(){return false;}},closest(){return null;}};
+ const doc={body,activeElement:body,hidden:false,documentElement:{clientWidth:1280,clientHeight:800,scrollHeight:3000},querySelector(selector){return selector==='dialog[open], [data-lead-form] [aria-busy="true"]'&&dialog.open?dialog:null;},addEventListener(name,handler){listen(this,name,handler);}};
+ const storage=new Map();
+ const win={sessionStorage:{getItem:key=>storage.get(key),setItem:(key,value)=>storage.set(key,value)},scrollY:0,matchMedia(){return {matches:true};},setInterval(){return 1;},clearInterval(){},addEventListener(name,handler){listen(this,name,handler);},MutationObserver:class{observe(){}}};
+ mountRetentionPopup({dialog,document:doc,window:win,openDialog:(element,focus)=>{opens.push({element,focus});element.open=true;},track:(name,payload)=>tracked.push({name,payload})});
+ return {dialog,closeButton,trigger,opens,tracked,body,wheel(deltaY){emit(doc,'wheel',{deltaY});},touchStart(clientY){emit(doc,'touchstart',{touches:[{clientY}]});},touchMove(clientY){emit(doc,'touchmove',{touches:[{clientY}]});},key(key){emit(doc,'keydown',{key,target:body});},scroll(scrollY){win.scrollY=scrollY;emit(win,'scroll');}};
+}
+
+test('mounted popup opens at 70% after a downward wheel scroll and keeps the existing analytics reason',()=>{
+ const page=mountedScrollVisit();
+ page.wheel(100);page.scroll(1539);assert.deepEqual(page.opens,[]);
+ page.wheel(100);page.scroll(1540);
+ assert.deepEqual(page.opens,[{element:page.dialog,focus:page.closeButton}]);assert.equal(page.trigger.value,'scroll-end');
+ assert.deepEqual(page.tracked,[{name:'callback_popup_open',payload:{trigger:'scroll-end'}}]);
+ page.wheel(100);page.scroll(1800);assert.equal(page.opens.length,1);
+});
+
+test('restored or programmatic scroll positions and upward wheel input do not open the popup',()=>{
+ const page=mountedScrollVisit();
+ page.scroll(1800);assert.deepEqual(page.opens,[]);
+ page.wheel(-100);page.scroll(1900);assert.deepEqual(page.opens,[]);
+ page.wheel(100);page.scroll(1800);assert.deepEqual(page.opens,[]);
+ page.wheel(100);page.scroll(1900);assert.equal(page.opens.length,1);
+});
+
+test('mobile touch scrolling and keyboard scrolling can reach the 70% trigger',()=>{
+ const touchPage=mountedScrollVisit();touchPage.touchStart(600);touchPage.touchMove(700);touchPage.scroll(1540);assert.deepEqual(touchPage.opens,[]);
+ touchPage.touchMove(500);touchPage.scroll(1600);assert.equal(touchPage.opens.length,1);
+ const keyboardPage=mountedScrollVisit();keyboardPage.key('End');keyboardPage.scroll(1540);assert.equal(keyboardPage.opens.length,1);
 });
 
 test('mounted popup follows Callibri replacement of the whole header phone before and after opening',()=>{

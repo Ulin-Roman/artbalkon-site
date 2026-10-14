@@ -92,7 +92,7 @@ function deliver_mail_lead($lead, $sender, $directory, $ip) {
             if (!isset($lead[$field]) && !($field === 'name' && $lead['form'] === 'callback-popup')) continue;
             $value = $lead[$field] ?? 'Не указано';
             if ($field === 'form' && $value === 'callback-popup') $value = 'Обратный звонок — всплывающее окно';
-            if ($field === 'trigger') $value = ['exit-intent'=>'Попытка закрыть сайт','scroll-end'=>'Прокрутка до конца страницы','time-on-site'=>'Минута на сайте'][$value];
+            if ($field === 'trigger') $value = ['exit-intent'=>'Попытка закрыть сайт','scroll-end'=>'Прокрутка 70% страницы','time-on-site'=>'30 секунд на сайте'][$value];
             $lines[] = $label.': '.$value;
         }
         foreach ($lead['attribution'] as $field=>$value) $lines[] = $field.': '.$value;

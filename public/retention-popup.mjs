@@ -1,4 +1,5 @@
 const STORAGE_KEY='artbalkon.retention-popup.v1';
+// Keep existing trigger IDs compatible with lead validation and analytics.
 const TRIGGERS=new Set(['exit-intent','scroll-end','time-on-site']);
 
 function savedState(storage){
@@ -7,17 +8,17 @@ function savedState(storage){
 const elapsedValue=value=>Number.isFinite(Number(value))?Math.max(0,Number(value)):0;
 
 // A visit is scoped to this tab. Visible time survives same-origin navigation;
-// hidden tabs and the back/forward cache do not contribute to the minute.
-export function createRetentionController({storage,memory={},now=Date.now,visible=()=>true,blocked=()=>false,onShow,initialSubmitted=false,minute=60000,quietPeriod=5000}={}){
+// hidden tabs and the back/forward cache do not contribute to the 30 seconds.
+export function createRetentionController({storage,memory={},now=Date.now,visible=()=>true,blocked=()=>false,onShow,initialSubmitted=false,delay=30000,quietPeriod=5000}={}){
  const saved=savedState(storage);
- const state={elapsed:Math.min(minute,Math.max(elapsedValue(saved.elapsed),elapsedValue(memory.elapsed))),shown:saved.shown===true||memory.shown===true,submitted:initialSubmitted||saved.submitted===true||memory.submitted===true};
+ const state={elapsed:Math.min(delay,Math.max(elapsedValue(saved.elapsed),elapsedValue(memory.elapsed))),shown:saved.shown===true||memory.shown===true,submitted:initialSubmitted||saved.submitted===true||memory.submitted===true};
  let previousTime=now(),wasVisible=visible(),wasBlocked=blocked(),paused=false;
- let quietUntil=wasBlocked||state.elapsed>=minute?previousTime+quietPeriod:previousTime,lastSaved='';
+ let quietUntil=wasBlocked||state.elapsed>=delay?previousTime+quietPeriod:previousTime,lastSaved='';
  const persist=()=>{Object.assign(memory,state);const serialized=JSON.stringify(state);if(serialized===lastSaved)return;try{storage?.setItem(STORAGE_KEY,serialized);lastSaved=serialized;}catch{}};
  const consumed=()=>state.shown||state.submitted;
  const refresh=()=>{
   const time=now();
-  if(!paused&&wasVisible)state.elapsed=Math.min(minute,state.elapsed+Math.max(0,time-previousTime));
+  if(!paused&&wasVisible)state.elapsed=Math.min(delay,state.elapsed+Math.max(0,time-previousTime));
   previousTime=time;wasVisible=!paused&&visible();
   const currentBlocked=blocked();
   if(currentBlocked||wasBlocked)quietUntil=time+quietPeriod;
@@ -32,7 +33,7 @@ export function createRetentionController({storage,memory={},now=Date.now,visibl
   return true;
  };
  const controller={
-  sync(){const time=refresh();return state.elapsed>=minute&&show('time-on-site',time);},
+  sync(){const time=refresh();return state.elapsed>=delay&&show('time-on-site',time);},
   request(reason){return show(reason,refresh());},
   defer(){const time=refresh();quietUntil=Math.max(quietUntil,time+quietPeriod);},
   leadSucceeded(){refresh();state.submitted=true;persist();},
@@ -48,8 +49,10 @@ export function isExitIntent(event,{finePointer,mouseEntered}){
  return finePointer&&mouseEntered&&event.pointerType==='mouse'&&event.relatedTarget===null&&event.clientY<=5;
 }
 
-export function hasReachedBottom({scrollHeight,clientHeight,scrollY,previousScrollY,time,lastScrollIntent}){
- return scrollHeight>clientHeight+100&&scrollY>previousScrollY&&scrollHeight-clientHeight-scrollY<=16&&time-lastScrollIntent>=0&&time-lastScrollIntent<=2000;
+// Progress is measured over the available scroll range: top 0%, bottom 100%.
+export function hasReachedScrollDepth({scrollHeight,clientHeight,scrollY,previousScrollY,time,lastScrollIntent}){
+ const scrollableHeight=scrollHeight-clientHeight;
+ return scrollableHeight>100&&scrollY>previousScrollY&&scrollY>=scrollableHeight*.7&&time-lastScrollIntent>=0&&time-lastScrollIntent<=2000;
 }
 
 export function mountRetentionPopup({dialog,openDialog,track=()=>{},initialSubmitted=false,document:doc=document,window:win=window}={}){
@@ -96,7 +99,7 @@ export function mountRetentionPopup({dialog,openDialog,track=()=>{},initialSubmi
  doc.addEventListener('keydown',event=>{if(!event.defaultPrevented&&!event.ctrlKey&&!event.metaKey&&!event.altKey&&!event.shiftKey&&!typingTarget(event.target)&&['ArrowDown','PageDown','End',' '].includes(event.key))recordIntent();});
  win.addEventListener('scroll',()=>{
   const top=win.scrollY,root=doc.documentElement;
-  if(hasReachedBottom({scrollHeight:root.scrollHeight,clientHeight:root.clientHeight,scrollY:top,previousScrollY:lastScrollY,time:Date.now(),lastScrollIntent}))request('scroll-end');
+  if(hasReachedScrollDepth({scrollHeight:root.scrollHeight,clientHeight:root.clientHeight,scrollY:top,previousScrollY:lastScrollY,time:Date.now(),lastScrollIntent}))request('scroll-end');
   lastScrollY=top;
  },{passive:true});
  doc.addEventListener('visibilitychange',sync);
