@@ -45,9 +45,8 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
 .retention-consultant{position:absolute;left:18px;right:18px;bottom:18px;display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid rgba(255,255,255,.65);border-radius:12px;background:rgba(255,255,255,.91);box-shadow:0 4px 20px rgba(0,34,36,.06)}
 .retention-consultant-dot{width:9px;height:9px;border-radius:50%;background:var(--teal,#00777e);flex:0 0 9px}
-.retention-consultant strong,.retention-consultant div>span{display:block;line-height:1.5}
+.retention-consultant strong{display:block;line-height:1.5}
 .retention-consultant strong{font-size:12px;font-weight:650}
-.retention-consultant div>span{font-size:10px;color:var(--muted,#6e7474)}
 .retention-close{position:absolute;z-index:2;top:12px;right:12px;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid rgba(0,119,126,.12);border-radius:50%;color:var(--teal-dark,#00585e);background:#fff;box-shadow:0 3px 14px rgba(0,34,36,.08)}
 .retention-close:hover{background:var(--teal-soft,#eaf5f4)}
 .retention-form .thank-you{text-align:left;padding:12px 0}
@@ -63,7 +62,6 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
  .retention-consultant{position:static;inset:auto;display:block;min-width:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:left}
  .retention-consultant-dot{display:none}
  .retention-consultant strong{font-size:18px;line-height:1.4}
- .retention-consultant div>span{margin-top:7px;font-size:14px;line-height:1.5}
  .retention-description{margin-top:22px;font-size:15px;line-height:1.65}
  .retention-description strong{display:block;margin-top:16px;font-weight:650}
  .retention-form{margin-top:20px}
