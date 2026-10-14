@@ -67,7 +67,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
  .retention-photo{position:absolute;top:56px;right:22px;width:84px;height:106px;border-radius:12px}
  .retention-photo>img{object-position:50% 23%;width:100%;height:150%;top:-5px}
  .retention-consultant{display:none}
- .retention-close{width:32px;height:32px;top:10px;right:10px}
+ .retention-close{position:sticky;float:right;width:32px;height:32px;top:10px;right:auto;margin:10px 10px -42px 0}
 }
 @media(prefers-reduced-motion:reduce){.retention-modal[open]{animation:none}}
 
