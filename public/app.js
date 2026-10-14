@@ -1004,12 +1004,10 @@ function createCalculatorScene(root) {
   }
   board(q[0],q[1],4.2,4.2,0);
   board(q[3],q[0],6.4,4.2,1.05);
-  // Each wall run meets the corresponding door jamb. The opening stays clear,
-  // and the short return in front of the door ends flush with the section cut.
-  const doorEdges=[250.7,283.7].map(x=>(x-q[1][0])/(q[2][0]-q[1][0]));
+  // Stop at the far door jamb; the opening and the foreground stay clear.
+  const doorEdge=(250.7-q[1][0])/(q[2][0]-q[1][0]);
   const height=t=>4.2+(6.4-4.2)*t;
-  board(q[1],lerp(q[1],q[2],doorEdges[0]),height(0),height(doorEdges[0]),-.8);
-  board(lerp(q[1],q[2],doorEdges[1]),q[2],height(doorEdges[1]),height(1),-.8,true);
+  board(q[1],lerp(q[1],q[2],doorEdge),height(0),height(doorEdge),-.8);
  }
 
 
