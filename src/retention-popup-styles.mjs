@@ -51,11 +51,12 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 @media(max-width:641px){
  .retention-modal{width:calc(100% - 24px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);border-radius:20px}
  .retention-shell{display:block;min-height:0}
- .retention-copy{padding:26px 22px 24px}
+ .retention-copy{display:grid;grid-template-columns:clamp(90px,25vw,112px) minmax(0,1fr);column-gap:18px;padding:26px 22px 24px}
+ .retention-copy>h2,.retention-copy>.retention-form,.retention-copy>.retention-direct-call{grid-column:1/-1}
  .retention-copy h2{min-height:0;padding-right:26px;font-size:clamp(22px,6.4vw,26px);line-height:1.18;max-width:none}
- .retention-photo{position:static;inset:auto;display:block;width:clamp(90px,25vw,112px);height:auto;margin:20px auto 0;border-radius:0;background:transparent;overflow:visible}
+ .retention-photo{position:static;inset:auto;display:block;grid-column:1;grid-row:2;align-self:start;width:100%;height:auto;margin:20px 0 0;border-radius:0;background:transparent;overflow:visible}
  .retention-photo>img{position:static;inset:auto;width:100%;height:auto;aspect-ratio:1;object-position:50% 28%;border-radius:16px}
- .retention-description{margin-top:22px;font-size:15px;line-height:1.65}
+ .retention-description{grid-column:2;grid-row:2;min-width:0;margin-top:20px;font-size:15px;line-height:1.65}
  .retention-description strong{display:block;margin-top:16px;font-weight:650}
  .retention-form{margin-top:20px}
  .retention-form .consent{font-size:11px}
