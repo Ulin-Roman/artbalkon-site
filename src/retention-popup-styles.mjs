@@ -41,7 +41,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-direct-call{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 6px;margin-top:24px;color:var(--muted,#6e7474);font-size:13px}
 .retention-direct-call .phone{font-size:17px!important;letter-spacing:-.35px;color:var(--teal,#00777e);white-space:nowrap}
 .retention-phone:hover{text-decoration:underline;text-underline-offset:3px}
-.retention-photo{position:relative;min-width:0;border-radius:0 24px 24px 0;background:#eef2ef;overflow:hidden}
+.retention-photo{position:absolute;inset:0 0 0 calc(100% * 1.15 / 2.15);min-width:0;border-radius:0 24px 24px 0;background:#eef2ef;overflow:hidden}
 .retention-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
 .retention-consultant{position:absolute;left:18px;right:18px;bottom:18px;display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid rgba(255,255,255,.65);border-radius:12px;background:rgba(255,255,255,.91);box-shadow:0 4px 20px rgba(0,34,36,.06)}
 .retention-consultant-dot{width:9px;height:9px;border-radius:50%;background:var(--teal,#00777e);flex:0 0 9px}
@@ -53,21 +53,23 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-form .thank-you{text-align:left;padding:12px 0}
 .retention-form .thank-you h3{font-size:25px}
 .retention-form .thank-you p{font-size:14px}
-@media(max-width:640px){
+@media(max-width:641px){
  .retention-modal{width:calc(100% - 24px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);border-radius:20px}
  .retention-shell{display:block;min-height:0}
  .retention-copy{padding:26px 22px 24px}
- .retention-copy h2{min-height:156px;padding-right:122px;font-size:28px;line-height:1.13;max-width:380px}
- .retention-description{margin-top:13px;font-size:15px}
- .retention-form{margin-top:22px}
- .retention-direct-call{margin-top:20px;font-size:12px}
- .retention-direct-call .phone{font-size:17px!important}
- .retention-photo{position:absolute;top:46px;right:22px;width:108px;height:142px;border-radius:0;background:transparent;overflow:visible}
- .retention-photo>img{object-position:50% 22%;left:11px;right:auto;top:0;width:86px;height:86px;border-radius:12px}
- .retention-consultant{display:block;left:0;right:0;bottom:0;padding:0;border:0;background:transparent;box-shadow:none;text-align:center}
+ .retention-copy h2{min-height:0;padding-right:26px;font-size:clamp(22px,6.4vw,26px);line-height:1.18;max-width:none}
+ .retention-photo{position:static;inset:auto;display:grid;grid-template-columns:clamp(90px,25vw,112px) minmax(0,1fr);align-items:center;gap:18px;width:auto;height:auto;margin-top:20px;border-radius:0;background:transparent;overflow:visible}
+ .retention-photo>img{position:static;inset:auto;width:100%;height:auto;aspect-ratio:1;object-position:50% 28%;border-radius:16px}
+ .retention-consultant{position:static;inset:auto;display:block;min-width:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:left}
  .retention-consultant-dot{display:none}
- .retention-consultant strong{font-size:10.5px;line-height:1.25}
- .retention-consultant div>span{margin-top:3px;font-size:9px;line-height:1.25}
+ .retention-consultant strong{font-size:18px;line-height:1.4}
+ .retention-consultant div>span{margin-top:7px;font-size:14px;line-height:1.5}
+ .retention-description{margin-top:22px;font-size:15px;line-height:1.65}
+ .retention-description strong{display:block;margin-top:16px;font-weight:650}
+ .retention-form{margin-top:20px}
+ .retention-form .consent{font-size:11px}
+ .retention-direct-call{display:block;margin-top:24px;padding-top:20px;border-top:1px solid #e2e5e4;font-size:13px;text-align:center}
+ .retention-direct-call .phone{display:block;margin-top:7px;font-size:clamp(20px,6vw,26px)!important;font-weight:700;line-height:1.4}
  .retention-close{position:sticky;float:right;width:32px;height:32px;top:10px;right:auto;margin:10px 10px -42px 0}
 }
 @media(prefers-reduced-motion:reduce){.retention-modal[open]{animation:none}}
