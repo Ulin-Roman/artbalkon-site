@@ -96,7 +96,7 @@ export const definitions=[
       "displayTitle": "Балкон со светлым паркетом и удобным шкафом",
       "description": "Светлая отделка из липы под кирпич объединяет интерьер, а отдельный шкаф помогает организовать хранение.",
       "before": "landing-gallery-v1/work-368-before.webp",
-      "after": "landing-gallery-v1/work-368-after-lipa-v1.webp"
+      "after": "landing-gallery-v1/work-368-after-lipa-white-cabinet-v2.webp"
     },
     {
       "id": 369,
