@@ -973,13 +973,7 @@ function createCalculatorScene(root) {
    const uv=[[x/n,y/n],[(x+1)/n,y/n],[(x+1)/n,(y+1)/n],[x/n,(y+1)/n]];
    for(const ids of [[0,1,2],[0,2,3]])triangle(base,ids.map(i=>{const point=source(...uv[i]);return [point[0]*base.width/340,point[1]*base.height/480];}),ids.map(i=>target(...uv[i])));
   }
-  // Replace the photographed wooden sill with PVC along the finished floor edge.
-  // Keep the paint inside the door face so the selected wall baseboards stay intact.
-  const a=face[3],b=face[2],height=3.4,at=[a[0],a[1]-height],bt=[b[0],b[1]-height];
-  const dx=b[0]-a[0],dy=b[1]-a[1],length=Math.hypot(dx,dy),depth=height*dx/length;
-  const sill=ctx.createLinearGradient(...at,at[0]-dy/length*depth,at[1]+dx/length*depth);
-  sill.addColorStop(0,'#f6f7f3');sill.addColorStop(.45,'#e8ebe7');sill.addColorStop(1,'#b9bfbc');
-  fill([at,bt,b,a],sill);line([at,bt],'#ffffff',.45);line([a,b],'#8b949080',.28);
+  // The source already includes the lower PVC frame; do not add a strip below it.
   ctx.restore();
  }
 
