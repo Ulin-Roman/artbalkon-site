@@ -1,3 +1,4 @@
+import {checkFaq} from './faq-check.mjs';
 import {newLandingDefinitions,newLandingSlugs} from '../src/landing-pages.mjs';
 import {beforeGeometryCorrections} from '../src/portfolio-before-geometry-corrections.mjs';
 const beforeGeometrySources = new Map(Object.entries(beforeGeometryCorrections).map(([source,target])=>[target,source]));
@@ -399,6 +400,7 @@ for(const name of ['cold-balcony','warm-balcony']){
 const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';
 const staticOnly=process.env.SITE_STATIC_ONLY==='true';
+await checkFaq({root,basePath:base,staticOnly});
 const redirectTargets=new Map([
  ['balkon-pod-klyuch','/'],
  ...bundledServiceSlugs.map(slug=>[slug,'/#complex-options']),
