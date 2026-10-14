@@ -43,10 +43,6 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-phone:hover{text-decoration:underline;text-underline-offset:3px}
 .retention-photo{position:absolute;inset:0 0 0 calc(100% * 1.15 / 2.15);min-width:0;border-radius:0 24px 24px 0;background:#eef2ef;overflow:hidden}
 .retention-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
-.retention-consultant{position:absolute;left:18px;right:18px;bottom:18px;display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid rgba(255,255,255,.65);border-radius:12px;background:rgba(255,255,255,.91);box-shadow:0 4px 20px rgba(0,34,36,.06)}
-.retention-consultant-dot{width:9px;height:9px;border-radius:50%;background:var(--teal,#00777e);flex:0 0 9px}
-.retention-consultant strong{display:block;line-height:1.5}
-.retention-consultant strong{font-size:12px;font-weight:650}
 .retention-close{position:absolute;z-index:2;top:12px;right:12px;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid rgba(0,119,126,.12);border-radius:50%;color:var(--teal-dark,#00585e);background:#fff;box-shadow:0 3px 14px rgba(0,34,36,.08)}
 .retention-close:hover{background:var(--teal-soft,#eaf5f4)}
 .retention-form .thank-you{text-align:left;padding:12px 0}
@@ -57,11 +53,8 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
  .retention-shell{display:block;min-height:0}
  .retention-copy{padding:26px 22px 24px}
  .retention-copy h2{min-height:0;padding-right:26px;font-size:clamp(22px,6.4vw,26px);line-height:1.18;max-width:none}
- .retention-photo{position:static;inset:auto;display:grid;grid-template-columns:clamp(90px,25vw,112px) minmax(0,1fr);align-items:center;gap:18px;width:auto;height:auto;margin-top:20px;border-radius:0;background:transparent;overflow:visible}
+ .retention-photo{position:static;inset:auto;display:block;width:clamp(90px,25vw,112px);height:auto;margin:20px auto 0;border-radius:0;background:transparent;overflow:visible}
  .retention-photo>img{position:static;inset:auto;width:100%;height:auto;aspect-ratio:1;object-position:50% 28%;border-radius:16px}
- .retention-consultant{position:static;inset:auto;display:block;min-width:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:left}
- .retention-consultant-dot{display:none}
- .retention-consultant strong{font-size:18px;line-height:1.4}
  .retention-description{margin-top:22px;font-size:15px;line-height:1.65}
  .retention-description strong{display:block;margin-top:16px;font-weight:650}
  .retention-form{margin-top:20px}
