@@ -1,14 +1,31 @@
 """Check deployed redirects, PHP and form configuration without sending any application."""
 import json
 import gzip
+import hashlib
 import re
 import urllib.request
 import urllib.error
+import urllib.parse
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, request, fp, code, message, headers, newurl):
         return None
+
+
+
+def assert_retention_popup(html, page):
+    popup = re.search(r'<dialog\b[^>]*\bid="retention-modal"[\s\S]*?</dialog>', html)
+    assert popup, 'Missing callback popup: ' + page
+    inline = re.search(r'<style\b[^>]*\bid="retention-popup-styles"[^>]*>([\s\S]*?)</style>', html)
+    assert inline, 'Missing inline callback popup styles: ' + page
+    for selector in ['.retention-modal', '.retention-phone-field', '.retention-close']:
+        assert selector in inline.group(1), 'Missing inline callback selector ' + selector + ': ' + page
+    assert re.search(r'\.retention-phone-field\s*>\s*\.sr-only', inline.group(1)), 'Callback phone label is not hidden by inline styles: ' + page
+    for svg in re.findall(r'<svg\b[^>]*>', popup.group(0)):
+        for dimension in ['width', 'height']:
+            bound = re.search(r'\b' + dimension + r'="(\d+)(?:px)?"', svg)
+            assert bound and 0 < int(bound.group(1)) <= 32, 'Callback SVG needs bounded ' + dimension + ': ' + page
 
 
 opener = urllib.request.build_opener(NoRedirect)
@@ -56,6 +73,7 @@ for slug in landing_slugs:
     assert gallery_heading and re.sub(r'<[^>]*>', '', gallery_heading.group(1)).strip(), 'Missing project gallery heading: ' + slug
     assert 'визуализац' not in html.lower(), 'Customer-facing copy and metadata must remain neutral: ' + slug
     assert '"@type":"Service"' in html and '"@type":"FAQPage"' in html, 'Missing schema: ' + slug
+    assert_retention_popup(html, slug)
 print('All nine new production landings, 54 comparisons and their SEO markup verified.')
 
 
@@ -71,18 +89,22 @@ with urllib.request.urlopen(request, timeout=30) as response:
 assert '<meta name="robots" content="index,follow,max-image-preview:large">' in html, 'Production must remain indexable'
 assert '<link rel="canonical" href="https://artbalkon.site/">' in html, 'Incorrect home canonical'
 assert 'href="/nashi-raboty/"' in html, 'Portfolio must be crawlable from the home page'
+assert_retention_popup(html, '/')
 css_path = re.search(r'<link rel="stylesheet" href="([^"]+)"', html).group(1)
+css_version = urllib.parse.parse_qs(urllib.parse.urlsplit(css_path).query).get('v', [''])[0]
+assert re.fullmatch(r'[0-9a-f]{12}', css_version), 'Published stylesheet URL must contain its content hash'
 css_request = urllib.request.Request('https://artbalkon.site' + css_path, headers={'Accept-Encoding': 'gzip'})
 with urllib.request.urlopen(css_request, timeout=30) as response:
     css_bytes = response.read()
     css_encoding = response.headers.get('Content-Encoding', '')
     css_cache = response.headers.get('Cache-Control', '')
     css = gzip.decompress(css_bytes) if css_encoding == 'gzip' else css_bytes
+assert hashlib.sha256(css).hexdigest()[:12] == css_version, 'Published stylesheet content does not match the version requested by HTML'
 assert b'calculator-scene-ready' in css and b'100svh' in css, 'Published styles do not contain the latest responsive/performance fixes'
 robots = urllib.request.urlopen('https://artbalkon.site/robots.txt?technical-check=1', timeout=30).read().decode('utf-8')
 assert 'Sitemap: https://artbalkon.site/sitemap.xml' in robots, 'Production sitemap must remain discoverable'
 sitemap = urllib.request.urlopen('https://artbalkon.site/sitemap.xml?technical-check=1', timeout=30).read().decode('utf-8')
 assert len(re.findall(r'<loc>', sitemap)) == 24, 'Production sitemap must include 24 content pages'
-print('Production SEO and static delivery:', json.dumps({'html_encoding': html_encoding, 'html_cache': html_cache, 'css_encoding': css_encoding, 'css_cache': css_cache, 'css_transfer_bytes': len(css_bytes), 'css_decoded_bytes': len(css)}, ensure_ascii=False))
+print('Production SEO and static delivery:', json.dumps({'html_encoding': html_encoding, 'html_cache': html_cache, 'css_encoding': css_encoding, 'css_cache': css_cache, 'css_version': css_version, 'callback_inline_styles': True, 'css_transfer_bytes': len(css_bytes), 'css_decoded_bytes': len(css)}, ensure_ascii=False))
 if css_encoding != 'gzip':
     print('NOTICE: the hosting front end did not apply gzip to CSS; inspect its static-file settings.')

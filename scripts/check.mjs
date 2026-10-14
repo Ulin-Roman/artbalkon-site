@@ -418,10 +418,15 @@ for(const file of pages){
  const html=await readFile(file,'utf8'),isRedirect=html.includes('http-equiv="refresh"'),isNoindex=html.includes('name="robots" content="noindex');
  if(!isRedirect){
   assert.equal([...html.matchAll(/id="retention-modal"/g)].length,1,file+': callback popup on every page');
+  const popupStyle=html.match(/<style id="retention-popup-styles">([\s\S]*?)<\/style>/)?.[1];
+  assert.ok(popupStyle?.includes('.retention-modal{')&&popupStyle.includes('.retention-phone-field .ui-icon{'),file+': popup styles must travel with HTML');
+  assert.ok(popupStyle.includes('max-height:calc(100vh - 24px)')&&popupStyle.includes('.retention-phone-field>.sr-only{'),file+': mobile height fallback and hidden label');
+  assert.ok(html.indexOf('id="retention-popup-styles"')>html.indexOf('rel="stylesheet"'),file+': popup rules follow cached main CSS');
   const popup=html.match(/<dialog class="retention-modal"[\s\S]*?<\/dialog>/)?.[0];
   assert.ok(popup?.includes('data-lead-form="callback-popup"'),file+': phone-only callback type');
   assert.ok(popup.includes('name="phone"')&&popup.includes('name="consent"'),file+': callback contacts and consent');
   assert.doesNotMatch(popup,/name="name"/,file+': popup must not require a name');
+  assert.match(popup,/<svg width="21" height="21" class="ui-icon /,file+': phone icon has intrinsic size without CSS');
   assert.ok(popup.includes('href="tel:'+company.tel+'"'),file+': Callibri-compatible canonical phone');
  }
  pageHtml.set(file,html);
