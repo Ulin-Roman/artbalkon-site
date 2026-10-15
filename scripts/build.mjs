@@ -77,6 +77,7 @@ await rm('dist/styles-extra.css');
 await rm('dist/calculator-estimate.mjs');
 await rm('dist/retention-popup.mjs');
 await rm('dist/media-lifecycle.mjs');
+await rm('dist/phone-mask.mjs');
 await writeFile('dist/.nojekyll','');
 const routes=[];
 async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(optimizeHtml(shell(body,{path,...meta}))));if(!meta.noindex)routes.push(path);}

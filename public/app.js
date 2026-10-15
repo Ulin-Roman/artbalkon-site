@@ -1,6 +1,7 @@
 import {calculateFinishingEstimate} from './calculator-estimate.mjs';
 import {mountRetentionPopup} from './retention-popup.mjs';
 import {hydrateVideo,mountAmbientVideo,mountVisibleActivity} from './media-lifecycle.mjs';
+import {mountPhoneMask,phoneIsValid} from './phone-mask.mjs';
 (() => {
  'use strict';
  document.querySelectorAll('[data-repair-range]').forEach(range=>{
@@ -155,10 +156,7 @@ import {hydrateVideo,mountAmbientVideo,mountVisibleActivity} from './media-lifec
  else lazyVideos.forEach(hydrateVideo);
  lazyVideos.forEach(video=>{video.addEventListener('pointerdown',()=>hydrateVideo(video),{once:true});video.addEventListener('focus',()=>hydrateVideo(video),{once:true});});
  document.querySelectorAll('[data-ambient-video]').forEach(video=>mountAmbientVideo(video,{reducedMotion}));
- const phoneNationalDigits=value=>{let digits=String(value||'').replace(/\D/g,'');if(/^\s*\+7/.test(String(value||'')))digits=digits.slice(1);else if(digits.length===11&&/^[78]/.test(digits))digits=digits.slice(1);return digits.slice(0,10);};
- const formatPhone=value=>{const digits=phoneNationalDigits(value);let formatted='+7 ';if(!digits)return formatted;formatted+=`(${digits.slice(0,3)}`;if(digits.length>=3)formatted+=')';if(digits.length>3)formatted+=` ${digits.slice(3,6)}`;if(digits.length>6)formatted+=`-${digits.slice(6,8)}`;if(digits.length>8)formatted+=`-${digits.slice(8,10)}`;return formatted;};
- const phoneIsValid=value=>{const digits=phoneNationalDigits(value);return /^\d{10}$/.test(digits)&&!(/^(\d)\1{9}$/.test(digits));};
- document.querySelectorAll('input[name="phone"]').forEach(input=>{input.value=formatPhone(input.value);input.addEventListener('focus',()=>{if(!input.value.trim())input.value='+7 ';requestAnimationFrame(()=>input.setSelectionRange(input.value.length,input.value.length));});input.addEventListener('input',()=>{input.value=formatPhone(input.value);input.setCustomValidity('');});});
+ document.querySelectorAll('input[name="phone"]').forEach(mountPhoneMask);
  function validate(form,scope=form){
   const fields=[...scope.querySelectorAll('input,select,textarea')].filter(el=>!el.closest('.honeypot'));
   for(const el of fields){if(el.name==='phone')el.setCustomValidity(phoneIsValid(el.value)?'':'Введите 10 цифр после +7. Номер не должен состоять из одинаковых цифр.');if(el.name==='name'||el.name==='size')el.setCustomValidity(el.value.trim()?'':'Пожалуйста, заполните это поле.');if(!el.checkValidity()){el.reportValidity();el.focus();return false;}}
