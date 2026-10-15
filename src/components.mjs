@@ -76,7 +76,7 @@ const serviceGallerySlides=service=>uniqueImages((serviceBeforeAfterProjects[ser
 const glazingHeroImage='service-before-after/glazing-new-09-after.jpg';
 const finishingHeroImage='service-before-after/renovation-loggia-12-after.webp';
 const turnkeyHeroImage='service-before-after/furniture-interior-v2-02-after.webp';
-export const homeHeroImage='turnkey-books-v1/after.webp';
+export const homeHeroImage='home-reading-book-v2/hero.webp';
 const coldGlazingHeroImage='service-before-after/cold-loggia-finished-12-after.png';
 const warmGlazingHeroImage='service-before-after/renovation-loggia-02-after.webp';
 const panoramicGlazingHeroImage='service-before-after/panoramic-glazing-after.jpg';
@@ -89,7 +89,7 @@ export const button=(label,href='#quiz',extra='',withArrow=true,forceArrow=false
 export function pic(name,alt,classes='',eager=false){const cleanName=cleanPortfolioAsset(name);const src=pictureAsset(cleanName);const responsive=smallPictureAssets.has(cleanName);const srcset=responsive?` srcset="/assets/${pictureAsset(cleanName,'-small')} 480w, /assets/${src} 1000w" sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 1000px) 50vw, 600px"`:'';return `<img class="${classes}" src="/assets/${src}"${srcset} width="1000" height="1100" loading="${eager?'eager':'lazy'}" ${eager?'fetchpriority="high"':''} decoding="async" alt="${esc(alt)}">`;}
 const deferredSlide=(name,alt)=>`<img class="hero-image" data-src="/assets/${pictureAsset(name)}" width="1000" height="1100" loading="lazy" decoding="async" aria-hidden="true" alt="${esc(alt)}">`;
 const serviceHeroSlideshow=(service,{home=false}={})=>{
- if(home)return `<div class="landing-photo"><img class="hero-image is-active" src="/assets/${pictureAsset(homeHeroImage)}" width="784" height="1168" loading="eager" fetchpriority="high" decoding="async" alt="Балкон с книжными полками и скамьёй — место для чтения"></div>`;
+ if(home)return `<div class="landing-photo"><img class="hero-image is-active" src="/assets/${pictureAsset(homeHeroImage)}" width="784" height="1168" loading="eager" fetchpriority="high" decoding="async" alt="Девушка читает книгу на балконе с книжными полками и скамьёй"></div>`;
  const slides=serviceGallerySlides(service);
  if(service.landingVariant)return `<div class="landing-photo"><img class="hero-image is-active" src="/assets/${pictureAsset(service.image)}" width="768" height="1024" loading="eager" fetchpriority="high" decoding="async" alt="${esc(projectDisplayTitle(serviceBeforeAfterProjects[service.slug][0]))}"></div>`;
  if(service.slug==='osteklenie-balkonov')return `<div class="landing-photo">${pic(glazingHeroImage,`${service.title} — остеклённый балкон с выносом в кирпичном доме ArtBalkon`,'hero-image is-active',true)}</div>`;
