@@ -31,8 +31,38 @@ test('the default timer opens at 30,000 milliseconds and never at 29,999',()=>{
  session.advance(1);assert.equal(session.controller.snapshot().elapsed,30000);assert.deepEqual(session.shown,['time-on-site']);
 });
 
+test('automatic triggers wait for ten visible seconds and early requests do not consume the visit',()=>{
+ for(const reason of ['exit-intent','scroll-end','time-on-site']){
+  const session=visit();
+  assert.equal(session.controller.request(reason),false);
+  session.advance(9999);assert.equal(session.controller.request(reason),false);
+  assert.equal(session.controller.consumed(),false);assert.deepEqual(session.shown,[]);
+  session.advance(1);assert.deepEqual(session.shown,[],'Do not queue an early request for ten seconds');
+  assert.equal(session.controller.request(reason),true);assert.deepEqual(session.shown,[reason]);
+ }
+});
+
+test('the ten-second grace period counts visible time across same-tab navigation',()=>{
+ const first=visit();first.advance(4000);first.visible(false);first.advance(120000);first.visible(true);first.advance(5000);
+ assert.equal(first.controller.snapshot().elapsed,9000);first.controller.pause();
+ const next=visit({storage:first.storage,initialTime:first.time()});
+ assert.equal(next.controller.request('exit-intent'),false);
+ next.advance(999);assert.equal(next.controller.request('scroll-end'),false);
+ next.advance(1);assert.deepEqual(next.shown,[]);assert.equal(next.controller.request('exit-intent'),true);
+});
+
+test('mounted early exits and scrolls stay silent until a fresh event after ten seconds',t=>{
+ const page=mountedScrollVisit();
+ page.exit();page.wheel(100);page.scroll(1540);
+ t.mock.timers.setTime(DAYTIME+9999);page.exit();page.wheel(100);page.scroll(1600);
+ assert.deepEqual(page.opens,[]);assert.deepEqual(page.tracked,[]);assert.equal(page.persisted().shown,false);
+ t.mock.timers.setTime(DAYTIME+10000);page.poll();assert.deepEqual(page.opens,[]);
+ page.exit();assert.equal(page.opens.length,1);assert.equal(page.trigger.value,'exit-intent');
+});
+
 test('opening, dismissing and navigating cannot show a second popup during the visit',()=>{
  const first=visit();
+ first.advance(10000);
  assert.equal(first.controller.request('scroll-end'),true);
  assert.equal(first.controller.request('exit-intent'),false);
  const next=visit({storage:first.storage});
@@ -68,10 +98,11 @@ test('restoring from the back/forward cache does not count time spent off the pa
  session.advance(1);assert.deepEqual(session.shown,['time-on-site']);
 });
 
-test('unavailable storage still remembers consumption within this document',()=>{
+test('unavailable storage still remembers consumption within this document',t=>{
  const memory={},storage={getItem(){throw Error('blocked');},setItem(){throw Error('blocked');}};
  let count=0;
  const first=createRetentionController({storage,memory,onShow:()=>{count++;}});
+ t.mock.timers.setTime(DAYTIME+10000);
  assert.equal(first.request('exit-intent'),true);
  const second=createRetentionController({storage,memory,onShow:()=>{count++;}});
  assert.equal(second.request('scroll-end'),false);assert.equal(count,1);
@@ -79,7 +110,7 @@ test('unavailable storage still remembers consumption within this document',()=>
 
 test('a failed dialog open does not consume the only opportunity',()=>{
  let ready=false,count=0;
- const controller=createRetentionController({onShow:()=>{count++;return ready;}});
+ const session=visit({onShow:()=>{count++;return ready;}}),{controller}=session;session.advance(10000);
  assert.equal(controller.request('exit-intent'),false);assert.equal(controller.snapshot().shown,false);
  ready=true;assert.equal(controller.request('scroll-end'),true);assert.equal(count,2);
 });
@@ -124,8 +155,9 @@ function mountedScrollVisit(){
  return {dialog,closeButton,trigger,opens,tracked,body,persisted(){return JSON.parse([...storage.values()][0]||'{}');},poll(){interval?.();},visible(value){doc.hidden=!value;emit(doc,'visibilitychange');},exit(){emit(doc,'pointermove',{pointerType:'mouse',clientY:100,buttons:0});emit(doc,'pointerout',{pointerType:'mouse',clientY:0,relatedTarget:null});},wheel(deltaY){emit(doc,'wheel',{deltaY});},touchStart(clientY){emit(doc,'touchstart',{touches:[{clientY}]});},touchMove(clientY){emit(doc,'touchmove',{touches:[{clientY}]});},key(key){emit(doc,'keydown',{key,target:body});},scroll(scrollY){win.scrollY=scrollY;emit(win,'scroll');}};
 }
 
-test('mounted popup opens at 70% after a downward wheel scroll and keeps the existing analytics reason',()=>{
+test('mounted popup opens at 70% after a downward wheel scroll and keeps the existing analytics reason',t=>{
  const page=mountedScrollVisit();
+ t.mock.timers.setTime(DAYTIME+10000);
  page.wheel(100);page.scroll(1539);assert.deepEqual(page.opens,[]);
  page.wheel(100);page.scroll(1540);
  assert.deepEqual(page.opens,[{element:page.dialog,focus:page.closeButton}]);assert.equal(page.trigger.value,'scroll-end');
@@ -133,21 +165,22 @@ test('mounted popup opens at 70% after a downward wheel scroll and keeps the exi
  page.wheel(100);page.scroll(1800);assert.equal(page.opens.length,1);
 });
 
-test('restored or programmatic scroll positions and upward wheel input do not open the popup',()=>{
+test('restored or programmatic scroll positions and upward wheel input do not open the popup',t=>{
  const page=mountedScrollVisit();
+ t.mock.timers.setTime(DAYTIME+10000);
  page.scroll(1800);assert.deepEqual(page.opens,[]);
  page.wheel(-100);page.scroll(1900);assert.deepEqual(page.opens,[]);
  page.wheel(100);page.scroll(1800);assert.deepEqual(page.opens,[]);
  page.wheel(100);page.scroll(1900);assert.equal(page.opens.length,1);
 });
 
-test('mobile touch scrolling and keyboard scrolling can reach the 70% trigger',()=>{
- const touchPage=mountedScrollVisit();touchPage.touchStart(600);touchPage.touchMove(700);touchPage.scroll(1540);assert.deepEqual(touchPage.opens,[]);
+test('mobile touch scrolling and keyboard scrolling can reach the 70% trigger',t=>{
+ const touchPage=mountedScrollVisit();t.mock.timers.setTime(DAYTIME+10000);touchPage.touchStart(600);touchPage.touchMove(700);touchPage.scroll(1540);assert.deepEqual(touchPage.opens,[]);
  touchPage.touchMove(500);touchPage.scroll(1600);assert.equal(touchPage.opens.length,1);
- const keyboardPage=mountedScrollVisit();keyboardPage.key('End');keyboardPage.scroll(1540);assert.equal(keyboardPage.opens.length,1);
+ const keyboardPage=mountedScrollVisit();t.mock.timers.setTime(DAYTIME+20000);keyboardPage.key('End');keyboardPage.scroll(1540);assert.equal(keyboardPage.opens.length,1);
 });
 
-test('mounted popup follows Callibri replacement of the whole header phone before and after opening',()=>{
+test('mounted popup follows Callibri replacement of the whole header phone before and after opening',t=>{
  const handlers=new Map(),observations=[];
  const listen=(object,name,handler)=>{let events=handlers.get(object);if(!events){events=new Map();handlers.set(object,events);}const list=events.get(name)||[];list.push(handler);events.set(name,list);};
  const emit=(object,name,event)=>handlers.get(object)?.get(name)?.forEach(handler=>handler(event));
@@ -163,6 +196,7 @@ test('mounted popup follows Callibri replacement of the whole header phone befor
  const win={sessionStorage:{getItem:key=>storage.get(key),setItem:(key,value)=>storage.set(key,value)},scrollY:120,matchMedia(){return {matches:true};},setInterval(){return 1;},clearInterval(){},addEventListener(name,handler){listen(this,name,handler);},MutationObserver:class{constructor(callback){this.callback=callback;}observe(target){observations.push({target,callback:this.callback});}}};
  const opens=[];
  mountRetentionPopup({dialog,document:doc,window:win,openDialog:(element,focus)=>{opens.push({element,focus});element.open=true;}});
+ t.mock.timers.setTime(DAYTIME+10000);
  const tracking=observations.find(observer=>observer.target===headerContact);
  assert.ok(tracking,'observe a stable container, not the phone anchor');
  currentHeaderPhone=phoneLink('+7 (495) 877-49-59','tel:+74958774959');tracking.callback([]);
@@ -238,17 +272,17 @@ test('mounted night popup sends no open analytics and its running timer opens it
 });
 
 test('a night exit is not queued for 05:00, while a fresh daytime exit remains available',t=>{
- const start=Date.parse('2026-10-15T01:59:59.900Z');t.mock.timers.setTime(start);
- const page=mountedScrollVisit();page.exit();assert.deepEqual(page.opens,[]);
- t.mock.timers.setTime(start+100);page.poll();
+ const start=Date.parse('2026-10-15T01:59:49.900Z');t.mock.timers.setTime(start);
+ const page=mountedScrollVisit();t.mock.timers.setTime(start+10000);page.exit();assert.deepEqual(page.opens,[]);
+ t.mock.timers.setTime(start+10100);page.poll();
  assert.deepEqual(page.opens,[]);assert.equal(page.persisted().shown,false);
  page.exit();assert.equal(page.opens.length,1);assert.equal(page.trigger.value,'exit-intent');
 });
 
 test('a popup opened before midnight stays open and the next morning cannot cause a second show',t=>{
- const start=Date.parse('2026-10-14T20:59:59.900Z');t.mock.timers.setTime(start);
- const page=mountedScrollVisit();page.exit();assert.equal(page.opens.length,1);assert.equal(page.dialog.open,true);
- t.mock.timers.setTime(start+100);page.visible(false);page.visible(true);
+ const start=Date.parse('2026-10-14T20:59:49.900Z');t.mock.timers.setTime(start);
+ const page=mountedScrollVisit();t.mock.timers.setTime(start+10000);page.exit();assert.equal(page.opens.length,1);assert.equal(page.dialog.open,true);
+ t.mock.timers.setTime(start+10100);page.visible(false);page.visible(true);
  assert.equal(page.dialog.open,true);assert.equal(page.opens.length,1);
  page.dialog.open=false;
  t.mock.timers.setTime(Date.parse('2026-10-15T02:00:00Z'));page.visible(false);page.visible(true);page.exit();page.wheel(100);page.scroll(1540);page.poll();

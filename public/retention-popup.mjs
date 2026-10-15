@@ -1,6 +1,7 @@
 const STORAGE_KEY='artbalkon.retention-popup.v1';
 // Keep existing trigger IDs compatible with lead validation and analytics.
 const TRIGGERS=new Set(['exit-intent','scroll-end','time-on-site']);
+const MIN_VISIBLE_TIME=10000;
 const moscowHour=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Moscow',hour:'2-digit',hourCycle:'h23'});
 
 // Only new automatic opens are suppressed; an already open form stays usable.
@@ -17,14 +18,15 @@ const elapsedValue=value=>Number.isFinite(Number(value))?Math.max(0,Number(value
 // hidden tabs and the back/forward cache do not contribute to the 30 seconds.
 export function createRetentionController({storage,memory={},now=Date.now,visible=()=>true,blocked=()=>false,onShow,initialSubmitted=false,delay=30000,quietPeriod=5000}={}){
  const saved=savedState(storage);
- const state={elapsed:Math.min(delay,Math.max(elapsedValue(saved.elapsed),elapsedValue(memory.elapsed))),shown:saved.shown===true||memory.shown===true,submitted:initialSubmitted||saved.submitted===true||memory.submitted===true};
+ const maxElapsed=Math.max(delay,MIN_VISIBLE_TIME);
+ const state={elapsed:Math.min(maxElapsed,Math.max(elapsedValue(saved.elapsed),elapsedValue(memory.elapsed))),shown:saved.shown===true||memory.shown===true,submitted:initialSubmitted||saved.submitted===true||memory.submitted===true};
  let previousTime=now(),wasVisible=visible(),wasBlocked=blocked(),paused=false;
  let quietUntil=wasBlocked||state.elapsed>=delay?previousTime+quietPeriod:previousTime,lastSaved='';
  const persist=()=>{Object.assign(memory,state);const serialized=JSON.stringify(state);if(serialized===lastSaved)return;try{storage?.setItem(STORAGE_KEY,serialized);lastSaved=serialized;}catch{}};
  const consumed=()=>state.shown||state.submitted;
  const refresh=()=>{
   const time=now();
-  if(!paused&&wasVisible)state.elapsed=Math.min(delay,state.elapsed+Math.max(0,time-previousTime));
+  if(!paused&&wasVisible)state.elapsed=Math.min(maxElapsed,state.elapsed+Math.max(0,time-previousTime));
   previousTime=time;wasVisible=!paused&&visible();
   const currentBlocked=blocked();
   if(currentBlocked||wasBlocked)quietUntil=time+quietPeriod;
@@ -32,7 +34,7 @@ export function createRetentionController({storage,memory={},now=Date.now,visibl
   persist();return time;
  };
  const show=(reason,time)=>{
-  if(!TRIGGERS.has(reason)||consumed()||paused||!wasVisible||wasBlocked||time<quietUntil||isMoscowQuietHours(time))return false;
+  if(!TRIGGERS.has(reason)||consumed()||paused||!wasVisible||wasBlocked||state.elapsed<MIN_VISIBLE_TIME||time<quietUntil||isMoscowQuietHours(time))return false;
   // Reserve before opening: showModal can synchronously cause focus events.
   state.shown=true;persist();
   try{if(onShow?.(reason)===false){state.shown=false;persist();return false;}}catch{state.shown=false;persist();return false;}
