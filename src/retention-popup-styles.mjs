@@ -49,20 +49,26 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-form .thank-you h3{font-size:25px}
 .retention-form .thank-you p{font-size:14px}
 @media(max-width:641px){
- .retention-modal{width:calc(100% - 24px);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);border-radius:20px}
+ .retention-modal{width:calc(100% - 24px);max-width:420px;max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);border-radius:24px}
  .retention-shell{display:block;min-height:0}
- .retention-copy{display:grid;grid-template-columns:clamp(90px,25vw,112px) minmax(0,1fr);column-gap:18px;padding:26px 22px 24px}
- .retention-copy>h2,.retention-copy>.retention-form,.retention-copy>.retention-direct-call{grid-column:1/-1}
- .retention-copy h2{min-height:0;padding-right:26px;font-size:clamp(22px,6.4vw,26px);line-height:1.18;max-width:none}
- .retention-photo{position:static;inset:auto;display:block;grid-column:1;grid-row:2;align-self:start;width:100%;height:auto;margin:20px 0 0;border-radius:0;background:transparent;overflow:visible}
- .retention-photo>img{position:static;inset:auto;width:100%;height:auto;aspect-ratio:1;object-position:50% 28%;border-radius:16px}
- .retention-description{grid-column:2;grid-row:2;min-width:0;margin-top:20px;font-size:15px;line-height:1.65}
- .retention-description strong{display:block;margin-top:16px;font-weight:650}
- .retention-form{margin-top:20px}
- .retention-form .consent{font-size:11px}
- .retention-direct-call{display:block;margin-top:24px;padding-top:20px;border-top:1px solid #e2e5e4;font-size:13px;text-align:center}
- .retention-direct-call .phone{display:block;margin-top:7px;font-size:clamp(20px,6vw,26px)!important;font-weight:700;line-height:1.4}
- .retention-close{position:sticky;float:right;width:32px;height:32px;top:10px;right:auto;margin:10px 10px -42px 0}
+ .retention-copy{display:flex;flex-direction:column;min-width:0;padding:0 22px 22px;isolation:isolate}
+ .retention-photo{position:relative;inset:auto;order:-1;flex:none;display:block;width:calc(100% + 44px);height:clamp(230px,75vw,295px);margin:0 -22px;border-radius:24px 24px 0 0;background:#eef2ef;overflow:hidden}
+ .retention-photo>img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:50% 16%;border-radius:0}
+ .retention-photo::after{content:"";position:absolute;inset:52% 0 0;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 95%);pointer-events:none}
+ .retention-copy h2{position:relative;z-index:1;min-height:0;margin-top:-28px;padding:0;font-size:clamp(32px,9vw,40px);font-weight:750;line-height:1.06;letter-spacing:-.045em;text-align:center}
+ .retention-title-accent{display:block;color:var(--teal,#00777e)}
+ .retention-description{min-width:0;margin-top:14px;color:#42545a;font-size:15px;line-height:1.5;text-align:center}
+ .retention-description strong{display:block;margin-top:10px;font-weight:650;color:var(--ink,#222727)}
+ .retention-form{margin-top:18px}
+ .retention-phone-field{min-height:54px;border-radius:16px}
+ .retention-submit{min-height:54px;margin-top:10px;border-radius:16px;font-size:18px}
+ .retention-form .consent{margin-top:12px;font-size:10px;line-height:1.5}
+ .retention-direct-call{display:flex;justify-content:center;align-items:baseline;gap:4px 6px;margin-top:16px;padding-top:14px;border-top:1px solid #e2e5e4;font-size:12px;text-align:center}
+ .retention-direct-call .phone{display:inline;margin:0;font-size:16px!important;font-weight:700;line-height:1.4}
+ .retention-close{position:sticky;float:right;z-index:3;width:36px;height:36px;top:10px;right:auto;margin:10px 10px -46px 0;border-color:transparent;color:#263c45;box-shadow:0 3px 14px rgba(0,34,36,.12)}
+}
+@media(max-width:641px) and (max-height:700px){
+ .retention-photo{height:clamp(190px,36vh,240px);height:clamp(190px,36dvh,240px)}
 }
 @media(prefers-reduced-motion:reduce){.retention-modal[open]{animation:none}}
 
