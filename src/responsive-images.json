@@ -14696,5 +14696,20 @@
         "width": 784
       }
     ]
+  },
+  "/assets/landing-gallery-v1/work-335-after-finish-v4.webp": {
+    "src": "/assets/landing-gallery-v1/work-335-after-finish-v4.webp",
+    "width": 613,
+    "height": 1285,
+    "variants": [
+      {
+        "src": "/assets/landing-gallery-v1/work-335-after-finish-v4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/landing-gallery-v1/work-335-after-finish-v4.webp",
+        "width": 613
+      }
+    ]
   }
 }
