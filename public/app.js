@@ -1,5 +1,6 @@
 import {calculateFinishingEstimate} from './calculator-estimate.mjs';
 import {mountRetentionPopup} from './retention-popup.mjs';
+import {hydrateVideo,mountAmbientVideo,mountVisibleActivity} from './media-lifecycle.mjs';
 (() => {
  'use strict';
  document.querySelectorAll('[data-repair-range]').forEach(range=>{
@@ -135,14 +136,11 @@ import {mountRetentionPopup} from './retention-popup.mjs';
   const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
   let heroIndex=0,heroTimer=0;
   const loadSlide=slide=>{if(slide?.dataset.src){slide.src=slide.dataset.src;delete slide.dataset.src;}};
-  const showHeroSlide=index=>{heroIndex=index;loadSlide(slides[heroIndex]);slides.forEach((slide,i)=>{const active=i===heroIndex;slide.classList.toggle('is-active',active);slide.setAttribute('aria-hidden',String(!active));});loadSlide(slides[(heroIndex+1)%slides.length]);};
+  const showHeroSlide=(index,preloadNext=true)=>{heroIndex=index;loadSlide(slides[heroIndex]);slides.forEach((slide,i)=>{const active=i===heroIndex;slide.classList.toggle('is-active',active);slide.setAttribute('aria-hidden',String(!active));});if(preloadNext)loadSlide(slides[(heroIndex+1)%slides.length]);};
   const stopHeroSlider=()=>{if(heroTimer){clearInterval(heroTimer);heroTimer=0;}};
-  const startHeroSlider=()=>{if(reducedMotion.matches||slides.length<2||heroTimer)return;heroTimer=setInterval(()=>showHeroSlide((heroIndex+1)%slides.length),3000);};
-  showHeroSlide(0);startHeroSlider();
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopHeroSlider();else startHeroSlider();});
-  addEventListener('pagehide',stopHeroSlider);
-  addEventListener('pageshow',startHeroSlider);
-  reducedMotion.addEventListener('change',()=>{stopHeroSlider();startHeroSlider();});
+  const startHeroSlider=()=>{if(document.hidden||reducedMotion.matches||slides.length<2||heroTimer)return;loadSlide(slides[(heroIndex+1)%slides.length]);heroTimer=setInterval(()=>showHeroSlide((heroIndex+1)%slides.length),3000);};
+  showHeroSlide(0,false);
+  mountVisibleActivity({element:heroSlider,start:startHeroSlider,stop:stopHeroSlider,reducedMotion});
  }
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
  let modalTriggerScrollY=null;
@@ -152,18 +150,11 @@ import {mountRetentionPopup} from './retention-popup.mjs';
  const openDialogAtCurrentScroll=(dialog,focusTarget)=>{if(!dialog)return;const top=modalTriggerScrollY??scrollY;modalTriggerScrollY=null;dialogScrollPositions.set(dialog,top);if(!dialog.open)dialog.showModal();focusTarget?.focus({preventScroll:true});restoreScrollPosition(top);};
  document.querySelectorAll('dialog').forEach(dialog=>dialog.addEventListener('close',()=>{const top=dialogScrollPositions.get(dialog);dialogScrollPositions.delete(dialog);restoreScrollPosition(top);}));
  const retentionController=mountRetentionPopup({dialog:$('#retention-modal'),initialSubmitted:formGoalState.sent.size>0,track,openDialog:(dialog,focusTarget)=>{modalTriggerScrollY=null;openDialogAtCurrentScroll(dialog,focusTarget);}});
- const hydrateVideo=video=>{const sources=[...video.querySelectorAll('source[data-src]')];if(!sources.length)return;for(const source of sources){source.src=source.dataset.src;delete source.dataset.src;}video.load();};
  const lazyVideos=[...document.querySelectorAll('[data-lazy-video]')];
- if('IntersectionObserver' in window){const videoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const video=entry.target;hydrateVideo(video);if(video.autoplay&&!reducedMotion.matches)video.play().catch(()=>{});videoObserver.unobserve(video);}),{rootMargin:'500px 0px'});lazyVideos.forEach(video=>videoObserver.observe(video));}
+ if('IntersectionObserver' in window){const videoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const video=entry.target;hydrateVideo(video);if(video.autoplay&&!video.hasAttribute('data-ambient-video')&&!reducedMotion.matches)video.play().catch(()=>{});videoObserver.unobserve(video);}),{rootMargin:'500px 0px'});lazyVideos.forEach(video=>videoObserver.observe(video));}
  else lazyVideos.forEach(hydrateVideo);
  lazyVideos.forEach(video=>{video.addEventListener('pointerdown',()=>hydrateVideo(video),{once:true});video.addEventListener('focus',()=>hydrateVideo(video),{once:true});});
- document.querySelectorAll('[data-ambient-video]').forEach(video=>{
-  const control=video.closest('.home-advantages-photo')?.querySelector('[data-ambient-video-toggle]');
-  const syncControl=()=>{if(!control)return;const paused=video.paused;control.classList.toggle('is-paused',paused);control.setAttribute('aria-label',paused?'Воспроизвести видео':'Приостановить видео');control.querySelector('span').textContent=paused?'▶':'Ⅱ';};
-  if(reducedMotion.matches){video.removeAttribute('autoplay');video.pause();}
-  video.addEventListener('play',syncControl);video.addEventListener('pause',syncControl);syncControl();
-  control?.addEventListener('click',()=>{hydrateVideo(video);if(video.paused)video.play().catch(()=>{});else video.pause();});
- });
+ document.querySelectorAll('[data-ambient-video]').forEach(video=>mountAmbientVideo(video,{reducedMotion}));
  const phoneNationalDigits=value=>{let digits=String(value||'').replace(/\D/g,'');if(/^\s*\+7/.test(String(value||'')))digits=digits.slice(1);else if(digits.length===11&&/^[78]/.test(digits))digits=digits.slice(1);return digits.slice(0,10);};
  const formatPhone=value=>{const digits=phoneNationalDigits(value);let formatted='+7 ';if(!digits)return formatted;formatted+=`(${digits.slice(0,3)}`;if(digits.length>=3)formatted+=')';if(digits.length>3)formatted+=` ${digits.slice(3,6)}`;if(digits.length>6)formatted+=`-${digits.slice(6,8)}`;if(digits.length>8)formatted+=`-${digits.slice(8,10)}`;return formatted;};
  const phoneIsValid=value=>{const digits=phoneNationalDigits(value);return /^\d{10}$/.test(digits)&&!(/^(\d)\1{9}$/.test(digits));};

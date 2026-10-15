@@ -14,4 +14,6 @@ export async function optimizeCss(css, sourceText){
  const {code}=await transform(root.toString(),{loader:'css',minify:true,target:['chrome100','firefox100','safari15.4']});
  return {code,removed};
 }
-export async function optimizeJs(source){return (await transform(source,{loader:'js',minify:true,target:['chrome100','firefox100','safari15.4']})).code;}
+
+// Deferred slides keep a valid placeholder in src; optimize their actual image.
+export function imageSource(tag){return tag.match(/\sdata-src="([^"]+)"/)?.[1]||tag.match(/\ssrc="([^"]+)"/)?.[1];}

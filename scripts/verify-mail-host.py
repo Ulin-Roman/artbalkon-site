@@ -108,3 +108,40 @@ assert len(re.findall(r'<loc>', sitemap)) == 24, 'Production sitemap must includ
 print('Production SEO and static delivery:', json.dumps({'html_encoding': html_encoding, 'html_cache': html_cache, 'css_encoding': css_encoding, 'css_cache': css_cache, 'css_version': css_version, 'callback_inline_styles': True, 'css_transfer_bytes': len(css_bytes), 'css_decoded_bytes': len(css)}, ensure_ascii=False))
 if css_encoding != 'gzip':
     print('NOTICE: the hosting front end did not apply gzip to CSS; inspect its static-file settings.')
+
+
+# The designed error page must keep a real 404 response (never a soft 404).
+try:
+    opener.open('https://artbalkon.site/__artbalkon-audit-missing-20261015/', timeout=30)
+    raise AssertionError('Missing URL was served without HTTP 404')
+except urllib.error.HTTPError as error:
+    assert error.code == 404, 'Missing URL must return HTTP 404'
+    missing_html = error.read().decode('utf-8')
+    assert 'Такой страницы нет' in missing_html, 'Production must use the generated error page'
+    assert '<meta name="robots" content="noindex,follow">' in missing_html, '404 page must remain non-indexable'
+print('Production custom HTTP 404 verified; error pages remain non-indexable.')
+
+# Inspect the current main script just as strictly as the stylesheet.
+js_path = re.search(r'<script defer src="([^"]*app\.js[^"]*)"', html).group(1)
+js_version = urllib.parse.parse_qs(urllib.parse.urlsplit(js_path).query).get('v', [''])[0]
+assert re.fullmatch(r'[0-9a-f]{12}', js_version), 'Published script must have a content hash'
+js_request = urllib.request.Request('https://artbalkon.site' + js_path, headers={'Accept-Encoding': 'gzip'})
+with urllib.request.urlopen(js_request, timeout=30) as response:
+    js_bytes = response.read()
+    js_encoding = response.headers.get('Content-Encoding', '')
+    js_cache = response.headers.get('Cache-Control', '')
+    js = gzip.decompress(js_bytes) if js_encoding == 'gzip' else js_bytes
+assert hashlib.sha256(js).hexdigest()[:12] == js_version, 'Published script bytes do not match the URL hash'
+print('Production script delivery:', json.dumps({'js_encoding': js_encoding, 'js_cache': js_cache, 'js_version': js_version, 'js_transfer_bytes': len(js_bytes), 'js_decoded_bytes': len(js)}, ensure_ascii=False))
+
+# Record duplicate URL responses; canonical tags are already checked above.
+variants = []
+for variant in ['http://artbalkon.site/', 'https://www.artbalkon.site/', 'https://artbalkon.site/index.html']:
+    try:
+        with opener.open(variant, timeout=15) as response:
+            variants.append({'url': variant, 'status': response.status, 'location': response.headers.get('Location')})
+    except urllib.error.HTTPError as error:
+        variants.append({'url': variant, 'status': error.code, 'location': error.headers.get('Location')})
+    except (urllib.error.URLError, TimeoutError) as error:
+        variants.append({'url': variant, 'error': str(error)})
+print('Production URL variants:', json.dumps(variants, ensure_ascii=False))

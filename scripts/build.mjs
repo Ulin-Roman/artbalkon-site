@@ -2,7 +2,7 @@ import {build as bundleScript} from 'esbuild';
 import {mkdir,readFile,writeFile,cp,rm,readdir} from 'node:fs/promises';
 import {resolve,relative,join,sep} from 'node:path';
 import {createHash} from 'node:crypto';
-import {optimizeCss} from './optimize.mjs';
+import {optimizeCss,imageSource} from './optimize.mjs';
 import {renderDirectFeed} from './direct-feed.mjs';
 import {deduplicatePublishedAssets} from './deduplicate-assets.mjs';
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
@@ -20,7 +20,7 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
  const asset='/assets/'+url.split('/assets/')[1],entry=responsiveImages[asset];
  return entry?url.replace(asset,entry.src):url;
 }).replace(/href="(\/assets\/certificates\/[^"<>]+)"/g,(_,src)=>'href="'+(responsiveImages[src]?.src||src)+'"').replace(/(data-(?:before|after)=")([^"]+)(")/g,(_,prefix,src,suffix)=>prefix+comparisonAsset(src)+suffix).replace(/<img\b[^>]*>/g,tag=>{
- const src=tag.match(/\bsrc="([^"]+)"/)?.[1],entry=responsiveImages[src];if(!entry)return tag;
+ const src=imageSource(tag),entry=responsiveImages[src];if(!entry)return tag;
  if(tag.includes('data-src="'))return tag.replace('data-src="'+src+'"','data-src="'+entry.src+'"');
  // Inline estimates use full-size WebP: tall cover crops can exceed thumbnail widths.
  if(tag.includes('data-estimate-image')){
@@ -76,6 +76,7 @@ await rm('dist/styles-extra.css');
 // The calculator module is already included in app.js.
 await rm('dist/calculator-estimate.mjs');
 await rm('dist/retention-popup.mjs');
+await rm('dist/media-lifecycle.mjs');
 await writeFile('dist/.nojekyll','');
 const routes=[];
 async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(optimizeHtml(shell(body,{path,...meta}))));if(!meta.noindex)routes.push(path);}
@@ -110,7 +111,9 @@ if(!staticOnly){
   const destination=company.origin.replace(/\/$/,'')+target;
   return 'RedirectMatch 301 "^'+source+'(?:/index\\.html|/)?$" "'+destination+'"';
  });
- const performanceRules=`# Compression and caching for the production Apache host.
+ const performanceRules=`# Serve the generated error page with the original HTTP 404 status.
+ErrorDocument 404 ${base}404.html
+# Compression and caching for the production Apache host.
 <IfModule mod_deflate.c>
  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript text/javascript application/json application/xml text/xml image/svg+xml
 </IfModule>

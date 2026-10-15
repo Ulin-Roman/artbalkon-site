@@ -1,4 +1,5 @@
 import {checkFaq} from './faq-check.mjs';
+import {checkMarkup} from './markup-check.mjs';
 import {newLandingDefinitions,newLandingSlugs} from '../src/landing-pages.mjs';
 import {beforeGeometryCorrections} from '../src/portfolio-before-geometry-corrections.mjs';
 const beforeGeometrySources = new Map(Object.entries(beforeGeometryCorrections).map(([source,target])=>[target,source]));
@@ -431,6 +432,7 @@ for(const file of pages){
   assert.match(popup,/<svg width="21" height="21" class="ui-icon /,file+': phone icon has intrinsic size without CSS');
   assert.ok(popup.includes('href="tel:'+company.tel+'"'),file+': Callibri-compatible canonical phone');
  }
+ checkMarkup(html,file);
  pageHtml.set(file,html);
  // A preview's noindex must not bypass the same content and metadata checks as production.
  const localPath=file.slice(root.length+1).replaceAll('\\','/');
