@@ -112,12 +112,19 @@ if(!staticOnly){
   return 'RedirectMatch 301 "^'+source+'(?:/index\\.html|/)?$" "'+destination+'"';
  });
  const canonicalOrigin=company.origin.replace(/\/$/,'');
- const mergedPaths=permanentRedirects.map(({path})=>escapePattern(path.slice(1).replace(/\/$/,''))).join('|');
+ const rewriteRedirects=permanentRedirects.map(({path,target})=>{
+  const source=escapePattern(path.slice(1).replace(/\/$/,''));
+  const destination=canonicalOrigin+target;
+  const rule=' RewriteRule ^'+source+'(?:/index\\.html|/)?$ ';
+  // Explicit query placement keeps campaign parameters before an anchor.
+  const withQuery=target.includes('#')?' RewriteCond %{QUERY_STRING} !^$\n'+rule+destination.replace('#','?%{QUERY_STRING}#')+' [R=301,L,NE]\n':'';
+  return withQuery+rule+destination+' [R=301,L,NE]';
+ }).join('\n');
  const normalizationRules=String.raw`# Canonical URL: normalize explicit index requests, hostname and scheme.
 <IfModule mod_rewrite.c>
  RewriteEngine On
- # Leave retired routes to RedirectMatch; avoid an intermediate index redirect.
- RewriteRule ^(?:${mergedPaths})(?:/index\.html|/)?$ - [L]
+ # Retired routes run before index, host and scheme normalization.
+${rewriteRedirects}
  # THE_REQUEST excludes internal DirectoryIndex and ErrorDocument rewrites.
  RewriteCond %{THE_REQUEST} "\s/+((?:[^?\s]*/)?)index\.html(?:[?\s])"
  RewriteRule ^(?:.*/)?index\.html$ ${canonicalOrigin}/%1 [R=301,L,NE]
@@ -151,7 +158,7 @@ ErrorDocument 404 ${base}404.html
  </FilesMatch>
 </IfModule>
 `;
- await writeFile('dist/.htaccess',normalizationRules+'\n'+performanceRules+'\n# Generated permanent redirects for merged service pages.\n'+rules.join('\n')+'\n');
+ await writeFile('dist/.htaccess',normalizationRules+'\n'+performanceRules+'\n# Fallback for hosts without mod_rewrite.\n<IfModule !mod_rewrite.c>\n'+rules.join('\n')+'\n</IfModule>\n');
 }
 await page('/nashi-raboty/',`<section class="section container"><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы и лоджии <br>в Москве и Московской области</h1><p class="hero-description explanatory-subtitle">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${aboutAndWasteSection()}${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
 for(const p of projects){
