@@ -5235,7 +5235,7 @@ main > .social-subscribe,
  .home-hero .landing-photo>.hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 }
 
-.home-hero+.before-after-section>.section{border-top:0}
+.landing-hero+.before-after-section>.section{border-top:0}
 
 .calculator-scene-ready{--calc-material-image:url(/assets/calculator-realistic-v1/material-atlas-v2.webp);--calc-equipment-image:url(/assets/calculator-realistic-v1/equipment-atlas-v1.webp)}
 /* Keep the desktop first screen readable within the browser's available height. */
