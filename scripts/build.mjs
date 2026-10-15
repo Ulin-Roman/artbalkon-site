@@ -111,6 +111,25 @@ if(!staticOnly){
   const destination=company.origin.replace(/\/$/,'')+target;
   return 'RedirectMatch 301 "^'+source+'(?:/index\\.html|/)?$" "'+destination+'"';
  });
+ const canonicalOrigin=company.origin.replace(/\/$/,'');
+ const normalizationRules=String.raw`# Canonical URL: normalize explicit index requests, hostname and scheme.
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+ # THE_REQUEST excludes internal DirectoryIndex and ErrorDocument rewrites.
+ RewriteCond %{THE_REQUEST} "\s/+((?:[^?\s]*/)?)index\.html(?:[?\s])"
+ RewriteRule ^(?:.*/)?index\.html$ ${canonicalOrigin}/%1 [R=301,L,NE]
+ # Capture the raw request path so percent-encoded characters stay encoded.
+ RewriteCond %{HTTP_HOST} ^www\.artbalkon\.site(?::\d+)?$ [NC]
+ RewriteCond %{THE_REQUEST} "\s(/[^?\s]*)(?:[?\s])"
+ RewriteRule ^ ${canonicalOrigin}%1 [R=301,L,NE]
+ # REG.RU may terminate TLS at a reverse proxy; respect its HTTPS markers.
+ RewriteCond %{HTTPS} !=on
+ RewriteCond %{ENV:HTTPS} !=on
+ RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+ RewriteCond %{THE_REQUEST} "\s(/[^?\s]*)(?:[?\s])"
+ RewriteRule ^ ${canonicalOrigin}%1 [R=301,L,NE]
+</IfModule>
+`;
  const performanceRules=`# Serve the generated error page with the original HTTP 404 status.
 ErrorDocument 404 ${base}404.html
 # Compression and caching for the production Apache host.
@@ -129,7 +148,7 @@ ErrorDocument 404 ${base}404.html
  </FilesMatch>
 </IfModule>
 `;
- await writeFile('dist/.htaccess',performanceRules+'\n# Generated permanent redirects for merged service pages.\n'+rules.join('\n')+'\n');
+ await writeFile('dist/.htaccess',normalizationRules+'\n'+performanceRules+'\n# Generated permanent redirects for merged service pages.\n'+rules.join('\n')+'\n');
 }
 await page('/nashi-raboty/',`<section class="section container"><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы и лоджии <br>в Москве и Московской области</h1><p class="hero-description explanatory-subtitle">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${aboutAndWasteSection()}${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
 for(const p of projects){

@@ -134,14 +134,46 @@ with urllib.request.urlopen(js_request, timeout=30) as response:
 assert hashlib.sha256(js).hexdigest()[:12] == js_version, 'Published script bytes do not match the URL hash'
 print('Production script delivery:', json.dumps({'js_encoding': js_encoding, 'js_cache': js_cache, 'js_version': js_version, 'js_transfer_bytes': len(js_bytes), 'js_decoded_bytes': len(js)}, ensure_ascii=False))
 
-# Record duplicate URL responses; canonical tags are already checked above.
+# All duplicate URL variants must redirect directly to the canonical HTTPS URL.
+origin = 'https://artbalkon.site'
+query = '?utm_source=audit&probe=a%2Bb%2Fc'
+landing = '/osteklenie-balkona-s-vynosom/'
+redirect_variants = [
+    ('http://artbalkon.site/', '/'),
+    ('https://www.artbalkon.site/', '/'),
+    ('http://www.artbalkon.site/', '/'),
+    (origin + '/index.html', '/'),
+    (origin + '/index.html' + query, '/' + query),
+    (origin + landing + 'index.html' + query, landing + query),
+    ('http://www.artbalkon.site' + landing + 'index.html' + query, landing + query),
+    ('https://www.artbalkon.site' + landing + query, landing + query),
+]
 variants = []
-for variant in ['http://artbalkon.site/', 'https://www.artbalkon.site/', 'https://artbalkon.site/index.html']:
+for variant, target in redirect_variants:
     try:
-        with opener.open(variant, timeout=15) as response:
-            variants.append({'url': variant, 'status': response.status, 'location': response.headers.get('Location')})
+        with opener.open(variant, timeout=30) as response:
+            raise AssertionError('Duplicate URL must redirect with HTTP 301: ' + variant)
     except urllib.error.HTTPError as error:
-        variants.append({'url': variant, 'status': error.code, 'location': error.headers.get('Location')})
-    except (urllib.error.URLError, TimeoutError) as error:
-        variants.append({'url': variant, 'error': str(error)})
-print('Production URL variants:', json.dumps(variants, ensure_ascii=False))
+        assert error.code == 301, 'Duplicate URL must return HTTP 301: ' + variant
+        assert error.headers['Location'] == origin + target, 'Incorrect canonical redirect or lost query: ' + variant
+        variants.append({'url': variant, 'status': error.code, 'location': error.headers['Location']})
+print('Production canonical redirects:', json.dumps(variants, ensure_ascii=False))
+
+# Canonical destinations must work immediately, without DirectoryIndex redirect loops.
+for target in sorted({'/', landing, *(target for _, target in redirect_variants)}):
+    with opener.open(origin + target, timeout=30) as response:
+        assert response.status == 200, 'Canonical destination must return HTTP 200: ' + target
+        assert not response.headers.get('Location'), 'Canonical destination must not redirect: ' + target
+print('Production canonical destinations verified: HTTP 200, query strings preserved, no redirect loops.')
+
+# A direct API GET must stay JSON/405; never render or redirect to a public page.
+try:
+    opener.open(origin + '/api/leads.php', timeout=30)
+    raise AssertionError('API must reject GET')
+except urllib.error.HTTPError as error:
+    assert error.code == 405, 'API GET must return HTTP 405'
+    assert error.headers.get('Allow') == 'POST', 'API must advertise POST'
+    assert 'application/json' in error.headers.get('Content-Type', ''), 'API error must stay JSON'
+    assert not error.headers.get('Location'), 'API error must not redirect'
+    assert json.load(error).get('ok') is False, 'API error must return ok:false'
+print('Production API method response verified; no email sent.')
