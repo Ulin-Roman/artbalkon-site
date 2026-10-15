@@ -112,9 +112,12 @@ if(!staticOnly){
   return 'RedirectMatch 301 "^'+source+'(?:/index\\.html|/)?$" "'+destination+'"';
  });
  const canonicalOrigin=company.origin.replace(/\/$/,'');
+ const mergedPaths=permanentRedirects.map(({path})=>escapePattern(path.slice(1).replace(/\/$/,''))).join('|');
  const normalizationRules=String.raw`# Canonical URL: normalize explicit index requests, hostname and scheme.
 <IfModule mod_rewrite.c>
  RewriteEngine On
+ # Leave retired routes to RedirectMatch; avoid an intermediate index redirect.
+ RewriteRule ^(?:${mergedPaths})(?:/index\.html|/)?$ - [L]
  # THE_REQUEST excludes internal DirectoryIndex and ErrorDocument rewrites.
  RewriteCond %{THE_REQUEST} "\s/+((?:[^?\s]*/)?)index\.html(?:[?\s])"
  RewriteRule ^(?:.*/)?index\.html$ ${canonicalOrigin}/%1 [R=301,L,NE]

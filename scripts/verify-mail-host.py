@@ -35,13 +35,22 @@ for old_path, target in [
     ('balkon-pod-klyuch/index.html', '/'),
     ('lodzhiya-pod-klyuch/', '/'),
     ('mebel-dlya-balkona/', '/#complex-options'),
+    ('mebel-dlya-balkona/?probe=a%2Bb', '/?probe=a%2Bb#complex-options'),
+    ('krysha-nad-balkonom/', '/#complex-options'),
+    ('elektrika-na-balkone/', '/#complex-options'),
+    ('osteklenie-lodzhii/', '/osteklenie-balkonov/'),
+    ('uteplenie-lodzhii/', '/uteplenie-balkonov/'),
+    ('otdelka-lodzhii/', '/otdelka-balkonov/'),
+    ('holodnoe-osteklenie-lodzhii/', '/holodnoe-osteklenie/'),
+    ('teploe-osteklenie-lodzhii/', '/teploe-osteklenie/'),
+    ('panoramnoe-osteklenie-lodzhii/', '/panoramnoe-osteklenie/'),
 ]:
     try:
         opener.open('https://artbalkon.site/' + old_path, timeout=30)
         raise AssertionError('Moved URL was served without a permanent redirect: ' + old_path)
     except urllib.error.HTTPError as error:
         assert error.code == 301, 'Moved URL must return HTTP 301: ' + old_path
-        assert error.headers['Location'] == 'https://artbalkon.site' + target, 'Incorrect redirect destination: ' + old_path
+        assert error.headers['Location'] == 'https://artbalkon.site' + target, 'Incorrect redirect destination: ' + old_path + ' -> ' + str(error.headers.get('Location'))
 print('Production permanent redirects verified.')
 
 config = json.load(urllib.request.urlopen('https://artbalkon.site/site-config.json?mail-check=1', timeout=30))
@@ -116,6 +125,7 @@ try:
     raise AssertionError('Missing URL was served without HTTP 404')
 except urllib.error.HTTPError as error:
     assert error.code == 404, 'Missing URL must return HTTP 404'
+    assert not error.headers.get('Location'), 'Missing URL must not redirect'
     missing_html = error.read().decode('utf-8')
     assert 'Такой страницы нет' in missing_html, 'Production must use the generated error page'
     assert '<meta name="robots" content="noindex,follow">' in missing_html, '404 page must remain non-indexable'
