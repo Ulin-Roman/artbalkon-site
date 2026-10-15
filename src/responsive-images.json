@@ -14711,5 +14711,24 @@
         "width": 613
       }
     ]
+  },
+  "/assets/home-reading-book-v3/hero.webp": {
+    "src": "/assets/home-reading-book-v3/hero.webp",
+    "width": 784,
+    "height": 1168,
+    "variants": [
+      {
+        "src": "/assets/home-reading-book-v3/hero-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/home-reading-book-v3/hero-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/home-reading-book-v3/hero.webp",
+        "width": 784
+      }
+    ]
   }
 }
