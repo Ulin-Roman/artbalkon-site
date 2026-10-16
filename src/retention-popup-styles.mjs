@@ -23,7 +23,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-modal::backdrop{background:rgba(3,20,20,.64);backdrop-filter:blur(4px)}
 .retention-shell{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);min-height:550px}
 .retention-copy{min-width:0;padding:40px 34px 34px 40px}
-.retention-copy h2{font-size:34px;line-height:1.12;letter-spacing:-.05em;font-weight:650}
+.retention-copy h2{font-size:34px;line-height:1.12;letter-spacing:-.05em;font-weight:650;text-align:center}
 .retention-description{margin-top:20px;color:var(--muted,#6e7474);font-size:17px;line-height:1.6;text-align:center}
 .retention-description strong{color:var(--ink,#222727);font-weight:550}
 .retention-form{min-width:0;margin-top:26px}
