@@ -15,6 +15,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-form .form-error{color:#b7292d}
 .retention-direct-call a{font-weight:600;text-decoration:none}
 .retention-close:focus-visible{outline:2px solid #00777e;outline-offset:2px}
+.retention-modal[data-retention-initial-focus] .retention-close:focus-visible{outline:none}
 @keyframes retention-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 /* A single callback invitation per visit, shared by every page. */
 .retention-modal{width:calc(100% - 32px);max-width:880px;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);padding:0;border:0;border-radius:24px;background:#fff;color:var(--ink,#222727);box-shadow:0 30px 100px rgba(0,34,36,.3);overflow:auto;overscroll-behavior:contain}

@@ -84,6 +84,8 @@ export function mountRetentionPopup({dialog,openDialog,track=()=>{},initialSubmi
  const controller=createRetentionController({storage,memory,visible:()=>!doc.hidden,blocked,initialSubmitted,onShow:reason=>{
   returnFocus=doc.activeElement;dialog.dataset.retentionTrigger=reason;
   const trigger=dialog.querySelector('input[name="trigger"]');if(trigger)trigger.value=reason;
+  // Keep focus inside the dialog without highlighting its automatic first target.
+  dialog.dataset.retentionInitialFocus='';
   syncPhone();openDialog(dialog,dialog.querySelector('[data-retention-close]'));
   track('callback_popup_open',{trigger:reason});return dialog.open;
  }});
@@ -120,8 +122,9 @@ export function mountRetentionPopup({dialog,openDialog,track=()=>{},initialSubmi
  interactionObserver.observe(doc.body,{subtree:true,attributes:true,attributeFilter:['open','class','hidden']});
  if(headerContact){const phoneObserver=new win.MutationObserver(syncPhone);phoneObserver.observe(headerContact,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['href']});}
  dialog.querySelectorAll('[data-retention-close]').forEach(button=>button.addEventListener('click',()=>dialog.close()));
+ dialog.addEventListener('keydown',event=>{if(event.key==='Tab')delete dialog.dataset.retentionInitialFocus;});
  dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const box=dialog.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dialog.close();});
- dialog.addEventListener('close',()=>{if(returnFocus?.isConnected&&returnFocus!==doc.body)returnFocus.focus({preventScroll:true});returnFocus=null;});
+ dialog.addEventListener('close',()=>{delete dialog.dataset.retentionInitialFocus;if(returnFocus?.isConnected&&returnFocus!==doc.body)returnFocus.focus({preventScroll:true});returnFocus=null;});
  syncPhone();sync();if(!controller.consumed())timer=win.setInterval(sync,500);
  return {leadSucceeded(){controller.leadSucceeded();stopIfConsumed();}};
 }
