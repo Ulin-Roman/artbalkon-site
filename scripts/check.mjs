@@ -402,6 +402,9 @@ const root=resolve('dist');
 const base=process.env.SITE_BASE_PATH||'/';
 const staticOnly=process.env.SITE_STATIC_ONLY==='true';
 await checkFaq({root,basePath:base,staticOnly});
+const retiredPortfolioSlugs=['nashi-raboty','nashi-raboty/lodzhiya-v-golubom','nashi-raboty/lodzhiya-na-anohina','nashi-raboty/lodzhiya-v-himkah'];
+const retiredPortfolioRoutes=new Set(retiredPortfolioSlugs);
+const routeSlug=path=>path.replace(/^\//,'').replace(/(?:\/index\.html|\/)?$/,'');
 const redirectTargets=new Map([
  ['balkon-pod-klyuch','/'],
  ...bundledServiceSlugs.map(slug=>[slug,'/#complex-options']),
@@ -411,9 +414,22 @@ const redirectTargets=new Map([
  ['lodzhiya-pod-klyuch','/'],
  ['holodnoe-osteklenie-lodzhii','/holodnoe-osteklenie/'],
  ['teploe-osteklenie-lodzhii','/teploe-osteklenie/'],
- ['panoramnoe-osteklenie-lodzhii','/panoramnoe-osteklenie/']
+ ['panoramnoe-osteklenie-lodzhii','/panoramnoe-osteklenie/'],
+ ...retiredPortfolioSlugs.map(slug=>[slug,'/#before-after'])
 ]);
 for(const slug of redirectTargets.keys())await stat(join(root,slug,'index.html'));
+if(!staticOnly){
+ const htaccess=await readFile(join(root,'.htaccess'),'utf8');
+ const escapePattern=value=>value.replace(/[.*+?^$\{\}()|[\]\\]/g,'\\$&');
+ for(const [slug,target] of redirectTargets){
+  const destination=company.origin.replace(/\/$/,'')+target;
+  const rewriteRule=' RewriteRule ^'+escapePattern(slug)+'(?:/index\\.html|/)?$ ';
+  assert.ok(htaccess.includes(rewriteRule+destination+' [R=301,L,NE]'),slug+': Apache must permanently redirect the retired route');
+  if(target.includes('#'))assert.ok(htaccess.includes(' RewriteCond %{QUERY_STRING} !^$\n'+rewriteRule+destination.replace('#','?%{QUERY_STRING}#')+' [R=301,L,NE]'),slug+': Apache must preserve campaign parameters before the destination anchor');
+  assert.ok(htaccess.indexOf(rewriteRule)<htaccess.indexOf(' RewriteCond %{THE_REQUEST}'),slug+': retired route must redirect before index and host normalization');
+  assert.ok(htaccess.includes('RedirectMatch 301 "^'+escapePattern(base+slug)+'(?:/index\\.html|/)?$" "'+destination+'"'),slug+': hosts without mod_rewrite need the permanent redirect fallback');
+ }
+}
 async function walk(dir){const files=[];for(const ent of await readdir(dir,{withFileTypes:true})){const path=join(dir,ent.name);files.push(...ent.isDirectory()?await walk(path):[path]);}return files;}
 const files=await walk(root),pages=files.filter(f=>f.endsWith('.html'));let refs=0;
 const titles=new Map(),descriptions=new Map(),canonicals=new Map(),indexedCanonicals=new Set(),contentCanonicals=new Set(),contentFiles=new Set(),pageHtml=new Map();
@@ -436,6 +452,7 @@ for(const file of pages){
  pageHtml.set(file,html);
  // A preview's noindex must not bypass the same content and metadata checks as production.
  const localPath=file.slice(root.length+1).replaceAll('\\','/');
+ if(redirectTargets.has(localPath.replace(/\/index\.html$/,'')))assert.ok(isRedirect,file+': retired route must contain only its redirect fallback');
  const isUtilityPage=['privacy/index.html','consent/index.html','404.html'].includes(localPath);
  const isContentPage=!isRedirect&&!isUtilityPage;
  if(isContentPage)contentFiles.add(file);
@@ -450,6 +467,14 @@ for(const file of pages){
  assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,file+' must have one H1');
  assert.ok(title&&title.length>=20&&title.length<=90,file+' invalid title length');
  assert.ok(canonical?.startsWith('https://'),file+' invalid canonical');
+ if(!isRedirect){
+  for(const [,href] of html.matchAll(/<a\b[^>]*\shref="([^"]+)"/g)){
+   const destination=new URL(href,canonical);
+   if(destination.origin!==new URL(company.origin).origin||!destination.pathname.startsWith(base))continue;
+   const sitePath=base==='/'?destination.pathname:'/'+destination.pathname.slice(base.length);
+   assert.ok(!retiredPortfolioRoutes.has(routeSlug(sitePath)),file+': links must go directly to the home gallery instead of '+href);
+  }
+ }
  assert.doesNotMatch(html,/class="breadcrumbs"|"@type"\s*:\s*"BreadcrumbList"/,file+' must not publish removed breadcrumbs');
  const ids=[...html.matchAll(/\sid="([^"]+)"/g)].map(m=>m[1]);
  assert.equal(new Set(ids).size,ids.length,file+' duplicate IDs');
@@ -515,7 +540,7 @@ for(const file of pages){
   refs++;
  }
 }
-// Every content page, including the portfolio cluster, is reachable through ordinary HTML links.
+// Every current content page is reachable through ordinary HTML links.
 const reachableFiles=new Set([join(root,'index.html')]),pendingFiles=[join(root,'index.html')];
 while(pendingFiles.length){
  const file=pendingFiles.shift(),html=pageHtml.get(file)||'';
@@ -544,6 +569,10 @@ const sitemapUrls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match=>match
 assert.deepEqual(new Set(sitemapUrls),indexedCanonicals,'sitemap must contain exactly the indexable canonical URLs');
 assert.equal(sitemapUrls.length,indexedCanonicals.size,'sitemap must not contain duplicate URLs');
 assert.ok(!sitemapUrls.some(url=>url.endsWith('/balkon-pod-klyuch/')),'Retired turnkey route must stay out of the sitemap');
+for(const url of sitemapUrls){
+ const path=new URL(url).pathname,sitePath=base==='/'?path:'/'+path.slice(base.length);
+ assert.ok(!retiredPortfolioRoutes.has(routeSlug(sitePath)),'Retired portfolio routes must stay out of the sitemap: '+url);
+}
 for(const [section,entry] of [['offer',feed.match(/<offer id="104"[\s\S]*?<\/offer>/)?.[0]],['collection',feed.match(/<collection id="104"[\s\S]*?<\/collection>/)?.[0]]])assert.ok(entry?.includes('<url>'+company.origin.replace(/\/$/,'')+'/</url>'),'Turnkey feed '+section+' must point directly to the root');
 assert.ok(!/<(?:lastmod|changefreq|priority)>/.test(sitemap),'sitemap must not publish unverified dates or ignored ranking hints');
 const robots=await readFile(join(root,'robots.txt'),'utf8');

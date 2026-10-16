@@ -51,8 +51,8 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
   :tag;
  return dimensionedTag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
 }).replace(/\/(styles\.css|app\.js)\?v=[^" ]+/g,(_,file)=>'/'+file+'?v='+fingerprint(file==='styles.css'?cssResult.code:appCode));
-import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,projectPage,projectCards,aboutAndWasteSection,contact,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';
-import {company,services,serviceSeo,projects,integrations} from '../src/content.mjs';
+import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';
+import {company,services,serviceSeo,integrations} from '../src/content.mjs';
 const rawBase=process.env.SITE_BASE_PATH||'/';
 if(!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(rawBase))throw Error('SITE_BASE_PATH must be an absolute path ending with /.');
 const base=rawBase;
@@ -104,6 +104,10 @@ await redirect('/lodzhiya-pod-klyuch/','/','Балконы и лоджии по�
 await redirect('/holodnoe-osteklenie-lodzhii/','/holodnoe-osteklenie/','Холодное остекление балконов и лоджий в Москве и Московской области');
 await redirect('/teploe-osteklenie-lodzhii/','/teploe-osteklenie/','Тёплое остекление балконов и лоджий в Москве и Московской области');
 await redirect('/panoramnoe-osteklenie-lodzhii/','/panoramnoe-osteklenie/','Панорамное остекление балконов и лоджий в Москве и Московской области');
+// Retired standalone cases now lead directly to the home portfolio.
+for(const path of ['/nashi-raboty/','/nashi-raboty/lodzhiya-v-golubom/','/nashi-raboty/lodzhiya-na-anohina/','/nashi-raboty/lodzhiya-v-himkah/']){
+ await redirect(path,'/#before-after','Наши работы — в портфолио на главной странице');
+}
 // Apache production hosting sends permanent redirects before serving the static fallback.
 if(!staticOnly){
  const escapePattern=value=>value.replace(/[.*+?^$\{\}()|[\]\\]/g,'\\$&');
@@ -160,10 +164,6 @@ ErrorDocument 404 ${base}404.html
 </IfModule>
 `;
  await writeFile('dist/.htaccess',normalizationRules+'\n'+performanceRules+'\n# Fallback for hosts without mod_rewrite.\n<IfModule !mod_rewrite.c>\n'+rules.join('\n')+'\n</IfModule>\n');
-}
-await page('/nashi-raboty/',`<section class="section container"><p class="eyebrow">ПОРТФОЛИО ARTBALKON</p><h1>Наши работы: балконы и лоджии <br>в Москве и Московской области</h1><p class="hero-description explanatory-subtitle">Реальные объекты в Москве и области. Показываем фотографии, материалы и состав работ.</p><div class="portfolio-page">${projectCards()}</div></section>${aboutAndWasteSection()}${contact()}`,{title:'Наши работы — остекление и отделка балконов | ArtBalkon',description:'Фотографии реальных работ ArtBalkon в Москве, Химках и деревне Голубое. Описание материалов и выполненных работ.',image:'/assets/before-after/after-05.jpg'});
-for(const p of projects){
- await page(`/nashi-raboty/${p.slug}/`,projectPage(p),{title:`${p.title} — ${p.location} | ArtBalkon`,description:p.intro,image:imageAsset(p.image)});
 }
 const privacy=(await readFile('src/privacy.html','utf8')).replaceAll('{{SITE_URL}}',esc(company.origin.replace(/\/$/,''))).replaceAll('{{SITE_LABEL}}',esc(company.origin.replace(/^https?:\/\//,'').replace(/\/$/,'')));
 await page('/privacy/',`<article class="container legal"><p class="eyebrow">ДОКУМЕНТЫ</p><h1>Политика конфиденциальности</h1>${privacy}</article>`,{title:'Политика конфиденциальности — ArtBalkon',noindex:true});

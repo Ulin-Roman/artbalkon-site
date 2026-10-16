@@ -13,6 +13,23 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         return None
 
 
+retired_portfolio_paths = [
+    '/nashi-raboty/',
+    '/nashi-raboty/lodzhiya-v-golubom/',
+    '/nashi-raboty/lodzhiya-na-anohina/',
+    '/nashi-raboty/lodzhiya-v-himkah/',
+]
+
+
+def assert_no_retired_portfolio_links(html, page):
+    for href in re.findall(r'<a\b[^>]*\bhref=[\"\']([^\"\']+)[\"\']', html, re.I):
+        url = urllib.parse.urlsplit(urllib.parse.urljoin('https://artbalkon.site' + page, href))
+        if url.hostname not in ['artbalkon.site', 'www.artbalkon.site']:
+            continue
+        path = re.sub(r'/index\.html$', '/', url.path).rstrip('/') + '/'
+        assert path not in retired_portfolio_paths, 'Link to a retired portfolio page: ' + page + ' -> ' + href
+
+
 
 def assert_retention_popup(html, page):
     popup = re.search(r'<dialog\b[^>]*\bid="retention-modal"[\s\S]*?</dialog>', html)
@@ -44,6 +61,10 @@ for old_path, target in [
     ('holodnoe-osteklenie-lodzhii/', '/holodnoe-osteklenie/'),
     ('teploe-osteklenie-lodzhii/', '/teploe-osteklenie/'),
     ('panoramnoe-osteklenie-lodzhii/', '/panoramnoe-osteklenie/'),
+    *[(variant.lstrip('/'), '/#before-after')
+      for path in retired_portfolio_paths
+      for variant in [path.rstrip('/'), path, path + 'index.html']],
+    ('nashi-raboty/lodzhiya-v-golubom/?probe=a%2Bb', '/?probe=a%2Bb#before-after'),
 ]:
     try:
         opener.open('https://artbalkon.site/' + old_path, timeout=30)
@@ -82,6 +103,7 @@ for slug in landing_slugs:
     assert gallery_heading and re.sub(r'<[^>]*>', '', gallery_heading.group(1)).strip(), 'Missing project gallery heading: ' + slug
     assert 'визуализац' not in html.lower(), 'Customer-facing copy and metadata must remain neutral: ' + slug
     assert '"@type":"Service"' in html and '"@type":"FAQPage"' in html, 'Missing schema: ' + slug
+    assert_no_retired_portfolio_links(html, '/' + slug + '/')
     assert_retention_popup(html, slug)
 print('All nine new production landings, 54 comparisons and their SEO markup verified.')
 
@@ -97,7 +119,9 @@ with urllib.request.urlopen(request, timeout=30) as response:
     html = body.decode('utf-8')
 assert '<meta name="robots" content="index,follow,max-image-preview:large">' in html, 'Production must remain indexable'
 assert '<link rel="canonical" href="https://artbalkon.site/">' in html, 'Incorrect home canonical'
-assert 'href="/nashi-raboty/"' in html, 'Portfolio must be crawlable from the home page'
+assert re.search(r'href=[\"\']/?#before-after[\"\']', html), 'Portfolio must be reachable from the home page'
+assert 'id="before-after"' in html, 'Home portfolio destination must exist'
+assert_no_retired_portfolio_links(html, '/')
 assert_retention_popup(html, '/')
 css_path = re.search(r'<link rel="stylesheet" href="([^"]+)"', html).group(1)
 css_version = urllib.parse.parse_qs(urllib.parse.urlsplit(css_path).query).get('v', [''])[0]
@@ -113,7 +137,15 @@ assert b'calculator-scene-ready' in css and b'100svh' in css, 'Published styles 
 robots = urllib.request.urlopen('https://artbalkon.site/robots.txt?technical-check=1', timeout=30).read().decode('utf-8')
 assert 'Sitemap: https://artbalkon.site/sitemap.xml' in robots, 'Production sitemap must remain discoverable'
 sitemap = urllib.request.urlopen('https://artbalkon.site/sitemap.xml?technical-check=1', timeout=30).read().decode('utf-8')
-assert len(re.findall(r'<loc>', sitemap)) == 24, 'Production sitemap must include 24 content pages'
+content_urls = re.findall(r'<loc>([^<]+)</loc>', sitemap)
+assert len(content_urls) == 20, 'Production sitemap must include 20 content pages'
+for url in content_urls:
+    path = urllib.parse.urlsplit(url).path
+    assert path not in retired_portfolio_paths, 'Retired portfolio page must not appear in the sitemap: ' + url
+    if path == '/' or path.strip('/') in landing_slugs:
+        continue
+    page_html = urllib.request.urlopen(url, timeout=30).read().decode('utf-8')
+    assert_no_retired_portfolio_links(page_html, path)
 print('Production SEO and static delivery:', json.dumps({'html_encoding': html_encoding, 'html_cache': html_cache, 'css_encoding': css_encoding, 'css_cache': css_cache, 'css_version': css_version, 'callback_inline_styles': True, 'css_transfer_bytes': len(css_bytes), 'css_decoded_bytes': len(css)}, ensure_ascii=False))
 if css_encoding != 'gzip':
     print('NOTICE: the hosting front end did not apply gzip to CSS; inspect its static-file settings.')
