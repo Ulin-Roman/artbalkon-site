@@ -33,7 +33,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-phone-field input{width:100%;min-width:0;padding:14px 0;border:0;border-radius:0;background:transparent;color:var(--ink,#222727);font-size:16px;outline:0}
 .retention-form .form-error:empty{display:none}
 .retention-form .form-error:not(:empty){margin-top:9px;font-size:12px}
-.retention-submit{width:100%;margin-top:12px;gap:11px;border-radius:12px;min-height:54px;font-size:16px}
+.retention-submit{width:100%;margin-top:12px;gap:11px;border-radius:999px;min-height:54px;font-size:16px}
 .retention-submit .ui-icon{width:20px;height:20px}
 .retention-form .consent{margin-top:14px;font-size:10px;line-height:1.5;color:var(--muted,#6e7474);align-items:flex-start;gap:8px}
 .retention-form .consent input{flex:0 0 16px;width:16px;height:16px;margin:1px 0 0}
@@ -62,7 +62,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
  .retention-description strong{display:block;margin-top:10px;font-weight:650;color:var(--ink,#222727)}
  .retention-form{margin-top:18px}
  .retention-phone-field{min-height:54px;border-radius:16px}
- .retention-submit{min-height:54px;margin-top:10px;border-radius:16px;font-size:18px}
+ .retention-submit{min-height:54px;margin-top:10px;font-size:18px}
  .retention-form .consent{margin-top:12px;font-size:10px;line-height:1.5}
  .retention-direct-call{display:flex;justify-content:center;align-items:baseline;gap:4px 6px;margin-top:16px;padding-top:14px;border-top:1px solid #e2e5e4;font-size:12px;text-align:center}
  .retention-direct-call .phone{display:inline;margin:0;font-size:16px!important;font-weight:700;line-height:1.4}
