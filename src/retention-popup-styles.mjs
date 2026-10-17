@@ -6,8 +6,11 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-copy h2,.retention-description,.retention-direct-call{margin:0}
 .retention-modal button,.retention-modal input{font-family:inherit}
 .retention-modal button{cursor:pointer}
-.retention-submit{display:flex;align-items:center;justify-content:center;padding:16px 24px;border:1px solid #00777e;background:#00777e;color:#fff;font-weight:600;line-height:1.25;text-align:center}
-.retention-submit:hover{background:var(--teal-dark,#00585e);border-color:var(--teal-dark,#00585e)}
+.retention-submit{display:flex;align-items:center;justify-content:center;padding:16px 24px;border:1px solid #00777e;background:var(--primary-button-background,linear-gradient(180deg,#19979e 0%,#008088 32%,#00777e 68%,#00656c 100%));color:#fff;box-shadow:var(--primary-button-shadow,0 7px 16px rgba(0,105,112,.24),inset 0 1px 1px rgba(255,255,255,.32),inset 0 -2px 3px rgba(0,55,60,.18));font-weight:600;line-height:1.25;text-align:center;transition:var(--primary-button-transition,background .18s ease,box-shadow .18s ease,transform .18s ease)}
+.retention-submit:hover:not(:disabled){background:var(--primary-button-hover-background,linear-gradient(180deg,#20a0a6 0%,#00838b 32%,#00777e 68%,#005e65 100%));border-color:#006a71;box-shadow:var(--primary-button-hover-shadow,0 9px 20px rgba(0,105,112,.3),inset 0 1px 1px rgba(255,255,255,.38),inset 0 -2px 3px rgba(0,55,60,.18));transform:var(--primary-button-hover-transform,translateY(-1px))}
+.retention-submit:active:not(:disabled){background:var(--primary-button-active-background,linear-gradient(180deg,#00636a 0%,#00777e 100%));box-shadow:var(--primary-button-active-shadow,0 3px 8px rgba(0,105,112,.2),inset 0 2px 4px rgba(0,45,50,.25));transform:translateY(0)}
+.retention-submit:focus-visible{outline:2px solid #00777e;outline-offset:3px}
+.retention-submit:disabled{cursor:wait;opacity:.6}
 .retention-form .consent{display:flex;text-align:left}
 .retention-form .consent input{accent-color:#00777e}
 .retention-form .consent a{color:inherit}
@@ -71,7 +74,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 @media(max-width:641px) and (max-height:700px){
  .retention-photo{height:clamp(190px,36vh,240px);height:clamp(190px,36dvh,240px)}
 }
-@media(prefers-reduced-motion:reduce){.retention-modal[open]{animation:none}}
+@media(prefers-reduced-motion:reduce){.retention-modal[open]{animation:none}.retention-submit{--primary-button-transition:none;--primary-button-hover-transform:none}}
 
 .retention-phone-field>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 `;
