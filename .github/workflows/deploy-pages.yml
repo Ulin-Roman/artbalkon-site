@@ -70,6 +70,7 @@ jobs:
           password: ${{ secrets.REG_FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./
+          timeout: 120000
 
       - name: Verify production redirects and form endpoint
         run: |
