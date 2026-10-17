@@ -4742,10 +4742,22 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  --primary-button-transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
  --primary-button-hover-transform:translateY(-1px);
 }
+/* Transparent gallery action with the same raised edge and interaction states. */
+.before-after-more-button{
+ --primary-button-background:transparent;
+ --primary-button-hover-background:transparent;
+ --primary-button-active-background:transparent;
+ --primary-button-color:var(--ink);
+ --primary-button-border-color:rgba(31,65,63,.22);
+ --primary-button-hover-border-color:rgba(0,119,126,.42);
+ --primary-button-shadow:0 7px 16px rgba(23,50,47,.1),inset 0 1px 1px rgba(255,255,255,.85),inset 0 -2px 3px rgba(23,50,47,.08);
+ --primary-button-hover-shadow:0 9px 20px rgba(23,50,47,.14),inset 0 1px 1px rgba(255,255,255,.95),inset 0 -2px 3px rgba(23,50,47,.1);
+ --primary-button-active-shadow:0 3px 8px rgba(23,50,47,.08),inset 0 2px 4px rgba(23,50,47,.12);
+}
 :is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"],.promotion-card-copy>span){
  background:var(--primary-button-background);
- border-color:#00777e;
- color:#fff;
+ border-color:var(--primary-button-border-color,#00777e);
+ color:var(--primary-button-color,#fff);
  box-shadow:var(--primary-button-shadow);
  text-shadow:none;
  filter:none;
@@ -4754,7 +4766,7 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
 }
 :is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):hover:not(:disabled),.promotion-card:hover:not(:disabled) .promotion-card-copy>span{
  background:var(--primary-button-hover-background);
- border-color:#006a71;
+ border-color:var(--primary-button-hover-border-color,#006a71);
  box-shadow:var(--primary-button-hover-shadow);
  filter:none;
  transform:var(--primary-button-hover-transform);
