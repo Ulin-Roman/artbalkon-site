@@ -142,21 +142,6 @@ html{scroll-padding-top:104px}
  .comparison-modal-grid img{width:100%;height:auto;min-height:0;object-fit:contain}
 }
 
-/* White secondary action below the before/after gallery. */
-.before-after-more-button.button,
-.before-after-more-button.button:not(.button-outline):not(.button-white){
- background:#fff;
- border-color:#fff;
- color:var(--ink);
- box-shadow:0 8px 22px rgba(15,63,62,.1);
-}
-.before-after-more-button.button:hover,
-.before-after-more-button.button:not(.button-outline):not(.button-white):hover{
- background:#f5f7f7;
- border-color:#f5f7f7;
- color:var(--ink);
- box-shadow:0 11px 26px rgba(15,63,62,.14);
-}
 .before-after-more-button.button span[aria-hidden]{color:currentColor}
 
 /* Center the “Before” and “After” badges on every comparison image. */
@@ -3098,7 +3083,7 @@ body{min-width:0;max-width:100%}
  background:#fff;
 }
 
-/* Review actions use the same white secondary style as “Смотреть ещё”. */
+/* White secondary review actions. */
 .reviews-white-button{
  display:inline-flex;
  min-height:48px;
@@ -4757,7 +4742,7 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  --primary-button-transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
  --primary-button-hover-transform:translateY(-1px);
 }
-:is(.button:not(.button-outline,.button-white,.before-after-more-button,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"],.promotion-card-copy>span){
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"],.promotion-card-copy>span){
  background:var(--primary-button-background);
  border-color:#00777e;
  color:#fff;
@@ -4767,19 +4752,19 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  transform:none;
  transition:var(--primary-button-transition);
 }
-:is(.button:not(.button-outline,.button-white,.before-after-more-button,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):hover:not(:disabled),.promotion-card:hover:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):hover:not(:disabled),.promotion-card:hover:not(:disabled) .promotion-card-copy>span{
  background:var(--primary-button-hover-background);
  border-color:#006a71;
  box-shadow:var(--primary-button-hover-shadow);
  filter:none;
  transform:var(--primary-button-hover-transform);
 }
-:is(.button:not(.button-outline,.button-white,.before-after-more-button,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):active:not(:disabled),.promotion-card:active:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):active:not(:disabled),.promotion-card:active:not(:disabled) .promotion-card-copy>span{
  background:var(--primary-button-active-background);
  box-shadow:var(--primary-button-active-shadow);
  transform:translateY(0);
 }
-:is(.button:not(.button-outline,.button-white,.before-after-more-button,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):focus-visible,.promotion-card:focus-visible:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):focus-visible,.promotion-card:focus-visible:not(:disabled) .promotion-card-copy>span{
  outline:2px solid #00777e;
  outline-offset:3px;
 }
