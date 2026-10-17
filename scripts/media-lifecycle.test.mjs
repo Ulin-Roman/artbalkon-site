@@ -51,10 +51,10 @@ test('lazy video source is hydrated once, including the legacy source form',()=>
  assert.equal(hydrateVideo(legacy),false);assert.equal(legacy.loads,1);
 });
 
-function responsiveVideo(mobile){
+function responsiveVideo(mobile,{lazyPoster=true}={}){
  const media=new Surface();media.matches=mobile;
- const video=new Surface(),attributes={poster:'/desktop.jpg'};
- video.dataset={src:'/desktop.mp4',mobileSrc:'/portrait.mp4',mobilePoster:'/portrait.jpg'};
+ const video=new Surface(),attributes=lazyPoster?{}:{poster:'/desktop.webp'};
+ video.dataset={src:'/desktop.mp4',mobileSrc:'/portrait.mp4',mobilePoster:'/portrait.webp',...(lazyPoster?{poster:'/desktop.webp'}:{})};
  video.preload='none';video.currentTime=0;video.duration=60;video.paused=true;video.ended=false;video.loads=0;video.plays=0;
  video.getAttribute=name=>attributes[name]??null;
  video.setAttribute=(name,value)=>{attributes[name]=value;};
@@ -65,19 +65,28 @@ function responsiveVideo(mobile){
  return {video,attributes,controller,resize(value){media.matches=value;media.emit('change');},metadata(){video.emit('loadedmetadata');}};
 }
 
-test('responsive videos select a matching source and poster before any lazy download',()=>{
+test('responsive videos defer both posters and sources until their lazy hydration',()=>{
  for(const mobile of [false,true]){
   const visit=responsiveVideo(mobile),stem=mobile?'portrait':'desktop';
-  assert.equal(visit.video.dataset.src,'/'+stem+'.mp4');assert.equal(visit.attributes.poster,'/'+stem+'.jpg');
+  assert.equal(visit.video.dataset.src,'/'+stem+'.mp4');assert.equal(visit.video.dataset.poster,'/'+stem+'.webp');
+  assert.equal(visit.attributes.poster,undefined);
   assert.equal(visit.video.src,undefined);assert.equal(visit.video.loads,0);assert.equal(visit.video.preload,'none');
-  visit.resize(!mobile);assert.equal(visit.video.loads,0);
+  visit.resize(!mobile);assert.equal(visit.video.loads,0);assert.equal(visit.attributes.poster,undefined);
   hydrateVideo(visit.video);assert.equal(visit.video.src,mobile?'/desktop.mp4':'/portrait.mp4');assert.equal(visit.video.loads,1);
+  assert.equal(visit.attributes.poster,mobile?'/desktop.webp':'/portrait.webp');assert.equal(visit.video.dataset.poster,undefined);
+  hydrateVideo(visit.video);assert.equal(visit.video.loads,1);
  }
+});
+
+test('responsive videos with an existing poster retain their immediate fallback',()=>{
+ const visit=responsiveVideo(true,{lazyPoster:false});
+ assert.equal(visit.attributes.poster,'/portrait.webp');assert.equal(visit.video.dataset.poster,undefined);
+ assert.equal(visit.video.loads,0);visit.resize(false);assert.equal(visit.attributes.poster,'/desktop.webp');
 });
 
 test('responsive source changes restore the position without starting a paused video',()=>{
  const visit=responsiveVideo(true);hydrateVideo(visit.video);visit.video.currentTime=18;
- visit.resize(false);assert.equal(visit.video.src,'/desktop.mp4');assert.equal(visit.attributes.poster,'/desktop.jpg');
+ visit.resize(false);assert.equal(visit.video.src,'/desktop.mp4');assert.equal(visit.attributes.poster,'/desktop.webp');
  assert.equal(visit.video.preload,'metadata');visit.metadata();
  assert.equal(visit.video.currentTime,18);assert.equal(visit.video.paused,true);assert.equal(visit.video.plays,0);assert.equal(visit.video.preload,'none');
  visit.resize(false);assert.equal(visit.video.loads,2);
@@ -86,7 +95,7 @@ test('responsive source changes restore the position without starting a paused v
 test('playing video survives rapid breakpoint changes at the same position',()=>{
  const visit=responsiveVideo(false);hydrateVideo(visit.video);visit.video.currentTime=27;visit.video.paused=false;
  visit.resize(true);visit.resize(false);visit.metadata();
- assert.equal(visit.video.src,'/desktop.mp4');assert.equal(visit.attributes.poster,'/desktop.jpg');
+ assert.equal(visit.video.src,'/desktop.mp4');assert.equal(visit.attributes.poster,'/desktop.webp');
  assert.equal(visit.video.currentTime,27);assert.equal(visit.video.paused,false);assert.equal(visit.video.plays,1);
  visit.controller.dispose();visit.resize(true);assert.equal(visit.video.src,'/desktop.mp4');
 });

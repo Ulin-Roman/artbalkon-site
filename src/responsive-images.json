@@ -1271,19 +1271,6 @@
       }
     ]
   },
-  "/assets/finishing-materials/wood-and-brick.jpg": {
-    "src": "/assets/responsive/19eb4fa2d30640d1-640.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/19eb4fa2d30640d1-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/19eb4fa2d30640d1-640.webp",
-        "width": 640
-      }
-    ]
-  },
   "/assets/finishing-original-eco-1.jpg": {
     "src": "/assets/responsive/7acacad4e1068e3e-1280.webp",
     "variants": [
@@ -2562,40 +2549,6 @@
       {
         "src": "/assets/responsive/efe3e13aa73a3cf3-887.webp",
         "width": 887
-      }
-    ]
-  },
-  "/assets/gallery-quality-v2/real025.webp": {
-    "src": "/assets/responsive/b4cedb242dfc47cd-1448.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b4cedb242dfc47cd-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b4cedb242dfc47cd-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b4cedb242dfc47cd-1448.webp",
-        "width": 1448
-      }
-    ]
-  },
-  "/assets/gallery-quality-v2/real103.webp": {
-    "src": "/assets/responsive/0955eac1b383f27c-841.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/0955eac1b383f27c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/0955eac1b383f27c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/0955eac1b383f27c-841.webp",
-        "width": 841
       }
     ]
   },
@@ -5013,23 +4966,6 @@
       }
     ]
   },
-  "/assets/service-before-after/cold-ordinary-12-before.webp": {
-    "src": "/assets/responsive/3d92596824e81e20-763.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/3d92596824e81e20-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/3d92596824e81e20-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/3d92596824e81e20-763.webp",
-        "width": 763
-      }
-    ]
-  },
   "/assets/service-before-after/cottage-glazing-2-before-hq.webp": {
     "src": "/assets/responsive/fbe6eaf7ca51fa74-1024.webp",
     "variants": [
@@ -5693,23 +5629,6 @@
       }
     ]
   },
-  "/assets/service-before-after/panoramic-loggia-01-after.jpg": {
-    "src": "/assets/responsive/23dadc142164ad50-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/23dadc142164ad50-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/23dadc142164ad50-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/23dadc142164ad50-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/service-before-after/panoramic-loggia-09-after.jpg": {
     "src": "/assets/responsive/4656d899e8196578-1254.webp",
     "variants": [
@@ -5740,23 +5659,6 @@
       },
       {
         "src": "/assets/responsive/fe8b790c7f2f3f0f-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-balcony-01-after.webp": {
-    "src": "/assets/responsive/87d9327167e8c33e-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/87d9327167e8c33e-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/87d9327167e8c33e-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/87d9327167e8c33e-1086.webp",
         "width": 1086
       }
     ]
@@ -6825,40 +6727,6 @@
       {
         "src": "/assets/responsive/35e5dc4353c4448d-941.webp",
         "width": 941
-      }
-    ]
-  },
-  "/assets/service-gallery-v3/insulation-164-before.webp": {
-    "src": "/assets/responsive/3617324a89c03e10-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/3617324a89c03e10-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/3617324a89c03e10-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/3617324a89c03e10-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/window-details-v2/balcony-04-handles.webp": {
-    "src": "/assets/responsive/297655771271049e-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/297655771271049e-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/297655771271049e-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/297655771271049e-1086.webp",
-        "width": 1086
       }
     ]
   },
@@ -11887,25 +11755,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-323-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-323-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-323-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-323-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-323-after.webp",
-        "width": 768
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-324-before.webp": {
     "src": "/assets/landing-gallery-v1/work-324-before.webp",
     "width": 768,
@@ -11921,25 +11770,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-324-before.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-324-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-324-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-324-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-324-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-324-after.webp",
         "width": 768
       }
     ]
@@ -11963,25 +11793,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-325-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-325-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-325-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-325-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-325-after.webp",
-        "width": 768
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-326-before.webp": {
     "src": "/assets/landing-gallery-v1/work-326-before.webp",
     "width": 768,
@@ -11997,25 +11808,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-326-before.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-326-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-326-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-326-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-326-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-326-after.webp",
         "width": 768
       }
     ]
@@ -12039,25 +11831,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-327-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-327-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-327-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-327-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-327-after.webp",
-        "width": 768
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-328-before.webp": {
     "src": "/assets/landing-gallery-v1/work-328-before.webp",
     "width": 768,
@@ -12073,25 +11846,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-328-before.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-328-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-328-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-328-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-328-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-328-after.webp",
         "width": 768
       }
     ]
@@ -13027,25 +12781,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-365-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-365-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-365-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-365-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-365-after.webp",
-        "width": 768
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-366-before.webp": {
     "src": "/assets/landing-gallery-v1/work-366-before.webp",
     "width": 768,
@@ -13061,25 +12796,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-366-before.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-366-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-366-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-366-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-366-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-366-after.webp",
         "width": 768
       }
     ]
@@ -13103,25 +12819,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-367-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-367-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-367-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-367-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-367-after.webp",
-        "width": 768
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-368-before.webp": {
     "src": "/assets/landing-gallery-v1/work-368-before.webp",
     "width": 768,
@@ -13137,25 +12834,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-368-before.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-368-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-368-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after.webp",
         "width": 768
       }
     ]
@@ -13179,25 +12857,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-369-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-369-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-369-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-369-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-369-after.webp",
-        "width": 768
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-370-before.webp": {
     "src": "/assets/landing-gallery-v1/work-370-before.webp",
     "width": 768,
@@ -13213,25 +12872,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-370-before.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-370-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-370-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-370-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-370-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-370-after.webp",
         "width": 768
       }
     ]
@@ -13479,21 +13119,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-329-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-329-after.webp",
-    "width": 611,
-    "height": 1287,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-329-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-329-after.webp",
-        "width": 611
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-330-before.webp": {
     "src": "/assets/landing-gallery-v1/work-330-before.webp",
     "width": 613,
@@ -13505,21 +13130,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-330-before.webp",
-        "width": 613
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-330-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-330-after.webp",
-    "width": 613,
-    "height": 1283,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-330-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-330-after.webp",
         "width": 613
       }
     ]
@@ -13539,21 +13149,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-331-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-331-after.webp",
-    "width": 611,
-    "height": 1286,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-331-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-331-after.webp",
-        "width": 611
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-332-before.webp": {
     "src": "/assets/landing-gallery-v1/work-332-before.webp",
     "width": 607,
@@ -13565,21 +13160,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-332-before.webp",
-        "width": 607
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-332-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-332-after.webp",
-    "width": 607,
-    "height": 1295,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-332-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-332-after.webp",
         "width": 607
       }
     ]
@@ -13599,21 +13179,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-333-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-333-after.webp",
-    "width": 607,
-    "height": 1295,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-333-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-333-after.webp",
-        "width": 607
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-334-before.webp": {
     "src": "/assets/landing-gallery-v1/work-334-before.webp",
     "width": 607,
@@ -13625,21 +13190,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-334-before.webp",
-        "width": 607
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-334-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-334-after.webp",
-    "width": 607,
-    "height": 1295,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-334-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-334-after.webp",
         "width": 607
       }
     ]
@@ -13659,21 +13209,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-335-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-335-after.webp",
-    "width": 613,
-    "height": 1283,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-335-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-335-after.webp",
-        "width": 613
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-336-before.webp": {
     "src": "/assets/landing-gallery-v1/work-336-before.webp",
     "width": 607,
@@ -13685,21 +13220,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-336-before.webp",
-        "width": 607
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-336-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-336-after.webp",
-    "width": 607,
-    "height": 1295,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-336-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-336-after.webp",
         "width": 607
       }
     ]
@@ -13719,21 +13239,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-337-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-337-after.webp",
-    "width": 607,
-    "height": 1295,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-337-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-337-after.webp",
-        "width": 607
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-338-before.webp": {
     "src": "/assets/landing-gallery-v1/work-338-before.webp",
     "width": 612,
@@ -13745,21 +13250,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-338-before.webp",
-        "width": 612
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-338-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-338-after.webp",
-    "width": 612,
-    "height": 1285,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-338-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-338-after.webp",
         "width": 612
       }
     ]
@@ -13783,25 +13273,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-339-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-339-after.webp",
-    "width": 656,
-    "height": 1199,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-339-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-339-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-339-after.webp",
-        "width": 656
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-340-before.webp": {
     "src": "/assets/landing-gallery-v1/work-340-before.webp",
     "width": 768,
@@ -13817,253 +13288,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-340-before.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-340-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-340-after.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-340-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-340-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-340-after.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-365-after-wood-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-365-after-wood-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-365-after-wood-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-365-after-wood-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-365-after-wood-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-366-after-wood-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-366-after-wood-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-366-after-wood-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-366-after-wood-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-366-after-wood-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-367-after-wood-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-367-after-wood-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-367-after-wood-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-367-after-wood-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-367-after-wood-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-368-after-wood-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-368-after-wood-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after-wood-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after-wood-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after-wood-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-369-after-wood-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-369-after-wood-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-369-after-wood-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-369-after-wood-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-369-after-wood-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-370-after-wood-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-370-after-wood-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-370-after-wood-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-370-after-wood-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-370-after-wood-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-323-after-cladding-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-323-after-cladding-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-323-after-cladding-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-323-after-cladding-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-323-after-cladding-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-324-after-cladding-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-324-after-cladding-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-324-after-cladding-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-324-after-cladding-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-324-after-cladding-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-325-after-cladding-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-325-after-cladding-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-325-after-cladding-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-325-after-cladding-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-325-after-cladding-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-326-after-cladding-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-326-after-cladding-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-326-after-cladding-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-326-after-cladding-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-326-after-cladding-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-327-after-cladding-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-327-after-cladding-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-327-after-cladding-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-327-after-cladding-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-327-after-cladding-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-328-after-cladding-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-328-after-cladding-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-328-after-cladding-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-328-after-cladding-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-328-after-cladding-v2.webp",
         "width": 768
       }
     ]
@@ -14143,36 +13367,6 @@
       }
     ]
   },
-  "/assets/landing-gallery-v1/work-334-after-finish-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-334-after-finish-v2.webp",
-    "width": 607,
-    "height": 1295,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-334-after-finish-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-334-after-finish-v2.webp",
-        "width": 607
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-335-after-finish-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-335-after-finish-v2.webp",
-    "width": 613,
-    "height": 1285,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-335-after-finish-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-335-after-finish-v2.webp",
-        "width": 613
-      }
-    ]
-  },
   "/assets/landing-gallery-v1/work-336-after-finish-v2.webp": {
     "src": "/assets/landing-gallery-v1/work-336-after-finish-v2.webp",
     "width": 607,
@@ -14184,21 +13378,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-336-after-finish-v2.webp",
-        "width": 607
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-337-after-finish-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-337-after-finish-v2.webp",
-    "width": 607,
-    "height": 1295,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-337-after-finish-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-337-after-finish-v2.webp",
         "width": 607
       }
     ]
@@ -14234,40 +13413,6 @@
       {
         "src": "/assets/landing-gallery-v1/work-339-after-finish-v2.webp",
         "width": 656
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-340-after-finish-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-340-after-finish-v2.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-340-after-finish-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-340-after-finish-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-340-after-finish-v2.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-335-after-finish-v3.webp": {
-    "src": "/assets/landing-gallery-v1/work-335-after-finish-v3.webp",
-    "width": 613,
-    "height": 1285,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-335-after-finish-v3-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-335-after-finish-v3.webp",
-        "width": 613
       }
     ]
   },
@@ -14317,54 +13462,6 @@
       {
         "src": "/assets/landing-gallery-v1/work-334-after-finish-v3.webp",
         "width": 607
-      }
-    ]
-  },
-  "/assets/glazing-choice-v1/cold-balcony.webp": {
-    "src": "/assets/glazing-choice-v1/cold-balcony.webp",
-    "width": 1536,
-    "height": 1024,
-    "generated": true,
-    "variants": [
-      {
-        "src": "/assets/glazing-choice-v1/cold-balcony-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/glazing-choice-v1/cold-balcony-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/glazing-choice-v1/cold-balcony-1280.webp",
-        "width": 1280
-      },
-      {
-        "src": "/assets/glazing-choice-v1/cold-balcony.webp",
-        "width": 1536
-      }
-    ]
-  },
-  "/assets/glazing-choice-v1/warm-balcony.webp": {
-    "src": "/assets/glazing-choice-v1/warm-balcony.webp",
-    "width": 1536,
-    "height": 1024,
-    "generated": true,
-    "variants": [
-      {
-        "src": "/assets/glazing-choice-v1/warm-balcony-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/glazing-choice-v1/warm-balcony-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/glazing-choice-v1/warm-balcony-1280.webp",
-        "width": 1280
-      },
-      {
-        "src": "/assets/glazing-choice-v1/warm-balcony.webp",
-        "width": 1536
       }
     ]
   },
@@ -14583,25 +13680,6 @@
       },
       {
         "src": "/assets/landing-gallery-v1/work-367-after-lipa-v1.webp",
-        "width": 768
-      }
-    ]
-  },
-  "/assets/landing-gallery-v1/work-368-after-lipa-v1.webp": {
-    "src": "/assets/landing-gallery-v1/work-368-after-lipa-v1.webp",
-    "width": 768,
-    "height": 1024,
-    "variants": [
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after-lipa-v1-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after-lipa-v1-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/landing-gallery-v1/work-368-after-lipa-v1.webp",
         "width": 768
       }
     ]

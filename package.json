@@ -8,7 +8,7 @@
     "start": "node scripts/server.mjs",
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
-    "test": "node --test scripts/leads.test.mjs scripts/optimize.test.mjs scripts/calculator-estimate.test.mjs scripts/retention-popup.test.mjs scripts/media-lifecycle.test.mjs scripts/markup-check.test.mjs scripts/phone-mask.test.mjs"
+    "test": "node --test scripts/leads.test.mjs scripts/optimize.test.mjs scripts/calculator-estimate.test.mjs scripts/calculator-scene-loader.test.mjs scripts/retention-popup.test.mjs scripts/media-lifecycle.test.mjs scripts/markup-check.test.mjs scripts/phone-mask.test.mjs"
   },
   "engines": {
     "node": ">=22"

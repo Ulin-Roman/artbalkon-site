@@ -528,7 +528,7 @@ for(const file of pages){
  const comparisonPairs=[...galleryHtml.matchAll(/data-before="([^"]+)" data-after="([^"]+)"/g)].map(match=>match[1]+'|'+match[2]);
  if(html.includes('service-page-faq'))assert.ok(comparisonPairs.length>=1,file+' must have relevant before/after examples');
  if(comparisonPairs.length)assert.equal(new Set(comparisonPairs).size,comparisonPairs.length,file+' repeats before/after images');
- for(const m of html.matchAll(/(?:href|src|poster|data-src)="([^"<>]+)"/g)){
+ for(const m of html.matchAll(/\s(?:href|src|poster|data-(?:src|poster|mobile-src|mobile-poster))="([^"<>]+)"/g)){
   const url=m[1];if(!url.startsWith('/')&&!url.startsWith('#'))continue;
   const [pathWithQuery,fragment]=url.split('#'),path=pathWithQuery.split('?')[0];
   if(path&&base!=='/'&&!path.startsWith(base))assert.fail(file+' uses path outside Pages base: '+url);
@@ -584,19 +584,28 @@ else{assert.ok(robots.includes('Sitemap: '+company.origin+'/sitemap.xml\n'),'Pro
 for(const asset of ['assets/manrope.woff2','assets/manrope-bold.woff2','robots.txt','site-config.json',...(!staticOnly?['sitemap.xml']:[])])await stat(join(root,asset));
 const searchable=files.filter(file=>/\.(?:html|css|js|json|xml|txt)$/.test(file));const siteText=(await Promise.all(searchable.map(file=>readFile(file,'utf8')))).join('\n').replaceAll('\\','/');for(const asset of files.filter(file=>file.includes(`${join(root,'assets')}`))){const relative=asset.slice(root.length+1).replaceAll('\\','/');assert.ok(siteText.includes(relative),`unused built asset: ${relative}`);}
 await assert.rejects(stat(join(root,'styles-extra.css')),/ENOENT/);
-for(const file of ['dist/app.js','scripts/build.mjs','scripts/optimize.mjs','public/app.js','scripts/server.mjs','scripts/leads.mjs','src/components.mjs','src/content.mjs'])execFileSync(process.execPath,['--check',file]);
+for(const file of ['dist/app.js','dist/calculator-scene.js','scripts/build.mjs','scripts/optimize.mjs','public/app.js','public/calculator-scene.mjs','public/calculator-scene-loader.mjs','scripts/server.mjs','scripts/leads.mjs','src/components.mjs','src/content.mjs'])execFileSync(process.execPath,['--check',file]);
+for(const source of ['calculator-scene.mjs','calculator-scene-loader.mjs'])await assert.rejects(stat(join(root,source)),/ENOENT/);
+const builtApp=await readFile(join(root,'app.js'),'utf8');
+assert.match(builtApp,/calculator-scene\.js\?v=[a-f0-9]{12}/,'Lazy calculator module must have a cache version');
 const home=await readFile(join(root,'index.html'),'utf8');
 for(const [attribute,asset] of [
- ['data-mobile-src','process-work-portrait-v1.mp4'],['data-mobile-poster','process-poster-portrait-v1.jpg'],
- ['data-mobile-src','process-result-portrait-v1.mp4'],['data-mobile-poster','result-poster-portrait-v1.jpg']
+ ['data-poster','process-poster.webp'],['data-mobile-src','process-work-portrait-v1.mp4'],['data-mobile-poster','process-poster-portrait-v1.webp'],
+ ['data-poster','result-poster.webp'],['data-mobile-src','process-result-portrait-v1.mp4'],['data-mobile-poster','result-poster-portrait-v1.webp']
 ])assert.ok(home.includes(`${attribute}="${base}assets/video/${asset}"`),'Process videos must retain the matching mobile media inside the configured base path: '+asset);
+const builtProcessVideos=[...home.matchAll(/<video\b(?=[^>]*\bdata-mobile-src=)[^>]*>/g)].map(match=>match[0]);
+assert.equal(builtProcessVideos.length,2,'The two process videos must retain their responsive sources');
+for(const video of builtProcessVideos){assert.doesNotMatch(video,/\sposter=/,'Process posters must wait for lazy loading');assert.match(video,/\sdata-poster=/);assert.match(video,/\spreload="none"/);}
+const processFallbacks=[...home.matchAll(/<noscript><picture><source\b[^>]*><img\b[^>]*\bclass="process-video-fallback"[^>]*><\/picture><\/noscript>/g)].map(match=>match[0]);
+assert.equal(processFallbacks.length,2,'Both process videos must retain a static preview without JavaScript');
+for(const fallback of processFallbacks){assert.match(fallback,/media="\(max-width:640px\)"/);assert.match(fallback,/srcset="[^"]+-portrait-v1\.webp"/);assert.match(fallback,/loading="lazy"/);assert.match(fallback,/\salt="[^"]+"/);}
 const builtGlazingChoice=assertGlazingChoice(home,'Built home');
 assert.equal([...builtGlazingChoice.matchAll(/sizes="\(max-width:760px\) calc\(100vw - 58px\)/g)].length,2,'Both balcony photos follow the single-column breakpoint');
 const balconyStyles=await readFile(join(root,'styles.css'),'utf8');
 for(const selector of ['.glazing-choice-card--warm .glazing-choice-body','.glazing-choice-card--warm h3','.glazing-choice-card--warm .glazing-choice-icon'])assert.ok(balconyStyles.includes(selector),'Warm balcony accents must survive CSS optimization: '+selector);
 for(const photo of builtGlazingChoice.matchAll(/<img\b[^>]*>/g))assert.ok(/\bsrcset="[^"]+"/.test(photo[0])&&/\bsizes="[^"]+"/.test(photo[0]),'Built comparison photos must use responsive sources');
 for(const page of pages.filter(page=>page!==join(root,'index.html')))assert.ok(!(await readFile(page,'utf8')).includes('id="cold-warm-balcony"'),'Published comparison belongs only on the home page: '+page);
-if(base!=='/'){assert.ok(home.includes(`href="${base}styles.css`));assert.ok(home.includes(`src="${base}app.js`));assert.ok(home.includes(`srcset="${base}assets/`));assert.ok(home.includes(`data-src="${base}assets/`));assert.ok(home.includes(`poster="${base}assets/video/process-poster.jpg"`));assert.ok(home.includes(`poster="${base}assets/video/result-poster.jpg"`));assert.ok(home.includes(`href="${base}osteklenie-balkonov/"`));assert.ok(home.includes(`<link rel="canonical" href="https://ulin-roman.github.io${base}"`));const css=await readFile(join(root,'styles.css'),'utf8');assert.ok(css.includes(`${base}assets/manrope.woff2`));assert.ok(!css.includes("url('/assets/"));assert.ok(!home.includes('srcset="/assets/'));assert.ok(!home.includes('data-src="/assets/'));assert.ok(!home.includes('poster="/assets/'));}
+if(base!=='/'){assert.ok(home.includes(`href="${base}styles.css`));assert.ok(home.includes(`src="${base}app.js`));assert.ok(home.includes(`srcset="${base}assets/`));assert.ok(home.includes(`data-src="${base}assets/`));assert.ok(home.includes(`data-poster="${base}assets/video/process-poster.webp"`));assert.ok(home.includes(`data-poster="${base}assets/video/result-poster.webp"`));assert.ok(home.includes(`href="${base}osteklenie-balkonov/"`));assert.ok(home.includes(`<link rel="canonical" href="https://ulin-roman.github.io${base}"`));const css=await readFile(join(root,'styles.css'),'utf8');assert.ok(css.includes(`${base}assets/manrope.woff2`));assert.ok(!css.includes("url('/assets/"));assert.ok(!home.includes('srcset="/assets/'));assert.ok(!home.includes('data-src="/assets/'));assert.ok(!home.includes('poster="/assets/'));}
 const total=await Promise.all(files.filter(f=>f.endsWith('.webp')).map(f=>stat(f).then(s=>s.size)));
 console.log(`PASS: ${pages.length} pages, ${refs} local references, unique metadata, JSON-LD, image alt, no orphan assets, JS syntax. WebP total: ${Math.round(total.reduce((a,b)=>a+b,0)/1024)} KB.`);
 

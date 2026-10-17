@@ -10,8 +10,10 @@ const appSource=await readFile('public/app.js','utf8');
 const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource+'\n'+await readFile(new URL(import.meta.url),'utf8');
 const cssResult=await optimizeCss((await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8')),sourceText);
 const giftVersion=createHash('sha256').update(await readFile('src/gift-3d.mjs','utf8')).update(await readFile('package-lock.json','utf8')).digest('hex').slice(0,12);
+const calculatorSceneVersion=createHash('sha256').update(await readFile('public/calculator-scene.mjs','utf8')).update(await readFile('package-lock.json','utf8')).digest('hex').slice(0,12);
 // Static imports are bundled into the existing classic deferred script.
-const appBundle=await bundleScript({stdin:{contents:appSource.replace("'gift-3d.js'","'gift-3d.js?v="+giftVersion+"'"),resolveDir:resolve('public'),sourcefile:'app.js',loader:'js'},bundle:true,minify:true,format:'iife',target:['chrome100','firefox100','safari15.4'],legalComments:'none',write:false});
+const appContents=appSource.replace("'gift-3d.js'","'gift-3d.js?v="+giftVersion+"'").replace("'calculator-scene.js'","'calculator-scene.js?v="+calculatorSceneVersion+"'");
+const appBundle=await bundleScript({stdin:{contents:appContents,resolveDir:resolve('public'),sourcefile:'app.js',loader:'js'},bundle:true,minify:true,format:'iife',target:['chrome100','firefox100','safari15.4'],legalComments:'none',write:false});
 const appCode=appBundle.outputFiles[0].text;
 const fingerprint=text=>createHash('sha256').update(text).digest('hex').slice(0,12);
 // Use the prepared full-size WebP in comparisons as well as thumbnails.
@@ -63,7 +65,7 @@ const imageAsset=name=>`/assets/${/\.[a-z0-9]+$/i.test(name)?name:`${name}.webp`
 // The publicly accessible Pages preview must not compete with the production site in search.
 const baseHtml=html=>{
  if(staticOnly)html=html.replace(/(<meta name="robots" content=")[^"]+("\s*\/>|">)/,'$1noindex,follow$2');
- return base==='/'?html:html.replace(/((?:href|src|poster|data-src)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
+ return base==='/'?html:html.replace(/((?:href|src|poster|data-src|data-poster|data-mobile-src|data-mobile-poster)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
 };
 const baseCss=css=>base==='/'?css:css.replace(/url\((['"]?)\/(?!\/)/g,`url($1${base}`);
 await rm('dist',{recursive:true,force:true});
@@ -72,9 +74,12 @@ await cp('public','dist',{recursive:true});
 await writeFile('dist/styles.css',baseCss(cssResult.code));
 await writeFile('dist/app.js',appCode);
 await bundleScript({entryPoints:['src/gift-3d.mjs'],outfile:'dist/gift-3d.js',bundle:true,minify:true,format:'esm',target:['es2020'],legalComments:'eof'});
+await bundleScript({entryPoints:['public/calculator-scene.mjs'],outfile:'dist/calculator-scene.js',bundle:true,minify:true,format:'esm',target:['chrome100','firefox100','safari15.4'],legalComments:'none'});
 await rm('dist/styles-extra.css');
-// The calculator module is already included in app.js.
+// Only bundled scripts are published; the drawing module stays separate and lazy.
 await rm('dist/calculator-estimate.mjs');
+await rm('dist/calculator-scene-loader.mjs');
+await rm('dist/calculator-scene.mjs');
 await rm('dist/retention-popup.mjs');
 await rm('dist/media-lifecycle.mjs');
 await rm('dist/phone-mask.mjs');
@@ -155,7 +160,7 @@ ErrorDocument 404 ${base}404.html
  <FilesMatch "\\.(?:html|json|xml|txt)$">
   Header set Cache-Control "no-cache"
  </FilesMatch>
- <FilesMatch "^(?:styles\\.css|app\\.js|gift-3d\\.js)$">
+ <FilesMatch "^(?:styles\\.css|app\\.js|gift-3d\\.js|calculator-scene\\.js)$">
   Header set Cache-Control "public, max-age=31536000, immutable"
  </FilesMatch>
  <FilesMatch "\\.(?:webp|jpg|jpeg|png|svg|ico|woff2|mp4)$">

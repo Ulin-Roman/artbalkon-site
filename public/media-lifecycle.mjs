@@ -1,5 +1,6 @@
 export function hydrateVideo(video){
  let changed=false;
+ if(video.dataset.poster){video.setAttribute('poster',video.dataset.poster);delete video.dataset.poster;}
  if(video.dataset.src){video.src=video.dataset.src;delete video.dataset.src;changed=true;}
  for(const source of video.querySelectorAll('source[data-src]')){
   source.src=source.dataset.src;delete source.dataset.src;changed=true;
@@ -11,7 +12,7 @@ export function hydrateVideo(video){
 // Choose the matching file before lazy loading; a later resize retains playback.
 export function mountResponsiveVideo(video,{window:win=window}={}){
  const media=win.matchMedia('(max-width:640px)');
- const desktop={src:video.dataset.src||video.getAttribute('src'),poster:video.getAttribute('poster')};
+ const desktop={src:video.dataset.src||video.getAttribute('src'),poster:video.dataset.poster||video.getAttribute('poster')};
  const mobile={src:video.dataset.mobileSrc,poster:video.dataset.mobilePoster};
  const preload=video.preload;
  let selected=null,pending=null;
@@ -26,7 +27,10 @@ export function mountResponsiveVideo(video,{window:win=window}={}){
   const variant=media.matches?mobile:desktop;
   if(!variant.src||selected===variant.src)return;
   selected=variant.src;
-  if(variant.poster)video.setAttribute('poster',variant.poster);
+  if(variant.poster){
+   if(video.dataset.poster!==undefined)video.dataset.poster=variant.poster;
+   else video.setAttribute('poster',variant.poster);
+  }
   if(video.dataset.src){video.dataset.src=variant.src;return;}
   pending=pending||{time:video.currentTime||0,paused:video.paused||video.ended};
   video.src=variant.src;

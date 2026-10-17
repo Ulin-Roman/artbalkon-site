@@ -823,6 +823,7 @@ h1,h2,h3,h4,
 .process-video-card{min-width:0;overflow:hidden;border:1px solid rgba(18,28,30,.08);border-radius:28px;background:#fff;box-shadow:0 14px 38px rgba(18,28,30,.08)}
 .process-video-media{position:relative;aspect-ratio:16/9;overflow:hidden;background:#101616}
 .process-video-media video{display:block;width:100%;height:100%;object-fit:cover;background:#101616}
+.process-video-fallback{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
 .process-video-copy{padding:28px 30px 32px}
 .process-video-copy .eyebrow{margin-bottom:12px;color:var(--teal)}
 .process-video-copy h3{margin:0;font-size:clamp(24px,2.2vw,32px);line-height:1.15}
@@ -3215,15 +3216,7 @@ body{min-width:0;max-width:100%}
  .hero-cta-stack{width:100%}
 }
 
-/* Preserve a clear gap before the CTA on service heroes that have no price row. */
-.landing-hero .landing-copy-main>.hero-description+.hero-cta-stack{
- margin-top:28px;
-}
-@media(max-width:640px){
- .landing-hero .landing-copy-main>.hero-description+.hero-cta-stack{
-  margin-top:18px;
- }
-}
+
 
 /* Balanced first-screen composition shared by home and service pages. */
 @media (min-width: 641px) {
@@ -3306,16 +3299,7 @@ body{min-width:0;max-width:100%}
 
 /* Keep service titles and prices on one line, matching the compact mobile cards. */
 
-/* Preserve a clear gap before the CTA on service heroes that have no price row. */
-.landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
-  margin-top: 28px;
-}
 
-@media (max-width: 640px) {
-  .landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
-    margin-top: 18px;
-  }
-}
 
 /* Centre hero and header button contents with equal space at both edges. */
 .hero-cta-stack .button{
@@ -3536,16 +3520,7 @@ body{min-width:0;max-width:100%}
  }
 }
 
-/* Preserve a clear gap before the CTA on service heroes that have no price row. */
-.landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
-  margin-top: 28px;
-}
 
-@media (max-width: 640px) {
-  .landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {
-    margin-top: 18px;
-  }
-}
 
 /* Preserve a clear gap before the CTA on service heroes that have no price row. */
 .landing-hero .landing-copy-main > .hero-description + .hero-cta-stack {

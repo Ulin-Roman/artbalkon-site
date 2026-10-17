@@ -6,6 +6,7 @@ import re
 import urllib.request
 import urllib.error
 import urllib.parse
+from pathlib import Path
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -175,6 +176,17 @@ with urllib.request.urlopen(js_request, timeout=30) as response:
     js = gzip.decompress(js_bytes) if js_encoding == 'gzip' else js_bytes
 assert hashlib.sha256(js).hexdigest()[:12] == js_version, 'Published script bytes do not match the URL hash'
 print('Production script delivery:', json.dumps({'js_encoding': js_encoding, 'js_cache': js_cache, 'js_version': js_version, 'js_transfer_bytes': len(js_bytes), 'js_decoded_bytes': len(js)}, ensure_ascii=False))
+
+# The optional drawing code must be available with exactly the bytes just built.
+scene_version = re.search(rb'calculator-scene\.js\?v=([0-9a-f]{12})', js)
+assert scene_version, 'Main script must reference the versioned calculator module'
+scene_url = 'https://artbalkon.site/calculator-scene.js?v=' + scene_version.group(1).decode('ascii')
+with urllib.request.urlopen(urllib.request.Request(scene_url, headers={'Accept-Encoding': 'gzip'}), timeout=30) as response:
+    scene_bytes = response.read()
+    scene = gzip.decompress(scene_bytes) if response.headers.get('Content-Encoding') == 'gzip' else scene_bytes
+assert scene == Path('dist/calculator-scene.js').read_bytes(), 'Published calculator module differs from the checked build'
+assert b'createCalculatorScene' in scene, 'Calculator module must retain its public export'
+print('Production lazy calculator module verified:', json.dumps({'bytes': len(scene), 'transfer_bytes': len(scene_bytes)}))
 
 # All duplicate URL variants must redirect directly to the canonical HTTPS URL.
 origin = 'https://artbalkon.site'
