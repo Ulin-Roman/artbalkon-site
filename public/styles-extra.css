@@ -717,34 +717,27 @@ h1,h2,h3,h4,
 .finishing-style-tabs{
  display:grid;
  grid-template-columns:repeat(5,minmax(0,1fr));
+ gap:8px;
  margin-bottom:24px;
  padding:6px;
- border:1px solid var(--surface-border);
+ border:1px solid transparent;
  border-radius:999px;
- background:rgba(255,255,255,.7);
- box-shadow:0 8px 26px rgba(18,28,30,.035);
+ background:transparent;
+ box-shadow:none;
 }
 .finishing-style-tabs button{
+ min-width:0;
  min-height:48px;
  padding:10px 16px;
- border:0;
+ border:1px solid transparent;
  border-radius:999px;
  background:transparent;
  color:var(--muted);
- font:700 14px/1.2 Manrope,Arial,sans-serif;
+ font:600 14px/1.2 Manrope,Arial,sans-serif;
+ overflow-wrap:anywhere;
  cursor:pointer;
  transition:background .2s ease,color .2s ease,box-shadow .2s ease;
 }
- .finishing-style-tabs button:hover{
-  background:rgba(0,119,126,.055);
-  color:var(--ink);
- }
- .finishing-style-tabs button[aria-selected="true"]{
-  background:#f1fbfb;
-  color:var(--teal-dark);
-  box-shadow:inset 0 0 0 2px rgba(0,119,126,.72),0 8px 20px rgba(0,96,103,.16);
- }
-.finishing-style-tabs button:focus-visible{outline:3px solid rgba(0,119,126,.28);outline-offset:2px}
 .finishing-style-panel{
  display:grid;
  grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr);
@@ -3629,9 +3622,6 @@ p{ text-wrap:pretty }
 .application-modal,.quiz-modal,.comparison-modal{border-radius:24px}
 .application-modal-copy{background:#edf3ee}
 .partner-brand-card{background:#fff;box-shadow:none;border-radius:16px}
-.finishing-style-tabs{background:#e9eeea;border:1px solid var(--line);box-shadow:none;padding:6px}
-.finishing-style-tabs button{font-weight:600;border-radius:999px}
-.finishing-style-tabs button[aria-selected="true"]{background:var(--teal);color:#fff;box-shadow:0 3px 10px rgba(0,119,126,.15)}
 .finishing-style-panel{border:1px solid var(--line);border-radius:24px;box-shadow:var(--site-card-shadow)}
 .final-section{background:#edf3ee;border:1px solid #d8e3db;border-radius:24px;box-shadow:none}
 .footer{background:#edf1ed;border-top:1px solid var(--line);color:var(--ink)}
@@ -4742,8 +4732,8 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  --primary-button-transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
  --primary-button-hover-transform:translateY(-1px);
 }
-/* Transparent gallery action with the same raised edge and interaction states. */
-.before-after-more-button{
+/* Gallery actions and style tabs share a transparent raised surface. */
+.before-after-more-button,.finishing-style-tabs button{
  --primary-button-background:transparent;
  --primary-button-hover-background:transparent;
  --primary-button-active-background:transparent;
@@ -4754,7 +4744,15 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  --primary-button-hover-shadow:0 9px 20px rgba(23,50,47,.14),inset 0 1px 1px rgba(255,255,255,.95),inset 0 -2px 3px rgba(23,50,47,.1);
  --primary-button-active-shadow:0 3px 8px rgba(23,50,47,.08),inset 0 2px 4px rgba(23,50,47,.12);
 }
-:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"],.promotion-card-copy>span){
+.finishing-style-tabs button[aria-selected="true"]{
+ --primary-button-color:var(--teal-dark);
+ --primary-button-border-color:rgba(0,119,126,.8);
+ --primary-button-hover-border-color:#00777e;
+ --primary-button-shadow:0 7px 16px rgba(23,50,47,.1),inset 0 1px 1px rgba(255,255,255,.85),inset 0 0 0 1px rgba(0,119,126,.45),inset 0 -2px 3px rgba(23,50,47,.08);
+ --primary-button-hover-shadow:0 9px 20px rgba(23,50,47,.14),inset 0 1px 1px rgba(255,255,255,.95),inset 0 0 0 1px rgba(0,119,126,.6),inset 0 -2px 3px rgba(23,50,47,.1);
+ --primary-button-active-shadow:0 3px 8px rgba(23,50,47,.08),inset 0 0 0 1px rgba(0,119,126,.6),inset 0 2px 4px rgba(23,50,47,.12);
+}
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button,.promotion-card-copy>span){
  background:var(--primary-button-background);
  border-color:var(--primary-button-border-color,#00777e);
  color:var(--primary-button-color,#fff);
@@ -4764,19 +4762,19 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  transform:none;
  transition:var(--primary-button-transition);
 }
-:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):hover:not(:disabled),.promotion-card:hover:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):hover:not(:disabled),.promotion-card:hover:not(:disabled) .promotion-card-copy>span{
  background:var(--primary-button-hover-background);
  border-color:var(--primary-button-hover-border-color,#006a71);
  box-shadow:var(--primary-button-hover-shadow);
  filter:none;
  transform:var(--primary-button-hover-transform);
 }
-:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):active:not(:disabled),.promotion-card:active:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):active:not(:disabled),.promotion-card:active:not(:disabled) .promotion-card-copy>span{
  background:var(--primary-button-active-background);
  box-shadow:var(--primary-button-active-shadow);
  transform:translateY(0);
 }
-:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button[aria-selected="true"]):focus-visible,.promotion-card:focus-visible:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):focus-visible,.promotion-card:focus-visible:not(:disabled) .promotion-card-copy>span{
  outline:2px solid #00777e;
  outline-offset:3px;
 }
