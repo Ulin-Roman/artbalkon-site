@@ -991,10 +991,12 @@ function createCalculatorScene(root) {
   }
   board(q[0],q[1],4.2,4.2,0);
   board(q[3],q[0],6.4,4.2,1.05);
-  // Stop at the far door jamb; the opening and the foreground stay clear.
+  // Both wall sections have boards; the door threshold stays clear.
   const doorEdge=(250.7-q[1][0])/(q[2][0]-q[1][0]);
+  const nearDoorEdge=(283.7-q[1][0])/(q[2][0]-q[1][0]);
   const height=t=>4.2+(6.4-4.2)*t;
   board(q[1],lerp(q[1],q[2],doorEdge),height(0),height(doorEdge),-.8);
+  board(lerp(q[1],q[2],nearDoorEdge),q[2],height(nearDoorEdge),height(1),-.8,true);
  }
 
 
