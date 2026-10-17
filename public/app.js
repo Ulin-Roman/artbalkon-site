@@ -1,6 +1,6 @@
 import {calculateFinishingEstimate} from './calculator-estimate.mjs';
 import {mountRetentionPopup} from './retention-popup.mjs';
-import {hydrateVideo,mountAmbientVideo,mountVisibleActivity} from './media-lifecycle.mjs';
+import {hydrateVideo,mountResponsiveVideo,mountAmbientVideo,mountVisibleActivity} from './media-lifecycle.mjs';
 import {mountPhoneMask,phoneIsValid} from './phone-mask.mjs';
 (() => {
  'use strict';
@@ -151,6 +151,7 @@ import {mountPhoneMask,phoneIsValid} from './phone-mask.mjs';
  const openDialogAtCurrentScroll=(dialog,focusTarget)=>{if(!dialog)return;const top=modalTriggerScrollY??scrollY;modalTriggerScrollY=null;dialogScrollPositions.set(dialog,top);if(!dialog.open)dialog.showModal();focusTarget?.focus({preventScroll:true});restoreScrollPosition(top);};
  document.querySelectorAll('dialog').forEach(dialog=>dialog.addEventListener('close',()=>{const top=dialogScrollPositions.get(dialog);dialogScrollPositions.delete(dialog);restoreScrollPosition(top);}));
  const retentionController=mountRetentionPopup({dialog:$('#retention-modal'),initialSubmitted:formGoalState.sent.size>0,track,openDialog:(dialog,focusTarget)=>{modalTriggerScrollY=null;openDialogAtCurrentScroll(dialog,focusTarget);}});
+ document.querySelectorAll('[data-mobile-src]').forEach(video=>mountResponsiveVideo(video));
  const lazyVideos=[...document.querySelectorAll('[data-lazy-video]')];
  if('IntersectionObserver' in window){const videoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const video=entry.target;hydrateVideo(video);if(video.autoplay&&!video.hasAttribute('data-ambient-video')&&!reducedMotion.matches)video.play().catch(()=>{});videoObserver.unobserve(video);}),{rootMargin:'500px 0px'});lazyVideos.forEach(video=>videoObserver.observe(video));}
  else lazyVideos.forEach(hydrateVideo);

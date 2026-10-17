@@ -8,6 +8,37 @@ export function hydrateVideo(video){
  return changed;
 }
 
+// Choose the matching file before lazy loading; a later resize retains playback.
+export function mountResponsiveVideo(video,{window:win=window}={}){
+ const media=win.matchMedia('(max-width:640px)');
+ const desktop={src:video.dataset.src||video.getAttribute('src'),poster:video.getAttribute('poster')};
+ const mobile={src:video.dataset.mobileSrc,poster:video.dataset.mobilePoster};
+ const preload=video.preload;
+ let selected=null,pending=null;
+ const restore=()=>{
+  if(!pending)return;
+  const state=pending;pending=null;
+  if(state.time>0)video.currentTime=Number.isFinite(video.duration)?Math.min(state.time,video.duration):state.time;
+  video.preload=preload;
+  if(!state.paused)Promise.resolve(video.play()).catch(()=>{});
+ };
+ const select=()=>{
+  const variant=media.matches?mobile:desktop;
+  if(!variant.src||selected===variant.src)return;
+  selected=variant.src;
+  if(variant.poster)video.setAttribute('poster',variant.poster);
+  if(video.dataset.src){video.dataset.src=variant.src;return;}
+  pending=pending||{time:video.currentTime||0,paused:video.paused||video.ended};
+  video.src=variant.src;
+  video.preload='metadata';
+  video.load();
+ };
+ media.addEventListener('change',select);
+ video.addEventListener('loadedmetadata',restore);
+ select();
+ return {dispose(){media.removeEventListener('change',select);video.removeEventListener('loadedmetadata',restore);}};
+}
+
 // Keep timers and media dormant while their section or page is out of view.
 // Persisted pagehide retains the observer and intent for a BFCache restoration.
 export function mountVisibleActivity({element,start,stop,enabled=motion=>!motion.matches,onMotionChange=()=>{},reducedMotion,document:doc=document,window:win=window}){

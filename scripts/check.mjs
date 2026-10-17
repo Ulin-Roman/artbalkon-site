@@ -586,6 +586,10 @@ const searchable=files.filter(file=>/\.(?:html|css|js|json|xml|txt)$/.test(file)
 await assert.rejects(stat(join(root,'styles-extra.css')),/ENOENT/);
 for(const file of ['dist/app.js','scripts/build.mjs','scripts/optimize.mjs','public/app.js','scripts/server.mjs','scripts/leads.mjs','src/components.mjs','src/content.mjs'])execFileSync(process.execPath,['--check',file]);
 const home=await readFile(join(root,'index.html'),'utf8');
+for(const [attribute,asset] of [
+ ['data-mobile-src','process-work-portrait-v1.mp4'],['data-mobile-poster','process-poster-portrait-v1.jpg'],
+ ['data-mobile-src','process-result-portrait-v1.mp4'],['data-mobile-poster','result-poster-portrait-v1.jpg']
+])assert.ok(home.includes(`${attribute}="${base}assets/video/${asset}"`),'Process videos must retain the matching mobile media inside the configured base path: '+asset);
 const builtGlazingChoice=assertGlazingChoice(home,'Built home');
 assert.equal([...builtGlazingChoice.matchAll(/sizes="\(max-width:760px\) calc\(100vw - 58px\)/g)].length,2,'Both balcony photos follow the single-column breakpoint');
 const balconyStyles=await readFile(join(root,'styles.css'),'utf8');

@@ -835,6 +835,10 @@ h1,h2,h3,h4,
  .process-video-copy h3{font-size:24px}
  .process-video-copy>p:last-child{font-size:14px}
 }
+@media(max-width:640px){
+ .process-video-grid{max-width:420px;margin-inline:auto}
+ .process-video-media{aspect-ratio:9/16}
+}
 
 /* Keep CTA labels and arrows together, with a soft travelling highlight. */
 .button{

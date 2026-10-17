@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {hydrateVideo,mountAmbientVideo,mountVisibleActivity} from '../public/media-lifecycle.mjs';
+import {hydrateVideo,mountResponsiveVideo,mountAmbientVideo,mountVisibleActivity} from '../public/media-lifecycle.mjs';
 
 class Surface extends EventTarget {
  emit(type,properties={}){const event=new Event(type);Object.assign(event,properties);this.dispatchEvent(event);}
@@ -49,6 +49,46 @@ test('lazy video source is hydrated once, including the legacy source form',()=>
  const legacy={dataset:{},querySelectorAll:()=>source.dataset.src?[source]:[],load(){this.loads=(this.loads||0)+1;}};
  assert.equal(hydrateVideo(legacy),true);assert.equal(source.src,'/legacy.mp4');
  assert.equal(hydrateVideo(legacy),false);assert.equal(legacy.loads,1);
+});
+
+function responsiveVideo(mobile){
+ const media=new Surface();media.matches=mobile;
+ const video=new Surface(),attributes={poster:'/desktop.jpg'};
+ video.dataset={src:'/desktop.mp4',mobileSrc:'/portrait.mp4',mobilePoster:'/portrait.jpg'};
+ video.preload='none';video.currentTime=0;video.duration=60;video.paused=true;video.ended=false;video.loads=0;video.plays=0;
+ video.getAttribute=name=>attributes[name]??null;
+ video.setAttribute=(name,value)=>{attributes[name]=value;};
+ video.querySelectorAll=()=>[];
+ video.load=()=>{video.loads++;video.currentTime=0;video.paused=true;};
+ video.play=()=>{video.plays++;video.paused=false;return Promise.resolve();};
+ const controller=mountResponsiveVideo(video,{window:{matchMedia(query){assert.equal(query,'(max-width:640px)');return media;}}});
+ return {video,attributes,controller,resize(value){media.matches=value;media.emit('change');},metadata(){video.emit('loadedmetadata');}};
+}
+
+test('responsive videos select a matching source and poster before any lazy download',()=>{
+ for(const mobile of [false,true]){
+  const visit=responsiveVideo(mobile),stem=mobile?'portrait':'desktop';
+  assert.equal(visit.video.dataset.src,'/'+stem+'.mp4');assert.equal(visit.attributes.poster,'/'+stem+'.jpg');
+  assert.equal(visit.video.src,undefined);assert.equal(visit.video.loads,0);assert.equal(visit.video.preload,'none');
+  visit.resize(!mobile);assert.equal(visit.video.loads,0);
+  hydrateVideo(visit.video);assert.equal(visit.video.src,mobile?'/desktop.mp4':'/portrait.mp4');assert.equal(visit.video.loads,1);
+ }
+});
+
+test('responsive source changes restore the position without starting a paused video',()=>{
+ const visit=responsiveVideo(true);hydrateVideo(visit.video);visit.video.currentTime=18;
+ visit.resize(false);assert.equal(visit.video.src,'/desktop.mp4');assert.equal(visit.attributes.poster,'/desktop.jpg');
+ assert.equal(visit.video.preload,'metadata');visit.metadata();
+ assert.equal(visit.video.currentTime,18);assert.equal(visit.video.paused,true);assert.equal(visit.video.plays,0);assert.equal(visit.video.preload,'none');
+ visit.resize(false);assert.equal(visit.video.loads,2);
+});
+
+test('playing video survives rapid breakpoint changes at the same position',()=>{
+ const visit=responsiveVideo(false);hydrateVideo(visit.video);visit.video.currentTime=27;visit.video.paused=false;
+ visit.resize(true);visit.resize(false);visit.metadata();
+ assert.equal(visit.video.src,'/desktop.mp4');assert.equal(visit.attributes.poster,'/desktop.jpg');
+ assert.equal(visit.video.currentTime,27);assert.equal(visit.video.paused,false);assert.equal(visit.video.plays,1);
+ visit.controller.dispose();visit.resize(true);assert.equal(visit.video.src,'/desktop.mp4');
 });
 
 test('ambient playback pauses offscreen and in hidden tabs, then resumes the same video',()=>{
