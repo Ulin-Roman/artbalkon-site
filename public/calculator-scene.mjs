@@ -523,9 +523,11 @@ export function createCalculatorScene(root,siteBase) {
 
 
  function parapetCore(){
-  // The mineral core meets the skin beneath the selected window profile.
+  // The mineral core keeps its thickness when the separate outer skin is removed.
   const edge=streetSection(),clad=selection['exterior-enabled'];
-  const left=clad?edge.inner-.1:28,right=edge.core,top=302,bottom=floorBase[3][1]+1.5,q=[[left,top],[right,top],[right,bottom],[left,bottom]];
+  const left=edge.inner-.1,right=edge.core,top=302,bottom=floorBase[3][1]+1.5,q=[[left,top],[right,top],[right,bottom],[left,bottom]];
+  // Without cladding, remove the photograph's old wider edge before drawing the core.
+  if(!clad)ctx.clearRect(0,300.5,left,179.5);
   plane(q,'concrete',(right-left)/5.5,2,false,{axis:[left,top,right,top],stops:[[0,'#eeead730'],[.52,'#ebe7d91a'],[1,'#49483b45']]},5);
   line([[left,top],[left,bottom]],'#eeeade',.55);
   line([[right,top],[right,bottom]],'#665f4b',.65);
