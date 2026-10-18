@@ -4473,13 +4473,8 @@ main > .social-subscribe,
 .social-subscribe--cards .social-card-header h3{margin:0;color:var(--ink);font-size:25px;font-weight:650;line-height:1.2;letter-spacing:-.025em;overflow-wrap:anywhere}
 .social-subscribe--cards .social-card-header p{margin:7px 0 0;color:var(--muted);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
 .social-subscribe--cards .social-photo-preview{display:grid;grid-template-rows:minmax(0,1fr);min-width:0;height:250px;margin:0;border-radius:14px;gap:7px}
-.social-subscribe--cards .social-photo-preview--comparison{grid-template-columns:repeat(2,minmax(0,1fr))}
 .social-subscribe--cards .social-photo-preview--gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
-.social-subscribe--cards .social-photo-preview figure{position:relative;min-width:0;min-height:0;height:100%;margin:0}
 .social-subscribe--cards .social-photo-preview img{display:block;min-width:0;min-height:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;border-radius:11px}
-.social-subscribe--cards .social-photo-preview--comparison figure:first-child img{object-position:50% 48%}
-.social-subscribe--cards .social-photo-preview--comparison figure:last-child img{object-position:50% 52%}
-.social-subscribe--cards .social-photo-preview figcaption{position:absolute;left:12px;bottom:12px;max-width:calc(100% - 24px);padding:6px 11px;border-radius:8px;background:rgba(255,255,255,.94);color:#263d35;font-size:12px;font-weight:600;line-height:1.4;overflow-wrap:anywhere;box-shadow:0 2px 8px #14251b18}
 .social-subscribe--cards .social-card-description{min-width:0;margin:20px 0 23px;color:var(--muted);font-size:15px;line-height:1.7;overflow-wrap:anywhere}
 .social-subscribe--cards .social-card-cta{
  --primary-button-background:linear-gradient(180deg,#2aabee 0%,#0079bd 32%,#0071b5 68%,#00629d 100%);
@@ -4542,7 +4537,6 @@ main > .social-subscribe,
  .social-subscribe--cards .social-card-header h3{font-size:22px}
  .social-subscribe--cards .social-card-header p{font-size:12px}
  .social-subscribe--cards .social-photo-preview{height:220px;gap:6px}
- .social-subscribe--cards .social-photo-preview figcaption{left:9px;bottom:9px;max-width:calc(100% - 18px);padding:5px 9px;font-size:12px}
  .social-subscribe--cards .social-card-description{font-size:13px;line-height:1.7}
  .social-subscribe--cards .social-card-cta{padding-inline:14px;gap:10px}
 }

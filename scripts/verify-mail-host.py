@@ -132,6 +132,16 @@ assert re.search(r'href=[\"\']/?#before-after[\"\']', html), 'Portfolio must be 
 assert 'id="before-after"' in html, 'Home portfolio destination must exist'
 assert_no_retired_portfolio_links(html, '/')
 assert_retention_popup(html, '/')
+telegram_preview_pattern = r'<article class="social-photo-card social-photo-card--telegram">[\s\S]*?<div class="social-photo-preview[^"]*"[^>]*>([\s\S]*?)</div>'
+telegram_preview = re.search(telegram_preview_pattern, html)
+expected_telegram_preview = re.search(telegram_preview_pattern, Path('dist/index.html').read_text(encoding='utf-8'))
+assert telegram_preview and expected_telegram_preview and telegram_preview.group(1) == expected_telegram_preview.group(1), 'Published Telegram photos differ from the checked build'
+telegram_photos = re.findall(r'<img\b[^>]*\bsrc="([^"]+)"', telegram_preview.group(1))
+assert len(telegram_photos) == 3, 'Telegram card must show three photos'
+for photo_path in telegram_photos:
+    photo_bytes = urllib.request.urlopen('https://artbalkon.site' + photo_path, timeout=30).read()
+    assert photo_bytes == Path('dist' + photo_path).read_bytes(), 'Published Telegram photo differs from the checked build: ' + photo_path
+print('Production Telegram gallery verified: three matching photos.')
 css_path = re.search(r'<link rel="stylesheet" href="([^"]+)"', html).group(1)
 css_version = urllib.parse.parse_qs(urllib.parse.urlsplit(css_path).query).get('v', [''])[0]
 assert re.fullmatch(r'[0-9a-f]{12}', css_version), 'Published stylesheet URL must contain its content hash'
