@@ -395,6 +395,8 @@ export function createCalculatorScene(root,siteBase) {
   // Remove the original head too, so no second cut survives above the new one.
   const cut=[[30,54.5],[43.4,54.5],[43.4,300.3],[30,303.2]];
   ctx.save();polygon(cut);ctx.clip();ctx.clearRect(29.5,54.3,14.4,249);ctx.restore();
+  // Clear the old concrete ledge outside the new sill before drawing the frame.
+  ctx.clearRect(0,292.5,30.8,11.2);
   if(!enabled)return;
   const {outer,inner,lowerCut,profilePoint}=glazingGeometry(warm);
   const glassSeat=warm?.90:.54;
