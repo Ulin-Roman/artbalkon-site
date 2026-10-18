@@ -23,12 +23,31 @@ test('combined glazing page asks for the object and glazing type',()=>{const ser
 test('service page omits the already known service and uses three steps',()=>{const markup=quiz(services.find(item=>item.slug==='otdelka-balkonov'));assert.match(markup,/data-total-steps="3"/);assert.match(markup,/type="hidden" name="service" value="Отделка"/);assert.match(markup,/Что нужно отделать/);assert.doesNotMatch(markup,/Выберите подарок/);});
 test('furniture quiz supports balconies and loggias',()=>{const markup=quiz(services.find(s=>s.slug==='mebel-dlya-balkona'));assert.match(markup,/Где нужна встроенная мебель/);assert.doesNotMatch(markup,/type="hidden" name="object"/);assert.match(markup,/value="Балкон"/);assert.match(markup,/value="Лоджия"/);for(const object of ['Балкон','Лоджия'])assert.equal(validateLead({...valid(),object,service:'Мебель для балконов и лоджий'}).object,object);});
 test('project consultation keeps the project context',()=>{const markup=quizModal(projects[0]);assert.match(markup,/Получите\s+<br>консультацию/);assert.match(markup,/type="hidden" name="service" value="Утепление и отделка"/);assert.match(markup,/data-total-steps="2"/);});
+
+test('consultations default to the first answer while contacts and consent remain empty',()=>{
+ const contexts=[['general',quiz()],['home modal',quizModal(null,{withGlazingChoice:true})],['project modal',quizModal(projects[0])],...services.flatMap(service=>[[service.slug,quiz(service,{withGift:service.slug==='holodnoe-osteklenie'})],[service.slug+' modal',quizModal(service)]])];
+ for(const [label,markup] of contexts){
+  const inputs=[...markup.matchAll(/<input\b([^>]*)>/g)].map(([,tag])=>Object.fromEntries([...tag.matchAll(/(?:^|\s)([\w:-]+)(?:="([^"]*)")?/g)].map(([,key,value])=>[key,value===undefined?true:value])));
+  const radios=inputs.filter(input=>input.type==='radio'),names=[...new Set(radios.map(input=>input.name))];
+  assert.ok(names.length,label+': question choices exist');
+  for(const name of names){
+   const group=radios.filter(input=>input.name===name);
+   assert.ok(group.every(input=>input.required),label+': '+name+' remains required');
+   assert.deepEqual(group.filter(input=>input.checked),[group[0]],label+': only the first '+name+' answer is selected');
+  }
+  const consent=inputs.filter(input=>input.name==='consent');
+  assert.equal(consent.length,1,label+': one consent control');
+  assert.ok(consent[0].type==='checkbox'&&consent[0].required&&!consent[0].checked,label+': consent requires an explicit choice');
+  assert.ok(inputs.filter(input=>input.name==='name').every(input=>!input.value),label+': name is not prefilled');
+  assert.ok(inputs.filter(input=>input.name==='phone').every(input=>input.value==='+7 (___) ___-__-__'),label+': phone keeps the empty mask');
+ }
+});
 test('cold/warm choice belongs only to the home consultation modal',()=>{
  const homeShell=shellWithQuiz(renderHome(),{path:'/'}),modal=homeShell.match(/<dialog class="quiz-modal"[\s\S]*?<\/dialog>/)?.[0];
  assert.ok(modal,'Home consultation modal is present');
  assert.match(modal,/data-total-steps="4"/);
  assert.match(modal,/type="hidden" name="service" value="Под ключ"/);
- const choices=[...modal.matchAll(/<input type="radio" name="detail" value="([^"]+)" required>/g)].map(match=>match[1]);
+ const choices=[...modal.matchAll(/<input type="radio" name="detail" value="([^"]+)"[^>]*>/g)].map(match=>match[1]);
  assert.deepEqual(choices,['Холодный балкон','Тёплый балкон']);
  assert.ok(modal.indexOf('name="object"')<modal.indexOf('name="detail"'));
  assert.ok(modal.indexOf('name="detail"')<modal.indexOf('name="timing"'));
@@ -208,7 +227,8 @@ test('service routes retain their previous consultation questions and valid lead
   const gifts=withGift?fields('gift').map(input=>input.value):[undefined];
   if(withGift){
    assert.deepEqual(gifts,['Светильник и розетки','Тёплый пол','Потолочная сушилка','Подарочная карта'],label+': offer all four accepted gifts');
-   assert.ok(fields('gift').every(input=>input.type==='radio'&&input.required&&!input.checked),label+': visitors explicitly choose one gift');
+   assert.ok(fields('gift').every(input=>input.type==='radio'&&input.required),label+': preserve required gift choices');
+   assert.deepEqual(fields('gift').filter(input=>input.checked),[fields('gift')[0]],label+': default to the first gift');
    assert.match(block,/>Электрика<\/span>/,label+': use the promotional display label');
    const steps=[...block.matchAll(/<fieldset\b[^>]*>([\s\S]*?)<\/fieldset>/g)].map(([,body])=>inputsIn(body));
    assert.equal(steps.length,4,label+': four separate steps');
