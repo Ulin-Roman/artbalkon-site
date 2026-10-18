@@ -119,7 +119,7 @@ export function createCalculatorScene(root,siteBase) {
   line([rear[1],rear[2],rear[3]],filled?'#5e503b60':'#0f130f70',.45);
   ctx.restore();
  }
- function floorSection(q,material,filled){
+ function floorSection(q,material,filled,tileColumns){
   const left=q[3],right=q[2],bottom=floorBase[3][1]+1.2,width=right[0]-left[0],ribs=[0,.19,.38,.57,.76,.955];
   const finish=({tile:{thickness:1,bed:.75,colors:['#c4c6bd','#8e948d'],base:['#a8aca3','#747b72']},laminate:{thickness:.65,bed:.35,colors:['#d3bf96','#958264'],base:['#b0a58c','#837960']},vinyl:{thickness:.35,bed:.2,colors:['#aaa99d','#74796f'],base:['#b7b9ad','#929a8d']},linoleum:{thickness:.25,bed:.3,colors:['#b8b3a0','#898878'],base:['#acae9f','#858d7d']}})[material];
   const deck=finish?1.2:0,top=left[1]+(finish?finish.thickness+finish.bed+deck:0);
@@ -142,8 +142,8 @@ export function createCalculatorScene(root,siteBase) {
    strip(finish.thickness+finish.bed,finish.thickness+finish.bed+deck,material==='tile'?['#b9b9ab','#858d82']:['#c6b493','#897859']);
    line([left,right],material==='tile'?'#e0e1d7':'#e3d8be',.45);
    if(material==='tile'){
-    const tiles=Number(selection.width)/40,map=projection(q);
-    for(let i=1;i<tiles;i++){const p=map(i/tiles,1);line([p,[p[0],p[1]+finish.thickness]],'#69756b',.38);}
+    const map=projection(q);
+    for(let i=1;i<tileColumns;i++){const p=map(i/tileColumns,1);line([p,[p[0],p[1]+finish.thickness]],'#69756b',.38);}
    }
    line([[left[0],top],[right[0],top]],'#4e51455c',.35);
   }
@@ -719,6 +719,9 @@ export function createCalculatorScene(root,siteBase) {
   ctx.setTransform(3,0,0,3,0,0);ctx.clearRect(0,0,340,480);ctx.translate(340,0);ctx.scale(-1,1);ctx.drawImage(base,0,0,340,480);
   const wall=s['walls-enabled']?s.walls:insulated?'insulated':'concrete',floor=s['floor-enabled']?s.floor:insulated?'insulated':'concrete',ceiling=s['ceiling-enabled']?s.ceiling:insulated?'insulated':'concrete';
   const floorQ=surfaces.floor;
+  // Distribute complete cells evenly; a fractional repeat leaves a narrow edge tile.
+  // Share the grid between the texture, grout and front cut of the finish.
+  const tileColumns=Math.ceil(Number(s.width)/40),tileRows=Math.ceil(Number(s.length)/40);
   for(const [q,rx,ry,shade] of [
    [surfaces.back,1,1,{axis:[108,210,230,210],stops:[[0,'#28231540'],[.25,'#28231512'],[.8,'#28231525'],[1,'#28231555']]}],
    [surfaces.house,2.8,1,{axis:[220,190,298,190],stops:[[0,'#30291f48'],[.3,'#30291f08'],[1,'#ffffff12']]}],
@@ -734,13 +737,13 @@ export function createCalculatorScene(root,siteBase) {
    }
   }
   if(!s['ceiling-enabled'])insulatedSurface(surfaces.ceiling,false,insulated);else plane(surfaces.ceiling,ceiling,1,2.6,ceiling==='laminate',{axis:[170,63,170,140],stops:[[0,'#ffffff10'],[.65,'#342b1920'],[1,'#342b1955']]});
-  if(!s['floor-enabled'])insulatedSurface(floorQ,true,insulated);else plane(floorQ,floor,floor==='tile'?Number(s.width)/40:2.4,floor==='tile'?Number(s.length)/40:1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
+  if(!s['floor-enabled'])insulatedSurface(floorQ,true,insulated);else plane(floorQ,floor,floor==='tile'?tileColumns:2.4,floor==='tile'?tileRows:1.2,['laminate','vinyl'].includes(floor),{axis:[170,322,170,428],stops:[[0,'#211d195a'],[.25,'#211d1920'],[.8,'#ffffff09'],[1,'#211d1915']]});
   if(s['floor-enabled']&&floor==='tile'){
-   const map=projection(floorQ),tilesX=Number(s.width)/40,tilesY=Number(s.length)/40;
+   const map=projection(floorQ);
    ctx.save();polygon(floorQ);ctx.clip();
-   for(let i=1;i<tilesX;i++)line([map(i/tilesX,0),map(i/tilesX,1)],'#737a726e',.3);
-   for(let j=1;j<tilesY;j++){
-    const a=map(0,j/tilesY),b=map(1,j/tilesY),depth=(a[1]-floorQ[0][1])/(floorQ[3][1]-floorQ[0][1]);
+   for(let i=1;i<tileColumns;i++)line([map(i/tileColumns,0),map(i/tileColumns,1)],'#737a726e',.3);
+   for(let j=1;j<tileRows;j++){
+    const a=map(0,j/tileRows),b=map(1,j/tileRows),depth=(a[1]-floorQ[0][1])/(floorQ[3][1]-floorQ[0][1]);
     line([a,b],'#737a726e',.15+.2*depth);
    }
    ctx.restore();
@@ -762,7 +765,7 @@ export function createCalculatorScene(root,siteBase) {
   if(s['floor-enabled'])baseboards(floorQ,s['walls-enabled']?s.walls:null);
   // Apartment sill: a shaded underside, with the switch just below near the door.
   ctx.save();polygon(surfaces.house);ctx.clip();line([[218.7,261],[246.1,278]],'#3e393148',1.3);ctx.restore();switchPlate();
-  parapetCore();sideSection(insulated);floorSection(floorQ,s['floor-enabled']?s.floor:null,insulated);roofSection(insulated);
+  parapetCore();sideSection(insulated);floorSection(floorQ,s['floor-enabled']?s.floor:null,insulated,tileColumns);roofSection(insulated);
   houseSection(s['walls-enabled']?s.walls:null,insulated);
   if(s['exterior-enabled'])exteriorCladding(s.exterior==='metal');
   wideStreetSill();
