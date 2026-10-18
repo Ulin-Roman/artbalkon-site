@@ -273,7 +273,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  }
  if(label==='holodnoe-osteklenie'){
   assert.ok(!html.includes('data-hero-slider'),'cold glazing page hero must remain static');
-  assert.ok(html.includes('/assets/service-before-after/cold-loggia-finished-12-after.png'),'cold glazing page hero must keep the selected sliding-window image');
+  assert.ok(html.includes('/assets/cold-hero-sill-v2/hero.webp'),'cold glazing page hero must use the corrected sliding-window image');
   continue;
  }
  if(label==='teploe-osteklenie'){

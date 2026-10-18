@@ -11957,5 +11957,24 @@
         "width": 784
       }
     ]
+  },
+  "/assets/cold-hero-sill-v2/hero.webp": {
+    "src": "/assets/cold-hero-sill-v2/hero.webp",
+    "width": 1086,
+    "height": 1448,
+    "variants": [
+      {
+        "src": "/assets/cold-hero-sill-v2/hero-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/cold-hero-sill-v2/hero-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/cold-hero-sill-v2/hero.webp",
+        "width": 1086
+      }
+    ]
   }
 }

@@ -285,6 +285,12 @@ for path in ['/privacy/', '/consent/']:
     assert actual == expected, 'Published legal metadata differs from the checked build: ' + path
     assert actual['robots'] == 'noindex,follow', 'Legal pages must remain non-indexable: ' + path
 print('Production legal page descriptions verified; privacy and consent remain non-indexable.')
+for photo in ['hero.webp', 'hero-320.webp', 'hero-640.webp']:
+    asset = '/assets/cold-hero-sill-v2/' + photo
+    with opener.open('https://artbalkon.site' + asset, timeout=30) as response:
+        assert response.headers.get_content_type() == 'image/webp', 'Incorrect cold glazing hero Content-Type: ' + asset
+        assert response.read() == Path('dist' + asset).read_bytes(), 'Published cold glazing hero differs from the checked build: ' + asset
+print('Production corrected cold glazing hero verified: three matching WebP sizes.')
 print('Production SEO and static delivery:', json.dumps({'html_encoding': html_encoding, 'html_cache': html_cache, 'css_encoding': css_encoding, 'css_cache': css_cache, 'css_version': css_version, 'callback_inline_styles': True, 'css_transfer_bytes': len(css_bytes), 'css_decoded_bytes': len(css)}, ensure_ascii=False))
 if css_encoding != 'gzip':
     print('NOTICE: the hosting front end did not apply gzip to CSS; inspect its static-file settings.')
