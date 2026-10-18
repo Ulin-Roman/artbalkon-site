@@ -514,7 +514,11 @@ for(const file of pages){
  }
  for(const match of html.matchAll(/<img\s[^>]+>/g)){
   if(match[0].includes('src="https://mc.yandex.ru/watch/113425011"')){assert.ok(match[0].includes('alt=""'),'tracking pixel must have empty alt');continue;}
-  assert.ok(/\salt="[^"]+"/.test(match[0]),'image alt missing');assert.ok(/width=/.test(match[0])&&/height=/.test(match[0]),'image dimensions missing');
+  if(match[0].includes('class="final-cta-background"')){
+   assert.match(match[0],/\salt=""/,'decorative footer photo must have empty alt');
+   for(const attribute of ['role="presentation"','aria-hidden="true"','loading="lazy"','decoding="async"'])assert.ok(match[0].includes(attribute),'decorative footer photo missing '+attribute);
+  }else assert.ok(/\salt="[^"]+"/.test(match[0]),'image alt missing');
+  assert.ok(/width=/.test(match[0])&&/height=/.test(match[0]),'image dimensions missing');
  }
  // Additional services show static illustrations, without portfolio modal triggers.
  const extrasHtml=html.match(/<section class="section container turnkey-extras" id="complex-options">[\s\S]*?<\/section>/)?.[0]||'';

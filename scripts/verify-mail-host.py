@@ -152,6 +152,7 @@ with urllib.request.urlopen(css_request, timeout=30) as response:
     css_cache = response.headers.get('Cache-Control', '')
     css = gzip.decompress(css_bytes) if css_encoding == 'gzip' else css_bytes
 assert hashlib.sha256(css).hexdigest()[:12] == css_version, 'Published stylesheet content does not match the version requested by HTML'
+assert css == Path('dist/styles.css').read_bytes(), 'Published stylesheet differs from the checked build'
 assert b'calculator-scene-ready' in css and b'100svh' in css, 'Published styles do not contain the latest responsive/performance fixes'
 robots = urllib.request.urlopen('https://artbalkon.site/robots.txt?technical-check=1', timeout=30).read().decode('utf-8')
 assert 'Sitemap: https://artbalkon.site/sitemap.xml' in robots, 'Production sitemap must remain discoverable'
@@ -193,6 +194,7 @@ with urllib.request.urlopen(js_request, timeout=30) as response:
     js_cache = response.headers.get('Cache-Control', '')
     js = gzip.decompress(js_bytes) if js_encoding == 'gzip' else js_bytes
 assert hashlib.sha256(js).hexdigest()[:12] == js_version, 'Published script bytes do not match the URL hash'
+assert js == Path('dist/app.js').read_bytes(), 'Published script differs from the checked build'
 print('Production script delivery:', json.dumps({'js_encoding': js_encoding, 'js_cache': js_cache, 'js_version': js_version, 'js_transfer_bytes': len(js_bytes), 'js_decoded_bytes': len(js)}, ensure_ascii=False))
 
 # The optional drawing code must be available with exactly the bytes just built.

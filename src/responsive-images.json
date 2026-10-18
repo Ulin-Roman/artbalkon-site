@@ -420,23 +420,6 @@
       }
     ]
   },
-  "/assets/before-daytime/before-128-old-wooden-windows.png": {
-    "src": "/assets/responsive/d22d8de2faddd890-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d22d8de2faddd890-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d22d8de2faddd890-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d22d8de2faddd890-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/before-daytime/before-129.webp": {
     "src": "/assets/responsive/b892d2cd8eb006b2-1254.webp",
     "variants": [
@@ -1117,40 +1100,6 @@
       }
     ]
   },
-  "/assets/concept-cottage.jpg": {
-    "src": "/assets/responsive/b235e9ce1f5eabc1-960.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b235e9ce1f5eabc1-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b235e9ce1f5eabc1-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b235e9ce1f5eabc1-960.webp",
-        "width": 960
-      }
-    ]
-  },
-  "/assets/concept-room.jpg": {
-    "src": "/assets/responsive/bf699c2ae8eb1a23-960.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/bf699c2ae8eb1a23-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/bf699c2ae8eb1a23-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/bf699c2ae8eb1a23-960.webp",
-        "width": 960
-      }
-    ]
-  },
   "/assets/electrical-v2/el2After.webp": {
     "src": "/assets/responsive/ef2a9abe1f2f0dcd-1086.webp",
     "variants": [
@@ -1736,23 +1685,6 @@
       }
     ]
   },
-  "/assets/gallery-angles-v1/balkon-pod-klyuch-1-before.webp": {
-    "src": "/assets/responsive/1eb2c4f1e6fac81c-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/1eb2c4f1e6fac81c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/1eb2c4f1e6fac81c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/1eb2c4f1e6fac81c-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/gallery-angles-v1/balkon-pod-klyuch-2-after.webp": {
     "src": "/assets/responsive/81315947f8dab1ca-1448.webp",
     "variants": [
@@ -2212,23 +2144,6 @@
       }
     ]
   },
-  "/assets/gallery-angles-v1/otdelka-balkonov-1-before.webp": {
-    "src": "/assets/responsive/f79a5e1421403e9c-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f79a5e1421403e9c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f79a5e1421403e9c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f79a5e1421403e9c-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/gallery-angles-v1/otdelka-balkonov-2-after.webp": {
     "src": "/assets/responsive/9811c22a36396d7d-1448.webp",
     "variants": [
@@ -2314,23 +2229,6 @@
       }
     ]
   },
-  "/assets/gallery-angles-v1/panoramnoe-osteklenie-3-after.webp": {
-    "src": "/assets/responsive/b14893a407942060-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b14893a407942060-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b14893a407942060-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b14893a407942060-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/gallery-angles-v1/teploe-osteklenie-1-after.webp": {
     "src": "/assets/responsive/fc1f06d532083555-1448.webp",
     "variants": [
@@ -2365,40 +2263,6 @@
       }
     ]
   },
-  "/assets/gallery-angles-v1/teploe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/77e019676c2dcc6c-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/77e019676c2dcc6c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/77e019676c2dcc6c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/77e019676c2dcc6c-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
-  "/assets/gallery-angles-v1/teploe-osteklenie-2-before.webp": {
-    "src": "/assets/responsive/de3e51326cb49dcd-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/de3e51326cb49dcd-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/de3e51326cb49dcd-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/de3e51326cb49dcd-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/gallery-angles-v1/teploe-osteklenie-3-after.webp": {
     "src": "/assets/responsive/37887f6d1705ccf1-1280.webp",
     "variants": [
@@ -2412,23 +2276,6 @@
       },
       {
         "src": "/assets/responsive/37887f6d1705ccf1-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
-  "/assets/gallery-angles-v1/teploe-osteklenie-3-before.webp": {
-    "src": "/assets/responsive/cd0284e8c206e816-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/cd0284e8c206e816-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/cd0284e8c206e816-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/cd0284e8c206e816-1280.webp",
         "width": 1280
       }
     ]
@@ -2926,23 +2773,6 @@
       }
     ]
   },
-  "/assets/portfolio-extra-v2/balkon-pod-klyuch-3-before.webp": {
-    "src": "/assets/responsive/237b77c878579dc9-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/237b77c878579dc9-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/237b77c878579dc9-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/237b77c878579dc9-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-extra-v2/holodnoe-osteklenie-1-after.webp": {
     "src": "/assets/responsive/b6e8de12d9e607d8-1086.webp",
     "variants": [
@@ -3351,23 +3181,6 @@
       }
     ]
   },
-  "/assets/portfolio-extra-v2/otdelka-balkonov-1-before.webp": {
-    "src": "/assets/responsive/cb60facdb95e728e-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/cb60facdb95e728e-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/cb60facdb95e728e-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/cb60facdb95e728e-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-extra-v2/otdelka-balkonov-2-after.webp": {
     "src": "/assets/responsive/06f1a7e30829ae07-1086.webp",
     "variants": [
@@ -3385,23 +3198,6 @@
       }
     ]
   },
-  "/assets/portfolio-extra-v2/otdelka-balkonov-2-before.webp": {
-    "src": "/assets/responsive/00c6353bbd899df3-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/00c6353bbd899df3-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/00c6353bbd899df3-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/00c6353bbd899df3-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-extra-v2/otdelka-balkonov-3-after.webp": {
     "src": "/assets/responsive/e05a60c9cc8994fb-1086.webp",
     "variants": [
@@ -3415,23 +3211,6 @@
       },
       {
         "src": "/assets/responsive/e05a60c9cc8994fb-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-extra-v2/otdelka-balkonov-3-before.webp": {
-    "src": "/assets/responsive/38e9166c5d7eb083-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/38e9166c5d7eb083-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/38e9166c5d7eb083-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/38e9166c5d7eb083-1086.webp",
         "width": 1086
       }
     ]
@@ -3466,23 +3245,6 @@
       },
       {
         "src": "/assets/responsive/3a19102f3b60c758-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-extra-v2/panoramnoe-osteklenie-2-after.webp": {
-    "src": "/assets/responsive/baed7049728a5f33-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/baed7049728a5f33-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/baed7049728a5f33-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/baed7049728a5f33-1086.webp",
         "width": 1086
       }
     ]
@@ -3980,23 +3742,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/otdelka-balkonov-1-before.webp": {
-    "src": "/assets/responsive/a61020054aae1fb8-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a61020054aae1fb8-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a61020054aae1fb8-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a61020054aae1fb8-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-1-after.webp": {
     "src": "/assets/responsive/edccbdddc6723fab-1086.webp",
     "variants": [
@@ -4062,23 +3807,6 @@
       {
         "src": "/assets/responsive/ee32afbf7b524eb2-1086.webp",
         "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-realism-v1/after-100.webp": {
-    "src": "/assets/responsive/fd0f78fc8d7dd4ca-1083.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/fd0f78fc8d7dd4ca-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/fd0f78fc8d7dd4ca-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/fd0f78fc8d7dd4ca-1083.webp",
-        "width": 1083
       }
     ]
   },
@@ -4282,23 +4010,6 @@
       },
       {
         "src": "/assets/responsive/4efbd1392631ac0e-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-realism-v1/after-132.webp": {
-    "src": "/assets/responsive/89a81b782ae1dff7-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/89a81b782ae1dff7-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/89a81b782ae1dff7-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/89a81b782ae1dff7-1086.webp",
         "width": 1086
       }
     ]
@@ -4640,23 +4351,6 @@
       {
         "src": "/assets/responsive/6d12314bcaa769d5-768.webp",
         "width": 768
-      }
-    ]
-  },
-  "/assets/service-before-after/balcony-glazing-concrete-slab-after.png": {
-    "src": "/assets/responsive/35a9708e1d2f1bd2-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/35a9708e1d2f1bd2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/35a9708e1d2f1bd2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/35a9708e1d2f1bd2-1086.webp",
-        "width": 1086
       }
     ]
   },
@@ -5629,23 +5323,6 @@
       }
     ]
   },
-  "/assets/service-before-after/panoramic-loggia-09-after.jpg": {
-    "src": "/assets/responsive/4656d899e8196578-1254.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/4656d899e8196578-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/4656d899e8196578-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/4656d899e8196578-1254.webp",
-        "width": 1254
-      }
-    ]
-  },
   "/assets/service-before-after/panoramic-long-angle-after.webp": {
     "src": "/assets/responsive/fe8b790c7f2f3f0f-1086.webp",
     "variants": [
@@ -5663,23 +5340,6 @@
       }
     ]
   },
-  "/assets/service-before-after/renovation-balcony-02-after.webp": {
-    "src": "/assets/responsive/376d993b5000e6a9-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/376d993b5000e6a9-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/376d993b5000e6a9-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/376d993b5000e6a9-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/service-before-after/renovation-balcony-03-after.webp": {
     "src": "/assets/responsive/b7cc8b44cc039583-1086.webp",
     "variants": [
@@ -5693,91 +5353,6 @@
       },
       {
         "src": "/assets/responsive/b7cc8b44cc039583-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-balcony-05-after.webp": {
-    "src": "/assets/responsive/b5a9665fb76595c4-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b5a9665fb76595c4-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b5a9665fb76595c4-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b5a9665fb76595c4-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-balcony-06-after.webp": {
-    "src": "/assets/responsive/b43cf569b980bd7c-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b43cf569b980bd7c-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b43cf569b980bd7c-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b43cf569b980bd7c-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-balcony-07-after.webp": {
-    "src": "/assets/responsive/d1a3a58a5c0733f6-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d1a3a58a5c0733f6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d1a3a58a5c0733f6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d1a3a58a5c0733f6-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-balcony-08-after.webp": {
-    "src": "/assets/responsive/b63819c5e5779ff8-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b63819c5e5779ff8-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b63819c5e5779ff8-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b63819c5e5779ff8-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-balcony-09-after.webp": {
-    "src": "/assets/responsive/b01bd7d4efa153db-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b01bd7d4efa153db-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b01bd7d4efa153db-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b01bd7d4efa153db-1086.webp",
         "width": 1086
       }
     ]
@@ -5812,23 +5387,6 @@
       },
       {
         "src": "/assets/responsive/a20a7c816fd04e03-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-balcony-12-after.webp": {
-    "src": "/assets/responsive/f2daa9ebe04ed703-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f2daa9ebe04ed703-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f2daa9ebe04ed703-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f2daa9ebe04ed703-1086.webp",
         "width": 1086
       }
     ]
@@ -5918,57 +5476,6 @@
       }
     ]
   },
-  "/assets/service-before-after/renovation-loggia-07-after.webp": {
-    "src": "/assets/responsive/3a4e2ac63d9967d3-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/3a4e2ac63d9967d3-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/3a4e2ac63d9967d3-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/3a4e2ac63d9967d3-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-loggia-08-after.webp": {
-    "src": "/assets/responsive/d63481ccb23cbde9-841.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d63481ccb23cbde9-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d63481ccb23cbde9-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d63481ccb23cbde9-841.webp",
-        "width": 841
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-loggia-09-after.webp": {
-    "src": "/assets/responsive/f344b0915ec4cfd5-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f344b0915ec4cfd5-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f344b0915ec4cfd5-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f344b0915ec4cfd5-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/service-before-after/renovation-loggia-10-after.webp": {
     "src": "/assets/responsive/6ba908ac220dce8c-841.webp",
     "variants": [
@@ -5983,23 +5490,6 @@
       {
         "src": "/assets/responsive/6ba908ac220dce8c-841.webp",
         "width": 841
-      }
-    ]
-  },
-  "/assets/service-before-after/renovation-loggia-11-after.webp": {
-    "src": "/assets/responsive/45ca39c78c7891b7-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/45ca39c78c7891b7-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/45ca39c78c7891b7-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/45ca39c78c7891b7-1086.webp",
-        "width": 1086
       }
     ]
   },
@@ -6118,91 +5608,6 @@
       },
       {
         "src": "/assets/responsive/064508ca453c8171-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
-  "/assets/service-before-after/warm-loggia-empty-05-before-clean-v2.png": {
-    "src": "/assets/responsive/a26e1d9bc4d51a05-841.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a26e1d9bc4d51a05-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a26e1d9bc4d51a05-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a26e1d9bc4d51a05-841.webp",
-        "width": 841
-      }
-    ]
-  },
-  "/assets/service-before-after/warm-loggia-empty-09-before-no-handles.png": {
-    "src": "/assets/responsive/b70542faee80d7b2-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b70542faee80d7b2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b70542faee80d7b2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b70542faee80d7b2-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/warm-loggia-empty-10-before-clean-v2.png": {
-    "src": "/assets/responsive/74fe32fc32911c37-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/74fe32fc32911c37-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/74fe32fc32911c37-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/74fe32fc32911c37-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/warm-loggia-empty-11-before-no-handles.png": {
-    "src": "/assets/responsive/838e6802e66c9f70-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/838e6802e66c9f70-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/838e6802e66c9f70-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/838e6802e66c9f70-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
-  "/assets/service-before-after/yandex-gallery/yandex-01-after.jpg": {
-    "src": "/assets/responsive/154b41fa8721a170-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/154b41fa8721a170-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/154b41fa8721a170-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/154b41fa8721a170-1280.webp",
         "width": 1280
       }
     ]
@@ -6526,40 +5931,6 @@
       }
     ]
   },
-  "/assets/service-gallery-v2/real-after-091.jpg": {
-    "src": "/assets/responsive/7feb788552823264-960.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/7feb788552823264-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/7feb788552823264-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/7feb788552823264-960.webp",
-        "width": 960
-      }
-    ]
-  },
-  "/assets/service-gallery-v2/real-after-100.jpg": {
-    "src": "/assets/responsive/d4a7f73b81e88b07-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d4a7f73b81e88b07-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d4a7f73b81e88b07-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d4a7f73b81e88b07-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/service-gallery-v2/real-after-105.jpg": {
     "src": "/assets/responsive/e20462a09316f01a-960.webp",
     "variants": [
@@ -6591,23 +5962,6 @@
       {
         "src": "/assets/responsive/7b34a4fea59732ae-720.webp",
         "width": 720
-      }
-    ]
-  },
-  "/assets/service-gallery-v2/real-after-164.jpg": {
-    "src": "/assets/responsive/af73cc76d5b126be-960.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/af73cc76d5b126be-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/af73cc76d5b126be-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/af73cc76d5b126be-960.webp",
-        "width": 960
       }
     ]
   },
@@ -6764,74 +6118,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-2-standard-v2-before.webp": {
-    "src": "/assets/responsive/c5e37b94d78954b3-720.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/c5e37b94d78954b3-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/c5e37b94d78954b3-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/c5e37b94d78954b3-720.webp",
-        "width": 720
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-2-standard-v2-after.webp": {
-    "src": "/assets/responsive/00d0cd20918f78fa-720.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/00d0cd20918f78fa-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/00d0cd20918f78fa-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/00d0cd20918f78fa-720.webp",
-        "width": 720
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-3-standard-v2-before.webp": {
-    "src": "/assets/responsive/ef945af70283a8ca-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/ef945af70283a8ca-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/ef945af70283a8ca-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/ef945af70283a8ca-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/osteklenie-balkonov-3-standard-v2-after.webp": {
-    "src": "/assets/responsive/e5f0e63f633e77cb-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/e5f0e63f633e77cb-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/e5f0e63f633e77cb-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/e5f0e63f633e77cb-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/uteplenie-balkonov-2-standard-v2-before.webp": {
     "src": "/assets/responsive/d2e2db18348d7f6b-724.webp",
     "variants": [
@@ -6896,23 +6182,6 @@
       },
       {
         "src": "/assets/responsive/8662aecce4100b65-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/otdelka-balkonov-2-standard-v2-before.webp": {
-    "src": "/assets/responsive/b861cad88f99e5c6-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/b861cad88f99e5c6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/b861cad88f99e5c6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/b861cad88f99e5c6-724.webp",
         "width": 724
       }
     ]
@@ -7053,74 +6322,6 @@
       }
     ]
   },
-  "/assets/portfolio-perspectives-v3/teploe-osteklenie-2-standard-v2-before.webp": {
-    "src": "/assets/responsive/d9f62d4133c1ff29-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d9f62d4133c1ff29-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d9f62d4133c1ff29-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d9f62d4133c1ff29-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/teploe-osteklenie-2-standard-v2-after.webp": {
-    "src": "/assets/responsive/1410b7f2edae452f-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/1410b7f2edae452f-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/1410b7f2edae452f-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/1410b7f2edae452f-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/teploe-osteklenie-3-standard-v2-before.webp": {
-    "src": "/assets/responsive/40f00b30a43d04b7-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/40f00b30a43d04b7-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/40f00b30a43d04b7-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/40f00b30a43d04b7-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/teploe-osteklenie-3-standard-v2-after.webp": {
-    "src": "/assets/responsive/f0d4076b96c47f46-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/f0d4076b96c47f46-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/f0d4076b96c47f46-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/f0d4076b96c47f46-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/portfolio-perspectives-v3/panoramnoe-osteklenie-2-standard-v2-before.webp": {
     "src": "/assets/responsive/b1bcb30440b10dc0-724.webp",
     "variants": [
@@ -7185,40 +6386,6 @@
       },
       {
         "src": "/assets/responsive/b7a629782a592bc7-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/osteklenie-balkonov-1-standard-v2-before.webp": {
-    "src": "/assets/responsive/38e5751df2855533-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/38e5751df2855533-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/38e5751df2855533-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/38e5751df2855533-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/osteklenie-balkonov-1-standard-v2-after.webp": {
-    "src": "/assets/responsive/0e43b34b700d02e8-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/0e43b34b700d02e8-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/0e43b34b700d02e8-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/0e43b34b700d02e8-724.webp",
         "width": 724
       }
     ]
@@ -7291,40 +6458,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-1-standard-v2-before.webp": {
-    "src": "/assets/responsive/ad16037a60dc0163-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/ad16037a60dc0163-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/ad16037a60dc0163-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/ad16037a60dc0163-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-1-standard-v2-after.webp": {
-    "src": "/assets/responsive/be5c258811d6390b-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/be5c258811d6390b-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/be5c258811d6390b-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/be5c258811d6390b-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/uteplenie-balkonov-3-standard-v2-before.webp": {
     "src": "/assets/responsive/3a27078b53b11127-724.webp",
     "variants": [
@@ -7355,23 +6488,6 @@
       },
       {
         "src": "/assets/responsive/3a12a2e414ca50f6-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/otdelka-balkonov-1-standard-v2-before.webp": {
-    "src": "/assets/responsive/cf5067eb0bd889b6-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/cf5067eb0bd889b6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/cf5067eb0bd889b6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/cf5067eb0bd889b6-724.webp",
         "width": 724
       }
     ]
@@ -7423,91 +6539,6 @@
       },
       {
         "src": "/assets/responsive/494d03b91e94f5c4-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/otdelka-balkonov-3-standard-v2-before.webp": {
-    "src": "/assets/responsive/34938952be0ae5d8-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/34938952be0ae5d8-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/34938952be0ae5d8-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/34938952be0ae5d8-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-1-standard-v2-before.webp": {
-    "src": "/assets/responsive/7b3011dd3f255d96-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/7b3011dd3f255d96-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/7b3011dd3f255d96-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/7b3011dd3f255d96-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-1-standard-v2-after.webp": {
-    "src": "/assets/responsive/2ded9a5c79e95de6-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/2ded9a5c79e95de6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/2ded9a5c79e95de6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/2ded9a5c79e95de6-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-2-standard-v2-before.webp": {
-    "src": "/assets/responsive/a2d9dc7053e9c66b-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a2d9dc7053e9c66b-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a2d9dc7053e9c66b-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a2d9dc7053e9c66b-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/balkon-pod-klyuch-2-standard-v2-after.webp": {
-    "src": "/assets/responsive/eea0c0c4625a2ddc-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/eea0c0c4625a2ddc-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/eea0c0c4625a2ddc-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/eea0c0c4625a2ddc-724.webp",
         "width": 724
       }
     ]
@@ -7631,40 +6662,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-1-standard-v2-before.webp": {
-    "src": "/assets/responsive/d75dbea9a8c83ea0-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/d75dbea9a8c83ea0-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/d75dbea9a8c83ea0-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/d75dbea9a8c83ea0-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/teploe-osteklenie-1-standard-v2-after.webp": {
-    "src": "/assets/responsive/907f5dce730c7bc6-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/907f5dce730c7bc6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/907f5dce730c7bc6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/907f5dce730c7bc6-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/teploe-osteklenie-2-standard-v2-before.webp": {
     "src": "/assets/responsive/c3f3cc4ab1f3604b-724.webp",
     "variants": [
@@ -7746,23 +6743,6 @@
       },
       {
         "src": "/assets/responsive/551b7635ca9a6813-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-2-standard-v2-after.webp": {
-    "src": "/assets/responsive/52956ce575d63ff1-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/52956ce575d63ff1-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/52956ce575d63ff1-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/52956ce575d63ff1-724.webp",
         "width": 724
       }
     ]
@@ -8396,57 +7376,6 @@
       }
     ]
   },
-  "/assets/service-before-after/renovation-loggia-07-after-junction-v2.webp": {
-    "src": "/assets/responsive/2875c540f12c10a2-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/2875c540f12c10a2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/2875c540f12c10a2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/2875c540f12c10a2-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
-  "/assets/service-before-after/work71-top-folding-v2-before.webp": {
-    "src": "/assets/responsive/486760b4588b70a3-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/486760b4588b70a3-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/486760b4588b70a3-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/486760b4588b70a3-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
-  "/assets/service-before-after/work71-top-folding-v2-after.webp": {
-    "src": "/assets/responsive/82b612b86578f623-1280.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/82b612b86578f623-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/82b612b86578f623-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/82b612b86578f623-1280.webp",
-        "width": 1280
-      }
-    ]
-  },
   "/assets/service-before-after/renovation-loggia-11-after-one-handle-v2.webp": {
     "src": "/assets/responsive/dceed55027317fd7-1280.webp",
     "variants": [
@@ -8532,57 +7461,6 @@
       }
     ]
   },
-  "/assets/gallery-angles-v1/work81-before-depth-v2.webp": {
-    "src": "/assets/responsive/35f8274d517886c6-960.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/35f8274d517886c6-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/35f8274d517886c6-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/35f8274d517886c6-960.webp",
-        "width": 960
-      }
-    ]
-  },
-  "/assets/gallery-angles-v1/work99-before-depth-v3.webp": {
-    "src": "/assets/responsive/0c165314de59c6d5-960.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/0c165314de59c6d5-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/0c165314de59c6d5-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/0c165314de59c6d5-960.webp",
-        "width": 960
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/work23-top-v3-before.webp": {
-    "src": "/assets/responsive/0f357dc27f93e08d-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/0f357dc27f93e08d-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/0f357dc27f93e08d-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/0f357dc27f93e08d-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/portfolio-diverse-v4/work23-top-v3-after.webp": {
     "src": "/assets/responsive/9c9f9411ee474174-724.webp",
     "variants": [
@@ -8596,40 +7474,6 @@
       },
       {
         "src": "/assets/responsive/9c9f9411ee474174-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/work10-low-v1-before.webp": {
-    "src": "/assets/responsive/689fe7bfa3dfb3d2-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/689fe7bfa3dfb3d2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/689fe7bfa3dfb3d2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/689fe7bfa3dfb3d2-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/work10-low-v1-after.webp": {
-    "src": "/assets/responsive/9588fbc52082ab95-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/9588fbc52082ab95-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/9588fbc52082ab95-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/9588fbc52082ab95-724.webp",
         "width": 724
       }
     ]
@@ -8733,23 +7577,6 @@
       {
         "src": "/assets/responsive/3562a2ab230b9e43-724.webp",
         "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/work249-floor-v4-before.webp": {
-    "src": "/assets/responsive/00ed377eb6fad331-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/00ed377eb6fad331-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/00ed377eb6fad331-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/00ed377eb6fad331-1086.webp",
-        "width": 1086
       }
     ]
   },
@@ -9093,23 +7920,6 @@
       }
     ]
   },
-  "/assets/portfolio-turnkey-refs-v1/work295-before.webp": {
-    "src": "/assets/portfolio-turnkey-refs-v1/work295-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-turnkey-refs-v1/work295-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-turnkey-refs-v1/work295-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-turnkey-refs-v1/work295-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-turnkey-refs-v1/work295-after.webp": {
     "src": "/assets/portfolio-turnkey-refs-v1/work295-after-640.webp",
     "variants": [
@@ -9124,23 +7934,6 @@
       {
         "width": 960,
         "src": "/assets/portfolio-turnkey-refs-v1/work295-after.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-turnkey-refs-v1/work296-before.webp": {
-    "src": "/assets/portfolio-turnkey-refs-v1/work296-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-turnkey-refs-v1/work296-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-turnkey-refs-v1/work296-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-turnkey-refs-v1/work296-before.webp"
       }
     ]
   },
@@ -9195,23 +7988,6 @@
       }
     ]
   },
-  "/assets/portfolio-finish-refs-v1/work299-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v1/work299-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v1/work299-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v1/work299-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v1/work299-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v1/work299-after.webp": {
     "src": "/assets/portfolio-finish-refs-v1/work299-after-640.webp",
     "variants": [
@@ -9263,23 +8039,6 @@
       }
     ]
   },
-  "/assets/portfolio-finish-refs-v1/work302-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v1/work302-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v1/work302-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v1/work302-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v1/work302-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v1/work302-after.webp": {
     "src": "/assets/portfolio-finish-refs-v1/work302-after-640.webp",
     "variants": [
@@ -9294,23 +8053,6 @@
       {
         "width": 960,
         "src": "/assets/portfolio-finish-refs-v1/work302-after.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v1/work303-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v1/work303-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v1/work303-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v1/work303-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v1/work303-before.webp"
       }
     ]
   },
@@ -9365,23 +8107,6 @@
       }
     ]
   },
-  "/assets/portfolio-home-refs-v1/work306-before.webp": {
-    "src": "/assets/portfolio-home-refs-v1/work306-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-home-refs-v1/work306-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-home-refs-v1/work306-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-home-refs-v1/work306-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-home-refs-v1/work307-after.webp": {
     "src": "/assets/portfolio-home-refs-v1/work307-after-640.webp",
     "variants": [
@@ -9433,23 +8158,6 @@
       }
     ]
   },
-  "/assets/portfolio-panorama-refs-v1/work309-before.webp": {
-    "src": "/assets/portfolio-panorama-refs-v1/work309-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-panorama-refs-v1/work309-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-panorama-refs-v1/work309-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-panorama-refs-v1/work309-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-panorama-refs-v1/work309-after.webp": {
     "src": "/assets/portfolio-panorama-refs-v1/work309-after-640.webp",
     "variants": [
@@ -9464,23 +8172,6 @@
       {
         "width": 960,
         "src": "/assets/portfolio-panorama-refs-v1/work309-after.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v2/work310-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v2/work310-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v2/work310-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v2/work310-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v2/work310-before.webp"
       }
     ]
   },
@@ -9501,23 +8192,6 @@
       }
     ]
   },
-  "/assets/portfolio-finish-refs-v2/work311-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v2/work311-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v2/work311-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v2/work311-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v2/work311-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v2/work311-after.webp": {
     "src": "/assets/portfolio-finish-refs-v2/work311-after-640.webp",
     "variants": [
@@ -9532,23 +8206,6 @@
       {
         "width": 960,
         "src": "/assets/portfolio-finish-refs-v2/work311-after.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v2/work313-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v2/work313-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v2/work313-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v2/work313-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v2/work313-before.webp"
       }
     ]
   },
@@ -9569,23 +8226,6 @@
       }
     ]
   },
-  "/assets/portfolio-finish-refs-v2/work314-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v2/work314-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v2/work314-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v2/work314-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v2/work314-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v2/work314-after.webp": {
     "src": "/assets/portfolio-finish-refs-v2/work314-after-640.webp",
     "variants": [
@@ -9600,23 +8240,6 @@
       {
         "width": 960,
         "src": "/assets/portfolio-finish-refs-v2/work314-after.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v2/work315-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v2/work315-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v2/work315-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v2/work315-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v2/work315-before.webp"
       }
     ]
   },
@@ -9637,23 +8260,6 @@
       }
     ]
   },
-  "/assets/portfolio-finish-refs-v2/work316-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v2/work316-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v2/work316-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v2/work316-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v2/work316-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v2/work316-after.webp": {
     "src": "/assets/portfolio-finish-refs-v2/work316-after-640.webp",
     "variants": [
@@ -9671,57 +8277,6 @@
       }
     ]
   },
-  "/assets/portfolio-finish-refs-v3/work318-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v3/work318-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v3/work318-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v3/work318-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v3/work318-before.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v3/work318-after.webp": {
-    "src": "/assets/portfolio-finish-refs-v3/work318-after-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v3/work318-after-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v3/work318-after-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v3/work318-after.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v3/work319-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v3/work319-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v3/work319-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v3/work319-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v3/work319-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v3/work319-after.webp": {
     "src": "/assets/portfolio-finish-refs-v3/work319-after-640.webp",
     "variants": [
@@ -9736,23 +8291,6 @@
       {
         "width": 960,
         "src": "/assets/portfolio-finish-refs-v3/work319-after.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v3/work320-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v3/work320-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v3/work320-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v3/work320-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v3/work320-before.webp"
       }
     ]
   },
@@ -9824,23 +8362,6 @@
       }
     ]
   },
-  "/assets/portfolio-finish-refs-v1/work304-before-v2.webp": {
-    "src": "/assets/portfolio-finish-refs-v1/work304-before-v2-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v1/work304-before-v2-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v1/work304-before-v2-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v1/work304-before-v2.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v1/work301-before-v2.webp": {
     "src": "/assets/portfolio-finish-refs-v1/work301-before-v2-640.webp",
     "variants": [
@@ -9872,40 +8393,6 @@
       {
         "src": "/assets/responsive/b1fb4d70baa30e1a-1024.webp",
         "width": 1024
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v1/work300-before-v2.webp": {
-    "src": "/assets/portfolio-finish-refs-v1/work300-before-v2-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v1/work300-before-v2-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v1/work300-before-v2-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v1/work300-before-v2.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-perspectives-v3/work289-reading-v4-before.webp": {
-    "src": "/assets/portfolio-perspectives-v3/work289-reading-v4-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-perspectives-v3/work289-reading-v4-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-perspectives-v3/work289-reading-v4-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-perspectives-v3/work289-reading-v4-before.webp"
       }
     ]
   },
@@ -9943,23 +8430,6 @@
       }
     ]
   },
-  "/assets/portfolio-finish-refs-v1/work298-pov-v2-before.webp": {
-    "src": "/assets/portfolio-finish-refs-v1/work298-pov-v2-before-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v1/work298-pov-v2-before-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v1/work298-pov-v2-before-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v1/work298-pov-v2-before.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v1/work298-pov-v2-after.webp": {
     "src": "/assets/portfolio-finish-refs-v1/work298-pov-v2-after-640.webp",
     "variants": [
@@ -9974,23 +8444,6 @@
       {
         "width": 960,
         "src": "/assets/portfolio-finish-refs-v1/work298-pov-v2-after.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-turnkey-refs-v1/work292-before-v2.webp": {
-    "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-turnkey-refs-v1/work292-before-v2.webp"
       }
     ]
   },
@@ -10028,57 +8481,6 @@
       }
     ]
   },
-  "/assets/portfolio-turnkey-refs-v1/work291-before-v2.webp": {
-    "src": "/assets/portfolio-turnkey-refs-v1/work291-before-v2-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-turnkey-refs-v1/work291-before-v2-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-turnkey-refs-v1/work291-before-v2-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-turnkey-refs-v1/work291-before-v2.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v2/work317-before-v2.webp": {
-    "src": "/assets/portfolio-finish-refs-v2/work317-before-v2-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v2/work317-before-v2-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v2/work317-before-v2-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v2/work317-before-v2.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-finish-refs-v2/work312-before-v2.webp": {
-    "src": "/assets/portfolio-finish-refs-v2/work312-before-v2-640.webp",
-    "variants": [
-      {
-        "width": 320,
-        "src": "/assets/portfolio-finish-refs-v2/work312-before-v2-320.webp"
-      },
-      {
-        "width": 640,
-        "src": "/assets/portfolio-finish-refs-v2/work312-before-v2-640.webp"
-      },
-      {
-        "width": 960,
-        "src": "/assets/portfolio-finish-refs-v2/work312-before-v2.webp"
-      }
-    ]
-  },
   "/assets/portfolio-finish-refs-v4/work322-before-v2.webp": {
     "src": "/assets/portfolio-finish-refs-v4/work322-before-v2-640.webp",
     "variants": [
@@ -10093,23 +8495,6 @@
       {
         "width": 960,
         "src": "/assets/portfolio-finish-refs-v4/work322-before-v2.webp"
-      }
-    ]
-  },
-  "/assets/portfolio-before-windows-v1/work315-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work315-before-v2.webp",
-    "variants": [
-      {
-        "src": "/assets/portfolio-before-windows-v1/work315-before-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work315-before-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work315-before-v2.webp",
-        "width": 960
       }
     ]
   },
@@ -10195,40 +8580,6 @@
       {
         "src": "/assets/responsive/7e57ace7b13bc660-1024.webp",
         "width": 1024
-      }
-    ]
-  },
-  "/assets/portfolio-before-windows-v1/work85-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work85-before-v2.webp",
-    "variants": [
-      {
-        "src": "/assets/portfolio-before-windows-v1/work85-before-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work85-before-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work85-before-v2.webp",
-        "width": 960
-      }
-    ]
-  },
-  "/assets/portfolio-before-windows-v1/work86-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work86-before-v2.webp",
-    "variants": [
-      {
-        "src": "/assets/portfolio-before-windows-v1/work86-before-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work86-before-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work86-before-v2.webp",
-        "width": 960
       }
     ]
   },
@@ -10368,40 +8719,6 @@
       }
     ]
   },
-  "/assets/portfolio-before-windows-v1/work300-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work300-before-v2.webp",
-    "variants": [
-      {
-        "src": "/assets/portfolio-before-windows-v1/work300-before-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work300-before-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work300-before-v2.webp",
-        "width": 960
-      }
-    ]
-  },
-  "/assets/portfolio-before-windows-v1/work302-before-v2.webp": {
-    "src": "/assets/responsive/a6a6a3f83deee4be-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/a6a6a3f83deee4be-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/a6a6a3f83deee4be-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/a6a6a3f83deee4be-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
   "/assets/portfolio-before-windows-v1/work303-before-v2.webp": {
     "src": "/assets/responsive/a3966971f4fecb7f-1024.webp",
     "variants": [
@@ -10436,23 +8753,6 @@
       }
     ]
   },
-  "/assets/portfolio-before-windows-v1/work306-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work306-before-v2.webp",
-    "variants": [
-      {
-        "src": "/assets/portfolio-before-windows-v1/work306-before-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work306-before-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work306-before-v2.webp",
-        "width": 960
-      }
-    ]
-  },
   "/assets/portfolio-before-windows-v1/work310-before-v2.webp": {
     "src": "/assets/responsive/dcbfa75be3c16134-1024.webp",
     "variants": [
@@ -10466,23 +8766,6 @@
       },
       {
         "src": "/assets/responsive/dcbfa75be3c16134-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/portfolio-before-windows-v1/work311-before-v2.webp": {
-    "src": "/assets/responsive/25143bef47b989cc-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/25143bef47b989cc-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/25143bef47b989cc-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/25143bef47b989cc-1024.webp",
         "width": 1024
       }
     ]
@@ -10501,40 +8784,6 @@
       {
         "src": "/assets/responsive/7cddba091191bced-1024.webp",
         "width": 1024
-      }
-    ]
-  },
-  "/assets/portfolio-before-windows-v1/work314-before-v2.webp": {
-    "src": "/assets/responsive/c849d9ee89519f62-1024.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/c849d9ee89519f62-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/c849d9ee89519f62-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/c849d9ee89519f62-1024.webp",
-        "width": 1024
-      }
-    ]
-  },
-  "/assets/portfolio-before-windows-v1/work317-before-v2.webp": {
-    "src": "/assets/portfolio-before-windows-v1/work317-before-v2.webp",
-    "variants": [
-      {
-        "src": "/assets/portfolio-before-windows-v1/work317-before-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work317-before-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/portfolio-before-windows-v1/work317-before-v2.webp",
-        "width": 960
       }
     ]
   },
@@ -10569,40 +8818,6 @@
       {
         "src": "/assets/service-before-after/renovation-loggia-07-after-countertop-v3.webp",
         "width": 1086
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/work10-empty-v2-after.webp": {
-    "src": "/assets/portfolio-diverse-v4/work10-empty-v2-after.webp",
-    "variants": [
-      {
-        "src": "/assets/portfolio-diverse-v4/work10-empty-v2-after-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/portfolio-diverse-v4/work10-empty-v2-after-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/portfolio-diverse-v4/work10-empty-v2-after.webp",
-        "width": 960
-      }
-    ]
-  },
-  "/assets/turnkey-books-v1/before-jars-v2.webp": {
-    "src": "/assets/turnkey-books-v1/before-jars-v2.webp",
-    "variants": [
-      {
-        "src": "/assets/turnkey-books-v1/before-jars-v2-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/turnkey-books-v1/before-jars-v2-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/turnkey-books-v1/before-jars-v2.webp",
-        "width": 1027
       }
     ]
   },
@@ -11387,40 +9602,6 @@
       }
     ]
   },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-2-window-v3-before.webp": {
-    "src": "/assets/responsive/c8ba5f76f1228edd-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/c8ba5f76f1228edd-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/c8ba5f76f1228edd-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/c8ba5f76f1228edd-724.webp",
-        "width": 724
-      }
-    ]
-  },
-  "/assets/portfolio-diverse-v4/uteplenie-balkonov-2-window-v3-after.webp": {
-    "src": "/assets/responsive/0efbce1a39e819bd-724.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/0efbce1a39e819bd-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/0efbce1a39e819bd-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/0efbce1a39e819bd-724.webp",
-        "width": 724
-      }
-    ]
-  },
   "/assets/home-liked-works-v1/work1_relax_corner-no-marked-handles-v3-before.webp": {
     "src": "/assets/responsive/c649ed38527669b3-1122.webp",
     "variants": [
@@ -11707,19 +9888,6 @@
       {
         "src": "/assets/yandex-originals-v1/real-025-original.webp",
         "width": 1024
-      }
-    ]
-  },
-  "/assets/yandex-originals-v1/real-047-original.webp": {
-    "src": "/assets/yandex-originals-v1/real-047-original.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/2ed0680c919210be-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/yandex-originals-v1/real-047-original.webp",
-        "width": 576
       }
     ]
   },
@@ -13753,25 +11921,6 @@
       {
         "src": "/assets/landing-gallery-v1/work-368-after-lipa-white-cabinet-v2.webp",
         "width": 768
-      }
-    ]
-  },
-  "/assets/home-reading-book-v2/hero.webp": {
-    "src": "/assets/home-reading-book-v2/hero.webp",
-    "width": 784,
-    "height": 1168,
-    "variants": [
-      {
-        "src": "/assets/home-reading-book-v2/hero-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/home-reading-book-v2/hero-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/home-reading-book-v2/hero.webp",
-        "width": 784
       }
     ]
   },

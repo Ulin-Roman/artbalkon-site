@@ -47,13 +47,23 @@ import {mountPhoneMask,phoneIsValid} from './phone-mask.mjs';
   }));
  }
 
- let config={};
- const configReady=fetch(new URL('site-config.json',document.currentScript.src),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(c=>{
+ let config={},configRequest=null,configLoaded=false;
+ function loadConfig(){
+  if(configLoaded)return Promise.resolve(config);
+  if(configRequest)return configRequest;
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);
+  configRequest=fetch(new URL('site-config.json',siteBase),{cache:'no-store',signal:controller.signal}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(c=>{
+  if(!c||typeof c!=='object'||Array.isArray(c))throw Error();
   config=c;
   if(!c.leadEndpoint)document.querySelectorAll('[data-lead-form]').forEach(form=>{const note=form.querySelector('.form-error');if(note)note.textContent='Для расчёта позвоните нам: +7 (495) 165-39-05. Отправка заявок через сайт пока не подключена.';});
   if(c.whatsapp){try{const url=new URL(c.whatsapp);if(['wa.me','api.whatsapp.com','www.whatsapp.com'].includes(url.hostname)&&url.protocol==='https:')document.querySelectorAll('.final-links').forEach(container=>{const link=document.createElement('a');link.className='messenger';link.href=url.href;link.target='_blank';link.rel='noopener';link.dataset.event='whatsapp_click';link.textContent='Написать в WhatsApp ↗';container.append(link);});}catch{}}
   scheduleIdle(()=>{(c.externalScripts||[]).forEach(s=>{try{const url=new URL(typeof s==='string'?s:s.src);if(url.protocol!=='https:')return;const tag=document.createElement('script');tag.src=url.href;tag.async=true;if(s.id)tag.id=s.id;document.head.append(tag);}catch{}});});
- }).catch(()=>{});
+  configLoaded=true;return config;
+  }).catch(error=>{throw new Error(error.name==='AbortError'?'Не удалось загрузить настройки отправки: ответ задерживается. Попробуйте ещё раз или позвоните нам.':'Не удалось загрузить настройки отправки. Проверьте соединение и попробуйте ещё раз или позвоните нам.');}).finally(()=>{clearTimeout(timer);configRequest=null;});
+  return configRequest;
+ }
+ // Eager loading stays optional; a later submission can retry a temporary failure.
+ const configReady=loadConfig().catch(()=>null);
  function scheduleIdle(callback){if('requestIdleCallback' in window)requestIdleCallback(callback,{timeout:2200});else setTimeout(callback,1200);}
  function track(event,params={}){try{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event,...params});}catch{}configReady.then(()=>{try{if(config.metrikaId&&typeof window.ym==='function')window.ym(config.metrikaId,'reachGoal',event,params);}catch{}});}
  const formGoalState=window[Symbol.for('artbalkon.form-goals.v1')] ||= {bound:new WeakSet(),sent:new Set()};
@@ -230,8 +240,8 @@ import {mountPhoneMask,phoneIsValid} from './phone-mask.mjs';
    const submit=form.querySelector('[type="submit"]'),error=form.querySelector('.form-error');
    submitting=true;submit.disabled=true;submit.setAttribute('aria-busy','true');const old=submit.innerHTML;submit.textContent='Отправляем…';error.textContent='';
    try{
-    await configReady;if(!config.leadEndpoint)throw new Error('Отправка заявок через сайт пока не подключена. Позвоните нам: +7 (495) 165-39-05.');const values=Object.fromEntries(new FormData(form));id=id||crypto.randomUUID();
-    const {response,result}=await sendLead(config.leadEndpoint||'/api/leads',{...values,consent:values.consent==='on',form:form.dataset.leadForm,attribution,page:location.pathname,requestId:id});
+    await loadConfig();if(!config.leadEndpoint)throw new Error('Отправка заявок через сайт пока не подключена. Позвоните нам: +7 (495) 165-39-05.');const values=Object.fromEntries(new FormData(form));id=id||crypto.randomUUID();
+    const {response,result}=await sendLead(config.leadEndpoint,{...values,consent:values.consent==='on',form:form.dataset.leadForm,attribution,page:location.pathname,requestId:id});
     if(!response.ok||result.ok!==true)throw new Error(result.message||'Не удалось отправить заявку.');
     retentionController?.leadSucceeded();
     showThanks(form,result.mode==='preview');

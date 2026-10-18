@@ -8,14 +8,24 @@ const fs=require('node:fs/promises'),path=require('node:path'),http=require('nod
  await new Promise(r=>server.listen(0,'127.0.0.1',r));
  const browser=await chromium.launch({headless:true,channel:process.env.TEST_BROWSER_CHANNEL||'msedge'}),origin='http://127.0.0.1:'+server.address().port;
  const errors=[];let verified=0;
- async function setup(route='/',mode='success',metric='normal'){
+ async function setup(route='/',mode='success',metric='normal',configMode='success'){
   const page=await browser.newPage({viewport:{width:375,height:812},reducedMotion:'reduce'});
   page.on('pageerror',error=>errors.push(error.message));
   await page.addInitScript(()=>{window.goalCalls=[];window.ym=(...args)=>{window.goalCalls.push({args,thanks:!!document.querySelector('.thank-you')});};});
-  let requests=[],release;const gate=new Promise(r=>release=r);
+  let requests=[],release,configRequests=0;const gate=new Promise(r=>release=r);
   await page.route('**/*',async r=>{
    const u=new URL(r.request().url());if(u.origin!==origin)return r.abort();
-   if(u.pathname==='/site-config.json')return r.fulfill({json:{metrikaId:113425011,leadEndpoint:'/mock-leads'}});
+   if(u.pathname==='/site-config.json'){
+    configRequests++;
+    if(configMode==='pending')return;
+    if(configMode==='network')return r.abort('failed');
+    if(configMode==='server')return r.fulfill({status:503,json:{}});
+    if(configMode==='html')return r.fulfill({body:'Unavailable',contentType:'text/html'});
+    if(configMode==='null')return r.fulfill({json:null});
+    if(configMode==='array')return r.fulfill({json:[]});
+    if(configMode==='string')return r.fulfill({json:'invalid'});
+    return r.fulfill({json:{metrikaId:113425011,leadEndpoint:'/mock-leads'}});
+   }
    if(u.pathname==='/mock-leads'){
     const lead=r.request().postDataJSON();requests.push(lead);
     if(mode==='network')return r.abort('failed');
@@ -30,10 +40,11 @@ const fs=require('node:fs/promises'),path=require('node:path'),http=require('nod
    }
    return r.continue();
   });
-  await page.goto(origin+route,{waitUntil:'networkidle'});
+  await page.goto(origin+route,{waitUntil:configMode==='pending'?'domcontentloaded':'networkidle'});
+  if(configMode==='pending')await page.waitForFunction(()=>document.querySelector('[data-lead-form] [type=submit]'));
   if(metric==='missing')await page.evaluate(()=>delete window.ym);
   if(metric==='throwing')await page.evaluate(()=>{window.ym=(...args)=>{window.goalCalls.push({args,thanks:!!document.querySelector('.thank-you')});throw Error('Simulated Metrika failure');};});
-  return {page,requests,release,setMode:value=>mode=value};
+  return {page,requests,release,setMode:value=>mode=value,setConfigMode:value=>configMode=value,configRequestCount:()=>configRequests};
  }
  const goals=page=>page.evaluate(()=>window.goalCalls.filter(c=>c.args[1]==='reachGoal'&&c.args[2]==='form_submit'));
  async function prepare(page,index){
@@ -78,6 +89,32 @@ const fs=require('node:fs/promises'),path=require('node:path'),http=require('nod
    if(mode!=='preview'){assert.equal(await form.locator('.thank-you').count(),0);assert.equal(await form.locator('[type=submit]').isEnabled(),true);}
    await page.close();
   }
+  // Config loading must finish or fail independently of the lead POST timer.
+  for(const configMode of ['pending','network','server','html','null','array','string']){
+   const {page,requests,setConfigMode,configRequestCount}=await setup('/','success','normal',configMode),index=await page.locator('[data-lead-form]').evaluateAll(forms=>forms.findIndex(f=>f.closest('#callback-modal'))),form=await prepare(page,index);
+   const originalLabel=await form.locator('[type=submit]').textContent();
+   await submit(form);
+   if(configMode==='pending'){
+    await page.waitForTimeout(100);
+    assert.equal(configRequestCount(),1,'Submission started a second pending config request');
+    assert.equal(await form.locator('[type=submit]').isDisabled(),true);
+   }
+   await form.locator('.form-error:not(:empty)').waitFor({timeout:10000});
+   assert.match(await form.locator('.form-error').textContent(),/Не удалось загрузить настройки отправки/);
+   assert.equal(requests.length,0,'Config failure must not post to a fallback endpoint');
+   assert.equal((await goals(page)).length,0,'Config failure counted a conversion');
+   assert.equal(await form.locator('.thank-you').count(),0);
+   assert.equal(await form.locator('[type=submit]').isEnabled(),true,'Config failure left the submit button disabled');
+   assert.equal(await form.locator('[type=submit]').getAttribute('aria-busy'),null);
+   assert.equal(await form.locator('[type=submit]').textContent(),originalLabel);
+   assert.equal(await form.locator('[name=name]').inputValue(),'Технический тест','Config retry lost entered values');
+   const failedRequests=configRequestCount();setConfigMode('success');
+   await submit(form);await form.locator('.thank-you').waitFor();
+   assert.equal(configRequestCount(),failedRequests+1,'Next submission must retry config once');
+   assert.equal(requests.length,1);assert.equal((await goals(page)).length,1);
+   assert.deepEqual((await goals(page))[0].args,[113425011,'reachGoal','form_submit'],'Config retry lost Metrika settings');
+   await page.close();
+  }
   {
    const {page,requests,release}=await setup('/','pending'),index=await page.locator('[data-lead-form]').evaluateAll(forms=>forms.findIndex(f=>f.closest('#callback-modal'))),form=await prepare(page,index);
    await form.locator('[name=name]').fill('');await submit(form);assert.equal(requests.length,0);assert.equal((await goals(page)).length,0);
@@ -108,6 +145,6 @@ const fs=require('node:fs/promises'),path=require('node:path'),http=require('nod
    await page.reload({waitUntil:'networkidle'});form=await prepare(page,index);await submit(form);await form.locator('.thank-you').waitFor();assert.equal((await goals(page)).length,0,'Same accepted request counted again after reload');assert.equal(requests[0].requestId,requests[1].requestId);await page.close();
   }
   assert.deepEqual(errors,[],'JavaScript errors');
-  console.log('PASS: '+verified+' form/page combinations; success once, no early goal, validation, network/server errors, preview, repeated handlers, missing/throwing Metrika, unchanged Callibri tag. No real leads sent.');
+  console.log('PASS: '+verified+' form/page combinations; success once, no early goal, validation, network/server errors, config timeout/validation/retry/shared loading, preview, repeated handlers, missing/throwing Metrika, unchanged Callibri tag. No real leads sent.');
  }finally{await browser.close();server.close();}
 })().catch(error=>{console.error(error);process.exit(1);});
