@@ -1995,6 +1995,14 @@ main .eyebrow{display:none!important}
  background:#e8f7f5;
  color:#064c50;
 }
+@media(min-width:641px){
+ .glazing-benefits-showcase:not(.glazing-benefits-showcase--compact) .glazing-benefits-overlay>.button{
+  display:flex;
+  width:fit-content;
+  max-width:100%;
+  margin-inline:auto;
+ }
+}
 .glazing-benefits-photo{
  position:relative;
  min-height:680px;
