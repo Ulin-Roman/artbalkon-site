@@ -188,6 +188,19 @@ assert scene == Path('dist/calculator-scene.js').read_bytes(), 'Published calcul
 assert b'createCalculatorScene' in scene, 'Calculator module must retain its public export'
 print('Production lazy calculator module verified:', json.dumps({'bytes': len(scene), 'transfer_bytes': len(scene_bytes)}))
 
+# Check the About clip and its matching poster after the hosting upload.
+ambient = re.search(r'<video\b(?=[^>]*\bdata-ambient-video\b)[^>]*>', html)
+assert ambient, 'Home About video must remain available'
+ambient_assets = []
+for attribute in ['data-src', 'poster']:
+    asset = re.search(r'\b' + attribute + r'="([^"]+)"', ambient.group(0)).group(1)
+    assert asset.startswith('/assets/video/'), 'About media must use a local video asset'
+    with urllib.request.urlopen('https://artbalkon.site' + asset, timeout=30) as response:
+        media = response.read()
+    assert media == Path('dist' + asset).read_bytes(), 'Published About media differs from the checked build: ' + asset
+    ambient_assets.append({'path': asset, 'bytes': len(media)})
+print('Production About video and poster verified:', json.dumps(ambient_assets))
+
 # All duplicate URL variants must redirect directly to the canonical HTTPS URL.
 origin = 'https://artbalkon.site'
 query = '?utm_source=audit&probe=a%2Bb%2Fc'
