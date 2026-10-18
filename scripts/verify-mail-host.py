@@ -108,6 +108,14 @@ for slug in landing_slugs:
     assert_retention_popup(html, slug)
 print('All nine new production landings, 54 comparisons and their SEO markup verified.')
 
+finishing_url = 'https://artbalkon.site/otdelka-balkonov/'
+finishing_html = urllib.request.urlopen(finishing_url, timeout=30).read().decode('utf-8')
+assert 'thermal-section' not in finishing_html, 'Finishing page still contains the thermal inspection block'
+for block_id in ['finishing-styles', 'finishing-calculator', 'finishing-calc-modal', 'quiz']:
+    assert finishing_html.count('id="' + block_id + '"') == 1, 'Missing or repeated finishing block: ' + block_id
+assert 'CALCULATOR_CONTACT_FIELDS' not in finishing_html, 'Finishing calculator contact fields were not rendered'
+print('Production finishing page verified: styles and calculator present, thermal inspection omitted.')
+
 
 # Inspect public SEO and delivery headers without submitting a valid application.
 request = urllib.request.Request('https://artbalkon.site/?technical-check=1', headers={'Accept-Encoding': 'gzip'})

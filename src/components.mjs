@@ -119,8 +119,7 @@ const thermalInspectionSection=service=>{
 const thermalInspectionServiceSlugs=new Set([
  'uteplenie-balkonov',
  'teploe-osteklenie',
- 'balkon-pod-klyuch',
- 'otdelka-balkonov'
+ 'balkon-pod-klyuch'
 ]);
 const thermalInspectionForService=service=>thermalInspectionServiceSlugs.has(service.slug)?thermalInspectionSection(service):'';
 const qualityAssetReplacements={
@@ -496,9 +495,10 @@ export function servicePageWithSeo(s,{home=false}={}){
  const calculationQuiz=quiz(s);
  const scopedQuiz=quiz(s,{consultation:true,withGift:s.slug==='holodnoe-osteklenie'});
  const finishingMaterials=(/^otdelka-(?:balkonov|lodzhii)$/.test(s.slug)||s.slug==='remont-balkonov')?sourceServiceDetailsSection(s):'';
+ const finishingOptions=s.slug==='otdelka-balkonov'?`${finishingStylesSection()}${finishingCalculator().replace('CALCULATOR_CONTACT_FIELDS',contactFields('finishing-calc-consent'))}`:'';
  const openingSections=isTurnkey
   ?completeProjectSections(s,{home})
-  :`${beforeAfterSection(serviceProjects,{serviceTitle:s.title,photoCards:s.slug==='osteklenie-balkonov'})}${scopedQuiz}${finishingMaterials}${insulationMaterialsSection(s)}${thermalAfterMaterials?thermalSection:''}${partnerBrandsSection()}${promotionSection(s)}${reviewsSection()}${thermalAfterMaterials?'':thermalSection}${aboutAndWasteSection(s)}`;
+  :`${beforeAfterSection(serviceProjects,{serviceTitle:s.title,photoCards:s.slug==='osteklenie-balkonov'})}${scopedQuiz}${finishingMaterials}${insulationMaterialsSection(s)}${thermalAfterMaterials?thermalSection:''}${partnerBrandsSection()}${promotionSection(s)}${reviewsSection()}${thermalAfterMaterials?'':thermalSection}${aboutAndWasteSection(s)}${finishingOptions}`;
  const offer=campaignOffer();
  const quizSlot='<!-- scoped-quiz-slot -->';
  const rawPage=servicePage(s,{home}).replace(calculationQuiz,quizSlot);
