@@ -121,8 +121,18 @@ import {mountPhoneMask,phoneIsValid} from './phone-mask.mjs';
   });
  });
  document.querySelectorAll('[data-mobile-menu-close]').forEach(el=>el.addEventListener('click',()=>closeMenu()));
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&toggle?.getAttribute('aria-expanded')==='true')closeMenu();});
- addEventListener('resize',()=>{if(innerWidth>1100&&toggle?.getAttribute('aria-expanded')==='true')closeMenu(false);},{passive:true});
+ document.addEventListener('keydown',e=>{
+  if(toggle?.getAttribute('aria-expanded')!=='true')return;
+  if(e.key==='Escape'){closeMenu();return;}
+  if(e.key!=='Tab')return;
+  const focusable=[...menu.querySelectorAll('a[href],button,input,select,textarea,summary,[tabindex]')].filter(el=>el.tabIndex>=0&&!el.disabled&&el.getClientRects().length&&getComputedStyle(el).visibility!=='hidden');
+  const first=focusable[0],last=focusable.at(-1);
+  if(!first)return;
+  if(!menu.contains(document.activeElement)||(e.shiftKey?document.activeElement===first:document.activeElement===last)){
+   e.preventDefault();(e.shiftKey?last:first).focus({preventScroll:true});
+  }
+ });
+ addEventListener('resize',()=>{if(toggle?.getAttribute('aria-expanded')==='true'&&!toggle.getClientRects().length)closeMenu(false);},{passive:true});
  document.querySelectorAll('.nav-services').forEach(dropdown=>{
   const desktop=dropdown.closest('.desktop-nav');
   if(desktop){

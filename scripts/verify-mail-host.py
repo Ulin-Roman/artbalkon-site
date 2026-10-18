@@ -28,6 +28,31 @@ class FaviconLinks(HTMLParser):
             self.links.append(attributes)
 
 
+def seo_snapshot(html, page):
+    """Compare the deployed search metadata with the validated build."""
+    values = {}
+    patterns = {
+        'title': r'<title>([\s\S]*?)</title>',
+        'description': r'<meta name="description" content="([^"]*)"',
+        'h1': r'<h1\b[^>]*>([\s\S]*?)</h1>',
+        'canonical': r'<link rel="canonical" href="([^"]*)"',
+        'robots': r'<meta name="robots" content="([^"]*)"',
+        'og:title': r'<meta property="og:title" content="([^"]*)"',
+        'og:description': r'<meta property="og:description" content="([^"]*)"',
+        'og:url': r'<meta property="og:url" content="([^"]*)"',
+        'og:image': r'<meta property="og:image" content="([^"]*)"',
+        'json-ld': r'<script type="application/ld\+json">([\s\S]*?)</script>',
+    }
+    for name, pattern in patterns.items():
+        matches = re.findall(pattern, html, re.I)
+        assert len(matches) == 1 and matches[0].strip(), 'Missing, empty or repeated ' + name + ': ' + page
+        values[name] = json.loads(matches[0]) if name == 'json-ld' else matches[0]
+    return values
+
+
+production_pages = {}
+
+
 retired_portfolio_paths = [
     '/nashi-raboty/',
     '/nashi-raboty/lodzhiya-v-golubom/',
@@ -112,6 +137,7 @@ landing_slugs = [
 for slug in landing_slugs:
     url = 'https://artbalkon.site/' + slug + '/'
     html = urllib.request.urlopen(url, timeout=30).read().decode('utf-8')
+    production_pages[url] = html
     assert 'rel="canonical" href="' + url + '"' in html, 'Incorrect canonical: ' + slug
     assert html.count('data-comparison ') == 6, 'Expected six works: ' + slug
     gallery_heading = re.search(r'id="before-after"[\s\S]*?<h2\b[^>]*>([\s\S]*?)</h2>', html)
@@ -124,6 +150,7 @@ print('All nine new production landings, 54 comparisons and their SEO markup ver
 
 finishing_url = 'https://artbalkon.site/otdelka-balkonov/'
 finishing_html = urllib.request.urlopen(finishing_url, timeout=30).read().decode('utf-8')
+production_pages[finishing_url] = finishing_html
 assert 'thermal-section' not in finishing_html, 'Finishing page still contains the thermal inspection block'
 for block_id in ['finishing-styles', 'finishing-calculator', 'finishing-calc-modal', 'quiz']:
     assert finishing_html.count('id="' + block_id + '"') == 1, 'Missing or repeated finishing block: ' + block_id
@@ -140,6 +167,7 @@ with urllib.request.urlopen(request, timeout=30) as response:
     if html_encoding == 'gzip':
         body = gzip.decompress(body)
     html = body.decode('utf-8')
+production_pages['https://artbalkon.site/'] = html
 assert '<meta name="robots" content="index,follow,max-image-preview:large">' in html, 'Production must remain indexable'
 assert '<link rel="canonical" href="https://artbalkon.site/">' in html, 'Incorrect home canonical'
 assert re.search(r'href=[\"\']/?#before-after[\"\']', html), 'Portfolio must be reachable from the home page'
@@ -227,13 +255,36 @@ print('Production favicons verified on home and finishing page:', json.dumps(fav
 sitemap = urllib.request.urlopen('https://artbalkon.site/sitemap.xml?technical-check=1', timeout=30).read().decode('utf-8')
 content_urls = re.findall(r'<loc>([^<]+)</loc>', sitemap)
 assert len(content_urls) == 20, 'Production sitemap must include 20 content pages'
+expected_urls = re.findall(r'<loc>([^<]+)</loc>', Path('dist/sitemap.xml').read_text(encoding='utf-8'))
+assert set(content_urls) == set(expected_urls), 'Published sitemap differs from the checked build'
+seen_titles, seen_descriptions = set(), set()
 for url in content_urls:
+    assert url.startswith('https://artbalkon.site/'), 'Unexpected sitemap origin: ' + url
     path = urllib.parse.urlsplit(url).path
     assert path not in retired_portfolio_paths, 'Retired portfolio page must not appear in the sitemap: ' + url
-    if path == '/' or path.strip('/') in landing_slugs:
-        continue
-    page_html = urllib.request.urlopen(url, timeout=30).read().decode('utf-8')
+    page_html = production_pages.get(url)
+    if page_html is None:
+        with opener.open(url, timeout=30) as response:
+            assert response.status == 200, 'Content page must return HTTP 200: ' + url
+            page_html = response.read().decode('utf-8')
     assert_no_retired_portfolio_links(page_html, path)
+    actual = seo_snapshot(page_html, url)
+    expected_html = Path('dist' + path + 'index.html').read_text(encoding='utf-8')
+    assert actual == seo_snapshot(expected_html, url), 'Published SEO metadata differs from the checked build: ' + url
+    assert actual['canonical'] == actual['og:url'] == url, 'Incorrect canonical or Open Graph URL: ' + url
+    assert actual['robots'] == 'index,follow,max-image-preview:large', 'Content page must remain indexable: ' + url
+    assert actual['title'] not in seen_titles, 'Repeated production title: ' + url
+    assert actual['description'] not in seen_descriptions, 'Repeated production description: ' + url
+    seen_titles.add(actual['title'])
+    seen_descriptions.add(actual['description'])
+print('Production SEO verified: 20 unique titles and descriptions; H1, canonical, Open Graph and JSON-LD match the checked build.')
+for path in ['/privacy/', '/consent/']:
+    with opener.open('https://artbalkon.site' + path, timeout=30) as response:
+        actual = seo_snapshot(response.read().decode('utf-8'), path)
+    expected = seo_snapshot(Path('dist' + path + 'index.html').read_text(encoding='utf-8'), path)
+    assert actual == expected, 'Published legal metadata differs from the checked build: ' + path
+    assert actual['robots'] == 'noindex,follow', 'Legal pages must remain non-indexable: ' + path
+print('Production legal page descriptions verified; privacy and consent remain non-indexable.')
 print('Production SEO and static delivery:', json.dumps({'html_encoding': html_encoding, 'html_cache': html_cache, 'css_encoding': css_encoding, 'css_cache': css_cache, 'css_version': css_version, 'callback_inline_styles': True, 'css_transfer_bytes': len(css_bytes), 'css_decoded_bytes': len(css)}, ensure_ascii=False))
 if css_encoding != 'gzip':
     print('NOTICE: the hosting front end did not apply gzip to CSS; inspect its static-file settings.')
