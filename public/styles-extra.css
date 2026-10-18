@@ -4220,7 +4220,8 @@ main > .social-subscribe,
  .landing-trust.landing-utp .trust-copy strong{font-size:20px}
  .landing-trust.landing-utp .trust-copy span{font-size:12px;min-height:2.8em}
  .landing-trust.company-trust{gap:8px;margin-top:24px}
- .landing-trust.company-trust .trust-item{padding:12px 7px!important}
+ .landing-trust.company-trust .trust-item{min-height:0;padding:12px 7px!important}
+ .landing-trust.company-trust .trust-icon{display:none}
  .landing-trust.company-trust .trust-copy strong{font-size:20px}
  .landing-trust.company-trust .trust-copy span{font-size:11px;line-height:1.4}
 }
