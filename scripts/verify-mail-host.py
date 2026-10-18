@@ -6,12 +6,26 @@ import re
 import urllib.request
 import urllib.error
 import urllib.parse
+import urllib.robotparser
+from html.parser import HTMLParser
 from pathlib import Path
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self, request, fp, code, message, headers, newurl):
         return None
+
+
+class FaviconLinks(HTMLParser):
+    def __init__(self, html):
+        super().__init__()
+        self.links = []
+        self.feed(html)
+
+    def handle_starttag(self, tag, attributes):
+        attributes = dict(attributes)
+        if tag == 'link' and set((attributes.get('rel') or '').split()) & {'icon', 'apple-touch-icon'}:
+            self.links.append(attributes)
 
 
 retired_portfolio_paths = [
@@ -156,6 +170,50 @@ assert css == Path('dist/styles.css').read_bytes(), 'Published stylesheet differ
 assert b'calculator-scene-ready' in css and b'100svh' in css, 'Published styles do not contain the latest responsive/performance fixes'
 robots = urllib.request.urlopen('https://artbalkon.site/robots.txt?technical-check=1', timeout=30).read().decode('utf-8')
 assert 'Sitemap: https://artbalkon.site/sitemap.xml' in robots, 'Production sitemap must remain discoverable'
+
+# Search robots may select any advertised icon, so verify every current format.
+favicon_types = {
+    '/favicon.svg': {'image/svg+xml'},
+    '/favicon.ico': {'image/x-icon', 'image/vnd.microsoft.icon'},
+    '/favicon.png': {'image/png'},
+    '/apple-touch-icon.png': {'image/png'},
+}
+favicon_urls = None
+for label, page_html in [('home', html), ('finishing', finishing_html)]:
+    links = FaviconLinks(page_html).links
+    icons = {}
+    for attributes in links:
+        href = attributes.get('href')
+        assert href, 'Favicon needs a URL: ' + label
+        url = urllib.parse.urljoin('https://artbalkon.site/', href)
+        parsed = urllib.parse.urlsplit(url)
+        assert parsed.scheme == 'https' and parsed.netloc == 'artbalkon.site', 'Favicon must use the production origin: ' + url
+        assert parsed.path in favicon_types, 'Unexpected favicon link: ' + url
+        if attributes.get('type'):
+            assert attributes['type'] in favicon_types[parsed.path], 'Incorrect favicon link type: ' + url
+        assert parsed.path not in icons, 'Repeated favicon link: ' + label + ' ' + parsed.path
+        icons[parsed.path] = url
+    assert set(icons) == set(favicon_types), 'Missing favicon formats: ' + label
+    if favicon_urls is None:
+        favicon_urls = icons
+    else:
+        assert icons == favicon_urls, 'Home and internal page must advertise the same favicons'
+robot_rules = urllib.robotparser.RobotFileParser()
+robot_rules.parse(robots.splitlines())
+favicon_results = []
+for asset, url in favicon_urls.items():
+    for user_agent in ['YandexBot', 'YandexFavicons', 'YandexImages', '*']:
+        assert robot_rules.can_fetch(user_agent, url), 'robots.txt blocks favicon for ' + user_agent + ': ' + asset
+    request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)'})
+    with opener.open(request, timeout=30) as response:
+        assert response.status == 200 and not response.headers.get('Location'), 'Favicon must return HTTP 200 directly: ' + asset
+        content_type = response.headers.get_content_type()
+        assert content_type in favicon_types[asset], 'Incorrect favicon Content-Type: ' + asset + ' ' + content_type
+        icon = response.read()
+    assert icon == Path('dist' + asset).read_bytes(), 'Published favicon differs from the checked build: ' + asset
+    favicon_results.append({'path': asset, 'type': content_type, 'bytes': len(icon)})
+print('Production favicons verified on home and finishing page:', json.dumps(favicon_results))
+
 sitemap = urllib.request.urlopen('https://artbalkon.site/sitemap.xml?technical-check=1', timeout=30).read().decode('utf-8')
 content_urls = re.findall(r'<loc>([^<]+)</loc>', sitemap)
 assert len(content_urls) == 20, 'Production sitemap must include 20 content pages'
