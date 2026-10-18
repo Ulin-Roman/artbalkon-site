@@ -156,6 +156,16 @@ for photo_path in telegram_photos:
     photo_bytes = urllib.request.urlopen('https://artbalkon.site' + photo_path, timeout=30).read()
     assert photo_bytes == Path('dist' + photo_path).read_bytes(), 'Published Telegram photo differs from the checked build: ' + photo_path
 print('Production Telegram gallery verified: three matching photos.')
+vk_preview_pattern = r'<article class="social-photo-card social-photo-card--vk">[\s\S]*?<div class="social-photo-preview[^"]*"[^>]*>([\s\S]*?)</div>'
+vk_preview = re.search(vk_preview_pattern, html)
+expected_vk_preview = re.search(vk_preview_pattern, Path('dist/index.html').read_text(encoding='utf-8'))
+assert vk_preview and expected_vk_preview and vk_preview.group(1) == expected_vk_preview.group(1), 'Published VK photos differ from the checked build'
+vk_photos = re.findall(r'<img\b[^>]*\bsrc="([^"]+)"', vk_preview.group(1))
+assert len(vk_photos) == 3, 'VK card must show three photos'
+for photo_path in vk_photos:
+    photo_bytes = urllib.request.urlopen('https://artbalkon.site' + photo_path, timeout=30).read()
+    assert photo_bytes == Path('dist' + photo_path).read_bytes(), 'Published VK photo differs from the checked build: ' + photo_path
+print('Production VK gallery verified: three matching photos.')
 css_path = re.search(r'<link rel="stylesheet" href="([^"]+)"', html).group(1)
 css_version = urllib.parse.parse_qs(urllib.parse.urlsplit(css_path).query).get('v', [''])[0]
 assert re.fullmatch(r'[0-9a-f]{12}', css_version), 'Published stylesheet URL must contain its content hash'
