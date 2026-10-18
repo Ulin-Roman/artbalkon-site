@@ -383,17 +383,6 @@ html{scroll-padding-top:84px}
 .avito-review-stars{margin:7px 0 3px;font-size:13px}
 .avito-review p{color:#303635;font-size:13px;line-height:1.5}
 .avito-reviews-widget>.button{width:100%;min-height:48px;margin-top:18px}
-.avito-reviews-widget>a.button.reviews-avito-button{
- border-color:#2b7de9;
- background:#2b7de9;
- color:#fff;
- box-shadow:0 8px 20px rgba(43,125,233,.2);
-}
-.avito-reviews-widget>a.button.reviews-avito-button:hover{
- border-color:#1f6fd4;
- background:#1f6fd4;
- color:#fff;
-}
 @media(max-width:1000px){.reviews-widget-layout{grid-template-columns:1fr}.yandex-reviews-widget,.avito-reviews-widget{width:100%;max-width:760px;margin-inline:auto}}
 @media(max-width:640px){.reviews-live-section .section-heading{margin-bottom:28px}.yandex-reviews-widget,.avito-reviews-widget{border-radius:14px}.yandex-reviews-widget iframe{height:560px}.avito-reviews-widget{height:auto;min-height:590px;padding:23px 19px}.avito-reviews-head{gap:14px}.avito-rating strong{font-size:38px}.avito-review-list{overflow:visible}.avito-review p{font-size:12px}}
 
@@ -3076,7 +3065,7 @@ body{min-width:0;max-width:100%}
  background:#fff;
 }
 
-/* White secondary review actions. */
+/* Review action layout; the shared transparent theme supplies the surface. */
 .reviews-white-button{
  display:inline-flex;
  min-height:48px;
@@ -3084,35 +3073,13 @@ body{min-width:0;max-width:100%}
  justify-content:center;
  gap:12px;
  padding:11px 20px;
- border:1px solid #fff;
+ border:1px solid transparent;
  border-radius:999px;
- background:#fff;
- color:var(--ink);
- box-shadow:0 8px 22px rgba(15,63,62,.1);
  font-size:13px;
  font-weight:750;
  line-height:1.2;
- transition:background .2s,border-color .2s,box-shadow .2s;
-}
-.reviews-white-button:hover{
- border-color:#f5f7f7;
- background:#f5f7f7;
- color:var(--ink);
- box-shadow:0 11px 26px rgba(15,63,62,.14);
 }
 .reviews-white-button span[aria-hidden]{color:currentColor}
-.avito-reviews-widget>a.button.reviews-avito-button.reviews-white-button,
-.avito-reviews-widget>a.button.reviews-avito-button.reviews-white-button:hover{
- border-color:#fff;
- background:#fff;
- color:var(--ink);
- box-shadow:0 8px 22px rgba(15,63,62,.1);
-}
-.avito-reviews-widget>a.button.reviews-avito-button.reviews-white-button:hover{
- border-color:#f5f7f7;
- background:#f5f7f7;
- box-shadow:0 11px 26px rgba(15,63,62,.14);
-}
 .yandex-reviews-widget{position:relative}
 .yandex-reviews-widget::before{
  content:"Поставьте нам оценку";
@@ -3134,6 +3101,18 @@ body{min-width:0;max-width:100%}
  line-height:1.2;
  pointer-events:none;
 }
+/* Cover the iframe's native footer beneath our transparent review link. */
+.yandex-reviews-widget::after{
+ content:"";
+ position:absolute;
+ z-index:2;
+ right:1px;
+ bottom:1px;
+ left:1px;
+ height:96px;
+ background:linear-gradient(180deg,rgba(255,255,255,0),#fff 18px);
+ pointer-events:none;
+}
 .yandex-review-button{
  position:absolute;
  z-index:3;
@@ -3145,9 +3124,9 @@ body{min-width:0;max-width:100%}
  width:150px;
  min-height:42px;
  padding:8px 12px;
- transform:translateX(-50%);
+ translate:-50% 0;
 }
-.yandex-review-button-more{bottom:34px;left:50%;transform:translateX(-50%)}
+.yandex-review-button-more{bottom:34px;left:50%;translate:-50% 0}
 
 @media(max-width:640px){
  .yandex-reviews-widget::before{
@@ -3167,9 +3146,9 @@ body{min-width:0;max-width:100%}
   width:150px;
   min-height:42px;
   padding:8px 12px;
-  transform:translateX(-50%);
+  translate:-50% 0;
  }
- .yandex-review-button-more{right:18px;bottom:28px;left:18px;transform:none;white-space:normal;text-align:center}
+ .yandex-review-button-more{right:18px;bottom:28px;left:18px;translate:none;white-space:normal;text-align:center}
 }
 
 /* Keep the price promise directly beneath and centred to its CTA. */
@@ -4732,8 +4711,8 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  --primary-button-transition:background .18s ease,box-shadow .18s ease,transform .18s ease;
  --primary-button-hover-transform:translateY(-1px);
 }
-/* Gallery actions and style tabs share a transparent raised surface. */
-.before-after-more-button,.finishing-style-tabs button{
+/* Secondary actions and style tabs share a transparent raised surface. */
+.before-after-more-button,.finishing-style-tabs button,.reviews-white-button{
  --primary-button-background:transparent;
  --primary-button-hover-background:transparent;
  --primary-button-active-background:transparent;
@@ -4752,7 +4731,7 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  --primary-button-hover-shadow:0 9px 20px rgba(23,50,47,.14),inset 0 1px 1px rgba(255,255,255,.95),inset 0 0 0 1px rgba(0,119,126,.6),inset 0 -2px 3px rgba(23,50,47,.1);
  --primary-button-active-shadow:0 3px 8px rgba(23,50,47,.08),inset 0 0 0 1px rgba(0,119,126,.6),inset 0 2px 4px rgba(23,50,47,.12);
 }
-:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button,.promotion-card-copy>span){
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.reviews-white-button,.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button,.promotion-card-copy>span){
  background:var(--primary-button-background);
  border-color:var(--primary-button-border-color,#00777e);
  color:var(--primary-button-color,#fff);
@@ -4762,19 +4741,19 @@ main :is(.landing-hero .landing-copy-main,.section,.case-intro,.thermal-section,
  transform:none;
  transition:var(--primary-button-transition);
 }
-:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):hover:not(:disabled),.promotion-card:hover:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.reviews-white-button,.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):hover:not(:disabled),.promotion-card:hover:not(:disabled) .promotion-card-copy>span{
  background:var(--primary-button-hover-background);
  border-color:var(--primary-button-hover-border-color,#006a71);
  box-shadow:var(--primary-button-hover-shadow);
  filter:none;
  transform:var(--primary-button-hover-transform);
 }
-:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):active:not(:disabled),.promotion-card:active:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.reviews-white-button,.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):active:not(:disabled),.promotion-card:active:not(:disabled) .promotion-card-copy>span{
  background:var(--primary-button-active-background);
  box-shadow:var(--primary-button-active-shadow);
  transform:translateY(0);
 }
-:is(.button:not(.button-outline,.button-white,.reviews-white-button),.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):focus-visible,.promotion-card:focus-visible:not(:disabled) .promotion-card-copy>span{
+:is(.button:not(.button-outline,.button-white,.reviews-white-button),.reviews-white-button,.before-after-lead,.quiz-form .quiz-next-button:enabled,.project-estimate-section--quiz .project-estimate-controls .quiz-next-button:enabled,.finishing-style-tabs button):focus-visible,.promotion-card:focus-visible:not(:disabled) .promotion-card-copy>span{
  outline:2px solid #00777e;
  outline-offset:3px;
 }
