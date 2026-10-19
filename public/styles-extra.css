@@ -4445,6 +4445,7 @@ main > .social-subscribe,
 .social-subscribe--cards::before,.social-subscribe--cards::after{content:none}
 .social-subscribe--cards .social-subscribe-heading{max-width:860px;margin:0 auto 30px;padding:0;text-align:center}
 .social-subscribe--cards .social-subscribe-heading h2{margin:0;color:var(--ink);font-size:clamp(32px,3.4vw,44px);font-weight:650;line-height:1.15;letter-spacing:-.04em;overflow-wrap:anywhere}
+.social-subscribe--cards .social-subscribe-heading h2>span{color:var(--teal)}
 .social-subscribe--cards .social-section-intro{max-width:770px;margin:15px auto 0;color:var(--muted);font-size:16px;line-height:1.7;overflow-wrap:anywhere}
 .social-subscribe--cards .social-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;min-width:0}
 .social-subscribe--cards .social-photo-card{display:flex;min-width:0;flex-direction:column;gap:0;margin:0;padding:26px;border:1px solid #e1e6e2;border-radius:24px;background:#fff;box-shadow:0 8px 28px #172c2510}
