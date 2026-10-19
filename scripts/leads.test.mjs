@@ -177,7 +177,7 @@ test('home calculation quiz preserves photos, ordered questions, gifts and valid
    assert.equal(objectPhoto('Не знаю'),'object-unknown',label+': undecided object uses its dedicated requested photo');
   }
   assert.doesNotMatch(markup,/<figcaption\b/i,label+': keep estimate photos free of captions');
-  assert.match(markup,/<figure\b[^>]*data-estimate-preview="gift-4"[^>]*>[\s\S]*?<img\b[^>]*src="\/assets\/promo-gift-card\.svg"/,label+': gift card has its dedicated illustration');
+  assert.match(markup,/<figure\b[^>]*data-estimate-preview="gift-4"[^>]*>[\s\S]*?<img\b[^>]*src="\/assets\/promo-gift-card-v2\.svg"/,label+': gift card has its dedicated illustration');
   const progress=attributes(form.match(/<progress\b([^>]*)>/)?.[1]||'');
   assert.equal(progress.id,'quiz-progress-inline',label+': separate inline progress from the consultation modal');
   assert.equal(progress.value,'1',label+': progress starts at the first step');
