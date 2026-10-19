@@ -179,6 +179,11 @@ assert re.search(r'href=[\"\']/?#before-after[\"\']', html), 'Portfolio must be 
 assert 'id="before-after"' in html, 'Home portfolio destination must exist'
 assert_no_retired_portfolio_links(html, '/')
 assert_retention_popup(html, '/')
+social_pattern = r'<section\b[^>]*\bid="social-subscribe"[\s\S]*?</section>'
+social_section = re.search(social_pattern, html)
+expected_social_section = re.search(social_pattern, Path('dist/index.html').read_text(encoding='utf-8'))
+assert social_section and expected_social_section and social_section.group(0) == expected_social_section.group(0), 'Published social cards differ from the checked build'
+print('Production social section verified: markup matches the checked build.')
 telegram_preview_pattern = r'<article class="social-photo-card social-photo-card--telegram">[\s\S]*?<div class="social-photo-preview[^"]*"[^>]*>([\s\S]*?)</div>'
 telegram_preview = re.search(telegram_preview_pattern, html)
 expected_telegram_preview = re.search(telegram_preview_pattern, Path('dist/index.html').read_text(encoding='utf-8'))

@@ -4447,20 +4447,15 @@ main > .social-subscribe,
 .social-subscribe--cards .social-kicker{display:inline-flex;min-height:30px;align-items:center;margin:0 0 12px;padding:6px 14px;border-radius:999px;background:#e8f2ef;color:#487367;font-size:11px;font-weight:700;line-height:1.5;letter-spacing:.06em;text-transform:uppercase}
 .social-subscribe--cards .social-subscribe-heading h2{margin:0;color:var(--ink);font-size:clamp(32px,3.4vw,44px);font-weight:650;line-height:1.15;letter-spacing:-.04em;overflow-wrap:anywhere}
 .social-subscribe--cards .social-section-intro{max-width:770px;margin:15px auto 0;color:var(--muted);font-size:16px;line-height:1.7;overflow-wrap:anywhere}
-.social-subscribe--cards .social-section-note{display:flex;min-width:0;align-items:center;justify-content:center;gap:9px;margin:24px 0 0;color:#74847d;font-size:13px;line-height:1.6;text-align:center}
-.social-subscribe--cards .social-section-note>span:last-child{min-width:0;overflow-wrap:anywhere}
-.social-subscribe--cards .social-note-heart{flex:0 0 auto;color:#94b4a7;font-size:18px;line-height:1}
 .social-subscribe--cards .social-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;min-width:0}
 .social-subscribe--cards .social-photo-card{display:flex;min-width:0;flex-direction:column;gap:0;margin:0;padding:26px;border:1px solid #e1e6e2;border-radius:24px;background:#fff;box-shadow:0 8px 28px #172c2510}
 .social-subscribe--cards .social-card-header{display:flex;min-width:0;align-items:center;gap:17px;margin-bottom:22px}
 .social-subscribe--cards .social-card-header>div{min-width:0;flex:1}
 .social-subscribe--cards .social-card-platform-icon{display:block;width:64px;height:64px;max-width:none;flex:0 0 64px;object-fit:contain}
 .social-subscribe--cards .social-card-header h3{margin:0;color:var(--ink);font-size:25px;font-weight:650;line-height:1.2;letter-spacing:-.025em;overflow-wrap:anywhere}
-.social-subscribe--cards .social-card-header p{margin:7px 0 0;color:var(--muted);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
-.social-subscribe--cards .social-photo-preview{display:grid;grid-template-rows:minmax(0,1fr);min-width:0;height:250px;margin:0;border-radius:14px;gap:7px}
+.social-subscribe--cards .social-photo-preview{display:grid;grid-template-rows:minmax(0,1fr);min-width:0;height:250px;margin:0 0 22px;border-radius:14px;gap:7px}
 .social-subscribe--cards .social-photo-preview--gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
 .social-subscribe--cards .social-photo-preview img{display:block;min-width:0;min-height:0;width:100%;height:100%;object-fit:cover;object-position:center 50%;border-radius:11px}
-.social-subscribe--cards .social-card-description{min-width:0;margin:20px 0 23px;color:var(--muted);font-size:15px;line-height:1.7;overflow-wrap:anywhere}
 .social-subscribe--cards .social-card-cta{
  --primary-button-background:linear-gradient(180deg,#2aabee 0%,#0079bd 32%,#0071b5 68%,#00629d 100%);
  --primary-button-hover-background:linear-gradient(180deg,#40b8f2 0%,#007cbe 32%,#0071b5 68%,#005c96 100%);
@@ -4493,9 +4488,7 @@ main > .social-subscribe,
  .social-subscribe--cards .social-card-header{gap:13px;margin-bottom:20px}
  .social-subscribe--cards .social-card-platform-icon{width:56px;height:56px;flex-basis:56px}
  .social-subscribe--cards .social-card-header h3{font-size:22px}
- .social-subscribe--cards .social-card-header p{font-size:12px}
  .social-subscribe--cards .social-photo-preview{height:225px}
- .social-subscribe--cards .social-card-description{font-size:14px}
  .social-subscribe--cards .social-card-cta{padding-inline:16px}
 }
 @media(max-width:700px){
@@ -4503,16 +4496,13 @@ main > .social-subscribe,
  .social-subscribe--cards .social-subscribe-heading{margin-bottom:24px}
  .social-subscribe--cards .social-kicker{margin-bottom:9px;font-size:10px}
  .social-subscribe--cards .social-section-intro{max-width:500px;margin-top:13px;font-size:14px;line-height:1.65}
- .social-subscribe--cards .social-section-note{margin-top:20px;font-size:12px}
  .social-subscribe--cards .social-subscribe-heading h2{font-size:31px;line-height:1.17}
  .social-subscribe--cards .social-card-grid{grid-template-columns:minmax(0,1fr);gap:18px}
  .social-subscribe--cards .social-photo-card{padding:22px;border-radius:20px}
  .social-subscribe--cards .social-card-header{gap:14px;margin-bottom:19px}
  .social-subscribe--cards .social-card-platform-icon{width:60px;height:60px;flex-basis:60px}
  .social-subscribe--cards .social-card-header h3{font-size:25px}
- .social-subscribe--cards .social-card-header p{font-size:13px}
  .social-subscribe--cards .social-photo-preview{height:235px}
- .social-subscribe--cards .social-card-description{margin:18px 0 21px;font-size:14px;line-height:1.65}
  .social-subscribe--cards .social-card-cta{min-height:56px;padding:14px 17px;font-size:16px}
 }
 @media(max-width:430px){
@@ -4520,9 +4510,7 @@ main > .social-subscribe,
  .social-subscribe--cards .social-card-header{gap:12px}
  .social-subscribe--cards .social-card-platform-icon{width:54px;height:54px;flex-basis:54px}
  .social-subscribe--cards .social-card-header h3{font-size:22px}
- .social-subscribe--cards .social-card-header p{font-size:12px}
  .social-subscribe--cards .social-photo-preview{height:220px;gap:6px}
- .social-subscribe--cards .social-card-description{font-size:13px;line-height:1.7}
  .social-subscribe--cards .social-card-cta{padding-inline:14px;gap:10px}
 }
 @media(max-width:360px){
