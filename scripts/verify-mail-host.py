@@ -170,6 +170,11 @@ with urllib.request.urlopen(request, timeout=30) as response:
 production_pages['https://artbalkon.site/'] = html
 assert '<meta name="robots" content="index,follow,max-image-preview:large">' in html, 'Production must remain indexable'
 assert '<link rel="canonical" href="https://artbalkon.site/">' in html, 'Incorrect home canonical'
+gift_image = re.search(r'<img\b[^>]*\bclass="gift-3d-fallback"[^>]*>', html)
+assert gift_image, 'Missing decorative gift image'
+for attribute in ['alt=""', 'aria-hidden="true"', 'role="presentation"']:
+    assert attribute in gift_image.group(0), 'Incorrect decorative gift markup: ' + attribute
+assert 'Объёмный подарок с золотистым бантом' not in html, 'Decorative gift description must not leak into the indexed page text'
 assert re.search(r'href=[\"\']/?#before-after[\"\']', html), 'Portfolio must be reachable from the home page'
 assert 'id="before-after"' in html, 'Home portfolio destination must exist'
 assert_no_retired_portfolio_links(html, '/')

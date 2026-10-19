@@ -517,6 +517,9 @@ for(const file of pages){
   if(match[0].includes('class="final-cta-background"')){
    assert.match(match[0],/\salt=""/,'decorative footer photo must have empty alt');
    for(const attribute of ['role="presentation"','aria-hidden="true"','loading="lazy"','decoding="async"'])assert.ok(match[0].includes(attribute),'decorative footer photo missing '+attribute);
+  }else if(match[0].includes('class="gift-3d-fallback"')){
+   assert.match(match[0],/\salt=""/,'decorative gift image must have empty alt');
+   for(const attribute of ['role="presentation"','aria-hidden="true"'])assert.ok(match[0].includes(attribute),'decorative gift image missing '+attribute);
   }else assert.ok(/\salt="[^"]+"/.test(match[0]),'image alt missing');
   assert.ok(/width=/.test(match[0])&&/height=/.test(match[0]),'image dimensions missing');
  }
