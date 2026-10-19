@@ -4080,22 +4080,6 @@ main > .social-subscribe,
 .repair-compare input[type=range]{position:absolute;inset:0;margin:0;width:100%;height:100%;opacity:0;cursor:ew-resize;touch-action:pan-y}
 .repair-compare:focus-within{outline:3px solid var(--teal);outline-offset:3px}
 
-.repair-modal-compare{position:relative;display:block;overflow:hidden;min-width:0;border-radius:12px}
-.repair-modal-compare figure{position:absolute;inset:0;margin:0;width:100%;height:100%}
-.repair-modal-compare figure img{width:100%;height:100%;object-fit:cover;aspect-ratio:auto!important;border-radius:0}
-.repair-modal-compare figure:first-of-type{z-index:2;clip-path:inset(0 calc(100% - var(--split)) 0 0)}
-.repair-modal-compare figure:last-of-type{z-index:1}
-.repair-modal-compare figure>span{top:14px;bottom:auto;left:14px;transform:none}
-.repair-modal-compare figure:last-of-type>span{left:auto;right:14px}
-.repair-modal-compare .repair-divider{z-index:3}
-.repair-modal-compare input[type=range]{position:absolute;inset:0;margin:0;width:100%;height:100%;opacity:0;cursor:ew-resize;touch-action:pan-y;z-index:4}
-.repair-modal-compare .comparison-nav{z-index:5}
-.repair-modal-compare:focus-within{outline:3px solid var(--teal);outline-offset:-3px}
-
-.comparison-modal-grid.repair-modal-compare figure{height:100%!important}
-.comparison-modal-grid.repair-modal-compare figure>span{left:14px!important;right:auto!important;transform:none}
-.comparison-modal-grid.repair-modal-compare figure:last-of-type>span{left:auto!important;right:14px!important}
-
 .repair-hero-photo .repair-compare{height:100%;min-height:0;border-radius:inherit}
 .repair-hero-photo .repair-label-region,.repair-hero-photo .repair-divider{z-index:2}
 .repair-hero-photo input[type=range]{z-index:3}
