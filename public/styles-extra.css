@@ -3724,35 +3724,14 @@ img{-webkit-touch-callout:none;-webkit-user-drag:none;user-select:none}
  min-width:var(--menu-size);max-width:var(--menu-size);
  min-height:var(--menu-size);max-height:var(--menu-size);
  flex:0 0 var(--menu-size);aspect-ratio:1;padding:0;
- border-radius:50%;appearance:none;-webkit-appearance:none;
+ border:0;border-radius:0;background:transparent;box-shadow:none;
+ appearance:none;-webkit-appearance:none;
 }
+.site-header .menu-toggle:focus-visible{outline:2px solid #00777e;outline-offset:3px}
 .site-header .menu-toggle span{flex-shrink:0}
 @media(max-width:640px){.site-header{--messenger-size:28px;--menu-size:36px}}
 @media(max-width:480px){.site-header{--messenger-size:32px;--menu-size:32px}}
 @media(max-width:360px){.site-header{--messenger-size:28px;--menu-size:28px}}
-
-/* A pale raised surface for the phone's round menu control. */
-@media(max-width:640px){
- .site-header .menu-toggle{
-  border-color:rgba(0,119,126,.45);
-  background:linear-gradient(145deg,#fff 0%,#f3fbfa 42%,#dff2ef 100%);
-  box-shadow:0 3px 9px rgba(0,119,126,.18),inset 0 1px 1px #fff,inset 0 -2px 3px rgba(0,119,126,.12);
-  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease;
- }
- .site-header .menu-toggle:is(:active,[aria-expanded="true"]){
-  border-color:#00777e;
-  background:linear-gradient(145deg,#dcefeb,#f0faf8);
-  box-shadow:0 2px 5px rgba(0,119,126,.14),inset 0 2px 4px rgba(0,119,126,.17),inset 0 -1px 1px #fff;
- }
- .site-header .menu-toggle:focus-visible{outline:2px solid #00777e;outline-offset:3px}
-}
-@media(max-width:640px) and (hover:hover){
- .site-header .menu-toggle:hover:not(:active,[aria-expanded="true"]){
-  border-color:rgba(0,119,126,.7);
-  box-shadow:0 4px 12px rgba(0,119,126,.23),inset 0 1px 1px #fff,inset 0 -2px 3px rgba(0,119,126,.14);
- }
-}
-@media(max-width:640px) and (prefers-reduced-motion:reduce){.site-header .menu-toggle{transition:none}}
 
 /* Topic changes use the same quiet rule as the partner brands section.
    Adjacent sections share a compact gap instead of two large paddings. */
