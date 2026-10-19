@@ -1583,7 +1583,8 @@ h1,h2,h3,h4,
 .promotion-card-media{display:block;height:190px;overflow:hidden;background:#eef4f3}
 .promotion-card-media img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
 .promotion-card:hover .promotion-card-media img{transform:scale(1.035)}
-.promotion-card:last-child .promotion-card-media img{object-fit:contain;padding:40px;background:linear-gradient(145deg,#f1f8f7,#fff)}
+.promotion-card:last-child .promotion-card-media{background:#fff}
+.promotion-card:last-child .promotion-card-media img{object-fit:contain;padding:8px;background:transparent}
 .promotion-card-copy{display:flex;min-height:190px;flex-direction:column;padding:22px}
 .promotion-card-copy strong{color:var(--teal);font-size:22px;line-height:1.25}
 .promotion-card-copy small{margin-top:11px;color:var(--muted);font-size:13px;line-height:1.65}
@@ -1603,7 +1604,6 @@ h1,h2,h3,h4,
  .promotion-grid{gap:10px}
  .promotion-card{border-radius:16px}
  .promotion-card-media{height:130px}
- .promotion-card:last-child .promotion-card-media img{padding:28px}
  .promotion-card-copy{min-height:170px;padding:15px 13px}
  .promotion-card-copy strong{font-size:17px}
  .promotion-card-copy small{font-size:11px;line-height:1.55}
@@ -4492,9 +4492,9 @@ main > .social-subscribe,
 .project-estimate-section--quiz .project-estimate-photo img{min-width:0;min-height:0}
 .project-estimate-section--quiz .project-estimate-photo--gift{background:#eef3ef}
 .project-estimate-section--quiz .project-estimate-photo--gift img{padding:0;object-fit:cover;object-position:center}
-.project-estimate-section--quiz [data-estimate-preview="gift-4"]{background:linear-gradient(135deg,#e1eeea,#bedad4)}
+.project-estimate-section--quiz [data-estimate-preview="gift-4"]{background:#fff}
 .project-estimate-section--quiz [data-estimate-preview="gift-4"] img{object-fit:contain}
-.project-estimate-section--quiz .project-estimate-gift-media img[src$="promo-gift-card.svg"]{object-fit:contain;background:#d5e8e2}
+.project-estimate-section--quiz .project-estimate-gift-media img[src$="promo-gift-card-v2.svg"]{object-fit:contain;background:#fff}
 .project-estimate-section--quiz .project-estimate-copy{display:flex;min-width:0;min-height:480px;flex-direction:column;padding:30px 34px}
 .project-estimate-section--quiz .project-estimate-form--quiz{display:flex;min-width:0;min-height:0;flex:1;flex-direction:column;margin:0;padding:0;border:0;background:transparent}
 .project-estimate-section--quiz .project-estimate-progress-row{display:flex;min-width:0;align-items:center;justify-content:space-between;gap:10px;margin:0;color:var(--muted);font-size:11px;line-height:1.5;letter-spacing:0}

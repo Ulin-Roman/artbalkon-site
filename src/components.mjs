@@ -159,7 +159,7 @@ const promotionSection=service=>{
   ['promo-electrics.jpg','Электрика','Монтаж базовой электрики для будущего света и розеток.'],
   ['promo-heated-floor.jpg','Тёплый пол','Дополнительный комфорт для балкона или лоджии.'],
   ['promo-ceiling-dryer.jpg','Потолочная сушилка','Компактное решение, которое не занимает полезную площадь.'],
-  ['promo-gift-card.svg','Подарочная карта','Используйте номинал на дополнительные работы или материалы.']
+  ['promo-gift-card-v2.svg','Подарочная карта','Используйте номинал на дополнительные работы или материалы.']
  ];
  return `<section class="promotion-section" aria-labelledby="promotion-title"><div class="section container"><div class="promotion-heading"><h2 id="promotion-title"><span>Акция!</span> При заказе услуг<br>до конца октября подарок на выбор</h2><p class="explanatory-subtitle">Выберите один из подарков при оформлении комплексного заказа.</p></div><div class="promotion-grid">${gifts.map(([image,title,description])=>`<button class="promotion-card" type="button" data-application data-project="Акция: ${esc(title)} — ${serviceTitle}"><span class="promotion-card-media"><img src="/assets/${image}" width="640" height="440" loading="lazy" decoding="async" alt="${esc(title)} — подарок по акции ArtBalkon"></span><span class="promotion-card-copy"><strong>${esc(title)}</strong><small>${esc(description)}</small><span>Выбрать ${buttonArrow}</span></span></button>`).join('')}</div><p class="promotion-note">Состав подарка и условия акции уточняются после замера.</p></div></section>`;
 };
@@ -309,7 +309,7 @@ export function inlineEstimate(subject=null){
   {key:'gift-1',label:'Светильник и розетки',asset:'promo-electrics.jpg'},
   {key:'gift-2',label:'Тёплый пол',asset:'promo-heated-floor.jpg'},
   {key:'gift-3',label:'Потолочная сушилка',asset:'promo-ceiling-dryer.jpg'},
-  {key:'gift-4',label:'Подарочная карта',asset:'promo-gift-card.svg'}
+  {key:'gift-4',label:'Подарочная карта',asset:'promo-gift-card-v2.svg'}
  ];
  const radioOptions=(name,options,photos=[])=>`<div class="project-estimate-options">${options.map((label,index)=>{const photo=photos.find(photo=>photo.label===label)||photos[0];return `<label class="project-estimate-option"><input type="radio" name="${name}" value="${esc(label)}"${photo?` data-estimate-photo="${photo.key}" data-estimate-photo-alt="${esc(photo.alt)}"`:""} required${index===0?' checked':''}><span>${esc(label)}</span></label>`;}).join('')}</div>`;
  const stages=[];

@@ -1,13 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" role="img" aria-labelledby="title">
   <title id="title">Подарочная карта АртБалкон</title>
   <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="640" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#e1eeea"/><stop offset="1" stop-color="#bedad4"/></linearGradient>
     <linearGradient id="stripe" x1="60" y1="320" x2="578" y2="370" gradientUnits="userSpaceOnUse"><stop stop-color="#00777e"/><stop offset="1" stop-color="#00575f"/></linearGradient>
     <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="13" stdDeviation="13" flood-color="#284f47" flood-opacity=".23"/></filter>
   </defs>
-  <path fill="url(#background)" d="M0 0h640v440H0z"/>
-  <circle cx="618" cy="36" r="170" fill="#f0f7f3" opacity=".5"/>
-  <circle cx="29" cy="435" r="148" fill="#00777e" opacity=".07"/>
   <g transform="rotate(-5 320 220)" filter="url(#shadow)">
     <rect x="60" y="70" width="520" height="300" rx="23" fill="#fcfdfb"/>
     <path d="M60 316h520v31a23 23 0 0 1-23 23H83a23 23 0 0 1-23-23z" fill="url(#stripe)"/>
