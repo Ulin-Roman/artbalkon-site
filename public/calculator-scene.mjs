@@ -293,11 +293,14 @@ export function createCalculatorScene(root,siteBase) {
   line([key(.09,.98),key(.87,.98)],'#86917e80',.17);
   ctx.restore();
  }
- function streetView(q){
+ function streetView(q,photoBounds=q){
   // The landscape belongs behind the glass, not on its perspective plane.
-  const photo=texture('outside'),height=q[3][1]-q[0][1],size=height*1.05,center=(q[0][0]+q[1][0])/2;
+  const photo=texture('outside'),height=photoBounds[3][1]-photoBounds[0][1],size=height*1.05,center=(photoBounds[0][0]+photoBounds[1][0])/2;
+  const left=center-size*.32,top=photoBounds[0][1];
   ctx.save();polygon(q);ctx.clip();ctx.filter='saturate(.86) contrast(.95)';
-  ctx.drawImage(photo,center-size*.32,q[0][1],size,size);ctx.restore();
+  // Extend the existing sky above the removed frame without moving the view.
+  if(q[0][1]<top)ctx.drawImage(photo,0,0,photo.width,1,left,q[0][1],size,top-q[0][1]);
+  ctx.drawImage(photo,left,top,size,size);ctx.restore();
  }
  function canopyThroughGlass(q,apertures=null){
   if(canopySurface.length!==4)return;
@@ -760,7 +763,10 @@ export function createCalculatorScene(root,siteBase) {
    const geometry=glazingGeometry(false),window=[[43,canopyJoint[1]],[108,140],[108,267],[43,geometry.bottom]];
    ctx.save();polygon([[43,63],[108.5,140],[108.5,267],[43,304]]);ctx.clip();
    streetView(window);canopyThroughGlass(window);coldWindow(window,geometry.depth/(geometry.bottom-canopyJoint[1]));ctx.restore();
-  }else streetView([[43,78],[108,142],[108,256.5],[43,291.5]]);
+  }else{
+   // The open aperture reaches the ceiling; the original window head must go too.
+   streetView([[43,63],[108.5,140],[108,256.5],[43,291.5]],[[43,78],[108,142],[108,256.5],[43,291.5]]);
+  }
   const drawWindowHead=glazingSection(!!s['glazing-enabled'],s.glazing==='warm');
   const floorContact=s['floor-enabled']||insulated?floorQ:floorBase;
   const restore=q=>{ctx.save();polygon(q);ctx.clip();ctx.drawImage(base,0,0,340,480);ctx.restore();};

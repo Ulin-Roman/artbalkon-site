@@ -25,11 +25,12 @@ function scene() {
  const point=p=>p.map(v=>Number(v.toFixed(2))).join(' ');
  const lower=(p,scale=1)=>[p[0],p[1]+thickness*scale];
  const roofRibs=Array.from({length:7},(_,i)=>{const depth=(i+1)/8,v=depth/(farScale+(1-farScale)*depth);return `<path d="M${along(houseNear,houseFar,v)} ${along(innerNear,innerFar,v)} ${along(outerNear,outerFar,v)}"/>`;}).join('');
- return `<div class="finish-calc-scene-wrap"><svg class="finish-calc-scene" viewBox="16 18 340 448" data-calc-canopy-joint="${point([340-innerNear[0],innerNear[1]+thickness])}" data-calc-canopy-surface="${[innerNear,outerNear,outerFar,innerFar].map((p,i)=>point([340-p[0],p[1]+thickness*(i<2?1:farScale)])).join(';')}" role="img" aria-label="Выбранная отделка балкона: уличная сторона справа, дверь и окно в квартиру слева">
+ return `<div class="finish-calc-scene-wrap"><svg class="finish-calc-scene" viewBox="16 18 340 448" data-calc-canopy-joint="${point([340-innerNear[0],innerNear[1]+thickness])}" data-calc-canopy-surface="${[innerNear,outerNear,outerFar,innerFar].map((p,i)=>point([340-p[0],p[1]+thickness*(i<2?1:farScale)])).join(';')}" role="img" aria-label="Выбранная отделка балкона с козырьком: остекление справа, дверь и окно в квартиру слева">
  <defs>
  <clipPath id="finish-calc-cutout" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,292.51 313.90,296.70 313.57,415.57 313.57,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 36,464.86 36,418.5 31.08,63 31,55 33.5,55"/></clipPath>
  <clipPath id="finish-calc-cutout-exterior" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,304.8 309,304.8 309,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 36,464.86 36,418.5 31.08,63 31,55 33.5,55"/></clipPath>
  <clipPath id="finish-calc-cutout-exterior-cold" clipPathUnits="userSpaceOnUse"><polygon points="41.5,19.01 309.5,19.01 309.5,304.8 303.7,304.8 303.7,464.86 41.5,464.86"/><polygon points="33.5,19.01 41.5,19.01 41.5,464.86 36,464.86 36,418.5 31.08,63 31,55 33.5,55"/></clipPath>
+ <clipPath id="finish-calc-canopy-opening" clipPathUnits="userSpaceOnUse"><polygon points="297,78 232,142 232,256.5 297,291.5"/><path d="M296 54.5H${innerNear[0]+.35}V300.5H296Z"/></clipPath>
  <clipPath id="finish-calc-canopy-exterior" clipPathUnits="userSpaceOnUse"><path d="M${innerNear[0]} 0H356V480H${innerNear[0]}Z"/></clipPath>
  <linearGradient id="finish-calc-canopy-metal" x1="309.5" y1="54.5" x2="352" y2="63.5" gradientUnits="userSpaceOnUse"><stop stop-color="#aeb8be"/><stop offset=".35" stop-color="#dce2e5"/><stop offset=".78" stop-color="#d2d9de"/><stop offset="1" stop-color="#adb8bf"/></linearGradient>
  <linearGradient id="finish-calc-canopy-end" x1="309.5" y1="54.5" x2="352" y2="64.9" gradientUnits="userSpaceOnUse"><stop stop-color="#a4adb2"/><stop offset=".45" stop-color="#edf0f1"/><stop offset="1" stop-color="#929fa7"/></linearGradient>
@@ -37,7 +38,8 @@ function scene() {
  <style>
  .finishing-calculator:has([name="exterior-enabled"]:checked) .finish-calc-scene>foreignObject{clip-path:url(#finish-calc-cutout-exterior)}
  .finishing-calculator:has([name="exterior-enabled"]:checked):has([name="glazing-enabled"]:checked):has([name="glazing"][value="cold"]:checked) .finish-calc-scene>foreignObject{clip-path:url(#finish-calc-cutout-exterior-cold)}
- .finishing-calculator:has([name="glazing-enabled"]:not(:checked)) :is([data-calc-canopy],.finish-calc-canopy-fixing){display:none}
+ .finish-calc-canopy-through-opening{display:none;clip-path:url(#finish-calc-canopy-opening)}
+ .finishing-calculator:has([name="glazing-enabled"]:not(:checked)) .finish-calc-canopy-through-opening{display:inline}
  </style>
  <g clip-path="url(#finish-calc-canopy-exterior)"><g id="finish-calc-canopy" data-calc-canopy aria-hidden="true" pointer-events="none">
  <path d="M${point(houseNear)} ${point(innerNear)} ${point(innerFar)} ${point(houseFar)}Z" fill="#c6cdd0"/>
@@ -55,6 +57,7 @@ function scene() {
  <path d="M${point(houseNear)} ${point(innerNear)}" fill="none" stroke="#edf1f2" stroke-width=".45"/>
  <path d="M${point(lower(houseNear))} ${point(lower(innerNear))}" fill="none" stroke="#6d7c8459" stroke-width=".35"/>
  </g>
+ <g class="finish-calc-canopy-through-opening" aria-hidden="true" pointer-events="none"><use href="#finish-calc-canopy"/></g>
  </svg></div>`;
 }
 
