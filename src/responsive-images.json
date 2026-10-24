@@ -30,21 +30,35 @@
     ]
   },
   "/assets/before-daytime/before-015-old-wood-no-handles.png": {
-    "src": "/assets/responsive/dc5b75e11a3b72fb-1086.webp",
+    "src": "/assets/responsive/frame-1e29a88050526d7a-1083.webp",
     "variants": [
       {
-        "src": "/assets/responsive/dc5b75e11a3b72fb-320.webp",
+        "src": "/assets/responsive/frame-1e29a88050526d7a-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/dc5b75e11a3b72fb-640.webp",
+        "src": "/assets/responsive/frame-1e29a88050526d7a-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/dc5b75e11a3b72fb-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-1e29a88050526d7a-1083.webp",
+        "width": 1083
       }
-    ]
+    ],
+    "width": 1083,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/dc5b75e11a3b72fb-1086.webp",
+      "crop": {
+        "left": 0,
+        "right": 3,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "768e9aa1b8025866b397996009566e9ed9a07c9f9a0c5ff5468900016d6dcd1c"
+    }
   },
   "/assets/before-daytime/before-017.webp": {
     "src": "/assets/responsive/12a6fd64912f75f1-1280.webp",
@@ -387,21 +401,35 @@
     ]
   },
   "/assets/before-daytime/before-126.webp": {
-    "src": "/assets/responsive/18ac37d5f20dfcab-1086.webp",
+    "src": "/assets/responsive/frame-4bd041a7b4c19af3-1080.webp",
     "variants": [
       {
-        "src": "/assets/responsive/18ac37d5f20dfcab-320.webp",
+        "src": "/assets/responsive/frame-4bd041a7b4c19af3-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/18ac37d5f20dfcab-640.webp",
+        "src": "/assets/responsive/frame-4bd041a7b4c19af3-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/18ac37d5f20dfcab-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-4bd041a7b4c19af3-1080.webp",
+        "width": 1080
       }
-    ]
+    ],
+    "width": 1080,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/18ac37d5f20dfcab-1086.webp",
+      "crop": {
+        "left": 0,
+        "right": 6,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "ae64ad020a8be12ec23425dd51464654ddb3230fcb3ce83f7c80a07f05d37f10"
+    }
   },
   "/assets/before-daytime/before-127-no-handles.png": {
     "src": "/assets/responsive/62aed303a772109a-1086.webp",
@@ -489,21 +517,35 @@
     ]
   },
   "/assets/before-daytime/before-140.webp": {
-    "src": "/assets/responsive/60d881e859f557d6-1254.webp",
+    "src": "/assets/responsive/frame-4b566b1e90209ade-1248.webp",
     "variants": [
       {
-        "src": "/assets/responsive/60d881e859f557d6-320.webp",
+        "src": "/assets/responsive/frame-4b566b1e90209ade-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/60d881e859f557d6-640.webp",
+        "src": "/assets/responsive/frame-4b566b1e90209ade-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/60d881e859f557d6-1254.webp",
-        "width": 1254
+        "src": "/assets/responsive/frame-4b566b1e90209ade-1248.webp",
+        "width": 1248
       }
-    ]
+    ],
+    "width": 1248,
+    "height": 1254,
+    "frameCrop": {
+      "source": "/assets/responsive/60d881e859f557d6-1254.webp",
+      "crop": {
+        "left": 0,
+        "right": 6,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1254,
+      "sourceHeight": 1254,
+      "sourceSha256": "60a243f897da3eb017543279f1b2d5d5355adfef741ce34d3799ebba1a3bcd28"
+    }
   },
   "/assets/before-weather-v1/before-001.webp": {
     "src": "/assets/responsive/ab3741a44b80cfc9-1086.webp",
@@ -608,21 +650,35 @@
     ]
   },
   "/assets/before-weather-v1/before-012.webp": {
-    "src": "/assets/responsive/1433d52dddec1252-1086.webp",
+    "src": "/assets/responsive/frame-80755355f56a0414-1080.webp",
     "variants": [
       {
-        "src": "/assets/responsive/1433d52dddec1252-320.webp",
+        "src": "/assets/responsive/frame-80755355f56a0414-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/1433d52dddec1252-640.webp",
+        "src": "/assets/responsive/frame-80755355f56a0414-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/1433d52dddec1252-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-80755355f56a0414-1080.webp",
+        "width": 1080
       }
-    ]
+    ],
+    "width": 1080,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/1433d52dddec1252-1086.webp",
+      "crop": {
+        "left": 0,
+        "right": 6,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "d6eab63144cb023f1e3f30208028d3d39dfa4a8d6f91189157201d06df2f2a2c"
+    }
   },
   "/assets/before-weather-v1/before-015.webp": {
     "src": "/assets/responsive/007060894369461a-1086.webp",
@@ -914,21 +970,35 @@
     ]
   },
   "/assets/before-weather-v1/before-084.webp": {
-    "src": "/assets/responsive/29652a998be4716a-887.webp",
+    "src": "/assets/responsive/frame-40d7cf629b0933a8-864.webp",
     "variants": [
       {
-        "src": "/assets/responsive/29652a998be4716a-320.webp",
+        "src": "/assets/responsive/frame-40d7cf629b0933a8-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/29652a998be4716a-640.webp",
+        "src": "/assets/responsive/frame-40d7cf629b0933a8-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/29652a998be4716a-887.webp",
-        "width": 887
+        "src": "/assets/responsive/frame-40d7cf629b0933a8-864.webp",
+        "width": 864
       }
-    ]
+    ],
+    "width": 864,
+    "height": 1768,
+    "frameCrop": {
+      "source": "/assets/responsive/29652a998be4716a-887.webp",
+      "crop": {
+        "left": 17,
+        "right": 6,
+        "top": 6,
+        "bottom": 0
+      },
+      "sourceWidth": 887,
+      "sourceHeight": 1774,
+      "sourceSha256": "cf773c817e194b6474d29339bbbb04809022f6fd17235d2702d8708a97af6774"
+    }
   },
   "/assets/before-weather-v1/before-085.webp": {
     "src": "/assets/responsive/36cb10aee46e11a5-1280.webp",
@@ -948,21 +1018,35 @@
     ]
   },
   "/assets/before-weather-v1/before-096.webp": {
-    "src": "/assets/responsive/f4fd7f47721c55ef-1086.webp",
+    "src": "/assets/responsive/frame-2f0dac2b33d1cb3b-1077.webp",
     "variants": [
       {
-        "src": "/assets/responsive/f4fd7f47721c55ef-320.webp",
+        "src": "/assets/responsive/frame-2f0dac2b33d1cb3b-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/f4fd7f47721c55ef-640.webp",
+        "src": "/assets/responsive/frame-2f0dac2b33d1cb3b-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/f4fd7f47721c55ef-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-2f0dac2b33d1cb3b-1077.webp",
+        "width": 1077
       }
-    ]
+    ],
+    "width": 1077,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/f4fd7f47721c55ef-1086.webp",
+      "crop": {
+        "left": 0,
+        "right": 9,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "43961a2dc2af893b4eddea8abc9fc07153b9314e5dc211385011b1fa898b305d"
+    }
   },
   "/assets/before-weather-v1/before-098.webp": {
     "src": "/assets/responsive/ddb3360bc48a3953-1083.webp",
@@ -4100,21 +4184,41 @@
     ]
   },
   "/assets/portfolio-realism-v1/after-17.webp": {
-    "src": "/assets/responsive/6b63b330b229257e-1086.webp",
+    "src": "/assets/responsive/frame-a3550dc9dbca3329-1079.webp",
     "variants": [
       {
-        "src": "/assets/responsive/6b63b330b229257e-320.webp",
+        "src": "/assets/responsive/frame-a3550dc9dbca3329-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/6b63b330b229257e-640.webp",
+        "src": "/assets/responsive/frame-a3550dc9dbca3329-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/6b63b330b229257e-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-a3550dc9dbca3329-1079.webp",
+        "width": 1079
       }
-    ]
+    ],
+    "width": 1079,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/6b63b330b229257e-1086.webp",
+      "crop": {
+        "left": 7,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "21cb5f672c30fa6bb8f8320c6cb409f7b0fda944d5c345a37e4ec7f334af9163",
+      "extraAntialiasCrop": {
+        "left": 2,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      }
+    }
   },
   "/assets/portfolio-realism-v1/after-170.webp": {
     "src": "/assets/responsive/cfa256efd49b9dc1-1083.webp",
@@ -4372,21 +4476,35 @@
     ]
   },
   "/assets/service-before-after/cold-balcony-matched-08-after.png": {
-    "src": "/assets/responsive/4552d1db2427c3ed-1086.webp",
+    "src": "/assets/responsive/frame-c1b83e562d7c1109-1080.webp",
     "variants": [
       {
-        "src": "/assets/responsive/4552d1db2427c3ed-320.webp",
+        "src": "/assets/responsive/frame-c1b83e562d7c1109-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/4552d1db2427c3ed-640.webp",
+        "src": "/assets/responsive/frame-c1b83e562d7c1109-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/4552d1db2427c3ed-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-c1b83e562d7c1109-1080.webp",
+        "width": 1080
       }
-    ]
+    ],
+    "width": 1080,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/4552d1db2427c3ed-1086.webp",
+      "crop": {
+        "left": 0,
+        "right": 6,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "dbba58e1c51676867928ecc5bb1c83ddf06bae70b2279817d7f29087859a5e77"
+    }
   },
   "/assets/service-before-after/cold-balcony-matched-10-after.png": {
     "src": "/assets/responsive/0e78b61117dbd03c-1086.webp",
@@ -4678,38 +4796,66 @@
     ]
   },
   "/assets/service-before-after/cottage-glazing-3-after-hq.webp": {
-    "src": "/assets/responsive/10d0d67718e72a17-1024.webp",
+    "src": "/assets/responsive/frame-8d3ce76b5ccc8ffd-1019.webp",
     "variants": [
       {
-        "src": "/assets/responsive/10d0d67718e72a17-320.webp",
+        "src": "/assets/responsive/frame-8d3ce76b5ccc8ffd-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/10d0d67718e72a17-640.webp",
+        "src": "/assets/responsive/frame-8d3ce76b5ccc8ffd-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/10d0d67718e72a17-1024.webp",
-        "width": 1024
+        "src": "/assets/responsive/frame-8d3ce76b5ccc8ffd-1019.webp",
+        "width": 1019
       }
-    ]
+    ],
+    "width": 1019,
+    "height": 2032,
+    "frameCrop": {
+      "source": "/assets/responsive/10d0d67718e72a17-1024.webp",
+      "crop": {
+        "left": 2,
+        "right": 3,
+        "top": 0,
+        "bottom": 16
+      },
+      "sourceWidth": 1024,
+      "sourceHeight": 2048,
+      "sourceSha256": "7945c98db916637c166b6f9cc466110a0b0b0b6b262eefcba53539073e5e7a87"
+    }
   },
   "/assets/service-before-after/cottage-glazing-3-before-hq.webp": {
-    "src": "/assets/responsive/ca35115fe727af92-1024.webp",
+    "src": "/assets/responsive/frame-c1f2f15f2be4f9c2-1013.webp",
     "variants": [
       {
-        "src": "/assets/responsive/ca35115fe727af92-320.webp",
+        "src": "/assets/responsive/frame-c1f2f15f2be4f9c2-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/ca35115fe727af92-640.webp",
+        "src": "/assets/responsive/frame-c1f2f15f2be4f9c2-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/ca35115fe727af92-1024.webp",
-        "width": 1024
+        "src": "/assets/responsive/frame-c1f2f15f2be4f9c2-1013.webp",
+        "width": 1013
       }
-    ]
+    ],
+    "width": 1013,
+    "height": 2031,
+    "frameCrop": {
+      "source": "/assets/responsive/ca35115fe727af92-1024.webp",
+      "crop": {
+        "left": 8,
+        "right": 3,
+        "top": 0,
+        "bottom": 17
+      },
+      "sourceWidth": 1024,
+      "sourceHeight": 2048,
+      "sourceSha256": "084c0cade83f4c844c61ce2d6c479b2308a5dc1ba80fe0c606409a965e4a2f70"
+    }
   },
   "/assets/service-before-after/cottage-glazing-4-after-hq.webp": {
     "src": "/assets/responsive/177597c65f198a22-1024.webp",
@@ -4729,21 +4875,35 @@
     ]
   },
   "/assets/service-before-after/cottage-glazing-4-before-hq.webp": {
-    "src": "/assets/responsive/48e56e1020141067-1024.webp",
+    "src": "/assets/responsive/frame-66bd89b7c80a124e-991.webp",
     "variants": [
       {
-        "src": "/assets/responsive/48e56e1020141067-320.webp",
+        "src": "/assets/responsive/frame-66bd89b7c80a124e-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/48e56e1020141067-640.webp",
+        "src": "/assets/responsive/frame-66bd89b7c80a124e-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/48e56e1020141067-1024.webp",
-        "width": 1024
+        "src": "/assets/responsive/frame-66bd89b7c80a124e-991.webp",
+        "width": 991
       }
-    ]
+    ],
+    "width": 991,
+    "height": 2026,
+    "frameCrop": {
+      "source": "/assets/responsive/48e56e1020141067-1024.webp",
+      "crop": {
+        "left": 25,
+        "right": 8,
+        "top": 0,
+        "bottom": 22
+      },
+      "sourceWidth": 1024,
+      "sourceHeight": 2048,
+      "sourceSha256": "e59dbba5f9fbbb56f8d24257970dd95f5dbc2cc48dce1289b896a362d4385c20"
+    }
   },
   "/assets/service-before-after/cottage-glazing-after.jpg": {
     "src": "/assets/responsive/c45c31f4cb3c4062-768.webp",
@@ -4780,21 +4940,35 @@
     ]
   },
   "/assets/service-before-after/cottage-veranda-walnut-after.png": {
-    "src": "/assets/responsive/2c2e0272bd0554bf-887.webp",
+    "src": "/assets/responsive/frame-826ad5c8526ea842-887.webp",
     "variants": [
       {
-        "src": "/assets/responsive/2c2e0272bd0554bf-320.webp",
+        "src": "/assets/responsive/frame-826ad5c8526ea842-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/2c2e0272bd0554bf-640.webp",
+        "src": "/assets/responsive/frame-826ad5c8526ea842-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/2c2e0272bd0554bf-887.webp",
+        "src": "/assets/responsive/frame-826ad5c8526ea842-887.webp",
         "width": 887
       }
-    ]
+    ],
+    "width": 887,
+    "height": 1756,
+    "frameCrop": {
+      "source": "/assets/responsive/2c2e0272bd0554bf-887.webp",
+      "crop": {
+        "left": 0,
+        "right": 0,
+        "top": 0,
+        "bottom": 18
+      },
+      "sourceWidth": 887,
+      "sourceHeight": 1774,
+      "sourceSha256": "739639970e0a186997e3374e4246eee7078958c41ff12fb414631c20a8708df1"
+    }
   },
   "/assets/service-before-after/furniture-interior-v2-01-after.webp": {
     "src": "/assets/responsive/3d9644b3fb00836e-1086.webp",
@@ -5188,21 +5362,41 @@
     ]
   },
   "/assets/service-before-after/panoramic-balcony-04-after.jpg": {
-    "src": "/assets/responsive/4de009ea2b1a4210-1086.webp",
+    "src": "/assets/responsive/frame-222e48bfd0bd8461-1080.webp",
     "variants": [
       {
-        "src": "/assets/responsive/4de009ea2b1a4210-320.webp",
+        "src": "/assets/responsive/frame-222e48bfd0bd8461-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/4de009ea2b1a4210-640.webp",
+        "src": "/assets/responsive/frame-222e48bfd0bd8461-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/4de009ea2b1a4210-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-222e48bfd0bd8461-1080.webp",
+        "width": 1080
       }
-    ]
+    ],
+    "width": 1080,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/4de009ea2b1a4210-1086.webp",
+      "crop": {
+        "left": 6,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "6e4ae728c018d8820dcae0eedbad028a29de83fea7efb5a233a79fdbbb254aa0",
+      "extraAntialiasCrop": {
+        "left": 2,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      }
+    }
   },
   "/assets/service-before-after/panoramic-balcony-05-after.jpg": {
     "src": "/assets/responsive/c4504e6c1567dee8-1254.webp",
@@ -5222,89 +5416,171 @@
     ]
   },
   "/assets/service-before-after/panoramic-balcony-06-before.jpg": {
-    "src": "/assets/responsive/647302670ee0f162-768.webp",
+    "src": "/assets/responsive/frame-4397a539f382d25d-763.webp",
     "variants": [
       {
-        "src": "/assets/responsive/647302670ee0f162-320.webp",
+        "src": "/assets/responsive/frame-4397a539f382d25d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/647302670ee0f162-640.webp",
+        "src": "/assets/responsive/frame-4397a539f382d25d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/647302670ee0f162-768.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-4397a539f382d25d-763.webp",
+        "width": 763
       }
-    ]
+    ],
+    "width": 763,
+    "height": 1024,
+    "frameCrop": {
+      "source": "/assets/responsive/647302670ee0f162-768.webp",
+      "crop": {
+        "left": 0,
+        "right": 5,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "dd2fe02455ff818e89b00acae33d6ad8f30874473b81c7db7d6d6d11b1627c22"
+    }
   },
   "/assets/service-before-after/panoramic-balcony-07-after.jpg": {
-    "src": "/assets/responsive/ee0371bec98c15be-1086.webp",
+    "src": "/assets/responsive/frame-704de25ec48c0b7a-1082.webp",
     "variants": [
       {
-        "src": "/assets/responsive/ee0371bec98c15be-320.webp",
+        "src": "/assets/responsive/frame-704de25ec48c0b7a-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/ee0371bec98c15be-640.webp",
+        "src": "/assets/responsive/frame-704de25ec48c0b7a-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/ee0371bec98c15be-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-704de25ec48c0b7a-1082.webp",
+        "width": 1082
       }
-    ]
+    ],
+    "width": 1082,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/ee0371bec98c15be-1086.webp",
+      "crop": {
+        "left": 4,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "67ab72e5d1b5af0156acb79132d700f8f43de7461a469d435420ee1f13b4bb44",
+      "extraAntialiasCrop": {
+        "left": 2,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      }
+    }
   },
   "/assets/service-before-after/panoramic-balcony-08-after.jpg": {
-    "src": "/assets/responsive/0af39fb3e15dd42b-768.webp",
+    "src": "/assets/responsive/frame-be7c4308b88eaadb-765.webp",
     "variants": [
       {
-        "src": "/assets/responsive/0af39fb3e15dd42b-320.webp",
+        "src": "/assets/responsive/frame-be7c4308b88eaadb-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/0af39fb3e15dd42b-640.webp",
+        "src": "/assets/responsive/frame-be7c4308b88eaadb-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/0af39fb3e15dd42b-768.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-be7c4308b88eaadb-765.webp",
+        "width": 765
       }
-    ]
+    ],
+    "width": 765,
+    "height": 1024,
+    "frameCrop": {
+      "source": "/assets/responsive/0af39fb3e15dd42b-768.webp",
+      "crop": {
+        "left": 3,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "0a07715900182afb47bc3730c2c0364c9ec7f3592deef9646c473cab3cf69e59"
+    }
   },
   "/assets/service-before-after/panoramic-balcony-10-after.jpg": {
-    "src": "/assets/responsive/d7edd4d3c0661fe3-1086.webp",
+    "src": "/assets/responsive/frame-cdddbbc9b01cd3c0-1079.webp",
     "variants": [
       {
-        "src": "/assets/responsive/d7edd4d3c0661fe3-320.webp",
+        "src": "/assets/responsive/frame-cdddbbc9b01cd3c0-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/d7edd4d3c0661fe3-640.webp",
+        "src": "/assets/responsive/frame-cdddbbc9b01cd3c0-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/d7edd4d3c0661fe3-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-cdddbbc9b01cd3c0-1079.webp",
+        "width": 1079
       }
-    ]
+    ],
+    "width": 1079,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/d7edd4d3c0661fe3-1086.webp",
+      "crop": {
+        "left": 7,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "847659448fc8d3b6a39d3b4a1279986980c89f0db152475b08f3b6449f4d9f69",
+      "extraAntialiasCrop": {
+        "left": 2,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      }
+    }
   },
   "/assets/service-before-after/panoramic-glazing-after.jpg": {
-    "src": "/assets/responsive/d05ad6faec64e69c-1086.webp",
+    "src": "/assets/responsive/frame-6b64a68028054b1b-1083.webp",
     "variants": [
       {
-        "src": "/assets/responsive/d05ad6faec64e69c-320.webp",
+        "src": "/assets/responsive/frame-6b64a68028054b1b-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/d05ad6faec64e69c-640.webp",
+        "src": "/assets/responsive/frame-6b64a68028054b1b-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/d05ad6faec64e69c-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-6b64a68028054b1b-1083.webp",
+        "width": 1083
       }
-    ]
+    ],
+    "width": 1083,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/d05ad6faec64e69c-1086.webp",
+      "crop": {
+        "left": 3,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "917fe57c468ec9d245b920c2726e4756dfadba2d73405e813c9a97bd229a7ac5"
+    }
   },
   "/assets/service-before-after/panoramic-glazing-before.jpg": {
     "src": "/assets/responsive/757e8dc9ed6e4567-768.webp",
@@ -6085,38 +6361,66 @@
     ]
   },
   "/assets/window-details-v2/panoramic-clean-dark.webp": {
-    "src": "/assets/responsive/a5d9f919674c37a3-1086.webp",
+    "src": "/assets/responsive/frame-830553f012496f77-1082.webp",
     "variants": [
       {
-        "src": "/assets/responsive/a5d9f919674c37a3-320.webp",
+        "src": "/assets/responsive/frame-830553f012496f77-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/a5d9f919674c37a3-640.webp",
+        "src": "/assets/responsive/frame-830553f012496f77-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/a5d9f919674c37a3-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-830553f012496f77-1082.webp",
+        "width": 1082
       }
-    ]
+    ],
+    "width": 1082,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/a5d9f919674c37a3-1086.webp",
+      "crop": {
+        "left": 4,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "3fa9c7fafa0d56222d129baf65c4146def266116eaff3719a07d3bd30eb93a5d"
+    }
   },
   "/assets/window-details-v2/panoramic-clean-white.webp": {
-    "src": "/assets/responsive/3d8e8bc36e3eeb65-1086.webp",
+    "src": "/assets/responsive/frame-baf5462832da4fe4-1078.webp",
     "variants": [
       {
-        "src": "/assets/responsive/3d8e8bc36e3eeb65-320.webp",
+        "src": "/assets/responsive/frame-baf5462832da4fe4-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/3d8e8bc36e3eeb65-640.webp",
+        "src": "/assets/responsive/frame-baf5462832da4fe4-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/3d8e8bc36e3eeb65-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-baf5462832da4fe4-1078.webp",
+        "width": 1078
       }
-    ]
+    ],
+    "width": 1078,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/3d8e8bc36e3eeb65-1086.webp",
+      "crop": {
+        "left": 8,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "0fb7b67c7a4a1961418aacd24888fc0f550f3a7574984e58c5111fa721fe6e48"
+    }
   },
   "/assets/portfolio-perspectives-v3/uteplenie-balkonov-2-standard-v2-before.webp": {
     "src": "/assets/responsive/d2e2db18348d7f6b-724.webp",
@@ -6731,21 +7035,35 @@
     ]
   },
   "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-2-standard-v2-before.webp": {
-    "src": "/assets/responsive/551b7635ca9a6813-724.webp",
+    "src": "/assets/responsive/frame-29e0d88fcc3af18e-720.webp",
     "variants": [
       {
-        "src": "/assets/responsive/551b7635ca9a6813-320.webp",
+        "src": "/assets/responsive/frame-29e0d88fcc3af18e-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/551b7635ca9a6813-640.webp",
+        "src": "/assets/responsive/frame-29e0d88fcc3af18e-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/551b7635ca9a6813-724.webp",
-        "width": 724
+        "src": "/assets/responsive/frame-29e0d88fcc3af18e-720.webp",
+        "width": 720
       }
-    ]
+    ],
+    "width": 720,
+    "height": 1086,
+    "frameCrop": {
+      "source": "/assets/responsive/551b7635ca9a6813-724.webp",
+      "crop": {
+        "left": 0,
+        "right": 4,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 724,
+      "sourceHeight": 1086,
+      "sourceSha256": "af5527a99d81f55fd8e9e3f4c1a87c2bf5c0f4f87007742798d3847c2d96d79d"
+    }
   },
   "/assets/portfolio-diverse-v4/panoramnoe-osteklenie-3-standard-v2-before.webp": {
     "src": "/assets/responsive/c61b2ba83eb803a6-724.webp",
@@ -6782,38 +7100,66 @@
     ]
   },
   "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-1-standard-v2-before.webp": {
-    "src": "/assets/responsive/4ec762c70c11490b-724.webp",
+    "src": "/assets/responsive/frame-74c2f333ea9727ee-721.webp",
     "variants": [
       {
-        "src": "/assets/responsive/4ec762c70c11490b-320.webp",
+        "src": "/assets/responsive/frame-74c2f333ea9727ee-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/4ec762c70c11490b-640.webp",
+        "src": "/assets/responsive/frame-74c2f333ea9727ee-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/4ec762c70c11490b-724.webp",
-        "width": 724
+        "src": "/assets/responsive/frame-74c2f333ea9727ee-721.webp",
+        "width": 721
       }
-    ]
+    ],
+    "width": 721,
+    "height": 1086,
+    "frameCrop": {
+      "source": "/assets/responsive/4ec762c70c11490b-724.webp",
+      "crop": {
+        "left": 0,
+        "right": 3,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 724,
+      "sourceHeight": 1086,
+      "sourceSha256": "a24829ad60d36a92a7c2e9e3a97fdeaa76c7b5363e27e6d1307f0efb05ba79b6"
+    }
   },
   "/assets/portfolio-perspectives-v3/balkon-pod-klyuch-1-standard-v2-after.webp": {
-    "src": "/assets/responsive/fa21502d5c69fdd8-724.webp",
+    "src": "/assets/responsive/frame-20a5fb11ddf23dfd-722.webp",
     "variants": [
       {
-        "src": "/assets/responsive/fa21502d5c69fdd8-320.webp",
+        "src": "/assets/responsive/frame-20a5fb11ddf23dfd-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/fa21502d5c69fdd8-640.webp",
+        "src": "/assets/responsive/frame-20a5fb11ddf23dfd-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/fa21502d5c69fdd8-724.webp",
-        "width": 724
+        "src": "/assets/responsive/frame-20a5fb11ddf23dfd-722.webp",
+        "width": 722
       }
-    ]
+    ],
+    "width": 722,
+    "height": 1086,
+    "frameCrop": {
+      "source": "/assets/responsive/fa21502d5c69fdd8-724.webp",
+      "crop": {
+        "left": 2,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 724,
+      "sourceHeight": 1086,
+      "sourceSha256": "e3ecea652be28fb92009c00de4efaf1595adbfd7da1edbb641e768e4809dbc73"
+    }
   },
   "/assets/portfolio-perspectives-v3/uteplenie-balkonov-1-standard-v2-before.webp": {
     "src": "/assets/responsive/d2e36a088d6bfb39-724.webp",
@@ -7156,21 +7502,35 @@
     ]
   },
   "/assets/service-before-after/panoramic-balcony-06-rails-v2-after.webp": {
-    "src": "/assets/responsive/573dd22b36185cff-1086.webp",
+    "src": "/assets/responsive/frame-a17e03cd7d6e25c8-1078.webp",
     "variants": [
       {
-        "src": "/assets/responsive/573dd22b36185cff-320.webp",
+        "src": "/assets/responsive/frame-a17e03cd7d6e25c8-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/573dd22b36185cff-640.webp",
+        "src": "/assets/responsive/frame-a17e03cd7d6e25c8-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/573dd22b36185cff-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-a17e03cd7d6e25c8-1078.webp",
+        "width": 1078
       }
-    ]
+    ],
+    "width": 1078,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/573dd22b36185cff-1086.webp",
+      "crop": {
+        "left": 8,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "12b3be50cdfdf71ba96a2c2eeca774f7786d18f42b19972b45525e91bab0b6a5"
+    }
   },
   "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-angle-v3-before.webp": {
     "src": "/assets/responsive/502bd22f747c1e2c-1024.webp",
@@ -7190,38 +7550,66 @@
     ]
   },
   "/assets/home-liked-works-v1/work2_office_loggia-after.webp": {
-    "src": "/assets/responsive/b801bb4086db8786-1122.webp",
+    "src": "/assets/responsive/frame-4e2027c44ebc0bbe-1119.webp",
     "variants": [
       {
-        "src": "/assets/responsive/b801bb4086db8786-320.webp",
+        "src": "/assets/responsive/frame-4e2027c44ebc0bbe-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/b801bb4086db8786-640.webp",
+        "src": "/assets/responsive/frame-4e2027c44ebc0bbe-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/b801bb4086db8786-1122.webp",
-        "width": 1122
+        "src": "/assets/responsive/frame-4e2027c44ebc0bbe-1119.webp",
+        "width": 1119
       }
-    ]
+    ],
+    "width": 1119,
+    "height": 1402,
+    "frameCrop": {
+      "source": "/assets/responsive/b801bb4086db8786-1122.webp",
+      "crop": {
+        "left": 3,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceSha256": "de559319518b4df02ed333d5127e9c6613329944288d5a66722c6b345110af14"
+    }
   },
   "/assets/home-liked-works-v1/balcony-folding-table-after.webp": {
-    "src": "/assets/responsive/0243abf62a8f8dc2-768.webp",
+    "src": "/assets/responsive/frame-a5e1eea8792b466d-762.webp",
     "variants": [
       {
-        "src": "/assets/responsive/0243abf62a8f8dc2-320.webp",
+        "src": "/assets/responsive/frame-a5e1eea8792b466d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/0243abf62a8f8dc2-640.webp",
+        "src": "/assets/responsive/frame-a5e1eea8792b466d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/0243abf62a8f8dc2-768.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-a5e1eea8792b466d-762.webp",
+        "width": 762
       }
-    ]
+    ],
+    "width": 762,
+    "height": 1024,
+    "frameCrop": {
+      "source": "/assets/responsive/0243abf62a8f8dc2-768.webp",
+      "crop": {
+        "left": 6,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "0887213f62fc3eecec7278195b6849d57432cbd094d8f3a0062604d39f8744b6"
+    }
   },
   "/assets/turnkey-books-v1/after.webp": {
     "src": "/assets/turnkey-books-v1/after-784.webp",
@@ -8788,21 +9176,35 @@
     ]
   },
   "/assets/portfolio-before-geometry-v1/work88-before-v3.webp": {
-    "src": "/assets/responsive/975b4e8a217468a9-1024.webp",
+    "src": "/assets/responsive/frame-7077edad836b7c53-1021.webp",
     "variants": [
       {
-        "src": "/assets/responsive/975b4e8a217468a9-320.webp",
+        "src": "/assets/responsive/frame-7077edad836b7c53-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/975b4e8a217468a9-640.webp",
+        "src": "/assets/responsive/frame-7077edad836b7c53-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/975b4e8a217468a9-1024.webp",
-        "width": 1024
+        "src": "/assets/responsive/frame-7077edad836b7c53-1021.webp",
+        "width": 1021
       }
-    ]
+    ],
+    "width": 1021,
+    "height": 1536,
+    "frameCrop": {
+      "source": "/assets/responsive/975b4e8a217468a9-1024.webp",
+      "crop": {
+        "left": 0,
+        "right": 3,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1024,
+      "sourceHeight": 1536,
+      "sourceSha256": "fabd3012e0f47ebd421752278042bcc3b1e87aab201b5766b3129a92dab2cd3c"
+    }
   },
   "/assets/service-before-after/renovation-loggia-07-after-countertop-v3.webp": {
     "src": "/assets/service-before-after/renovation-loggia-07-after-countertop-v3.webp",
@@ -8822,21 +9224,41 @@
     ]
   },
   "/assets/panorama-no-handles-v2/work283-after-no-handles-v2.webp": {
-    "src": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2.webp",
+    "src": "/assets/responsive/frame-e0ffef2f824036ca-718.webp",
     "variants": [
       {
-        "src": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2-320.webp",
+        "src": "/assets/responsive/frame-e0ffef2f824036ca-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2-640.webp",
+        "src": "/assets/responsive/frame-e0ffef2f824036ca-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2.webp",
-        "width": 724
+        "src": "/assets/responsive/frame-e0ffef2f824036ca-718.webp",
+        "width": 718
       }
-    ]
+    ],
+    "width": 718,
+    "height": 1536,
+    "frameCrop": {
+      "source": "/assets/panorama-no-handles-v2/work283-after-no-handles-v2.webp",
+      "crop": {
+        "left": 6,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 724,
+      "sourceHeight": 1536,
+      "sourceSha256": "ebce7e6a1f7c5da66a7f354ba6e0c0602cb11baf87ec2fe2facabc66c86d2bf3",
+      "extraAntialiasCrop": {
+        "left": 2,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      }
+    }
   },
   "/assets/panorama-no-handles-v2/work267-after-no-handles-v2.webp": {
     "src": "/assets/panorama-no-handles-v2/work267-after-no-handles-v2.webp",
@@ -8858,21 +9280,35 @@
     ]
   },
   "/assets/panorama-no-handles-v2/work270-after-no-handles-v2.webp": {
-    "src": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2.webp",
+    "src": "/assets/responsive/frame-71082d21fc8e0cc1-1246.webp",
     "variants": [
       {
-        "src": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2-320.webp",
+        "src": "/assets/responsive/frame-71082d21fc8e0cc1-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2-640.webp",
+        "src": "/assets/responsive/frame-71082d21fc8e0cc1-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2.webp",
-        "width": 1254
+        "src": "/assets/responsive/frame-71082d21fc8e0cc1-1246.webp",
+        "width": 1246
       }
-    ]
+    ],
+    "width": 1246,
+    "height": 1254,
+    "frameCrop": {
+      "source": "/assets/panorama-no-handles-v2/work270-after-no-handles-v2.webp",
+      "crop": {
+        "left": 8,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1254,
+      "sourceHeight": 1254,
+      "sourceSha256": "ff4c74ea069954ddcb193f9d1615c9a72cc06462def305a452a47fb4b4e16148"
+    }
   },
   "/assets/certificates/cert-01.png": {
     "src": "/assets/optimized/certificates/cert-01-565.webp",
@@ -9654,72 +10090,128 @@
     ]
   },
   "/assets/home-liked-works-v1/balcony-folding-table-before-removed-v4.webp": {
-    "src": "/assets/responsive/d5e67db950bdd63c-768.webp",
+    "src": "/assets/responsive/frame-9eff25d66bc197b1-766.webp",
     "variants": [
       {
-        "src": "/assets/responsive/d5e67db950bdd63c-320.webp",
+        "src": "/assets/responsive/frame-9eff25d66bc197b1-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/d5e67db950bdd63c-640.webp",
+        "src": "/assets/responsive/frame-9eff25d66bc197b1-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/d5e67db950bdd63c-768.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-9eff25d66bc197b1-766.webp",
+        "width": 766
       }
-    ]
+    ],
+    "width": 766,
+    "height": 1024,
+    "frameCrop": {
+      "source": "/assets/responsive/d5e67db950bdd63c-768.webp",
+      "crop": {
+        "left": 0,
+        "right": 2,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "b3dcd462870bec2a883877d241e50c2fe50c83038b1288cc8ae98bd364c96eed"
+    }
   },
   "/assets/home-liked-works-v1/work1_relax_corner-added-handle-v4-after.webp": {
-    "src": "/assets/responsive/48dfbba2c29b45a5-1122.webp",
+    "src": "/assets/responsive/frame-e23bf4ec0ba10be0-1115.webp",
     "variants": [
       {
-        "src": "/assets/responsive/48dfbba2c29b45a5-320.webp",
+        "src": "/assets/responsive/frame-e23bf4ec0ba10be0-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/48dfbba2c29b45a5-640.webp",
+        "src": "/assets/responsive/frame-e23bf4ec0ba10be0-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/48dfbba2c29b45a5-1122.webp",
-        "width": 1122
+        "src": "/assets/responsive/frame-e23bf4ec0ba10be0-1115.webp",
+        "width": 1115
       }
-    ]
+    ],
+    "width": 1115,
+    "height": 1402,
+    "frameCrop": {
+      "source": "/assets/responsive/48dfbba2c29b45a5-1122.webp",
+      "crop": {
+        "left": 7,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceSha256": "97249a9bbfcbb18c3da9d21314e96d76d5f5fefaf96e0eb224072faec1f417e0"
+    }
   },
   "/assets/home-liked-works-v1/work3_cozy_storage-handle-right-lower-v5-after.webp": {
-    "src": "/assets/responsive/4857abacbf6a6267-1122.webp",
+    "src": "/assets/responsive/frame-7879017666a315b3-1119.webp",
     "variants": [
       {
-        "src": "/assets/responsive/4857abacbf6a6267-320.webp",
+        "src": "/assets/responsive/frame-7879017666a315b3-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/4857abacbf6a6267-640.webp",
+        "src": "/assets/responsive/frame-7879017666a315b3-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/4857abacbf6a6267-1122.webp",
-        "width": 1122
+        "src": "/assets/responsive/frame-7879017666a315b3-1119.webp",
+        "width": 1119
       }
-    ]
+    ],
+    "width": 1119,
+    "height": 1402,
+    "frameCrop": {
+      "source": "/assets/responsive/4857abacbf6a6267-1122.webp",
+      "crop": {
+        "left": 3,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1122,
+      "sourceHeight": 1402,
+      "sourceSha256": "bf9b6c6120ef91d22da9398aeb95b0ad9230f69498440341d2259b70ff399475"
+    }
   },
   "/assets/portfolio-realism-v1/after-97-left-wall-v2.webp": {
-    "src": "/assets/responsive/6e78d606cf7d6756-1086.webp",
+    "src": "/assets/responsive/frame-8a8817fe6d82d3b8-1079.webp",
     "variants": [
       {
-        "src": "/assets/responsive/6e78d606cf7d6756-320.webp",
+        "src": "/assets/responsive/frame-8a8817fe6d82d3b8-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/6e78d606cf7d6756-640.webp",
+        "src": "/assets/responsive/frame-8a8817fe6d82d3b8-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/6e78d606cf7d6756-1086.webp",
-        "width": 1086
+        "src": "/assets/responsive/frame-8a8817fe6d82d3b8-1079.webp",
+        "width": 1079
       }
-    ]
+    ],
+    "width": 1079,
+    "height": 1448,
+    "frameCrop": {
+      "source": "/assets/responsive/6e78d606cf7d6756-1086.webp",
+      "crop": {
+        "left": 0,
+        "right": 7,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 1086,
+      "sourceHeight": 1448,
+      "sourceSha256": "a1aebfa66c53626b09c1ded22561bf00a0899cd71329cec47995b597c75e2f5d"
+    }
   },
   "/assets/home-liked-works-v1/work5-before-photoreal-v5.webp": {
     "src": "/assets/responsive/04c093093741c73b-1219.webp",
@@ -10817,42 +11309,66 @@
     ]
   },
   "/assets/landing-gallery-v1/work-362-before.webp": {
-    "src": "/assets/landing-gallery-v1/work-362-before.webp",
-    "width": 768,
+    "src": "/assets/responsive/frame-d695d0e68fa1a788-765.webp",
+    "width": 765,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-362-before-320.webp",
+        "src": "/assets/responsive/frame-d695d0e68fa1a788-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-362-before-640.webp",
+        "src": "/assets/responsive/frame-d695d0e68fa1a788-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-362-before.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-d695d0e68fa1a788-765.webp",
+        "width": 765
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-362-before.webp",
+      "crop": {
+        "left": 0,
+        "right": 3,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "549d86e7c82a84107c1d573a484e5f6f77527c554f559c588fde1d758ab8f6f0"
+    }
   },
   "/assets/landing-gallery-v1/work-362-after.webp": {
-    "src": "/assets/landing-gallery-v1/work-362-after.webp",
-    "width": 768,
+    "src": "/assets/responsive/frame-131003c71d5870e3-765.webp",
+    "width": 765,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-362-after-320.webp",
+        "src": "/assets/responsive/frame-131003c71d5870e3-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-362-after-640.webp",
+        "src": "/assets/responsive/frame-131003c71d5870e3-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-362-after.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-131003c71d5870e3-765.webp",
+        "width": 765
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-362-after.webp",
+      "crop": {
+        "left": 3,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "9489aeff99024d66a21caf555344e5eea4816952613f574f79969b7594a88229"
+    }
   },
   "/assets/landing-gallery-v1/work-363-before.webp": {
     "src": "/assets/landing-gallery-v1/work-363-before.webp",
@@ -11318,19 +11834,31 @@
     ]
   },
   "/assets/landing-gallery-v1/work-332-before.webp": {
-    "src": "/assets/landing-gallery-v1/work-332-before.webp",
-    "width": 607,
+    "src": "/assets/responsive/frame-14952bf6a1ba6d09-601.webp",
+    "width": 601,
     "height": 1295,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-332-before-320.webp",
+        "src": "/assets/responsive/frame-14952bf6a1ba6d09-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-332-before.webp",
-        "width": 607
+        "src": "/assets/responsive/frame-14952bf6a1ba6d09-601.webp",
+        "width": 601
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-332-before.webp",
+      "crop": {
+        "left": 0,
+        "right": 6,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 607,
+      "sourceHeight": 1295,
+      "sourceSha256": "b52c167750c35103a1ef1fda73ac57a201a2e8dd11e66d1e396a11d064a308d8"
+    }
   },
   "/assets/landing-gallery-v1/work-333-before.webp": {
     "src": "/assets/landing-gallery-v1/work-333-before.webp",
@@ -11363,34 +11891,58 @@
     ]
   },
   "/assets/landing-gallery-v1/work-335-before.webp": {
-    "src": "/assets/landing-gallery-v1/work-335-before.webp",
-    "width": 613,
+    "src": "/assets/responsive/frame-e7ef9d41671b1a45-609.webp",
+    "width": 609,
     "height": 1283,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-335-before-320.webp",
+        "src": "/assets/responsive/frame-e7ef9d41671b1a45-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-335-before.webp",
-        "width": 613
+        "src": "/assets/responsive/frame-e7ef9d41671b1a45-609.webp",
+        "width": 609
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-335-before.webp",
+      "crop": {
+        "left": 0,
+        "right": 4,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 613,
+      "sourceHeight": 1283,
+      "sourceSha256": "c5752d2e0a475fc4aafa0f6254d009e640b76ebe217f8fe469196769c2eab03b"
+    }
   },
   "/assets/landing-gallery-v1/work-336-before.webp": {
-    "src": "/assets/landing-gallery-v1/work-336-before.webp",
-    "width": 607,
+    "src": "/assets/responsive/frame-88555a4377a5352b-603.webp",
+    "width": 603,
     "height": 1295,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-336-before-320.webp",
+        "src": "/assets/responsive/frame-88555a4377a5352b-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-336-before.webp",
-        "width": 607
+        "src": "/assets/responsive/frame-88555a4377a5352b-603.webp",
+        "width": 603
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-336-before.webp",
+      "crop": {
+        "left": 0,
+        "right": 4,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 607,
+      "sourceHeight": 1295,
+      "sourceSha256": "53f5f1dfdfe3a674fe753396343567aa8a3c3b539186dff4841e429896647a36"
+    }
   },
   "/assets/landing-gallery-v1/work-337-before.webp": {
     "src": "/assets/landing-gallery-v1/work-337-before.webp",
@@ -11423,23 +11975,35 @@
     ]
   },
   "/assets/landing-gallery-v1/work-339-before.webp": {
-    "src": "/assets/landing-gallery-v1/work-339-before.webp",
-    "width": 656,
+    "src": "/assets/responsive/frame-63cbc93cad94cf50-653.webp",
+    "width": 653,
     "height": 1199,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-339-before-320.webp",
+        "src": "/assets/responsive/frame-63cbc93cad94cf50-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-339-before-640.webp",
+        "src": "/assets/responsive/frame-63cbc93cad94cf50-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-339-before.webp",
-        "width": 656
+        "src": "/assets/responsive/frame-63cbc93cad94cf50-653.webp",
+        "width": 653
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-339-before.webp",
+      "crop": {
+        "left": 0,
+        "right": 3,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 656,
+      "sourceHeight": 1199,
+      "sourceSha256": "acb6add39caffebf8da6a3c9bdc4027feeb074fc6a4f9998d4bf9716f152afb2"
+    }
   },
   "/assets/landing-gallery-v1/work-340-before.webp": {
     "src": "/assets/landing-gallery-v1/work-340-before.webp",
@@ -11506,19 +12070,31 @@
     ]
   },
   "/assets/landing-gallery-v1/work-332-after-finish-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-332-after-finish-v2.webp",
-    "width": 607,
+    "src": "/assets/responsive/frame-e8d3056ed13dbfc6-602.webp",
+    "width": 602,
     "height": 1295,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-332-after-finish-v2-320.webp",
+        "src": "/assets/responsive/frame-e8d3056ed13dbfc6-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-332-after-finish-v2.webp",
-        "width": 607
+        "src": "/assets/responsive/frame-e8d3056ed13dbfc6-602.webp",
+        "width": 602
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-332-after-finish-v2.webp",
+      "crop": {
+        "left": 5,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 607,
+      "sourceHeight": 1295,
+      "sourceSha256": "ef0cb246cc09c3f30d8d529398a20baf2d9814c45f85492334c1dc0117590cd2"
+    }
   },
   "/assets/landing-gallery-v1/work-333-after-finish-v2.webp": {
     "src": "/assets/landing-gallery-v1/work-333-after-finish-v2.webp",
@@ -11536,19 +12112,31 @@
     ]
   },
   "/assets/landing-gallery-v1/work-336-after-finish-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-336-after-finish-v2.webp",
-    "width": 607,
+    "src": "/assets/responsive/frame-68d83f39f188eba6-601.webp",
+    "width": 601,
     "height": 1295,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-336-after-finish-v2-320.webp",
+        "src": "/assets/responsive/frame-68d83f39f188eba6-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-336-after-finish-v2.webp",
-        "width": 607
+        "src": "/assets/responsive/frame-68d83f39f188eba6-601.webp",
+        "width": 601
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-336-after-finish-v2.webp",
+      "crop": {
+        "left": 6,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 607,
+      "sourceHeight": 1295,
+      "sourceSha256": "d3799ed96dc81b92936960ffdff91a87be02787f7d693c393735a8137a810029"
+    }
   },
   "/assets/landing-gallery-v1/work-338-after-finish-v2.webp": {
     "src": "/assets/landing-gallery-v1/work-338-after-finish-v2.webp",
@@ -11566,23 +12154,35 @@
     ]
   },
   "/assets/landing-gallery-v1/work-339-after-finish-v2.webp": {
-    "src": "/assets/landing-gallery-v1/work-339-after-finish-v2.webp",
-    "width": 656,
+    "src": "/assets/responsive/frame-c40d8d4e74710002-652.webp",
+    "width": 652,
     "height": 1200,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-339-after-finish-v2-320.webp",
+        "src": "/assets/responsive/frame-c40d8d4e74710002-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-339-after-finish-v2-640.webp",
+        "src": "/assets/responsive/frame-c40d8d4e74710002-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-339-after-finish-v2.webp",
-        "width": 656
+        "src": "/assets/responsive/frame-c40d8d4e74710002-652.webp",
+        "width": 652
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-339-after-finish-v2.webp",
+      "crop": {
+        "left": 4,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 656,
+      "sourceHeight": 1200,
+      "sourceSha256": "7e3e402e8320be63060cc5077972571fe9ec014066fd4c5c42ec5149ac316b8f"
+    }
   },
   "/assets/landing-gallery-v1/work-337-after-finish-v3.webp": {
     "src": "/assets/landing-gallery-v1/work-337-after-finish-v3.webp",
@@ -11600,23 +12200,35 @@
     ]
   },
   "/assets/landing-gallery-v1/work-340-after-finish-v3.webp": {
-    "src": "/assets/landing-gallery-v1/work-340-after-finish-v3.webp",
-    "width": 768,
+    "src": "/assets/responsive/frame-7982d616de660cbf-765.webp",
+    "width": 765,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-340-after-finish-v3-320.webp",
+        "src": "/assets/responsive/frame-7982d616de660cbf-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-340-after-finish-v3-640.webp",
+        "src": "/assets/responsive/frame-7982d616de660cbf-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-340-after-finish-v3.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-7982d616de660cbf-765.webp",
+        "width": 765
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-340-after-finish-v3.webp",
+      "crop": {
+        "left": 3,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "4c0362dfcd30bf3a268b50950f5644c43add25be682948bda96071eaf383d54b"
+    }
   },
   "/assets/landing-gallery-v1/work-334-after-finish-v3.webp": {
     "src": "/assets/landing-gallery-v1/work-334-after-finish-v3.webp",
@@ -11682,23 +12294,35 @@
     ]
   },
   "/assets/landing-gallery-v1/work-323-after-cladding-v3.webp": {
-    "src": "/assets/landing-gallery-v1/work-323-after-cladding-v3.webp",
-    "width": 768,
+    "src": "/assets/responsive/frame-447c46530c18603e-762.webp",
+    "width": 762,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-323-after-cladding-v3-320.webp",
+        "src": "/assets/responsive/frame-447c46530c18603e-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-323-after-cladding-v3-640.webp",
+        "src": "/assets/responsive/frame-447c46530c18603e-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-323-after-cladding-v3.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-447c46530c18603e-762.webp",
+        "width": 762
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-323-after-cladding-v3.webp",
+      "crop": {
+        "left": 6,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "01a8cb78532281c0a2191917c4e6272aabee0ae6ba389c9c3c8a2f2e7af9c0dd"
+    }
   },
   "/assets/landing-gallery-v1/work-324-after-cladding-v3.webp": {
     "src": "/assets/landing-gallery-v1/work-324-after-cladding-v3.webp",
@@ -11720,23 +12344,35 @@
     ]
   },
   "/assets/landing-gallery-v1/work-325-after-cladding-v3.webp": {
-    "src": "/assets/landing-gallery-v1/work-325-after-cladding-v3.webp",
-    "width": 768,
+    "src": "/assets/responsive/frame-c6495bc9b009d60d-765.webp",
+    "width": 765,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-325-after-cladding-v3-320.webp",
+        "src": "/assets/responsive/frame-c6495bc9b009d60d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-325-after-cladding-v3-640.webp",
+        "src": "/assets/responsive/frame-c6495bc9b009d60d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-325-after-cladding-v3.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-c6495bc9b009d60d-765.webp",
+        "width": 765
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-325-after-cladding-v3.webp",
+      "crop": {
+        "left": 3,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "3800e3e1422b21a600dc2aad7182198cfd639b83e005fa9ab0e2f8caf124a5be"
+    }
   },
   "/assets/landing-gallery-v1/work-326-after-cladding-v3.webp": {
     "src": "/assets/landing-gallery-v1/work-326-after-cladding-v3.webp",
@@ -11815,42 +12451,66 @@
     ]
   },
   "/assets/landing-gallery-v1/work-366-after-lipa-v1.webp": {
-    "src": "/assets/landing-gallery-v1/work-366-after-lipa-v1.webp",
-    "width": 768,
+    "src": "/assets/responsive/frame-f45a5e6c05dc3b45-766.webp",
+    "width": 766,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-366-after-lipa-v1-320.webp",
+        "src": "/assets/responsive/frame-f45a5e6c05dc3b45-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-366-after-lipa-v1-640.webp",
+        "src": "/assets/responsive/frame-f45a5e6c05dc3b45-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-366-after-lipa-v1.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-f45a5e6c05dc3b45-766.webp",
+        "width": 766
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-366-after-lipa-v1.webp",
+      "crop": {
+        "left": 2,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "9d7c41d710fd7924b6e0c9678d64089b3bcc1c94273beb9eeba51a7192721af3"
+    }
   },
   "/assets/landing-gallery-v1/work-367-after-lipa-v1.webp": {
-    "src": "/assets/landing-gallery-v1/work-367-after-lipa-v1.webp",
-    "width": 768,
+    "src": "/assets/responsive/frame-f2538e3e4ae6602d-766.webp",
+    "width": 766,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-367-after-lipa-v1-320.webp",
+        "src": "/assets/responsive/frame-f2538e3e4ae6602d-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-367-after-lipa-v1-640.webp",
+        "src": "/assets/responsive/frame-f2538e3e4ae6602d-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-367-after-lipa-v1.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-f2538e3e4ae6602d-766.webp",
+        "width": 766
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-367-after-lipa-v1.webp",
+      "crop": {
+        "left": 2,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "ea5cce495b848f335e9c80a408d9dc0549dbcb24c424c444fef5e39ed5f096bb"
+    }
   },
   "/assets/landing-gallery-v1/work-369-after-lipa-v1.webp": {
     "src": "/assets/landing-gallery-v1/work-369-after-lipa-v1.webp",
@@ -11872,23 +12532,35 @@
     ]
   },
   "/assets/landing-gallery-v1/work-370-after-lipa-v1.webp": {
-    "src": "/assets/landing-gallery-v1/work-370-after-lipa-v1.webp",
-    "width": 768,
+    "src": "/assets/responsive/frame-ada36c6812db6630-765.webp",
+    "width": 765,
     "height": 1024,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-370-after-lipa-v1-320.webp",
+        "src": "/assets/responsive/frame-ada36c6812db6630-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-370-after-lipa-v1-640.webp",
+        "src": "/assets/responsive/frame-ada36c6812db6630-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/landing-gallery-v1/work-370-after-lipa-v1.webp",
-        "width": 768
+        "src": "/assets/responsive/frame-ada36c6812db6630-765.webp",
+        "width": 765
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-370-after-lipa-v1.webp",
+      "crop": {
+        "left": 3,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 768,
+      "sourceHeight": 1024,
+      "sourceSha256": "246166d8793690e0e66247c445dd5bf35229907157c4282d5e1ead9c397909a7"
+    }
   },
   "/assets/finishing-materials/lipa-brick.webp": {
     "src": "/assets/finishing-materials/lipa-brick.webp",
@@ -11925,19 +12597,31 @@
     ]
   },
   "/assets/landing-gallery-v1/work-335-after-finish-v4.webp": {
-    "src": "/assets/landing-gallery-v1/work-335-after-finish-v4.webp",
-    "width": 613,
+    "src": "/assets/responsive/frame-1ea36b3a3230d403-608.webp",
+    "width": 608,
     "height": 1285,
     "variants": [
       {
-        "src": "/assets/landing-gallery-v1/work-335-after-finish-v4-320.webp",
+        "src": "/assets/responsive/frame-1ea36b3a3230d403-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/landing-gallery-v1/work-335-after-finish-v4.webp",
-        "width": 613
+        "src": "/assets/responsive/frame-1ea36b3a3230d403-608.webp",
+        "width": 608
       }
-    ]
+    ],
+    "frameCrop": {
+      "source": "/assets/landing-gallery-v1/work-335-after-finish-v4.webp",
+      "crop": {
+        "left": 5,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
+      },
+      "sourceWidth": 613,
+      "sourceHeight": 1285,
+      "sourceSha256": "809a4aa39c5614a8bda29d1f85d65df7e22664f3a750c9d88f1b5d33f3695b26"
+    }
   },
   "/assets/home-reading-book-v3/hero.webp": {
     "src": "/assets/home-reading-book-v3/hero.webp",
