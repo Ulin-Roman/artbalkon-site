@@ -579,6 +579,26 @@ for(const [label,entries] of [['products',feedOffers],['catalogs',feedCollection
  for(const entry of entries)for(const field of feedFields)assert.ok(entry[field],'Missing feed '+field+': '+entry.id);
 }
 assert.deepEqual(feedCollections,feedOffers,'Product and catalog records must have matching IDs, content and images');
+const feedDescriptionIntents={
+ 101:[/остеклен/i,/балкон|лоджи/i],107:[/холодн/i,/остеклен/i,/балкон|лоджи/i],
+ 108:[/тёпл/i,/остеклен/i,/балкон|лоджи/i],109:[/панорамн/i,/остеклен/i,/балкон|лоджи/i],
+ 110:[/французск/i,/остеклен/i,/балкон|лоджи/i],102:[/утеплен/i,/балкон|лоджи/i],
+ 103:[/отделк/i,/балкон|лоджи/i],111:[/ремонт/i,/балкон|лоджи/i],
+ 104:[/балкон|лоджи/i,/под ключ/i,/остеклен/i,/утеплен/i,/отделк/i],
+ 106:[/остеклен/i,/коттедж/i,/дом/i],112:[/остеклен/i,/балкон/i,/вынос/i],
+ 113:[/раздвижн/i,/остеклен/i,/балкон|лоджи/i],114:[/остеклен/i,/балкон/i,/хрущёв/i],
+ 115:[/отделк/i,/балкон|лоджи/i,/ПВХ-панел/i],116:[/отделк/i,/стен/i,/балкон|лоджи/i,/ламинат/i],
+ 117:[/отделк/i,/балкон|лоджи/i,/вагонк/i],118:[/пол[ауы]?(?=\s|[.,:;]|$)/i,/балкон|лоджи/i,/кварцвинил/i],
+ 119:[/отделк/i,/балкон|лоджи/i,/стеновым паркетом/i,/лип[аы]/i],
+ 120:[/отделк/i,/балкон|лоджи/i,/МДФ-панел/i],121:[/объединен/i,/балкон|лоджи/i,/комнат/i]
+};
+assert.equal(new Set(feedOffers.map(entry=>entry.description)).size,feedOffers.length,'Different services must retain distinct advertising descriptions');
+for(const entry of feedOffers){
+ assert.ok(entry.description.length<=81,'Advertising description including the price must fit the manual text limit: '+entry.id);
+ const serviceCopy=entry.description.split(' Цена от ')[0];
+ assert.ok(feedDescriptionIntents[entry.id],'Every feed service needs an intent check: '+entry.id);
+ for(const intent of feedDescriptionIntents[entry.id])assert.match(serviceCopy,intent,'Advertising copy must explicitly name its service and object: '+entry.id);
+}
 // Check advertising amounts against the rendered first screen, not a duplicated tariff list.
 let pricedFeedOffers=0;
 for(const entry of feedOffers){

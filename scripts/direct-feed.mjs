@@ -1,6 +1,7 @@
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import {company,services,prices} from '../src/content.mjs';
+import {directFeedDescriptions} from '../src/direct-feed-copy.mjs';
 
 
 const xml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
@@ -26,7 +27,11 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   if(price!=null&&!(price>0))throw Error(`Invalid feed price: ${slug}`);
   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
   const priceText=price?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
-  return {id,slug,title,price,unit,url:slug==='balkon-pod-klyuch'?`${root}/`:`${root}/${slug}/`,picture:`${root}/assets/${asset}?v=${hash}`,description:service.short+priceText};
+  const copy=directFeedDescriptions[slug];
+  if(!copy)throw Error(`Missing advertising description: ${slug}`);
+  const description=copy+priceText;
+  if(description.length>81)throw Error(`Advertising description exceeds 81 characters: ${slug}`);
+  return {id,slug,title,price,unit,url:slug==='balkon-pod-klyuch'?`${root}/`:`${root}/${slug}/`,picture:`${root}/assets/${asset}?v=${hash}`,description};
  }));
  const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
  const offers=entries.map(e=>`      <offer id="${e.id}" available="true">
