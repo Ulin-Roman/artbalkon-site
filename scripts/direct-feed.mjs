@@ -5,7 +5,14 @@ import {company,services,prices} from '../src/content.mjs';
 
 const xml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 // Stable IDs; extras are available only within a larger order, not independently.
-const ids={'osteklenie-balkonov':101,'holodnoe-osteklenie':107,'teploe-osteklenie':108,'panoramnoe-osteklenie':109,'frantsuzskoe-osteklenie':110,'uteplenie-balkonov':102,'otdelka-balkonov':103,'remont-balkonov':111,'balkon-pod-klyuch':104,'osteklenie-kottedzhej':106};
+const ids={
+ 'osteklenie-balkonov':101,'holodnoe-osteklenie':107,'teploe-osteklenie':108,'panoramnoe-osteklenie':109,'frantsuzskoe-osteklenie':110,
+ 'uteplenie-balkonov':102,'otdelka-balkonov':103,'remont-balkonov':111,'balkon-pod-klyuch':104,'osteklenie-kottedzhej':106,
+ 'osteklenie-balkona-s-vynosom':112,'razdvizhnoe-osteklenie':113,'osteklenie-balkona-v-hrushchevke':114,
+ 'otdelka-balkona-pvh-panelyami':115,'otdelka-balkona-laminatom':116,'otdelka-balkona-vagonkoj':117,
+ 'otdelka-balkona-kvarcvinilom':118,'otdelka-balkona-derevom':119,'otdelka-balkona-mdf-panelyami':120,
+ 'obedinenie-balkona-s-komnatoj':121
+};
 export async function renderDirectFeed({origin=company.origin,now=new Date()}={}){
  const root=origin.replace(/\/$/,'');
  const entries=await Promise.all(Object.entries(ids).map(async([slug,id])=>{

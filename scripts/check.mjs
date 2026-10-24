@@ -562,6 +562,26 @@ for(const file of contentFiles)assert.ok(reachableFiles.has(file),file+': conten
 for(const page of pages){const html=pageHtml.get(page);for(const match of html.matchAll(/srcset="([^"]+)"/g)){for(const candidate of match[1].split(',')){const url=candidate.trim().split(/\s+/)[0];if(url.startsWith('/'))await stat(join(root,base==='/'?url:url.slice(base.length-1)));}}}
 const feed=await readFile(join(root,'yandex-direct.xml'),'utf8');
 assert.ok(!/визуализац/i.test(feed),'Published advertising descriptions must use neutral customer-facing copy');
+// Every commercial header destination has one product and one matching catalog entry.
+const feedRoot=company.origin.replace(/\/$/,'');
+const headerFeedUrls=new Set([...header('/').matchAll(/href="(\/[^"#?]*)"/g)].map(match=>feedRoot+match[1]));
+const feedFields=['url','picture','name','description'];
+const readFeedEntry=(id,body)=>({id,...Object.fromEntries(feedFields.map(field=>[field,body.match(new RegExp(`<${field}>([^<]+)</${field}>`))?.[1]]))});
+const feedOffers=[...feed.matchAll(/<offer id="([^"]+)"[^>]*>([\s\S]*?)<\/offer>/g)].map(([,id,body])=>{
+ assert.ok(body.includes(`<categoryId>${id}</categoryId>`)&&body.includes(`<collectionId>${id}</collectionId>`),'Feed product must retain its category and collection: '+id);
+ return readFeedEntry(id,body);
+});
+const feedCollections=[...feed.matchAll(/<collection id="([^"]+)">([\s\S]*?)<\/collection>/g)].map(([,id,body])=>readFeedEntry(id,body));
+for(const [label,entries] of [['products',feedOffers],['catalogs',feedCollections]]){
+ assert.equal(entries.length,headerFeedUrls.size,'Feed '+label+' must cover all header services and home');
+ assert.equal(new Set(entries.map(entry=>entry.id)).size,entries.length,'Feed '+label+' IDs must be unique');
+ assert.deepEqual(new Set(entries.map(entry=>entry.url)),headerFeedUrls,'Feed '+label+' destinations must match the header');
+ for(const entry of entries)for(const field of feedFields)assert.ok(entry[field],'Missing feed '+field+': '+entry.id);
+}
+assert.deepEqual(feedCollections,feedOffers,'Product and catalog records must have matching IDs, content and images');
+for(const [id,path] of Object.entries({101:'/osteklenie-balkonov/',102:'/uteplenie-balkonov/',103:'/otdelka-balkonov/',104:'/',106:'/osteklenie-kottedzhej/',107:'/holodnoe-osteklenie/',108:'/teploe-osteklenie/',109:'/panoramnoe-osteklenie/',110:'/frantsuzskoe-osteklenie/',111:'/remont-balkonov/'})){
+ assert.equal(feedOffers.find(entry=>entry.id===id)?.url,feedRoot+path,'Existing advertising ID must retain its destination: '+id);
+}
 for(const script of ['public/app.js',join(root,'app.js')]){
  const appText=await readFile(script,'utf8');
  assert.ok(!/визуализац/i.test(appText),script+' must keep dynamic customer-facing captions neutral');

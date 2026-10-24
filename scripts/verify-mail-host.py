@@ -7,6 +7,7 @@ import urllib.request
 import urllib.error
 import urllib.parse
 import urllib.robotparser
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -342,6 +343,27 @@ with urllib.request.urlopen(urllib.request.Request(scene_url, headers={'Accept-E
 assert scene == Path('dist/calculator-scene.js').read_bytes(), 'Published calculator module differs from the checked build'
 assert b'createCalculatorScene' in scene, 'Calculator module must retain its public export'
 print('Production lazy calculator module verified:', json.dumps({'bytes': len(scene), 'transfer_bytes': len(scene_bytes)}))
+
+# Verify the actual advertising feed and every image that Direct will download.
+with opener.open('https://artbalkon.site/yandex-direct.xml', timeout=30) as response:
+    assert response.status == 200, 'Advertising feed must return HTTP 200 directly'
+    published_feed = response.read()
+assert published_feed == Path('dist/yandex-direct.xml').read_bytes(), 'Published advertising feed differs from the checked build'
+feed_shop = ET.fromstring(published_feed).find('shop')
+feed_offers = feed_shop.findall('offers/offer')
+feed_collections = feed_shop.findall('collections/collection')
+feed_destinations = {entry.findtext('url') for entry in feed_offers}
+assert feed_destinations == set(content_urls), 'Advertising feed must cover the published commercial landing pages'
+assert len(feed_offers) == len(feed_collections) == len(feed_destinations), 'Advertising feed must have one product and catalog per destination'
+feed_pictures = sorted({entry.findtext('picture') for entry in feed_offers + feed_collections})
+for picture in feed_pictures:
+    parsed = urllib.parse.urlsplit(picture)
+    assert parsed.scheme == 'https' and parsed.netloc == 'artbalkon.site', 'Unexpected advertising picture host: ' + picture
+    with opener.open(picture, timeout=30) as response:
+        assert response.status == 200, 'Advertising picture must return HTTP 200 directly: ' + picture
+        assert response.headers.get_content_type() == 'image/jpeg', 'Advertising picture must remain JPEG: ' + picture
+        assert response.read() == Path('dist' + parsed.path).read_bytes(), 'Published advertising picture differs from the checked build: ' + picture
+print('Production advertising feed verified:', json.dumps({'products': len(feed_offers), 'catalogs': len(feed_collections), 'pictures': len(feed_pictures)}))
 
 # Check the About clip and its matching poster after the hosting upload.
 ambient = re.search(r'<video\b(?=[^>]*\bdata-ambient-video\b)[^>]*>', html)
