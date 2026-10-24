@@ -22,7 +22,7 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   if(bytes.length>10*1024*1024)throw Error(`Feed picture too large: ${asset}`);
   const hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
   const title=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
-  const price=slug==='remont-balkonov'?prices.repair:service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
+  const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
   if(price!=null&&!(price>0))throw Error(`Invalid feed price: ${slug}`);
   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
   const priceText=price?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
@@ -31,13 +31,15 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
  const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
  const offers=entries.map(e=>`      <offer id="${e.id}" available="true">
         <url>${xml(e.url)}</url>
-        <categoryId>${e.id}</categoryId>
+${e.price?`        <price from="true">${e.price}</price>
+        <currencyId>RUB</currencyId>
+`:''}        <categoryId>${e.id}</categoryId>
         <picture>${xml(e.picture)}</picture>
         <name>${xml(e.title)}</name>
         <description>${xml(e.description)}</description>
-        <collectionId>${e.id}</collectionId>
+${e.price&&e.unit==='/м²'?'        <sales_notes>Цена за 1 м²</sales_notes>\n':''}        <collectionId>${e.id}</collectionId>
       </offer>`).join('\n');
- // Starting rates per square metre are described explicitly, not sent as a fixed total price.
+ // Catalogs have no dedicated price field; retain the starting rate and unit in their descriptions.
  const collections=entries.map(e=>`      <collection id="${e.id}">
         <url>${xml(e.url)}</url>
         <picture>${xml(e.picture)}</picture>

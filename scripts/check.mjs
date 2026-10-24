@@ -579,6 +579,33 @@ for(const [label,entries] of [['products',feedOffers],['catalogs',feedCollection
  for(const entry of entries)for(const field of feedFields)assert.ok(entry[field],'Missing feed '+field+': '+entry.id);
 }
 assert.deepEqual(feedCollections,feedOffers,'Product and catalog records must have matching IDs, content and images');
+// Check advertising amounts against the rendered first screen, not a duplicated tariff list.
+let pricedFeedOffers=0;
+for(const entry of feedOffers){
+ const slug=entry.url===feedRoot+'/'?'balkon-pod-klyuch':entry.url.slice(feedRoot.length).split('/')[1];
+ const html=await readFile(join(root,slug==='balkon-pod-klyuch'?'':slug,'index.html'),'utf8');
+ const hero=html.match(/<p class="landing-price">(.*?)<\/p>/)?.[1];
+ const body=feed.match(new RegExp(`<offer id="${entry.id}"[^>]*>([\\s\\S]*?)<\\/offer>`))[1];
+ const price=body.match(/<price\b([^>]*)>([^<]+)<\/price>/);
+ if(!hero){
+  assert.equal(price,null,'Do not invent an advertising price absent from the landing: '+slug);
+  assert.doesNotMatch(body,/<(?:currencyId|sales_notes)>/,'Unpriced services must not carry pricing fields: '+slug);
+  continue;
+ }
+ const amount=Number(hero.match(/<span class="hero-price-amount">([^<]*)<\/span>/)?.[1].replace(/\D/g,''));
+ assert.ok(amount>0,'Landing must expose a positive starting amount: '+slug);
+ assert.ok(hero.replace(/<[^>]*>/g,'').startsWith('от '),'Landing amount is a starting price: '+slug);
+ assert.ok(price,'Advertising price is required when published on the landing: '+slug);
+ assert.equal(price[1],' from="true"','Advertising price must retain the minimum-price qualifier: '+slug);
+ assert.equal(Number(price[2]),amount,'Advertising amount must match the landing hero: '+slug);
+ assert.match(body,/<currencyId>RUB<\/currencyId>/,'Advertising currency is RUB: '+slug);
+ const perSquareMetre=/<small class="hero-price-unit">\/м²<\/small>/.test(hero);
+ assert.equal(body.includes('<sales_notes>Цена за 1 м²</sales_notes>'),perSquareMetre,'Advertising unit must match the landing: '+slug);
+ assert.ok(entry.description.includes(`Цена от ${amount.toLocaleString('ru-RU')} ₽${perSquareMetre?'/м²':''}.`),'Description must preserve the minimum amount and unit: '+slug);
+ pricedFeedOffers++;
+}
+assert.equal(pricedFeedOffers,18,'Only the 18 services with published starting prices may carry an advertising price');
+for(const [,body]of feed.matchAll(/<collection id="[^"]+">([\s\S]*?)<\/collection>/g))assert.doesNotMatch(body,/<(?:price|currencyId|sales_notes)\b/,'Catalogs must keep their supported descriptive fields');
 for(const [id,path] of Object.entries({101:'/osteklenie-balkonov/',102:'/uteplenie-balkonov/',103:'/otdelka-balkonov/',104:'/',106:'/osteklenie-kottedzhej/',107:'/holodnoe-osteklenie/',108:'/teploe-osteklenie/',109:'/panoramnoe-osteklenie/',110:'/frantsuzskoe-osteklenie/',111:'/remont-balkonov/'})){
  assert.equal(feedOffers.find(entry=>entry.id===id)?.url,feedRoot+path,'Existing advertising ID must retain its destination: '+id);
 }
