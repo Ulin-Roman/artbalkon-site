@@ -2,6 +2,7 @@ import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import {company,services,prices} from '../src/content.mjs';
 import {directFeedDescriptions} from '../src/direct-feed-copy.mjs';
+import {jpegDimensions} from './jpeg-dimensions.mjs';
 
 
 const xml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
@@ -21,6 +22,8 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   if(!service)throw Error(`Missing feed service: ${slug}`);
   const asset='optimized/direct-feed/'+slug+'.jpg',bytes=await readFile(`public/assets/${asset}`);
   if(bytes.length>10*1024*1024)throw Error(`Feed picture too large: ${asset}`);
+  const {width,height}=jpegDimensions(bytes);
+  if(width!==1900||height!==1412)throw Error(`Feed picture must be 1900×1412, got ${width}×${height}: ${asset}`);
   const hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
   const title=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
   const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
