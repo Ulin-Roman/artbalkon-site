@@ -599,17 +599,23 @@ for(const entry of feedOffers){
  assert.ok(feedDescriptionIntents[entry.id],'Every feed service needs an intent check: '+entry.id);
  for(const intent of feedDescriptionIntents[entry.id])assert.match(serviceCopy,intent,'Advertising copy must explicitly name its service and object: '+entry.id);
 }
-// Check advertising amounts against the rendered first screen, not a duplicated tariff list.
+// Keep structured and advertising minimum prices tied to the actual first screen.
 let pricedFeedOffers=0;
 for(const entry of feedOffers){
  const slug=entry.url===feedRoot+'/'?'balkon-pod-klyuch':entry.url.slice(feedRoot.length).split('/')[1];
  const html=await readFile(join(root,slug==='balkon-pod-klyuch'?'':slug,'index.html'),'utf8');
  const hero=html.match(/<p class="landing-price">(.*?)<\/p>/)?.[1];
+ const schemaNodes=[...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].flatMap(match=>JSON.parse(match[1])['@graph']||[]);
+ const serviceNodes=schemaNodes.filter(node=>node['@type']==='Service');
+ assert.equal(serviceNodes.length,1,'Each commercial page needs one structured service: '+slug);
+ assert.equal(serviceNodes[0].url,entry.url,'Structured and advertising services must retain the same destination: '+slug);
+ const structuredOffer=serviceNodes[0].offers;
  const body=feed.match(new RegExp(`<offer id="${entry.id}"[^>]*>([\\s\\S]*?)<\\/offer>`))[1];
  const price=body.match(/<price\b([^>]*)>([^<]+)<\/price>/);
  if(!hero){
   assert.equal(price,null,'Do not invent an advertising price absent from the landing: '+slug);
   assert.doesNotMatch(body,/<(?:currencyId|sales_notes)>/,'Unpriced services must not carry pricing fields: '+slug);
+  assert.equal(structuredOffer,undefined,'Do not invent a structured offer when no price is published: '+slug);
   continue;
  }
  const amount=Number(hero.match(/<span class="hero-price-amount">([^<]*)<\/span>/)?.[1].replace(/\D/g,''));
@@ -620,6 +626,16 @@ for(const entry of feedOffers){
  assert.equal(Number(price[2]),amount,'Advertising amount must match the landing hero: '+slug);
  assert.match(body,/<currencyId>RUB<\/currencyId>/,'Advertising currency is RUB: '+slug);
  const perSquareMetre=/<small class="hero-price-unit">\/м²<\/small>/.test(hero);
+ assert.equal(structuredOffer?.['@type'],'Offer','Published starting price needs a structured offer: '+slug);
+ assert.equal(structuredOffer.url,entry.url,'Structured offer must point to its commercial page: '+slug);
+ assert.equal(structuredOffer.priceCurrency,'RUB','Structured offer currency is RUB: '+slug);
+ assert.equal(structuredOffer.price,undefined,'A starting rate must not be advertised as a fixed structured price: '+slug);
+ const specification=structuredOffer.priceSpecification;
+ assert.equal(specification?.['@type'],perSquareMetre?'UnitPriceSpecification':'PriceSpecification','Structured unit must match the visible starting rate: '+slug);
+ assert.equal(specification.minPrice,amount,'Structured minimum price must be a number matching the visible hero and feed: '+slug);
+ assert.equal(specification.price,undefined,'Structured starting rate must retain its minimum-price meaning: '+slug);
+ assert.equal(specification.priceCurrency,'RUB','Structured price currency is RUB: '+slug);
+ assert.equal(specification.unitText,perSquareMetre?'м²':undefined,'Only a rate per square metre may carry the square-metre unit: '+slug);
  assert.equal(body.includes('<sales_notes>Цена за 1 м²</sales_notes>'),perSquareMetre,'Advertising unit must match the landing: '+slug);
  assert.ok(entry.description.includes(`Цена от ${amount.toLocaleString('ru-RU')} ₽${perSquareMetre?'/м²':''}.`),'Description must preserve the minimum amount and unit: '+slug);
  pricedFeedOffers++;
@@ -905,9 +921,11 @@ for(const definition of newLandingDefinitions){
   assert.equal(heroPrice?.replace(/<[^>]*>/g,''),'от '+expectedPrice.toLocaleString('ru-RU')+' ₽ /м²','Hero uses the confirmed rate and unit');
   assert.equal(heroPrice?.match(/<span class="hero-price-amount">([^<]*)<\/span>/)?.[1],expectedPrice.toLocaleString('ru-RU')+' ₽','Hero amount and currency remain together');
   assert.match(heroPrice,/<small class="hero-price-unit">\/м²<\/small>/,'Hero unit is preserved');
-  assert.equal(offer?.price,String(expectedPrice),'Structured offer matches the hero');
+  assert.equal(offer?.price,undefined,'Structured starting rate must not become a fixed price');
   assert.equal(offer?.priceCurrency,'RUB');
-  assert.equal(offer?.priceSpecification.price,String(expectedPrice));
+  assert.equal(offer?.priceSpecification['@type'],'UnitPriceSpecification');
+  assert.equal(offer?.priceSpecification.minPrice,expectedPrice,'Structured minimum price matches the hero');
+  assert.equal(offer?.priceSpecification.price,undefined);
   assert.equal(offer?.priceSpecification.unitText,'м²');
  }
  assert.ok(header('/').includes('href="/'+definition.slug+'/"'));

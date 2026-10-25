@@ -368,7 +368,12 @@ const structuredData=({path,title,description,image})=>{
  ];
 
  const service=serviceForPath(path),project=projects.find(item=>path===`/nashi-raboty/${item.slug}/`);
- if(service){const seo=serviceSeo[service.slug],price=prices[service.price];graph.push({'@type':'Service','@id':`${canonical}#service`,name:service.h1,serviceType:service.title,description:seo?.metaDescription||service.offer,url:canonical,image:imageUrl,provider:{'@id':businessId},areaServed:[{'@type':'City',name:'Москва'},{'@type':'AdministrativeArea',name:'Московская область'}],...(price===null?{}:{offers:{'@type':'Offer',priceCurrency:'RUB',price:String(price),url:canonical,availability:'https://schema.org/InStock',priceSpecification:{'@type':'UnitPriceSpecification',price:String(price),priceCurrency:'RUB',unitText:'м²'}}})});if(seo?.faq?.length)graph.push({'@type':'FAQPage','@id':`${canonical}#faq`,mainEntity:seo.faq.map(([question,answer])=>({'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:answer}}))});}
+ if(service){
+  const seo=serviceSeo[service.slug],price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
+  const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
+  graph.push({'@type':'Service','@id':`${canonical}#service`,name:service.h1,serviceType:service.title,description:seo?.metaDescription||service.offer,url:canonical,image:imageUrl,provider:{'@id':businessId},areaServed:[{'@type':'City',name:'Москва'},{'@type':'AdministrativeArea',name:'Московская область'}],...(price==null?{}:{offers:{'@type':'Offer',priceCurrency:'RUB',url:canonical,availability:'https://schema.org/InStock',priceSpecification:{'@type':unit?'UnitPriceSpecification':'PriceSpecification',minPrice:price,priceCurrency:'RUB',...(unit?{unitText:unit.replace(/^\//,'')}: {})}}})});
+  if(seo?.faq?.length)graph.push({'@type':'FAQPage','@id':`${canonical}#faq`,mainEntity:seo.faq.map(([question,answer])=>({'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:answer}}))});
+ }
  if(project)graph.push({'@type':'Article','@id':`${canonical}#project`,headline:project.title,description:project.intro,url:canonical,image:imageUrl,author:{'@id':businessId},publisher:{'@id':businessId},about:project.type,inLanguage:'ru-RU'});
  return {'@context':'https://schema.org','@graph':graph};
 };

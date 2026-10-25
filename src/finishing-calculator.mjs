@@ -49,7 +49,7 @@ function scene() {
  <path d="M${point(lower(innerNear))} ${point(lower(outerNear))} ${point(lower(outerFar,farScale))}" fill="none" stroke="#7b8a94" stroke-width=".4"/>
  <path d="M318.8 57.6 321.9 58.6" fill="none" stroke="#59676b70" stroke-width=".7"/>
  </g></g>
- <foreignObject x="0" y="0" width="340" height="480" clip-path="url(#finish-calc-cutout)"><div xmlns="http://www.w3.org/1999/xhtml" class="finish-calc-raster-wrap"><img loading="lazy" data-calc-fallback class="finish-calc-raster finish-calc-fallback" src="/assets/calculator-realistic-v1/balcony-apartment-v5.webp" width="340" height="480" alt="Балкон в разрезе: наружное остекление справа, дверь и окно в квартиру слева"><canvas data-calc-canvas class="finish-calc-raster" width="1020" height="1440" hidden></canvas></div></foreignObject>
+ <foreignObject x="0" y="0" width="340" height="480" clip-path="url(#finish-calc-cutout)"><div xmlns="http://www.w3.org/1999/xhtml" class="finish-calc-raster-wrap"><img loading="lazy" data-calc-fallback class="finish-calc-raster finish-calc-fallback" src="/assets/optimized/calculator/balcony-apartment-v5-c27569d43ab4.webp" width="340" height="480" alt="Балкон в разрезе: наружное остекление справа, дверь и окно в квартиру слева"><canvas data-calc-canvas class="finish-calc-raster" width="1020" height="1440" hidden></canvas></div></foreignObject>
  <g class="finish-calc-canopy-fixing" aria-hidden="true" pointer-events="none">
  <path d="M${point(houseNear)} ${point(innerNear)} ${point(lower(innerNear))} ${point(lower(houseNear))}Z" fill="#b3bec2"/>
  <path d="M${point(houseNear)} ${point(innerNear)}" fill="none" stroke="#edf1f2" stroke-width=".45"/>

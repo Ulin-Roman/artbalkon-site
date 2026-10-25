@@ -1,6 +1,6 @@
 // All surfaces share the photograph's perspective. Mirroring places the street
 // glazing on the right; the apartment door and window stay on the left.
-export function createCalculatorScene(root,siteBase) {
+export async function createCalculatorScene(root,siteBase) {
  const canvas=root.querySelector('[data-calc-canvas]'),ctx=canvas.getContext('2d');
  if(!ctx)return ()=>{};
  const base=new Image(),atlas=new Image(),insulation=new Image(),cache=new Map();
@@ -799,8 +799,12 @@ export function createCalculatorScene(root,siteBase) {
   canvas.hidden=false;root.querySelector('[data-calc-fallback]').hidden=true;
  }
  const schedule=()=>{if(!frame)frame=requestAnimationFrame(render);};
- Promise.all([base,atlas,insulation].map(img=>new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;}))).then(()=>{ready=true;schedule();}).catch(()=>{canvas.hidden=true;root.querySelector('[data-calc-fallback]').hidden=false;});
+ const imagesReady=Promise.all([base,atlas,insulation].map(img=>new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;})));
  insulation.src=new URL('assets/calculator-realistic-v1/insulation-battens-v1.webp',siteBase).href;
  base.src=root.querySelector('[data-calc-fallback]').src;atlas.src=new URL('assets/calculator-realistic-v1/material-atlas-v2.webp',siteBase).href;
+ // Keep the loader retryable until the actual drawing assets are available.
+ // Its latest selection is applied once, after this renderer is returned.
+ try{await imagesReady;}catch(error){canvas.hidden=true;root.querySelector('[data-calc-fallback]').hidden=false;throw error;}
+ ready=true;
  return state=>{selection=state;schedule();};
 }
