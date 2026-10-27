@@ -4822,6 +4822,7 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 }
 @media(max-width:640px){
  :root{--text-body:16px;--text-detail:15px;--text-note:13px;--text-hero:18px}
+ .landing-hero>.landing-trust.landing-utp{margin-top:16px}
  .landing-trust.landing-utp .trust-copy span,
  .landing-trust.company-trust .trust-copy span{font-size:14px;line-height:1.45;min-height:0}
  .landing-trust.landing-utp .trust-copy strong,
@@ -4841,8 +4842,12 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
  .hero-rating-platform{font-size:12px}
 }
 @media(max-width:430px){
- .landing-hero>.landing-trust.landing-utp,.landing-trust.company-trust{grid-template-columns:minmax(0,1fr)}
- .landing-trust.landing-utp .trust-item,.landing-trust.company-trust .trust-item{min-height:76px}
- .landing-trust.landing-utp .trust-copy,.landing-trust.company-trust .trust-copy{display:grid;grid-template-columns:106px minmax(0,1fr);align-items:center;gap:12px;text-align:left}
- .landing-trust.landing-utp .trust-copy span,.landing-trust.company-trust .trust-copy span{max-width:none;text-align:left}
+ .landing-trust.landing-utp .trust-copy strong,
+ .landing-trust.company-trust .trust-copy strong{font-size:18px;min-height:2.5em;line-height:1.25}
+ .landing-trust.landing-utp .trust-copy span,
+ .landing-trust.company-trust .trust-copy span{font-size:13px;min-height:4.35em;line-height:1.45}
+}
+@media(max-width:360px){
+ .landing-trust.landing-utp .trust-item,
+ .landing-trust.company-trust .trust-item{padding-inline:4px!important}
 }
