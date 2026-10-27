@@ -49,7 +49,7 @@ const serviceGallerySlides=service=>uniqueImages((serviceBeforeAfterProjects[ser
 const glazingHeroImage='service-before-after/glazing-new-09-after.jpg';
 const finishingHeroImage='service-before-after/renovation-loggia-12-after.webp';
 const turnkeyHeroImage='service-before-after/furniture-interior-v2-02-after.webp';
-export const homeHeroImage='home-reading-book-v3/hero.webp';
+export const homeHeroImage='home-reading-book-v4/hero.webp';
 const coldGlazingHeroImage='cold-hero-sill-v2/hero.webp';
 const warmGlazingHeroImage='service-before-after/renovation-loggia-02-after.webp';
 const panoramicGlazingHeroImage='service-before-after/panoramic-glazing-after.jpg';

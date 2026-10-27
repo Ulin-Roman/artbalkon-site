@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-27",
+  "method": "built-in image_gen",
+  "generated": true,
+  "use": "home hero and derived image metadata only",
+  "source": "public/assets/home-reading-book-v3/hero.webp",
+  "sourceSha256": "342dd5d649b554b503dd6d4551332afc478e28530c24b7c870452b08c19f631a",
+  "generatedOutput": "C:/Users/shado/.codex/generated_images/01a14189-445b-7961-94c9-e85ec07dab6a/exec-465b8bec-02d3-49b5-82dc-65e3dd2ec36b.png",
+  "generatedOutputSha256": "2ff4f439e7bc71f5c399d3adf6e61cd9a89bad9541390e988cabb76e04399787",
+  "generatedDimensions": {
+    "width": 1027,
+    "height": 1531
+  },
+  "prompt": "Use case: precise-object-edit. Edit target: the supplied existing photograph used as a website hero. Make exactly ONE tiny localized correction: on the far RIGHT white PVC balcony door (the apartment door viewed from the balcony), replace the large protruding curved rotating lever handle at mid-height with a realistic small WHITE stationary balcony pull handle, called a petal/лепесток or shell pull/ракушка. It should be a short low-profile compact gently concave oval white plastic finger-pull, two fixing points on the narrow white door profile, normal realistic scale about half the present handle height, NOT a lever, NOT a loop or a long grab bar. Keep this new handle attached to that SAME RIGHT DOOR vertical white PVC profile at the SAME height and with matching perspective, light and shadow. Remove only the old right-side handle and restore the tiny glass/profile area that it formerly obscured. Do NOT touch the left window's normal rotating lever handle. Preserve the ENTIRE rest of the supplied photo exactly: woman face, identity, skin, pose, book and hands, every shelf and object, wood texture, furniture and plants, all glazing, door and window profiles, reflections, exterior view, camera perspective, light, sun patches, colours, framing and dimensions/aspect ratio 784 x 1168. Do not crop, zoom, add text or restyle. This is an existing image with a single small hardware correction, not a new scene. Output the complete corrected portrait image with the original composition.",
+  "variants": [
+    {
+      "path": "public/assets/home-reading-book-v4/hero.webp",
+      "width": 784,
+      "height": 1168,
+      "bytes": 96644,
+      "sha256": "a126c2be266d01ce5e281cfd5f96f8c25e883339cde6d01182f30a36074ba378"
+    },
+    {
+      "path": "public/assets/home-reading-book-v4/hero-640.webp",
+      "width": 640,
+      "height": 953,
+      "bytes": 75304,
+      "sha256": "6c587486afdb17feb22cb0a2819a8316916279391e58f6da8e5bc09f8b5ab5f9"
+    },
+    {
+      "path": "public/assets/home-reading-book-v4/hero-320.webp",
+      "width": 320,
+      "height": 477,
+      "bytes": 28596,
+      "sha256": "be1dcc0fdf6b5f72aea7eddcd4668c9c87a637bf118787df39b985628b4a076d"
+    }
+  ]
+}
