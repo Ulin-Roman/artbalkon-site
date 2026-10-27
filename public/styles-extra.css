@@ -3978,6 +3978,10 @@ main > .social-subscribe,
 .finish-calc-switch input:focus-visible+span{outline:3px solid #386eac;outline-offset:4px}
 .finish-calc-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
 .finish-calc-group[data-calc-group=insulation] .finish-calc-options{grid-template-columns:minmax(0,1fr)}
+/* Keep neighboring glazing and insulation choices equally tall and centered. */
+.finish-calc-group:is([data-calc-group=glazing],[data-calc-group=insulation]){display:flex;flex-direction:column}
+.finish-calc-group:is([data-calc-group=glazing],[data-calc-group=insulation]) .finish-calc-options{flex:1}
+.finish-calc-group:is([data-calc-group=glazing],[data-calc-group=insulation]) .finish-calc-option{justify-content:center}
 .finish-calc-group[data-calc-group=walls] .finish-calc-options,.finish-calc-group[data-calc-group=ceiling] .finish-calc-options,.finish-calc-group[data-calc-group=floor] .finish-calc-options{grid-template-columns:repeat(4,minmax(0,1fr))}
 .finish-calc-option{position:relative;min-width:0;padding:7px 3px;border:1px solid transparent;border-radius:9px;text-align:center;font-size:11px;line-height:1.3;cursor:pointer;overflow-wrap:anywhere;display:flex;flex-direction:column;align-items:center;gap:7px}
 .finish-calc-option input{position:absolute;opacity:0;width:100%;height:100%;top:0;left:0;margin:0;cursor:pointer}
