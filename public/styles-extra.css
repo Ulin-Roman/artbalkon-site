@@ -330,6 +330,7 @@ html{scroll-padding-top:84px}
 .certificate-count{margin-right:10px;color:#8fb3b1;font-size:13px;letter-spacing:.08em}
 .certificate-count strong{color:#fff;font-size:21px;font-weight:500}
 .certificate-controls button{display:grid;place-items:center;width:48px;height:48px;padding:0;border:1px solid rgba(255,255,255,.28);border-radius:50%;background:rgba(255,255,255,.06);color:#fff;font-size:22px;transition:background .2s,border-color .2s,transform .2s}
+.certificate-controls .certificate-arrow{display:block;width:24px;height:24px;pointer-events:none}
 .certificate-controls button:hover:not(:disabled){background:#0b858a;border-color:#45b8b8;transform:translateY(-2px)}
 .certificate-controls button:disabled{opacity:.28}
 .certificate-track{display:flex;gap:18px;overflow-x:auto;padding:8px 2px 24px;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#4d8584 rgba(255,255,255,.08);overscroll-behavior-inline:contain}
