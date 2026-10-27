@@ -1,0 +1,34 @@
+{
+  "source": "https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap",
+  "license": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt",
+  "fonts": [
+    {
+      "subset": "cyrillic-ext",
+      "url": "https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggqxSuXd.woff2",
+      "file": "manrope-variable-cyrillic-ext.woff2",
+      "sha256": "de37de877dc17e4577341fa68bb5cb526b53d54cb29721e674208546a3c7849d",
+      "bytes": 2552
+    },
+    {
+      "subset": "cyrillic",
+      "url": "https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggOxSuXd.woff2",
+      "file": "manrope-variable-cyrillic.woff2",
+      "sha256": "c268b459a9329e59fecf39a17618efd44c71735532048d60b12aab76a8c14914",
+      "bytes": 14500
+    },
+    {
+      "subset": "latin-ext",
+      "url": "https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggmxSuXd.woff2",
+      "file": "manrope-variable-latin-ext.woff2",
+      "sha256": "3911b66d9f2e005a4b989223405d0e5032619c668597ba467cc76a23c8fffcfb",
+      "bytes": 15120
+    },
+    {
+      "subset": "latin",
+      "url": "https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSg.woff2",
+      "file": "manrope-variable-latin.woff2",
+      "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972",
+      "bytes": 24836
+    }
+  ]
+}

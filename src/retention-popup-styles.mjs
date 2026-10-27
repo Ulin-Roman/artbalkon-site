@@ -27,7 +27,7 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-shell{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);min-height:550px}
 .retention-copy{min-width:0;padding:40px 34px 34px 40px}
 .retention-copy h2{font-size:34px;line-height:1.12;letter-spacing:-.05em;font-weight:650}
-.retention-description{margin-top:20px;color:var(--muted,#6e7474);font-size:17px;line-height:1.6}
+.retention-description{margin-top:20px;color:var(--muted,#435954);font-size:18px;font-weight:500;line-height:1.6}
 .retention-description strong{color:var(--ink,#222727);font-weight:550}
 .retention-form{min-width:0;margin-top:26px}
 .retention-phone-field{display:flex;align-items:center;gap:12px;padding:0 16px;border:1px solid #cddad8;border-radius:12px;background:#fff;min-height:56px}
@@ -35,14 +35,14 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
 .retention-phone-field .ui-icon{width:21px;height:21px;flex:0 0 21px;color:var(--muted,#6e7474)}
 .retention-phone-field input{width:100%;min-width:0;padding:14px 0;border:0;border-radius:0;background:transparent;color:var(--ink,#222727);font-size:16px;outline:0}
 .retention-form .form-error:empty{display:none}
-.retention-form .form-error:not(:empty){margin-top:9px;font-size:12px}
+.retention-form .form-error:not(:empty){margin-top:9px;font-size:14px}
 .retention-submit{width:100%;margin-top:12px;gap:11px;border-radius:999px;min-height:54px;font-size:16px}
 .retention-submit .ui-icon{width:20px;height:20px}
-.retention-form .consent{margin-top:14px;font-size:10px;line-height:1.5;color:var(--muted,#6e7474);align-items:flex-start;gap:8px}
+.retention-form .consent{margin-top:14px;font-size:14px;font-weight:500;line-height:1.5;color:var(--muted,#435954);align-items:flex-start;gap:8px}
 .retention-form .consent input{flex:0 0 16px;width:16px;height:16px;margin:1px 0 0}
 .retention-form .consent span{min-width:0}
 .retention-form .consent a{text-decoration:underline;text-underline-offset:2px}
-.retention-direct-call{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 6px;margin-top:24px;color:var(--muted,#6e7474);font-size:13px}
+.retention-direct-call{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 6px;margin-top:24px;color:var(--muted,#435954);font-size:15px}
 .retention-direct-call .phone{font-size:17px!important;letter-spacing:-.35px;color:var(--teal,#00777e);white-space:nowrap}
 .retention-phone:hover{text-decoration:underline;text-underline-offset:3px}
 .retention-photo{position:absolute;inset:0 0 0 calc(100% * 1.15 / 2.15);min-width:0;border-radius:0 24px 24px 0;background:#eef2ef;overflow:hidden}
@@ -61,13 +61,13 @@ export const retentionPopupStyles=String.raw`/* Kept with popup HTML so cached e
  .retention-photo::after{content:"";position:absolute;inset:52% 0 0;background:linear-gradient(180deg,rgba(255,255,255,0),#fff 95%);pointer-events:none}
  .retention-copy h2{position:relative;z-index:1;min-height:0;margin-top:-28px;padding:0;font-size:clamp(32px,9vw,40px);font-weight:750;line-height:1.06;letter-spacing:-.045em;text-align:center}
  .retention-title-accent{display:block;color:var(--teal,#00777e)}
- .retention-description{min-width:0;margin-top:14px;color:#42545a;font-size:15px;line-height:1.5;text-align:center}
+ .retention-description{min-width:0;margin-top:14px;color:#42545a;font-size:16px;line-height:1.5;text-align:center}
  .retention-description strong{display:block;margin-top:10px;font-weight:650;color:var(--ink,#222727)}
  .retention-form{margin-top:18px}
  .retention-phone-field{min-height:54px;border-radius:16px}
  .retention-submit{min-height:54px;margin-top:10px;font-size:18px}
- .retention-form .consent{margin-top:12px;font-size:10px;line-height:1.5}
- .retention-direct-call{display:flex;justify-content:center;align-items:baseline;gap:4px 6px;margin-top:16px;padding-top:14px;border-top:1px solid #e2e5e4;font-size:12px;text-align:center}
+ .retention-form .consent{margin-top:12px;font-size:13px;line-height:1.5}
+ .retention-direct-call{display:flex;justify-content:center;align-items:baseline;gap:4px 6px;margin-top:16px;padding-top:14px;border-top:1px solid #e2e5e4;font-size:14px;text-align:center}
  .retention-direct-call .phone{display:inline;margin:0;font-size:16px!important;font-weight:700;line-height:1.4}
  .retention-close{position:sticky;float:right;z-index:3;width:36px;height:36px;top:10px;right:auto;margin:10px 10px -46px 0;border-color:transparent;color:#263c45;box-shadow:0 3px 14px rgba(0,34,36,.12)}
 }
