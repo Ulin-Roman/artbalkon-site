@@ -448,6 +448,16 @@ for(const file of pages){
   assert.ok(popup.includes('href="tel:'+company.tel+'"'),file+': Callibri-compatible canonical phone');
  }
  checkMarkup(html,file);
+ // A hero must reserve the encoded image ratio before it has finished loading.
+ for(const [tag] of html.matchAll(/<img\b(?=[^>]*\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b)[^>]*>/g)){
+  const source=tag.match(/\bsrc="([^"]+)"/)?.[1];
+  if(!source||source.startsWith('data:'))continue;
+  const asset='/assets/'+source.split('/assets/')[1];
+  const dimensions=Object.values(responsiveImages).find(entry=>entry.src===asset&&entry.width&&entry.height);
+  assert.ok(dimensions,file+': hero needs intrinsic dimension metadata: '+asset);
+  assert.equal(Number(tag.match(/\bwidth="(\d+)"/)?.[1]),dimensions.width,file+': hero width differs from its prepared image');
+  assert.equal(Number(tag.match(/\bheight="(\d+)"/)?.[1]),dimensions.height,file+': hero height differs from its prepared image');
+ }
  pageHtml.set(file,html);
  // A preview's noindex must not bypass the same content and metadata checks as production.
  const localPath=file.slice(root.length+1).replaceAll('\\','/');

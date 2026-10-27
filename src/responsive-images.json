@@ -160,7 +160,9 @@
         "src": "/assets/responsive/fb45354cd45c0bbd-1086.webp",
         "width": 1086
       }
-    ]
+    ],
+    "width": 1086,
+    "height": 1448
   },
   "/assets/before-daytime/before-093.webp": {
     "src": "/assets/responsive/d6e1c2eef59d07f7-1122.webp",
@@ -4920,7 +4922,9 @@
         "src": "/assets/responsive/c45c31f4cb3c4062-768.webp",
         "width": 768
       }
-    ]
+    ],
+    "width": 768,
+    "height": 1024
   },
   "/assets/service-before-after/cottage-glazing-before.jpg": {
     "src": "/assets/responsive/d8626043da2e4de4-768.webp",
@@ -5121,7 +5125,9 @@
         "src": "/assets/responsive/25cf1dc7b399580c-768.webp",
         "width": 768
       }
-    ]
+    ],
+    "width": 768,
+    "height": 1024
   },
   "/assets/service-before-after/glazing-new-06-before.jpg": {
     "src": "/assets/responsive/cbbeca98dee8c050-768.webp",
@@ -5155,7 +5161,9 @@
         "src": "/assets/responsive/7d913c8440ce197f-1086.webp",
         "width": 1086
       }
-    ]
+    ],
+    "width": 1086,
+    "height": 1448
   },
   "/assets/service-before-after/glazing-new-09-before.jpg": {
     "src": "/assets/responsive/f8cd03a6303e894e-768.webp",
@@ -5699,7 +5707,9 @@
         "src": "/assets/responsive/666570c71d7141e4-1448.webp",
         "width": 1448
       }
-    ]
+    ],
+    "width": 1448,
+    "height": 1086
   },
   "/assets/service-before-after/renovation-loggia-03-after.webp": {
     "src": "/assets/responsive/b9fa86b0c0f2d4f6-1086.webp",
@@ -5784,7 +5794,9 @@
         "src": "/assets/responsive/26d29c8e4784a555-1086.webp",
         "width": 1086
       }
-    ]
+    ],
+    "width": 1086,
+    "height": 1448
   },
   "/assets/service-before-after/turnkey-furniture-01-before-v2.webp": {
     "src": "/assets/responsive/c0c858b900d80a33-1086.webp",
@@ -5903,7 +5915,9 @@
         "src": "/assets/responsive/74332dc077a03ac8-1122.webp",
         "width": 1122
       }
-    ]
+    ],
+    "width": 1122,
+    "height": 1402
   },
   "/assets/service-gallery-v2/combined-room-02.png": {
     "src": "/assets/responsive/870ce9cd26fd2e91-1122.webp",

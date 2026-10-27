@@ -4173,7 +4173,7 @@ main > .social-subscribe,
 .nav-services summary>a{padding:0;border:0;color:inherit;font:inherit}
 
 /* Additional landing services retain the existing four-column scope layout. */
-@media(min-width:1101px){.nav-services-panel{max-height:calc(100dvh - 110px);overflow-y:auto}}
+@media(min-width:900.01px){.desktop-nav .nav-services-panel{max-height:calc(100dvh - 110px);overflow-y:auto}}
 
 /* Consultation benefits on each landing hero; company figures belong below About. */
 .landing-trust.landing-utp .trust-item{
