@@ -4757,8 +4757,9 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 .footer-grid a:not(.brand){color:var(--muted);overflow-wrap:anywhere}
 .footer-grid .footer-title{font-size:17px;font-weight:650}
 .footer-grid a.phone{font-weight:700}
-.partner-brand-card span,.avito-review-author small,.avito-review-tags span,
+.avito-review-author small,.avito-review-tags span,
 .waste-removal-copy .waste-removal-note{font-size:var(--text-note);font-weight:500;line-height:1.5}
+.partner-brand-card span{font-size:12px;font-weight:500;line-height:1.4}
 .avito-review p,.avito-review-author strong,.home-advantages-photo figcaption span{font-size:var(--text-detail);line-height:1.6}
 .avito-review p{overflow-wrap:break-word}
 @media(min-width:641px){.avito-review-list{overflow-y:auto;overscroll-behavior:contain}}
@@ -4832,6 +4833,7 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 }
 @media(max-width:640px){
  :root{--text-body:16px;--text-detail:15px;--text-note:13px;--text-hero:18px}
+ .partner-brand-card span{font-size:11px}
  .landing-hero .landing-copy{transform:translateY(20px)}
  .landing-hero .landing-copy-main>.landing-price{margin-block:14px}
  .landing-hero>.landing-trust.landing-utp{margin-top:-40px}
