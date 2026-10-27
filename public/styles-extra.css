@@ -4860,6 +4860,7 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
  .landing-trust.company-trust .trust-copy strong{font-size:18px}
 }
 @media(max-width:360px){
+ .landing-trust.landing-utp .trust-copy strong{max-width:5em}
  .landing-trust.landing-utp .trust-item,
  .landing-trust.company-trust .trust-item{padding-inline:4px!important}
  .finish-calc-option{font-size:11px;line-height:1.25;min-height:48px;padding:3px 1px;gap:3px}
