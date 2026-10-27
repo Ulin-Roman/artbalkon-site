@@ -4828,10 +4828,10 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 }
 @media(max-width:640px){
  :root{--text-body:16px;--text-detail:15px;--text-note:13px;--text-hero:18px}
- .landing-hero>.landing-trust.landing-utp{margin-top:16px}
- .landing-trust.landing-utp .trust-copy span,
+ .landing-hero>.landing-trust.landing-utp{margin-top:-40px}
+ .landing-trust.landing-utp .trust-copy span{font-size:12px;line-height:1.4;min-height:4.2em}
  .landing-trust.company-trust .trust-copy span{font-size:14px;line-height:1.45;min-height:0}
- .landing-trust.landing-utp .trust-copy strong,
+ .landing-trust.landing-utp .trust-copy strong{font-size:20px;min-height:1.2em;line-height:1.2}
  .landing-trust.company-trust .trust-copy strong{font-size:20px;min-height:0;line-height:1.3}
  .service-page-faq summary{font-size:18px}
  .before-after-title{font-size:20px}
@@ -4848,9 +4848,8 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
  .hero-rating-platform{font-size:12px}
 }
 @media(max-width:430px){
- .landing-trust.landing-utp .trust-copy strong,
+ .landing-trust.landing-utp .trust-copy strong{font-size:18px;min-height:2.4em;line-height:1.2}
  .landing-trust.company-trust .trust-copy strong{font-size:18px;min-height:2.5em;line-height:1.25}
- .landing-trust.landing-utp .trust-copy span,
  .landing-trust.company-trust .trust-copy span{font-size:13px;min-height:4.35em;line-height:1.45}
 }
 @media(max-width:360px){
