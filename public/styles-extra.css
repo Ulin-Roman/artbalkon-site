@@ -4799,6 +4799,12 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 #finishing-calc-modal .finish-calc-attributes,
 #finishing-calc-modal .finish-calc-breakdown{font-size:14px;line-height:1.55}
 #finishing-calc-modal .finish-calc-note{font-size:13px;line-height:1.6}
+@media(min-width:701px){
+ .finish-calc-group{padding-inline:4px}
+ .finish-calc-options{gap:2px}
+ .finish-calc-option{padding-inline:0}
+}
+@media(min-width:1101px){.finish-calc-option{font-size:clamp(11px,1vw,14px)}}
 @media(min-width:1201px) and (max-width:1450px){.desktop-nav{font-size:14px;gap:12px}}
 @media(max-width:1200px){
  .site-header .desktop-nav{display:none}
@@ -4850,4 +4856,9 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 @media(max-width:360px){
  .landing-trust.landing-utp .trust-item,
  .landing-trust.company-trust .trust-item{padding-inline:4px!important}
+ .finish-calc-option{font-size:11px;line-height:1.25;min-height:48px;padding:3px 1px;gap:3px}
+}
+@media(max-width:430px){
+ .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]){padding-top:48px}
+ .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]) .finish-calc-group-head{top:31px;left:4px;right:4px}
 }
