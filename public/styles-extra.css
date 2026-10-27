@@ -2109,7 +2109,7 @@ main .eyebrow{display:none!important}
 
 /* Mobile navigation drawer. */
 .mobile-menu-backdrop{display:none}
-@media (max-width:900px), (pointer:coarse) and (max-width:1100px){
+@media (max-width:1200px){
  body.menu-open{
   position:fixed;
   inset-inline:0;
@@ -2239,7 +2239,7 @@ main .eyebrow{display:none!important}
  .mobile-menu{width:min(88vw,350px);padding:20px 20px calc(20px + env(safe-area-inset-bottom))}
  .mobile-menu-links a{padding-block:11px;font-size:16px}
 }
-@media(min-width:1101px){
+@media(min-width:1201px){
  .mobile-menu,.mobile-menu-backdrop{display:none!important}
 }
 @media(prefers-reduced-motion:reduce){
