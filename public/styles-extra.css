@@ -4859,8 +4859,7 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
  .finish-calc-gift{font-size:14px;line-height:1.45;padding:9px}
  .finish-calc-dimensions label{font-size:13px}
  .finish-calc-group{padding-top:40px;align-self:stretch}
- .finish-calc-group-head{font-size:11px;line-height:1.25}
- .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]) .finish-calc-group-head{top:4px;height:24px;display:flex;align-items:center}
+ .finish-calc-group-head{top:4px;height:24px;display:flex;align-items:center;font-size:11px;line-height:1.25;text-transform:none}
  .finish-calc-option{font-size:12px;line-height:1.3;min-height:52px;padding:4px 1px;gap:4px}
  .finish-calc-result .button{font-size:15px}
 }
@@ -4904,12 +4903,12 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 }
 @media(max-width:430px){
  .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]){padding-top:40px}
- .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]) .finish-calc-group-head{left:4px;right:29px;text-transform:none;white-space:nowrap}
+ .finish-calc-group-head{left:4px;right:29px;white-space:nowrap}
 }
 @media(max-width:374px){
- .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]) .finish-calc-group-head{left:3px;font-size:10px}
+ .finish-calc-group-head{left:3px;font-size:10px}
 }
 @media(max-width:350px){
- .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]) .finish-calc-group-head{left:2px;right:25px}
+ .finish-calc-group-head{left:2px;right:25px}
  .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]) .finish-calc-switch{right:0}
 }
