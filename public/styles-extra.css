@@ -351,6 +351,14 @@ html{scroll-padding-top:84px}
 .button{overflow:visible;text-shadow:none;filter:none;animation:none}
 .button:not(.button-outline):not(.button-white)::before{display:none;content:none;animation:none}
 .button span[aria-hidden]{display:block;width:auto;height:auto;flex:0 0 auto;border-radius:0;background:transparent!important;font-size:27px;line-height:1;transition:transform .2s}
+/* Arrow geometry is centered in its own box instead of following a font baseline. */
+.button-arrow{display:inline-flex;align-items:center;justify-content:center;flex:none;width:1em;height:1em;line-height:1;vertical-align:middle}
+.button-arrow>svg{display:block;width:1em;height:1em;flex:none;pointer-events:none}
+.promotion-card-copy>span>.button-arrow{height:1.65em}
+.quiz-next-button>.button-arrow{height:1.4em}
+.comparison-nav .control-arrow,.scroll-top .control-arrow{display:block;width:24px;height:24px;pointer-events:none}
+.scroll-top{padding:0}
+.back-button{display:inline-flex;align-items:center;justify-content:center;gap:6px}
 .button:hover span[aria-hidden]{background:transparent!important;}
 .button-small span[aria-hidden],.header-cta span[aria-hidden]{width:auto;height:auto;border-radius:0;font-size:22px}
 .thermal-copy .button{background:#fff;border-color:#fff;color:var(--teal-dark);box-shadow:none}
@@ -822,7 +830,7 @@ h1,h2,h3,h4,
  pointer-events:none;
 }
 .button:hover span[aria-hidden]{transform:translateX(5px)}
-.quiz-next-button span[aria-hidden]{display:inline-block;transition:transform .2s ease}
+.quiz-next-button span[aria-hidden]{display:inline-flex;transition:transform .2s ease}
 .quiz-next-button:hover span[aria-hidden]{transform:translateX(5px)}
 @keyframes artbalkon-cta-shine{
  0%,48%{left:-42%}
@@ -2192,14 +2200,19 @@ main .eyebrow{display:none!important}
  }
  .mobile-menu-links>a::after,
  .mobile-menu-links .nav-services-panel>a::after{
-  content:"→";
+  content:"";
   position:absolute;
   right:3px;
+  top:50%;
+  width:16px;
+  height:16px;
+  transform:translateY(-50%);
+  background:currentColor;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M2 12h20m-6-6 6 6-6 6' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
   color:#91a4a2;
-  font-weight:400;
  }
  .mobile-menu-links>.nav-section-link{color:var(--teal)}
- .mobile-menu-links>.nav-section-link::after{content:"↓";color:var(--teal)}
+ .mobile-menu-links>.nav-section-link::after{transform:translateY(-50%) rotate(90deg);color:var(--teal)}
  .mobile-menu-links>.nav-section-start{margin-top:12px;padding-top:19px}
  .mobile-menu-contact{
   display:flex;

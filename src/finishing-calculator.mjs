@@ -1,4 +1,5 @@
 import {CALCULATOR_RATES as rates} from '../public/calculator-estimate.mjs';
+import {buttonArrow} from './button-arrow.mjs';
 const format = value => value.toLocaleString('ru-RU');
 const choices = {
  walls: [['pvc','ПВХ-панели'],['laminate','Ламинат'],['lining','Вагонка'],['parquet','Стеновой паркет']],
@@ -74,7 +75,7 @@ export function finishingCalculator() {
  ${group('lighting','Освещение','spots',false)}
  ${group('glazing','Остекление','warm',true,rates.glazing)}
  ${group('insulation','Утепление','yes',true)}
- <div class="finish-calc-result"><div class="finish-calc-price"><span class="finish-calc-result-label" data-calc-from>от</span><output data-calc-total>—</output></div><button class="button" type="button" data-calc-request>Получить расчёт <span aria-hidden="true">→</span></button></div>
+ <div class="finish-calc-result"><div class="finish-calc-price"><span class="finish-calc-result-label" data-calc-from>от</span><output data-calc-total>—</output></div><button class="button" type="button" data-calc-request>Получить расчёт ${buttonArrow()}</button></div>
  </div></form>
  <noscript><p>Для интерактивного расчёта включите JavaScript или позвоните: <a href="tel:+74951653905">+7 (495) 165-39-05</a>.</p></noscript>
  </div><figure class="finish-calc-preview">${scene()}</figure></div>
