@@ -23,7 +23,6 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
  return entry?url.replace(asset,entry.src):url;
 }).replace(/href="(\/assets\/certificates\/[^"<>]+)"/g,(_,src)=>'href="'+(responsiveImages[src]?.src||src)+'"').replace(/(data-(?:before|after)=")([^"]+)(")/g,(_,prefix,src,suffix)=>prefix+comparisonAsset(src)+suffix).replace(/<img\b[^>]*>/g,tag=>{
  const src=imageSource(tag),entry=responsiveImages[src];if(!entry)return tag;
- if(tag.includes('data-src="'))return tag.replace('data-src="'+src+'"','data-src="'+entry.src+'"');
  // Inline estimates use full-size WebP: tall cover crops can exceed thumbnail widths.
  if(tag.includes('data-estimate-image')){
   const fullSize=entry.variants?.reduce((largest,variant)=>variant.width>(largest?.width||0)?variant:largest,null)?.src||entry.src;
@@ -52,6 +51,8 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
  const dimensionedTag=declaredDimensions&&(src.startsWith('/assets/landing-gallery-v1/')||/\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b/.test(tag))
   ?tag.replace(/\bwidth="\d+"/,'width="'+entry.width+'"').replace(/\bheight="\d+"/,'height="'+entry.height+'"')
   :tag;
+ // Keep responsive candidates deferred too; the slider selects a cover-sized source on activation.
+ if(tag.includes('data-src="'))return dimensionedTag.replace('data-src="'+src+'"','data-src="'+entry.src+'"').replace('>',' data-srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" data-sizes="'+sizes+'">');
  return dimensionedTag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
 }).replace(/\/(styles\.css|app\.js)\?v=[^" ]+/g,(_,file)=>'/'+file+'?v='+fingerprint(file==='styles.css'?cssResult.code:appCode));
 import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';
@@ -66,7 +67,7 @@ const imageAsset=name=>`/assets/${/\.[a-z0-9]+$/i.test(name)?name:`${name}.webp`
 // The publicly accessible Pages preview must not compete with the production site in search.
 const baseHtml=html=>{
  if(staticOnly)html=html.replace(/(<meta name="robots" content=")[^"]+("\s*\/>|">)/,'$1noindex,follow$2');
- return base==='/'?html:html.replace(/((?:href|src|poster|data-src|data-poster|data-mobile-src|data-mobile-poster)=")\/(?!\/)/g,`$1${base}`).replace(/srcset="([^"]+)"/g,(_,value)=>`srcset="${value.replaceAll('/assets/',base+'assets/')}"`);
+ return base==='/'?html:html.replace(/((?:href|src|poster|data-src|data-poster|data-mobile-src|data-mobile-poster)=")\/(?!\/)/g,`$1${base}`).replace(/\b((?:data-)?srcset)="([^"]+)"/g,(_,attribute,value)=>`${attribute}="${value.replaceAll('/assets/',base+'assets/')}"`);
 };
 const baseCss=css=>base==='/'?css:css.replace(/url\((['"]?)\/(?!\/)/g,`url($1${base}`);
 await rm('dist',{recursive:true,force:true});

@@ -569,6 +569,15 @@ while(pendingFiles.length){
 }
 for(const file of contentFiles)assert.ok(reachableFiles.has(file),file+': content page is orphaned from the home page');
 for(const page of pages){const html=pageHtml.get(page);for(const match of html.matchAll(/srcset="([^"]+)"/g)){for(const candidate of match[1].split(',')){const url=candidate.trim().split(/\s+/)[0];if(url.startsWith('/'))await stat(join(root,base==='/'?url:url.slice(base.length-1)));}}}
+const preparedImageSources=new Set(Object.values(responsiveImages).map(entry=>entry.src));
+for(const [page,html] of pageHtml)for(const match of html.matchAll(/<img\b[^>]*\sdata-src="([^"]+)"[^>]*>/g)){
+ const tag=match[0],source=base==='/'?match[1]:'/'+match[1].slice(base.length);
+ if(!preparedImageSources.has(source))continue;
+ assert.match(tag,/\sdata-srcset="[^"]+"/,page+': deferred optimized images retain responsive candidates');
+ assert.match(tag,/\sdata-sizes="[^"]+"/,page+': deferred responsive images retain a fallback size');
+ assert.match(tag,/\ssrc="data:image\//,page+': inactive slides retain their no-request placeholder');
+ assert.doesNotMatch(tag,/\s(?:srcset|sizes)="/,page+': inactive slides must not load responsive sources before activation');
+}
 const feed=await readFile(join(root,'yandex-direct.xml'),'utf8');
 assert.ok(!/визуализац/i.test(feed),'Published advertising descriptions must use neutral customer-facing copy');
 // Every commercial header destination has one product and one matching catalog entry.
