@@ -43,6 +43,8 @@ jobs:
           php -l server/leads.php
           php -l server/mail-lib.php
           php scripts/mail.test.php
+      - name: Check atomic FTP publisher
+        run: python3 scripts/deploy-ftp.test.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload dist
@@ -63,14 +65,11 @@ jobs:
           npm run check
 
       - name: Deploy to REG.RU
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.REG_FTP_HOST }}
-          username: ${{ secrets.REG_FTP_USER }}
-          password: ${{ secrets.REG_FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ./
-          timeout: 120000
+        env:
+          FTP_HOST: ${{ secrets.REG_FTP_HOST }}
+          FTP_USER: ${{ secrets.REG_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.REG_FTP_PASSWORD }}
+        run: python3 scripts/deploy-ftp.py --local-dir dist --remote-dir .
 
       - name: Verify production redirects and form endpoint
         run: |

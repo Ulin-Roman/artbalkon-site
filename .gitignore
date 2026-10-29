@@ -5,3 +5,4 @@ work/
 dist/
 .localserve/
 *.log
+__pycache__/
