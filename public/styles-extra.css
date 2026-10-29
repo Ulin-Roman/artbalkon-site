@@ -3590,10 +3590,10 @@ p{ text-wrap:pretty }
 .footer-grid .footer-title{font-weight:600}
 .footer-grid a:not(.brand){color:#596d64}
 .footer-grid a:hover{color:var(--teal)}
-.footer-credit{padding-bottom:24px;color:var(--muted);text-align:center;overflow-wrap:anywhere}
+.footer-credit{padding-bottom:24px;color:var(--muted);text-align:left;overflow-wrap:anywhere}
 .footer-credit a{color:var(--teal);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 .footer-credit a:hover{color:var(--teal-hover)}
-@media(max-width:640px){.footer-credit{max-width:calc(100% - 160px)}}
+@media(max-width:640px){.footer-credit{padding-right:80px}}
 @media(min-width:901px){
  .before-after-grid{gap:22px}
 }
