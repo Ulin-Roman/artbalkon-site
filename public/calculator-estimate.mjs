@@ -1,10 +1,11 @@
-// These rates belong to the calculator; service and marketing prices stay separate.
+import {GLAZING_PRICES} from './glazing-prices.mjs';
+// Glazing shares the site's starting prices; other calculator rates stay independent.
 export const CALCULATOR_RATES = Object.freeze({
  walls:Object.freeze({pvc:3500,laminate:4300,lining:5200,parquet:5900}),
  ceiling:Object.freeze({pvc:3500,laminate:4300,lining:5200,stretch:4500}),
  floor:Object.freeze({linoleum:7000,laminate:7500,vinyl:9000,tile:12400}),
  exterior:Object.freeze({siding:4500,metal:5800}),
- glazing:Object.freeze({cold:11000,warm:17000}),
+ glazing:GLAZING_PRICES,
  insulation:Object.freeze({yes:2300}),
  lighting:Object.freeze({spots:1700,pendant:4500})
 });

@@ -2,15 +2,27 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {CALCULATOR_RATES,calculateFinishingEstimate} from '../public/calculator-estimate.mjs';
+import {GLAZING_PRICES} from '../public/glazing-prices.mjs';
 import {prices,finishingWallRates} from '../src/content.mjs';
 
 const reference=JSON.parse(await readFile(new URL('./fixtures/calculator-estimate-reference.json',import.meta.url),'utf8'));
 const ownDefault={walls:'laminate',ceiling:'pvc',floor:'laminate',glazing:'warm',insulation:'yes'};
 const userSelection={walls:'parquet',ceiling:'stretch',floor:'vinyl',exterior:'siding',glazing:'cold',insulation:'yes',lighting:'spots'};
 const enabledState=(length,width,selected)=>({length:String(length),width:String(width),...selected,...Object.fromEntries(Object.keys(selected).map(key=>[key+'-enabled','on']))});
+// Site prices approved on 29 October; keep the original reference fixture intact.
+// These fixed amounts also retain the original floating-point rounding edges.
+const siteGlazingTotals={
+ 100:{cold:11200,warm:17600},
+ 200:{cold:22400,warm:35200},
+ 299:{cold:33489,warm:52625},
+ 300:{cold:33601,warm:52801},
+ 400:{cold:44800,warm:70400},
+ 1200:{cold:134401,warm:211201}
+};
 
-test('calculator tariffs are isolated from published service and finishing prices',()=>{
- assert.deepEqual(CALCULATOR_RATES,reference.rates);
+test('calculator glazing shares the site prices while other work rates stay independent',()=>{
+ assert.deepEqual(CALCULATOR_RATES,{...reference.rates,glazing:{cold:prices.cold,warm:prices.warm}});
+ assert.equal(CALCULATOR_RATES.glazing,GLAZING_PRICES);
  assert.deepEqual(Object.fromEntries(['cold','warm','panoramic','insulation','finishing','repair','turnkey'].map(key=>[key,prices[key]])),{cold:7000,warm:11000,panoramic:11500,insulation:700,finishing:1900,repair:null,turnkey:null});
  assert.deepEqual(finishingWallRates,{pvc:2500,laminate:3800,lining:4000,parquet:4000,wood:4500,lipa:6600});
  assert.ok(Object.isFrozen(CALCULATOR_RATES));
@@ -18,43 +30,44 @@ test('calculator tariffs are isolated from published service and finishing price
 });
 
 for(const fixture of reference.fixtures){
- test('reference line prices match all materials at '+fixture.length+' × '+fixture.width+' cm',()=>{
+ test('site glazing and reference work amounts match at '+fixture.length+' × '+fixture.width+' cm',()=>{
   for(const [key,materials] of Object.entries(fixture.items)){
    for(const [selected,expected] of Object.entries(materials)){
     const result=calculateFinishingEstimate(enabledState(fixture.length,fixture.width,{[key]:selected}));
     assert.equal(result.valid,true,key+' '+selected);
     assert.equal(result.items.length,1,key+' '+selected);
     assert.equal(result.items[0].key,key);
-    assert.equal(result.items[0].amount,expected,key+' '+selected);
-    assert.equal(result.total,expected,key+' '+selected);
-    assert.equal(result.items[0].rate,reference.rates[key][selected]);
+    const amount=key==='glazing'?siteGlazingTotals[fixture.length][selected]:expected;
+    assert.equal(result.items[0].amount,amount,key+' '+selected);
+    assert.equal(result.total,amount,key+' '+selected);
+    assert.equal(result.items[0].rate,key==='glazing'?prices[selected]:reference.rates[key][selected]);
     assert.equal(result.items[0].quantity,key==='lighting'?(selected==='pendant'?1:fixture.quantities.lighting):fixture.quantities[key]);
    }
   }
  });
- test('reference default and pictured complete totals match at '+fixture.length+' × '+fixture.width+' cm',()=>{
+ test('complete totals replace only the glazing line at '+fixture.length+' × '+fixture.width+' cm',()=>{
   const initial=calculateFinishingEstimate(enabledState(fixture.length,fixture.width,ownDefault));
   const pictured=calculateFinishingEstimate(enabledState(fixture.length,fixture.width,userSelection));
-  assert.equal(initial.valid,true);assert.equal(initial.total,fixture.ownDefault);
-  assert.equal(pictured.valid,true);assert.equal(pictured.total,fixture.userShot);
+  assert.equal(initial.valid,true);assert.equal(initial.total,fixture.ownDefault-fixture.items.glazing.warm+siteGlazingTotals[fixture.length].warm);
+  assert.equal(pictured.valid,true);assert.equal(pictured.total,fixture.userShot-fixture.items.glazing.cold+siteGlazingTotals[fixture.length].cold);
   assert.equal(pictured.items.length,7);
   for(const [key,quantity] of Object.entries(fixture.quantities))if(key!=='lighting')assert.equal(pictured.areas[key],quantity);
  });
 }
 
-test('additional live combinations reproduce observed totals including no insulation',()=>{
- assert.equal(calculateFinishingEstimate(enabledState(300,120,userSelection)).total,256554);
- assert.equal(calculateFinishingEstimate(enabledState(300,120,{...userSelection,exterior:'metal',lighting:'pendant'})).total,259214);
+test('mixed estimates use site glazing prices including no insulation',()=>{
+ assert.equal(calculateFinishingEstimate(enabledState(300,120,userSelection)).total,237354);
+ assert.equal(calculateFinishingEstimate(enabledState(300,120,{...userSelection,exterior:'metal',lighting:'pendant'})).total,240014);
  const noInsulation=calculateFinishingEstimate(enabledState(300,120,{walls:'pvc',ceiling:'pvc',floor:'linoleum',exterior:'metal',glazing:'cold',insulation:'no',lighting:'pendant'}));
- assert.equal(noInsulation.valid,true);assert.equal(noInsulation.total,161701);
+ assert.equal(noInsulation.valid,true);assert.equal(noInsulation.total,142501);
  assert.ok(!noInsulation.items.some(item=>item.key==='insulation'));
 });
 
 test('floating-point ceil is preserved rather than rounding the area first',()=>{
  const result=calculateFinishingEstimate(enabledState(300,70,{walls:'pvc',glazing:'cold'}));
  assert.equal(result.items.find(item=>item.key==='walls').amount,50541);
- assert.equal(result.items.find(item=>item.key==='glazing').amount,52801);
- assert.equal(result.total,103342);
+ assert.equal(result.items.find(item=>item.key==='glazing').amount,33601);
+ assert.equal(result.total,84142);
 });
 
 test('disabled work and stale disabled material values contribute nothing',()=>{
@@ -95,5 +108,5 @@ test('the helper does not mutate caller state or retain mutable result objects',
  const state=Object.freeze(enabledState(200,70,userSelection)),snapshot={...state};
  const first=calculateFinishingEstimate(state);assert.deepEqual(state,snapshot);
  first.items[0].amount=0;first.areas.walls=0;
- const second=calculateFinishingEstimate(state);assert.equal(second.total,153189);assert.equal(second.items[0].amount,63956);assert.equal(second.areas.walls,10.84);
+ const second=calculateFinishingEstimate(state);assert.equal(second.total,140389);assert.equal(second.items[0].amount,63956);assert.equal(second.areas.walls,10.84);
 });

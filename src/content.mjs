@@ -1,4 +1,5 @@
 import {faqByService} from './faq-content.mjs';
+import {GLAZING_PRICES} from '../public/glazing-prices.mjs';
 import {diverseProjects} from './portfolio-diverse-v4.mjs';
 import {perspectiveProjects} from './portfolio-perspectives-v3.mjs';
 import {extraPortfolioProjects} from './portfolio-extra-v2.mjs';
@@ -11,7 +12,7 @@ export const company = {
  origin:process.env.SITE_ORIGIN || 'https://artbalkon.site', source:'https://artbalkon.pro/', operator:'ИП Симанин Артем Юрьевич', privacyEmail:'specstroydoc@mail.ru'
 };
 // Единственный источник цен для карточек, таблицы, SEO и посадочных страниц.
-export const prices = {cold:7000,warm:11000,panoramic:11500,insulation:700,finishing:1900,repair:null,turnkey:null};
+export const prices = {...GLAZING_PRICES,panoramic:11500,insulation:700,finishing:1900,repair:null,turnkey:null};
 export const finishingWallRates = {pvc:2500,laminate:3800,lining:4000,parquet:4000,wood:4500,lipa:6600};
 export const integrations = {metrikaId:113425011,webvisor:true,leadEndpoint:'/api/leads',externalScripts:[],whatsapp:company.whatsapp,telegram:company.telegram};
 export const projects = [
