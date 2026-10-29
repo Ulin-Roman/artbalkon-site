@@ -4789,6 +4789,9 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 .promotion-card-copy small,.contact-location-detail p,.contact-social,
 .cookie-notice p{font-size:var(--text-detail);font-weight:500;line-height:1.6}
 .footer-grid a:not(.brand){color:var(--muted);overflow-wrap:anywhere}
+.footer a:not(.brand,.social-icon-link){text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-skip-ink:auto}
+.footer a:not(.brand,.social-icon-link):focus-visible{color:var(--teal);text-decoration-line:underline}
+@media(hover:hover){.footer a:not(.brand,.social-icon-link):hover{color:var(--teal);text-decoration-line:underline}}
 .footer-grid .footer-title{font-size:17px;font-weight:650}
 .footer-grid a.phone{font-weight:700}
 .avito-review-author small,.avito-review-tags span,
