@@ -309,7 +309,8 @@ html{scroll-padding-top:84px}
 .contact-socials{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 15px;width:100%}
 .contact-social{display:inline-flex;align-items:center;gap:7px;color:var(--teal-dark);font-size:12px;font-weight:600}
 .contact-social:hover{color:var(--teal)}
-.contact-social img,.contact-social-vk{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;object-fit:contain;flex:0 0 auto}
+.contact-social img,.contact-social-vk{display:grid;place-items:center;width:var(--messenger-size);height:var(--messenger-size);border-radius:50%;object-fit:contain;flex:0 0 auto}
+.contact-social-max img{border-radius:0}
 .contact-social-vk{background:#0077ff;object-fit:cover}
 .contact-map{position:relative;min-height:560px;background:#e6f0ee}
 .contact-map iframe{display:block;width:100%;height:100%;min-height:560px;border:0;filter:saturate(.82) contrast(.96)}
@@ -1149,9 +1150,9 @@ h1,h2,h3,h4,
 .social-icon-link{
  display:grid;
  place-items:center;
- width:36px;
- height:36px;
- flex:0 0 36px;
+ width:var(--messenger-size);
+ height:var(--messenger-size);
+ flex:0 0 var(--messenger-size);
  overflow:hidden;
  border-radius:50%;
  transition:transform .2s ease,box-shadow .2s ease;
@@ -1167,6 +1168,7 @@ h1,h2,h3,h4,
  object-fit:contain;
 }
 .social-icon-telegram{background:linear-gradient(180deg,#39afe3,#2298d0)}
+.social-icon-max{border-radius:0}
 .social-icon-vk{
  background:#0077ff;
 }
@@ -1175,11 +1177,6 @@ h1,h2,h3,h4,
 .footer-social-icons{margin-top:15px}
 @media(max-width:640px){
  .final-social-icons{justify-content:center}
- .social-icon-link{
-  width:38px;
-  height:38px;
-  flex-basis:38px;
- }
 }
 
 /* Filled brand-color scroll-to-top control. */
@@ -3696,8 +3693,9 @@ main{background:#f5f5f7}
 /* Discourage saving and dragging site photographs. */
 img{-webkit-touch-callout:none;-webkit-user-drag:none;user-select:none}
 
-/* Header controls keep square bounds at every breakpoint, including Android zoom. */
-.site-header{--messenger-size:27px;--menu-size:40px}
+/* Messenger groups share the header's square bounds at every breakpoint. */
+:root{--messenger-size:27px}
+.site-header{--menu-size:40px}
 .site-header .header-messenger{
  width:var(--messenger-size);height:var(--messenger-size);
  min-width:var(--messenger-size);max-width:var(--messenger-size);
@@ -3717,9 +3715,9 @@ img{-webkit-touch-callout:none;-webkit-user-drag:none;user-select:none}
 }
 .site-header .menu-toggle:focus-visible{outline:2px solid #00777e;outline-offset:3px}
 .site-header .menu-toggle span{flex-shrink:0}
-@media(max-width:640px){.site-header{--messenger-size:28px;--menu-size:36px}}
-@media(max-width:480px){.site-header{--messenger-size:32px;--menu-size:32px}}
-@media(max-width:360px){.site-header{--messenger-size:28px;--menu-size:28px}}
+@media(max-width:640px){:root{--messenger-size:28px}.site-header{--menu-size:36px}}
+@media(max-width:480px){:root{--messenger-size:32px}.site-header{--menu-size:32px}}
+@media(max-width:360px){:root{--messenger-size:28px}.site-header{--menu-size:28px}}
 
 /* Topic changes use the same quiet rule as the partner brands section.
    Adjacent sections share a compact gap instead of two large paddings. */
