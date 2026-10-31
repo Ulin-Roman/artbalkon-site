@@ -3,6 +3,7 @@ import {createCalculatorSceneLoader} from './calculator-scene-loader.mjs';
 import {mountRetentionPopup} from './retention-popup.mjs';
 import {hydrateVideo,mountResponsiveVideo,mountAmbientVideo,mountVisibleActivity} from './media-lifecycle.mjs';
 import {mountPhoneMask,phoneIsValid} from './phone-mask.mjs';
+import {promotionMonth} from './promotion-month.mjs';
 (() => {
  'use strict';
  document.querySelectorAll('[data-repair-range]').forEach(range=>{
@@ -16,6 +17,26 @@ import {mountPhoneMask,phoneIsValid} from './phone-mask.mjs';
  });
  const $=s=>document.querySelector(s);
  const siteBase=new URL('.',document.currentScript.src);
+ const promotionMonths=[...document.querySelectorAll('span[data-promotion-month]')];
+ const promotionLabels=[...document.querySelectorAll('[data-promotion-label]')];
+ if(promotionMonths.length||promotionLabels.length){
+  let promotionTimer=0;
+  const syncPromotionMonth=()=>{
+   clearTimeout(promotionTimer);
+   const {month,millisecondsUntilMidnight}=promotionMonth();
+   promotionMonths.forEach(span=>{if(span.textContent!==month)span.textContent=month;});
+   promotionLabels.forEach(button=>{
+    const label=`Акция до конца ${month} — выбрать подарок`;
+    if(button.getAttribute('aria-label')!==label)button.setAttribute('aria-label',label);
+   });
+   if(!document.hidden)promotionTimer=setTimeout(syncPromotionMonth,millisecondsUntilMidnight+25);
+  };
+  syncPromotionMonth();
+  document.addEventListener('visibilitychange',syncPromotionMonth);
+  addEventListener('pageshow',syncPromotionMonth);
+  addEventListener('focus',syncPromotionMonth);
+  addEventListener('pagehide',()=>clearTimeout(promotionTimer));
+ }
  const phoneStatusDots=[...document.querySelectorAll('[data-phone-status]')];
  if(phoneStatusDots.length){
   const moscowHour=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Moscow',hour:'2-digit',hourCycle:'h23'});

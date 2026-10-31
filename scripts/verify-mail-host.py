@@ -281,6 +281,12 @@ for url in content_urls:
     assert_no_retired_portfolio_links(page_html, path)
     actual = seo_snapshot(page_html, url)
     expected_html = Path('dist' + path + 'index.html').read_text(encoding='utf-8')
+    promotion_pattern = r'<span\b(?=[^>]*\bdata-promotion-month\b)[^>]*>([^<]+)</span>'
+    expected_months = re.findall(promotion_pattern, expected_html)
+    assert len(expected_months) >= 2, 'Checked promotion must include the badge and dialog month: ' + url
+    assert re.findall(promotion_pattern, page_html) == expected_months, 'Published promotion month differs from the checked build: ' + url
+    label_pattern = r'<button\b(?=[^>]*\bdata-promotion-label\b)[^>]*aria-label="([^"]+)"'
+    assert re.findall(label_pattern, page_html) == re.findall(label_pattern, expected_html), 'Published accessible promotion label differs: ' + url
     assert actual == seo_snapshot(expected_html, url), 'Published SEO metadata differs from the checked build: ' + url
     assert actual['canonical'] == actual['og:url'] == url, 'Incorrect canonical or Open Graph URL: ' + url
     assert actual['robots'] == 'index,follow,max-image-preview:large', 'Content page must remain indexable: ' + url
@@ -289,6 +295,7 @@ for url in content_urls:
     seen_titles.add(actual['title'])
     seen_descriptions.add(actual['description'])
 print('Production SEO verified: 20 unique titles and descriptions; H1, canonical, Open Graph and JSON-LD match the checked build.')
+print('Production promotion month verified on all 20 content pages: badges and dialogs match the checked build.')
 for path in ['/privacy/', '/consent/']:
     with opener.open('https://artbalkon.site' + path, timeout=30) as response:
         actual = seo_snapshot(response.read().decode('utf-8'), path)

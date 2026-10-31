@@ -8,6 +8,7 @@ const beforeWindowSources = new Map(Object.entries(beforeWindowCorrections).map(
 const originalWindowBefore = before => { const prior = beforeGeometrySources.get(before) || before; return beforeWindowSources.get(prior) || prior; };
 import {portfolioDisplayTitles} from '../src/portfolio-titles.mjs';
 import {portfolioCaseId} from '../src/portfolio-case-ids.mjs';
+import {promotionMonth} from '../public/promotion-month.mjs';
 import {beforeWeatherAssets} from '../src/before-weather.mjs';
 import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
@@ -431,6 +432,7 @@ if(!staticOnly){
 }
 async function walk(dir){const files=[];for(const ent of await readdir(dir,{withFileTypes:true})){const path=join(dir,ent.name);files.push(...ent.isDirectory()?await walk(path):[path]);}return files;}
 const files=await walk(root),pages=files.filter(f=>f.endsWith('.html'));let refs=0;
+const currentPromotionMonth=promotionMonth().month;
 const titles=new Map(),descriptions=new Map(),canonicals=new Map(),indexedCanonicals=new Set(),contentCanonicals=new Set(),contentFiles=new Set(),pageHtml=new Map();
 for(const file of pages){
  const html=await readFile(file,'utf8'),isRedirect=html.includes('http-equiv="refresh"'),isNoindex=html.includes('name="robots" content="noindex');
@@ -464,6 +466,16 @@ for(const file of pages){
  if(redirectTargets.has(localPath.replace(/\/index\.html$/,'')))assert.ok(isRedirect,file+': retired route must contain only its redirect fallback');
  const isUtilityPage=['privacy/index.html','consent/index.html','404.html'].includes(localPath);
  const isContentPage=!isRedirect&&!isUtilityPage;
+ if(isContentPage){
+  const months=[...html.matchAll(/<span\b(?=[^>]*\bdata-promotion-month\b)[^>]*>([^<]+)<\/span>/g)].map(match=>match[1]);
+  assert.ok(months.length>=2,file+': promotion badge and dialog must expose their month');
+  assert.ok(months.every(month=>month===currentPromotionMonth),file+': promotion must use the current Moscow month');
+  const labels=[...html.matchAll(/<button\b(?=[^>]*\bdata-promotion-label\b)[^>]*>/g)];
+  assert.ok(labels.length,file+': promotion badge must expose its accessible label');
+  for(const [tag] of labels)assert.equal(tag.match(/aria-label="([^"]+)"/)?.[1],`Акция до конца ${currentPromotionMonth} — выбрать подарок`,file+': accessible promotion month must match');
+  const visibleText=html.replace(/<[^>]*>/g,'');
+  for(const [,month] of visibleText.matchAll(/до конца\s+([\p{L}]+)/gu))assert.equal(month,currentPromotionMonth,file+': no stale promotion deadline');
+ }
  if(isContentPage)contentFiles.add(file);
  const expectedRobots=staticOnly||isRedirect||isUtilityPage?'noindex,follow':'index,follow,max-image-preview:large';
  assert.ok(html.includes('<meta name="robots" content="'+expectedRobots+'">'),file+': wrong robots directive for this build and page type');
