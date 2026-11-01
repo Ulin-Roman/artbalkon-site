@@ -1,0 +1,64 @@
+{
+  "date": "2026-11-01",
+  "tool": "built-in image_gen",
+  "useCase": "precise-object-edit",
+  "source": "public/assets/home-reading-book-v4/hero.webp",
+  "generated": "C:/Users/shado/.codex/generated_images/01a14189-445b-7961-94c9-e85ec07dab6a/exec-4cad16dc-843a-48ac-9f5f-defd8ab2c3f8.png",
+  "prompt": "Use case: precise-object-edit.\nImage 1 is the EDIT TARGET: the exact currently published balcony photograph with a woman reading, an oval recessed grip on the very near RIGHT door stile. Image 2 is a HARDWARE SHAPE REFERENCE ONLY: two white stationary balcony finger pulls. Use the simple solid petal/fin design pictured on the RIGHT of Image 2, mounted vertically.\nMake exactly one tiny localized repair on Image 1: replace the oval recessed hole on the near RIGHT white uPVC APARTMENT DOOR, viewed from the BALCONY, with a realistic compact WHITE STATIONARY BALCONY PETAL PULL («балконная ручка-лепесток», «зацеп курильщика»). It is NOT a rotating window handle and NOT an interior room-side lever.\nThe correct handle has a short vertical surface-mounted rectangular base with rounded corners, and a small solid white curved raised flange/petal/wing projecting out so fingertips can pull the door shut. Match the RIGHT object in Image 2. Show its real solid thickness, side edge and a small contact shadow behind the projecting lip, so it clearly sits ON TOP of the profile. It must NOT look like an oval recess or a hole bored into the PVC. No dark oval center, no recessed well, no loop, no U bar, no L-shaped rotating lever, no spindle or escutcheon of an operating handle.\nKeep it at the same height as the existing right-side defect (near x=735,y=575 in the 784x1168 target), normal small scale, about 5–7 cm tall relative to the door, aligned to the right white vertical door profile and its perspective. Keep the door profile straight and continuous behind it. The stationary petal pull faces the balcony interior.\nPreserve the entire rest of Image 1 exactly: left window's existing normal lever handle, window and door layout, all glass, wooden walls, woman face/identity/pose/hands/clothes/book, every shelf object, furniture, plants, outside buildings, ceiling, floor, camera view, light, sun patches and shadows, colors and textures. No other changes, no reframing/cropping/zooming, no new text or objects. Preserve the full portrait composition and original aspect ratio. Output only the complete repaired photograph, never the reference catalog background.",
+  "purpose": "Replace the apparent recessed oval hole with a compact surface-mounted white stationary balcony-side petal pull, not a rotating room-side lever.",
+  "generatedMaterial": true,
+  "use": "home hero and derived Open Graph/Twitter/JSON-LD image only",
+  "sourceSha256": "a126c2be266d01ce5e281cfd5f96f8c25e883339cde6d01182f30a36074ba378",
+  "sourceDimensions": {
+    "width": 784,
+    "height": 1168
+  },
+  "generatedSha256": "41a7d86dc3859e22fbaa33025164815910f1439644d8672e653a24e1d1223800",
+  "generatedDimensions": {
+    "width": 1027,
+    "height": 1531
+  },
+  "encoding": {
+    "library": "sharp",
+    "format": "webp",
+    "quality": 92,
+    "effort": 6,
+    "resize": {
+      "fit": "fill"
+    },
+    "operations": "Technical resize to the existing hero dimensions and WebP encoding of the complete approved generated image."
+  },
+  "variants": [
+    {
+      "path": "public/assets/home-reading-book-v5/hero.webp",
+      "width": 784,
+      "height": 1168,
+      "bytes": 122936,
+      "sha256": "e55a0643ddf751ce3e21cc136dd5870bca1397802e50e3379fe325d8534aff45"
+    },
+    {
+      "path": "public/assets/home-reading-book-v5/hero-640.webp",
+      "width": 640,
+      "height": 953,
+      "bytes": 94246,
+      "sha256": "cbacfa56350fdf43201326ee155cabec3f6012c35df4d3e89132eae22aa34baf"
+    },
+    {
+      "path": "public/assets/home-reading-book-v5/hero-320.webp",
+      "width": 320,
+      "height": 477,
+      "bytes": 35974,
+      "sha256": "bd67d6bf09cf102498f6f81b353d9b0d5d733e35395747283f1ce456e1960946"
+    }
+  ],
+  "reference": {
+    "path": "work/home-handle-20261101/handle-reference.jpg",
+    "url": "https://palladium.ru/upload/medialibrary/714/balkonnyy-zatsep.jpg",
+    "page": "https://palladium.ru/podderzhka/stati/ot-zashchelki-do-grebenki-furnitura-palladium-dlya-plastikovykh-okon-i-balkonnykh-dverey/",
+    "use": "Shape reference: the solid white stationary petal pull shown at right; not published as a website image"
+  },
+  "rejectedAttempt": {
+    "generated": "C:/Users/shado/.codex/generated_images/01a14189-445b-7961-94c9-e85ec07dab6a/exec-12a0c090-beba-4e0c-9fcd-4d337c2d9047.png",
+    "reason": "The user confirmed a stationary balcony-side petal pull, not the rotating room-side lever. This attempt was not published."
+  }
+}
