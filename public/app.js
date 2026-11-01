@@ -16,6 +16,30 @@ import {promotionMonth} from './promotion-month.mjs';
   range.addEventListener('input',update);update();
  });
  const $=s=>document.querySelector(s);
+ const landingHero=$('.landing-hero');
+ if(landingHero){
+  const grid=landingHero.querySelector('.landing-grid'),ratings=landingHero.querySelector('.hero-rating-badges'),utp=landingHero.querySelector(':scope>.landing-utp');
+  if(grid&&ratings&&utp){
+   const mobile=matchMedia('(max-width:640px)');
+   let frame=0;
+   const alignUtp=()=>{
+    frame=0;
+    if(!mobile.matches){utp.style.removeProperty('--hero-utp-offset');return;}
+    const offset=Math.round((ratings.getBoundingClientRect().bottom+24-grid.getBoundingClientRect().bottom)*100)/100;
+    utp.style.setProperty('--hero-utp-offset',`${offset}px`);
+   };
+   const scheduleUtp=()=>{if(!frame)frame=requestAnimationFrame(alignUtp);};
+   if('ResizeObserver' in window){
+    const observer=new ResizeObserver(scheduleUtp);observer.observe(grid);observer.observe(ratings);
+    landingHero.querySelectorAll('.landing-copy-main>*').forEach(element=>observer.observe(element));
+   }
+   else addEventListener('resize',scheduleUtp,{passive:true});
+   mobile.addEventListener('change',scheduleUtp);
+   document.fonts?.ready.then(scheduleUtp);
+   addEventListener('pageshow',scheduleUtp);
+   alignUtp();
+  }
+ }
  const siteBase=new URL('.',document.currentScript.src);
  const promotionMonths=[...document.querySelectorAll('span[data-promotion-month]')];
  const promotionLabels=[...document.querySelectorAll('[data-promotion-label]')];

@@ -1489,7 +1489,6 @@ h1,h2,h3,h4,
 }
 @media(max-width:640px){
  .landing-hero .landing-grid{
-  position:relative;
   display:grid;
   grid-template-columns:1fr;
   grid-template-areas:"service-hero" "service-trust";
@@ -1508,12 +1507,11 @@ h1,h2,h3,h4,
   text-align:center;
  }
  .landing-hero .landing-photo{
-  position:absolute;
-  inset:0;
+  position:relative;
   grid-area:service-hero;
   width:100%;
-  height:100%;
-  min-height:0;
+  height:620px;
+  min-height:620px;
   border-radius:18px;
   box-shadow:0 16px 36px rgba(6,77,82,.16);
  }
@@ -1563,6 +1561,10 @@ h1,h2,h3,h4,
  .landing-trust span{font-size:9px}
 }
 @media(max-width:370px){
+ .landing-hero .landing-photo{
+  min-height:590px;
+  height:590px;
+ }
  .landing-hero .landing-grid{min-height:0;height:auto}
  .landing-hero .landing-grid>div:first-child{
   padding:25px 17px 18px;
@@ -2500,7 +2502,6 @@ main .eyebrow{display:none!important}
 }
 @media(max-width:640px){
  .landing-hero .landing-copy-main{
-  flex:0 1 auto;
   align-items:center;
   text-align:center;
  }
@@ -4867,10 +4868,10 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 @media(max-width:640px){
  :root{--text-body:16px;--text-detail:15px;--text-note:13px;--text-hero:18px}
  .partner-brand-card span{font-size:11px}
- /* The photo follows the copy; 64px reserves the 40px card overlap and a 24px gap. */
- .landing-hero .landing-grid>.landing-copy:first-child{padding-top:160px;padding-bottom:64px;transform:none}
+ .landing-hero .landing-copy{transform:translateY(20px)}
  .landing-hero .landing-copy-main>.landing-price{margin-block:14px}
- .landing-hero>.landing-trust.landing-utp{margin-top:-40px}
+ /* Lift only the cards; keep the full photo and the copy in their original places. */
+ .landing-hero>.landing-trust.landing-utp{margin-top:var(--hero-utp-offset,-40px)}
  .landing-trust.landing-utp .trust-copy span{font-size:12px;line-height:1.4;min-height:4.2em}
  .landing-trust.company-trust .trust-copy span{font-size:12px;line-height:1.4;min-height:2.8em}
  .landing-trust.landing-utp .trust-copy strong{font-size:20px;min-height:1.2em;line-height:1.2}
