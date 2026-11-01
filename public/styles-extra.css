@@ -1489,6 +1489,7 @@ h1,h2,h3,h4,
 }
 @media(max-width:640px){
  .landing-hero .landing-grid{
+  position:relative;
   display:grid;
   grid-template-columns:1fr;
   grid-template-areas:"service-hero" "service-trust";
@@ -1507,11 +1508,12 @@ h1,h2,h3,h4,
   text-align:center;
  }
  .landing-hero .landing-photo{
-  position:relative;
+  position:absolute;
+  inset:0;
   grid-area:service-hero;
   width:100%;
-  height:620px;
-  min-height:620px;
+  height:100%;
+  min-height:0;
   border-radius:18px;
   box-shadow:0 16px 36px rgba(6,77,82,.16);
  }
@@ -1561,10 +1563,6 @@ h1,h2,h3,h4,
  .landing-trust span{font-size:9px}
 }
 @media(max-width:370px){
- .landing-hero .landing-photo{
-  min-height:590px;
-  height:590px;
- }
  .landing-hero .landing-grid{min-height:0;height:auto}
  .landing-hero .landing-grid>div:first-child{
   padding:25px 17px 18px;
@@ -2502,6 +2500,7 @@ main .eyebrow{display:none!important}
 }
 @media(max-width:640px){
  .landing-hero .landing-copy-main{
+  flex:0 1 auto;
   align-items:center;
   text-align:center;
  }
@@ -3670,7 +3669,7 @@ main{background:#f5f5f7}
 .cost-calculator-section .quiz-intro{background:#fafafb}
 .footer{background:#f5f5f7;border-top-color:#e4e5e8}
 
-/* Mobile hero photos sit behind their copy; only the lower image needs a shade. */
+/* Shade mobile photos behind the heading, price and ratings. */
 @media(max-width:640px){
 
  .landing-hero .landing-photo{z-index:0}
@@ -3679,7 +3678,7 @@ main{background:#f5f5f7}
 
  .landing-hero .landing-photo::after{
   z-index:1;
-  background:linear-gradient(180deg,rgba(3,20,21,.17) 0%,rgba(3,20,21,.38) 32%,rgba(3,20,21,.64) 58%,rgba(3,20,21,.74) 78%,rgba(3,20,21,.84) 100%);
+  background:linear-gradient(180deg,rgba(3,20,21,.22) 0%,rgba(3,20,21,.48) 32%,rgba(3,20,21,.70) 58%,rgba(3,20,21,.80) 78%,rgba(3,20,21,.88) 100%);
  }
 }
 
@@ -4868,7 +4867,8 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 @media(max-width:640px){
  :root{--text-body:16px;--text-detail:15px;--text-note:13px;--text-hero:18px}
  .partner-brand-card span{font-size:11px}
- .landing-hero .landing-copy{transform:translateY(20px)}
+ /* The photo follows the copy; 64px reserves the 40px card overlap and a 24px gap. */
+ .landing-hero .landing-grid>.landing-copy:first-child{padding-top:160px;padding-bottom:64px;transform:none}
  .landing-hero .landing-copy-main>.landing-price{margin-block:14px}
  .landing-hero>.landing-trust.landing-utp{margin-top:-40px}
  .landing-trust.landing-utp .trust-copy span{font-size:12px;line-height:1.4;min-height:4.2em}
