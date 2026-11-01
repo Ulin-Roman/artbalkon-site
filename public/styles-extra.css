@@ -3762,16 +3762,18 @@ main > .social-subscribe,
 .legal{overflow-wrap:anywhere}
 
 /* Compact privacy notice shared by every page. */
-.cookie-notice{position:fixed;z-index:90;left:20px;bottom:20px;width:350px;max-width:calc(100% - 40px);padding:24px;border:1px solid #e1e9e9;border-radius:16px;background:#fff;color:#213434;box-shadow:0 6px 30px #16333326;font-size:14px;line-height:1.55;overflow-wrap:anywhere}
+.cookie-notice{position:fixed;z-index:90;left:16px;bottom:calc(16px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:16px;width:540px;max-width:calc(100% - 32px);padding:14px 16px;border:1px solid #e1e9e9;border-radius:12px;background:#fff;color:#213434;box-shadow:0 6px 30px #16333326;overflow-wrap:anywhere}
 .cookie-notice[hidden]{display:none}
-.cookie-notice p{margin:0 0 12px}
-.cookie-notice p:first-of-type{padding-right:20px}
+.cookie-notice p{flex:1;min-width:0;margin:0;font-size:15px;font-weight:500;line-height:1.5}
 .cookie-notice a{color:#007e84;text-decoration:underline;text-underline-offset:3px}
-.cookie-notice-close{position:absolute;top:6px;right:6px;width:36px;height:36px;border:0;background:transparent;border-radius:50%;color:#536969;font-size:24px;line-height:1}
-.cookie-notice-close:hover{background:#eff5f5}
 .cookie-notice :focus-visible{outline:2px solid #007e84;outline-offset:3px}
-@media(max-width:640px){.cookie-notice{left:12px;bottom:12px;width:calc(100% - 24px);max-width:360px;padding:20px}.cookie-notice .cookie-notice-accept{display:flex;width:fit-content;margin-inline:auto}}
-.cookie-notice-accept{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:12px 18px;line-height:1}.cookie-notice-accept>span{display:block;transform:translateY(-1px)}
+.cookie-notice .cookie-notice-accept{flex:0 0 auto;justify-content:center;min-height:44px;margin:0;padding:10px 18px;font-size:14px;line-height:1.2}
+/* Leave the mobile chat launcher available while the notice is open. */
+@media(max-width:640px){
+ .cookie-notice{left:12px;bottom:calc(104px + env(safe-area-inset-bottom));max-width:calc(100% - 24px);gap:12px;padding:12px}
+ .cookie-notice .cookie-notice-accept{padding-inline:14px}
+ .cookie-notice:not([hidden]) ~ .scroll-top{visibility:hidden;pointer-events:none}
+}
 
 @media(min-width:641px){
  .glazing-benefits-copy .glazing-benefit-toggle{grid-template-columns:34px minmax(0,1fr);cursor:default;opacity:1}
@@ -4785,8 +4787,7 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
 .service-page-faq summary{font-size:20px;font-weight:650;line-height:1.45}
 .quiz-note p,
 .case-meta,.contact-location-detail small,.footer-grid p,.footer-grid a:not(.brand),
-.promotion-card-copy small,.contact-location-detail p,.contact-social,
-.cookie-notice p{font-size:var(--text-detail);font-weight:500;line-height:1.6}
+.promotion-card-copy small,.contact-location-detail p,.contact-social{font-size:var(--text-detail);font-weight:500;line-height:1.6}
 .footer-grid a:not(.brand){color:var(--muted);overflow-wrap:anywhere}
 .footer a:not(.brand,.social-icon-link){text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-skip-ink:auto}
 .footer a:not(.brand,.social-icon-link):focus-visible{color:var(--teal);text-decoration-line:underline}
