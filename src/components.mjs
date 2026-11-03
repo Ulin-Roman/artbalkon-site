@@ -151,6 +151,19 @@ const beforePhotoAsset=file=>file==='before-daytime/before-020.webp'?'glazing-co
 const beforeAfterSection=(items=beforeAfterProjects,{serviceTitle='',photoCards=false}={})=>{
  const furnitureGallery=items.length>0&&items.every(p=>p.stage==='furniture'&&p.builtIn);
  const orderedItems=[...items].sort((a,b)=>Number(beforeAfterAsset(b.after)==='before-after/after-13.jpg')-Number(beforeAfterAsset(a.after)==='before-after/after-13.jpg'));
+ // Reorder only these portfolio cards; keep the service hero slideshow unchanged.
+ if(items===serviceBeforeAfterProjects['obedinenie-balkona-s-komnatoj']){
+  const selectedTitles=[
+   'Объединение лоджии и комнаты с рабочей зоной',
+   'Объединение лоджии с кухней у стойки',
+   'Объединение балкона с комнатой у кресла'
+  ];
+  const selectedIndices=selectedTitles.map(title=>orderedItems.findIndex(project=>project.title===title));
+  if(selectedIndices.some(index=>index<3))throw new Error('Selected room-combination works were not found after the first row');
+  selectedIndices.forEach((index,firstIndex)=>{
+   [orderedItems[firstIndex],orderedItems[index]]=[orderedItems[index],orderedItems[firstIndex]];
+  });
+ }
  const projectSubject=furnitureGallery?'балкона или лоджии':/лоджи/i.test(serviceTitle)?'лоджии':/балкон/i.test(serviceTitle)?'балкона':'балкона или лоджии';
  const sectionTitle='Наши работы';
  const gallerySubtitle='До и после';
