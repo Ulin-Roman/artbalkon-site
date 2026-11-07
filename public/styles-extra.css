@@ -49,7 +49,7 @@ body{background:#fff}
 .reveal-ready .reveal{opacity:0;transform:translateY(24px)}.reveal-ready .reveal.is-visible{opacity:1;transform:none;transition:opacity .65s ease,transform .65s ease}
 @media(max-width:900px){.hero{min-height:0}.section{padding-block:74px}}
 @media(max-width:640px){.hero{padding-top:26px}.section{padding-block:60px}.section-cta{justify-content:stretch;margin-top:26px}.section-cta .button{width:100%}.thermal-copy .button{width:100%;font-size:13px}.project-image{height:360px}}
-@media(max-width:430px){.container{width:calc(100% - 32px)}.header-contact{display:none}.menu-toggle{margin-left:auto}.hero h1{font-size:35px}.project-image{height:330px}.quiz-form{padding:24px 18px}.quiz-option{min-height:78px}.final-section{padding-inline:19px}}
+@media(max-width:430px){.container{width:calc(100% - 32px)}.menu-toggle{margin-left:auto}.hero h1{font-size:35px}.project-image{height:330px}.quiz-form{padding:24px 18px}.quiz-option{min-height:78px}.final-section{padding-inline:19px}}
 @media(max-width:390px){.hero h1{font-size:32px}.project-image{height:300px}}
 @media(prefers-reduced-motion:reduce){.hero-image{animation:none}.reveal-ready .reveal{opacity:1;transform:none}.project-image img{transition:none}}
 
@@ -413,7 +413,7 @@ html{scroll-padding-top:84px}
 .partner-brand-card img{display:block;width:auto;max-width:88%;height:55px;object-fit:contain}
 .partner-brand-card span{color:var(--muted);font-size:11px;line-height:1.4;letter-spacing:.08em;text-align:center;text-transform:uppercase}
 @media(max-width:900px){.partner-brand-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.partner-brand-card{min-height:138px}}
-@media(max-width:640px){.partner-brands{padding-top:24px}.partner-brands-heading{margin-bottom:26px}.partner-brand-grid{gap:10px}.partner-brand-card{min-height:112px;gap:14px;padding:18px 12px;border-radius:13px}.partner-brand-card img{max-width:90%;height:38px}.partner-brand-card span{font-size:9px;letter-spacing:.05em}}
+@media(max-width:640px){.partner-brands-heading{margin-bottom:26px}.partner-brand-grid{gap:10px}.partner-brand-card{min-height:112px;gap:14px;padding:18px 12px;border-radius:13px}.partner-brand-card img{max-width:90%;height:38px}.partner-brand-card span{font-size:9px;letter-spacing:.05em}}
 
 /* Oval action buttons */
 .button,.quiz-next-button{border-radius:999px}
@@ -471,7 +471,6 @@ html{scroll-padding-top:84px}
 }
 @media(max-width:360px){
  .brand{width:96px}
- .header-inner{gap:5px}
  .header-contact{gap:3px}
  .header-contact .phone{font-size:9.5px}
  .header-contact .header-messenger{width:19px;height:19px}
@@ -1388,10 +1387,6 @@ h1,h2,h3,h4,
  border-radius:20px;
 }
 @media(max-width:640px){
- .landing-hero .landing-grid{
-  grid-template-areas:"service-hero";
-  gap:0;
- }
  .landing-hero>.landing-trust{
   margin-top:12px;
   gap:8px;
@@ -3185,8 +3180,6 @@ body{min-width:0;max-width:100%}
 }
 @media (min-width:641px) and (max-width:900px) {
 
- .landing-hero .landing-grid h1 { font-size:30px; }
-
  .landing-hero .landing-copy-main > .hero-description { font-size:15px; }
 }
 
@@ -3387,11 +3380,6 @@ body{min-width:0;max-width:100%}
   flex-basis:42px;
   padding:10px;
   border-radius:13px;
- }
-
- .landing-trust .trust-item{
-  min-height:118px;
-  gap:7px;
  }
 }
 
@@ -4220,7 +4208,6 @@ main > .social-subscribe,
 @media(max-width:430px){
  .landing-trust.landing-utp .trust-copy strong{font-size:18px;min-height:2.4em}
  .landing-trust.landing-utp .trust-copy span{font-size:11px;min-height:4.2em}
- .landing-trust.company-trust .trust-copy strong{font-size:18px}
 }
 
 /* One-page project estimate: a finished solution beside a single contact form. */

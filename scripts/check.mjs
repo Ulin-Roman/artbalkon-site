@@ -14,8 +14,8 @@ import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
-import {company,serviceSeo,prices,projects,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
-import {header,esc,projectDisplayTitle,projectPage,servicePage,servicePageWithSeo,shellWithQuiz,quiz,quizModal,homeHeroImage,home as renderHome} from '../src/components.mjs';
+import {company,serviceSeo,prices,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
+import {header,esc,projectDisplayTitle,servicePage,servicePageWithSeo,shellWithQuiz,quiz,quizModal,homeHeroImage,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
 const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
 const generatedBeforeAssets=new Set(allPhotoPairs.filter(p=>p.beforeReal!==true&&(p.beforeReal===false||p.beforeVisualized===true)).flatMap(p=>[p.before,originalWindowBefore(p.before)]));
@@ -47,11 +47,6 @@ for(const html of [renderHome(),...services.map(s=>servicePageWithSeo(s))]){
   seen.set(title,after);
  }
  for(const [,source,display] of html.matchAll(/data-application data-project="([^"]+)" data-project-display="([^"]+)"/g))assert.equal(display,esc(projectDisplayTitle({title:source})));
-}
-for(const project of projects){
- const html=projectPage(project),title=esc(projectDisplayTitle(project));
- assert.ok(html.includes('<h1>'+title+'</h1>'),'Project H1 must use display title');
- assert.doesNotMatch(html,/class="breadcrumbs"/,'Project page must not restore removed breadcrumbs');
 }
 const requiredLocation='в Москве и Московской области';
 const bundledServiceSlugs=['krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone'];

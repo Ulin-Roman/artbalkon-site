@@ -4559,23 +4559,6 @@
       }
     ]
   },
-  "/assets/service-before-after/cold-loggia-finished-12-after.png": {
-    "src": "/assets/responsive/cf542b6dc9efecc0-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/cf542b6dc9efecc0-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/cf542b6dc9efecc0-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/cf542b6dc9efecc0-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
   "/assets/service-before-after/cold-ordinary-03-before.webp": {
     "src": "/assets/responsive/c5ecca1cc1e28bd2-763.webp",
     "variants": [
@@ -4987,23 +4970,6 @@
       },
       {
         "src": "/assets/responsive/3d9644b3fb00836e-1086.webp",
-        "width": 1086
-      }
-    ]
-  },
-  "/assets/service-before-after/furniture-interior-v2-02-after.webp": {
-    "src": "/assets/responsive/7600347c92dce5b8-1086.webp",
-    "variants": [
-      {
-        "src": "/assets/responsive/7600347c92dce5b8-320.webp",
-        "width": 320
-      },
-      {
-        "src": "/assets/responsive/7600347c92dce5b8-640.webp",
-        "width": 640
-      },
-      {
-        "src": "/assets/responsive/7600347c92dce5b8-1086.webp",
         "width": 1086
       }
     ]

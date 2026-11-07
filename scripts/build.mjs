@@ -6,6 +6,7 @@ import {optimizeCss,imageSource} from './optimize.mjs';
 import {renderDirectFeed} from './direct-feed.mjs';
 import {deduplicatePublishedAssets} from './deduplicate-assets.mjs';
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
+const cottageGalleryPreviews=JSON.parse(await readFile('src/cottage-gallery-previews.json','utf8'));
 const appSource=await readFile('public/app.js','utf8');
 const sourceText=(await Promise.all((await readdir('src')).filter(n=>/\.(mjs|html)$/.test(n)).map(n=>readFile('src/'+n,'utf8')))).join('\n')+appSource+'\n'+await readFile(new URL(import.meta.url),'utf8');
 const cssResult=await optimizeCss((await readFile('public/styles.css','utf8'))+'\n'+(await readFile('public/styles-extra.css','utf8')),sourceText);
@@ -18,7 +19,7 @@ const appCode=appBundle.outputFiles[0].text;
 const fingerprint=text=>createHash('sha256').update(text).digest('hex').slice(0,12);
 // Use the prepared full-size WebP in comparisons as well as thumbnails.
 const comparisonAsset=src=>responsiveImages[src.startsWith('/')?src:'/'+src]?.src.slice(1)||src;
-const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,url=>{
+const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,url=>{
  const asset='/assets/'+url.split('/assets/')[1],entry=responsiveImages[asset];
  return entry?url.replace(asset,entry.src):url;
 }).replace(/href="(\/assets\/certificates\/[^"<>]+)"/g,(_,src)=>'href="'+(responsiveImages[src]?.src||src)+'"').replace(/(data-(?:before|after)=")([^"]+)(")/g,(_,prefix,src,suffix)=>prefix+comparisonAsset(src)+suffix).replace(/<img\b[^>]*>/g,tag=>{
@@ -30,6 +31,7 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
  }
  // Cover crops need enough source pixels for both the card width and height.
  const finishingPhoto=tag.match(/data-finishing-photo="(\d+)"/);
+ const isPortfolioThumbnail=tag.includes('width="960"');
  let sizes;
  if(finishingPhoto){
   const ratio=entry.width/entry.height,small=Number(finishingPhoto[1])<2;
@@ -45,7 +47,7 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
   };
   sizes='(max-width:640px) max(calc((100vw - 80px) / 2), '+Math.ceil(190*ratio*1.025)+'px), (max-width:900px) '+gallerySize(430,215,300)+'px, '+gallerySize(460,210,285)+'px';
  }else if(src.startsWith('/assets/glazing-choice-v2/'))sizes='(max-width:760px) calc(100vw - 58px), (max-width:1100px) 50vw, 614px';
- else sizes=tag.includes('width="960"')?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
+ else sizes=isPortfolioThumbnail?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  // Keep the encoded aspect ratio before the first paint, including service heroes.
  const declaredDimensions=Number.isSafeInteger(entry.width)&&entry.width>0&&Number.isSafeInteger(entry.height)&&entry.height>0;
  const dimensionedTag=declaredDimensions&&(src.startsWith('/assets/landing-gallery-v1/')||/\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b/.test(tag))
@@ -53,7 +55,10 @@ const optimizeHtml=html=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,
   :tag;
  // Keep responsive candidates deferred too; the slider selects a cover-sized source on activation.
  if(tag.includes('data-src="'))return dimensionedTag.replace('data-src="'+src+'"','data-src="'+entry.src+'"').replace('>',' data-srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" data-sizes="'+sizes+'">');
- return dimensionedTag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
+ // Only the cottage portfolio needs this intermediate preview width.
+ const preview=pagePath==='/osteklenie-kottedzhej/'&&isPortfolioThumbnail?cottageGalleryPreviews[entry.src]:undefined;
+ const variants=preview?[...entry.variants,preview].sort((a,b)=>a.width-b.width):entry.variants;
+ return dimensionedTag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+entry.src+'"') .replace('>',' srcset="'+variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
 }).replace(/\/(styles\.css|app\.js)\?v=[^" ]+/g,(_,file)=>'/'+file+'?v='+fingerprint(file==='styles.css'?cssResult.code:appCode));
 import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';
 import {company,services,serviceSeo,integrations} from '../src/content.mjs';
@@ -80,6 +85,7 @@ await bundleScript({entryPoints:['public/calculator-scene.mjs'],outfile:'dist/ca
 await rm('dist/styles-extra.css');
 // Only bundled scripts are published; the drawing module stays separate and lazy.
 await rm('dist/calculator-estimate.mjs');
+await rm('dist/glazing-prices.mjs');
 await rm('dist/calculator-scene-loader.mjs');
 await rm('dist/calculator-scene.mjs');
 await rm('dist/retention-popup.mjs');
@@ -88,7 +94,7 @@ await rm('dist/phone-mask.mjs');
 await rm('dist/promotion-month.mjs');
 await writeFile('dist/.nojekyll','');
 const routes=[];
-async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(optimizeHtml(shell(body,{path,...meta}))));if(!meta.noindex)routes.push(path);}
+async function page(path,body,meta={}){const dir='dist'+path;await mkdir(dir,{recursive:true});await writeFile(dir+'index.html',baseHtml(optimizeHtml(shell(body,{path,...meta}),path)));if(!meta.noindex)routes.push(path);}
 const permanentRedirects=[];
 async function redirect(path,target,label){
  const dir='dist'+path,destination=base==='/'?target:base+target.slice(1),canonical=company.origin.replace(/\/$/,'')+target.split('#')[0];
