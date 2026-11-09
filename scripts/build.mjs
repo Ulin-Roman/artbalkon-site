@@ -147,6 +147,9 @@ ${rewriteRedirects}
  # THE_REQUEST excludes internal DirectoryIndex and ErrorDocument rewrites.
  RewriteCond %{THE_REQUEST} "\s/+((?:[^?\s]*/)?)index\.html(?:[?\s])"
  RewriteRule ^(?:.*/)?index\.html$ ${canonicalOrigin}/%1 [R=301,L,NE]
+ # Serve the same favicon directly on all mirrors while pages stay canonical.
+ RewriteCond %{REQUEST_FILENAME} -f
+ RewriteRule ^favicon\.ico$ - [L]
  # Capture the raw request path so percent-encoded characters stay encoded.
  RewriteCond %{HTTP_HOST} ^www\.artbalkon\.site(?::\d+)?$ [NC]
  RewriteCond %{THE_REQUEST} "\s(/[^?\s]*)(?:[?\s])"

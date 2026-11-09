@@ -220,48 +220,40 @@ assert b'calculator-scene-ready' in css and b'100svh' in css, 'Published styles 
 robots = urllib.request.urlopen('https://artbalkon.site/robots.txt?technical-check=1', timeout=30).read().decode('utf-8')
 assert 'Sitemap: https://artbalkon.site/sitemap.xml' in robots, 'Production sitemap must remain discoverable'
 
-# Search robots may select any advertised icon, so verify every current format.
-favicon_types = {
-    '/favicon.svg': {'image/svg+xml'},
-    '/favicon.ico': {'image/x-icon', 'image/vnd.microsoft.icon'},
-    '/favicon.png': {'image/png'},
-    '/apple-touch-icon.png': {'image/png'},
-}
-favicon_urls = None
+# Keep one stable search favicon, with an independent Apple touch icon.
+origin = 'https://artbalkon.site'
+favicon_path = '/favicon.ico'
+touch_icon_path = '/apple-touch-icon.png'
 for label, page_html in [('home', html), ('finishing', finishing_html)]:
     links = FaviconLinks(page_html).links
-    icons = {}
-    for attributes in links:
-        href = attributes.get('href')
-        assert href, 'Favicon needs a URL: ' + label
-        url = urllib.parse.urljoin('https://artbalkon.site/', href)
-        parsed = urllib.parse.urlsplit(url)
-        assert parsed.scheme == 'https' and parsed.netloc == 'artbalkon.site', 'Favicon must use the production origin: ' + url
-        assert parsed.path in favicon_types, 'Unexpected favicon link: ' + url
-        if attributes.get('type'):
-            assert attributes['type'] in favicon_types[parsed.path], 'Incorrect favicon link type: ' + url
-        assert parsed.path not in icons, 'Repeated favicon link: ' + label + ' ' + parsed.path
-        icons[parsed.path] = url
-    assert set(icons) == set(favicon_types), 'Missing favicon formats: ' + label
-    if favicon_urls is None:
-        favicon_urls = icons
-    else:
-        assert icons == favicon_urls, 'Home and internal page must advertise the same favicons'
+    assert len(links) == 2, 'Expected one favicon and one Apple touch icon: ' + label
+    icons = {link.get('rel'): link for link in links}
+    assert set(icons) == {'icon', 'apple-touch-icon'}, 'Unexpected icon links: ' + label
+    assert icons['icon'].get('href') == favicon_path, 'Expected a stable root favicon URL: ' + label
+    assert icons['icon'].get('type') == 'image/vnd.microsoft.icon', 'Incorrect favicon link type: ' + label
+    assert icons['apple-touch-icon'].get('href') == touch_icon_path, 'Incorrect Apple touch icon URL: ' + label
+
 robot_rules = urllib.robotparser.RobotFileParser()
 robot_rules.parse(robots.splitlines())
-favicon_results = []
-for asset, url in favicon_urls.items():
+for asset in [favicon_path, touch_icon_path]:
     for user_agent in ['YandexBot', 'YandexFavicons', 'YandexImages', '*']:
-        assert robot_rules.can_fetch(user_agent, url), 'robots.txt blocks favicon for ' + user_agent + ': ' + asset
+        assert robot_rules.can_fetch(user_agent, origin + asset), 'robots.txt blocks favicon for ' + user_agent + ': ' + asset
+
+favicon_checks = [
+    (f'{scheme}://{host}', favicon_path, 'image/vnd.microsoft.icon')
+    for scheme in ['http', 'https']
+    for host in ['artbalkon.site', 'www.artbalkon.site']
+]
+favicon_checks.append((origin, touch_icon_path, 'image/png'))
+for host, asset, mime_type in favicon_checks:
+    url = host + asset
     request = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)'})
     with opener.open(request, timeout=30) as response:
-        assert response.status == 200 and not response.headers.get('Location'), 'Favicon must return HTTP 200 directly: ' + asset
-        content_type = response.headers.get_content_type()
-        assert content_type in favicon_types[asset], 'Incorrect favicon Content-Type: ' + asset + ' ' + content_type
+        assert response.status == 200 and not response.headers.get('Location'), 'Favicon must return HTTP 200 directly: ' + url
+        assert response.headers.get_content_type() == mime_type, 'Incorrect favicon Content-Type: ' + url
         icon = response.read()
-    assert icon == Path('dist' + asset).read_bytes(), 'Published favicon differs from the checked build: ' + asset
-    favicon_results.append({'path': asset, 'type': content_type, 'bytes': len(icon)})
-print('Production favicons verified on home and finishing page:', json.dumps(favicon_results))
+    assert icon == Path('dist' + asset).read_bytes(), 'Published favicon differs from the checked build: ' + url
+print('Production favicon verified on home, finishing page and all four mirrors.')
 
 sitemap = urllib.request.urlopen('https://artbalkon.site/sitemap.xml?technical-check=1', timeout=30).read().decode('utf-8')
 content_urls = re.findall(r'<loc>([^<]+)</loc>', sitemap)
