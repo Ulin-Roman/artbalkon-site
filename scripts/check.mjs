@@ -646,10 +646,6 @@ for(const entry of feedOffers){
  const amount=Number(hero.match(/<span class="hero-price-amount">([^<]*)<\/span>/)?.[1].replace(/\D/g,''));
  assert.ok(amount>0,'Landing must expose a positive starting amount: '+slug);
  assert.ok(hero.replace(/<[^>]*>/g,'').startsWith('от '),'Landing amount is a starting price: '+slug);
- assert.ok(price,'Advertising price is required when published on the landing: '+slug);
- assert.equal(price[1],' from="true"','Advertising price must retain the minimum-price qualifier: '+slug);
- assert.equal(Number(price[2]),amount,'Advertising amount must match the landing hero: '+slug);
- assert.match(body,/<currencyId>RUB<\/currencyId>/,'Advertising currency is RUB: '+slug);
  const perSquareMetre=/<small class="hero-price-unit">\/м²<\/small>/.test(hero);
  assert.equal(structuredOffer?.['@type'],'Offer','Published starting price needs a structured offer: '+slug);
  assert.equal(structuredOffer.url,entry.url,'Structured offer must point to its commercial page: '+slug);
@@ -657,15 +653,24 @@ for(const entry of feedOffers){
  assert.equal(structuredOffer.price,undefined,'A starting rate must not be advertised as a fixed structured price: '+slug);
  const specification=structuredOffer.priceSpecification;
  assert.equal(specification?.['@type'],perSquareMetre?'UnitPriceSpecification':'PriceSpecification','Structured unit must match the visible starting rate: '+slug);
- assert.equal(specification.minPrice,amount,'Structured minimum price must be a number matching the visible hero and feed: '+slug);
+ assert.equal(specification.minPrice,amount,'Structured minimum price must be a number matching the visible hero: '+slug);
  assert.equal(specification.price,undefined,'Structured starting rate must retain its minimum-price meaning: '+slug);
  assert.equal(specification.priceCurrency,'RUB','Structured price currency is RUB: '+slug);
  assert.equal(specification.unitText,perSquareMetre?'м²':undefined,'Only a rate per square metre may carry the square-metre unit: '+slug);
+ if(slug==='uteplenie-balkonov'){
+  assert.doesNotMatch(body,/<(?:price|currencyId|sales_notes)\b/,'Insulation ads must not carry separate pricing fields');
+  assert.doesNotMatch(entry.name+' '+entry.description,/\u20bd/,'Insulation ads must omit the rate from their copy');
+  continue;
+ }
+ assert.ok(price,'Advertising price is required when published on the landing: '+slug);
+ assert.equal(price[1],' from="true"','Advertising price must retain the minimum-price qualifier: '+slug);
+ assert.equal(Number(price[2]),amount,'Advertising amount must match the landing hero: '+slug);
+ assert.match(body,/<currencyId>RUB<\/currencyId>/,'Advertising currency is RUB: '+slug);
  assert.equal(body.includes('<sales_notes>Цена за 1 м²</sales_notes>'),perSquareMetre,'Advertising unit must match the landing: '+slug);
  assert.ok(entry.description.includes(`Цена от ${amount.toLocaleString('ru-RU')} ₽${perSquareMetre?'/м²':''}.`),'Description must preserve the minimum amount and unit: '+slug);
  pricedFeedOffers++;
 }
-assert.equal(pricedFeedOffers,18,'Only the 18 services with published starting prices may carry an advertising price');
+assert.equal(pricedFeedOffers,17,'The 17 advertised starting rates must match their landing pages');
 for(const [,body]of feed.matchAll(/<collection id="[^"]+">([\s\S]*?)<\/collection>/g))assert.doesNotMatch(body,/<(?:price|currencyId|sales_notes)\b/,'Catalogs must keep their supported descriptive fields');
 for(const [id,path] of Object.entries({101:'/osteklenie-balkonov/',102:'/uteplenie-balkonov/',103:'/otdelka-balkonov/',104:'/',106:'/osteklenie-kottedzhej/',107:'/holodnoe-osteklenie/',108:'/teploe-osteklenie/',109:'/panoramnoe-osteklenie/',110:'/frantsuzskoe-osteklenie/',111:'/remont-balkonov/'})){
  assert.equal(feedOffers.find(entry=>entry.id===id)?.url,feedRoot+path,'Existing advertising ID must retain its destination: '+id);

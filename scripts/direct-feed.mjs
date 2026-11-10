@@ -26,7 +26,9 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   if(width!==1900||height!==1412)throw Error(`Feed picture must be 1900×1412, got ${width}×${height}: ${asset}`);
   const hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
   const title=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
-  const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
+  const startingPrice=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
+  // Direct can show the insulation rate as a fixed total, so omit it from the feed.
+  const price=slug==='uteplenie-balkonov'?null:startingPrice;
   if(price!=null&&!(price>0))throw Error(`Invalid feed price: ${slug}`);
   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
   const priceText=price?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
