@@ -159,7 +159,7 @@ html{scroll-padding-top:104px}
  pointer-events:none;
  z-index:1;
 }
-.before-after-card .before-after-preview>span::after{width:min(56%,128px)}
+.comparison-modal-grid>figure::after{width:min(56%,128px)}
 .glazing-choice-media,
 .finishing-style-gallery figure,
 .thermal-photo,
