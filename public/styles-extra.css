@@ -159,7 +159,7 @@ html{scroll-padding-top:104px}
  pointer-events:none;
  z-index:1;
 }
-.comparison-modal-grid>figure::after{width:min(56%,128px)}
+.comparison-modal-grid>figure::after{width:var(--comparison-watermark-width,44%)}
 .glazing-choice-media,
 .finishing-style-gallery figure,
 .thermal-photo,
@@ -440,7 +440,12 @@ html{scroll-padding-top:84px}
 .avito-review-author small{color:var(--muted);font-size:11px}
 .avito-review-stars{margin:7px 0 3px;font-size:13px}
 .avito-review p{color:#303635;font-size:13px;line-height:1.5}
-.avito-reviews-widget>.button{width:100%;min-height:48px;margin-top:18px}
+.avito-reviews-widget>.reviews-avito-button{
+ align-self:center;
+ width:min(100%,290px);
+ margin-top:18px;
+ text-align:center;
+}
 @media(max-width:1000px){.reviews-widget-layout{grid-template-columns:1fr}.yandex-reviews-widget,.avito-reviews-widget{width:100%;max-width:760px;margin-inline:auto}}
 @media(max-width:640px){.reviews-live-section .section-heading{margin-bottom:28px}.yandex-reviews-widget,.avito-reviews-widget{border-radius:14px}.yandex-reviews-widget iframe{height:560px}.avito-reviews-widget{height:auto;min-height:590px;padding:23px 19px}.avito-reviews-head{gap:14px}.avito-rating strong{font-size:38px}.avito-review-list{overflow:visible}.avito-review p{font-size:12px}}
 
@@ -3189,6 +3194,7 @@ body{min-width:0;max-width:100%}
   translate:-50% 0;
  }
  .yandex-review-button-more{right:18px;bottom:28px;left:18px;translate:none;white-space:normal;text-align:center}
+ .avito-reviews-widget>.reviews-avito-button{width:100%}
 }
 
 /* Keep the price promise directly beneath and centred to its CTA. */

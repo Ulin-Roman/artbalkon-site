@@ -380,6 +380,7 @@ import {promotionMonth} from './promotion-month.mjs';
   document.addEventListener('keydown',e=>{if(!['Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','Enter',' '].includes(e.key))return;comparisonOpenedByPointer=false;document.querySelectorAll('[data-comparison].is-pointer-dialog-return').forEach(card=>card.classList.remove('is-pointer-dialog-return'));});
   const beforeImage=$('#comparison-before'),afterImage=$('#comparison-after'),beforeLabel=$('#comparison-before-label'),afterLabel=$('#comparison-after-label'),comparisonTitle=$('#comparison-title');
   const comparisonCards=[...document.querySelectorAll('[data-comparison]')],comparisonPrev=comparisonModal.querySelector('.comparison-prev'),comparisonNext=comparisonModal.querySelector('.comparison-next');
+  const watermarkPreview=comparisonCards[0]?.querySelector('.before-after-preview>span');
   let comparisonIndex=0;
   const fitComparison=()=>{
    if(!comparisonModal.open||![beforeImage,afterImage].every(img=>img.complete&&img.naturalWidth))return;
@@ -389,6 +390,12 @@ import {promotionMonth} from './promotion-month.mjs';
    const mobile=matchMedia('(max-width:640px)').matches;
    const padding=parseFloat(getComputedStyle(shell).paddingLeft)+parseFloat(getComputedStyle(shell).paddingRight);
    const gap=parseFloat(getComputedStyle(grid).columnGap)||0;
+   // Carry over the visible preview's proportion, including its width limit.
+   const previewWidth=watermarkPreview?.getBoundingClientRect().width;
+   if(previewWidth){
+    const watermarkWidth=parseFloat(getComputedStyle(watermarkPreview,'::after').width);
+    if(watermarkWidth>0)comparisonModal.style.setProperty('--comparison-watermark-width',`${100*watermarkWidth/previewWidth}%`);
+   }
    const height=Math.max(120,innerHeight-180);
    const contentWidth=height*(mobile?Math.max(...ratios):ratios[0]+ratios[1])+(mobile?0:gap);
    comparisonModal.style.width=Math.min(1480,innerWidth-(mobile?20:48),contentWidth+padding)+'px';
