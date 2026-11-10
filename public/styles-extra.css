@@ -151,12 +151,6 @@ html{scroll-padding-top:104px}
  pointer-events:none;
  z-index:1;
 }
-.comparison-modal-grid>figure::after{
- inset:50% auto auto 50%;
- width:min(44%,240px);
- opacity:.48;
- transform:translate(-50%,-50%);
-}
 .repair-compare::after,
 .glazing-benefits-photo::before,
 .project-estimate-photo:not(.project-estimate-photo--gift)::after{
