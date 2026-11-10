@@ -25,31 +25,32 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   const {width,height}=jpegDimensions(bytes);
   if(width!==1900||height!==1412)throw Error(`Feed picture must be 1900×1412, got ${width}×${height}: ${asset}`);
   const hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
-  const title=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
-  const startingPrice=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
-  // Direct can show the insulation rate as a fixed total, so omit it from the feed.
-  const price=slug==='uteplenie-balkonov'?null:startingPrice;
-  if(price!=null&&!(price>0))throw Error(`Invalid feed price: ${slug}`);
-  const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
-  const priceText=price?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
-  const copy=directFeedDescriptions[slug];
-  if(!copy)throw Error(`Missing advertising description: ${slug}`);
-  const description=copy+priceText;
+  const category=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
+  const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
+  let title=category;
+  if(price!=null){
+   if(!(price>0))throw Error(`Invalid feed price: ${slug}`);
+   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
+   const suffix=` от ${price.toLocaleString('ru-RU')} ₽${unit}`;
+   if((title+suffix).length>56)title=category.replace(/ в Москве и МО$/,'');
+   if((title+suffix).length>56&&slug==='otdelka-balkona-derevom')title='Отделка балконов стеновым паркетом';
+   title+=suffix;
+  }
+  if(title.length>56)throw Error(`Advertising title exceeds 56 characters: ${slug}`);
+  const description=directFeedDescriptions[slug];
+  if(!description)throw Error(`Missing advertising description: ${slug}`);
   if(description.length>81)throw Error(`Advertising description exceeds 81 characters: ${slug}`);
-  return {id,slug,title,price,unit,url:slug==='balkon-pod-klyuch'?`${root}/`:`${root}/${slug}/`,picture:`${root}/assets/${asset}?v=${hash}`,description};
+  return {id,category,title,url:slug==='balkon-pod-klyuch'?`${root}/`:`${root}/${slug}/`,picture:`${root}/assets/${asset}?v=${hash}`,description};
  }));
  const date=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
  const offers=entries.map(e=>`      <offer id="${e.id}" available="true">
         <url>${xml(e.url)}</url>
-${e.price?`        <price from="true">${e.price}</price>
-        <currencyId>RUB</currencyId>
-`:''}        <categoryId>${e.id}</categoryId>
+        <categoryId>${e.id}</categoryId>
         <picture>${xml(e.picture)}</picture>
         <name>${xml(e.title)}</name>
         <description>${xml(e.description)}</description>
-${e.price&&e.unit==='/м²'?'        <sales_notes>Цена за 1 м²</sales_notes>\n':''}        <collectionId>${e.id}</collectionId>
+        <collectionId>${e.id}</collectionId>
       </offer>`).join('\n');
- // Catalogs have no dedicated price field; retain the starting rate and unit in their descriptions.
  const collections=entries.map(e=>`      <collection id="${e.id}">
         <url>${xml(e.url)}</url>
         <picture>${xml(e.picture)}</picture>
@@ -64,7 +65,7 @@ ${e.price&&e.unit==='/м²'?'        <sales_notes>Цена за 1 м²</sales_no
     <url>${xml(root)}/</url>
     <currencies><currency id="RUB" rate="1"/></currencies>
     <categories>
-${entries.map(e=>`      <category id="${e.id}">${xml(e.title)}</category>`).join('\n')}
+${entries.map(e=>`      <category id="${e.id}">${xml(e.category)}</category>`).join('\n')}
     </categories>
     <offers>
 ${offers}

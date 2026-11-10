@@ -1,5 +1,5 @@
 // Advertising copy is separate from short site-card captions.
-// Each description names the service before the dynamically appended starting price.
+// Keep advertising descriptions about the service. Starting rates appear in titles.
 export const directFeedDescriptions=Object.freeze({
  'osteklenie-balkonov':'Остекление балконов и лоджий. Подбор окон и монтаж.',
  'holodnoe-osteklenie':'Холодное остекление балконов и лоджий. Раздвижные окна.',

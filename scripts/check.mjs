@@ -604,6 +604,8 @@ for(const [label,entries] of [['products',feedOffers],['catalogs',feedCollection
  for(const entry of entries)for(const field of feedFields)assert.ok(entry[field],'Missing feed '+field+': '+entry.id);
 }
 assert.deepEqual(feedCollections,feedOffers,'Product and catalog records must have matching IDs, content and images');
+assert.doesNotMatch(feed,/<(?:price|oldprice|currencyId|sales_notes)\b/,'Feed must omit separate pricing fields');
+assert.equal(new Set(feedOffers.map(entry=>entry.name)).size,feedOffers.length,'Advertising titles must be distinct');
 const feedDescriptionIntents={
  101:[/остеклен/i,/балкон|лоджи/i],107:[/холодн/i,/остеклен/i,/балкон|лоджи/i],
  108:[/тёпл/i,/остеклен/i,/балкон|лоджи/i],109:[/панорамн/i,/остеклен/i,/балкон|лоджи/i],
@@ -619,13 +621,13 @@ const feedDescriptionIntents={
 };
 assert.equal(new Set(feedOffers.map(entry=>entry.description)).size,feedOffers.length,'Different services must retain distinct advertising descriptions');
 for(const entry of feedOffers){
- assert.ok(entry.description.length<=81,'Advertising description including the price must fit the manual text limit: '+entry.id);
- const serviceCopy=entry.description.split(' Цена от ')[0];
+ assert.ok(entry.name.length<=56,'Advertising title must fit the manual title limit: '+entry.id);
+ assert.ok(entry.description.length<=81,'Advertising description must fit the manual text limit: '+entry.id);
+ assert.doesNotMatch(entry.description,/₽/,'Advertising rates belong only in titles: '+entry.id);
  assert.ok(feedDescriptionIntents[entry.id],'Every feed service needs an intent check: '+entry.id);
- for(const intent of feedDescriptionIntents[entry.id])assert.match(serviceCopy,intent,'Advertising copy must explicitly name its service and object: '+entry.id);
+ for(const intent of feedDescriptionIntents[entry.id])assert.match(entry.description,intent,'Advertising copy must explicitly name its service and object: '+entry.id);
 }
 // Keep structured and advertising minimum prices tied to the actual first screen.
-let pricedFeedOffers=0;
 for(const entry of feedOffers){
  const slug=entry.url===feedRoot+'/'?'balkon-pod-klyuch':entry.url.slice(feedRoot.length).split('/')[1];
  const html=await readFile(join(root,slug==='balkon-pod-klyuch'?'':slug,'index.html'),'utf8');
@@ -635,11 +637,8 @@ for(const entry of feedOffers){
  assert.equal(serviceNodes.length,1,'Each commercial page needs one structured service: '+slug);
  assert.equal(serviceNodes[0].url,entry.url,'Structured and advertising services must retain the same destination: '+slug);
  const structuredOffer=serviceNodes[0].offers;
- const body=feed.match(new RegExp(`<offer id="${entry.id}"[^>]*>([\\s\\S]*?)<\\/offer>`))[1];
- const price=body.match(/<price\b([^>]*)>([^<]+)<\/price>/);
  if(!hero){
-  assert.equal(price,null,'Do not invent an advertising price absent from the landing: '+slug);
-  assert.doesNotMatch(body,/<(?:currencyId|sales_notes)>/,'Unpriced services must not carry pricing fields: '+slug);
+  assert.doesNotMatch(entry.name,/₽/,'Do not invent an advertising price absent from the landing: '+slug);
   assert.equal(structuredOffer,undefined,'Do not invent a structured offer when no price is published: '+slug);
   continue;
  }
@@ -657,21 +656,9 @@ for(const entry of feedOffers){
  assert.equal(specification.price,undefined,'Structured starting rate must retain its minimum-price meaning: '+slug);
  assert.equal(specification.priceCurrency,'RUB','Structured price currency is RUB: '+slug);
  assert.equal(specification.unitText,perSquareMetre?'м²':undefined,'Only a rate per square metre may carry the square-metre unit: '+slug);
- if(slug==='uteplenie-balkonov'){
-  assert.doesNotMatch(body,/<(?:price|currencyId|sales_notes)\b/,'Insulation ads must not carry separate pricing fields');
-  assert.doesNotMatch(entry.name+' '+entry.description,/\u20bd/,'Insulation ads must omit the rate from their copy');
-  continue;
- }
- assert.ok(price,'Advertising price is required when published on the landing: '+slug);
- assert.equal(price[1],' from="true"','Advertising price must retain the minimum-price qualifier: '+slug);
- assert.equal(Number(price[2]),amount,'Advertising amount must match the landing hero: '+slug);
- assert.match(body,/<currencyId>RUB<\/currencyId>/,'Advertising currency is RUB: '+slug);
- assert.equal(body.includes('<sales_notes>Цена за 1 м²</sales_notes>'),perSquareMetre,'Advertising unit must match the landing: '+slug);
- assert.ok(entry.description.includes(`Цена от ${amount.toLocaleString('ru-RU')} ₽${perSquareMetre?'/м²':''}.`),'Description must preserve the minimum amount and unit: '+slug);
- pricedFeedOffers++;
+ const advertisedRate=` от ${amount.toLocaleString('ru-RU')} ₽${perSquareMetre?'/м²':''}`;
+ assert.ok(entry.name.endsWith(advertisedRate),'Advertising title must match the visible starting rate and unit: '+slug);
 }
-assert.equal(pricedFeedOffers,17,'The 17 advertised starting rates must match their landing pages');
-for(const [,body]of feed.matchAll(/<collection id="[^"]+">([\s\S]*?)<\/collection>/g))assert.doesNotMatch(body,/<(?:price|currencyId|sales_notes)\b/,'Catalogs must keep their supported descriptive fields');
 for(const [id,path] of Object.entries({101:'/osteklenie-balkonov/',102:'/uteplenie-balkonov/',103:'/otdelka-balkonov/',104:'/',106:'/osteklenie-kottedzhej/',107:'/holodnoe-osteklenie/',108:'/teploe-osteklenie/',109:'/panoramnoe-osteklenie/',110:'/frantsuzskoe-osteklenie/',111:'/remont-balkonov/'})){
  assert.equal(feedOffers.find(entry=>entry.id===id)?.url,feedRoot+path,'Existing advertising ID must retain its destination: '+id);
 }
@@ -902,8 +889,6 @@ const panoramicService=services.find(s=>s.slug==='panoramnoe-osteklenie');
 const frenchHeroPrice=frenchPage.match(/<p class="landing-price">.*?<\/p>/)?.[0];
 assert.ok(frenchHeroPrice,'French hero advertises the confirmed starting rate');
 assert.equal(frenchHeroPrice,servicePage(panoramicService).match(/<p class="landing-price">.*?<\/p>/)?.[0],'French and panoramic heroes share price and unit');
-const frenchFeedOffer=feed.match(/<offer id="110"[\s\S]*?<\/offer>/)?.[0];
-assert.ok(frenchFeedOffer?.includes(`Цена от ${prices.french.toLocaleString('ru-RU')} ₽/м².`),'French feed price agrees with its landing page');
 assert.ok(header('/osteklenie-balkonov/').includes('href="/frantsuzskoe-osteklenie/"'),'Glazing navigation links to the French page');
 assert.ok(feed.includes('<offer id="110"'));
 assert.ok([...contentCanonicals].some(url=>url.endsWith('/frantsuzskoe-osteklenie/')));
