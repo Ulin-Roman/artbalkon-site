@@ -144,8 +144,6 @@ html{scroll-padding-top:104px}
 .glazing-choice-media::after,
 .finishing-style-gallery figure::after,
 .thermal-photo::after,
-.waste-removal-photo-frame::after,
-.promotion-card:not(:last-child)>.promotion-card-media::after,
 .retention-photo::before,
 .process-video-media::after,
 .home-advantages-photo::before,
@@ -165,10 +163,7 @@ html{scroll-padding-top:104px}
 .glazing-choice-media,
 .finishing-style-gallery figure,
 .thermal-photo,
-.waste-removal-photo-frame,
-.promotion-card-media,
 .finish-calc-raster-wrap{position:relative}
-.waste-removal-photo-frame{display:block;width:100%;min-width:0}
 .repair-compare::after,
 .glazing-benefits-photo::before{
  inset:clamp(9px,3%,16px) auto auto clamp(9px,3%,16px);
