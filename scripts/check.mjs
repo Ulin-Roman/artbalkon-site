@@ -623,9 +623,11 @@ assert.equal(new Set(feedOffers.map(entry=>entry.description)).size,feedOffers.l
 for(const entry of feedOffers){
  assert.ok(entry.name.length<=56,'Advertising title must fit the manual title limit: '+entry.id);
  assert.ok(entry.description.length<=81,'Advertising description must fit the manual text limit: '+entry.id);
- assert.doesNotMatch(entry.description,/₽/,'Advertising rates belong only in titles: '+entry.id);
+ assert.ok(entry.name.endsWith(' в Москве и МО'),'Advertising title must retain the full target region: '+entry.id);
+ assert.doesNotMatch(entry.name,/₽/,'Advertising rates belong only in descriptions: '+entry.id);
+ const serviceCopy=entry.description.split(' Цена от ')[0];
  assert.ok(feedDescriptionIntents[entry.id],'Every feed service needs an intent check: '+entry.id);
- for(const intent of feedDescriptionIntents[entry.id])assert.match(entry.description,intent,'Advertising copy must explicitly name its service and object: '+entry.id);
+ for(const intent of feedDescriptionIntents[entry.id])assert.match(serviceCopy,intent,'Advertising copy must explicitly name its service and object: '+entry.id);
 }
 // Keep structured and advertising minimum prices tied to the actual first screen.
 for(const entry of feedOffers){
@@ -638,7 +640,7 @@ for(const entry of feedOffers){
  assert.equal(serviceNodes[0].url,entry.url,'Structured and advertising services must retain the same destination: '+slug);
  const structuredOffer=serviceNodes[0].offers;
  if(!hero){
-  assert.doesNotMatch(entry.name,/₽/,'Do not invent an advertising price absent from the landing: '+slug);
+  assert.doesNotMatch(entry.description,/₽/,'Do not invent an advertising price absent from the landing: '+slug);
   assert.equal(structuredOffer,undefined,'Do not invent a structured offer when no price is published: '+slug);
   continue;
  }
@@ -656,8 +658,8 @@ for(const entry of feedOffers){
  assert.equal(specification.price,undefined,'Structured starting rate must retain its minimum-price meaning: '+slug);
  assert.equal(specification.priceCurrency,'RUB','Structured price currency is RUB: '+slug);
  assert.equal(specification.unitText,perSquareMetre?'м²':undefined,'Only a rate per square metre may carry the square-metre unit: '+slug);
- const advertisedRate=` от ${amount.toLocaleString('ru-RU')} ₽${perSquareMetre?'/м²':''}`;
- assert.ok(entry.name.endsWith(advertisedRate),'Advertising title must match the visible starting rate and unit: '+slug);
+ const advertisedRate=` Цена от ${amount.toLocaleString('ru-RU')} ₽${perSquareMetre?'/м²':''}.`;
+ assert.ok(entry.description.endsWith(advertisedRate),'Advertising description must match the visible starting rate and unit: '+slug);
 }
 for(const [id,path] of Object.entries({101:'/osteklenie-balkonov/',102:'/uteplenie-balkonov/',103:'/otdelka-balkonov/',104:'/',106:'/osteklenie-kottedzhej/',107:'/holodnoe-osteklenie/',108:'/teploe-osteklenie/',109:'/panoramnoe-osteklenie/',110:'/frantsuzskoe-osteklenie/',111:'/remont-balkonov/'})){
  assert.equal(feedOffers.find(entry=>entry.id===id)?.url,feedRoot+path,'Existing advertising ID must retain its destination: '+id);

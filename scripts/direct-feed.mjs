@@ -26,19 +26,15 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   if(width!==1900||height!==1412)throw Error(`Feed picture must be 1900×1412, got ${width}×${height}: ${asset}`);
   const hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
   const category=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
-  const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
-  let title=category;
-  if(price!=null){
-   if(!(price>0))throw Error(`Invalid feed price: ${slug}`);
-   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
-   const suffix=` от ${price.toLocaleString('ru-RU')} ₽${unit}`;
-   if((title+suffix).length>56)title=category.replace(/ в Москве и МО$/,'');
-   if((title+suffix).length>56&&slug==='otdelka-balkona-derevom')title='Отделка балконов стеновым паркетом';
-   title+=suffix;
-  }
+  const title=slug==='otdelka-balkona-derevom'?'Отделка балконов стеновым паркетом в Москве и МО':category;
   if(title.length>56)throw Error(`Advertising title exceeds 56 characters: ${slug}`);
-  const description=directFeedDescriptions[slug];
-  if(!description)throw Error(`Missing advertising description: ${slug}`);
+  const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
+  if(price!=null&&!(price>0))throw Error(`Invalid feed price: ${slug}`);
+  const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
+  const priceText=price!=null?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
+  const copy=directFeedDescriptions[slug];
+  if(!copy)throw Error(`Missing advertising description: ${slug}`);
+  const description=copy+priceText;
   if(description.length>81)throw Error(`Advertising description exceeds 81 characters: ${slug}`);
   return {id,category,title,url:slug==='balkon-pod-klyuch'?`${root}/`:`${root}/${slug}/`,picture:`${root}/assets/${asset}?v=${hash}`,description};
  }));
