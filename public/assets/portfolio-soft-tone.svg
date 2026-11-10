@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <filter id="soft-tone" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feColorMatrix in="SourceGraphic" type="saturate" values="0.72" result="muted"/>
+    <!-- More red and green than blue means a stronger correction in warm areas. -->
+    <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  2.75 1.25 -4 0 -0.07" result="warmMask"/>
+    <feComposite in="muted" in2="warmMask" operator="in" result="softened"/>
+    <feMerge>
+      <feMergeNode in="SourceGraphic"/>
+      <feMergeNode in="softened"/>
+    </feMerge>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0 0.25 0.5 0.75 0.965"/>
+      <feFuncG type="table" tableValues="0 0.25 0.5 0.75 0.965"/>
+      <feFuncB type="table" tableValues="0 0.25 0.5 0.75 0.965"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
