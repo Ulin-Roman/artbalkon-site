@@ -445,6 +445,16 @@ for(const file of pages){
   assert.ok(popup.includes('href="tel:'+company.tel+'"'),file+': Callibri-compatible canonical phone');
  }
  checkMarkup(html,file);
+ const leadForms=[...html.matchAll(/<form\b(?=[^>]*\bdata-lead-form=)[^>]*>[\s\S]*?<\/form>/g)];
+ for(const [form] of leadForms){
+  const submitButtons=[...form.matchAll(/<button\b(?=[^>]*\btype="submit")[^>]*>/g)];
+  assert.ok(submitButtons.length,file+': lead form needs a submit button');
+  for(const [button] of submitButtons)assert.match(button,/\sdisabled(?:\s|=|>)/,file+': submit must stay disabled until its JavaScript listener is attached');
+ }
+ if(leadForms.length){
+  const noScriptBlocks=[...html.matchAll(/<noscript>[\s\S]*?<\/noscript>/g)];
+  assert.ok(noScriptBlocks.some(([block])=>block.includes('href="tel:'+company.tel+'"')),file+': no-JavaScript fallback needs a callable phone number');
+ }
  // A hero must reserve the encoded image ratio before it has finished loading.
  for(const [tag] of html.matchAll(/<img\b(?=[^>]*\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b)[^>]*>/g)){
   const source=tag.match(/\bsrc="([^"]+)"/)?.[1];
@@ -532,10 +542,10 @@ for(const file of pages){
   if(match[0].includes('src="https://mc.yandex.ru/watch/113425011"')){assert.ok(match[0].includes('alt=""'),'tracking pixel must have empty alt');continue;}
   if(match[0].includes('class="final-cta-background"')){
    assert.match(match[0],/\salt=""/,'decorative footer photo must have empty alt');
-   for(const attribute of ['role="presentation"','aria-hidden="true"','loading="lazy"','decoding="async"'])assert.ok(match[0].includes(attribute),'decorative footer photo missing '+attribute);
+   for(const attribute of ['aria-hidden="true"','loading="lazy"','decoding="async"'])assert.ok(match[0].includes(attribute),'decorative footer photo missing '+attribute);
   }else if(match[0].includes('class="gift-3d-fallback"')){
    assert.match(match[0],/\salt=""/,'decorative gift image must have empty alt');
-   for(const attribute of ['role="presentation"','aria-hidden="true"'])assert.ok(match[0].includes(attribute),'decorative gift image missing '+attribute);
+   assert.ok(match[0].includes('aria-hidden="true"'),'decorative gift image missing aria-hidden');
   }else assert.ok(/\salt="[^"]+"/.test(match[0]),'image alt missing');
   assert.ok(/width=/.test(match[0])&&/height=/.test(match[0]),'image dimensions missing');
  }

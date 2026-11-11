@@ -61,10 +61,31 @@ const fs=require('node:fs/promises'),path=require('node:path'),http=require('nod
    }
   }
   const name=form.locator('[name=name]');if(await name.count())await name.fill('Технический тест');await form.locator('[name=phone]').fill('+7 999 123 45 67');await form.locator('[name=consent]').check();
+  assert.equal(await form.locator('[type=submit]').isEnabled(),true,'Initialized lead form must enable its submit button');
   return form;
  }
  async function submit(form){await form.evaluate(el=>el.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true})));}
  try{
+  // An unavailable script must never expose contacts in a native GET submission.
+  for(const javaScriptEnabled of [false,true]){
+   const page=await browser.newPage({viewport:{width:375,height:812},javaScriptEnabled,reducedMotion:'reduce'});
+   await page.route('**/*',route=>{
+    const url=new URL(route.request().url());
+    return url.origin===origin&&url.pathname!=='/app.js'?route.continue():route.abort();
+   });
+   await page.goto(origin+'/',{waitUntil:'domcontentloaded'});
+   assert.equal(await page.locator('[data-lead-form] [type=submit]').evaluateAll(buttons=>buttons.every(button=>button.disabled)),true,'Uninitialized lead submit is active');
+   if(!javaScriptEnabled)assert.ok(await page.locator('main noscript a[href="tel:+74951653905"]').count()>0,'No-JavaScript fallback must show a callable phone number');
+   let navigations=0;page.on('request',request=>{if(request.isNavigationRequest())navigations++;});
+   await page.locator('[data-lead-form=contact]').evaluate(form=>{
+    form.elements.name.value='Технический тест';form.elements.phone.value='9991234567';form.elements.consent.checked=true;
+    form.querySelector('[type=submit]').click();form.elements.phone.focus({preventScroll:true});
+   });
+   await page.keyboard.press('Enter');await page.waitForTimeout(100);
+   assert.equal(navigations,0,'Uninitialized form sent a native request');
+   assert.equal(page.url(),origin+'/','Uninitialized form changed the URL');
+   await page.close();
+  }
   // Cover every generated page carrying own forms, not only the listed service routes.
   const routes=[];async function walk(dir){for(const entry of await fs.readdir(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())await walk(file);else if(entry.name==='index.html'&&(await fs.readFile(file,'utf8')).includes('data-lead-form'))routes.push(('/'+path.relative(root,path.dirname(file)).split(path.sep).filter(Boolean).join('/')+'/').replace('//','/'));}}
   await walk(root);

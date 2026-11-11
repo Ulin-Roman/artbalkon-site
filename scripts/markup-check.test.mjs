@@ -28,3 +28,17 @@ test('dimensions are numeric and iframe borders belong to CSS',()=>{
 test('tag-like text in comments, scripts and styles is not media markup',()=>{
  assert.doesNotThrow(()=>checkMarkup('<!-- <img> --><script>const text="<img>";</script><style>.example:after{content:"<img>"}</style><img src="/photo.webp" alt="a > b">'));
 });
+
+test('accessible names use roles that support naming',()=>{
+ for(const html of ['<div role="group" aria-label="Contacts"></div>','<span role="img" aria-label="Five stars">★★★★★</span>'])assert.doesNotThrow(()=>checkMarkup(html));
+ for(const html of ['<div aria-label="Contacts"></div>','<span aria-label="Five stars">★★★★★</span>','<div role="presentation" aria-label="Contacts"></div>'])assert.throws(()=>checkMarkup(html),/needs a nameable role/);
+});
+
+test('decorative images, captions and tab panels keep valid HTML semantics',()=>{
+ assert.doesNotThrow(()=>checkMarkup('<img src="/background.webp" alt="" aria-hidden="true">'));
+ assert.doesNotThrow(()=>checkMarkup('<figure><img src="/photo.webp" alt="Photo"><figcaption>Caption</figcaption></figure>'));
+ assert.doesNotThrow(()=>checkMarkup('<div role="tabpanel">Content</div>'));
+ assert.throws(()=>checkMarkup('<img src="/background.webp" alt="" role="presentation">'),/implicit decorative role/);
+ assert.throws(()=>checkMarkup('<figure><a href="/photo.webp"><figcaption>Caption</figcaption></a></figure>'),/direct child of figure/);
+ assert.throws(()=>checkMarkup('<article role="tabpanel">Content</article>'),/cannot have the tabpanel role/);
+});

@@ -315,6 +315,7 @@ import {promotionMonth} from './promotion-month.mjs';
     if(result.mode!=='preview'){trackFormSubmission(id);if(form.dataset.leadForm==='quiz')track('quiz_complete');}
    }catch(err){error.textContent=(err.name==='TimeoutError'||err.name==='AbortError')?'Ответ задерживается. Попробуйте ещё раз или позвоните нам.':err.message==='Failed to fetch'?'Нет соединения. Проверьте интернет и попробуйте ещё раз.':err.message;submit.disabled=false;submit.removeAttribute('aria-busy');submit.innerHTML=old;submitting=false;}
   });
+  form.querySelector('[type="submit"]').disabled=false;
  });
  const context=document.modelContext;
  const serviceOptions=quiz?[...quiz.querySelectorAll('input[type="radio"][name="service"]')]:[];
@@ -388,6 +389,8 @@ import {promotionMonth} from './promotion-month.mjs';
    const ratios=[beforeImage,afterImage].map(img=>Math.max(3/4,img.naturalWidth/img.naturalHeight));
    [beforeImage,afterImage].forEach((img,index)=>{img.style.aspectRatio=String(ratios[index]);img.style.objectFit='cover';});
    const mobile=matchMedia('(max-width:640px)').matches;
+   const shortLandscape=matchMedia('(min-width:480px) and (max-width:640px) and (max-height:480px) and (orientation:landscape)').matches;
+   const singleColumn=mobile&&!shortLandscape;
    const padding=parseFloat(getComputedStyle(shell).paddingLeft)+parseFloat(getComputedStyle(shell).paddingRight);
    const gap=parseFloat(getComputedStyle(grid).columnGap)||0;
    // Carry over the visible preview's proportion, including its width limit.
@@ -397,9 +400,11 @@ import {promotionMonth} from './promotion-month.mjs';
     if(watermarkWidth>0)comparisonModal.style.setProperty('--comparison-watermark-width',`${100*watermarkWidth/previewWidth}%`);
    }
    const height=Math.max(120,innerHeight-180);
-   const contentWidth=height*(mobile?Math.max(...ratios):ratios[0]+ratios[1])+(mobile?0:gap);
-   comparisonModal.style.width=Math.min(1480,innerWidth-(mobile?20:48),contentWidth+padding)+'px';
-   grid.style.gridTemplateColumns=mobile?'minmax(0,1fr)':ratios.map(r=>`minmax(0,${r}fr)`).join(' ');
+   const contentWidth=height*(singleColumn?Math.max(...ratios):ratios[0]+ratios[1])+(singleColumn?0:gap);
+   const availableWidth=Math.min(1480,innerWidth-(mobile?20:48));
+   const preferredWidth=mobile?availableWidth:Math.max(560,contentWidth+padding);
+   comparisonModal.style.width=Math.min(availableWidth,preferredWidth)+'px';
+   grid.style.gridTemplateColumns=singleColumn?'minmax(0,1fr)':ratios.map(r=>`minmax(0,${r}fr)`).join(' ');
   };
   beforeImage.addEventListener('load',fitComparison);
   afterImage.addEventListener('load',fitComparison);

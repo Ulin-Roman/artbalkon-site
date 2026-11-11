@@ -46,7 +46,33 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
    return coverWidth(small?rowHeight:2*rowHeight+12,small?firstWidth:wideWidth);
   };
   sizes='(max-width:640px) max(calc((100vw - 80px) / 2), '+Math.ceil(190*ratio*1.025)+'px), (max-width:900px) '+gallerySize(430,215,300)+'px, '+gallerySize(460,210,285)+'px';
- }else if(src.startsWith('/assets/glazing-choice-v2/'))sizes='(max-width:760px) calc(100vw - 58px), (max-width:1100px) 50vw, 614px';
+ }else if(src==='/assets/insulation-materials/technonikol-xps.png')sizes='(max-width:640px) 54px, 76px';
+ else if(['/assets/insulation-materials/penoplex.png','/assets/insulation-materials/penofol.png'].includes(src))sizes='(max-width:640px) 41px, 59px';
+ else if(/^\/assets\/social-(?:telegram|vk)-finishing-v1\//.test(src)){
+  const ratio=entry.width/entry.height;
+  if(!Number.isFinite(ratio)||ratio<=0)throw Error('Missing social photo dimensions: '+src);
+  const coverWidth=height=>Math.ceil(height*ratio*1.025);
+  // Match the three-photo columns and their fixed cover heights at each breakpoint.
+  sizes=[
+   `(max-width:360px) max(calc((100vw - 74px) / 3), ${coverWidth(200)}px)`,
+   `(max-width:430px) max(calc((100vw - 82px) / 3), ${coverWidth(220)}px)`,
+   `(max-width:640px) max(calc((100vw - 100px) / 3), ${coverWidth(235)}px)`,
+   `(max-width:700px) max(calc((100vw - 124px) / 3), ${coverWidth(235)}px)`,
+   `(max-width:1000px) max(calc((100vw - 204px) / 6), ${coverWidth(225)}px)`,
+   `(max-width:1200px) max(calc((100vw - 224px) / 6), ${coverWidth(250)}px)`,
+   `max(min(calc((100vw - 256px) / 6), 195px), ${coverWidth(250)}px)`
+  ].join(', ');
+ }
+ else if(isPortfolioThumbnail&&entry.variants.some(variant=>variant.width===400)){
+  const ratio=entry.width/entry.height;
+  if(!Number.isFinite(ratio)||ratio<=0)throw Error('Missing portfolio thumbnail dimensions: '+src);
+  sizes=[
+   `(max-width:640px) max(calc((100vw - 32px) / 2), ${Math.round(250*ratio)}px)`,
+   `(max-width:900px) max(calc((100vw - 80px) / 4), ${Math.round(255*ratio)}px)`,
+   `max(220px, ${Math.round(270*ratio)}px)`
+  ].join(', ');
+ }
+ else if(src.startsWith('/assets/glazing-choice-v2/'))sizes='(max-width:760px) calc(100vw - 58px), (max-width:1100px) 50vw, 614px';
  else sizes=isPortfolioThumbnail?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  // Keep the encoded aspect ratio before the first paint, including service heroes.
  const declaredDimensions=Number.isSafeInteger(entry.width)&&entry.width>0&&Number.isSafeInteger(entry.height)&&entry.height>0;

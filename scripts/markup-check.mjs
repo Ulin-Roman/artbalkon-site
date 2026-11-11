@@ -19,10 +19,16 @@ export function checkMarkup(html,label='HTML'){
   const name=rawName.toLowerCase();
   if(closing){const index=stack.lastIndexOf(name);if(index>=0)stack.length=index;continue;}
   const attrs=attributes(rawAttributes),context=name+(attrs.get('id')?'#'+attrs.get('id'):''),hasValue=key=>Boolean(attrs.get(key)?.trim());
+  if(['div','span'].includes(name)&&attrs.has('aria-label')&&[undefined,null,'generic','none','presentation'].includes(attrs.get('role'))){
+   errors.push(context+' needs a nameable role for aria-label');
+  }
+  if(name==='figcaption'&&stack.at(-1)!=='figure')errors.push(context+' must be a direct child of figure');
+  if(name==='article'&&attrs.get('role')==='tabpanel')errors.push(context+' cannot have the tabpanel role; use a div');
   if(name==='img'){
    if(!hasValue('src')&&!hasValue('srcset'))errors.push(context+' needs a non-empty src or srcset');
    if(attrs.has('src')&&!hasValue('src'))errors.push(context+' has an empty src');
    if(!attrs.has('alt'))errors.push(context+' needs an alt attribute (empty is allowed for decoration)');
+   if(attrs.get('alt')===''&&attrs.has('role'))errors.push(context+' with an empty alt must use its implicit decorative role');
   }
   if(name==='source'){
    const parent=stack.at(-1);

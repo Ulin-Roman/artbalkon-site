@@ -325,6 +325,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-3f534a4589942107-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/2688711fb8311f37-640.webp",
         "width": 640
       },
@@ -332,7 +336,9 @@
         "src": "/assets/responsive/2688711fb8311f37-1122.webp",
         "width": 1122
       }
-    ]
+    ],
+    "width": 1122,
+    "height": 1402
   },
   "/assets/before-daytime/before-119.webp": {
     "src": "/assets/responsive/15284b0bd6fb2ece-1086.webp",
@@ -410,6 +416,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-d0c8a5392ba1226e-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/frame-4bd041a7b4c19af3-640.webp",
         "width": 640
       },
@@ -475,6 +485,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-445ef7f1673a78ec-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/f4d407b8f672cc45-640.webp",
         "width": 640
       },
@@ -482,7 +496,9 @@
         "src": "/assets/responsive/f4d407b8f672cc45-1086.webp",
         "width": 1086
       }
-    ]
+    ],
+    "width": 1086,
+    "height": 1448
   },
   "/assets/before-daytime/before-132.webp": {
     "src": "/assets/responsive/0aec009e1eba57aa-1122.webp",
@@ -2503,36 +2519,40 @@
     ]
   },
   "/assets/insulation-materials/penofol.png": {
-    "src": "/assets/responsive/8dc6e3ea3994ef8f-1024.webp",
+    "src": "/assets/derived/insulation-materials/penofol-192.webp",
+    "width": 1024,
+    "height": 949,
     "variants": [
       {
-        "src": "/assets/responsive/8dc6e3ea3994ef8f-320.webp",
-        "width": 320
+        "src": "/assets/derived/insulation-materials/penofol-64.webp",
+        "width": 64
       },
       {
-        "src": "/assets/responsive/8dc6e3ea3994ef8f-640.webp",
-        "width": 640
+        "src": "/assets/derived/insulation-materials/penofol-128.webp",
+        "width": 128
       },
       {
-        "src": "/assets/responsive/8dc6e3ea3994ef8f-1024.webp",
-        "width": 1024
+        "src": "/assets/derived/insulation-materials/penofol-192.webp",
+        "width": 192
       }
     ]
   },
   "/assets/insulation-materials/technonikol-xps.png": {
-    "src": "/assets/responsive/b63aed5fc5c8acb0-800.webp",
+    "src": "/assets/derived/insulation-materials/technonikol-xps-256.webp",
+    "width": 800,
+    "height": 800,
     "variants": [
       {
-        "src": "/assets/responsive/b63aed5fc5c8acb0-320.webp",
-        "width": 320
+        "src": "/assets/derived/insulation-materials/technonikol-xps-96.webp",
+        "width": 96
       },
       {
-        "src": "/assets/responsive/b63aed5fc5c8acb0-640.webp",
-        "width": 640
+        "src": "/assets/derived/insulation-materials/technonikol-xps-192.webp",
+        "width": 192
       },
       {
-        "src": "/assets/responsive/b63aed5fc5c8acb0-800.webp",
-        "width": 800
+        "src": "/assets/derived/insulation-materials/technonikol-xps-256.webp",
+        "width": 256
       }
     ]
   },
@@ -4332,6 +4352,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-e10a146b9a5f8760-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/919076a1d3f06528-640.webp",
         "width": 640
       },
@@ -4339,7 +4363,9 @@
         "src": "/assets/responsive/919076a1d3f06528-1086.webp",
         "width": 1086
       }
-    ]
+    ],
+    "width": 1086,
+    "height": 1448
   },
   "/assets/portfolio-realism-v1/after-98.webp": {
     "src": "/assets/responsive/222cbf261e2012db-1083.webp",
@@ -4349,6 +4375,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-e69ff26983fb6a04-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/222cbf261e2012db-640.webp",
         "width": 640
       },
@@ -4356,7 +4386,9 @@
         "src": "/assets/responsive/222cbf261e2012db-1083.webp",
         "width": 1083
       }
-    ]
+    ],
+    "width": 1083,
+    "height": 1453
   },
   "/assets/promo-ceiling-dryer.jpg": {
     "src": "/assets/responsive/042b090ff2dc5bc8-1200.webp",
@@ -4468,6 +4500,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-2c93d2206cef66ec-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/fc96156453642117-640.webp",
         "width": 640
       },
@@ -4475,7 +4511,9 @@
         "src": "/assets/responsive/fc96156453642117-1122.webp",
         "width": 1122
       }
-    ]
+    ],
+    "width": 1122,
+    "height": 1402
   },
   "/assets/service-before-after/cold-balcony-matched-08-after.png": {
     "src": "/assets/responsive/frame-c1b83e562d7c1109-1080.webp",
@@ -4567,6 +4605,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-22fe08dccbbf8385-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/c5ecca1cc1e28bd2-640.webp",
         "width": 640
       },
@@ -4574,7 +4616,9 @@
         "src": "/assets/responsive/c5ecca1cc1e28bd2-763.webp",
         "width": 763
       }
-    ]
+    ],
+    "width": 763,
+    "height": 1024
   },
   "/assets/service-before-after/cold-ordinary-04-before.webp": {
     "src": "/assets/responsive/515621cc8c229c68-763.webp",
@@ -4635,6 +4679,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-9703fc608985e6b8-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/bb31b341dd1f416e-640.webp",
         "width": 640
       },
@@ -4642,7 +4690,9 @@
         "src": "/assets/responsive/bb31b341dd1f416e-1083.webp",
         "width": 1083
       }
-    ]
+    ],
+    "width": 1083,
+    "height": 1453
   },
   "/assets/service-before-after/cold-ordinary-07-before.webp": {
     "src": "/assets/responsive/d2389cd19f4e88a0-763.webp",
@@ -4652,6 +4702,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-e09f8dd411537e5a-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/d2389cd19f4e88a0-640.webp",
         "width": 640
       },
@@ -4659,7 +4713,9 @@
         "src": "/assets/responsive/d2389cd19f4e88a0-763.webp",
         "width": 763
       }
-    ]
+    ],
+    "width": 763,
+    "height": 1024
   },
   "/assets/service-before-after/cold-ordinary-08-after.webp": {
     "src": "/assets/responsive/4a7422ed60270679-1083.webp",
@@ -6073,18 +6129,18 @@
     ]
   },
   "/assets/service-gallery-v2/real-after-012.jpg": {
-    "src": "/assets/responsive/7c11500c11e419a2-960.webp",
+    "src": "/assets/responsive/85b9c56512d40236-960.webp",
     "variants": [
       {
-        "src": "/assets/responsive/7c11500c11e419a2-320.webp",
+        "src": "/assets/responsive/85b9c56512d40236-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/7c11500c11e419a2-640.webp",
+        "src": "/assets/responsive/85b9c56512d40236-640.webp",
         "width": 640
       },
       {
-        "src": "/assets/responsive/7c11500c11e419a2-960.webp",
+        "src": "/assets/responsive/85b9c56512d40236-960.webp",
         "width": 960
       }
     ]
@@ -6141,14 +6197,14 @@
     ]
   },
   "/assets/service-gallery-v2/real-after-053.jpg": {
-    "src": "/assets/responsive/00b5a84fa0d5e3b5-610.webp",
+    "src": "/assets/responsive/38fbf8a4ebec2903-610.webp",
     "variants": [
       {
-        "src": "/assets/responsive/00b5a84fa0d5e3b5-320.webp",
+        "src": "/assets/responsive/38fbf8a4ebec2903-320.webp",
         "width": 320
       },
       {
-        "src": "/assets/responsive/00b5a84fa0d5e3b5-610.webp",
+        "src": "/assets/responsive/38fbf8a4ebec2903-610.webp",
         "width": 610
       }
     ]
@@ -6801,6 +6857,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-96fa06637968dde3-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/439e225d0dce9a8b-640.webp",
         "width": 640
       },
@@ -6808,7 +6868,9 @@
         "src": "/assets/responsive/439e225d0dce9a8b-724.webp",
         "width": 724
       }
-    ]
+    ],
+    "width": 724,
+    "height": 1086
   },
   "/assets/portfolio-diverse-v4/otdelka-balkonov-2-standard-v2-after.webp": {
     "src": "/assets/responsive/494d03b91e94f5c4-724.webp",
@@ -6818,6 +6880,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-3f3ea9052537518d-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/494d03b91e94f5c4-640.webp",
         "width": 640
       },
@@ -6825,7 +6891,9 @@
         "src": "/assets/responsive/494d03b91e94f5c4-724.webp",
         "width": 724
       }
-    ]
+    ],
+    "width": 724,
+    "height": 1086
   },
   "/assets/portfolio-diverse-v4/balkon-pod-klyuch-3-standard-v2-after.webp": {
     "src": "/assets/responsive/e01ea960f266a469-724.webp",
@@ -7537,6 +7605,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-c7010b662a0494b9-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/frame-4e2027c44ebc0bbe-640.webp",
         "width": 640
       },
@@ -7566,6 +7638,10 @@
       {
         "src": "/assets/responsive/frame-a5e1eea8792b466d-320.webp",
         "width": 320
+      },
+      {
+        "src": "/assets/derived/portfolio/thumb-a35cf8cded774dbc-400.webp",
+        "width": 400
       },
       {
         "src": "/assets/responsive/frame-a5e1eea8792b466d-640.webp",
@@ -7769,6 +7845,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-e1ad56c34f2fc2af-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/b7f3cef1f6b2401a-640.webp",
         "width": 640
       },
@@ -7776,7 +7856,9 @@
         "src": "/assets/responsive/b7f3cef1f6b2401a-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1280,
+    "height": 1707
   },
   "/assets/service-before-after/work195-top-v2-after.webp": {
     "src": "/assets/responsive/5bddaf4fec470437-1280.webp",
@@ -7786,6 +7868,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-9fbc1253478d495e-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/5bddaf4fec470437-640.webp",
         "width": 640
       },
@@ -7793,7 +7879,9 @@
         "src": "/assets/responsive/5bddaf4fec470437-1280.webp",
         "width": 1280
       }
-    ]
+    ],
+    "width": 1280,
+    "height": 1707
   },
   "/assets/panorama-work253-top-v2/before.webp": {
     "src": "/assets/responsive/493bc156f9998d5e-960.webp",
@@ -10026,6 +10114,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-4c6967b6e581cbce-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/c649ed38527669b3-640.webp",
         "width": 640
       },
@@ -10033,7 +10125,9 @@
         "src": "/assets/responsive/c649ed38527669b3-1122.webp",
         "width": 1122
       }
-    ]
+    ],
+    "width": 1122,
+    "height": 1402
   },
   "/assets/home-liked-works-v1/work2_office_loggia-handles-v2-before-removed-v4.webp": {
     "src": "/assets/responsive/a1d7481863bef357-1122.webp",
@@ -10043,6 +10137,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-ee429d549c7c8f8b-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/a1d7481863bef357-640.webp",
         "width": 640
       },
@@ -10050,7 +10148,9 @@
         "src": "/assets/responsive/a1d7481863bef357-1122.webp",
         "width": 1122
       }
-    ]
+    ],
+    "width": 1122,
+    "height": 1402
   },
   "/assets/home-liked-works-v1/work3_cozy_storage-handles-v2-before-removed-v4.webp": {
     "src": "/assets/responsive/6698fec4a1141ff1-1122.webp",
@@ -10060,6 +10160,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-b689d177841381f1-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/6698fec4a1141ff1-640.webp",
         "width": 640
       },
@@ -10067,7 +10171,9 @@
         "src": "/assets/responsive/6698fec4a1141ff1-1122.webp",
         "width": 1122
       }
-    ]
+    ],
+    "width": 1122,
+    "height": 1402
   },
   "/assets/home-liked-works-v1/balcony-folding-table-before-removed-v4.webp": {
     "src": "/assets/responsive/frame-9eff25d66bc197b1-766.webp",
@@ -10075,6 +10181,10 @@
       {
         "src": "/assets/responsive/frame-9eff25d66bc197b1-320.webp",
         "width": 320
+      },
+      {
+        "src": "/assets/derived/portfolio/thumb-2e95ccdfa14393ed-400.webp",
+        "width": 400
       },
       {
         "src": "/assets/responsive/frame-9eff25d66bc197b1-640.webp",
@@ -10108,6 +10218,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-8fb753fcfbf2b044-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/frame-e23bf4ec0ba10be0-640.webp",
         "width": 640
       },
@@ -10139,6 +10253,10 @@
         "width": 320
       },
       {
+        "src": "/assets/derived/portfolio/thumb-aa616c8c0c45a0bc-400.webp",
+        "width": 400
+      },
+      {
         "src": "/assets/responsive/frame-7879017666a315b3-640.webp",
         "width": 640
       },
@@ -10168,6 +10286,10 @@
       {
         "src": "/assets/responsive/frame-8a8817fe6d82d3b8-320.webp",
         "width": 320
+      },
+      {
+        "src": "/assets/derived/portfolio/thumb-fd8e482de1489d47-400.webp",
+        "width": 400
       },
       {
         "src": "/assets/responsive/frame-8a8817fe6d82d3b8-640.webp",
@@ -12676,6 +12798,177 @@
       {
         "src": "/assets/cold-hero-sill-v2/hero.webp",
         "width": 1086
+      }
+    ]
+  },
+  "/assets/insulation-materials/penoplex.png": {
+    "src": "/assets/derived/insulation-materials/penoplex-192.webp",
+    "width": 350,
+    "height": 350,
+    "variants": [
+      {
+        "src": "/assets/derived/insulation-materials/penoplex-64.webp",
+        "width": 64
+      },
+      {
+        "src": "/assets/derived/insulation-materials/penoplex-128.webp",
+        "width": 128
+      },
+      {
+        "src": "/assets/derived/insulation-materials/penoplex-192.webp",
+        "width": 192
+      }
+    ]
+  },
+  "/assets/service-gallery-v2/real-after-030.jpg": {
+    "src": "/assets/derived/portfolio/real-after-030-576.webp",
+    "width": 576,
+    "height": 768,
+    "variants": [
+      {
+        "src": "/assets/derived/portfolio/real-after-030-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/derived/portfolio/real-after-030-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/derived/portfolio/real-after-030-576.webp",
+        "width": 576
+      }
+    ]
+  },
+  "/assets/service-gallery-v2/real-after-048.jpg": {
+    "src": "/assets/derived/portfolio/real-after-048-576.webp",
+    "width": 576,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/derived/portfolio/real-after-048-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/derived/portfolio/real-after-048-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/derived/portfolio/real-after-048-576.webp",
+        "width": 576
+      }
+    ]
+  },
+  "/assets/social-telegram-finishing-v1/before.webp": {
+    "src": "/assets/social-telegram-finishing-v1/before.webp",
+    "width": 640,
+    "height": 1147,
+    "variants": [
+      {
+        "src": "/assets/derived/social/telegram-before-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/derived/social/telegram-before-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/social-telegram-finishing-v1/before.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/social-telegram-finishing-v1/after.webp": {
+    "src": "/assets/social-telegram-finishing-v1/after.webp",
+    "width": 640,
+    "height": 853,
+    "variants": [
+      {
+        "src": "/assets/derived/social/telegram-after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/derived/social/telegram-after-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/social-telegram-finishing-v1/after.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/social-telegram-finishing-v1/storage.webp": {
+    "src": "/assets/social-telegram-finishing-v1/storage.webp",
+    "width": 640,
+    "height": 853,
+    "variants": [
+      {
+        "src": "/assets/derived/social/telegram-storage-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/derived/social/telegram-storage-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/social-telegram-finishing-v1/storage.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/social-vk-finishing-v1/before.webp": {
+    "src": "/assets/social-vk-finishing-v1/before.webp",
+    "width": 640,
+    "height": 1147,
+    "variants": [
+      {
+        "src": "/assets/derived/social/vk-before-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/derived/social/vk-before-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/social-vk-finishing-v1/before.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/social-vk-finishing-v1/after.webp": {
+    "src": "/assets/social-vk-finishing-v1/after.webp",
+    "width": 640,
+    "height": 853,
+    "variants": [
+      {
+        "src": "/assets/derived/social/vk-after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/derived/social/vk-after-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/social-vk-finishing-v1/after.webp",
+        "width": 640
+      }
+    ]
+  },
+  "/assets/social-vk-finishing-v1/lighting.webp": {
+    "src": "/assets/social-vk-finishing-v1/lighting.webp",
+    "width": 640,
+    "height": 853,
+    "variants": [
+      {
+        "src": "/assets/derived/social/vk-lighting-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/derived/social/vk-lighting-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/social-vk-finishing-v1/lighting.webp",
+        "width": 640
       }
     ]
   }
