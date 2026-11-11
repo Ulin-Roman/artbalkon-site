@@ -883,8 +883,8 @@ h1,h2,h3,h4,
  pointer-events:none;
 }
 .button:hover span[aria-hidden]{transform:translateX(5px)}
-.turnkey-page .before-after-more-button>.button-arrow{font-size:16px}
-.turnkey-page .before-after-more-button:hover>.button-arrow{transform:translateY(4px)}
+.before-after-more-button.button>.button-arrow{font-size:16px}
+.before-after-more-button.button:hover>.button-arrow{transform:translateY(4px)}
 .quiz-next-button span[aria-hidden]{display:inline-flex;transition:transform .2s ease}
 .quiz-next-button:hover span[aria-hidden]{transform:translateX(5px)}
 @keyframes artbalkon-cta-shine{
@@ -892,7 +892,7 @@ h1,h2,h3,h4,
  76%,100%{left:128%}
 }
 @media(prefers-reduced-motion:reduce){
- .turnkey-page .before-after-more-button:hover>.button-arrow{transform:none}
+ .before-after-more-button.button:hover>.button-arrow{transform:none}
  .button::before,
  .before-after-lead::before{
   display:none;
