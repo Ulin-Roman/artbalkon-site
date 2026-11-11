@@ -176,6 +176,8 @@ class Deployer:
             with file.open('rb') as source:
                 digest = hashlib.file_digest(source, 'sha256').hexdigest()
             files.append((name, file, {'sha256': digest, 'size': file.stat().st_size}))
+        # Publish dependencies before pages can request their new cache versions.
+        files.sort(key=lambda entry: entry[0].lower().endswith('.html'))
         uploaded = skipped = 0
         try:
             self.load_state()

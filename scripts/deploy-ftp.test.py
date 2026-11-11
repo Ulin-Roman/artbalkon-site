@@ -24,6 +24,7 @@ class FakeServer:
         self.stores, self.deletes, self.renames, self.published_before_retry = [], [], [], []
         self.partial_error = self.short_upload = self.lost_rename_ack = self.reject_overwrite = False
         self.always_fail = False
+        self.fail_upload_name = None
 
     def connect(self):
         self.connections += 1
@@ -72,7 +73,8 @@ class FakeFTP:
     def storbinary(self, command, source, blocksize=8192):
         name, data = self.path(command.removeprefix('STOR ')), source.read()
         self.server.stores.append(name)
-        if (self.server.partial_error or self.server.always_fail) and not name.endswith('-' + deploy.STATE):
+        selected_failure = self.server.fail_upload_name and name.endswith('-' + self.server.fail_upload_name)
+        if (self.server.partial_error or self.server.always_fail or selected_failure) and not name.endswith('-' + deploy.STATE):
             self.server.partial_error = False
             self.server.files[name] = data[:max(1, len(data) // 2)]
             self.server.published_before_retry.append(dict(self.server.files))
@@ -134,6 +136,45 @@ class DeploymentTests(unittest.TestCase):
         self.assertFalse(any(name in ('index.html', 'api/leads.php') for name in server.deletes))
         state = json.loads(server.files[deploy.STATE])
         self.assertEqual(state['files']['api/leads.php']['sha256'], hashlib.sha256(b'<?php echo "ok";').hexdigest())
+
+    def test_resources_are_published_before_all_html_pages(self):
+        resources = ['.htaccess', 'api/leads.php', 'app.js', 'assets/image.webp',
+                     'site-config.json', 'styles.css']
+        pages = ['00-service/index.html', 'index.html', 'nested/landing.HTML']
+        for name in pages + resources:
+            self.put(name, ('new-' + name).encode())
+        server = FakeServer()
+        self.run_deploy(server, checkpoint=1)
+        published = [target for _, target in server.renames if target != deploy.STATE]
+        self.assertEqual(len(published), len(resources) + len(pages))
+        self.assertEqual(set(published[:len(resources)]), set(resources))
+        self.assertEqual(set(published[len(resources):]), set(pages))
+
+    def test_failed_resource_leaves_pages_old_and_checkpoints_completed_resources(self):
+        self.put('assets/ok.webp', b'new-image')
+        self.put('00-service/index.html', b'new-service-page')
+        self.put('index.html', b'new-home-page')
+        self.put('styles.css', b'new-complete-styles')
+        server = FakeServer({'assets/ok.webp': b'old-image', 'styles.css': b'old-styles',
+                             '00-service/index.html': b'old-service-page',
+                             'index.html': b'old-home-page', 'uploads/customer.jpg': b'original'})
+        server.fail_upload_name = 'styles.css'
+        with self.assertRaisesRegex(RuntimeError, 'failed after bounded retries'):
+            self.run_deploy(server, checkpoint=1)
+        self.assertEqual(server.files['assets/ok.webp'], b'new-image')
+        self.assertEqual(server.files['styles.css'], b'old-styles')
+        self.assertEqual(server.files['00-service/index.html'], b'old-service-page')
+        self.assertEqual(server.files['index.html'], b'old-home-page')
+        self.assertEqual(server.files['uploads/customer.jpg'], b'original')
+        self.assertFalse(any(name.endswith('-index.html') for name in server.stores))
+        self.assertEqual(sum(name.endswith('-styles.css') for name in server.stores), 4)
+        state = json.loads(server.files[deploy.STATE])['files']
+        self.assertEqual(set(state), {'assets/ok.webp'})
+        server.fail_upload_name = None
+        self.assertEqual(self.run_deploy(server), {'uploaded': 3, 'skipped': 1})
+        self.assertEqual(server.files['styles.css'], b'new-complete-styles')
+        self.assertEqual(server.files['00-service/index.html'], b'new-service-page')
+        self.assertEqual(server.files['index.html'], b'new-home-page')
 
     def test_partial_transfer_reconnects_without_truncating_live_file(self):
         self.put('index.html', b'new-complete-page')
