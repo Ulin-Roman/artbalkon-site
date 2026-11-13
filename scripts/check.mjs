@@ -14,6 +14,7 @@ import {readFile,readdir,stat} from 'node:fs/promises';
 import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
+import {runInNewContext} from 'node:vm';
 import {company,serviceSeo,prices,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
 import {header,esc,projectDisplayTitle,servicePage,servicePageWithSeo,shellWithQuiz,quiz,quizModal,homeHeroImage,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
@@ -514,6 +515,24 @@ for(const file of pages){
   assert.equal(canonical,company.origin.replace(/\/$/,'')+target.split('#')[0],file+' redirect canonical must point to the destination');
   assert.ok(html.includes('content="0;url='+destination+'"'),file+' refresh must point directly to the destination');
   assert.ok(html.includes('href="'+destination+'"'),file+' needs an accessible destination link');
+  const redirectScript=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+  assert.ok(redirectScript,file+': redirect must retain campaign parameters without losing its destination section');
+  for(const sample of [
+   {search:'',hash:''},
+   {search:'?utm_source=seo%2Btest&case=work-1',hash:'#before-after'},
+   {search:'?utm_source=seo%20test&yclid=123',hash:'#obsolete-section'}
+  ]){
+   const sourceUrl=new URL(base+slug+'/',company.origin);
+   sourceUrl.search=sample.search;
+   sourceUrl.hash=sample.hash;
+   let redirected;
+   runInNewContext(redirectScript,{URL,location:{href:sourceUrl.href,search:sourceUrl.search,hash:sourceUrl.hash,replace:value=>{redirected=new URL(value);}}});
+   assert.ok(redirected,file+': redirect script must navigate');
+   const expectedDestination=new URL(destination,sourceUrl);
+   assert.equal(redirected.origin+redirected.pathname,expectedDestination.origin+expectedDestination.pathname,file+': redirect must keep its configured route');
+   assert.equal(redirected.search,sourceUrl.search,file+': redirect must preserve encoded campaign parameters');
+   assert.equal(redirected.hash,expectedDestination.hash||sample.hash,file+': explicit target section takes priority over a retired source fragment');
+  }
   assert.doesNotMatch(html,/data-comparison|landing-hero|<script[^>]+src=|<link[^>]+stylesheet|application\/ld\+json/,file+' redirect must not ship the retired page or its widgets');
  }else{
   for(const tag of ['name="description"','og:title','application/ld+json'])assert.ok(html.includes(tag),file+' missing '+tag);
