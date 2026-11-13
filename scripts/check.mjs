@@ -284,7 +284,9 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
  }
  if(label==='uteplenie-balkonov'){
   assert.ok(!html.includes('data-hero-slider'),'insulation page hero must remain static');
-  assert.ok(html.includes('/assets/before-daytime/before-032.webp'),'insulation page hero must keep the selected PENOPLEX image');
+  const selectedHero=heroSection(html);
+  assert.ok(selectedHero?.includes('/assets/insulation-worker-v1/hero.webp'),'insulation page hero must show the supplied worker photo');
+  assert.match(selectedHero,/<img\b[^>]*loading="eager"[^>]*fetchpriority="high"[^>]*alt="Мастер монтирует утеплитель ПЕНОПЛЭКС на лоджии"/);
   continue;
  }
  assert.ok(hero,`${label}: missing hero`);

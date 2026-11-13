@@ -12971,5 +12971,24 @@
         "width": 640
       }
     ]
+  },
+  "/assets/insulation-worker-v1/hero.webp": {
+    "src": "/assets/insulation-worker-v1/hero.webp",
+    "width": 714,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/insulation-worker-v1/hero-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/insulation-worker-v1/hero-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/insulation-worker-v1/hero.webp",
+        "width": 714
+      }
+    ]
   }
 }

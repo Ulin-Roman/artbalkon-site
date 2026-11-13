@@ -59,7 +59,7 @@ const coldGlazingHeroImage='cold-hero-sill-v2/hero.webp';
 const warmGlazingHeroImage='service-before-after/renovation-loggia-02-after.webp';
 const panoramicGlazingHeroImage='service-before-after/panoramic-glazing-after.jpg';
 const frenchGlazingHeroImage='service-before-after/glazing-new-06-after.jpg';
-const insulationHeroImage='before-daytime/before-032.webp';
+const insulationHeroImage='insulation-worker-v1/hero.webp';
 export const serviceHeroAsset=service=>pictureAsset(({
  'osteklenie-balkonov':glazingHeroImage,'uteplenie-balkonov':insulationHeroImage,'remont-balkonov':'home-liked-works-v1/balcony-folding-table-after.webp','otdelka-balkonov':finishingHeroImage,'balkon-pod-klyuch':turnkeyHeroImage,'holodnoe-osteklenie':coldGlazingHeroImage,'teploe-osteklenie':warmGlazingHeroImage,'panoramnoe-osteklenie':panoramicGlazingHeroImage,'frantsuzskoe-osteklenie':frenchGlazingHeroImage
 })[service.slug]||serviceGallerySlides(service)[0]||service.image);
@@ -84,7 +84,7 @@ const serviceHeroSlideshow=(service,{home=false}={})=>{
  if(service.slug==='teploe-osteklenie')return `<div class="landing-photo">${pic(warmGlazingHeroImage,`${service.title} — тёплая лоджия со светлой отделкой ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='panoramnoe-osteklenie')return `<div class="landing-photo">${pic(panoramicGlazingHeroImage,`${service.title} — панорамное остекление выступающего балкона ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='frantsuzskoe-osteklenie')return `<div class="landing-photo">${pic(frenchGlazingHeroImage,`${service.title} — пример французского остекления балкона от пола до потолка`,'hero-image is-active',true)}</div>`;
- if(service.slug==='uteplenie-balkonov')return `<div class="landing-photo">${pic(insulationHeroImage,`${service.title} — утепление балкона плитами ПЕНОПЛЭКС ArtBalkon`,'hero-image is-active',true)}</div>`;
+ if(service.slug==='uteplenie-balkonov')return `<div class="landing-photo">${pic(insulationHeroImage,'Мастер монтирует утеплитель ПЕНОПЛЭКС на лоджии','hero-image is-active',true)}</div>`;
  return `<div class="landing-photo hero-slideshow" data-hero-slider>${slides.map((name,index)=>index===0
   ?pic(name,`${service.title} — ${service.slug==='mebel-dlya-balkona'?'мебель на заказ':'фотография из портфолио ArtBalkon'}`,'hero-image is-active',true)
   :deferredSlide(name,`${service.title} — пример готового решения ArtBalkon`)).join('')}</div>`;
@@ -436,7 +436,7 @@ const heroPriceMarkup=(value,unit='')=>{
  const amount=parts?parts[3]:text;
  return `<p class="landing-price"><span class="hero-price-line">${prefix}<span class="hero-price-amount">${esc(amount)}</span>${unit?` <small class="hero-price-unit">${esc(unit)}</small>`:''}</span></p>`;
 };
-export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description explanatory-subtitle">${s.heroSubtitle||s.offer}</p>${s.heroPrice?heroPriceMarkup(s.heroPrice,s.heroPriceUnit):prices[s.price]===null?'':heroPriceMarkup(money(prices[s.price]),'/м²')}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s,{home})}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
+export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}${s.slug==='uteplenie-balkonov'?' insulation-hero':''}"><div class="landing-grid${s.slug==='remont-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description explanatory-subtitle">${s.heroSubtitle||s.offer}</p>${s.heroPrice?heroPriceMarkup(s.heroPrice,s.heroPriceUnit):prices[s.price]===null?'':heroPriceMarkup(money(prices[s.price]),'/м²')}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s,{home})}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
 const turnkeyIncludedExtrasSection=service=>{
  if(service?.slug!=='balkon-pod-klyuch')return '';
  const items=[

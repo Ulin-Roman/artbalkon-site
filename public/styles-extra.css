@@ -4962,3 +4962,37 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
  .finish-calc-group-head{left:2px;right:25px}
  .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]) .finish-calc-switch{right:0}
 }
+
+/* Keep the insulation installer visible above the mobile service copy. */
+@media(max-width:640px){
+ .landing-hero.insulation-hero .landing-grid{
+  grid-template-areas:"landing-photo" "landing-copy";
+  gap:20px;
+ }
+ .landing-hero.insulation-hero .landing-grid>.landing-copy{
+  grid-area:landing-copy;
+  padding:0;
+  transform:none;
+  color:var(--ink);
+ }
+ .landing-hero.insulation-hero .landing-photo{
+  grid-area:landing-photo;
+  height:clamp(360px,90vw,420px);
+  min-height:0;
+ }
+ .landing-hero.insulation-hero .landing-photo::after{display:none}
+ .landing-hero.insulation-hero .landing-copy h1,
+ .landing-hero.insulation-hero .landing-copy .landing-price{
+  color:var(--ink);
+  text-shadow:none;
+ }
+ .landing-hero.insulation-hero .landing-copy h1{max-width:100%}
+ .landing-hero.insulation-hero h1 .location-accent{color:var(--teal)}
+ .landing-hero.insulation-hero .landing-price .hero-price-amount{color:var(--ink)}
+ .landing-hero.insulation-hero .landing-price .hero-price-unit,
+ .landing-hero.insulation-hero .hero-rating-platform{color:var(--muted)}
+ .landing-hero.insulation-hero .hero-rating-badge,
+ .landing-hero.insulation-hero .hero-rating-details strong,
+ .landing-hero.insulation-hero .hero-rating-count{color:var(--ink)}
+ .landing-hero.insulation-hero .hero-rating-badge+.hero-rating-badge{border-color:var(--line)}
+}
