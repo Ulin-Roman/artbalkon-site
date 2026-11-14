@@ -1,0 +1,25 @@
+name: Read-only hosting latency investigation
+
+on:
+  push:
+    branches: [codex/latency-diagnostics-20261114]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment: github-pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Test log privacy and read-only commands
+        run: python3 .github/diagnostics/hosting-logs.test.py
+      - name: Inspect existing hosting logs without changing the server
+        env:
+          FTP_HOST: ${{ secrets.REG_FTP_HOST }}
+          FTP_USER: ${{ secrets.REG_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.REG_FTP_PASSWORD }}
+        run: timeout 240s python3 .github/diagnostics/hosting-logs.py
