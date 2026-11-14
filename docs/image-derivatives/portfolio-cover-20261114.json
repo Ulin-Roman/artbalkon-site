@@ -1,0 +1,149 @@
+{
+  "created": "2026-11-14T13:44:05.660Z",
+  "sourceFilesUnchanged": true,
+  "encoder": {
+    "sharp": "0.35.5",
+    "vips": "8.18.7",
+    "webp": "1.6.0"
+  },
+  "records": [
+    {
+      "manifestKey": "/assets/before-weather-v1/before-020.webp",
+      "source": "/assets/responsive/8b10093d5703295e-1448.webp",
+      "sourceBytes": 247370,
+      "sourceSha256": "3376565e1e23de3148026b87584fcd19c55fe84309428c4cd2296f8613086ad6",
+      "sourceWidth": 1448,
+      "sourceHeight": 1086,
+      "target": "/assets/portfolio-cover-v1/3376565e1e23de31-400.webp",
+      "targetWidth": 400,
+      "targetHeight": 300,
+      "targetBytes": 29500,
+      "targetSha256": "c37af0c97f562b55e80adb2cb50275e3d698701d5c9970a7874ee602287614b8",
+      "parameters": {
+        "resize": {
+          "width": 400,
+          "withoutEnlargement": true,
+          "fit": "width-only, no crop"
+        },
+        "format": "webp",
+        "quality": 86,
+        "effort": 6
+      }
+    },
+    {
+      "manifestKey": "/assets/before-weather-v1/before-020.webp",
+      "source": "/assets/responsive/8b10093d5703295e-1448.webp",
+      "sourceBytes": 247370,
+      "sourceSha256": "3376565e1e23de3148026b87584fcd19c55fe84309428c4cd2296f8613086ad6",
+      "sourceWidth": 1448,
+      "sourceHeight": 1086,
+      "target": "/assets/portfolio-cover-v1/3376565e1e23de31-800.webp",
+      "targetWidth": 800,
+      "targetHeight": 600,
+      "targetBytes": 88366,
+      "targetSha256": "2481e5c426e9a047fa5a469c3312985c0eb52fc826a0d27ab5d3f993c49cc798",
+      "parameters": {
+        "resize": {
+          "width": 800,
+          "withoutEnlargement": true,
+          "fit": "width-only, no crop"
+        },
+        "format": "webp",
+        "quality": 86,
+        "effort": 6
+      }
+    },
+    {
+      "manifestKey": "/assets/gallery-angles-v1/balkon-pod-klyuch-3-before.webp",
+      "source": "/assets/responsive/4c91a7217d0c5af9-1280.webp",
+      "sourceBytes": 150950,
+      "sourceSha256": "5f563ebf3c45c3ce07a8ededa884de743c9d0912955a654621540143a14771bc",
+      "sourceWidth": 1280,
+      "sourceHeight": 960,
+      "target": "/assets/portfolio-cover-v1/5f563ebf3c45c3ce-400.webp",
+      "targetWidth": 400,
+      "targetHeight": 300,
+      "targetBytes": 19000,
+      "targetSha256": "c6d1a1f4ba2be60d6798e3c49ac6400a056b7b9e96bad24293bd78666d09e9e9",
+      "parameters": {
+        "resize": {
+          "width": 400,
+          "withoutEnlargement": true,
+          "fit": "width-only, no crop"
+        },
+        "format": "webp",
+        "quality": 86,
+        "effort": 6
+      }
+    },
+    {
+      "manifestKey": "/assets/gallery-angles-v1/balkon-pod-klyuch-3-before.webp",
+      "source": "/assets/responsive/4c91a7217d0c5af9-1280.webp",
+      "sourceBytes": 150950,
+      "sourceSha256": "5f563ebf3c45c3ce07a8ededa884de743c9d0912955a654621540143a14771bc",
+      "sourceWidth": 1280,
+      "sourceHeight": 960,
+      "target": "/assets/portfolio-cover-v1/5f563ebf3c45c3ce-800.webp",
+      "targetWidth": 800,
+      "targetHeight": 600,
+      "targetBytes": 64084,
+      "targetSha256": "cf2689d8013b4ada9d121dbaf05e34932da49b03315ded9a3e6f95b6f3fed9a3",
+      "parameters": {
+        "resize": {
+          "width": 800,
+          "withoutEnlargement": true,
+          "fit": "width-only, no crop"
+        },
+        "format": "webp",
+        "quality": 86,
+        "effort": 6
+      }
+    },
+    {
+      "manifestKey": "/assets/gallery-angles-v1/balkon-pod-klyuch-3-after.webp",
+      "source": "/assets/responsive/3992953ccf899b22-1280.webp",
+      "sourceBytes": 113072,
+      "sourceSha256": "782c84e4dec6f865036fd30ec5404eca9d01476b04acb59a7128fe6f3517c2cd",
+      "sourceWidth": 1280,
+      "sourceHeight": 960,
+      "target": "/assets/portfolio-cover-v1/782c84e4dec6f865-400.webp",
+      "targetWidth": 400,
+      "targetHeight": 300,
+      "targetBytes": 17908,
+      "targetSha256": "fac30b725e7a8fbd6277292cdab26c4a937d2fa8993f631ffdc8bb6df31acbb4",
+      "parameters": {
+        "resize": {
+          "width": 400,
+          "withoutEnlargement": true,
+          "fit": "width-only, no crop"
+        },
+        "format": "webp",
+        "quality": 86,
+        "effort": 6
+      }
+    },
+    {
+      "manifestKey": "/assets/gallery-angles-v1/balkon-pod-klyuch-3-after.webp",
+      "source": "/assets/responsive/3992953ccf899b22-1280.webp",
+      "sourceBytes": 113072,
+      "sourceSha256": "782c84e4dec6f865036fd30ec5404eca9d01476b04acb59a7128fe6f3517c2cd",
+      "sourceWidth": 1280,
+      "sourceHeight": 960,
+      "target": "/assets/portfolio-cover-v1/782c84e4dec6f865-800.webp",
+      "targetWidth": 800,
+      "targetHeight": 600,
+      "targetBytes": 52078,
+      "targetSha256": "0634e8baf3684bed3c386b7a0fef8954303a1a220d4eb1782c29993719cef8a5",
+      "parameters": {
+        "resize": {
+          "width": 800,
+          "withoutEnlargement": true,
+          "fit": "width-only, no crop"
+        },
+        "format": "webp",
+        "quality": 86,
+        "effort": 6
+      }
+    }
+  ]
+}

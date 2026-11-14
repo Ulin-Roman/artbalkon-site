@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {optimizeCss,imageSource} from './optimize.mjs';
 import {renderDirectFeed} from './direct-feed.mjs';
 import {deduplicatePublishedAssets} from './deduplicate-assets.mjs';
+import {heroImageSizes} from './hero-image-sizes.mjs';
 const responsiveImages=JSON.parse(await readFile('src/responsive-images.json','utf8'));
 const cottageGalleryPreviews=JSON.parse(await readFile('src/cottage-gallery-previews.json','utf8'));
 const appSource=await readFile('public/app.js','utf8');
@@ -19,6 +20,7 @@ const appCode=appBundle.outputFiles[0].text;
 const fingerprint=text=>createHash('sha256').update(text).digest('hex').slice(0,12);
 // Use the prepared full-size WebP in comparisons as well as thumbnails.
 const comparisonAsset=src=>responsiveImages[src.startsWith('/')?src:'/'+src]?.src.slice(1)||src;
+const preciselySizedDesktopHeroPaths=new Set(['/','/uteplenie-balkonov/','/otdelka-balkonov/']);
 const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[^"\s<>]+/g,url=>{
  const asset='/assets/'+url.split('/assets/')[1],entry=responsiveImages[asset];
  return entry?url.replace(asset,entry.src):url;
@@ -33,7 +35,9 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
  const finishingPhoto=tag.match(/data-finishing-photo="(\d+)"/);
  const isPortfolioThumbnail=tag.includes('width="960"');
  let sizes;
- if(finishingPhoto){
+ if(/\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b/.test(tag)){
+  sizes=heroImageSizes(entry.width/entry.height,{insulation:pagePath==='/uteplenie-balkonov/',preserveDesktop:!preciselySizedDesktopHeroPaths.has(pagePath)});
+ }else if(finishingPhoto){
   const ratio=entry.width/entry.height,small=Number(finishingPhoto[1])<2;
   if(!Number.isFinite(ratio)||ratio<=0)throw Error('Missing finishing photo dimensions: '+src);
   const coverWidth=(height,width)=>Math.ceil(Math.max(height*ratio,width)*1.025);
@@ -63,7 +67,7 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
    `max(min(calc((100vw - 256px) / 6), 195px), ${coverWidth(250)}px)`
   ].join(', ');
  }
- else if(isPortfolioThumbnail&&entry.variants.some(variant=>variant.width===400)){
+ else if(isPortfolioThumbnail){
   const ratio=entry.width/entry.height;
   if(!Number.isFinite(ratio)||ratio<=0)throw Error('Missing portfolio thumbnail dimensions: '+src);
   sizes=[
@@ -73,7 +77,7 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
   ].join(', ');
  }
  else if(src.startsWith('/assets/glazing-choice-v2/'))sizes='(max-width:760px) calc(100vw - 58px), (max-width:1100px) 50vw, 614px';
- else sizes=isPortfolioThumbnail?'(max-width:640px) calc((100vw - 32px) / 2), (max-width:1000px) calc((100vw - 80px) / 4), 220px':'(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
+ else sizes='(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  // Keep the encoded aspect ratio before the first paint, including service heroes.
  const declaredDimensions=Number.isSafeInteger(entry.width)&&entry.width>0&&Number.isSafeInteger(entry.height)&&entry.height>0;
  const dimensionedTag=declaredDimensions&&(src.startsWith('/assets/landing-gallery-v1/')||/\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b/.test(tag))
