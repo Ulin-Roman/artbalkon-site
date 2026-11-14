@@ -2,7 +2,11 @@ name: Read-only hosting latency investigation
 
 on:
   push:
-    branches: [codex/latency-diagnostics-20261114]
+    branches: [main]
+    paths:
+      - .github/diagnostics/**
+      - .github/workflows/diagnose-latency.yml
+  workflow_dispatch:
 
 permissions:
   contents: read
