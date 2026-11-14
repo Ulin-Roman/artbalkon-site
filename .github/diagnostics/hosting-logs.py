@@ -203,7 +203,7 @@ def parse_listing(line, machine):
 
 def run_diagnostic(connect, now=time.monotonic):
     deadline = now() + BUDGET
-    result = {"result": "inaccessible", "window_start_utc": START.isoformat(), "window_end_utc": END.isoformat(), "files": [], "limits": {"max_files": MAX_FILES, "max_bytes_per_file": MAX_BYTES, "max_target_records_per_file": 32, "wall_budget_seconds": BUDGET, "access_format": "common/combined request and explicit unquoted named timing fields", "timestamps": "CLF numeric offset or leading ISO8601; Apache/nginx zoneless error timestamps remain unzoned", "generic_logs": "read only below an exact target-domain directory inside logs/access-logs", "symlinks": "not followed", "large_gzip": "skipped; gzip tails cannot be decoded"}, "scan": {"directories_listed": 0, "directory_failures": 0, "scoped_files_found": 0}}
+    result = {"result": "inaccessible", "window_start_utc": START.isoformat(), "window_end_utc": END.isoformat(), "files": [], "limits": {"max_files": MAX_FILES, "max_bytes_per_file": MAX_BYTES, "max_target_records_per_file": 32, "wall_budget_seconds": BUDGET, "access_format": "common/combined request and explicit unquoted named timing fields", "timestamps": "CLF numeric offset or leading ISO8601; Apache/nginx zoneless error timestamps remain unzoned", "generic_logs": "read only below an exact target-domain directory inside logs/access-logs", "symlinks": "arbitrary links not followed; only documented log directories may be entered", "large_gzip": "skipped; gzip tails cannot be decoded"}, "scan": {"directories_listed": 0, "directory_failures": 0, "scoped_files_found": 0}}
     ftp = None
     candidates, visited = {}, set()
 
@@ -261,6 +261,12 @@ def run_diagnostic(connect, now=time.monotonic):
         root = ftp.pwd()
         for anchor in (root, root.rstrip("/") + "/..", root.rstrip("/") + "/../.."):
             collect(anchor)
+            # A hosting panel can expose its documented log directory as a link,
+            # which MLSD intentionally excludes from ordinary traversal. Probe
+            # these two fixed locations through the account's own FTP permissions;
+            # never follow arbitrary links or read logs for another domain.
+            for directory in sorted(LOG_DIRS):
+                collect(anchor.rstrip("/") + "/" + directory, depth=1)
         result["scan"]["scoped_files_found"] = len(candidates)
         # Prefer the incident date and current uncompressed logs, then rotations.
         ordered = sorted(candidates, key=lambda path: (not ("2026-11-14" in path or "20261114" in path), candidates[path][1], path))

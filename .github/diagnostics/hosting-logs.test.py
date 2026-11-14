@@ -136,6 +136,22 @@ class DiagnosticTests(unittest.TestCase):
         self.assertTrue(result["files"][0]["truncated"])
         self.assertEqual(result["files"][0]["target_requests"], 1)
 
+    def test_documented_log_directory_can_be_unlisted_or_a_panel_link(self):
+        class PanelFTP(FakeFTP):
+            def retrlines(self, command, callback):
+                self.commands.append(command)
+                if self.here == "/account/www":
+                    callback("type=OS.unix=slink; logs")
+                    callback("type=OS.unix=slink; unrelated-private-data")
+                elif self.here == "/account/www/logs":
+                    callback("type=file; artbalkon.site.access.log")
+                    callback("type=file; other-domain.invalid.access.log")
+        ftp = PanelFTP({"/account/www/logs/artbalkon.site.access.log": access()})
+        result = diagnostic.run_diagnostic(lambda: ftp)
+        self.assertEqual(result["result"], "logs_accessible")
+        self.assertEqual(ftp.reads, ["/account/www/logs/artbalkon.site.access.log"])
+        self.assertNotIn("unrelated-private-data", json.dumps(result))
+
     def test_file_and_gzip_limits(self):
         ftp = FakeFTP({"/account/logs/artbalkon.site.access.log.%d" % i: access() for i in range(20)})
         result = diagnostic.run_diagnostic(lambda: ftp)
