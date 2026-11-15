@@ -16,7 +16,7 @@ function mountGift(host){
  const paint=pose=>{context.setTransform(ratio,0,0,ratio,0,0);context.clearRect(0,0,size,size);context.translate(size/2+pose[0]*pixelsPerUnit,size/2-pose[1]*pixelsPerUnit);context.rotate(-pose[2]);context.drawImage(image,-imageSize/2,-imageSize/2,imageSize,imageSize);};
  const stop=()=>{cancelAnimationFrame(frame);clearTimeout(timer);frame=timer=0;};
  const draw=ms=>{frame=0;if(disposed||!ready||document.hidden||!visible)return;
-  const cycle=(ms-epoch)%2600;
+  const cycle=Math.max(0,ms-epoch)%2600;
   if(reduced.matches||cycle>=600){paint(poses[0]);if(!reduced.matches)timer=setTimeout(()=>{timer=0;start();},2600-cycle);return;}
   if(ms-last>=32){last=ms;const amount=Math.max(0,Math.min(1,cycle/60,(600-cycle)/80));paint(poses[Math.floor(cycle/35)%poses.length].map(value=>value*amount));}
   frame=requestAnimationFrame(draw);
