@@ -58,7 +58,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          timeout: '1500000'
+          timeout: '600000'
 
       - name: Build for artbalkon.site
         env:
