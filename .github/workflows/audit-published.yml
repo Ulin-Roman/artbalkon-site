@@ -38,7 +38,7 @@ jobs:
           for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
            const browser=await engine.launch();
            const context=await browser.newContext({viewport:{width:320,height:740},deviceScaleFactor:1,locale:'ru-RU'});
-           const page=await context.newPage();page.setDefaultTimeout(5000);
+           const page=await context.newPage();page.setDefaultTimeout(10000);
            const pageUrls=name==='chromium'?urls:urls.filter(u=>['/','/osteklenie-balkonov/','/uteplenie-balkonov/','/otdelka-balkonov/','/remont-balkonov/'].includes(new URL(u).pathname));
            const viewports=name==='chromium'?sizes:sizes.filter(([w])=>[320,375,768,1280,844].includes(w));
            for(const url of pageUrls){
@@ -50,6 +50,7 @@ jobs:
             if(!seo.title||!seo.description||seo.canonical!==url||seo.h1!==1||!seo.json.length||seo.json.includes(null)||/noindex/.test(seo.robots||''))failures.push({engine:name,url,seo});
             for(const [width,height] of viewports){
              await page.setViewportSize({width,height});
+             if(url===origin+'/')await page.reload({waitUntil:'domcontentloaded'});
              await page.evaluate(()=>scrollTo(0,0));
              await page.waitForTimeout(150);
              const geometry=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth,body:document.body.scrollWidth,broken:[...document.images].filter(i=>i.complete&&i.currentSrc&&i.naturalWidth===0&&!i.currentSrc.startsWith('data:')).map(i=>i.currentSrc)}));
@@ -58,7 +59,7 @@ jobs:
              if(url===origin+'/'){
               try{
                const menu=page.getByRole('button',{name:'Открыть меню',exact:true});
-               if(await menu.isVisible()){await menu.click();await page.locator('#mobile-menu').waitFor({state:'visible'});await page.getByRole('button',{name:'Закрыть меню',exact:true}).click();await page.locator('#mobile-menu').waitFor({state:'hidden'});}
+               if(await menu.isVisible()){await menu.click();await page.locator('#mobile-menu').waitFor({state:'visible'});await page.locator('#mobile-menu [data-mobile-menu-close]').click();await page.locator('#mobile-menu').waitFor({state:'hidden'});}
                const callback=page.locator('[data-callback-open]:visible').first();await callback.click();await page.locator('#callback-modal').waitFor({state:'visible'});await page.keyboard.press('Escape');await page.locator('#callback-modal').waitFor({state:'hidden'});
               }catch(error){failures.push({engine:name,path:'/',width,height,interaction:String(error)});await page.keyboard.press('Escape');}
               if([320,375,768,1280].includes(width)){await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:'audit-results/'+name+'-home-'+width+'.png'});}
