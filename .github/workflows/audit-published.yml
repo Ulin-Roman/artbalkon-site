@@ -59,8 +59,8 @@ jobs:
              if(url===origin+'/'){
               try{
                const menu=page.getByRole('button',{name:'Открыть меню',exact:true});
-               if(await menu.isVisible()){await menu.click();await page.locator('#mobile-menu').waitFor({state:'visible'});await page.locator('#mobile-menu [data-mobile-menu-close]').click();await page.locator('#mobile-menu').waitFor({state:'hidden'});}
-               const callback=page.locator('[data-callback-open]:visible').first();await callback.click();await page.locator('#callback-modal').waitFor({state:'visible'});await page.keyboard.press('Escape');await page.locator('#callback-modal').waitFor({state:'hidden'});
+               if(await menu.isVisible()){await menu.click();await page.locator('#mobile-menu').waitFor({state:'visible'});await page.locator('#mobile-menu [data-mobile-menu-close]').click();await page.locator('#mobile-menu').waitFor({state:'hidden'});await menu.click();await page.locator('#mobile-menu').waitFor({state:'visible'});}
+               const callback=page.locator('[data-callback-open]:visible');const dialog=await callback.count()?'#callback-modal':'#quiz-modal';if(await callback.count())await callback.first().click();else await page.locator('.home-hero [data-quiz-open]').first().click();await page.locator(dialog).waitFor({state:'visible'});await page.keyboard.press('Escape');await page.locator(dialog).waitFor({state:'hidden'});if(await page.locator('#mobile-menu').isVisible())await page.locator('#mobile-menu [data-mobile-menu-close]').click();
               }catch(error){failures.push({engine:name,path:'/',width,height,interaction:String(error)});await page.keyboard.press('Escape');}
               if([320,375,768,1280].includes(width)){await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:'audit-results/'+name+'-home-'+width+'.png'});}
              }
@@ -79,7 +79,7 @@ jobs:
                const photo=p.locator('[data-estimate-preview]:not([hidden]) [data-estimate-image]');
                await photo.evaluate(i=>i.decode());
                const data=await photo.evaluate(i=>{const r=i.getBoundingClientRect();return {src:i.currentSrc,naturalWidth:i.naturalWidth,naturalHeight:i.naturalHeight,width:r.width,height:r.height,srcset:i.srcset,sizes:i.sizes}});
-               notes.push({width,dpr,step,...data});
+               notes.push({viewportWidth:width,dpr,step,...data});
                if(!data.naturalWidth||!data.width||!data.height)failures.push({width,dpr,step,photo:data});
               }
               await p.locator('#quiz .quiz-next-button').click();
@@ -95,8 +95,8 @@ jobs:
           summary+='| Engine | Checks | Overflow/image/SEO/interaction failures |\n|---|---:|---:|\n';
           for(const name of ['chromium','firefox','webkit'])summary+='| '+name+' | '+results.filter(r=>r.engine===name).length+' | '+failures.filter(r=>r.engine===name).length+' |\n';
           summary+='\nReal hardware and field performance are outside this test. No forms were submitted.\n';
-          summary+='\n## Initial quiz photo selection\n\n| Width | DPR | Selected file | Responsive candidates |\n|---|---:|---|---|\n';
-          for(const photo of notes.filter(p=>p.step===0&&p.src.includes('/turnkey-green-v2/')))summary+='| '+photo.width+' | '+photo.dpr+' | '+photo.src.split('/').pop()+' | '+(photo.srcset?'yes':'no')+' |\n';
+          summary+='\n## Initial quiz photo selection\n\n| Viewport width | DPR | Selected file | Responsive candidates |\n|---|---:|---|---|\n';
+          for(const photo of notes.filter(p=>p.step===0&&p.src.includes('/turnkey-green-v2/')))summary+='| '+photo.viewportWidth+' | '+photo.dpr+' | '+photo.src.split('/').pop()+' | '+(photo.srcset?'yes':'no')+' |\n';
           if(failures.length)summary+='\nFailures:\n\n'+JSON.stringify(failures,null,2)+'\n';
           await appendFile(process.env.GITHUB_STEP_SUMMARY,summary);
           console.log(summary);
