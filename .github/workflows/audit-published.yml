@@ -95,6 +95,8 @@ jobs:
           summary+='| Engine | Checks | Overflow/image/SEO/interaction failures |\n|---|---:|---:|\n';
           for(const name of ['chromium','firefox','webkit'])summary+='| '+name+' | '+results.filter(r=>r.engine===name).length+' | '+failures.filter(r=>r.engine===name).length+' |\n';
           summary+='\nReal hardware and field performance are outside this test. No forms were submitted.\n';
+          summary+='\n## Initial quiz photo selection\n\n| Width | DPR | Selected file | Responsive candidates |\n|---|---:|---|---|\n';
+          for(const photo of notes.filter(p=>p.step===0&&p.src.includes('/turnkey-green-v2/')))summary+='| '+photo.width+' | '+photo.dpr+' | '+photo.src.split('/').pop()+' | '+(photo.srcset?'yes':'no')+' |\n';
           if(failures.length)summary+='\nFailures:\n\n'+JSON.stringify(failures,null,2)+'\n';
           await appendFile(process.env.GITHUB_STEP_SUMMARY,summary);
           console.log(summary);
