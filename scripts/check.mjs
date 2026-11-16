@@ -567,6 +567,9 @@ for(const file of pages){
   }else if(match[0].includes('class="gift-3d-fallback"')){
    assert.match(match[0],/\salt=""/,'decorative gift image must have empty alt');
    assert.ok(match[0].includes('aria-hidden="true"'),'decorative gift image missing aria-hidden');
+  }else if(match[0].includes('aria-hidden="true"')&&/src="[^"]*\/(?:telegram-logo\.svg|optimized\/max-app-icon-128\.webp|vk-logo\.svg)"/.test(match[0])){
+   assert.match(match[0],/\salt=""/,'decorative contact icon must have empty alt');
+   assert.match(html.slice(match.index+match[0].length),/^<span>(?:Telegram|MAX|ВКонтакте)<\/span>/,'decorative contact icon must retain its adjacent visible link label');
   }else assert.ok(/\salt="[^"]+"/.test(match[0]),'image alt missing');
   assert.ok(/width=/.test(match[0])&&/height=/.test(match[0]),'image dimensions missing');
  }
