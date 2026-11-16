@@ -26,10 +26,14 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
  return entry?url.replace(asset,entry.src):url;
 }).replace(/href="(\/assets\/certificates\/[^"<>]+)"/g,(_,src)=>'href="'+(responsiveImages[src]?.src||src)+'"').replace(/(data-(?:before|after)=")([^"]+)(")/g,(_,prefix,src,suffix)=>prefix+comparisonAsset(src)+suffix).replace(/<img\b[^>]*>/g,tag=>{
  const src=imageSource(tag),entry=responsiveImages[src];if(!entry)return tag;
- // Inline estimates use full-size WebP: tall cover crops can exceed thumbnail widths.
+ // Keep desktop cover crops full-size; mobile frames have a bounded height.
  if(tag.includes('data-estimate-image')){
-  const fullSize=entry.variants?.reduce((largest,variant)=>variant.width>(largest?.width||0)?variant:largest,null)?.src||entry.src;
-  return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+fullSize+'"');
+  const largest=entry.variants?.reduce((a,v)=>v.width>(a?.width||0)?v:a,null);
+  const fullSize=largest?.src||entry.src,ratio=entry.width/entry.height;
+  if(!Number.isFinite(ratio)||ratio<=0)throw Error('Missing estimate photo dimensions: '+src);
+  const mobileCover='max(calc(100vw - 32px), clamp('+Math.ceil(240*ratio)+'px, '+(75*ratio).toFixed(4)+'vw, '+Math.ceil(480*ratio)+'px))';
+  const sizes='(max-width:800px) '+mobileCover+', '+(largest?.width||entry.width)+'px';
+  return tag.replace(/\s(?:srcset|sizes)="[^"]*"/g,'').replace('src="'+src+'"','src="'+fullSize+'"').replace('>',' srcset="'+entry.variants.map(v=>v.src+' '+v.width+'w').join(', ')+'" sizes="'+sizes+'">');
  }
  // Cover crops need enough source pixels for both the card width and height.
  const finishingPhoto=tag.match(/data-finishing-photo="(\d+)"/);
