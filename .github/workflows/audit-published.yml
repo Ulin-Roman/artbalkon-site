@@ -1,0 +1,111 @@
+name: Audit published site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  responsive:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated browser test dependencies
+        run: |
+          mkdir -p "$RUNNER_TEMP/artbalkon-audit"
+          cd "$RUNNER_TEMP/artbalkon-audit"
+          npm init -y
+          npm install --save-exact playwright@1.56.1
+          npx playwright install --with-deps chromium firefox webkit
+      - name: Audit published pages, layouts and quiz
+        working-directory: ${{ runner.temp }}/artbalkon-audit
+        run: |
+          cat > audit.mjs <<'AUDIT'
+          import {chromium, firefox, webkit} from 'playwright';
+          import {mkdir,writeFile,appendFile} from 'node:fs/promises';
+          const origin='https://artbalkon.site';
+          const sitemap=await fetch(origin+'/sitemap.xml').then(r=>{if(!r.ok)throw Error('Sitemap HTTP '+r.status);return r.text()});
+          const urls=[...sitemap.matchAll(new RegExp('<loc>([^<]+)</loc>','g'))].map(m=>m[1]);
+          if(urls.length!==20||urls.some(u=>new URL(u).origin!==origin))throw Error('Unexpected sitemap');
+          const sizes=[[320,740],[375,812],[412,915],[640,960],[768,1024],[820,1180],[1024,768],[1280,800],[1920,1080],[844,390]];
+          const results=[],failures=[],notes=[];
+          await mkdir('audit-results',{recursive:true});
+          for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
+           const browser=await engine.launch();
+           const context=await browser.newContext({viewport:{width:320,height:740},deviceScaleFactor:1,locale:'ru-RU'});
+           const page=await context.newPage();page.setDefaultTimeout(5000);
+           const pageUrls=name==='chromium'?urls:urls.filter(u=>['/','/osteklenie-balkonov/','/uteplenie-balkonov/','/otdelka-balkonov/','/remont-balkonov/'].includes(new URL(u).pathname));
+           const viewports=name==='chromium'?sizes:sizes.filter(([w])=>[320,375,768,1280,844].includes(w));
+           for(const url of pageUrls){
+            let response;
+            try{response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});await page.locator('h1').waitFor();await page.evaluate(()=>document.fonts.ready);}
+            catch(error){failures.push({engine:name,url,error:String(error)});continue;}
+            if(response.status()!==200)failures.push({engine:name,url,status:response.status()});
+            const seo=await page.evaluate(()=>({title:document.title,description:document.querySelector('meta[name="description"]')?.content,canonical:document.querySelector('link[rel="canonical"]')?.href,h1:document.querySelectorAll('h1').length,robots:document.querySelector('meta[name="robots"]')?.content,json:[...document.querySelectorAll('script[type="application/ld+json"]')].map(s=>{try{return JSON.parse(s.textContent)}catch{return null}})}));
+            if(!seo.title||!seo.description||seo.canonical!==url||seo.h1!==1||!seo.json.length||seo.json.includes(null)||/noindex/.test(seo.robots||''))failures.push({engine:name,url,seo});
+            for(const [width,height] of viewports){
+             await page.setViewportSize({width,height});
+             await page.evaluate(()=>scrollTo(0,0));
+             await page.waitForTimeout(150);
+             const geometry=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth,body:document.body.scrollWidth,broken:[...document.images].filter(i=>i.complete&&i.currentSrc&&i.naturalWidth===0&&!i.currentSrc.startsWith('data:')).map(i=>i.currentSrc)}));
+             const row={engine:name,path:new URL(url).pathname,width,height,...geometry};results.push(row);
+             if(geometry.document>geometry.viewport+1||geometry.body>geometry.viewport+1||geometry.broken.length)failures.push(row);
+             if(url===origin+'/'){
+              try{
+               const menu=page.getByRole('button',{name:'Открыть меню',exact:true});
+               if(await menu.isVisible()){await menu.click();await page.locator('#mobile-menu').waitFor({state:'visible'});await page.getByRole('button',{name:'Закрыть меню',exact:true}).click();await page.locator('#mobile-menu').waitFor({state:'hidden'});}
+               const callback=page.locator('[data-callback-open]:visible').first();await callback.click();await page.locator('#callback-modal').waitFor({state:'visible'});await page.keyboard.press('Escape');await page.locator('#callback-modal').waitFor({state:'hidden'});
+              }catch(error){failures.push({engine:name,path:'/',width,height,interaction:String(error)});await page.keyboard.press('Escape');}
+              if([320,375,768,1280].includes(width)){await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:'audit-results/'+name+'-home-'+width+'.png'});}
+             }
+            }
+           }
+           // Check all quiz photo choices at standard and high pixel density separately.
+           if(name==='chromium')for(const dpr of [1,2])for(const width of [320,375,412,640,768,1280]){
+            const c=await browser.newContext({viewport:{width,height:900},deviceScaleFactor:dpr,locale:'ru-RU'}),p=await c.newPage();p.setDefaultTimeout(5000);
+            try{
+             await p.goto(origin+'/',{waitUntil:'domcontentloaded'});
+             await p.locator('#quiz').scrollIntoViewIfNeeded();
+             for(let step=0;step<4;step++){
+              const radios=p.locator('#quiz fieldset:not([hidden]) input[type="radio"]');
+              for(let i=0;i<await radios.count();i++){
+               await radios.nth(i).check();
+               const photo=p.locator('[data-estimate-preview]:not([hidden]) [data-estimate-image]');
+               await photo.evaluate(i=>i.decode());
+               const data=await photo.evaluate(i=>{const r=i.getBoundingClientRect();return {src:i.currentSrc,naturalWidth:i.naturalWidth,naturalHeight:i.naturalHeight,width:r.width,height:r.height,srcset:i.srcset,sizes:i.sizes}});
+               notes.push({width,dpr,step,...data});
+               if(!data.naturalWidth||!data.width||!data.height)failures.push({width,dpr,step,photo:data});
+              }
+              await p.locator('#quiz .quiz-next-button').click();
+             }
+             await p.locator('#quiz [data-estimate-stage="contact"]').waitFor({state:'visible'});
+            }catch(error){failures.push({width,dpr,quiz:String(error)});}finally{await c.close();}
+           }
+           await browser.close();
+          }
+          const report={date:new Date().toISOString(),origin,urls,results,failures,quizPhotos:notes};
+          await writeFile('audit-results/report.json',JSON.stringify(report,null,2));
+          let summary='# Published site responsive audit\n\n'+results.length+' page/viewport checks; '+notes.length+' quiz-photo observations; '+failures.length+' failures.\n\n';
+          summary+='| Engine | Checks | Overflow/image/SEO/interaction failures |\n|---|---:|---:|\n';
+          for(const name of ['chromium','firefox','webkit'])summary+='| '+name+' | '+results.filter(r=>r.engine===name).length+' | '+failures.filter(r=>r.engine===name).length+' |\n';
+          summary+='\nReal hardware and field performance are outside this test. No forms were submitted.\n';
+          if(failures.length)summary+='\nFailures:\n\n'+JSON.stringify(failures,null,2)+'\n';
+          await appendFile(process.env.GITHUB_STEP_SUMMARY,summary);
+          console.log(summary);
+          if(failures.length)process.exitCode=1;
+          
+          AUDIT
+          node --check audit.mjs
+          node audit.mjs
+      - name: Save audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-site-responsive-audit
+          path: ${{ runner.temp }}/artbalkon-audit/audit-results
+          retention-days: 14
