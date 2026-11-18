@@ -1,5 +1,5 @@
 import {retentionPopupStyles} from './retention-popup-styles.mjs';
-import {newGlazingNavigation,newFinishingNavigation} from './landing-pages.mjs';
+import {newGlazingNavigation,newFinishingNavigation,showHeroPrices} from './landing-pages.mjs';
 import {finishingCalculator} from './finishing-calculator.mjs';
 import {buttonArrow as renderButtonArrow} from './button-arrow.mjs';
 import {portfolioCaseId} from './portfolio-case-ids.mjs';
@@ -402,7 +402,7 @@ const structuredData=({path,title,description,image})=>{
  if(service){
   const seo=serviceSeo[service.slug],price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
-  graph.push({'@type':'Service','@id':`${canonical}#service`,name:service.h1,serviceType:service.title,description:seo?.metaDescription||service.offer,url:canonical,image:imageUrl,provider:{'@id':businessId},areaServed:[{'@type':'City',name:'Москва'},{'@type':'AdministrativeArea',name:'Московская область'}],...(price==null?{}:{offers:{'@type':'Offer',priceCurrency:'RUB',url:canonical,availability:'https://schema.org/InStock',priceSpecification:{'@type':unit?'UnitPriceSpecification':'PriceSpecification',minPrice:price,priceCurrency:'RUB',...(unit?{unitText:unit.replace(/^\//,'')}: {})}}})});
+  graph.push({'@type':'Service','@id':`${canonical}#service`,name:service.h1,serviceType:service.title,description:seo?.metaDescription||service.offer,url:canonical,image:imageUrl,provider:{'@id':businessId},areaServed:[{'@type':'City',name:'Москва'},{'@type':'AdministrativeArea',name:'Московская область'}],...(!showHeroPrices||price==null?{}:{offers:{'@type':'Offer',priceCurrency:'RUB',url:canonical,availability:'https://schema.org/InStock',priceSpecification:{'@type':unit?'UnitPriceSpecification':'PriceSpecification',minPrice:price,priceCurrency:'RUB',...(unit?{unitText:unit.replace(/^\//,'')}: {})}}})});
   if(seo?.faq?.length)graph.push({'@type':'FAQPage','@id':`${canonical}#faq`,mainEntity:seo.faq.map(([question,answer])=>({'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:answer}}))});
  }
  if(project)graph.push({'@type':'Article','@id':`${canonical}#project`,headline:project.title,description:project.intro,url:canonical,image:imageUrl,author:{'@id':businessId},publisher:{'@id':businessId},about:project.type,inLanguage:'ru-RU'});
@@ -430,9 +430,6 @@ export function home(){
  const service=serviceForPath('/');
  return servicePageWithSeo(service,{home:true});
 }
-// Temporary pricing experiment for the first screen of each landing page.
-const showHeroPrices = false;
-
 const heroPriceMarkup=(value,unit='')=>{
  if (!showHeroPrices) return '';
  const text=String(value),parts=text.match(/^(от)(\s+)(.*)$/u);
