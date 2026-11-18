@@ -2,6 +2,9 @@ import {definitions as glazing} from './landing-pages-glazing.mjs';
 import {definitions as panels} from './landing-pages-panels.mjs';
 import {definitions as wood} from './landing-pages-wood.mjs';
 
+// Toggle the same starting price on landing heroes, structured offers and advertising feed copy.
+export const showHeroPrices = false;
+
 const order=[
  'osteklenie-balkona-s-vynosom','otdelka-balkona-pvh-panelyami',
  'otdelka-balkona-laminatom','otdelka-balkona-vagonkoj',
