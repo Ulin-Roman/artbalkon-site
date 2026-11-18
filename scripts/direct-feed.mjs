@@ -1,6 +1,7 @@
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import {company,services,prices} from '../src/content.mjs';
+import {showHeroPrices} from '../src/landing-pages.mjs';
 import {directFeedDescriptions} from '../src/direct-feed-copy.mjs';
 import {jpegDimensions} from './jpeg-dimensions.mjs';
 
@@ -31,7 +32,7 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
   const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];
   if(price!=null&&!(price>0))throw Error(`Invalid feed price: ${slug}`);
   const unit=service.heroPrice?(service.heroPriceUnit||''):'/м²';
-  const priceText=price!=null?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
+  const priceText=showHeroPrices&&price!=null?` Цена от ${price.toLocaleString('ru-RU')} ₽${unit}.`:'';
   const copy=directFeedDescriptions[slug];
   if(!copy)throw Error(`Missing advertising description: ${slug}`);
   const description=copy+priceText;
