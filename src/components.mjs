@@ -430,7 +430,11 @@ export function home(){
  const service=serviceForPath('/');
  return servicePageWithSeo(service,{home:true});
 }
+// Temporary pricing experiment for the first screen of each landing page.
+const showHeroPrices = false;
+
 const heroPriceMarkup=(value,unit='')=>{
+ if (!showHeroPrices) return '';
  const text=String(value),parts=text.match(/^(от)(\s+)(.*)$/u);
  const prefix=parts?`<span class="hero-price-from">${esc(parts[1])}</span>${esc(parts[2])}`:'';
  const amount=parts?parts[3]:text;
