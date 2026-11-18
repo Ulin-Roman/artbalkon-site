@@ -1,6 +1,6 @@
 import {checkFaq} from './faq-check.mjs';
 import {checkMarkup} from './markup-check.mjs';
-import {newLandingDefinitions,newLandingSlugs} from '../src/landing-pages.mjs';
+import {newLandingDefinitions,newLandingSlugs,showHeroPrices} from '../src/landing-pages.mjs';
 import {beforeGeometryCorrections} from '../src/portfolio-before-geometry-corrections.mjs';
 const beforeGeometrySources = new Map(Object.entries(beforeGeometryCorrections).map(([source,target])=>[target,source]));
 import {beforeWindowCorrections} from '../src/portfolio-before-window-corrections.mjs';
@@ -673,6 +673,7 @@ for(const entry of feedOffers){
  assert.equal(serviceNodes.length,1,'Each commercial page needs one structured service: '+slug);
  assert.equal(serviceNodes[0].url,entry.url,'Structured and advertising services must retain the same destination: '+slug);
  const structuredOffer=serviceNodes[0].offers;
+ if (!showHeroPrices) assert.equal(hero,undefined,'The price experiment hides the starting rate: '+slug);
  if(!hero){
   assert.doesNotMatch(entry.description,/₽/,'Do not invent an advertising price absent from the landing: '+slug);
   assert.equal(structuredOffer,undefined,'Do not invent a structured offer when no price is published: '+slug);
@@ -923,7 +924,7 @@ assert.equal(frenchService.price,'french');
 assert.equal(prices.french,prices.panoramic,'French starting rate matches panoramic glazing');
 const panoramicService=services.find(s=>s.slug==='panoramnoe-osteklenie');
 const frenchHeroPrice=frenchPage.match(/<p class="landing-price">.*?<\/p>/)?.[0];
-assert.ok(frenchHeroPrice,'French hero advertises the confirmed starting rate');
+if (showHeroPrices) assert.ok(frenchHeroPrice,'French hero advertises the confirmed starting rate');
 assert.equal(frenchHeroPrice,servicePage(panoramicService).match(/<p class="landing-price">.*?<\/p>/)?.[0],'French and panoramic heroes share price and unit');
 assert.ok(header('/osteklenie-balkonov/').includes('href="/frantsuzskoe-osteklenie/"'),'Glazing navigation links to the French page');
 assert.ok(feed.includes('<offer id="110"'));
@@ -965,9 +966,9 @@ for(const definition of newLandingDefinitions){
  const heroPrice=builtMarkup.match(/<p class="landing-price">(.*?)<\/p>/)?.[1];
  const graph=JSON.parse(builtMarkup.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1])['@graph'];
  const offer=graph.find(item=>item['@type']==='Service')?.offers;
- if(expectedPrice===null){
-  assert.equal(heroPrice,undefined,'Unconfirmed rate must stay absent from the hero');
-  assert.equal(offer,undefined,'Unconfirmed rate must stay absent from structured data');
+ if(!showHeroPrices||expectedPrice===null){
+  assert.equal(heroPrice,undefined,'Hidden or unconfirmed rates must stay absent from the hero');
+  assert.equal(offer,undefined,'Hidden or unconfirmed rates must stay absent from structured data');
  }else{
   assert.equal(heroPrice?.replace(/<[^>]*>/g,''),'от '+expectedPrice.toLocaleString('ru-RU')+' ₽ /м²','Hero uses the confirmed rate and unit');
   assert.equal(heroPrice?.match(/<span class="hero-price-amount">([^<]*)<\/span>/)?.[1],expectedPrice.toLocaleString('ru-RU')+' ₽','Hero amount and currency remain together');
