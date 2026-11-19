@@ -15,7 +15,7 @@ import {resolve,join} from 'node:path';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {runInNewContext} from 'node:vm';
-import {company,serviceSeo,prices,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements} from '../src/content.mjs';
+import {company,serviceSeo,prices,serviceBeforeAfterProjects,services,beforeAfterProjects,beforeHardwareReplacements,finishBeforeLatchReplacements,combinedHeroProject} from '../src/content.mjs';
 import {header,esc,projectDisplayTitle,servicePage,servicePageWithSeo,shellWithQuiz,quiz,quizModal,homeHeroImage,home as renderHome} from '../src/components.mjs';
 // Weather/daylight variant checks: only generated BEFORE assets may be mapped.
 const allPhotoPairs=[...beforeAfterProjects,...Object.values(serviceBeforeAfterProjects).flat()];
@@ -900,14 +900,20 @@ for (const target of Object.values(beforeGeometryCorrections)) {
 
 assert.ok(!serviceBeforeAfterProjects['uteplenie-balkonov'].some(p=>['Утепление балкона со скамьёй','Утепление лоджии с рабочим столом'].includes(p.title)),'Withdrawn insulation works 66 and 67 must remain absent');
 
-// Repair intentionally reuses the final finishing gallery and remains a separate service.
-assert.deepEqual(serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov'],serviceBeforeAfterProjects['otdelka-balkonov']);
+// The combined service adds its featured loggia before the shared finishing works.
+const [featuredLoggia,...sharedFinishingProjects]=serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov'];
+assert.equal(featuredLoggia,combinedHeroProject);
+assert.deepEqual(sharedFinishingProjects,serviceBeforeAfterProjects['otdelka-balkonov']);
 const repairService=services.find(s=>s.slug==='osteklenie-i-otdelka-balkonov');
 assert.ok(repairService);
 assert.match(servicePageWithSeo(repairService),/Остекление и отделка балконов и лоджий/);
 assert.doesNotMatch(renderHome(),/data-repair-range|repair-feature-card|owner-projects\/loggia-slats-room-/);
 
 const repairMarkup=servicePageWithSeo(repairService);
+const featuredLoggiaCard=repairMarkup.match(/<button class="before-after-compare"[^>]*>/)?.[0];
+assert.ok(featuredLoggiaCard?.includes(`data-case="${portfolioCaseId(featuredLoggia)}"`),'The featured loggia must appear first in the combined service gallery');
+assert.ok(featuredLoggiaCard.includes(`data-before="assets/${featuredLoggia.before}" data-after="assets/${featuredLoggia.after}"`),'The featured card must contain both loggia images');
+assert.match(featuredLoggiaCard,/data-before-real="false" data-before-visualized="true"/);
 const repairConsultation=quizSection(repairMarkup);
 assert.ok(repairConsultation?.includes('type="hidden" name="service" value="Остекление и отделка балконов и лоджий"'),'Repair consultation must preserve the repair service');
 assert.equal(repairConsultation,quiz(repairService,{consultation:true}),'Repair page must retain its previous consultation block');
