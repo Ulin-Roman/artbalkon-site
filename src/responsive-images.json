@@ -14012,5 +14012,43 @@
         "width": 714
       }
     ]
+  },
+  "/assets/owner-projects/loggia-slats-room-before.webp": {
+    "src": "/assets/owner-projects/loggia-slats-room-before.webp",
+    "width": 720,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/owner-projects/loggia-slats-room-before-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/owner-projects/loggia-slats-room-before-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/owner-projects/loggia-slats-room-before.webp",
+        "width": 720
+      }
+    ]
+  },
+  "/assets/owner-projects/loggia-slats-room-after.webp": {
+    "src": "/assets/owner-projects/loggia-slats-room-after.webp",
+    "width": 720,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/owner-projects/loggia-slats-room-after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/owner-projects/loggia-slats-room-after-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/owner-projects/loggia-slats-room-after.webp",
+        "width": 720
+      }
+    ]
   }
 }
