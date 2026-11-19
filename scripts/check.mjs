@@ -257,8 +257,11 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
   continue;
  }
  if(label==='osteklenie-i-otdelka-balkonov'){
-  assert.match(html,/<img class="hero-image is-active" src="\/assets\/owner-projects\/loggia-slats-room-after\.webp"/, 'glazing and finishing hero must show the finished loggia');
-  assert.doesNotMatch(html,/data-hero-slider|data-repair-compare|data-repair-range|loggia-slats-room-before\.webp/, 'glazing and finishing hero must remain static');
+  const comparisonHero=heroSection(html);
+  assert.ok(comparisonHero?.includes('class="landing-photo-pair"'),'glazing and finishing hero must display a photo pair');
+  assert.match(comparisonHero,/loggia-slats-room-before\.webp"[^>]*><figcaption>До<\/figcaption>/);
+  assert.match(comparisonHero,/loggia-slats-room-after\.webp"[^>]*><figcaption>После<\/figcaption>/);
+  assert.doesNotMatch(comparisonHero,/data-hero-slider|data-repair-compare|data-repair-range|type="range"/);
   continue;
  }
  if(label==='otdelka-balkonov'){
