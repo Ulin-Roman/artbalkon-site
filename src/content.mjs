@@ -1980,15 +1980,25 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  project.description='Вариант холодного остекления балкона по передней и правой сторонам с сохранением глухой стены слева.';
 }
 
+export const combinedHeroProject={
+ title:'Лоджия с рейками и открытым проёмом в комнату',
+ before:'owner-projects/loggia-slats-room-before.webp',
+ after:'owner-projects/loggia-slats-room-after.webp',
+ beforeReal:false,
+ beforeVisualized:true,
+ afterReal:true,
+ afterVisualized:false
+};
+
 // The combined service reuses the finishing prices and portfolio.
 const finishingService=services.find(s=>s.slug==='otdelka-balkonov');
-services.push({...finishingService,slug:'osteklenie-i-otdelka-balkonov',heroPrice:'',image:'home-liked-works-v1/balcony-folding-table-after.webp',features:['Подбор остекления под задачи балкона','Отделка стен, пола и потолка','Материалы, освещение и хранение по согласованному проекту'],question:'Что входит в остекление и отделку балкона?',answer:'На замере оценим состояние балкона и согласуем остекление, подготовку поверхностей и отделку. Перечень работ и смету фиксируем до начала работ.',title:'Остекление и отделка балконов и лоджий',h1:'Остекление и отделка балконов и лоджий',short:'Подберём остекление и отделку для балкона или лоджии.',offer:'Остеклим балкон или лоджию, подберём отделку стен, пола и потолка.',heroSubtitle:'Подберём остекление и материалы для стен, пола и потолка. Работаем в Москве и Московской области.'});
+services.push({...finishingService,slug:'osteklenie-i-otdelka-balkonov',heroPrice:'',image:combinedHeroProject.after,features:['Подбор остекления под задачи балкона','Отделка стен, пола и потолка','Материалы, освещение и хранение по согласованному проекту'],question:'Что входит в остекление и отделку балкона?',answer:'На замере оценим состояние балкона и согласуем остекление, подготовку поверхностей и отделку. Перечень работ и смету фиксируем до начала работ.',title:'Остекление и отделка балконов и лоджий',h1:'Остекление и отделка балконов и лоджий',short:'Подберём остекление и отделку для балкона или лоджии.',offer:'Остеклим балкон или лоджию, подберём отделку стен, пола и потолка.',heroSubtitle:'Подберём остекление и материалы для стен, пола и потолка. Работаем в Москве и Московской области.'});
 serviceSeo['osteklenie-i-otdelka-balkonov']={...serviceSeo['otdelka-balkonov'],metaTitle:'Остекление и отделка балконов и лоджий в Москве и МО | ArtBalkon',metaDescription:'Остекление и отделка балконов и лоджий в Москве и Московской области. Подбор остекления, отделка стен, пола и потолка. Замер и смета.',title:'Как остекляем и отделываем балконы',eyebrow:'НОВАЯ ЖИЗНЬ ВАШЕГО БАЛКОНА',paragraphs:['На замере оцениваем состояние балкона или лоджии и уточняем, как вы будете пользоваться пространством. Подбираем остекление и согласуем подготовку под отделку.','Выбираем покрытия для стен, пола и потолка с учётом влажности и температуры. При необходимости закладываем в смету утепление, освещение и розетки до чистовой отделки.','После замера согласуем состав работ и материалов. Покажем варианты отделки и поможем обустроить балкон для отдыха, работы или хранения.']};
 serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov']=[...serviceBeforeAfterProjects['otdelka-balkonov']];
 
 // The combined service has its own scope and structured FAQ.
 Object.assign(serviceSeo['osteklenie-i-otdelka-balkonov'],{
- concept:['home-liked-works-v1/balcony-folding-table-after.webp','Готовый балкон со шкафом и местом для чаепития','Балкон со шкафом и зоной чаепития',true],
+ concept:[combinedHeroProject.after,combinedHeroProject.title,'Реечная отделка торцевой стены и потолка лоджии',combinedHeroProject.afterVisualized],
  scope:[['Осмотр и подготовка','Оцениваем стены, пол, потолок и существующие окна. Согласуем демонтаж старых покрытий и подготовку основания.'],['Окна и утепление','Определяем, нужна ли замена остекления, герметизация примыканий и утепление. Эти работы включаем в смету по необходимости.'],['Стены, пол и потолок','Восстанавливаем и подготавливаем поверхности, монтируем покрытия под условия эксплуатации балкона или лоджии.'],['Свет и хранение','До чистовой отделки согласуем расположение освещения, розеток и мебели, чтобы сохранить удобный проход.']],
  steps:[['Осмотр','Оценим состояние балкона или лоджии и обсудим, как вы планируете пользоваться пространством.'],['Смета','Согласуем объём работ, материалы и стоимость.'],['Остекление и отделка','Подготовим основание, установим остекление и смонтируем выбранные покрытия.'],['Приёмка','Проверим результат и передадим готовый балкон.']],
  faq:faqByService['osteklenie-i-otdelka-balkonov']
@@ -2018,21 +2028,6 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   }
  }
 }
-
-beforeAfterProjects.splice(1,0,{
- title:'Лоджия с рейками и открытым проёмом в комнату',
- before:'owner-projects/loggia-slats-room-before.webp',
- after:'owner-projects/loggia-slats-room-after.webp',
- stage:'finish',
- objectType:'loggia',
- description:'Деревянные рейки на потолке и торцевой стене, светлый пол и открытый проём в комнату. Кадр до работ воссоздан по фотографии готовой лоджии.',
- importedHomeWork:true,
- visualized:false,
- beforeVisualized:true,
- afterVisualized:false,
- beforeReal:false,
- afterReal:true
-});
 
 // Add the French variant after all approved gallery corrections and withdrawals.
 import {createFrenchGlazing,frenchGlazingSeo} from './french-glazing.mjs';
