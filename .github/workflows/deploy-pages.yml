@@ -38,9 +38,15 @@ jobs:
           SITE_ORIGIN: https://ulin-roman.github.io/artbalkon-site
           SITE_STATIC_ONLY: 'true'
         run: |
-          npm run build
-          npm run check
-          npm test
+          set -o pipefail
+          if ! (npm run build && npm run check && npm test) 2>&1 | tee "$RUNNER_TEMP/artbalkon-build.log"; then
+            {
+              printf '### Build failure\n\n```text\n'
+              grep -m 12 -E "AssertionError|Error:|ERR_|at file:|^ *at .*scripts/" "$RUNNER_TEMP/artbalkon-build.log" | cut -c1-300 || tail -n 12 "$RUNNER_TEMP/artbalkon-build.log" | cut -c1-300
+              printf '```\n'
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
       - name: Check mail handler
         run: |
           php -l server/leads.php
