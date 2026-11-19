@@ -20,7 +20,7 @@ const expectedRoutes=[
  '/osteklenie-kottedzhej/',
  '/uteplenie-balkonov/',
  '/otdelka-balkonov/',
- '/remont-balkonov/',
+ '/osteklenie-i-otdelka-balkonov/',
  '/otdelka-balkona-pvh-panelyami/',
  '/otdelka-balkona-laminatom/',
  '/otdelka-balkona-vagonkoj/',
