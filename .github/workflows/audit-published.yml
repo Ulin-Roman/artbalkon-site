@@ -9,6 +9,7 @@ permissions:
 jobs:
   responsive:
     runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.56.1-noble
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
@@ -17,13 +18,12 @@ jobs:
           node-version: 22
       - name: Install isolated browser test dependencies
         run: |
-          mkdir -p "$RUNNER_TEMP/artbalkon-audit"
-          cd "$RUNNER_TEMP/artbalkon-audit"
+          mkdir -p artbalkon-audit
+          cd artbalkon-audit
           npm init -y
           npm install --save-exact playwright@1.56.1
-          npx playwright install --with-deps chromium firefox webkit
       - name: Audit published pages, layouts and quiz
-        working-directory: ${{ runner.temp }}/artbalkon-audit
+        working-directory: artbalkon-audit
         run: |
           cat > audit.mjs <<'AUDIT'
           import {chromium, firefox, webkit} from 'playwright';
@@ -110,5 +110,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: published-site-responsive-audit
-          path: ${{ runner.temp }}/artbalkon-audit/audit-results
+          path: artbalkon-audit/audit-results
           retention-days: 14
