@@ -210,11 +210,7 @@ assert.equal(homeGraph.find(item=>item['@type']==='FAQPage')?.mainEntity.length,
 assert.ok(!homeGraph.some(item=>item['@type']==='BreadcrumbList'),'Root must not publish service-page breadcrumbs');
 for(const [label,html] of [['home',renderHome()],...services.map(service=>[service.slug,servicePage(service)])]){
  const h1=html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1].replace(/<[^>]+>/g,' ');
- if(label==='osteklenie-i-otdelka-balkonov'){
-  assert.equal(h1?.trim(),'Остекление и отделка балконов и лоджий','Combined landing must use the approved headline');
- }else{
  assert.ok(h1?.includes(requiredLocation),`${label}: H1 must include ${requiredLocation}`);
- }
 }
 const roofPairs=serviceBeforeAfterProjects['krysha-nad-balkonom'];
 const electricalPairs=serviceBeforeAfterProjects['elektrika-na-balkone'];
