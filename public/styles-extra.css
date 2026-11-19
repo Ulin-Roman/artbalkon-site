@@ -4955,36 +4955,65 @@ main .landing-hero .landing-copy-main>p.hero-description.explanatory-subtitle{fo
  .finish-calc-group:is([data-calc-group=walls],[data-calc-group=ceiling]) .finish-calc-switch{right:0}
 }
 
-/* Keep the insulation installer visible above the mobile service copy. */
+/* Keep the main photographs visible above the mobile service copy. */
 @media(max-width:640px){
- .landing-hero.insulation-hero .landing-grid{
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-grid{
   grid-template-areas:"landing-photo" "landing-copy";
   gap:20px;
  }
- .landing-hero.insulation-hero .landing-grid>.landing-copy{
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-grid>.landing-copy{
   grid-area:landing-copy;
   padding:0;
   transform:none;
   color:var(--ink);
  }
- .landing-hero.insulation-hero .landing-photo{
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-photo{
   grid-area:landing-photo;
   height:clamp(360px,90vw,420px);
   min-height:0;
  }
- .landing-hero.insulation-hero .landing-photo::after{display:none}
- .landing-hero.insulation-hero .landing-copy h1,
- .landing-hero.insulation-hero .landing-copy .landing-price{
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-photo::after{display:none}
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-copy h1,
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-copy .landing-price{
   color:var(--ink);
   text-shadow:none;
  }
- .landing-hero.insulation-hero .landing-copy h1{max-width:100%}
- .landing-hero.insulation-hero h1 .location-accent{color:var(--teal)}
- .landing-hero.insulation-hero .landing-price .hero-price-amount{color:var(--ink)}
- .landing-hero.insulation-hero .landing-price .hero-price-unit,
- .landing-hero.insulation-hero .hero-rating-platform{color:var(--muted)}
- .landing-hero.insulation-hero .hero-rating-badge,
- .landing-hero.insulation-hero .hero-rating-details strong,
- .landing-hero.insulation-hero .hero-rating-count{color:var(--ink)}
- .landing-hero.insulation-hero .hero-rating-badge+.hero-rating-badge{border-color:var(--line)}
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-copy h1{max-width:100%}
+ .landing-hero:is(.insulation-hero,.comparison-hero) h1 .location-accent{color:var(--teal)}
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-price .hero-price-amount{color:var(--ink)}
+ .landing-hero:is(.insulation-hero,.comparison-hero) .landing-price .hero-price-unit,
+ .landing-hero:is(.insulation-hero,.comparison-hero) .hero-rating-platform{color:var(--muted)}
+ .landing-hero:is(.insulation-hero,.comparison-hero) .hero-rating-badge,
+ .landing-hero:is(.insulation-hero,.comparison-hero) .hero-rating-details strong,
+ .landing-hero:is(.insulation-hero,.comparison-hero) .hero-rating-count{color:var(--ink)}
+ .landing-hero:is(.insulation-hero,.comparison-hero) .hero-rating-badge+.hero-rating-badge{border-color:var(--line)}
+}
+
+/* Static before-and-after views share the hero photo frame. */
+.landing-photo-pair{
+ position:absolute;
+ inset:0;
+ display:grid;
+ grid-template:minmax(0,1fr) / repeat(2,minmax(0,1fr));
+ gap:2px;
+ background:#fff;
+}
+.landing-photo-pair figure{position:relative;min-width:0;min-height:0;margin:0;overflow:hidden}
+.landing-photo-pair img{display:block;width:100%;height:100%;object-fit:cover}
+.landing-photo-pair figcaption{
+ position:absolute;
+ inset:auto auto 54px 50%;
+ transform:translateX(-50%);
+ padding:5px 12px;
+ border-radius:6px;
+ background:rgba(26,43,40,.84);
+ color:#fff;
+ font-size:13px;
+ font-weight:700;
+ line-height:1.3;
+}
+@media(max-width:640px){
+ .landing-hero.comparison-hero .landing-photo{height:clamp(240px,80vw,400px)}
+ .landing-hero.comparison-hero .hero-description{--explanatory-subtitle-color:var(--muted);text-shadow:none}
+ .landing-photo-pair figcaption{bottom:14px}
 }
