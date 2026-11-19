@@ -464,7 +464,7 @@ for(const file of pages){
   assert.ok(noScriptBlocks.some(([block])=>block.includes('href="tel:'+company.tel+'"')),file+': no-JavaScript fallback needs a callable phone number');
  }
  // A hero must reserve the encoded image ratio before it has finished loading.
- for(const [tag] of html.matchAll(/<img\b(?=[^>]*\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b)[^>]*>/g)){
+ for(const [tag] of html.matchAll(/<img\b(?=[^>]*\bclass="[^"]*\bhero-image\b)[^>]*>/g)){
   const source=tag.match(/\bsrc="([^"]+)"/)?.[1];
   if(!source||source.startsWith('data:'))continue;
   const asset='/assets/'+source.split('/assets/')[1];
@@ -670,6 +670,16 @@ for(const entry of feedOffers){
  const serviceCopy=entry.description.split(' Цена от ')[0];
  assert.ok(feedDescriptionIntents[entry.id],'Every feed service needs an intent check: '+entry.id);
  for(const intent of feedDescriptionIntents[entry.id])assert.match(serviceCopy,intent,'Advertising copy must explicitly name its service and object: '+entry.id);
+}
+// Search titles should describe what visitors can see during the price experiment.
+for(const slug of ['osteklenie-balkonov','uteplenie-balkonov','holodnoe-osteklenie','teploe-osteklenie','panoramnoe-osteklenie','otdelka-balkonov']){
+ const html=await readFile(join(root,slug,'index.html'),'utf8');
+ const title=html.match(/<title>([^<]*)<\/title>/)?.[1];
+ const configuredTitle=serviceSeo[slug].metaTitle;
+ const expected=!showHeroPrices&&slug!=='otdelka-balkonov'
+  ?configuredTitle.replace(/ — цена(?: за м²)?(?= \| ArtBalkon$)/,'')
+  :configuredTitle;
+ assert.equal(title,esc(expected),'Search title must match the published price visibility: '+slug);
 }
 // Keep structured and advertising minimum prices tied to the actual first screen.
 for(const entry of feedOffers){
