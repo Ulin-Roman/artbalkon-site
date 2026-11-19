@@ -257,9 +257,8 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
   continue;
  }
  if(label==='osteklenie-i-otdelka-balkonov'){
-  assert.match(html,/<img class="repair-after" src="\/assets\/owner-projects\/loggia-slats-room-after\.webp"/);
-  assert.match(html,/<img class="repair-before" src="\/assets\/owner-projects\/loggia-slats-room-before\.webp"/);
-  assert.ok(!html.includes('data-hero-slider'));
+  assert.match(html,/<img class="hero-image is-active" src="\/assets\/owner-projects\/loggia-slats-room-after\.webp"/, 'glazing and finishing hero must show the finished loggia');
+  assert.doesNotMatch(html,/data-hero-slider|data-repair-compare|data-repair-range|loggia-slats-room-before\.webp/, 'glazing and finishing hero must remain static');
   continue;
  }
  if(label==='otdelka-balkonov'){
@@ -907,8 +906,6 @@ const repairService=services.find(s=>s.slug==='osteklenie-i-otdelka-balkonov');
 assert.ok(repairService);
 assert.match(servicePageWithSeo(repairService),/Остекление и отделка балконов и лоджий/);
 assert.doesNotMatch(renderHome(),/data-repair-range|repair-feature-card|owner-projects\/loggia-slats-room-/);
-assert.match(servicePageWithSeo(repairService),/class="landing-photo repair-hero-photo"/);
-assert.match(servicePageWithSeo(repairService),/data-repair-range/);
 
 const repairMarkup=servicePageWithSeo(repairService);
 const repairConsultation=quizSection(repairMarkup);
