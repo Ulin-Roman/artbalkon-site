@@ -28,6 +28,7 @@ jobs:
           cat > audit.mjs <<'AUDIT'
           import {chromium, firefox, webkit} from 'playwright';
           import {mkdir,writeFile,appendFile} from 'node:fs/promises';
+          import {userInfo} from 'node:os';
           const origin='https://artbalkon.site';
           const sitemap=await fetch(origin+'/sitemap.xml').then(r=>{if(!r.ok)throw Error('Sitemap HTTP '+r.status);return r.text()});
           const urls=[...sitemap.matchAll(new RegExp('<loc>([^<]+)</loc>','g'))].map(m=>m[1]);
@@ -36,7 +37,9 @@ jobs:
           const results=[],failures=[],notes=[];
           await mkdir('audit-results',{recursive:true});
           for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
-           const browser=await engine.launch();
+           const browser=await engine.launch(name === 'firefox'
+            ? {env: {...process.env, HOME: userInfo().homedir}}
+            : undefined);
            const context=await browser.newContext({viewport:{width:320,height:740},deviceScaleFactor:1,locale:'ru-RU'});
            const page=await context.newPage();page.setDefaultTimeout(10000);
            const pageUrls=name==='chromium'?urls:urls.filter(u=>['/','/osteklenie-balkonov/','/uteplenie-balkonov/','/otdelka-balkonov/','/osteklenie-i-otdelka-balkonov/'].includes(new URL(u).pathname));
