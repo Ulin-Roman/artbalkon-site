@@ -39,7 +39,7 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
  const finishingPhoto=tag.match(/data-finishing-photo="(\d+)"/);
  const isPortfolioThumbnail=tag.includes('width="960"');
  let sizes;
- if(/\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b/.test(tag)){
+ if(/\bclass="[^"]*\bhero-image\b/.test(tag)){
   sizes=heroImageSizes(entry.width/entry.height,{insulation:pagePath==='/uteplenie-balkonov/',preserveDesktop:!preciselySizedDesktopHeroPaths.has(pagePath)});
  }else if(finishingPhoto){
   const ratio=entry.width/entry.height,small=Number(finishingPhoto[1])<2;
@@ -84,7 +84,7 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
  else sizes='(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  // Keep the encoded aspect ratio before the first paint, including service heroes.
  const declaredDimensions=Number.isSafeInteger(entry.width)&&entry.width>0&&Number.isSafeInteger(entry.height)&&entry.height>0;
- const dimensionedTag=declaredDimensions&&(src.startsWith('/assets/landing-gallery-v1/')||/\bclass="[^"]*\b(?:hero-image|repair-before|repair-after)\b/.test(tag))
+ const dimensionedTag=declaredDimensions&&(src.startsWith('/assets/landing-gallery-v1/')||/\bclass="[^"]*\bhero-image\b/.test(tag))
   ?tag.replace(/\bwidth="\d+"/,'width="'+entry.width+'"').replace(/\bheight="\d+"/,'height="'+entry.height+'"')
   :tag;
  // Keep responsive candidates deferred too; the slider selects a cover-sized source on activation.
@@ -96,6 +96,7 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
 }).replace(/\/(styles\.css|app\.js)\?v=[^" ]+/g,(_,file)=>'/'+file+'?v='+fingerprint(file==='styles.css'?cssResult.code:appCode));
 import {shellWithQuiz as shell,home,servicePageWithSeo as servicePage,esc,homeHeroImage,serviceHeroAsset} from '../src/components.mjs';
 import {company,services,serviceSeo,integrations} from '../src/content.mjs';
+import {showHeroPrices} from '../src/landing-pages.mjs';
 const rawBase=process.env.SITE_BASE_PATH||'/';
 if(!/^\/(?:[a-zA-Z0-9._-]+\/)*$/.test(rawBase))throw Error('SITE_BASE_PATH must be an absolute path ending with /.');
 const base=rawBase;
@@ -140,7 +141,16 @@ async function redirect(path,target,label){
 }
 await page('/',home(),{image:imageAsset(homeHeroImage)});
 const bundledServiceSlugs=new Set(['balkon-pod-klyuch','krysha-nad-balkonom','mebel-dlya-balkona','elektrika-na-balkone']);
-for(const s of services.filter(service=>!bundledServiceSlugs.has(service.slug))){const seo=serviceSeo[s.slug];await page(`/${s.slug}/`,servicePage(s),{title:seo?.metaTitle||`${s.h1} — цены и замер | ArtBalkon`,description:seo?.metaDescription||s.offer,image:imageAsset(serviceHeroAsset(s))});}
+// These pages offer an individual quote while their starting prices are hidden.
+const quoteOnlySlugs=new Set(['osteklenie-balkonov','uteplenie-balkonov','holodnoe-osteklenie','teploe-osteklenie','panoramnoe-osteklenie']);
+for(const service of services.filter(item=>!bundledServiceSlugs.has(item.slug))){
+ const seo=serviceSeo[service.slug];
+ const fullTitle=seo?.metaTitle||`${service.h1} — цены и замер | ArtBalkon`;
+ const title=!showHeroPrices&&quoteOnlySlugs.has(service.slug)
+  ?fullTitle.replace(/ — цена(?: за м²)?(?= \| ArtBalkon$)/,'')
+  :fullTitle;
+ await page(`/${service.slug}/`,servicePage(service),{title,description:seo?.metaDescription||service.offer,image:imageAsset(serviceHeroAsset(service))});
+}
 await redirect('/balkon-pod-klyuch/','/','Балконы и лоджии под ключ — теперь на главной странице');
 await redirect('/krysha-nad-balkonom/','/#complex-options','Крыша над балконом — только в составе проекта под ключ');
 await redirect('/mebel-dlya-balkona/','/#complex-options','Мебель для балкона или лоджии — только в составе проекта под ключ');
