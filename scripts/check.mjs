@@ -256,7 +256,7 @@ for(const [label,html,projects] of [['home',renderHome(),beforeAfterProjects],..
   assert.ok(html.includes('/assets/service-before-after/glazing-new-09-after.jpg'),'glazing hero must show the selected exterior balcony image');
   continue;
  }
- if(label==='remont-balkonov'){assert.ok(html.includes('/assets/home-liked-works-v1/balcony-folding-table-after.webp'));assert.ok(!html.includes('data-hero-slider'));continue;}
+ if(label==='osteklenie-i-otdelka-balkonov'){assert.ok(html.includes('/assets/home-liked-works-v1/balcony-folding-table-after.webp'));assert.ok(!html.includes('data-hero-slider'));continue;}
  if(label==='otdelka-balkonov'){
   assert.ok(!html.includes('data-hero-slider'),'finishing page hero must remain static');
   assert.ok(html.includes('/assets/service-before-after/renovation-loggia-12-after.webp'),'finishing page hero must keep the selected portfolio image');
@@ -409,6 +409,7 @@ const redirectTargets=new Map([
  ['osteklenie-lodzhii','/osteklenie-balkonov/'],
  ['uteplenie-lodzhii','/uteplenie-balkonov/'],
  ['otdelka-lodzhii','/otdelka-balkonov/'],
+ ['remont-balkonov','/osteklenie-i-otdelka-balkonov/'],
  ['lodzhiya-pod-klyuch','/'],
  ['holodnoe-osteklenie-lodzhii','/holodnoe-osteklenie/'],
  ['teploe-osteklenie-lodzhii','/teploe-osteklenie/'],
@@ -493,6 +494,7 @@ for(const file of pages){
  assert.ok(!/визуализац/i.test(html),file+' must use neutral customer-facing copy, including metadata and image descriptions');
  const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1],title=html.match(/<title>([^<]+)<\/title>/)?.[1];
  assert.match(html,/<html lang="ru"/,'Page language must be Russian: '+file);
+ assert.doesNotMatch(html,/ремонт/iu,file+' must describe glazing and finishing without advertising repairs');
  assert.equal((html.match(/<h1(?:\s|>)/g)||[]).length,1,file+' must have one H1');
  assert.ok(title&&title.length>=20&&title.length<=90,file+' invalid title length');
  assert.ok(canonical?.startsWith('https://'),file+' invalid canonical');
@@ -502,6 +504,7 @@ for(const file of pages){
    if(destination.origin!==new URL(company.origin).origin||!destination.pathname.startsWith(base))continue;
    const sitePath=base==='/'?destination.pathname:'/'+destination.pathname.slice(base.length);
    assert.ok(!retiredPortfolioRoutes.has(routeSlug(sitePath)),file+': links must go directly to the home gallery instead of '+href);
+    assert.notEqual(routeSlug(sitePath),'remont-balkonov',file+': links must use the new glazing and finishing route');
   }
  }
  assert.doesNotMatch(html,/class="breadcrumbs"|"@type"\s*:\s*"BreadcrumbList"/,file+' must not publish removed breadcrumbs');
@@ -620,6 +623,7 @@ for(const [page,html] of pageHtml)for(const match of html.matchAll(/<img\b[^>]*\
  assert.doesNotMatch(tag,/\s(?:srcset|sizes)="/,page+': inactive slides must not load responsive sources before activation');
 }
 const feed=await readFile(join(root,'yandex-direct.xml'),'utf8');
+assert.doesNotMatch(feed,/ремонт/iu,'Published advertising copy must not advertise repairs');
 assert.ok(!/визуализац/i.test(feed),'Published advertising descriptions must use neutral customer-facing copy');
 // Every commercial header destination has one product and one matching catalog entry.
 const feedRoot=company.origin.replace(/\/$/,'');
@@ -644,7 +648,7 @@ const feedDescriptionIntents={
  101:[/остеклен/i,/балкон|лоджи/i],107:[/холодн/i,/остеклен/i,/балкон|лоджи/i],
  108:[/тёпл/i,/остеклен/i,/балкон|лоджи/i],109:[/панорамн/i,/остеклен/i,/балкон|лоджи/i],
  110:[/французск/i,/остеклен/i,/балкон|лоджи/i],102:[/утеплен/i,/балкон|лоджи/i],
- 103:[/отделк/i,/балкон|лоджи/i],111:[/ремонт/i,/балкон|лоджи/i],
+ 103:[/отделк/i,/балкон|лоджи/i],111:[/остеклен/i,/отделк/i,/балкон|лоджи/i],
  104:[/балкон|лоджи/i,/под ключ/i,/остеклен/i,/утеплен/i,/отделк/i],
  106:[/остеклен/i,/коттедж/i,/дом/i],112:[/остеклен/i,/балкон/i,/вынос/i],
  113:[/раздвижн/i,/остеклен/i,/балкон|лоджи/i],114:[/остеклен/i,/балкон/i,/хрущёв/i],
@@ -696,7 +700,7 @@ for(const entry of feedOffers){
  const advertisedRate=` Цена от ${amount.toLocaleString('ru-RU')} ₽${perSquareMetre?'/м²':''}.`;
  assert.ok(entry.description.endsWith(advertisedRate),'Advertising description must match the visible starting rate and unit: '+slug);
 }
-for(const [id,path] of Object.entries({101:'/osteklenie-balkonov/',102:'/uteplenie-balkonov/',103:'/otdelka-balkonov/',104:'/',106:'/osteklenie-kottedzhej/',107:'/holodnoe-osteklenie/',108:'/teploe-osteklenie/',109:'/panoramnoe-osteklenie/',110:'/frantsuzskoe-osteklenie/',111:'/remont-balkonov/'})){
+for(const [id,path] of Object.entries({101:'/osteklenie-balkonov/',102:'/uteplenie-balkonov/',103:'/otdelka-balkonov/',104:'/',106:'/osteklenie-kottedzhej/',107:'/holodnoe-osteklenie/',108:'/teploe-osteklenie/',109:'/panoramnoe-osteklenie/',110:'/frantsuzskoe-osteklenie/',111:'/osteklenie-i-otdelka-balkonov/'})){
  assert.equal(feedOffers.find(entry=>entry.id===id)?.url,feedRoot+path,'Existing advertising ID must retain its destination: '+id);
 }
 for(const script of ['public/app.js',join(root,'app.js')]){
@@ -860,16 +864,16 @@ assert.ok(panoramaReference[0].beforeVisualized&&panoramaReference[0].afterVisua
 assert.notEqual(panoramaReference[0].before,panoramaReference[0].after);
 assert.ok(!beforeAfterProjects.some(p=>p.title===panoramaReference[0].title));
 
-{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishSecondSeries);assert.equal(additions.length,8);assert.equal(new Set(additions.map(p=>p.after)).size,8);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","remont-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishSecondSeries));}}
+{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishSecondSeries);assert.equal(additions.length,8);assert.equal(new Set(additions.map(p=>p.after)).size,8);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","osteklenie-i-otdelka-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishSecondSeries));}}
 
-{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishThirdSeries);assert.equal(additions.length,3);assert.equal(new Set(additions.map(p=>p.after)).size,3);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","remont-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishThirdSeries));}}
+{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishThirdSeries);assert.equal(additions.length,3);assert.equal(new Set(additions.map(p=>p.after)).size,3);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","osteklenie-i-otdelka-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishThirdSeries));}}
 
 const homeSecondReference=beforeAfterProjects.filter(p=>p.referenceHomeSecondSeries);
 assert.equal(homeSecondReference.length,1);
 assert.equal(new Set(homeSecondReference.map(p=>p.after)).size,1);
 for(const p of homeSecondReference){assert.equal(p.stage,"turnkey");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);assert.ok(!Object.values(serviceBeforeAfterProjects).some(list=>list.some(item=>item.title===p.title)));}
 
-{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishFourthSeries);assert.equal(additions.length,1);assert.equal(new Set(additions.map(p=>p.after)).size,1);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","remont-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishFourthSeries));}}
+{const additions=serviceBeforeAfterProjects["otdelka-balkonov"].filter(p=>p.referenceFinishFourthSeries);assert.equal(additions.length,1);assert.equal(new Set(additions.map(p=>p.after)).size,1);for(const p of additions){assert.equal(p.stage,"finish");assert.equal(p.objectType,"balcony");assert.ok(p.visualized&&p.beforeVisualized&&p.afterVisualized);assert.notEqual(p.before,p.after);}for(const [slug,items] of Object.entries(serviceBeforeAfterProjects)){if(!["otdelka-balkonov","osteklenie-i-otdelka-balkonov"].includes(slug))assert.ok(items.every(p=>!p.referenceFinishFourthSeries));}}
 
 // Corrected generated before assets stay distinct from originals and all after assets.
 assert.equal(Object.keys(beforeWindowCorrections).length,26);
@@ -893,22 +897,22 @@ for (const target of Object.values(beforeGeometryCorrections)) {
 assert.ok(!serviceBeforeAfterProjects['uteplenie-balkonov'].some(p=>['Утепление балкона со скамьёй','Утепление лоджии с рабочим столом'].includes(p.title)),'Withdrawn insulation works 66 and 67 must remain absent');
 
 // Repair intentionally reuses the final finishing gallery and remains a separate service.
-assert.deepEqual(serviceBeforeAfterProjects['remont-balkonov'],serviceBeforeAfterProjects['otdelka-balkonov']);
-const repairService=services.find(s=>s.slug==='remont-balkonov');
+assert.deepEqual(serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov'],serviceBeforeAfterProjects['otdelka-balkonov']);
+const repairService=services.find(s=>s.slug==='osteklenie-i-otdelka-balkonov');
 assert.ok(repairService);
-assert.match(servicePageWithSeo(repairService),/Ремонт балконов и лоджий/);
+assert.match(servicePageWithSeo(repairService),/Остекление и отделка балконов и лоджий/);
 assert.doesNotMatch(renderHome(),/data-repair-range|repair-feature-card/);
 assert.match(servicePageWithSeo(repairService),/class="landing-photo repair-hero-photo"/);
 assert.match(servicePageWithSeo(repairService),/data-repair-range/);
 
 const repairMarkup=servicePageWithSeo(repairService);
 const repairConsultation=quizSection(repairMarkup);
-assert.ok(repairConsultation?.includes('type="hidden" name="service" value="Ремонт балконов и лоджий"'),'Repair consultation must preserve the repair service');
+assert.ok(repairConsultation?.includes('type="hidden" name="service" value="Остекление и отделка балконов и лоджий"'),'Repair consultation must preserve the repair service');
 assert.equal(repairConsultation,quiz(repairService,{consultation:true}),'Repair page must retain its previous consultation block');
 const repairQuizModal=quizModal(repairService);
-assert.ok(repairQuizModal.includes('Что нужно отремонтировать'),'Repair consultation modal must retain its object question');
+assert.ok(repairQuizModal.includes('Какой объект нужно остеклить и отделать?'),'Repair consultation modal must retain its object question');
 assert.ok(!repairQuizModal.includes('Что нужно отделать'),'Repair consultation modal must not use the finishing question');
-assert.match(repairMarkup,/Материалы для ремонта балконов и лоджий/);
+assert.match(repairMarkup,/Материалы для отделки балконов и лоджий/);
 assert.ok(!/Что нужно отделать|Чем отделываем|>ОТДЕЛКА</.test(repairMarkup),'Repair page must not restore finishing headings or questions');
 
 // The French variant retains its own service and the owner-confirmed panoramic starting rate.

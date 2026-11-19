@@ -10,7 +10,7 @@ const xml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>
 // Stable IDs; extras are available only within a larger order, not independently.
 const ids={
  'osteklenie-balkonov':101,'holodnoe-osteklenie':107,'teploe-osteklenie':108,'panoramnoe-osteklenie':109,'frantsuzskoe-osteklenie':110,
- 'uteplenie-balkonov':102,'otdelka-balkonov':103,'remont-balkonov':111,'balkon-pod-klyuch':104,'osteklenie-kottedzhej':106,
+ 'uteplenie-balkonov':102,'otdelka-balkonov':103,'osteklenie-i-otdelka-balkonov':111,'balkon-pod-klyuch':104,'osteklenie-kottedzhej':106,
  'osteklenie-balkona-s-vynosom':112,'razdvizhnoe-osteklenie':113,'osteklenie-balkona-v-hrushchevke':114,
  'otdelka-balkona-pvh-panelyami':115,'otdelka-balkona-laminatom':116,'otdelka-balkona-vagonkoj':117,
  'otdelka-balkona-kvarcvinilom':118,'otdelka-balkona-derevom':119,'otdelka-balkona-mdf-panelyami':120,
@@ -21,12 +21,13 @@ export async function renderDirectFeed({origin=company.origin,now=new Date()}={}
  const entries=await Promise.all(Object.entries(ids).map(async([slug,id])=>{
   const service=services.find(s=>s.slug===slug);
   if(!service)throw Error(`Missing feed service: ${slug}`);
-  const asset='optimized/direct-feed/'+slug+'.jpg',bytes=await readFile(`public/assets/${asset}`);
+  const photoSlug=id===111?'remont-balkonov':slug;
+  const asset='optimized/direct-feed/'+photoSlug+'.jpg',bytes=await readFile(`public/assets/${asset}`);
   if(bytes.length>10*1024*1024)throw Error(`Feed picture too large: ${asset}`);
   const {width,height}=jpegDimensions(bytes);
   if(width!==1900||height!==1412)throw Error(`Feed picture must be 1900×1412, got ${width}×${height}: ${asset}`);
   const hash=createHash('sha256').update(bytes).digest('hex').slice(0,12);
-  const category=service.h1.replace(' в Москве и Московской области',' в Москве и МО');
+  const category=id===111?`${service.title} в Москве и МО`:service.h1.replace(' в Москве и Московской области',' в Москве и МО');
   const title=slug==='otdelka-balkona-derevom'?'Отделка балконов стеновым паркетом в Москве и МО':category;
   if(title.length>56)throw Error(`Advertising title exceeds 56 characters: ${slug}`);
   const price=service.heroPrice?Number(service.heroPrice.replace(/\D/g,'')):prices[service.price];

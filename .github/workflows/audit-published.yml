@@ -39,7 +39,7 @@ jobs:
            const browser=await engine.launch();
            const context=await browser.newContext({viewport:{width:320,height:740},deviceScaleFactor:1,locale:'ru-RU'});
            const page=await context.newPage();page.setDefaultTimeout(10000);
-           const pageUrls=name==='chromium'?urls:urls.filter(u=>['/','/osteklenie-balkonov/','/uteplenie-balkonov/','/otdelka-balkonov/','/remont-balkonov/'].includes(new URL(u).pathname));
+           const pageUrls=name==='chromium'?urls:urls.filter(u=>['/','/osteklenie-balkonov/','/uteplenie-balkonov/','/otdelka-balkonov/','/osteklenie-i-otdelka-balkonov/'].includes(new URL(u).pathname));
            const viewports=name==='chromium'?sizes:sizes.filter(([w])=>[320,375,768,1280,844].includes(w));
            for(const url of pageUrls){
             let response;

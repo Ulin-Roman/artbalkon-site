@@ -718,7 +718,7 @@ const warmLoggiaBeforeWithoutHandles=[
 serviceBeforeAfterProjects['teploe-osteklenie-lodzhii']=serviceBeforeAfterProjects['teploe-osteklenie-lodzhii'].map((project,index)=>{
  const {pairVerified,...preserved}=project;
  const before=warmLoggiaBeforeWithoutHandles[index];
- return {...preserved,before,beforeVisualized:true,beforeReal:false,description:'Готовая лоджия из галереи ArtBalkon. Состояние до ремонта — старые рамы, отделка и деревянные подоконники — показано как визуальная реконструкция того же помещения.'};
+ return {...preserved,before,beforeVisualized:true,beforeReal:false,description:'Готовая лоджия из галереи ArtBalkon. Состояние до начала работ — старые рамы, отделка и деревянные подоконники — показано как визуальная реконструкция того же помещения.'};
 });
 serviceBeforeAfterProjects['teploe-osteklenie']=serviceBeforeAfterProjects['teploe-osteklenie'].map(project=>project.after==='service-before-after/balcony-glazing-after.jpg'?{...project,after:'service-before-after/balcony-glazing-concrete-slab-after.png',afterVisualized:true}:project);
 // Separate matched visualizations: balconies have glazed returns, loggias solid ends.
@@ -734,7 +734,7 @@ for(const [slug,objectType,stage] of [
  serviceBeforeAfterProjects[slug]=renovationTitles[objectType].map((title,index)=>{
   const key=`service-before-after/renovation-${objectType}-${String(index+1).padStart(2,'0')}`;
   return {title,objectType,stage,before:`${key}-finish-before.webp`,after:`${key}-after.webp`,visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
-   description:stage==='finish'?'Вариант обновления старых окон и изношенной отделки. До ремонта — пустое помещение без электрики; после — готовый интерьер.':'Вариант ремонта под ключ. До ремонта — старые окна, деревянные подоконники и изношенная отделка советского времени, без электрики и вещей; после — новые окна, отделка, освещение и мебель.'};
+   description:stage==='finish'?'Вариант обновления старых окон и изношенной отделки. До начала работ — пустое помещение без электрики; после — готовый интерьер.':'Вариант обустройства под ключ. До начала работ — старые окна, деревянные подоконники и изношенная отделка советского времени, без электрики и вещей; после — новые окна, отделка, освещение и мебель.'};
  });
 }
 // Do not show this project in service galleries, the home selection, or modals.
@@ -862,7 +862,7 @@ for (const items of [beforeAfterProjects, ...Object.values(serviceBeforeAfterPro
 // Дополнительная пара фотографий, предоставленная владельцем сайта.
 serviceBeforeAfterProjects['otdelka-balkonov'] = [...serviceBeforeAfterProjects['otdelka-balkonov'], {
  title:'Отделка балкона под рабочий кабинет',
- description:'До ремонта — изношенный дощатый пол и открытый металлический каркас. После — светлая отделка под дерево, новый пол и рабочее место со столом и креслом.',
+ description:'До начала работ — изношенный дощатый пол и открытый металлический каркас. После — светлая отделка под дерево, новый пол и рабочее место со столом и креслом.',
  before:'owner-projects/balcony-office-before.webp',after:'owner-projects/balcony-office-after.webp',
  objectType:'balcony',stage:'finish',beforeReal:true,afterReal:true,
  visualized:false,beforeVisualized:false,afterVisualized:false
@@ -1069,7 +1069,7 @@ for(const [sourceSlug,after,before,title,objectType] of turnkeyExpansion){
  if(!finished)throw new Error(`Не найдён готовый интерьер для подборки под ключ: ${after}`);
  turnkeyGallery.push({title,objectType,stage:'turnkey',before,after:finished.after,turnkeyExpansion:true,
   visualized:true,beforeVisualized:true,afterVisualized:true,beforeReal:false,
-  description:'Вариант проекта под ключ: готовый интерьер взят из подборки мебели или освещения, а состояние до ремонта реконструировано по тому же ракурсу.'});
+  description:'Вариант проекта под ключ: готовый интерьер взят из подборки мебели или освещения, а состояние до начала работ реконструировано по тому же ракурсу.'});
 }
 
 export const serviceSeo = {
@@ -1121,7 +1121,7 @@ export const serviceSeo = {
   title:'Отделка, которая подходит условиям вашего пространства',
   paragraphs:[
    'Отделочные материалы выбирают не только по цвету и фактуре. На холодном балконе или лоджии они должны спокойно переносить перепады температуры и влажности. В утеплённом пространстве выбор шире: можно оформить рабочее место, зону отдыха, хранение или спокойное продолжение интерьера квартиры.',
-   'Продумываем стены, потолок и пол как единое пространство. До чистовой отделки согласовываем освещение, розетки, подоконники, откосы и места для будущей мебели. Это помогает избежать видимых проводов и переделок после завершения ремонта.',
+   'Продумываем стены, потолок и пол как единое пространство. До чистовой отделки согласовываем освещение, розетки, подоконники, откосы и места для будущей мебели. Это помогает избежать видимых проводов и переделок после завершения работ.',
    'Покажем образцы на замере и поможем сочетать ПВХ-панели, ламинат, вагонку, декоративные рейки и стеновой паркет. Итоговый состав материалов зависит от утепления и назначения балкона или лоджии.'
   ],
   concept:['concept-finishing.jpg','Дизайн-концепт отделки балкона натуральным деревом и мягким светом','Вариант уютной отделки балкона деревом'],
@@ -1570,7 +1570,7 @@ serviceBeforeAfterProjects['balkon-pod-klyuch'].push({
   "visualized": true,
   "beforeVisualized": true,
   "beforeReal": false,
-  "description": "Визуальная пара по выбранному референсу. Изображение до ремонта сгенерировано.",
+  "description": "Визуальная пара по выбранному референсу. Изображение до начала работ сгенерировано.",
   "sourceUrl": "https://www.pinterest.com/pin/806425877067708864/"
 });
 
@@ -1980,18 +1980,18 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  project.description='Вариант холодного остекления балкона по передней и правой сторонам с сохранением глухой стены слева.';
 }
 
-// Repair landing reuses the finishing service, prices and portfolio.
+// The combined service reuses the finishing prices and portfolio.
 const finishingService=services.find(s=>s.slug==='otdelka-balkonov');
-services.push({...finishingService,slug:'remont-balkonov',heroPrice:'',image:'home-liked-works-v1/balcony-folding-table-after.webp',features:['Подготовка стен, пола и потолка','Остекление и утепление при необходимости','Материалы, освещение и хранение по согласованному проекту'],question:'Что входит в ремонт балкона?',answer:'На замере оценим состояние поверхностей и окон и согласуем подготовку, необходимые замены и обустройство пространства. Состав ремонта и смету фиксируем до начала работ.',title:'Ремонт балконов и лоджий',h1:'Ремонт балконов и лоджий в Москве и Московской области',short:'Обновим балкон или лоджию: от подготовки поверхностей до готового интерьера.',offer:'Подготовим стены, пол и потолок, подберём отделку и согласуем необходимые работы.',heroSubtitle:'Обновим старый балкон — от снятия изношенных покрытий до новой отделки стен, пола и потолка.'});
-serviceSeo['remont-balkonov']={...serviceSeo['otdelka-balkonov'],metaTitle:'Ремонт балконов и лоджий в Москве и Московской области | ArtBalkon',metaDescription:'Ремонт балконов и лоджий в Москве и Московской области: подготовка поверхностей, отделка стен, пола и потолка, освещение и хранение. Замер и подбор материалов.',title:'Ремонт балкона под ваши задачи',eyebrow:'НОВАЯ ЖИЗНЬ ВАШЕГО БАЛКОНА',paragraphs:['Начинаем с осмотра балкона или лоджии: оцениваем состояние поверхностей, остекление и будущие задачи пространства. Согласуем, что нужно заменить, подготовить и отделать.','Подбираем покрытия для стен, пола и потолка с учётом влажности и температурного режима. Электрику, утепление и замену окон включаем в смету по необходимости, до чистовой отделки.','После замера вы получите согласованный состав работ и материалов. Покажем варианты отделки и поможем организовать отдых, рабочее место или хранение.']};
-serviceBeforeAfterProjects['remont-balkonov']=[...serviceBeforeAfterProjects['otdelka-balkonov']];
+services.push({...finishingService,slug:'osteklenie-i-otdelka-balkonov',heroPrice:'',image:'home-liked-works-v1/balcony-folding-table-after.webp',features:['Подбор остекления под задачи балкона','Отделка стен, пола и потолка','Материалы, освещение и хранение по согласованному проекту'],question:'Что входит в остекление и отделку балкона?',answer:'На замере оценим состояние балкона и согласуем остекление, подготовку поверхностей и отделку. Перечень работ и смету фиксируем до начала работ.',title:'Остекление и отделка балконов и лоджий',h1:'Остекление и отделка балконов и лоджий',short:'Подберём остекление и отделку для балкона или лоджии.',offer:'Остеклим балкон или лоджию, подберём отделку стен, пола и потолка.',heroSubtitle:'Подберём остекление и материалы для стен, пола и потолка. Работаем в Москве и Московской области.'});
+serviceSeo['osteklenie-i-otdelka-balkonov']={...serviceSeo['otdelka-balkonov'],metaTitle:'Остекление и отделка балконов и лоджий в Москве и МО | ArtBalkon',metaDescription:'Остекление и отделка балконов и лоджий в Москве и Московской области. Подбор остекления, отделка стен, пола и потолка. Замер и смета.',title:'Как остекляем и отделываем балконы',eyebrow:'НОВАЯ ЖИЗНЬ ВАШЕГО БАЛКОНА',paragraphs:['На замере оцениваем состояние балкона или лоджии и уточняем, как вы будете пользоваться пространством. Подбираем остекление и согласуем подготовку под отделку.','Выбираем покрытия для стен, пола и потолка с учётом влажности и температуры. При необходимости закладываем в смету утепление, освещение и розетки до чистовой отделки.','После замера согласуем состав работ и материалов. Покажем варианты отделки и поможем обустроить балкон для отдыха, работы или хранения.']};
+serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov']=[...serviceBeforeAfterProjects['otdelka-balkonov']];
 
-// Repair has its own scope and FAQ, also used by Service and FAQPage structured data.
-Object.assign(serviceSeo['remont-balkonov'],{
- concept:['home-liked-works-v1/balcony-folding-table-after.webp','Балкон после ремонта со шкафом и местом для чаепития','Вариант ремонта балкона со шкафом и зоной чаепития',true],
- scope:[['Осмотр и подготовка','Оцениваем стены, пол, потолок и существующие окна. Согласуем демонтаж старых покрытий и подготовку основания.'],['Окна и утепление','Определяем, нужна ли замена остекления, герметизация примыканий и утепление. Эти работы включаем в смету по необходимости.'],['Стены, пол и потолок','Восстанавливаем и подготавливаем поверхности, монтируем покрытия под условия эксплуатации балкона или лоджии.'],['Свет и хранение','До завершения ремонта согласуем расположение освещения, розеток и мебели, чтобы сохранить удобный проход.']],
- steps:[['Осмотр','Оценим состояние балкона или лоджии и обсудим задачи ремонта.'],['Смета','Согласуем объём работ, материалы и стоимость.'],['Ремонт','Выполним подготовку, необходимые замены и монтаж выбранных покрытий.'],['Приёмка','Проверим результат и передадим готовый балкон.']],
- faq:faqByService['remont-balkonov']
+// The combined service has its own scope and structured FAQ.
+Object.assign(serviceSeo['osteklenie-i-otdelka-balkonov'],{
+ concept:['home-liked-works-v1/balcony-folding-table-after.webp','Готовый балкон со шкафом и местом для чаепития','Балкон со шкафом и зоной чаепития',true],
+ scope:[['Осмотр и подготовка','Оцениваем стены, пол, потолок и существующие окна. Согласуем демонтаж старых покрытий и подготовку основания.'],['Окна и утепление','Определяем, нужна ли замена остекления, герметизация примыканий и утепление. Эти работы включаем в смету по необходимости.'],['Стены, пол и потолок','Восстанавливаем и подготавливаем поверхности, монтируем покрытия под условия эксплуатации балкона или лоджии.'],['Свет и хранение','До чистовой отделки согласуем расположение освещения, розеток и мебели, чтобы сохранить удобный проход.']],
+ steps:[['Осмотр','Оценим состояние балкона или лоджии и обсудим, как вы планируете пользоваться пространством.'],['Смета','Согласуем объём работ, материалы и стоимость.'],['Остекление и отделка','Подготовим основание, установим остекление и смонтируем выбранные покрытия.'],['Приёмка','Проверим результат и передадим готовый балкон.']],
+ faq:faqByService['osteklenie-i-otdelka-balkonov']
 });
 
 // Owner-requested original photographs from the ArtBalkon Yandex gallery.
@@ -2018,6 +2018,21 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
   }
  }
 }
+
+beforeAfterProjects.splice(1,0,{
+ title:'Лоджия с рейками и открытым проёмом в комнату',
+ before:'owner-projects/loggia-slats-room-before.webp',
+ after:'owner-projects/loggia-slats-room-after.webp',
+ stage:'finish',
+ objectType:'loggia',
+ description:'Деревянные рейки на потолке и торцевой стене, светлый пол и открытый проём в комнату. Кадр до работ воссоздан по фотографии готовой лоджии.',
+ importedHomeWork:true,
+ visualized:false,
+ beforeVisualized:true,
+ afterVisualized:false,
+ beforeReal:false,
+ afterReal:true
+});
 
 // Add the French variant after all approved gallery corrections and withdrawals.
 import {createFrenchGlazing,frenchGlazingSeo} from './french-glazing.mjs';

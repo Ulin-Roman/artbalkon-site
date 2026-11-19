@@ -8,7 +8,7 @@ import {promotionMonth} from './promotion-month.mjs';
  'use strict';
  document.querySelectorAll('[data-repair-range]').forEach(range=>{
   const frame=range.closest('[data-repair-compare]');
-  const update=()=>{frame.style.setProperty('--split',range.value+'%');range.setAttribute('aria-valuetext',range.value+'% фото до ремонта');};
+  const update=()=>{frame.style.setProperty('--split',range.value+'%');range.setAttribute('aria-valuetext',range.value+'% фото до начала работ');};
   const move=e=>{const box=frame.getBoundingClientRect();range.value=String(Math.round(Math.max(0,Math.min(100,(e.clientX-box.left)/box.width*100))));update();};
   range.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();range.focus({preventScroll:true});range.setPointerCapture(e.pointerId);move(e);});
   range.addEventListener('pointermove',e=>{if(range.hasPointerCapture(e.pointerId))move(e);});
@@ -418,7 +418,7 @@ import {promotionMonth} from './promotion-month.mjs';
    afterImage.toggleAttribute('data-after-soft-tone',card.hasAttribute('data-after-soft-tone'));
    beforeImage.src=new URL(card.dataset.before,siteBase).href;afterImage.src=new URL(card.dataset.after,siteBase).href;
    comparisonTitle.textContent=card.dataset.title;beforeLabel.textContent='До';afterLabel.textContent='После';
-   beforeImage.alt=`${card.dataset.title} — ${beforeVisualized||visualized?'до работ':beforeReal?'до работ ArtBalkon':'до ремонта'}`;
+   beforeImage.alt=`${card.dataset.title} — ${beforeVisualized||visualized?'до работ':beforeReal?'до работ ArtBalkon':'до начала работ'}`;
    afterImage.alt=`${card.dataset.title} — ${visualized?'после работ':'после работ ArtBalkon'}`;
    if(syncUrl){const url=new URL(location.href);url.searchParams.set('case',card.dataset.case);history[comparisonModal.open?'replaceState':'pushState'](history.state,'',url);}
    if(!comparisonModal.open)openDialogAtCurrentScroll(comparisonModal,comparisonModal.querySelector('.comparison-close'));
