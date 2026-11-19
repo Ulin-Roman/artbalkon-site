@@ -14050,5 +14050,81 @@
         "width": 720
       }
     ]
+  },
+  "/assets/owner-projects/loggia-marble-before.webp": {
+    "src": "/assets/owner-projects/loggia-marble-before.webp",
+    "width": 720,
+    "height": 1279,
+    "variants": [
+      {
+        "src": "/assets/owner-projects/loggia-marble-before-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/owner-projects/loggia-marble-before-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/owner-projects/loggia-marble-before.webp",
+        "width": 720
+      }
+    ]
+  },
+  "/assets/owner-projects/loggia-marble-after.webp": {
+    "src": "/assets/owner-projects/loggia-marble-after.webp",
+    "width": 720,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/owner-projects/loggia-marble-after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/owner-projects/loggia-marble-after-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/owner-projects/loggia-marble-after.webp",
+        "width": 720
+      }
+    ]
+  },
+  "/assets/owner-projects/loggia-warm-slats-before.webp": {
+    "src": "/assets/owner-projects/loggia-warm-slats-before.webp",
+    "width": 720,
+    "height": 1279,
+    "variants": [
+      {
+        "src": "/assets/owner-projects/loggia-warm-slats-before-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/owner-projects/loggia-warm-slats-before-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/owner-projects/loggia-warm-slats-before.webp",
+        "width": 720
+      }
+    ]
+  },
+  "/assets/owner-projects/loggia-warm-slats-after.webp": {
+    "src": "/assets/owner-projects/loggia-warm-slats-after.webp",
+    "width": 720,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/assets/owner-projects/loggia-warm-slats-after-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/assets/owner-projects/loggia-warm-slats-after-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/assets/owner-projects/loggia-warm-slats-after.webp",
+        "width": 720
+      }
+    ]
   }
 }

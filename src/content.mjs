@@ -1994,7 +1994,24 @@ export const combinedHeroProject={
 const finishingService=services.find(s=>s.slug==='otdelka-balkonov');
 services.push({...finishingService,slug:'osteklenie-i-otdelka-balkonov',heroPrice:'',image:combinedHeroProject.after,features:['Подбор остекления под задачи балкона','Отделка стен, пола и потолка','Материалы, освещение и хранение по согласованному проекту'],question:'Что входит в остекление и отделку балкона?',answer:'На замере оценим состояние балкона и согласуем остекление, подготовку поверхностей и отделку. Перечень работ и смету фиксируем до начала работ.',title:'Остекление и отделка балконов и лоджий',h1:'Остекление и отделка балконов и лоджий в Москве и Московской области',short:'Подберём остекление и отделку для балкона или лоджии.',offer:'Остеклим балкон или лоджию, подберём отделку стен, пола и потолка.',heroSubtitle:'Подберём остекление и материалы для стен, пола и потолка.'});
 serviceSeo['osteklenie-i-otdelka-balkonov']={...serviceSeo['otdelka-balkonov'],metaTitle:'Остекление и отделка балконов и лоджий в Москве и МО | ArtBalkon',metaDescription:'Остекление и отделка балконов и лоджий в Москве и Московской области. Подбор остекления, отделка стен, пола и потолка. Замер и смета.',title:'Как остекляем и отделываем балконы',eyebrow:'НОВАЯ ЖИЗНЬ ВАШЕГО БАЛКОНА',paragraphs:['На замере оцениваем состояние балкона или лоджии и уточняем, как вы будете пользоваться пространством. Подбираем остекление и согласуем подготовку под отделку.','Выбираем покрытия для стен, пола и потолка с учётом влажности и температуры. При необходимости закладываем в смету утепление, освещение и розетки до чистовой отделки.','После замера согласуем состав работ и материалов. Покажем варианты отделки и поможем обустроить балкон для отдыха, работы или хранения.']};
-serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov']=[combinedHeroProject,...serviceBeforeAfterProjects['otdelka-balkonov']];
+serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov']=[
+ combinedHeroProject,
+ {
+  title:'Длинная светлая лоджия с отделкой под мрамор',
+  stage:'finish',objectType:'loggia',
+  before:'owner-projects/loggia-marble-before.webp',
+  after:'owner-projects/loggia-marble-after.webp',
+  beforeReal:false,beforeVisualized:true,afterReal:true,afterVisualized:false
+ },
+ {
+  title:'Лоджия с рейками и круглым потолочным светильником',
+  stage:'finish',objectType:'loggia',
+  before:'owner-projects/loggia-warm-slats-before.webp',
+  after:'owner-projects/loggia-warm-slats-after.webp',
+  beforeReal:false,beforeVisualized:true,afterReal:true,afterVisualized:false
+ },
+ ...serviceBeforeAfterProjects['otdelka-balkonov']
+];
 
 // The combined service has its own scope and structured FAQ.
 Object.assign(serviceSeo['osteklenie-i-otdelka-balkonov'],{
