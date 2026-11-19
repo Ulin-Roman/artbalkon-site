@@ -148,6 +148,7 @@ await redirect('/elektrika-na-balkone/','/#complex-options','Электрика 
 await redirect('/osteklenie-lodzhii/','/osteklenie-balkonov/','Остекление балконов и лоджий в Москве и Московской области');
 await redirect('/uteplenie-lodzhii/','/uteplenie-balkonov/','Утепление балконов и лоджий в Москве и Московской области');
 await redirect('/otdelka-lodzhii/','/otdelka-balkonov/','Отделка балконов и лоджий в Москве и Московской области');
+await redirect('/remont-balkonov/','/osteklenie-i-otdelka-balkonov/','Остекление и отделка балконов и лоджий');
 await redirect('/lodzhiya-pod-klyuch/','/','Балконы и лоджии под ключ в Москве и Московской области');
 await redirect('/holodnoe-osteklenie-lodzhii/','/holodnoe-osteklenie/','Холодное остекление балконов и лоджий в Москве и Московской области');
 await redirect('/teploe-osteklenie-lodzhii/','/teploe-osteklenie/','Тёплое остекление балконов и лоджий в Москве и Московской области');
