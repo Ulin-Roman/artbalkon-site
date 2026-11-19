@@ -2019,6 +2019,21 @@ for (const gallery of [beforeAfterProjects,...Object.values(serviceBeforeAfterPr
  }
 }
 
+beforeAfterProjects.splice(1,0,{
+ title:'Лоджия с рейками и открытым проёмом в комнату',
+ before:'owner-projects/loggia-slats-room-before.webp',
+ after:'owner-projects/loggia-slats-room-after.webp',
+ stage:'finish',
+ objectType:'loggia',
+ description:'Деревянные рейки на потолке и торцевой стене, светлый пол и открытый проём в комнату. Кадр до работ воссоздан по фотографии готовой лоджии.',
+ importedHomeWork:true,
+ visualized:false,
+ beforeVisualized:true,
+ afterVisualized:false,
+ beforeReal:false,
+ afterReal:true
+});
+
 // Add the French variant after all approved gallery corrections and withdrawals.
 import {createFrenchGlazing,frenchGlazingSeo} from './french-glazing.mjs';
 const frenchGlazing=createFrenchGlazing(services.find(s=>s.slug==='panoramnoe-osteklenie'),serviceBeforeAfterProjects['panoramnoe-osteklenie']);
