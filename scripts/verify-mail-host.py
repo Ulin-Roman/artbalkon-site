@@ -99,6 +99,8 @@ for old_path, target in [
     ('osteklenie-lodzhii/', '/osteklenie-balkonov/'),
     ('uteplenie-lodzhii/', '/uteplenie-balkonov/'),
     ('otdelka-lodzhii/', '/otdelka-balkonov/'),
+    ('remont-balkonov/', '/osteklenie-i-otdelka-balkonov/'),
+    ('remont-balkonov/?probe=a%2Bb', '/osteklenie-i-otdelka-balkonov/?probe=a%2Bb'),
     ('holodnoe-osteklenie-lodzhii/', '/holodnoe-osteklenie/'),
     ('teploe-osteklenie-lodzhii/', '/teploe-osteklenie/'),
     ('panoramnoe-osteklenie-lodzhii/', '/panoramnoe-osteklenie/'),
