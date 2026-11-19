@@ -73,7 +73,13 @@ const serviceHeroSlideshow=(service,{home=false}={})=>{
  const slides=serviceGallerySlides(service);
  if(service.landingVariant)return `<div class="landing-photo"><img class="hero-image is-active" src="/assets/${pictureAsset(service.image)}" width="768" height="1024" loading="eager" fetchpriority="high" decoding="async" alt="${esc(projectDisplayTitle(serviceBeforeAfterProjects[service.slug][0]))}"></div>`;
  if(service.slug==='osteklenie-balkonov')return `<div class="landing-photo">${pic(glazingHeroImage,`${service.title} — остеклённый балкон с выносом в кирпичном доме ArtBalkon`,'hero-image is-active',true)}</div>`;
- if(service.slug==='osteklenie-i-otdelka-balkonov')return `<div class="landing-photo">${pic(combinedHeroProject.after,combinedHeroProject.title,'hero-image is-active',true)}</div>`;
+ if(service.slug==='osteklenie-i-otdelka-balkonov'){
+  const {before,after,title}=combinedHeroProject;
+  return `<div class="landing-photo"><div class="landing-photo-pair">
+   <figure>${pic(before,`${title} — до работ`,'hero-image is-active',true)}<figcaption>До</figcaption></figure>
+   <figure>${pic(after,`${title} — после работ`,'hero-image is-active',true)}<figcaption>После</figcaption></figure>
+  </div></div>`;
+ }
  if(service.slug==='otdelka-balkonov')return `<div class="landing-photo">${pic(finishingHeroImage,`${service.title} — фотография готовой отделки лоджии ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='balkon-pod-klyuch')return `<div class="landing-photo">${pic(turnkeyHeroImage,`${service.title} — готовый балкон с рабочим кабинетом ArtBalkon`,'hero-image is-active',true)}</div>`;
  if(service.slug==='holodnoe-osteklenie')return `<div class="landing-photo">${pic(coldGlazingHeroImage,`${service.title} — лоджия с раздвижными окнами ArtBalkon`,'hero-image is-active',true)}</div>`;
@@ -433,7 +439,7 @@ const heroPriceMarkup=(value,unit='')=>{
  const amount=parts?parts[3]:text;
  return `<p class="landing-price"><span class="hero-price-line">${prefix}<span class="hero-price-amount">${esc(amount)}</span>${unit?` <small class="hero-price-unit">${esc(unit)}</small>`:''}</span></p>`;
 };
-export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}${s.slug==='uteplenie-balkonov'?' insulation-hero':''}"><div class="landing-grid${s.slug==='osteklenie-i-otdelka-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description explanatory-subtitle">${s.heroSubtitle||s.offer}</p>${s.heroPrice?heroPriceMarkup(s.heroPrice,s.heroPriceUnit):prices[s.price]===null?'':heroPriceMarkup(money(prices[s.price]),'/м²')}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s,{home})}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
+export function servicePage(s,{home=false}={}){const heroButtonClass=s.slug==='osteklenie-balkonov'?'button-icon-placeholder':'';return `<section class="container landing-hero${home?' home-hero':''}${s.slug==='uteplenie-balkonov'?' insulation-hero':''}${s.slug==='osteklenie-i-otdelka-balkonov'?' comparison-hero':''}"><div class="landing-grid${s.slug==='osteklenie-i-otdelka-balkonov'?' repair-hero-grid':''}"><div class="landing-copy"><div class="landing-copy-main"><h1>${headingWithLocation(s.h1)}</h1><p class="hero-description explanatory-subtitle">${s.heroSubtitle||s.offer}</p>${s.heroPrice?heroPriceMarkup(s.heroPrice,s.heroPriceUnit):prices[s.price]===null?'':heroPriceMarkup(money(prices[s.price]),'/м²')}<div class="hero-cta-stack">${button('Получить консультацию','#quiz',heroButtonClass,true,true)}${heroRatingBadges()}</div></div></div>${serviceHeroSlideshow(s,{home})}</div>${landingTrust()}</section>${campaignOffer()}${quiz(s)}${contact(s)}`;}
 const turnkeyIncludedExtrasSection=service=>{
  if(service?.slug!=='balkon-pod-klyuch')return '';
  const items=[
