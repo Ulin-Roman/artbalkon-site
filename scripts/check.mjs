@@ -903,9 +903,14 @@ for (const target of Object.values(beforeGeometryCorrections)) {
 
 assert.ok(!serviceBeforeAfterProjects['uteplenie-balkonov'].some(p=>['Утепление балкона со скамьёй','Утепление лоджии с рабочим столом'].includes(p.title)),'Withdrawn insulation works 66 and 67 must remain absent');
 
-// The combined service adds its featured loggia before the shared finishing works.
-const [featuredLoggia,...sharedFinishingProjects]=serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov'];
+// The combined service puts the three customer-supplied projects before the shared finishing works.
+const [featuredLoggia,marbleLoggia,warmSlatLoggia,...sharedFinishingProjects]=serviceBeforeAfterProjects['osteklenie-i-otdelka-balkonov'];
+const featuredLoggias=[featuredLoggia,marbleLoggia,warmSlatLoggia];
 assert.equal(featuredLoggia,combinedHeroProject);
+assert.deepEqual(featuredLoggias.slice(1).map(project=>project.after),[
+ 'owner-projects/loggia-marble-after.webp',
+ 'owner-projects/loggia-warm-slats-after.webp'
+]);
 assert.deepEqual(sharedFinishingProjects,serviceBeforeAfterProjects['otdelka-balkonov']);
 const repairService=services.find(s=>s.slug==='osteklenie-i-otdelka-balkonov');
 assert.ok(repairService);
@@ -913,10 +918,14 @@ assert.match(servicePageWithSeo(repairService),/Остекление и отде
 assert.doesNotMatch(renderHome(),/data-repair-range|repair-feature-card|owner-projects\/loggia-slats-room-/);
 
 const repairMarkup=servicePageWithSeo(repairService);
-const featuredLoggiaCard=repairMarkup.match(/<button class="before-after-compare"[^>]*>/)?.[0];
-assert.ok(featuredLoggiaCard?.includes(`data-case="${portfolioCaseId(featuredLoggia)}"`),'The featured loggia must appear first in the combined service gallery');
-assert.ok(featuredLoggiaCard.includes(`data-before="assets/${featuredLoggia.before}" data-after="assets/${featuredLoggia.after}"`),'The featured card must contain both loggia images');
-assert.match(featuredLoggiaCard,/data-before-real="false" data-before-visualized="true"/);
+const featuredLoggiaCards=[...repairMarkup.matchAll(/<button class="before-after-compare"[^>]*>/g)].slice(0,featuredLoggias.length).map(([tag])=>tag);
+assert.equal(featuredLoggiaCards.length,featuredLoggias.length);
+for(const [index,project] of featuredLoggias.entries()){
+ const card=featuredLoggiaCards[index];
+ assert.ok(card.includes(`data-case="${portfolioCaseId(project)}"`),'The featured loggias must appear first in order');
+ assert.ok(card.includes(`data-before="assets/${project.before}" data-after="assets/${project.after}"`),'Each featured card must contain both images');
+ assert.match(card,/data-before-real="false" data-before-visualized="true"/);
+}
 const repairConsultation=quizSection(repairMarkup);
 assert.ok(repairConsultation?.includes('type="hidden" name="service" value="Остекление и отделка балконов и лоджий"'),'Repair consultation must preserve the repair service');
 assert.equal(repairConsultation,quiz(repairService,{consultation:true}),'Repair page must retain its previous consultation block');
