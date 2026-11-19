@@ -8,7 +8,7 @@ export const directFeedDescriptions=Object.freeze({
  'frantsuzskoe-osteklenie':'Французское остекление балконов и лоджий от пола до потолка.',
  'uteplenie-balkonov':'Утепление балконов и лоджий: стены, пол и потолок.',
  'otdelka-balkonov':'Отделка балконов и лоджий: стены, пол и потолок.',
- 'remont-balkonov':'Ремонт балконов и лоджий: подготовка и новая отделка.',
+ 'osteklenie-i-otdelka-balkonov':'Остекление и отделка балконов и лоджий. Замер и смета.',
  'balkon-pod-klyuch':'Балконы и лоджии под ключ: остекление, утепление и отделка.',
  'osteklenie-kottedzhej':'Остекление коттеджей и домов, веранд и террас.',
  'osteklenie-balkona-s-vynosom':'Остекление балконов с выносом по подоконнику.',
