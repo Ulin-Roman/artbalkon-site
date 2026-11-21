@@ -53,7 +53,10 @@ jobs:
             if(!seo.title||!seo.description||seo.canonical!==url||seo.h1!==1||!seo.json.length||seo.json.includes(null)||/noindex/.test(seo.robots||''))failures.push({engine:name,url,seo});
             for(const [width,height] of viewports){
              await page.setViewportSize({width,height});
-             if(url===origin+'/')await page.reload({waitUntil:'domcontentloaded'});
+             if(url===origin+'/'){
+              try{await page.reload({waitUntil:'domcontentloaded',timeout:45000});}
+              catch(error){failures.push({engine:name,url,width,height,navigation:String(error)});continue;}
+             }
              await page.evaluate(()=>scrollTo(0,0));
              await page.waitForTimeout(150);
              const geometry=await page.evaluate(()=>({viewport:document.documentElement.clientWidth,document:document.documentElement.scrollWidth,body:document.body.scrollWidth,broken:[...document.images].filter(i=>i.complete&&i.currentSrc&&i.naturalWidth===0&&!i.currentSrc.startsWith('data:')).map(i=>i.currentSrc)}));
