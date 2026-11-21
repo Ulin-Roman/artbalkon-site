@@ -80,6 +80,19 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
    `max(220px, ${Math.round(270*ratio)}px)`
   ].join(', ');
  }
+ else if(['/assets/promo-electrics.jpg','/assets/promo-heated-floor.jpg','/assets/promo-ceiling-dryer.jpg'].includes(src)){
+  const ratio=entry.width/entry.height;
+  if(!Number.isFinite(ratio)||ratio<=0)throw Error('Missing promotion photo dimensions: '+src);
+  // Four desktop columns, two below 900px; include the cover crop and hover scale.
+  const cover=(frame,height)=>'calc(max('+frame+', '+Math.ceil(height*ratio)+'px) * 1.04)';
+  sizes=[
+   '(max-width:430px) '+cover('calc((100vw - 46px) / 2)',130),
+   '(max-width:640px) '+cover('calc((100vw - 54px) / 2)',130),
+   '(max-width:900px) '+cover('calc((100vw - 86px) / 2)',190),
+   '(max-width:1200px) '+cover('calc((100vw - 126px) / 4)',190),
+   cover('min(calc((100vw - 158px) / 4), 316.5px)',190)
+  ].join(', ');
+ }
  else if(src.startsWith('/assets/glazing-choice-v2/'))sizes='(max-width:760px) calc(100vw - 58px), (max-width:1100px) 50vw, 614px';
  else sizes='(max-width:640px) calc(100vw - 32px), (max-width:1100px) 50vw, 700px';
  // Keep the encoded aspect ratio before the first paint, including service heroes.
