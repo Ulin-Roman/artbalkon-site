@@ -98,7 +98,7 @@ jobs:
             const c=await browser.newContext({viewport:{width,height:900},deviceScaleFactor:dpr,locale:'ru-RU'}),p=await c.newPage();p.setDefaultTimeout(10000);
             try{
              await p.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:45000});
-             for(const scope of ['main .promotion-grid','#gift-modal .promotion-grid']){
+             for(const scope of ['main > .promotion-section .promotion-grid','#gift-modal .promotion-grid']){
               if(scope.startsWith('#')){await p.locator('[data-gift-open]').click();await p.locator('#gift-modal').waitFor({state:'visible'});}
               const photos=p.locator(scope+' img');
               if(await photos.count()!==4)throw Error('Unexpected gift card count: '+scope);
