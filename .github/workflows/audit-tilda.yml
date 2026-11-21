@@ -33,15 +33,15 @@ jobs:
           const sizes=[[320,740],[375,812],[412,915],[640,960],[768,1024],[820,1180],[1024,768],[1280,800],[1920,1080],[844,390]];
           const results=[],failures=[],navigationRetries=[];
           await mkdir('audit-results',{recursive:true});
-          let urls=[];
+          let urls=[],sitemapDiagnostics;
           try{
            let sitemap;
            for(let attempt=1;attempt<=2;attempt++){
-            try{const r=await fetch(origin+'/sitemap.xml',{signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Sitemap HTTP '+r.status);sitemap=await r.text();break;}
+            try{const r=await fetch(origin+'/sitemap.xml',{signal:AbortSignal.timeout(45000)});const responseUrl=new URL(r.url);sitemapDiagnostics={status:r.status,finalUrl:responseUrl.origin+responseUrl.pathname,queryPresent:!!responseUrl.search,contentType:r.headers.get('content-type')};if(!r.ok)throw Error('Sitemap HTTP '+r.status);sitemap=await r.text();sitemapDiagnostics.bytes=Buffer.byteLength(sitemap);break;}
             catch(error){if(attempt===2)throw error;navigationRetries.push({stage:'sitemap',attempt,error:String(error)});}
            }
            urls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1].replaceAll('&amp;','&'));
-           if(urls.length!==4||urls.some(u=>new URL(u).origin!==origin))throw Error('Expected four same-origin sitemap URLs');
+           if(urls.length!==4||urls.some(u=>new URL(u).origin!==origin)){Object.assign(sitemapDiagnostics,{urlCount:urls.length,urls,firstLoc:sitemap.match(/<(?:[\w.-]+:)?loc\b[^>]*>[\s\S]*?<\/(?:[\w.-]+:)?loc\s*>/i)?.[0]?.slice(0,500)||null,title:sitemap.match(/<title[^>]*>([^<]{0,120})/i)?.[1]||null,rootTag:sitemap.match(/<([a-z][\w:-]*)\b/i)?.[1]||null,prefix:sitemap.slice(0,24).replace(/[A-Za-z0-9_-]{16,}/g,'[token omitted]')});throw Error('Expected four same-origin sitemap URLs: '+JSON.stringify(sitemapDiagnostics));}
            for(const [engineName,engine] of Object.entries({chromium,firefox,webkit})){
             let browser;
             try{
@@ -103,7 +103,7 @@ jobs:
             finally{if(browser)await browser.close();}
            }
           }catch(error){failures.push({kind:'audit',error:String(error)});}
-          const report={date:new Date().toISOString(),origin,urls,expectedChecks:80,results,failures,navigationRetries};
+          const report={date:new Date().toISOString(),origin,urls,expectedChecks:80,results,failures,navigationRetries,sitemapDiagnostics};
           await writeFile('audit-results/report.json',JSON.stringify(report,null,2));
           let summary='# Tilda published-site audit\n\n'+results.length+' / 80 page/viewport checks; '+failures.length+' findings; '+navigationRetries.length+' navigation retries.\n\n';
           summary+='| Engine | Completed checks | Findings |\n|---|---:|---:|\n';
