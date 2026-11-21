@@ -1,0 +1,126 @@
+name: Audit Tilda published site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  responsive:
+    runs-on: ubuntu-24.04
+    container: mcr.microsoft.com/playwright:v1.56.1-noble
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install isolated browser test dependencies
+        run: |
+          mkdir -p artbalkon-tilda-audit
+          cd artbalkon-tilda-audit
+          npm init -y
+          npm install --save-exact playwright@1.56.1
+      - name: Audit Tilda pages layouts and images
+        working-directory: artbalkon-tilda-audit
+        run: |
+          cat > audit.mjs <<'AUDIT'
+          import {chromium,firefox,webkit} from 'playwright';
+          import {mkdir,writeFile,appendFile} from 'node:fs/promises';
+          import {userInfo} from 'node:os';
+          const origin='https://artbalkon.pro';
+          const sizes=[[320,740],[375,812],[412,915],[640,960],[768,1024],[820,1180],[1024,768],[1280,800],[1920,1080],[844,390]];
+          const results=[],failures=[],navigationRetries=[];
+          await mkdir('audit-results',{recursive:true});
+          let urls=[];
+          try{
+           let sitemap;
+           for(let attempt=1;attempt<=2;attempt++){
+            try{const r=await fetch(origin+'/sitemap.xml',{signal:AbortSignal.timeout(45000)});if(!r.ok)throw Error('Sitemap HTTP '+r.status);sitemap=await r.text();break;}
+            catch(error){if(attempt===2)throw error;navigationRetries.push({stage:'sitemap',attempt,error:String(error)});}
+           }
+           urls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1].replaceAll('&amp;','&'));
+           if(urls.length!==4||urls.some(u=>new URL(u).origin!==origin))throw Error('Expected four same-origin sitemap URLs');
+           for(const [engineName,engine] of Object.entries({chromium,firefox,webkit})){
+            let browser;
+            try{
+             browser=await engine.launch(engineName==='firefox'?{env:{...process.env,HOME:userInfo().homedir}}:undefined);
+             const context=await browser.newContext({viewport:{width:320,height:740},deviceScaleFactor:1,locale:'ru-RU'});
+             const page=await context.newPage();page.setDefaultTimeout(10000);
+             const viewports=engineName==='chromium'?sizes:sizes.filter(([w])=>[320,375,768,1280,844].includes(w));
+             for(const url of urls){
+              let response,navigationError;
+              for(let attempt=1;attempt<=2;attempt++){
+               try{response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:45000});navigationError=null;break;}
+               catch(error){navigationError=String(error);navigationRetries.push({engine:engineName,url,attempt,error:navigationError});}
+              }
+              if(navigationError){failures.push({engine:engineName,url,kind:'navigation',error:navigationError});continue;}
+              await page.waitForTimeout(700);
+              await page.evaluate(()=>Promise.race([document.fonts.ready,new Promise(resolve=>setTimeout(resolve,6000))]));
+              const seo=await page.evaluate(()=>({title:document.title,description:document.querySelector('meta[name="description"]')?.content||'',canonical:document.querySelector('link[rel="canonical"]')?.href||'',h1:[...document.querySelectorAll('h1')].map(e=>e.textContent.trim()),robots:document.querySelector('meta[name="robots"]')?.content||'',jsonLd:[...document.querySelectorAll('script[type="application/ld+json"]')].map(s=>{try{JSON.parse(s.textContent);return {valid:true};}catch(error){return {valid:false,error:String(error)};}})}));
+              const seoErrors=[];
+              if(response.status()!==200)seoErrors.push('HTTP '+response.status());
+              if(!seo.title.trim())seoErrors.push('Missing title');
+              if(!seo.description.trim())seoErrors.push('Missing description');
+              if(seo.canonical!==url)seoErrors.push('Canonical is not self');
+              if(seo.h1.length!==1||!seo.h1[0])seoErrors.push('Expected one nonempty H1');
+              if(seo.jsonLd.some(j=>!j.valid))seoErrors.push('Invalid JSON-LD');
+              if(/noindex/i.test(seo.robots))seoErrors.push('Sitemap URL has noindex');
+              if(seoErrors.length)failures.push({engine:engineName,url,kind:'seo',errors:seoErrors,seo});
+              for(const [width,height] of viewports){
+               try{
+                await page.setViewportSize({width,height});
+                await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(450);
+                const samples=[],broken=new Map(),pending=new Set();let lastBottom=-1;
+                for(let scrollStep=0;scrollStep<80;scrollStep++){
+                 await page.evaluate(async()=>{
+                  const visible=[...document.images].filter(i=>{const r=i.getBoundingClientRect(),s=getComputedStyle(i);return r.width>0&&r.height>0&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth&&s.display!=='none'&&s.visibility!=='hidden';});
+                  await Promise.all(visible.filter(i=>!i.complete).map(i=>new Promise(resolve=>{const done=()=>resolve();i.addEventListener('load',done,{once:true});i.addEventListener('error',done,{once:true});setTimeout(done,1500);})));
+                 });
+                 const sample=await page.evaluate(()=>{
+                  const viewport=document.documentElement.clientWidth;
+                  const visible=e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return r.width>0&&r.height>0&&s.display!=='none'&&s.visibility!=='hidden';};
+                  const selector=e=>{const parts=[];for(let n=e;n&&n!==document.body&&parts.length<4;n=n.parentElement){if(n.id){parts.unshift('#'+CSS.escape(n.id));break;}parts.unshift(n.tagName.toLowerCase()+[...n.classList].slice(0,3).map(c=>'.'+CSS.escape(c)).join(''));}return parts.join(' > ');};
+                  const candidates=[...document.body.querySelectorAll('*')].filter(visible).map(e=>{const r=e.getBoundingClientRect();return {selector:selector(e),left:Math.round(r.left*100)/100,right:Math.round(r.right*100)/100,width:Math.round(r.width*100)/100};}).filter(r=>r.left<-1||r.right>viewport+1).sort((a,b)=>b.right-a.right).slice(0,12);
+                  const images=[...document.images].filter(i=>{const r=i.getBoundingClientRect();return visible(i)&&r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth;}).map(i=>({selector:selector(i),src:i.currentSrc||i.getAttribute('src')||'',complete:i.complete,naturalWidth:i.naturalWidth}));
+                  return {y:scrollY,viewport,document:document.documentElement.scrollWidth,body:document.body.scrollWidth,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight),candidates,broken:images.filter(i=>i.complete&&i.src&&!i.src.startsWith('data:')&&i.naturalWidth===0),pending:images.filter(i=>!i.complete).map(i=>i.src)};
+                 });
+                 samples.push(sample);for(const b of sample.broken)broken.set(b.selector+' '+b.src,b);for(const u of sample.pending)pending.add(u);
+                 if(sample.y+height>=sample.height-2){if(lastBottom===sample.height)break;lastBottom=sample.height;await page.waitForTimeout(250);continue;}
+                 await page.evaluate(step=>scrollBy(0,step),Math.max(300,Math.floor(height*0.9)));await page.waitForTimeout(140);
+                }
+                const overflow=samples.filter(s=>s.document>s.viewport+1||s.body>s.viewport+1).map(({broken,pending,...s})=>s);
+                const row={engine:engineName,url,width,height,status:response.status(),seo,scrollSamples:samples.length,overflow,brokenImages:[...broken.values()],pendingImages:[...pending],reachedBottom:samples.at(-1).y+height>=samples.at(-1).height-2};results.push(row);
+                if(overflow.length||broken.size||!row.reachedBottom)failures.push({engine:engineName,url,width,height,kind:'layout-images',overflow:overflow.map(s=>({...s,candidates:s.candidates})),brokenImages:row.brokenImages,reachedBottom:row.reachedBottom});
+                await page.evaluate(()=>scrollTo(0,0));await page.waitForTimeout(200);
+                await page.screenshot({path:'audit-results/'+engineName+'-'+(new URL(url).pathname.replaceAll('/','_')||'home')+'-'+width+'.png'});
+               }catch(error){failures.push({engine:engineName,url,width,height,kind:'viewport',error:String(error)});}
+              }
+             }
+             await context.close();
+            }catch(error){failures.push({engine:engineName,kind:'engine',error:String(error)});}
+            finally{if(browser)await browser.close();}
+           }
+          }catch(error){failures.push({kind:'audit',error:String(error)});}
+          const report={date:new Date().toISOString(),origin,urls,expectedChecks:80,results,failures,navigationRetries};
+          await writeFile('audit-results/report.json',JSON.stringify(report,null,2));
+          let summary='# Tilda published-site audit\n\n'+results.length+' / 80 page/viewport checks; '+failures.length+' findings; '+navigationRetries.length+' navigation retries.\n\n';
+          summary+='| Engine | Completed checks | Findings |\n|---|---:|---:|\n';
+          for(const name of ['chromium','firefox','webkit'])summary+='| '+name+' | '+results.filter(r=>r.engine===name).length+' | '+failures.filter(r=>r.engine===name).length+' |\n';
+          summary+='\nNo forms were submitted. JSON-LD is syntax-checked when present. Images are checked after incremental scrolling when visible. This is browser emulation, not physical-device testing.\n';
+          if(failures.length)summary+='\n## Findings\n\n'+JSON.stringify(failures,null,2)+'\n';
+          if(navigationRetries.length)summary+='\n## Navigation attempts\n\n'+JSON.stringify(navigationRetries,null,2)+'\n';
+          await appendFile(process.env.GITHUB_STEP_SUMMARY,summary);console.log(summary);
+          if(failures.length||results.length!==80)process.exitCode=1;
+          
+          AUDIT
+          node --check audit.mjs
+          node audit.mjs
+      - name: Save Tilda audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tilda-published-site-audit
+          path: artbalkon-tilda-audit/audit-results
+          retention-days: 14
