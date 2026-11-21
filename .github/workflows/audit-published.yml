@@ -34,7 +34,7 @@ jobs:
           const urls=[...sitemap.matchAll(new RegExp('<loc>([^<]+)</loc>','g'))].map(m=>m[1]);
           if(urls.length!==20||urls.some(u=>new URL(u).origin!==origin))throw Error('Unexpected sitemap');
           const sizes=[[320,740],[375,812],[412,915],[640,960],[768,1024],[820,1180],[1024,768],[1280,800],[1920,1080],[844,390]];
-          const results=[],failures=[],notes=[];
+          const results=[],failures=[],notes=[],giftPhotos=[];
           await mkdir('audit-results',{recursive:true});
           for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
            const browser=await engine.launch(name === 'firefox'
@@ -93,9 +93,29 @@ jobs:
              await p.locator('#quiz [data-estimate-stage="contact"]').waitFor({state:'visible'});
             }catch(error){failures.push({width,dpr,quiz:String(error)});}finally{await c.close();}
            }
+           // Check published cover crops without relying on density-corrected naturalWidth.
+           if(name==='chromium')for(const dpr of [1,2])for(const width of [320,375,412,640,768,820,1024,1280,1920]){
+            const c=await browser.newContext({viewport:{width,height:900},deviceScaleFactor:dpr,locale:'ru-RU'}),p=await c.newPage();p.setDefaultTimeout(10000);
+            try{
+             await p.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:45000});
+             for(const scope of ['main .promotion-grid','#gift-modal .promotion-grid']){
+              if(scope.startsWith('#')){await p.locator('[data-gift-open]').click();await p.locator('#gift-modal').waitFor({state:'visible'});}
+              const photos=p.locator(scope+' img');
+              if(await photos.count()!==4)throw Error('Unexpected gift card count: '+scope);
+              for(let index=0;index<3;index++){
+               const photo=photos.nth(index);await photo.scrollIntoViewIfNeeded();await photo.evaluate(i=>i.decode());
+               const data=await photo.evaluate(i=>{const r=i.getBoundingClientRect(),candidates=i.srcset.split(',').map(item=>item.trim().split(/\s+/)),chosen=candidates.find(([src])=>new URL(src,location.href).href===i.currentSrc);return {src:i.currentSrc,selectedWidth:chosen?Number(chosen[1].replace(/w$/,'')):null,frameWidth:r.width,frameHeight:r.height,sizes:i.sizes,loaded:i.complete&&i.naturalWidth>0};});
+               const requiredWidth=Math.min(1200,Math.max(data.frameWidth,data.frameHeight*1.5)*dpr*1.035);
+               giftPhotos.push({viewportWidth:width,dpr,scope,index,requiredWidth,...data});
+               if(!data.loaded||!data.frameWidth||!data.frameHeight||!data.selectedWidth||data.selectedWidth<requiredWidth*.97||!data.sizes||/700px$/.test(data.sizes))failures.push({engine:name,path:'/',width,dpr,gift:{scope,index,requiredWidth,...data}});
+              }
+              if(scope.startsWith('#')){await p.locator('[data-gift-close]').click();await p.locator('#gift-modal').waitFor({state:'hidden'});}
+             }
+            }catch(error){failures.push({engine:name,path:'/',width,dpr,gift:String(error)});}finally{await c.close();}
+           }
            await browser.close();
           }
-          const report={date:new Date().toISOString(),origin,urls,results,failures,quizPhotos:notes};
+          const report={date:new Date().toISOString(),origin,urls,results,failures,quizPhotos:notes,giftPhotos};
           await writeFile('audit-results/report.json',JSON.stringify(report,null,2));
           let summary='# Published site responsive audit\n\n'+results.length+' page/viewport checks; '+notes.length+' quiz-photo observations; '+failures.length+' failures.\n\n';
           summary+='| Engine | Checks | Overflow/image/SEO/interaction failures |\n|---|---:|---:|\n';
@@ -103,6 +123,8 @@ jobs:
           summary+='\nReal hardware and field performance are outside this test. No forms were submitted.\n';
           summary+='\n## Initial quiz photo selection\n\n| Viewport width | DPR | Selected file | Responsive candidates |\n|---|---:|---|---|\n';
           for(const photo of notes.filter(p=>p.step===0&&p.src.includes('/turnkey-green-v2/')))summary+='| '+photo.viewportWidth+' | '+photo.dpr+' | '+photo.src.split('/').pop()+' | '+(photo.srcset?'yes':'no')+' |\n';
+          summary+='\n## Gift cover image selection\n\n'+giftPhotos.length+' cover-photo observations; source widths use srcset descriptors. Required width includes DPR, 3.5% margin and the 1200px source cap; acceptance tolerance is 3%.\n\n| Viewport | DPR | Location | Image | Selected px | Required px | File |\n|---|---:|---|---:|---:|---:|---|\n';
+          for(const photo of giftPhotos)summary+='| '+photo.viewportWidth+' | '+photo.dpr+' | '+photo.scope+' | '+(photo.index+1)+' | '+photo.selectedWidth+' | '+photo.requiredWidth.toFixed(1)+' | '+photo.src+' |\n';
           if(failures.length)summary+='\nFailures:\n\n'+JSON.stringify(failures,null,2)+'\n';
           await appendFile(process.env.GITHUB_STEP_SUMMARY,summary);
           console.log(summary);
