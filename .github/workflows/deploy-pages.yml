@@ -20,6 +20,8 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      PAGES_ARTIFACT_NAME: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -54,10 +56,34 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist
+          name: ${{ env.PAGES_ARTIFACT_NAME }}
+      - name: Install Pages artifact readiness client
+        run: npm install --prefix "$RUNNER_TEMP/pages-artifact-client" --no-save --package-lock=false --ignore-scripts --no-audit --no-fund @actions/artifact@2.1.3
+      - name: Wait for Pages artifact metadata
+        timeout-minutes: 3
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { DefaultArtifactClient } = require(process.env.RUNNER_TEMP + '/pages-artifact-client/node_modules/@actions/artifact');
+            const client = new DefaultArtifactClient();
+            const name = process.env.PAGES_ARTIFACT_NAME;
+            for (let attempt = 1; attempt <= 12; attempt++) {
+              const { artifacts } = await client.listArtifacts();
+              const matches = artifacts.filter(artifact => artifact.name === name);
+              if (matches.length > 1) throw new Error('Ambiguous Pages artifact: ' + name);
+              if (matches.length === 1 && matches[0].size > 0) {
+                core.info('Pages artifact ready: ' + name + ' (id ' + matches[0].id + ')');
+                return;
+              }
+              core.info('Waiting for Pages artifact metadata: ' + attempt + '/12');
+              if (attempt < 12) await new Promise(resolve => setTimeout(resolve, 10000));
+            }
+            throw new Error('Pages artifact metadata did not become visible: ' + name);
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
         with:
+          artifact_name: ${{ env.PAGES_ARTIFACT_NAME }}
           timeout: '600000'
 
       - name: Build for artbalkon.site
