@@ -94,7 +94,7 @@ jobs:
             }catch(error){failures.push({width,dpr,quiz:String(error)});}finally{await c.close();}
            }
            // Check published cover crops without relying on density-corrected naturalWidth.
-           if(name==='chromium')for(const dpr of [1,2])for(const width of [320,375,412,640,768,820,1024,1280,1920]){
+           if(name==='chromium')for(const dpr of [1,2])for(const width of [320,375,412,640,768,820,900,901,1024,1100,1101,1199,1200,1201,1280,1920]){
             const c=await browser.newContext({viewport:{width,height:900},deviceScaleFactor:dpr,locale:'ru-RU'}),p=await c.newPage();p.setDefaultTimeout(10000);
             try{
              await p.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:45000});
