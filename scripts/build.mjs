@@ -88,7 +88,7 @@ const optimizeHtml=(html,pagePath)=>html.replace(/https:\/\/[^"\s<>]+\/assets\/[
   sizes=[
    '(max-width:430px) '+cover('calc((100vw - 46px) / 2)',130),
    '(max-width:640px) '+cover('calc((100vw - 54px) / 2)',130),
-   '(max-width:900px) '+cover('calc((100vw - 86px) / 2)',190),
+   '(max-width:1100px) '+cover('calc((100vw - 86px) / 2)',190),
    '(max-width:1200px) '+cover('calc((100vw - 126px) / 4)',190),
    cover('min(calc((100vw - 158px) / 4), 316.5px)',190)
   ].join(', ');
